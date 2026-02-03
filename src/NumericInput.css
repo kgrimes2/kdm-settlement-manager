@@ -1,0 +1,89 @@
+.numeric-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Hide default number input spinners */
+.numeric-input-container input[type="number"]::-webkit-inner-spin-button,
+.numeric-input-container input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.numeric-input-container input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.numeric-buttons {
+  display: flex;
+  gap: 0.25rem;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+  pointer-events: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.numeric-button {
+  min-width: 60px;
+  min-height: 48px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #d4c5a9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.numeric-button.increment {
+  background-color: #5a6b4a;
+  border: 2px solid #3a4a2a;
+}
+
+.numeric-button.increment:hover {
+  background-color: #6a7b5a;
+  border-color: #4a5a3a;
+  transform: scale(1.05);
+}
+
+.numeric-button.increment:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.numeric-button.decrement {
+  background-color: #6b4a4a;
+  border: 2px solid #4a2a2a;
+}
+
+.numeric-button.decrement:hover {
+  background-color: #7b5a5a;
+  border-color: #5a3a3a;
+  transform: scale(1.05);
+}
+
+.numeric-button.decrement:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Make buttons larger on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .numeric-button {
+    min-width: 70px;
+    min-height: 56px;
+    font-size: 1.25rem;
+  }
+}
