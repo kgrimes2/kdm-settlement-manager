@@ -105,26 +105,30 @@ export default function NumericInput({ value, onChange, className = '', min, max
             transform: 'translateY(-50%)'
           }}
         >
-          <button
-            className="numeric-button decrement"
-            onClick={handleDecrement}
-            onTouchEnd={(e) => {
-              e.preventDefault()
-              handleDecrement(e as any)
-            }}
-          >
-            -1
-          </button>
-          <button
-            className="numeric-button increment"
-            onClick={handleIncrement}
-            onTouchEnd={(e) => {
-              e.preventDefault()
-              handleIncrement(e as any)
-            }}
-          >
-            +1
-          </button>
+          {(min === undefined || value > min) && (
+            <button
+              className="numeric-button decrement"
+              onClick={handleDecrement}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                handleDecrement(e as any)
+              }}
+            >
+              -1
+            </button>
+          )}
+          {(max === undefined || value < max) && (
+            <button
+              className="numeric-button increment"
+              onClick={handleIncrement}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                handleIncrement(e as any)
+              }}
+            >
+              +1
+            </button>
+          )}
         </div>,
         document.body
       )}
