@@ -526,6 +526,51 @@ function App() {
     })
   }
 
+  const handleHealAllWounds = () => {
+    setConfirmDialog({
+      message: 'Heal all wounds for all survivors? This will clear all injury checkboxes (brain, head, arms, body, waist, legs) for all active and inactive survivors.',
+      onConfirm: () => {
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const healSurvivor = (survivor: SurvivorData | null) => {
+              if (!survivor) return null
+              return {
+                ...survivor,
+                insane: false,
+                bodyLocations: {
+                  head: { ...survivor.bodyLocations.head, light: false, heavy: false },
+                  arms: { ...survivor.bodyLocations.arms, light: false, heavy: false },
+                  body: { ...survivor.bodyLocations.body, light: false, heavy: false },
+                  waist: { ...survivor.bodyLocations.waist, light: false, heavy: false },
+                  legs: { ...survivor.bodyLocations.legs, light: false, heavy: false },
+                }
+              }
+            }
+
+            return {
+              ...s,
+              survivors: {
+                1: healSurvivor(s.survivors[1]),
+                2: healSurvivor(s.survivors[2]),
+                3: healSurvivor(s.survivors[3]),
+                4: healSurvivor(s.survivors[4]),
+              },
+              removedSurvivors: s.removedSurvivors.map(survivor => healSurvivor(survivor)!),
+              retiredSurvivors: s.retiredSurvivors.map(survivor => healSurvivor(survivor)!),
+              deceasedSurvivors: s.deceasedSurvivors.map(survivor => healSurvivor(survivor)!),
+            }
+          })
+        }))
+
+        showNotification('All wounds healed successfully', 'success')
+        setConfirmDialog(null)
+      }
+    })
+  }
+
   const handleClearAllData = () => {
     setConfirmDialog({
       message: 'Are you sure you want to clear ALL survivor data? This will delete everything including all survivors, pools, retired, and deceased. This action is permanent and cannot be undone.',
@@ -983,8 +1028,12 @@ function App() {
               </div>
               {showBulkActions && (
                 <div className="bulk-actions-content">
-                  {/* Bulk actions will go here */}
-                  <div className="empty-message">Bulk actions coming soon...</div>
+                  <button
+                    className="bulk-action-button heal-wounds-button"
+                    onClick={handleHealAllWounds}
+                  >
+                    Heal All Wounds
+                  </button>
                 </div>
               )}
             </div>
