@@ -322,7 +322,7 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
           <div className="brain-section">
             <div className="brain-shield-group">
-              <div className="shield-icon">
+              <div className={`shield-icon ${survivor.brainArmor >= 3 ? 'insane-shield' : ''}`}>
                 <NumericInput
                   value={survivor.brainArmor}
                   onChange={(value) => updateField('brainArmor', value)}
@@ -330,9 +330,11 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                   min={0}
                 />
               </div>
-              <span className="insanity-label">Insanity</span>
             </div>
-            <span className="brain-label">Brain</span>
+            <span className="brain-label">
+              Brain (insanity)
+              <span className="brain-note">insane on 3+</span>
+            </span>
             <label className="brain-checkbox">
               <input
                 type="checkbox"
