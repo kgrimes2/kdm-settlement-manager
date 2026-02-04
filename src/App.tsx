@@ -594,7 +594,8 @@ function App() {
           if (!survivor) return null
           return {
             ...survivor,
-            survivalLimit: value
+            survivalLimit: value,
+            survival: Math.min(survivor.survival, value)
           }
         }
 
