@@ -1098,6 +1098,43 @@
   background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid #5a4a3a;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bulk-action-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bulk-action-button:hover {
+  background-color: #4a3a38;
+  border-color: #6a5a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.bulk-action-button:active {
+  transform: translateY(0);
+}
+
+.heal-wounds-button {
+  background-color: #5a6b4a;
+  border-color: #3a4a2a;
+}
+
+.heal-wounds-button:hover {
+  background-color: #6a7b5a;
+  border-color: #4a5a3a;
 }
 
 .active-survivors-section {
