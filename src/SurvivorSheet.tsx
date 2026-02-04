@@ -267,6 +267,7 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                   onChange={(value) => updateField('survival', value)}
                   className="survival-input large-box"
                   min={0}
+                  max={survivor.survivalLimit}
                 />
                 <label className="cannot-spend-survival">
                   <span>Cannot spend<br />survival</span>
