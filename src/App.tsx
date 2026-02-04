@@ -50,6 +50,7 @@ function App() {
   const [showRetiredSection, setShowRetiredSection] = useState(false)
   const [showDeceasedSection, setShowDeceasedSection] = useState(false)
   const [showBulkActions, setShowBulkActions] = useState(false)
+  const [showActiveSurvivors, setShowActiveSurvivors] = useState(true)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [hoveredQuadrant, setHoveredQuadrant] = useState<QuadrantId>(null)
@@ -988,27 +989,38 @@ function App() {
               )}
             </div>
 
-            <div className="survivor-list">
-              {currentSettlement && Object.entries(currentSettlement.survivors)
-                .filter(([_, survivor]) => survivor !== null)
-                .map(([id, survivor]) => (
-                  <div key={id} className="survivor-list-item">
-                    <div className="survivor-info">
-                      <div className="survivor-name">
-                        {survivor!.name || `New Survivor`}
+            <div className="active-survivors-section">
+              <div
+                className="active-survivors-header"
+                onClick={() => setShowActiveSurvivors(!showActiveSurvivors)}
+              >
+                <span>Active Survivors ({currentSettlement && Object.values(currentSettlement.survivors).filter(s => s !== null).length || 0})</span>
+                <span className="expand-icon">{showActiveSurvivors ? '▼' : '▶'}</span>
+              </div>
+              {showActiveSurvivors && (
+                <div className="survivor-list">
+                  {currentSettlement && Object.entries(currentSettlement.survivors)
+                    .filter(([_, survivor]) => survivor !== null)
+                    .map(([id, survivor]) => (
+                      <div key={id} className="survivor-list-item">
+                        <div className="survivor-info">
+                          <div className="survivor-name">
+                            {survivor!.name || `New Survivor`}
+                          </div>
+                          <div className="survivor-meta">
+                            Created: {new Date(survivor!.createdAt).toLocaleDateString()} {new Date(survivor!.createdAt).toLocaleTimeString()}
+                          </div>
+                        </div>
+                        <button
+                          className="deactivate-button"
+                          onClick={() => handleDeactivateSurvivor(Number(id) as 1 | 2 | 3 | 4)}
+                        >
+                          Deactivate
+                        </button>
                       </div>
-                      <div className="survivor-meta">
-                        Created: {new Date(survivor!.createdAt).toLocaleDateString()} {new Date(survivor!.createdAt).toLocaleTimeString()}
-                      </div>
-                    </div>
-                    <button
-                      className="deactivate-button"
-                      onClick={() => handleDeactivateSurvivor(Number(id) as 1 | 2 | 3 | 4)}
-                    >
-                      Deactivate
-                    </button>
-                  </div>
-                ))}
+                    ))}
+                </div>
+              )}
             </div>
 
             <div className="survivor-pool-section">
