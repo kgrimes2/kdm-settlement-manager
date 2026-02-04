@@ -571,6 +571,47 @@ function App() {
     })
   }
 
+  const handleSetMaxSurvival = () => {
+    const input = prompt('Enter the max survival value to set for all survivors:')
+    if (input === null) return // User cancelled
+
+    const value = parseInt(input, 10)
+    if (isNaN(value) || value < 0) {
+      showNotification('Invalid value. Please enter a positive number.', 'error')
+      return
+    }
+
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s => {
+        if (s.id !== prev.currentSettlementId) return s
+
+        const updateSurvivorLimit = (survivor: SurvivorData | null) => {
+          if (!survivor) return null
+          return {
+            ...survivor,
+            survivalLimit: value
+          }
+        }
+
+        return {
+          ...s,
+          survivors: {
+            1: updateSurvivorLimit(s.survivors[1]),
+            2: updateSurvivorLimit(s.survivors[2]),
+            3: updateSurvivorLimit(s.survivors[3]),
+            4: updateSurvivorLimit(s.survivors[4]),
+          },
+          removedSurvivors: s.removedSurvivors.map(survivor => updateSurvivorLimit(survivor)!),
+          retiredSurvivors: s.retiredSurvivors.map(survivor => updateSurvivorLimit(survivor)!),
+          deceasedSurvivors: s.deceasedSurvivors.map(survivor => updateSurvivorLimit(survivor)!),
+        }
+      })
+    }))
+
+    showNotification(`Max survival set to ${value} for all survivors`, 'success')
+  }
+
   const handleClearAllData = () => {
     setConfirmDialog({
       message: 'Are you sure you want to clear ALL survivor data? This will delete everything including all survivors, pools, retired, and deceased. This action is permanent and cannot be undone.',
@@ -1033,6 +1074,12 @@ function App() {
                     onClick={handleHealAllWounds}
                   >
                     Heal All Wounds
+                  </button>
+                  <button
+                    className="bulk-action-button set-survival-button"
+                    onClick={handleSetMaxSurvival}
+                  >
+                    Set Max Survival
                   </button>
                 </div>
               )}
