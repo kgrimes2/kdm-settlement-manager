@@ -49,6 +49,7 @@ function App() {
   const [showSurvivorPool, setShowSurvivorPool] = useState(false)
   const [showRetiredSection, setShowRetiredSection] = useState(false)
   const [showDeceasedSection, setShowDeceasedSection] = useState(false)
+  const [showBulkActions, setShowBulkActions] = useState(false)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [hoveredQuadrant, setHoveredQuadrant] = useState<QuadrantId>(null)
@@ -970,6 +971,23 @@ function App() {
                 </button>
               </div>
             </div>
+
+            <div className="bulk-actions-section">
+              <div
+                className="bulk-actions-header"
+                onClick={() => setShowBulkActions(!showBulkActions)}
+              >
+                <span>Bulk Survivor Actions</span>
+                <span className="expand-icon">{showBulkActions ? '▼' : '▶'}</span>
+              </div>
+              {showBulkActions && (
+                <div className="bulk-actions-content">
+                  {/* Bulk actions will go here */}
+                  <div className="empty-message">Bulk actions coming soon...</div>
+                </div>
+              )}
+            </div>
+
             <div className="survivor-list">
               {currentSettlement && Object.entries(currentSettlement.survivors)
                 .filter(([_, survivor]) => survivor !== null)
