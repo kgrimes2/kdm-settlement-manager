@@ -11,6 +11,7 @@ describe('App', () => {
   beforeEach(() => {
     localStorage.clear()
     vi.clearAllMocks()
+    vi.useRealTimers()
   })
 
   describe('Initial Render', () => {
@@ -39,12 +40,13 @@ describe('App', () => {
       await user.clear(nameInput)
       await user.type(nameInput, 'New Name')
 
+      // Wait for debounced save (1000ms + buffer)
       await waitFor(() => {
         const savedState = localStorage.getItem('kdm-app-state')
         expect(savedState).toBeTruthy()
         const parsed = JSON.parse(savedState!)
         expect(parsed.settlements[0].survivors[1].name).toContain('N')
-      })
+      }, { timeout: 2000 })
     })
 
     it('loads state from localStorage on mount', () => {
@@ -58,8 +60,10 @@ describe('App', () => {
         cannotSpendSurvival: false,
         survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
         stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
+        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
         insanity: 0,
         brainArmor: 0,
+        insane: false,
         bodyLocations: {
           head: { armor: 0, light: false, heavy: false },
           arms: { armor: 0, light: false, heavy: false },
@@ -74,7 +78,7 @@ describe('App', () => {
         understandingMilestone: null,
         fightingArts: [''],
         disorders: [''],
-        abilitiesImpairments: [''],
+        abilitiesImpairments: ['', ''],
         oncePerLifetime: [''],
         retired: false,
         skipNextHunt: false,
@@ -134,8 +138,10 @@ describe('App', () => {
         cannotSpendSurvival: false,
         survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
         stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
+        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
         insanity: 0,
         brainArmor: 0,
+        insane: false,
         bodyLocations: {
           head: { armor: 0, light: false, heavy: false },
           arms: { armor: 0, light: false, heavy: false },
@@ -150,7 +156,7 @@ describe('App', () => {
         understandingMilestone: null,
         fightingArts: [''],
         disorders: [''],
-        abilitiesImpairments: [''],
+        abilitiesImpairments: ['', ''],
         oncePerLifetime: [''],
         retired: false,
         skipNextHunt: false,
@@ -186,7 +192,7 @@ describe('App', () => {
       await user.upload(fileInput, file)
 
       await waitFor(() => {
-        expect(screen.getByText(/failed to load file/i)).toBeInTheDocument()
+        expect(screen.getByText(/failed to import/i)).toBeInTheDocument()
       })
     })
 
@@ -200,7 +206,7 @@ describe('App', () => {
       await user.upload(fileInput, file)
 
       await waitFor(() => {
-        expect(screen.getByText(/failed to load file/i)).toBeInTheDocument()
+        expect(screen.getByText(/failed to import/i)).toBeInTheDocument()
       })
     })
   })
@@ -288,8 +294,10 @@ describe('App', () => {
         cannotSpendSurvival: false,
         survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
         stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
+        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
         insanity: 0,
         brainArmor: 0,
+        insane: false,
         bodyLocations: {
           head: { armor: 0, light: false, heavy: false },
           arms: { armor: 0, light: false, heavy: false },
@@ -304,7 +312,7 @@ describe('App', () => {
         understandingMilestone: null,
         fightingArts: [''],
         disorders: [''],
-        abilitiesImpairments: [''],
+        abilitiesImpairments: ['', ''],
         oncePerLifetime: [''],
         retired: false,
         skipNextHunt: false,
@@ -439,9 +447,15 @@ describe('App', () => {
       const user = userEvent.setup()
       render(<App />)
 
-      const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
-      await user.click(menuBtn)
+      // Open settlement dropdown
+      const settlementBtn = screen.getByRole('button', { name: /settlement 1/i })
+      await user.click(settlementBtn)
 
+      // Click "Manage Settlements..." in dropdown
+      const manageSettlementsBtn = screen.getByText(/manage settlements\.\.\./i)
+      await user.click(manageSettlementsBtn)
+
+      // Now click Clear All Data
       const clearBtn = screen.getByRole('button', { name: /clear all data/i })
       await user.click(clearBtn)
 
@@ -608,7 +622,7 @@ describe('App', () => {
   })
 
   describe('Edge Cases', () => {
-    it('migrates huntXP from 16 to 15 items on load', () => {
+    it('migrates huntXP from 16 to 15 items on load', async () => {
       const mockSurvivor = {
         name: 'Hero',
         gender: 'M',
@@ -619,8 +633,10 @@ describe('App', () => {
         cannotSpendSurvival: false,
         survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
         stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
+        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
         insanity: 0,
         brainArmor: 0,
+        insane: false,
         bodyLocations: {
           head: { armor: 0, light: false, heavy: false },
           arms: { armor: 0, light: false, heavy: false },
@@ -635,7 +651,7 @@ describe('App', () => {
         understandingMilestone: null,
         fightingArts: [''],
         disorders: [''],
-        abilitiesImpairments: [''],
+        abilitiesImpairments: ['', ''],
         oncePerLifetime: [''],
         retired: false,
         skipNextHunt: false,
@@ -654,8 +670,11 @@ describe('App', () => {
       render(<App />)
 
       // Verify the huntXP array was trimmed to 15 items
-      const savedState = JSON.parse(localStorage.getItem('kdm-app-state')!)
-      expect(savedState.settlements[0].survivors[1].huntXP.length).toBe(15)
+      // Wait for debounced save
+      await waitFor(() => {
+        const savedState = JSON.parse(localStorage.getItem('kdm-app-state')!)
+        expect(savedState.settlements[0].survivors[1].huntXP.length).toBe(15)
+      }, { timeout: 2000 })
     })
 
     it('handles backwards compatibility with archived survivors', async () => {
@@ -672,8 +691,10 @@ describe('App', () => {
         cannotSpendSurvival: false,
         survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
         stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
+        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
         insanity: 0,
         brainArmor: 0,
+        insane: false,
         bodyLocations: {
           head: { armor: 0, light: false, heavy: false },
           arms: { armor: 0, light: false, heavy: false },
@@ -688,7 +709,7 @@ describe('App', () => {
         understandingMilestone: null,
         fightingArts: [''],
         disorders: [''],
-        abilitiesImpairments: [''],
+        abilitiesImpairments: ['', ''],
         oncePerLifetime: [''],
         retired: false,
         skipNextHunt: false,

@@ -7,10 +7,47 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-02-04
+
 ### Added
+- Gear bonuses: separate tracking for stat bonuses from equipment (displayed as base + gear)
+- Editable survival limit with (max. X) next to survival value
+- Bulk survivor actions panel (collapsible, collapsed by default):
+  - Heal All Wounds: clears all injury checkboxes for all survivors
+  - Set Max Survival: sets survival limit for all survivors with custom dialog
+  - Clear Gear Bonuses: resets all gear bonuses to 0
+- Second row for Abilities & Impairments text input
+- Plus symbol (+) between base stats and gear bonuses for clarity
+- Disclaimer banner at bottom of page on all devices
 - MIT License file and license information in package.json
 - Clickable version number in toolbar linking to changelog
 - Disclaimer stating this is an unofficial, fan-made tool (in README and app footer)
+
+### Changed
+- Survivor sheets now use 3-column layout (stats, body, text sections)
+- Numeric inputs are now read-only; users must use +1/-1 buttons only
+- Increment/decrement buttons only appear when allowed (respect min/max constraints)
+- Survival value automatically capped when max survival is lowered
+- Numbers displayed larger for better visibility
+- Margins and padding reduced throughout for more compact layout
+- Toolbar, buttons, and quadrants have tighter spacing
+- Stats arranged vertically in left column with even spacing
+- All three columns in survivor sheet evenly spaced
+- Active Survivors section is now collapsible (open by default)
+- Clear All Data button moved to Settlement Management panel
+- localStorage saves now debounced (1000ms) for better performance
+
+### Fixed
+- Brain section "Insane" checkbox now persists correctly
+
+### Technical
+- Data version bumped to v3
+- Migration system updated to handle:
+  - Addition of `gearBonuses` field to all survivors
+  - Addition of `insane` field for brain checkbox
+  - Expansion of `abilitiesImpairments` to 2 default rows
+- Test suite updated for new features and UI changes
+- Import validation improved to reject truly invalid data before migration
 
 ## [1.0.0] - 2026-02-03
 
