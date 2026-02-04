@@ -32,6 +32,7 @@ export interface SurvivorData {
   }
   insanity: number
   brainArmor: number
+  insane: boolean
   bodyLocations: {
     head: BodyLocation
     arms: BodyLocation
@@ -82,6 +83,7 @@ export const initialSurvivorData: SurvivorData = {
   },
   insanity: 0,
   brainArmor: 0,
+  insane: false,
   bodyLocations: {
     head: { armor: 0, light: false, heavy: false },
     arms: { armor: 0, light: false, heavy: false },
@@ -307,7 +309,8 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             <label className="brain-checkbox">
               <input
                 type="checkbox"
-                id="insane-checkbox"
+                checked={survivor.insane}
+                onChange={() => updateField('insane', !survivor.insane)}
               />
             </label>
           </div>
