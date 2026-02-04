@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Clear Gear Bonuses: resets all gear bonuses to 0
 - Second row for Abilities & Impairments text input
 - Plus symbol (+) between base stats and gear bonuses for clarity
+- "insane on 3+" note under Brain label as helpful reminder
+- Visual indicator: Brain shield turns orange when insanity reaches 3+
 - Disclaimer banner at bottom of page on all devices
 - MIT License file and license information in package.json
 - Clickable version number in toolbar linking to changelog
@@ -25,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Survivor sheets now use 3-column layout (stats, body, text sections)
+- Brain section label updated from "Brain" to "Brain (insanity)" for clarity
+- Removed redundant "Insanity" label from brain shield
 - Numeric inputs are now read-only; users must use +1/-1 buttons only
 - Increment/decrement buttons only appear when allowed (respect min/max constraints)
 - Survival value automatically capped when max survival is lowered
