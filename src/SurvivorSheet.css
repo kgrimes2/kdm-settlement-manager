@@ -348,9 +348,19 @@
 }
 
 .brain-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   font-weight: bold;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   white-space: nowrap;
+}
+
+.brain-note {
+  font-size: 0.5rem;
+  font-weight: normal;
+  opacity: 0.7;
+  margin-top: 0.1rem;
 }
 
 .brain-checkbox {
@@ -396,6 +406,16 @@
   border-left: 1px solid #3a3230;
   border-right: 1px solid #3a3230;
   pointer-events: none;
+}
+
+.insane-shield {
+  background-color: rgba(255, 140, 0, 0.5);
+  border-color: #d07000;
+}
+
+.insane-shield::before {
+  border-left-color: #d07000;
+  border-right-color: #d07000;
 }
 
 .shield-input {
