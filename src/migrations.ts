@@ -1,6 +1,6 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 2
+export const CURRENT_DATA_VERSION = 3
 
 export interface SettlementData {
   id: string
@@ -59,12 +59,26 @@ export function createDefaultAppState(): AppState {
 function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
   if (!survivor) return null
 
+  let migratedSurvivor = { ...survivor }
+
   // Migration: trim huntXP from 16 to 15 items if needed
-  if (survivor.huntXP && survivor.huntXP.length > 15) {
-    return { ...survivor, huntXP: survivor.huntXP.slice(0, 15) }
+  if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length > 15) {
+    migratedSurvivor.huntXP = migratedSurvivor.huntXP.slice(0, 15)
   }
 
-  return survivor
+  // Migration: add gearBonuses if missing
+  if (!migratedSurvivor.gearBonuses) {
+    migratedSurvivor.gearBonuses = {
+      movement: 0,
+      accuracy: 0,
+      strength: 0,
+      evasion: 0,
+      luck: 0,
+      speed: 0,
+    }
+  }
+
+  return migratedSurvivor
 }
 
 /**

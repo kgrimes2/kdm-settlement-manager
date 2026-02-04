@@ -30,6 +30,14 @@ export interface SurvivorData {
     luck: number
     speed: number
   }
+  gearBonuses: {
+    movement: number
+    accuracy: number
+    strength: number
+    evasion: number
+    luck: number
+    speed: number
+  }
   insanity: number
   brainArmor: number
   insane: boolean
@@ -75,6 +83,14 @@ export const initialSurvivorData: SurvivorData = {
   },
   stats: {
     movement: 5,
+    accuracy: 0,
+    strength: 0,
+    evasion: 0,
+    luck: 0,
+    speed: 0,
+  },
+  gearBonuses: {
+    movement: 0,
     accuracy: 0,
     strength: 0,
     evasion: 0,
@@ -137,6 +153,10 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
   const updateStat = (stat: keyof SurvivorData['stats'], value: number) => {
     updateField('stats', { ...survivor.stats, [stat]: value })
+  }
+
+  const updateGearBonus = (stat: keyof SurvivorData['gearBonuses'], value: number) => {
+    updateField('gearBonuses', { ...survivor.gearBonuses, [stat]: value })
   }
 
   const updateSurvivalLimit = (newLimit: number) => {
@@ -255,63 +275,48 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
       <div className="sheet-content">
         <div className="left-column">
-          <div className="survival-stats-row">
-            <div className="survival-section">
-              <div className="survival-header">
-                <h3>Survival</h3>
-                <span className="survival-limit-label">
-                  (max.{' '}
-                  <NumericInput
-                    value={survivor.survivalLimit}
-                    onChange={updateSurvivalLimit}
-                    className="survival-limit-input"
-                    min={0}
-                  />
-                  )
-                </span>
-              </div>
-              <div className="survival-top">
+          <div className="survival-section">
+            <div className="survival-header">
+              <h3>Survival</h3>
+              <span className="survival-limit-label">
+                (max.{' '}
                 <NumericInput
-                  value={survivor.survival}
-                  onChange={(value) => updateField('survival', value)}
-                  className="survival-input large-box"
+                  value={survivor.survivalLimit}
+                  onChange={updateSurvivalLimit}
+                  className="survival-limit-input"
                   min={0}
-                  max={survivor.survivalLimit}
                 />
-                <label className="cannot-spend-survival">
-                  <span>Cannot spend<br />survival</span>
+                )
+              </span>
+            </div>
+            <div className="survival-top">
+              <NumericInput
+                value={survivor.survival}
+                onChange={(value) => updateField('survival', value)}
+                className="survival-input large-box"
+                min={0}
+                max={survivor.survivalLimit}
+              />
+              <label className="cannot-spend-survival">
+                <span>Cannot spend<br />survival</span>
+                <input
+                  type="checkbox"
+                  checked={survivor.cannotSpendSurvival}
+                  onChange={() => updateField('cannotSpendSurvival', !survivor.cannotSpendSurvival)}
+                />
+              </label>
+            </div>
+            <div className="survival-abilities">
+              {Object.entries(survivor.survivalAbilities).map(([key, checked]) => (
+                <label key={key}>
+                  <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                   <input
                     type="checkbox"
-                    checked={survivor.cannotSpendSurvival}
-                    onChange={() => updateField('cannotSpendSurvival', !survivor.cannotSpendSurvival)}
+                    checked={checked}
+                    onChange={() => toggleCheckbox(key as keyof SurvivorData['survivalAbilities'])}
                   />
                 </label>
-              </div>
-              <div className="survival-abilities">
-                {Object.entries(survivor.survivalAbilities).map(([key, checked]) => (
-                  <label key={key}>
-                    <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={() => toggleCheckbox(key as keyof SurvivorData['survivalAbilities'])}
-                    />
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div className="stats-section">
-            {Object.entries(survivor.stats).map(([stat, value]) => (
-              <div key={stat} className="stat-box">
-                <span className="stat-label">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
-                <NumericInput
-                  value={value}
-                  onChange={(newValue) => updateStat(stat as keyof SurvivorData['stats'], newValue)}
-                  className="stat-input"
-                />
-              </div>
-            ))}
+              ))}
             </div>
           </div>
 
@@ -368,6 +373,30 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                   />
                   H
                 </label>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="middle-column">
+          <div className="stats-section">
+            {Object.entries(survivor.stats).map(([stat, value]) => (
+              <div key={stat} className="stat-box">
+                <span className="stat-label">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
+                <div className="stat-inputs">
+                  <NumericInput
+                    value={value}
+                    onChange={(newValue) => updateStat(stat as keyof SurvivorData['stats'], newValue)}
+                    className="stat-input"
+                    min={0}
+                  />
+                  <NumericInput
+                    value={survivor.gearBonuses[stat as keyof SurvivorData['gearBonuses']]}
+                    onChange={(newValue) => updateGearBonus(stat as keyof SurvivorData['gearBonuses'], newValue)}
+                    className="stat-input gear-bonus-input"
+                    min={0}
+                  />
+                </div>
               </div>
             ))}
           </div>
