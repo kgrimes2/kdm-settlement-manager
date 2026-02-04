@@ -899,18 +899,23 @@ function App() {
 
       <div className="top-toolbar">
         <div className="toolbar-left">
-          <h1 className="toolbar-title">
-            KDM Settlement Manager{' '}
-            <a
-              href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="version-link"
-              title="View changelog"
-            >
-              v{APP_VERSION}
-            </a>
-          </h1>
+          <div className="toolbar-title-group">
+            <h1 className="toolbar-title">
+              KDM Settlement Manager{' '}
+              <a
+                href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="version-link"
+                title="View changelog"
+              >
+                v{APP_VERSION}
+              </a>
+            </h1>
+            <div className="toolbar-disclaimer">
+              Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
+            </div>
+          </div>
           <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
             <button
               className="nav-button"

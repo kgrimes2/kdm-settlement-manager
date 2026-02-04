@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - MIT License file and license information in package.json
 - Clickable version number in toolbar linking to changelog
+- Disclaimer stating this is an unofficial, fan-made tool (in README and app footer)
 
 ## [1.0.0] - 2026-02-03
 

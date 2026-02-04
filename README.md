@@ -2,6 +2,10 @@
 
 A comprehensive web application for managing Kingdom Death Monster survivors and settlements. Track up to 4 active survivors per settlement with full character sheet support, manage survivor pools, and handle multiple settlements.
 
+## Disclaimer
+
+**This is an unofficial, fan-made tool and is not affiliated with, endorsed, sponsored, or specifically approved by Kingdom Death, Kingdom Death LLC, or Adam Poots Games.** Kingdom Death Monster and all associated content are trademarks and copyrights of Kingdom Death LLC. This tool is provided for personal use only to assist players in tracking their game progress.
+
 ## Features
 
 ### Settlement Management
