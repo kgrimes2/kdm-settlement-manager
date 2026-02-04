@@ -122,6 +122,8 @@ function App() {
   const [hoveredQuadrant, setHoveredQuadrant] = useState<QuadrantId>(null)
   const [showHoverOverlay, setShowHoverOverlay] = useState<QuadrantId>(null)
   const hoverTimeoutRef = useRef<number | null>(null)
+  const [isMobileDevice, setIsMobileDevice] = useState(false)
+  const [showMobileToolbar, setShowMobileToolbar] = useState(false)
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
@@ -143,6 +145,31 @@ function App() {
       console.error('Failed to save state:', error)
     }
   }, [appState])
+
+  // Detect mobile devices and small screens
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+        || window.innerWidth <= 1000
+      setIsMobileDevice(isMobile)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Auto-focus active quadrant on mobile devices
+  useEffect(() => {
+    if (isMobileDevice && focusedQuadrant === null) {
+      setFocusedQuadrant(activeQuadrant)
+    }
+  }, [isMobileDevice, activeQuadrant, focusedQuadrant])
+
+  // Reset mobile toolbar when focus changes
+  useEffect(() => {
+    setShowMobileToolbar(false)
+  }, [focusedQuadrant])
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -234,8 +261,8 @@ function App() {
   }, [hoveredQuadrant])
 
   const handleQuadrantMouseEnter = (quadrant: QuadrantId) => {
-    // Don't show overlay when a quadrant is focused (zoomed in)
-    if (focusedQuadrant !== null) return
+    // Don't show overlay when a quadrant is focused (zoomed in) or on mobile devices
+    if (focusedQuadrant !== null || isMobileDevice) return
     setHoveredQuadrant(quadrant)
     setShowHoverOverlay(quadrant)
   }
@@ -898,45 +925,54 @@ function App() {
       )}
 
       <div className="top-toolbar">
-        <div className="toolbar-left">
-          <div className="toolbar-title-group">
-            <h1 className="toolbar-title">
-              KDM Settlement Manager{' '}
-              <a
-                href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="version-link"
-                title="View changelog"
-              >
-                v{APP_VERSION}
-              </a>
-            </h1>
-            <div className="toolbar-disclaimer">
-              Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
+        <button
+          className={`mobile-menu-button ${focusedQuadrant !== null ? 'show-in-focus' : ''}`}
+          onClick={() => setShowMobileToolbar(!showMobileToolbar)}
+          aria-label="Toggle menu"
+        >
+          ☰
+        </button>
+        <h1 className={`mobile-title ${focusedQuadrant !== null ? 'show-in-focus' : ''}`}>KDM:SM v{APP_VERSION}</h1>
+        <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
+          <button
+            className="nav-button"
+            onClick={handlePreviousQuadrant}
+            aria-label="Previous survivor"
+          >
+            ←
+          </button>
+          <span className="quadrant-indicator">
+            Survivor {focusedQuadrant || activeQuadrant}/4
+          </span>
+          <button
+            className="nav-button"
+            onClick={handleNextQuadrant}
+            aria-label="Next survivor"
+          >
+            →
+          </button>
+        </div>
+        <div className={`toolbar-content ${focusedQuadrant !== null ? 'hide-in-focus' : ''} ${showMobileToolbar ? 'show-mobile' : ''}`}>
+          <div className="toolbar-left">
+            <div className="toolbar-title-group">
+              <h1 className="toolbar-title">
+                KDM Settlement Manager{' '}
+                <a
+                  href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="version-link"
+                  title="View changelog"
+                >
+                  v{APP_VERSION}
+                </a>
+              </h1>
+              <div className="toolbar-disclaimer">
+                Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
+              </div>
             </div>
           </div>
-          <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
-            <button
-              className="nav-button"
-              onClick={handlePreviousQuadrant}
-              aria-label="Previous survivor"
-            >
-              ←
-            </button>
-            <span className="quadrant-indicator">
-              Survivor {focusedQuadrant || activeQuadrant}/4
-            </span>
-            <button
-              className="nav-button"
-              onClick={handleNextQuadrant}
-              aria-label="Next survivor"
-            >
-              →
-            </button>
-          </div>
-        </div>
-        <div className="toolbar-center">
+          <div className="toolbar-center">
           <div className="settlement-selector">
             <button
               className="settlement-dropdown-button"
@@ -971,8 +1007,8 @@ function App() {
               </div>
             )}
           </div>
-        </div>
-        <div className="toolbar-right">
+          </div>
+          <div className="toolbar-right">
           <button
             className="toolbar-button"
             onClick={handleExport}
@@ -985,7 +1021,7 @@ function App() {
           >
             Import
           </button>
-          {focusedQuadrant !== null && (
+          {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
               onClick={() => setFocusedQuadrant(null)}
@@ -1001,6 +1037,14 @@ function App() {
             Manage Survivors
           </button>
         </div>
+        {focusedQuadrant !== null && !isMobileDevice && (
+          <button
+            className="return-to-overview-button"
+            onClick={() => setFocusedQuadrant(null)}
+          >
+            Return to Overview
+          </button>
+        )}
         <input
           ref={fileInputRef}
           type="file"
@@ -1008,6 +1052,7 @@ function App() {
           onChange={handleFileChange}
           style={{ display: 'none' }}
         />
+        </div>
       </div>
 
       {showSurvivorList && (

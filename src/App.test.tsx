@@ -16,7 +16,7 @@ describe('App', () => {
   describe('Initial Render', () => {
     it('renders the app with default survivors', () => {
       render(<App />)
-      expect(screen.getByText('Kingdom Death: Monster')).toBeInTheDocument()
+      expect(screen.getByText(/KDM Settlement Manager/i)).toBeInTheDocument()
       expect(screen.getByDisplayValue('Allister')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Erza')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Lucy')).toBeInTheDocument()
