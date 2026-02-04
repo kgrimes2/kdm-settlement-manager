@@ -75,13 +75,6 @@ export default function NumericInput({ value, onChange, className = '', min, max
     setShowButtons(true)
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = parseInt(e.target.value) || 0
-    if ((min === undefined || newValue >= min) && (max === undefined || newValue <= max)) {
-      onChange(newValue)
-    }
-  }
-
   return (
     <>
       <div ref={containerRef} className="numeric-input-container">
@@ -89,9 +82,9 @@ export default function NumericInput({ value, onChange, className = '', min, max
           ref={inputRef}
           type="number"
           value={value}
-          onChange={handleInputChange}
           onClick={handleInputClick}
           className={className}
+          readOnly
         />
       </div>
       {showButtons && createPortal(
