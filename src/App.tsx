@@ -1,49 +1,22 @@
 import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
+import {
+  type AppState,
+  type SettlementData,
+  migrateData,
+  validateAppState,
+  createDefaultAppState,
+  CURRENT_DATA_VERSION
+} from './migrations'
 
-const APP_VERSION = '1.0.0'
+const APP_VERSION = '1.0.1'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
-
-interface SettlementData {
-  id: string
-  name: string
-  survivors: {
-    1: SurvivorData | null
-    2: SurvivorData | null
-    3: SurvivorData | null
-    4: SurvivorData | null
-  }
-  removedSurvivors: SurvivorData[]
-  retiredSurvivors: SurvivorData[]
-  deceasedSurvivors: SurvivorData[]
-}
-
-interface AppState {
-  settlements: SettlementData[]
-  currentSettlementId: string
-}
 
 function App() {
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
-  const createDefaultSettlement = (): SettlementData => {
-    const now = Date.now()
-    return {
-      id: 'settlement-1',
-      name: 'Settlement 1',
-      survivors: {
-        1: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Allister', gender: 'M', survival: 1, createdAt: new Date(now - 3000).toISOString() },
-        2: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Erza', gender: 'F', survival: 1, createdAt: new Date(now - 2000).toISOString() },
-        3: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Lucy', gender: 'F', survival: 1, createdAt: new Date(now - 1000).toISOString() },
-        4: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Zachary', gender: 'M', survival: 1, createdAt: new Date(now).toISOString() },
-      },
-      removedSurvivors: [],
-      retiredSurvivors: [],
-      deceasedSurvivors: []
-    }
-  }
 
   const [appState, setAppState] = useState<AppState>(() => {
     // Try to load saved state from localStorage
@@ -51,65 +24,24 @@ function App() {
       const savedState = localStorage.getItem('kdm-app-state')
       if (savedState) {
         const parsed = JSON.parse(savedState)
+        const migrated = migrateData(parsed)
 
-        // Migration: trim huntXP from 16 to 15 items if needed
-        const migrateSurvivor = (survivor: SurvivorData | null) => {
-          if (survivor && survivor.huntXP && survivor.huntXP.length > 15) {
-            return { ...survivor, huntXP: survivor.huntXP.slice(0, 15) }
-          }
-          return survivor
-        }
-
-        // Check if this is old format (without settlements)
-        if (parsed.survivors && !parsed.settlements) {
-          // Migrate old format to new settlement format
-          const migratedSettlement: SettlementData = {
-            id: 'settlement-1',
-            name: 'Settlement 1',
-            survivors: {
-              1: migrateSurvivor(parsed.survivors[1]),
-              2: migrateSurvivor(parsed.survivors[2]),
-              3: migrateSurvivor(parsed.survivors[3]),
-              4: migrateSurvivor(parsed.survivors[4]),
-            },
-            removedSurvivors: (parsed.removedSurvivors || []).map(migrateSurvivor),
-            retiredSurvivors: (parsed.retiredSurvivors || []).map(migrateSurvivor),
-            deceasedSurvivors: (parsed.deceasedSurvivors || []).map(migrateSurvivor),
-          }
-          return {
-            settlements: [migratedSettlement],
-            currentSettlementId: 'settlement-1'
-          }
-        }
-
-        // New format - apply migrations to all settlements
-        if (parsed.settlements) {
-          return {
-            settlements: parsed.settlements.map((settlement: SettlementData) => ({
-              ...settlement,
-              survivors: {
-                1: migrateSurvivor(settlement.survivors[1]),
-                2: migrateSurvivor(settlement.survivors[2]),
-                3: migrateSurvivor(settlement.survivors[3]),
-                4: migrateSurvivor(settlement.survivors[4]),
-              },
-              removedSurvivors: (settlement.removedSurvivors || []).map(migrateSurvivor),
-              retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor),
-              deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor),
-            })),
-            currentSettlementId: parsed.currentSettlementId
-          }
+        // Validate the migrated data
+        if (validateAppState(migrated)) {
+          console.log(`Successfully loaded data (version ${migrated.version})`)
+          return migrated
+        } else {
+          console.error('Migrated data failed validation')
         }
       }
     } catch (error) {
       console.error('Failed to load saved state:', error)
+      // Don't throw - fall through to default state
     }
 
-    // Default initial state if no saved state exists
-    return {
-      settlements: [createDefaultSettlement()],
-      currentSettlementId: 'settlement-1'
-    }
+    // Default initial state if no saved state exists or migration failed
+    console.log('Creating new default state')
+    return createDefaultAppState()
   })
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
   const [showSurvivorList, setShowSurvivorList] = useState(false)
@@ -310,6 +242,7 @@ function App() {
   const switchSettlement = (settlementId: string) => {
     setAppState(prev => ({
       ...prev,
+      version: CURRENT_DATA_VERSION,
       currentSettlementId: settlementId
     }))
   }
@@ -347,6 +280,7 @@ function App() {
         ? filtered[0]?.id || prev.currentSettlementId
         : prev.currentSettlementId
       return {
+        ...prev,
         settlements: filtered,
         currentSettlementId: newCurrentId
       }
@@ -408,15 +342,6 @@ function App() {
       setShowSettlementManagement(false)
       setIsClosingSettlementDrawer(false)
     }, 300)
-  }
-
-  const toggleSettlementManagement = () => {
-    if (isClosingSettlementDrawer) return
-    if (showSettlementManagement) {
-      closeSettlementManagement()
-    } else {
-      setShowSettlementManagement(true)
-    }
   }
 
   const toggleSurvivorList = () => {
@@ -611,12 +536,13 @@ function App() {
         }
 
         // Reset current settlement to default state
+        const now = Date.now()
         setAppState(prev => ({
           ...prev,
+          version: CURRENT_DATA_VERSION, // Ensure version is set
           settlements: prev.settlements.map(s => {
             if (s.id !== prev.currentSettlementId) return s
 
-            const now = Date.now()
             return {
               ...s,
               survivors: {
@@ -647,67 +573,23 @@ function App() {
       try {
         const data = JSON.parse(e.target?.result as string)
 
-        // Migration: trim huntXP from 16 to 15 items if needed
-        const migrateSurvivor = (survivor: SurvivorData | null) => {
-          if (survivor && survivor.huntXP && survivor.huntXP.length > 15) {
-            return { ...survivor, huntXP: survivor.huntXP.slice(0, 15) }
-          }
-          return survivor
-        }
+        // Use the migration system to handle all data formats
+        const migrated = migrateData(data)
 
-        let newState: AppState
-
-        // Check if this is old format (without settlements) or new format
-        if (data.survivors && !data.settlements) {
-          // Old format - migrate to new settlement format
-          if (typeof data.survivors !== 'object') {
-            throw new Error('Invalid data structure: missing survivors')
-          }
-
-          const migratedSettlement: SettlementData = {
-            id: 'settlement-1',
-            name: 'Settlement 1',
-            survivors: {
-              1: migrateSurvivor(data.survivors[1]),
-              2: migrateSurvivor(data.survivors[2]),
-              3: migrateSurvivor(data.survivors[3]),
-              4: migrateSurvivor(data.survivors[4]),
-            },
-            removedSurvivors: (data.removedSurvivors || data.archivedSurvivors || []).map(migrateSurvivor),
-            retiredSurvivors: (data.retiredSurvivors || []).map(migrateSurvivor),
-            deceasedSurvivors: (data.deceasedSurvivors || []).map(migrateSurvivor),
-          }
-
-          newState = {
-            settlements: [migratedSettlement],
-            currentSettlementId: 'settlement-1'
-          }
-        } else if (data.settlements) {
-          // New format - use as-is with migrations
-          newState = {
-            settlements: data.settlements.map((settlement: SettlementData) => ({
-              ...settlement,
-              survivors: {
-                1: migrateSurvivor(settlement.survivors[1]),
-                2: migrateSurvivor(settlement.survivors[2]),
-                3: migrateSurvivor(settlement.survivors[3]),
-                4: migrateSurvivor(settlement.survivors[4]),
-              },
-              removedSurvivors: (settlement.removedSurvivors || []).map(migrateSurvivor),
-              retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor),
-              deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor),
-            })),
-            currentSettlementId: data.currentSettlementId
-          }
-        } else {
-          throw new Error('Invalid data structure: missing both survivors and settlements')
+        // Validate the migrated data
+        if (!validateAppState(migrated)) {
+          throw new Error('Imported data failed validation')
         }
 
         // Completely replace the state with imported data
-        setAppState(newState)
-        showNotification('Data imported successfully', 'success')
+        setAppState(migrated)
+        const versionInfo = migrated.version === CURRENT_DATA_VERSION
+          ? ''
+          : ` (upgraded from v${data.version || 'legacy'} to v${CURRENT_DATA_VERSION})`
+        showNotification(`Data imported successfully${versionInfo}`, 'success')
       } catch (error) {
-        showNotification('Failed to load file. Please ensure it is a valid KDM survivor data file.', 'error')
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+        showNotification(`Failed to import: ${errorMessage}`, 'error')
         console.error('Import error:', error)
       }
     }
@@ -918,6 +800,15 @@ function App() {
                       ))}
                   </div>
                 )}
+              </div>
+
+              <div className="danger-zone">
+                <button
+                  className="clear-all-button"
+                  onClick={handleClearAllData}
+                >
+                  Clear All Data
+                </button>
               </div>
             </div>
           </div>
@@ -1213,15 +1104,6 @@ function App() {
                   )}
                 </div>
               )}
-            </div>
-
-            <div className="danger-zone">
-              <button
-                className="clear-all-button"
-                onClick={handleClearAllData}
-              >
-                Clear All Data
-              </button>
             </div>
           </div>
         </div>
