@@ -158,15 +158,6 @@
   color: #3a3230;
 }
 
-.retired-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  font-weight: bold;
-  font-size: 0.7rem;
-  padding: 0;
-}
-
 .sheet-content {
   display: grid;
   grid-template-columns: 0.7fr 1.3fr;

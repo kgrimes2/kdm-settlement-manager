@@ -61,7 +61,7 @@ export const initialSurvivorData: SurvivorData = {
   name: '',
   createdAt: new Date().toISOString(),
   gender: '',
-  huntXP: Array(16).fill(false),
+  huntXP: Array(15).fill(false),
   survival: 0,
   survivalLimit: 0,
   cannotSpendSurvival: false,
@@ -240,14 +240,6 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             })}
           </div>
         </div>
-        <label className="retired-checkbox">
-          <input
-            type="checkbox"
-            checked={survivor.retired}
-            onChange={() => updateField('retired', !survivor.retired)}
-          />
-          Retired
-        </label>
       </div>
 
       <div className="sheet-content">

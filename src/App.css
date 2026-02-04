@@ -51,7 +51,7 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(4px);
-  z-index: 250;
+  z-index: 1100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,6 +89,25 @@
   font-size: 1.1rem;
   line-height: 1.5;
   text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.settlement-name-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #3a3230;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.settlement-name-input:focus {
+  outline: none;
+  border-color: #5a4a3a;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .confirm-actions {
@@ -133,6 +152,17 @@
   transform: scale(0.98);
 }
 
+.confirm-ok:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.confirm-ok:disabled:hover {
+  background-color: #9ca3af;
+  transform: none;
+}
+
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -157,6 +187,7 @@
   position: relative;
   overflow: hidden;
   transform-origin: center center;
+  cursor: pointer;
 }
 
 .quadrant-hover-overlay {
@@ -265,20 +296,281 @@
   color: #fff;
 }
 
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.settlement-selector {
+  position: relative;
+}
+
+.settlement-dropdown-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  min-width: 150px;
+  text-align: left;
+}
+
+.settlement-dropdown-button:hover {
+  background-color: #4a3a38;
+  border-color: #6a5a4a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.settlement-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  min-width: 120px;
+  z-index: 1000;
+}
+
+.settlement-dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #d4c5a9;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.settlement-dropdown-item:hover {
+  background-color: #4a3a38;
+}
+
+.settlement-dropdown-item.active {
+  background-color: #5a4a3a;
+  font-weight: bold;
+}
+
+.settlement-dropdown-item:first-child {
+  border-radius: 2px 2px 0 0;
+}
+
+.settlement-dropdown-item:last-child {
+  border-radius: 0 0 2px 2px;
+}
+
+.settlement-dropdown-divider {
+  height: 1px;
+  background-color: #5a4a3a;
+  margin: 0.25rem 0;
+}
+
+.settlement-manage {
+  font-style: italic;
+  color: #b8a58d;
+}
+
 .toolbar-right {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
+/* Settlement Management Drawer */
+.settlement-management-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.settlement-management-overlay.closing {
+  animation: fadeOut 0.3s ease;
+}
+
+.settlement-management-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 80vh;
+  background-color: #d4c5a9;
+  border-bottom: 3px solid #3a3230;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  animation: slideDownIn 0.3s ease;
+}
+
+.settlement-management-drawer.closing {
+  animation: slideDownOut 0.3s ease;
+}
+
+.settlement-management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #c4b599;
+  border-bottom: 2px solid #3a3230;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.settlement-management-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #2a1a1a;
+  font-weight: bold;
+}
+
+.settlement-management-content {
+  padding: 1.5rem;
+}
+
+.active-settlement-section,
+.other-settlements-section {
+  margin-bottom: 2rem;
+}
+
+.active-settlement-section h3,
+.other-settlements-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  color: #2a1a1a;
+  font-weight: bold;
+}
+
+.section-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.create-settlement-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.create-settlement-button:hover {
+  background-color: #4a3a38;
+  border-color: #6a5a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.settlement-card {
+  background-color: #e4d5b9;
+  border: 2px solid #5a4a3a;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.settlement-card.active {
+  background-color: #c4b599;
+  border: 3px solid #3a3230;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.settlement-name {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  margin-bottom: 0.75rem;
+}
+
+.settlement-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.settlement-action-button {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.settlement-action-button:hover {
+  background-color: #4a3a38;
+  border-color: #6a5a4a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.settlements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.empty-settlements-message {
+  padding: 2rem;
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px dashed #5a4a3a;
+  border-radius: 8px;
+}
+
+@keyframes slideDownIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDownOut {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
 .icon-button,
 .burger-menu {
-  width: 48px;
-  height: 48px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.25rem;
   line-height: 1;
   color: #d4c5a9;
   background-color: #3a3230;
@@ -310,7 +602,7 @@
 
 .toolbar-button,
 .return-button {
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   font-weight: 600;
   color: #d4c5a9;

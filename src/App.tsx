@@ -4,7 +4,9 @@ import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './Survivo
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
-interface AppState {
+interface SettlementData {
+  id: string
+  name: string
   survivors: {
     1: SurvivorData | null
     2: SurvivorData | null
@@ -16,23 +18,19 @@ interface AppState {
   deceasedSurvivors: SurvivorData[]
 }
 
+interface AppState {
+  settlements: SettlementData[]
+  currentSettlementId: string
+}
+
 function App() {
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
-  const [appState, setAppState] = useState<AppState>(() => {
-    // Try to load saved state from localStorage
-    try {
-      const savedState = localStorage.getItem('kdm-app-state')
-      if (savedState) {
-        return JSON.parse(savedState)
-      }
-    } catch (error) {
-      console.error('Failed to load saved state:', error)
-    }
-
-    // Default initial state if no saved state exists
+  const createDefaultSettlement = (): SettlementData => {
     const now = Date.now()
     return {
+      id: 'settlement-1',
+      name: 'Settlement 1',
       survivors: {
         1: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Allister', gender: 'M', survival: 1, createdAt: new Date(now - 3000).toISOString() },
         2: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Erza', gender: 'F', survival: 1, createdAt: new Date(now - 2000).toISOString() },
@@ -43,6 +41,73 @@ function App() {
       retiredSurvivors: [],
       deceasedSurvivors: []
     }
+  }
+
+  const [appState, setAppState] = useState<AppState>(() => {
+    // Try to load saved state from localStorage
+    try {
+      const savedState = localStorage.getItem('kdm-app-state')
+      if (savedState) {
+        const parsed = JSON.parse(savedState)
+
+        // Migration: trim huntXP from 16 to 15 items if needed
+        const migrateSurvivor = (survivor: SurvivorData | null) => {
+          if (survivor && survivor.huntXP && survivor.huntXP.length > 15) {
+            return { ...survivor, huntXP: survivor.huntXP.slice(0, 15) }
+          }
+          return survivor
+        }
+
+        // Check if this is old format (without settlements)
+        if (parsed.survivors && !parsed.settlements) {
+          // Migrate old format to new settlement format
+          const migratedSettlement: SettlementData = {
+            id: 'settlement-1',
+            name: 'Settlement 1',
+            survivors: {
+              1: migrateSurvivor(parsed.survivors[1]),
+              2: migrateSurvivor(parsed.survivors[2]),
+              3: migrateSurvivor(parsed.survivors[3]),
+              4: migrateSurvivor(parsed.survivors[4]),
+            },
+            removedSurvivors: (parsed.removedSurvivors || []).map(migrateSurvivor),
+            retiredSurvivors: (parsed.retiredSurvivors || []).map(migrateSurvivor),
+            deceasedSurvivors: (parsed.deceasedSurvivors || []).map(migrateSurvivor),
+          }
+          return {
+            settlements: [migratedSettlement],
+            currentSettlementId: 'settlement-1'
+          }
+        }
+
+        // New format - apply migrations to all settlements
+        if (parsed.settlements) {
+          return {
+            settlements: parsed.settlements.map((settlement: SettlementData) => ({
+              ...settlement,
+              survivors: {
+                1: migrateSurvivor(settlement.survivors[1]),
+                2: migrateSurvivor(settlement.survivors[2]),
+                3: migrateSurvivor(settlement.survivors[3]),
+                4: migrateSurvivor(settlement.survivors[4]),
+              },
+              removedSurvivors: (settlement.removedSurvivors || []).map(migrateSurvivor),
+              retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor),
+              deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor),
+            })),
+            currentSettlementId: parsed.currentSettlementId
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load saved state:', error)
+    }
+
+    // Default initial state if no saved state exists
+    return {
+      settlements: [createDefaultSettlement()],
+      currentSettlementId: 'settlement-1'
+    }
   })
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
   const [showSurvivorList, setShowSurvivorList] = useState(false)
@@ -52,6 +117,21 @@ function App() {
   const [showDeceasedSection, setShowDeceasedSection] = useState(false)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [hoveredQuadrant, setHoveredQuadrant] = useState<QuadrantId>(null)
+  const [showHoverOverlay, setShowHoverOverlay] = useState<QuadrantId>(null)
+  const hoverTimeoutRef = useRef<number | null>(null)
+  const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
+  const [showSettlementManagement, setShowSettlementManagement] = useState(false)
+  const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
+  const [settlementDialog, setSettlementDialog] = useState<{ type: 'create' | 'rename'; settlementId?: string; currentName?: string } | null>(null)
+  const [settlementInputValue, setSettlementInputValue] = useState('')
+
+  // Helper to get current settlement
+  const getCurrentSettlement = (): SettlementData | undefined => {
+    return appState.settlements.find(s => s.id === appState.currentSettlementId)
+  }
+
+  const currentSettlement = getCurrentSettlement()
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
@@ -71,7 +151,9 @@ function App() {
       }
 
       if (e.key === 'Escape') {
-        if (showSurvivorList) {
+        if (showSettlementManagement) {
+          closeSettlementManagement()
+        } else if (showSurvivorList) {
           closeSurvivorList()
         } else if (focusedQuadrant !== null) {
           setFocusedQuadrant(null)
@@ -87,7 +169,83 @@ function App() {
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [focusedQuadrant, showSurvivorList, activeQuadrant])
+  }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant])
+
+  // Close settlement dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.settlement-selector')) {
+        setShowSettlementDropdown(false)
+      }
+    }
+
+    if (showSettlementDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showSettlementDropdown])
+
+  // Auto-hide hover overlay after 5 seconds of no mouse movement
+  useEffect(() => {
+    if (hoveredQuadrant === null) {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+        hoverTimeoutRef.current = null
+      }
+      return
+    }
+
+    const resetHoverTimer = () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+
+      // Show overlay on hover/movement
+      setShowHoverOverlay(hoveredQuadrant)
+
+      // Hide after 5 seconds of no movement
+      hoverTimeoutRef.current = window.setTimeout(() => {
+        setShowHoverOverlay(null)
+      }, 5000)
+    }
+
+    // Start the timer
+    resetHoverTimer()
+
+    // Reset timer on mouse movement
+    const handleMouseMove = () => {
+      resetHoverTimer()
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current)
+      }
+    }
+  }, [hoveredQuadrant])
+
+  const handleQuadrantMouseEnter = (quadrant: QuadrantId) => {
+    // Don't show overlay when a quadrant is focused (zoomed in)
+    if (focusedQuadrant !== null) return
+    setHoveredQuadrant(quadrant)
+    setShowHoverOverlay(quadrant)
+  }
+
+  const handleQuadrantMouseLeave = () => {
+    setHoveredQuadrant(null)
+    setShowHoverOverlay(null)
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current)
+      hoverTimeoutRef.current = null
+    }
+  }
 
   const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
     // Only toggle if clicking directly on the quadrant, not on child elements
@@ -119,13 +277,67 @@ function App() {
     }
   }
 
+  // Settlement management functions
+  const switchSettlement = (settlementId: string) => {
+    setAppState(prev => ({
+      ...prev,
+      currentSettlementId: settlementId
+    }))
+  }
+
+  const createSettlement = (name: string) => {
+    const newSettlement: SettlementData = {
+      id: `settlement-${Date.now()}`,
+      name,
+      survivors: { 1: null, 2: null, 3: null, 4: null },
+      removedSurvivors: [],
+      retiredSurvivors: [],
+      deceasedSurvivors: []
+    }
+    setAppState(prev => ({
+      ...prev,
+      settlements: [...prev.settlements, newSettlement]
+    }))
+    return newSettlement.id
+  }
+
+  const renameSettlement = (settlementId: string, newName: string) => {
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s =>
+        s.id === settlementId ? { ...s, name: newName } : s
+      )
+    }))
+  }
+
+  const deleteSettlement = (settlementId: string) => {
+    setAppState(prev => {
+      const filtered = prev.settlements.filter(s => s.id !== settlementId)
+      // If deleting current settlement, switch to first remaining
+      const newCurrentId = settlementId === prev.currentSettlementId
+        ? filtered[0]?.id || prev.currentSettlementId
+        : prev.currentSettlementId
+      return {
+        settlements: filtered,
+        currentSettlementId: newCurrentId
+      }
+    })
+  }
+
   const updateSurvivor = (quadrant: 1 | 2 | 3 | 4, survivor: SurvivorData) => {
     setAppState(prev => ({
       ...prev,
-      survivors: {
-        ...prev.survivors,
-        [quadrant]: survivor
-      }
+      settlements: prev.settlements.map(s =>
+        s.id === prev.currentSettlementId
+          ? {
+              ...s,
+              survivors: {
+                ...s.survivors,
+                [quadrant]: survivor
+              }
+            }
+          : s
+      )
     }))
   }
 
@@ -160,6 +372,24 @@ function App() {
     }, 300) // Match animation duration
   }
 
+  const closeSettlementManagement = () => {
+    if (isClosingSettlementDrawer) return
+    setIsClosingSettlementDrawer(true)
+    setTimeout(() => {
+      setShowSettlementManagement(false)
+      setIsClosingSettlementDrawer(false)
+    }, 300)
+  }
+
+  const toggleSettlementManagement = () => {
+    if (isClosingSettlementDrawer) return
+    if (showSettlementManagement) {
+      closeSettlementManagement()
+    } else {
+      setShowSettlementManagement(true)
+    }
+  }
+
   const toggleSurvivorList = () => {
     if (isClosingDrawer) return // Prevent toggle during closing animation
     if (showSurvivorList) {
@@ -170,31 +400,36 @@ function App() {
   }
 
   const handleDeactivateSurvivor = (quadrant: 1 | 2 | 3 | 4) => {
-    setAppState(prev => {
-      const survivor = prev.survivors[quadrant]
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s => {
+        if (s.id !== prev.currentSettlementId) return s
 
-      if (!survivor) return prev
+        const survivor = s.survivors[quadrant]
+        if (!survivor) return s
 
-      const newState = {
-        ...prev,
-        removedSurvivors: [...prev.removedSurvivors, survivor],
-        survivors: {
-          ...prev.survivors,
-          [quadrant]: null
+        return {
+          ...s,
+          removedSurvivors: [...s.removedSurvivors, survivor],
+          survivors: {
+            ...s.survivors,
+            [quadrant]: null
+          }
         }
-      }
-
-      return newState
-    })
+      })
+    }))
 
     setShowSurvivorPool(true)
     showNotification(`Survivor ${quadrant} deactivated successfully`, 'success')
   }
 
   const findVacantQuadrant = (): 1 | 2 | 3 | 4 | null => {
+    const settlement = getCurrentSettlement()
+    if (!settlement) return null
+
     const quadrants: (1 | 2 | 3 | 4)[] = [1, 2, 3, 4]
     for (const quadrant of quadrants) {
-      if (appState.survivors[quadrant] === null) {
+      if (settlement.survivors[quadrant] === null) {
         return quadrant
       }
     }
@@ -203,27 +438,36 @@ function App() {
 
   const handleActivateSurvivor = (index: number) => {
     const vacantQuadrant = findVacantQuadrant()
+    const settlement = getCurrentSettlement()
 
+    if (!settlement) return
     if (vacantQuadrant === null) {
       showNotification('All slots are full. Please deactivate a survivor first.', 'error')
       return
     }
 
-    setAppState(prev => {
-      const survivor = prev.removedSurvivors[index]
-      const newRemovedSurvivors = prev.removedSurvivors.filter((_, i) => i !== index)
+    const survivorName = settlement.removedSurvivors[index]?.name || 'Survivor'
 
-      return {
-        ...prev,
-        removedSurvivors: newRemovedSurvivors,
-        survivors: {
-          ...prev.survivors,
-          [vacantQuadrant]: survivor
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s => {
+        if (s.id !== prev.currentSettlementId) return s
+
+        const survivor = s.removedSurvivors[index]
+        const newRemovedSurvivors = s.removedSurvivors.filter((_, i) => i !== index)
+
+        return {
+          ...s,
+          removedSurvivors: newRemovedSurvivors,
+          survivors: {
+            ...s.survivors,
+            [vacantQuadrant]: survivor
+          }
         }
-      }
-    })
+      })
+    }))
 
-    showNotification(`${appState.removedSurvivors[index].name || 'Survivor'} activated successfully`, 'success')
+    showNotification(`${survivorName} activated successfully`, 'success')
   }
 
   const handleCreateNewSurvivor = () => {
@@ -237,17 +481,31 @@ function App() {
       // Put in vacant slot
       setAppState(prev => ({
         ...prev,
-        survivors: {
-          ...prev.survivors,
-          [vacantQuadrant]: newSurvivor
-        }
+        settlements: prev.settlements.map(s =>
+          s.id === prev.currentSettlementId
+            ? {
+                ...s,
+                survivors: {
+                  ...s.survivors,
+                  [vacantQuadrant]: newSurvivor
+                }
+              }
+            : s
+        )
       }))
       showNotification('New survivor created in vacant slot', 'success')
     } else {
       // Add to removed survivors (All Survivors section)
       setAppState(prev => ({
         ...prev,
-        removedSurvivors: [...prev.removedSurvivors, newSurvivor]
+        settlements: prev.settlements.map(s =>
+          s.id === prev.currentSettlementId
+            ? {
+                ...s,
+                removedSurvivors: [...s.removedSurvivors, newSurvivor]
+              }
+            : s
+        )
       }))
       setShowSurvivorPool(true)
       showNotification('New survivor created in Survivor Pool', 'success')
@@ -255,19 +513,27 @@ function App() {
   }
 
   const handleRetireSurvivor = (index: number) => {
-    const survivorName = appState.removedSurvivors[index].name || 'this survivor'
+    const settlement = getCurrentSettlement()
+    if (!settlement) return
+
+    const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
 
     setConfirmDialog({
       message: `Are you sure you want to retire ${survivorName}? This action is permanent and cannot be undone.`,
       onConfirm: () => {
-        setAppState(prev => {
-          const survivor = prev.removedSurvivors[index]
-          return {
-            ...prev,
-            removedSurvivors: prev.removedSurvivors.filter((_, i) => i !== index),
-            retiredSurvivors: [...prev.retiredSurvivors, survivor]
-          }
-        })
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const survivor = s.removedSurvivors[index]
+            return {
+              ...s,
+              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
+              retiredSurvivors: [...s.retiredSurvivors, survivor]
+            }
+          })
+        }))
         setShowRetiredSection(true)
         showNotification(`${survivorName} retired`, 'success')
         setConfirmDialog(null)
@@ -276,19 +542,27 @@ function App() {
   }
 
   const handleMarkDeceased = (index: number) => {
-    const survivorName = appState.removedSurvivors[index].name || 'this survivor'
+    const settlement = getCurrentSettlement()
+    if (!settlement) return
+
+    const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
 
     setConfirmDialog({
       message: `Are you sure you want to mark ${survivorName} as deceased? This action is permanent and cannot be undone.`,
       onConfirm: () => {
-        setAppState(prev => {
-          const survivor = prev.removedSurvivors[index]
-          return {
-            ...prev,
-            removedSurvivors: prev.removedSurvivors.filter((_, i) => i !== index),
-            deceasedSurvivors: [...prev.deceasedSurvivors, survivor]
-          }
-        })
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const survivor = s.removedSurvivors[index]
+            return {
+              ...s,
+              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
+              deceasedSurvivors: [...s.deceasedSurvivors, survivor]
+            }
+          })
+        }))
         setShowDeceasedSection(true)
         showNotification(`${survivorName} marked as deceased`, 'success')
         setConfirmDialog(null)
@@ -307,19 +581,27 @@ function App() {
           console.error('Failed to clear localStorage:', error)
         }
 
-        // Reset to default state
-        const now = Date.now()
-        setAppState({
-          survivors: {
-            1: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Allister', gender: 'M', survival: 1, createdAt: new Date(now - 3000).toISOString() },
-            2: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Erza', gender: 'F', survival: 1, createdAt: new Date(now - 2000).toISOString() },
-            3: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Lucy', gender: 'F', survival: 1, createdAt: new Date(now - 1000).toISOString() },
-            4: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Zachary', gender: 'M', survival: 1, createdAt: new Date(now).toISOString() },
-          },
-          removedSurvivors: [],
-          retiredSurvivors: [],
-          deceasedSurvivors: []
-        })
+        // Reset current settlement to default state
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const now = Date.now()
+            return {
+              ...s,
+              survivors: {
+                1: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Allister', gender: 'M', survival: 1, createdAt: new Date(now - 3000).toISOString() },
+                2: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Erza', gender: 'F', survival: 1, createdAt: new Date(now - 2000).toISOString() },
+                3: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Lucy', gender: 'F', survival: 1, createdAt: new Date(now - 1000).toISOString() },
+                4: { ...JSON.parse(JSON.stringify(initialSurvivorData)), name: 'Zachary', gender: 'M', survival: 1, createdAt: new Date(now).toISOString() },
+              },
+              removedSurvivors: [],
+              retiredSurvivors: [],
+              deceasedSurvivors: []
+            }
+          })
+        }))
 
         showNotification('All data cleared successfully', 'success')
         setConfirmDialog(null)
@@ -336,17 +618,60 @@ function App() {
       try {
         const data = JSON.parse(e.target?.result as string)
 
-        // Validate the data structure
-        if (!data.survivors || typeof data.survivors !== 'object') {
-          throw new Error('Invalid data structure: missing survivors')
+        // Migration: trim huntXP from 16 to 15 items if needed
+        const migrateSurvivor = (survivor: SurvivorData | null) => {
+          if (survivor && survivor.huntXP && survivor.huntXP.length > 15) {
+            return { ...survivor, huntXP: survivor.huntXP.slice(0, 15) }
+          }
+          return survivor
         }
 
-        // Ensure all survivor arrays exist (for backwards compatibility)
-        const newState: AppState = {
-          survivors: data.survivors,
-          removedSurvivors: data.removedSurvivors || data.archivedSurvivors || [],
-          retiredSurvivors: data.retiredSurvivors || [],
-          deceasedSurvivors: data.deceasedSurvivors || []
+        let newState: AppState
+
+        // Check if this is old format (without settlements) or new format
+        if (data.survivors && !data.settlements) {
+          // Old format - migrate to new settlement format
+          if (typeof data.survivors !== 'object') {
+            throw new Error('Invalid data structure: missing survivors')
+          }
+
+          const migratedSettlement: SettlementData = {
+            id: 'settlement-1',
+            name: 'Settlement 1',
+            survivors: {
+              1: migrateSurvivor(data.survivors[1]),
+              2: migrateSurvivor(data.survivors[2]),
+              3: migrateSurvivor(data.survivors[3]),
+              4: migrateSurvivor(data.survivors[4]),
+            },
+            removedSurvivors: (data.removedSurvivors || data.archivedSurvivors || []).map(migrateSurvivor),
+            retiredSurvivors: (data.retiredSurvivors || []).map(migrateSurvivor),
+            deceasedSurvivors: (data.deceasedSurvivors || []).map(migrateSurvivor),
+          }
+
+          newState = {
+            settlements: [migratedSettlement],
+            currentSettlementId: 'settlement-1'
+          }
+        } else if (data.settlements) {
+          // New format - use as-is with migrations
+          newState = {
+            settlements: data.settlements.map((settlement: SettlementData) => ({
+              ...settlement,
+              survivors: {
+                1: migrateSurvivor(settlement.survivors[1]),
+                2: migrateSurvivor(settlement.survivors[2]),
+                3: migrateSurvivor(settlement.survivors[3]),
+                4: migrateSurvivor(settlement.survivors[4]),
+              },
+              removedSurvivors: (settlement.removedSurvivors || []).map(migrateSurvivor),
+              retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor),
+              deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor),
+            })),
+            currentSettlementId: data.currentSettlementId
+          }
+        } else {
+          throw new Error('Invalid data structure: missing both survivors and settlements')
         }
 
         // Completely replace the state with imported data
@@ -400,9 +725,179 @@ function App() {
           </div>
         </div>
       )}
+
+      {settlementDialog && (
+        <div className="confirm-overlay" onClick={() => {
+          setSettlementDialog(null)
+          setSettlementInputValue('')
+        }}>
+          <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
+            <p className="confirm-message">
+              {settlementDialog.type === 'create' ? 'Create New Settlement' : 'Rename Settlement'}
+            </p>
+            <input
+              type="text"
+              className="settlement-name-input"
+              value={settlementInputValue}
+              onChange={(e) => setSettlementInputValue(e.target.value)}
+              placeholder="Enter settlement name"
+              autoFocus
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && settlementInputValue.trim()) {
+                  if (settlementDialog.type === 'create') {
+                    createSettlement(settlementInputValue.trim())
+                    showNotification(`Settlement "${settlementInputValue.trim()}" created`, 'success')
+                  } else if (settlementDialog.settlementId) {
+                    renameSettlement(settlementDialog.settlementId, settlementInputValue.trim())
+                  }
+                  setSettlementDialog(null)
+                  setSettlementInputValue('')
+                } else if (e.key === 'Escape') {
+                  setSettlementDialog(null)
+                  setSettlementInputValue('')
+                }
+              }}
+            />
+            <div className="confirm-actions">
+              <button
+                className="confirm-cancel"
+                onClick={() => {
+                  setSettlementDialog(null)
+                  setSettlementInputValue('')
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                className="confirm-ok"
+                onClick={() => {
+                  if (settlementInputValue.trim()) {
+                    if (settlementDialog.type === 'create') {
+                      createSettlement(settlementInputValue.trim())
+                      showNotification(`Settlement "${settlementInputValue.trim()}" created`, 'success')
+                    } else if (settlementDialog.settlementId) {
+                      renameSettlement(settlementDialog.settlementId, settlementInputValue.trim())
+                    }
+                    setSettlementDialog(null)
+                    setSettlementInputValue('')
+                  }
+                }}
+                disabled={!settlementInputValue.trim()}
+              >
+                {settlementDialog.type === 'create' ? 'Create' : 'Rename'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSettlementManagement && (
+        <div
+          className={`settlement-management-overlay ${isClosingSettlementDrawer ? 'closing' : ''}`}
+          onClick={() => closeSettlementManagement()}
+        >
+          <div
+            className={`settlement-management-drawer ${isClosingSettlementDrawer ? 'closing' : ''}`}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="settlement-management-header">
+              <h2>Settlement Management</h2>
+              <button
+                className="close-button"
+                onClick={() => closeSettlementManagement()}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="settlement-management-content">
+              <div className="active-settlement-section">
+                <h3>Active Settlement</h3>
+                {currentSettlement && (
+                  <div className="settlement-card active">
+                    <div className="settlement-name">{currentSettlement.name}</div>
+                    <div className="settlement-actions">
+                      <button
+                        className="settlement-action-button"
+                        onClick={() => {
+                          setSettlementInputValue(currentSettlement.name)
+                          setSettlementDialog({ type: 'rename', settlementId: currentSettlement.id, currentName: currentSettlement.name })
+                        }}
+                      >
+                        Rename
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="other-settlements-section">
+                <div className="section-header-row">
+                  <h3>Other Settlements</h3>
+                  <button
+                    className="create-settlement-button"
+                    onClick={() => {
+                      setSettlementInputValue('')
+                      setSettlementDialog({ type: 'create' })
+                    }}
+                  >
+                    + New Settlement
+                  </button>
+                </div>
+                {appState.settlements.filter(s => s.id !== appState.currentSettlementId).length === 0 ? (
+                  <div className="empty-settlements-message">
+                    No other settlements. Click "+ New Settlement" to create one.
+                  </div>
+                ) : (
+                  <div className="settlements-grid">
+                    {appState.settlements
+                      .filter(s => s.id !== appState.currentSettlementId)
+                      .map((settlement) => (
+                        <div key={settlement.id} className="settlement-card">
+                          <div className="settlement-name">{settlement.name}</div>
+                          <div className="settlement-actions">
+                            <button
+                              className="settlement-action-button"
+                              onClick={() => {
+                                switchSettlement(settlement.id)
+                                showNotification(`Switched to ${settlement.name}`, 'success')
+                              }}
+                            >
+                              Switch To
+                            </button>
+                            <button
+                              className="settlement-action-button"
+                              onClick={() => {
+                                setSettlementInputValue(settlement.name)
+                                setSettlementDialog({ type: 'rename', settlementId: settlement.id, currentName: settlement.name })
+                              }}
+                            >
+                              Rename
+                            </button>
+                            <button
+                              className="settlement-action-button"
+                              onClick={() => {
+                                if (confirm(`Are you sure you want to delete ${settlement.name}?`)) {
+                                  deleteSettlement(settlement.id)
+                                }
+                              }}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="top-toolbar">
         <div className="toolbar-left">
-          <h1 className="toolbar-title">Kingdom Death: Monster</h1>
+          <h1 className="toolbar-title">KDM Settlement Manager</h1>
           <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
             <button
               className="nav-button"
@@ -421,6 +916,42 @@ function App() {
             >
               →
             </button>
+          </div>
+        </div>
+        <div className="toolbar-center">
+          <div className="settlement-selector">
+            <button
+              className="settlement-dropdown-button"
+              onClick={() => setShowSettlementDropdown(!showSettlementDropdown)}
+            >
+              {currentSettlement?.name || 'No Settlement'} ▼
+            </button>
+            {showSettlementDropdown && (
+              <div className="settlement-dropdown-menu">
+                {appState.settlements.map((settlement) => (
+                  <div
+                    key={settlement.id}
+                    className={`settlement-dropdown-item ${settlement.id === appState.currentSettlementId ? 'active' : ''}`}
+                    onClick={() => {
+                      switchSettlement(settlement.id)
+                      setShowSettlementDropdown(false)
+                    }}
+                  >
+                    {settlement.name}
+                  </div>
+                ))}
+                <div className="settlement-dropdown-divider" />
+                <div
+                  className="settlement-dropdown-item settlement-manage"
+                  onClick={() => {
+                    setShowSettlementDropdown(false)
+                    setShowSettlementManagement(true)
+                  }}
+                >
+                  Manage Settlements...
+                </div>
+              </div>
+            )}
           </div>
         </div>
         <div className="toolbar-right">
@@ -445,11 +976,11 @@ function App() {
             </button>
           )}
           <button
-            className="burger-menu"
+            className="toolbar-button"
             onClick={toggleSurvivorList}
-            aria-label="Toggle survivor list menu"
+            aria-label="Manage survivors"
           >
-            ☰
+            Manage Survivors
           </button>
         </div>
         <input
@@ -489,7 +1020,7 @@ function App() {
               </div>
             </div>
             <div className="survivor-list">
-              {Object.entries(appState.survivors)
+              {currentSettlement && Object.entries(currentSettlement.survivors)
                 .filter(([_, survivor]) => survivor !== null)
                 .map(([id, survivor]) => (
                   <div key={id} className="survivor-list-item">
@@ -516,15 +1047,15 @@ function App() {
                 className="survivor-pool-header"
                 onClick={() => setShowSurvivorPool(!showSurvivorPool)}
               >
-                <span>Survivor Pool ({appState.removedSurvivors.length})</span>
+                <span>Survivor Pool ({currentSettlement?.removedSurvivors.length || 0})</span>
                 <span className="expand-icon">{showSurvivorPool ? '▼' : '▶'}</span>
               </div>
-              {showSurvivorPool && (
+              {showSurvivorPool && currentSettlement && (
                 <div className="survivor-pool-list">
-                  {appState.removedSurvivors.length === 0 ? (
+                  {currentSettlement.removedSurvivors.length === 0 ? (
                     <div className="empty-message">No survivors in pool</div>
                   ) : (
-                    appState.removedSurvivors.map((survivor, index) => (
+                    currentSettlement.removedSurvivors.map((survivor, index) => (
                       <div key={index} className="survivor-list-item deactivated">
                         <div className="survivor-info">
                           <div className="survivor-name">
@@ -566,15 +1097,15 @@ function App() {
                 className="retired-header"
                 onClick={() => setShowRetiredSection(!showRetiredSection)}
               >
-                <span>Retired Survivors ({appState.retiredSurvivors.length})</span>
+                <span>Retired Survivors ({currentSettlement?.retiredSurvivors.length || 0})</span>
                 <span className="expand-icon">{showRetiredSection ? '▼' : '▶'}</span>
               </div>
-              {showRetiredSection && (
+              {showRetiredSection && currentSettlement && (
                 <div className="retired-list">
-                  {appState.retiredSurvivors.length === 0 ? (
+                  {currentSettlement.retiredSurvivors.length === 0 ? (
                     <div className="empty-message">No retired survivors</div>
                   ) : (
-                    appState.retiredSurvivors.map((survivor, index) => (
+                    currentSettlement.retiredSurvivors.map((survivor, index) => (
                       <div key={index} className="survivor-list-item retired">
                         <div className="survivor-info">
                           <div className="survivor-name">
@@ -596,15 +1127,15 @@ function App() {
                 className="deceased-header"
                 onClick={() => setShowDeceasedSection(!showDeceasedSection)}
               >
-                <span>Deceased Survivors ({appState.deceasedSurvivors.length})</span>
+                <span>Deceased Survivors ({currentSettlement?.deceasedSurvivors.length || 0})</span>
                 <span className="expand-icon">{showDeceasedSection ? '▼' : '▶'}</span>
               </div>
-              {showDeceasedSection && (
+              {showDeceasedSection && currentSettlement && (
                 <div className="deceased-list">
-                  {appState.deceasedSurvivors.length === 0 ? (
+                  {currentSettlement.deceasedSurvivors.length === 0 ? (
                     <div className="empty-message">No deceased survivors</div>
                   ) : (
-                    appState.deceasedSurvivors.map((survivor, index) => (
+                    currentSettlement.deceasedSurvivors.map((survivor, index) => (
                       <div key={index} className="survivor-list-item deceased">
                         <div className="survivor-info">
                           <div className="survivor-name">
@@ -637,14 +1168,18 @@ function App() {
         <div
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}
+          onMouseEnter={() => handleQuadrantMouseEnter(1)}
+          onMouseLeave={handleQuadrantMouseLeave}
         >
-          <div className="quadrant-hover-overlay">
-            <span>Click to edit</span>
-          </div>
-          {appState.survivors[1] ? (
+          {showHoverOverlay === 1 && (
+            <div className="quadrant-hover-overlay">
+              <span>Click to edit</span>
+            </div>
+          )}
+          {currentSettlement?.survivors[1] ? (
             <SurvivorSheet
               key={`survivor-1-${focusedQuadrant}-${activeQuadrant}`}
-              survivor={appState.survivors[1]}
+              survivor={currentSettlement.survivors[1]}
               onUpdate={(survivor) => updateSurvivor(1, survivor)}
             />
           ) : (
@@ -663,14 +1198,18 @@ function App() {
         <div
           className={getQuadrantClass(2)}
           onClick={(e) => handleQuadrantClick(2, e)}
+          onMouseEnter={() => handleQuadrantMouseEnter(2)}
+          onMouseLeave={handleQuadrantMouseLeave}
         >
-          <div className="quadrant-hover-overlay">
-            <span>Click to edit</span>
-          </div>
-          {appState.survivors[2] ? (
+          {showHoverOverlay === 2 && (
+            <div className="quadrant-hover-overlay">
+              <span>Click to edit</span>
+            </div>
+          )}
+          {currentSettlement?.survivors[2] ? (
             <SurvivorSheet
               key={`survivor-2-${focusedQuadrant}-${activeQuadrant}`}
-              survivor={appState.survivors[2]}
+              survivor={currentSettlement.survivors[2]}
               onUpdate={(survivor) => updateSurvivor(2, survivor)}
             />
           ) : (
@@ -689,14 +1228,18 @@ function App() {
         <div
           className={getQuadrantClass(3)}
           onClick={(e) => handleQuadrantClick(3, e)}
+          onMouseEnter={() => handleQuadrantMouseEnter(3)}
+          onMouseLeave={handleQuadrantMouseLeave}
         >
-          <div className="quadrant-hover-overlay">
-            <span>Click to edit</span>
-          </div>
-          {appState.survivors[3] ? (
+          {showHoverOverlay === 3 && (
+            <div className="quadrant-hover-overlay">
+              <span>Click to edit</span>
+            </div>
+          )}
+          {currentSettlement?.survivors[3] ? (
             <SurvivorSheet
               key={`survivor-3-${focusedQuadrant}-${activeQuadrant}`}
-              survivor={appState.survivors[3]}
+              survivor={currentSettlement.survivors[3]}
               onUpdate={(survivor) => updateSurvivor(3, survivor)}
             />
           ) : (
@@ -715,14 +1258,18 @@ function App() {
         <div
           className={getQuadrantClass(4)}
           onClick={(e) => handleQuadrantClick(4, e)}
+          onMouseEnter={() => handleQuadrantMouseEnter(4)}
+          onMouseLeave={handleQuadrantMouseLeave}
         >
-          <div className="quadrant-hover-overlay">
-            <span>Click to edit</span>
-          </div>
-          {appState.survivors[4] ? (
+          {showHoverOverlay === 4 && (
+            <div className="quadrant-hover-overlay">
+              <span>Click to edit</span>
+            </div>
+          )}
+          {currentSettlement?.survivors[4] ? (
             <SurvivorSheet
               key={`survivor-4-${focusedQuadrant}-${activeQuadrant}`}
-              survivor={appState.survivors[4]}
+              survivor={currentSettlement.survivors[4]}
               onUpdate={(survivor) => updateSurvivor(4, survivor)}
             />
           ) : (
