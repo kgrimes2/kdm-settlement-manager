@@ -73,13 +73,17 @@ function App() {
 
   const currentSettlement = getCurrentSettlement()
 
-  // Save state to localStorage whenever it changes
+  // Save state to localStorage with 1000ms debounce
   useEffect(() => {
-    try {
-      localStorage.setItem('kdm-app-state', JSON.stringify(appState))
-    } catch (error) {
-      console.error('Failed to save state:', error)
-    }
+    const timeoutId = setTimeout(() => {
+      try {
+        localStorage.setItem('kdm-app-state', JSON.stringify(appState))
+      } catch (error) {
+        console.error('Failed to save state:', error)
+      }
+    }, 1000)
+
+    return () => clearTimeout(timeoutId)
   }, [appState])
 
   // Detect mobile devices and small screens
