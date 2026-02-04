@@ -248,7 +248,19 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
         <div className="left-column">
           <div className="survival-stats-row">
             <div className="survival-section">
-              <h3>Survival</h3>
+              <div className="survival-header">
+                <h3>Survival</h3>
+                <span className="survival-limit-label">
+                  (max.{' '}
+                  <NumericInput
+                    value={survivor.survivalLimit}
+                    onChange={(value) => updateField('survivalLimit', value)}
+                    className="survival-limit-input"
+                    min={0}
+                  />
+                  )
+                </span>
+              </div>
               <div className="survival-top">
                 <NumericInput
                   value={survivor.survival}
