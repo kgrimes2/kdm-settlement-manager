@@ -293,6 +293,12 @@
   align-items: center;
 }
 
+.stat-plus {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #3a3230;
+}
+
 .stat-input {
   width: 2rem;
   height: 2rem;

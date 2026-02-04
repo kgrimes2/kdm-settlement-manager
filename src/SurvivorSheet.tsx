@@ -390,6 +390,7 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                     className="stat-input"
                     min={0}
                   />
+                  <span className="stat-plus">+</span>
                   <NumericInput
                     value={survivor.gearBonuses[stat as keyof SurvivorData['gearBonuses']]}
                     onChange={(newValue) => updateGearBonus(stat as keyof SurvivorData['gearBonuses'], newValue)}
