@@ -139,6 +139,15 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
     updateField('stats', { ...survivor.stats, [stat]: value })
   }
 
+  const updateSurvivalLimit = (newLimit: number) => {
+    // If the new limit is lower than current survival, cap survival at the new limit
+    if (survivor.survival > newLimit) {
+      onUpdate({ ...survivor, survivalLimit: newLimit, survival: newLimit })
+    } else {
+      updateField('survivalLimit', newLimit)
+    }
+  }
+
   const toggleBodyLocation = (location: keyof SurvivorData['bodyLocations'], type: 'light' | 'heavy') => {
     updateField('bodyLocations', {
       ...survivor.bodyLocations,
@@ -254,7 +263,7 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                   (max.{' '}
                   <NumericInput
                     value={survivor.survivalLimit}
-                    onChange={(value) => updateField('survivalLimit', value)}
+                    onChange={updateSurvivalLimit}
                     className="survival-limit-input"
                     min={0}
                   />
