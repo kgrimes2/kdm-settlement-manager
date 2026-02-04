@@ -337,6 +337,7 @@
 
 .brain-checkbox {
   padding-right: 0.65rem;
+  margin-left: auto;
 }
 
 
@@ -402,6 +403,10 @@
   align-items: center;
   gap: 0.15rem;
   font-size: 0.6rem;
+}
+
+.body-location label:first-of-type {
+  margin-left: auto;
 }
 
 .heavy-injury-checkbox {
