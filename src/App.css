@@ -1147,6 +1147,16 @@
   border-color: #3a5a6a;
 }
 
+.clear-gear-button {
+  background-color: #7b6b4a;
+  border-color: #5a4a2a;
+}
+
+.clear-gear-button:hover {
+  background-color: #8b7b5a;
+  border-color: #6a5a3a;
+}
+
 .active-survivors-section {
   margin-bottom: 0;
 }

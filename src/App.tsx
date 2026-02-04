@@ -578,6 +578,51 @@ function App() {
     setShowSurvivalLimitDialog(true)
   }
 
+  const handleClearGearBonuses = () => {
+    setConfirmDialog({
+      message: 'Clear all gear bonuses for all survivors? This will set all gear bonus stats to 0 for all active and inactive survivors.',
+      onConfirm: () => {
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const clearGearBonuses = (survivor: SurvivorData | null) => {
+              if (!survivor) return null
+              return {
+                ...survivor,
+                gearBonuses: {
+                  movement: 0,
+                  accuracy: 0,
+                  strength: 0,
+                  evasion: 0,
+                  luck: 0,
+                  speed: 0,
+                }
+              }
+            }
+
+            return {
+              ...s,
+              survivors: {
+                1: clearGearBonuses(s.survivors[1]),
+                2: clearGearBonuses(s.survivors[2]),
+                3: clearGearBonuses(s.survivors[3]),
+                4: clearGearBonuses(s.survivors[4]),
+              },
+              removedSurvivors: s.removedSurvivors.map(survivor => clearGearBonuses(survivor)!),
+              retiredSurvivors: s.retiredSurvivors.map(survivor => clearGearBonuses(survivor)!),
+              deceasedSurvivors: s.deceasedSurvivors.map(survivor => clearGearBonuses(survivor)!),
+            }
+          })
+        }))
+
+        showNotification('All gear bonuses cleared successfully', 'success')
+        setConfirmDialog(null)
+      }
+    })
+  }
+
   const confirmSetMaxSurvival = () => {
     const value = parseInt(survivalLimitInputValue, 10)
     if (isNaN(value) || value < 0) {
@@ -1135,6 +1180,12 @@ function App() {
                     onClick={handleSetMaxSurvival}
                   >
                     Set Max Survival
+                  </button>
+                  <button
+                    className="bulk-action-button clear-gear-button"
+                    onClick={handleClearGearBonuses}
+                  >
+                    Clear All Gear Bonuses
                   </button>
                 </div>
               )}
