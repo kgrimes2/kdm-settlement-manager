@@ -858,9 +858,6 @@ function App() {
                   v{APP_VERSION}
                 </a>
               </h1>
-              <div className="toolbar-disclaimer">
-                Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
-              </div>
             </div>
           </div>
           <div className="toolbar-center">
@@ -1229,6 +1226,10 @@ function App() {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="bottom-disclaimer-banner">
+        Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
       </div>
     </div>
   )
