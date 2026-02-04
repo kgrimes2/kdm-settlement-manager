@@ -63,6 +63,8 @@ function App() {
   const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
   const [settlementDialog, setSettlementDialog] = useState<{ type: 'create' | 'rename'; settlementId?: string; currentName?: string } | null>(null)
   const [settlementInputValue, setSettlementInputValue] = useState('')
+  const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
+  const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
 
   // Helper to get current settlement
   const getCurrentSettlement = (): SettlementData | undefined => {
@@ -572,10 +574,12 @@ function App() {
   }
 
   const handleSetMaxSurvival = () => {
-    const input = prompt('Enter the max survival value to set for all survivors:')
-    if (input === null) return // User cancelled
+    setSurvivalLimitInputValue('')
+    setShowSurvivalLimitDialog(true)
+  }
 
-    const value = parseInt(input, 10)
+  const confirmSetMaxSurvival = () => {
+    const value = parseInt(survivalLimitInputValue, 10)
     if (isNaN(value) || value < 0) {
       showNotification('Invalid value. Please enter a positive number.', 'error')
       return
@@ -610,6 +614,8 @@ function App() {
     }))
 
     showNotification(`Max survival set to ${value} for all survivors`, 'success')
+    setShowSurvivalLimitDialog(false)
+    setSurvivalLimitInputValue('')
   }
 
   const handleClearAllData = () => {
@@ -784,6 +790,54 @@ function App() {
                 disabled={!settlementInputValue.trim()}
               >
                 {settlementDialog.type === 'create' ? 'Create' : 'Rename'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showSurvivalLimitDialog && (
+        <div className="confirm-overlay" onClick={() => {
+          setShowSurvivalLimitDialog(false)
+          setSurvivalLimitInputValue('')
+        }}>
+          <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
+            <p className="confirm-message">
+              Set Max Survival for All Survivors
+            </p>
+            <input
+              type="number"
+              className="settlement-name-input"
+              value={survivalLimitInputValue}
+              onChange={(e) => setSurvivalLimitInputValue(e.target.value)}
+              placeholder="Enter survival limit"
+              autoFocus
+              min="0"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' && survivalLimitInputValue.trim()) {
+                  confirmSetMaxSurvival()
+                } else if (e.key === 'Escape') {
+                  setShowSurvivalLimitDialog(false)
+                  setSurvivalLimitInputValue('')
+                }
+              }}
+            />
+            <div className="confirm-actions">
+              <button
+                className="confirm-cancel"
+                onClick={() => {
+                  setShowSurvivalLimitDialog(false)
+                  setSurvivalLimitInputValue('')
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                className="confirm-ok"
+                onClick={confirmSetMaxSurvival}
+                disabled={!survivalLimitInputValue.trim()}
+              >
+                Set
               </button>
             </div>
           </div>
