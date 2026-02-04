@@ -78,6 +78,13 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     }
   }
 
+  // Migration: ensure abilitiesImpairments has at least 2 rows
+  if (migratedSurvivor.abilitiesImpairments && migratedSurvivor.abilitiesImpairments.length < 2) {
+    while (migratedSurvivor.abilitiesImpairments.length < 2) {
+      migratedSurvivor.abilitiesImpairments.push('')
+    }
+  }
+
   return migratedSurvivor
 }
 
