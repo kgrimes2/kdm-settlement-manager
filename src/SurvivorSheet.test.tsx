@@ -59,10 +59,12 @@ describe('SurvivorSheet', () => {
 
   it('updates survival value', async () => {
     const user = userEvent.setup()
-    const survivor = { ...initialSurvivorData, survival: 3 }
+    const survivor = { ...initialSurvivorData, survival: 3, survivalLimit: 10 }
     render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} />)
 
-    const survivalInput = screen.getAllByRole('spinbutton')[0]
+    // Find survival input by its container
+    const survivalSection = screen.getByText('Survival').closest('.survival-section')!
+    const survivalInput = survivalSection.querySelector('.survival-top input[type="number"]')!
     await user.click(survivalInput)
 
     const incrementBtn = screen.getByText('+1')

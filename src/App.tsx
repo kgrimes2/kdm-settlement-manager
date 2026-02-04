@@ -717,6 +717,11 @@ function App() {
       try {
         const data = JSON.parse(e.target?.result as string)
 
+        // Check if data has expected structure before migration
+        if (!data.survivors && !data.settlements) {
+          throw new Error('Invalid data format - missing survivors or settlements')
+        }
+
         // Use the migration system to handle all data formats
         const migrated = migrateData(data)
 

@@ -57,9 +57,8 @@ describe('NumericInput', () => {
     const input = screen.getByRole('spinbutton')
     await user.click(input)
 
-    const decrementBtn = screen.getByText('-1')
-    await user.click(decrementBtn)
-
+    // Decrement button should not exist when at min value
+    expect(screen.queryByText('-1')).not.toBeInTheDocument()
     expect(onChange).not.toHaveBeenCalled()
   })
 
@@ -71,33 +70,26 @@ describe('NumericInput', () => {
     const input = screen.getByRole('spinbutton')
     await user.click(input)
 
-    const incrementBtn = screen.getByText('+1')
-    await user.click(incrementBtn)
-
+    // Increment button should not exist when at max value
+    expect(screen.queryByText('+1')).not.toBeInTheDocument()
     expect(onChange).not.toHaveBeenCalled()
   })
 
-  it('allows typing in the input field', async () => {
-    const user = userEvent.setup()
-    const onChange = vi.fn()
-    render(<NumericInput value={5} onChange={onChange} />)
-
-    const input = screen.getByRole('spinbutton')
-    await user.clear(input)
-
-    // The onChange gets called when clearing (sets to 0)
-    expect(onChange).toHaveBeenCalledWith(0)
+  it('input is read-only', () => {
+    render(<NumericInput value={5} onChange={vi.fn()} />)
+    const input = screen.getByRole('spinbutton') as HTMLInputElement
+    expect(input.readOnly).toBe(true)
   })
 
-  it('handles invalid input by defaulting to 0', async () => {
+  it('hides increment button when at max value', async () => {
     const user = userEvent.setup()
-    const onChange = vi.fn()
-    render(<NumericInput value={5} onChange={onChange} />)
+    render(<NumericInput value={5} onChange={vi.fn()} max={5} />)
 
     const input = screen.getByRole('spinbutton')
-    await user.clear(input)
+    await user.click(input)
 
-    expect(onChange).toHaveBeenCalledWith(0)
+    expect(screen.queryByText('+1')).not.toBeInTheDocument()
+    expect(screen.getByText('-1')).toBeInTheDocument()
   })
 
   it('applies custom className', () => {
