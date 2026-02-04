@@ -117,7 +117,7 @@ export const initialSurvivorData: SurvivorData = {
   understandingMilestone: null,
   fightingArts: [''],
   disorders: [''],
-  abilitiesImpairments: [''],
+  abilitiesImpairments: ['', ''],
   oncePerLifetime: [''],
   retired: false,
   skipNextHunt: false,

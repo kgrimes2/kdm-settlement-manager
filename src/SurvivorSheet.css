@@ -172,7 +172,15 @@
 }
 
 .left-column,
-.middle-column,
+.middle-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+}
+
 .right-column {
   display: flex;
   flex-direction: column;
@@ -180,6 +188,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   min-height: 0;
+  justify-content: space-evenly;
 }
 
 .survival-section {
@@ -262,6 +271,8 @@
   gap: 0.15rem;
   border: 1px solid #3a3230;
   padding: 0.15rem;
+  justify-content: space-evenly;
+  flex: 1;
 }
 
 .cannot-spend-survival {
@@ -444,13 +455,6 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.2rem;
-  max-width: 350px;
-}
-
-@media (min-width: 1441px) {
-  .weapon-proficiency {
-    max-width: 500px;
-  }
 }
 
 .weapon-proficiency h3 {
@@ -614,16 +618,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
-  max-width: 350px;
-}
-
-@media (min-width: 1441px) {
-  .fighting-arts,
-  .disorders,
-  .abilities-impairments,
-  .once-per-lifetime {
-    max-width: 500px;
-  }
 }
 
 .section-header {
