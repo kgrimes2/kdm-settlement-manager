@@ -899,7 +899,18 @@ function App() {
 
       <div className="top-toolbar">
         <div className="toolbar-left">
-          <h1 className="toolbar-title">KDM Settlement Manager</h1>
+          <h1 className="toolbar-title">
+            KDM Settlement Manager{' '}
+            <a
+              href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="version-link"
+              title="View changelog"
+            >
+              v{APP_VERSION}
+            </a>
+          </h1>
           <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
             <button
               className="nav-button"
@@ -1286,10 +1297,6 @@ function App() {
             </div>
           )}
         </div>
-      </div>
-
-      <div className="app-footer">
-        <span className="version">v{APP_VERSION}</span>
       </div>
     </div>
   )
