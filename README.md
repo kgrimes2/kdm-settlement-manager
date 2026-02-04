@@ -170,6 +170,24 @@ src/
     └── NumericInput.test.tsx   # Numeric input tests
 ```
 
+## Versioning
+
+This project follows [Semantic Versioning](https://semver.org/):
+- MAJOR version for incompatible API changes
+- MINOR version for new functionality in a backwards compatible manner
+- PATCH version for backwards compatible bug fixes
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
+
+### Version Management Scripts
+
+Update versions using npm scripts:
+```bash
+npm run version:major  # 1.0.0 -> 2.0.0
+npm run version:minor  # 1.0.0 -> 1.1.0
+npm run version:patch  # 1.0.0 -> 1.0.1
+```
+
 ## Data Storage
 
 All data is automatically saved to browser localStorage. Each browser/device maintains its own data. Use the Export feature to back up your data or transfer it between devices/browsers.

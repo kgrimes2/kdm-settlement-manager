@@ -1146,6 +1146,29 @@
   color: #3a2a1a;
 }
 
+/* App footer */
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.app-footer .version {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.app-footer:hover .version {
+  opacity: 1;
+}
+
 /* Responsive behavior for small screens */
 @media (max-width: 1440px) {
   .mobile-nav {
@@ -1164,5 +1187,11 @@
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+  }
+
+  .app-footer {
+    bottom: 0.25rem;
+    right: 0.5rem;
+    padding: 0.25rem 0.5rem;
   }
 }

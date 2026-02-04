@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 
+const APP_VERSION = '1.0.0'
+
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
 interface SettlementData {
@@ -1284,6 +1286,10 @@ function App() {
             </div>
           )}
         </div>
+      </div>
+
+      <div className="app-footer">
+        <span className="version">v{APP_VERSION}</span>
       </div>
     </div>
   )
