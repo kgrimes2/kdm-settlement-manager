@@ -201,8 +201,8 @@ All data is automatically saved to browser localStorage. Each browser/device mai
 
 ## License
 
-Private project
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
-This is a private project. If you have suggestions or find bugs, please contact the maintainer.
+Contributions are welcome! Please feel free to submit a Pull Request.
