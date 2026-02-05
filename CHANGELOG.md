@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-02-05
+
+### Added
+- Pill/bubble UI for text input fields:
+  - Weapon Proficiency type (limit: 1)
+  - Fighting Arts (limit: 3)
+  - Disorders (limit: 3)
+  - Abilities & Impairments (unlimited)
+  - Once Per Lifetime abilities (unlimited)
+- Users press Enter to create pills, click X to remove them
+- Input fields automatically hide when limits are reached
+- Max limit indicators shown in section headers
+
+### Changed
+- Weapon Proficiency section now displays on one line (heading, type pill, checkboxes, and milestone labels)
+- Increment/decrement buttons always visible with disabled state (instead of hiding when at limits)
+- Weapon Proficiency specialist and master labels hidden on tablets and mobile in focus mode for better space utilization
+- Gear bonus inputs now accept negative values
+
+### Technical
+- Data version bumped to v7
+- Migration system updated to convert `weaponProficiency.type` (string) to `weaponProficiency.types` (array)
+- Added comprehensive test coverage for pill UI functionality
+- Updated NumericInput tests to check for disabled state instead of element removal
+- Enhanced migration system to merge survivor data with defaults for missing fields
+
 ## [1.0.1] - 2026-02-04
 
 ### Added
