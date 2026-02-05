@@ -374,6 +374,15 @@ function App() {
     setShowGlossaryModal(true)
   }
 
+  const toggleSpent = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
+    e.stopPropagation()
+    e.preventDefault()
+    const survivor = currentSettlement?.survivors[quadrant]
+    if (survivor) {
+      updateSurvivor(quadrant, { ...survivor, spent: !survivor.spent })
+    }
+  }
+
   const handleExport = () => {
     const dataStr = JSON.stringify(appState, null, 2)
     const dataBlob = new Blob([dataStr], { type: 'application/json' })
@@ -1157,32 +1166,36 @@ function App() {
           </div>
           <div className="toolbar-right">
           <button
-            className="toolbar-button tutorial-button"
+            className="toolbar-button toolbar-icon-button tutorial-button"
             onClick={() => setShowTutorial(true)}
             aria-label="Tutorial"
-            title="Show Tutorial"
+            title="Tutorial"
           >
-            🎓 Tutorial
+            🎓
           </button>
           <button
-            className="toolbar-button glossary-button"
+            className="toolbar-button toolbar-icon-button glossary-button"
             onClick={() => handleOpenGlossary()}
-            aria-label="KDM Glossary"
-            title="KDM Glossary"
+            aria-label="Glossary"
+            title="Glossary"
           >
-            📖 Glossary
+            📖
           </button>
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={handleExport}
+            aria-label="Export"
+            title="Export Data"
           >
-            ⬆️ Export
+            ⬆️
           </button>
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={handleImport}
+            aria-label="Import"
+            title="Import Data"
           >
-            ⬇️ Import
+            ⬇️
           </button>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
@@ -1193,11 +1206,12 @@ function App() {
             </button>
           )}
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={toggleSurvivorList}
-            aria-label="Manage survivors"
+            aria-label="Manage Survivors"
+            title="Manage Survivors"
           >
-            👥 Manage Survivors
+            👥
           </button>
         </div>
         {focusedQuadrant !== null && !isMobileDevice && (
@@ -1520,7 +1534,16 @@ function App() {
           {showHoverOverlay === 1 && (
             <div className="quadrant-hover-overlay">
               <span>Click to edit</span>
+              <div
+                className={`spent-region spent-region-br ${currentSettlement?.survivors[1]?.spent ? 'spent-active' : ''}`}
+                onClick={(e) => toggleSpent(1, e)}
+              >
+                <span>Spent</span>
+              </div>
             </div>
+          )}
+          {currentSettlement?.survivors[1]?.spent && (
+            <div className="spent-indicator" />
           )}
           {currentSettlement?.survivors[1] ? (
             <SurvivorSheet
@@ -1552,7 +1575,16 @@ function App() {
           {showHoverOverlay === 2 && (
             <div className="quadrant-hover-overlay">
               <span>Click to edit</span>
+              <div
+                className={`spent-region spent-region-bl ${currentSettlement?.survivors[2]?.spent ? 'spent-active' : ''}`}
+                onClick={(e) => toggleSpent(2, e)}
+              >
+                <span>Spent</span>
+              </div>
             </div>
+          )}
+          {currentSettlement?.survivors[2]?.spent && (
+            <div className="spent-indicator" />
           )}
           {currentSettlement?.survivors[2] ? (
             <SurvivorSheet
@@ -1584,7 +1616,16 @@ function App() {
           {showHoverOverlay === 3 && (
             <div className="quadrant-hover-overlay">
               <span>Click to edit</span>
+              <div
+                className={`spent-region spent-region-tr ${currentSettlement?.survivors[3]?.spent ? 'spent-active' : ''}`}
+                onClick={(e) => toggleSpent(3, e)}
+              >
+                <span>Spent</span>
+              </div>
             </div>
+          )}
+          {currentSettlement?.survivors[3]?.spent && (
+            <div className="spent-indicator" />
           )}
           {currentSettlement?.survivors[3] ? (
             <SurvivorSheet
@@ -1616,7 +1657,16 @@ function App() {
           {showHoverOverlay === 4 && (
             <div className="quadrant-hover-overlay">
               <span>Click to edit</span>
+              <div
+                className={`spent-region spent-region-tl ${currentSettlement?.survivors[4]?.spent ? 'spent-active' : ''}`}
+                onClick={(e) => toggleSpent(4, e)}
+              >
+                <span>Spent</span>
+              </div>
             </div>
+          )}
+          {currentSettlement?.survivors[4]?.spent && (
+            <div className="spent-indicator" />
           )}
           {currentSettlement?.survivors[4] ? (
             <SurvivorSheet

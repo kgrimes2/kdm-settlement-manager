@@ -203,6 +203,11 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     delete (migratedSurvivor.weaponProficiency as any).type
   }
 
+  // Migration: add spent field if missing (version 8)
+  if (!('spent' in migratedSurvivor)) {
+    migratedSurvivor.spent = false
+  }
+
   return migratedSurvivor
 }
 
