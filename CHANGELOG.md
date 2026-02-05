@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-02-05
+
+### Added
+- Temporary marker system with red circle indicators:
+  - "Add Marker" button in toolbar (positioned left of settlement selector)
+  - Click button to show overlay on available quadrants
+  - Click overlay to add red circle marker to quadrant center
+  - Click red circle to remove marker
+  - Marker mode auto-deactivates after adding a marker
+  - Markers are temporary (not persisted, reset on refresh)
+  - Markers auto-clear when survivors are deactivated
+
+### Removed
+- "Click to edit" hover overlays on quadrants
+- Hover overlay CSS and related state management
+
+### Changed
+- Settlement selector moved to right side of toolbar
+- Removed spent/marker functionality from v1.0.4 (replaced with new temporary marker system)
+- Reverted data version from 8 back to 7
+
+### Technical
+- Added marker state management (Set-based, component-level only)
+- Removed hover overlay logic and event handlers
+- Simplified quadrant interaction model
+
 ## [1.0.4] - 2026-02-05
 
 ### Added

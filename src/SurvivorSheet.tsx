@@ -73,7 +73,6 @@ export interface SurvivorData {
   skipNextHunt: boolean
   cannotUseFightingArts: boolean
   rerollUsed: boolean
-  spent: boolean
   auxiliaryNotes: string
   permanentInjuries: {
     head: PermanentInjury[]
@@ -141,7 +140,6 @@ export const initialSurvivorData: SurvivorData = {
   skipNextHunt: false,
   cannotUseFightingArts: false,
   rerollUsed: false,
-  spent: false,
   auxiliaryNotes: '',
   permanentInjuries: {
     head: [
