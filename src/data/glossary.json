@@ -1,0 +1,3014 @@
+{
+  "terms": [
+    {
+      "term": "Abilities",
+      "definition": "Skills and techniques learned by survivors, usually through story events, and recorded on the Survivor Record Sheet."
+    },
+    {
+      "term": "Absorb",
+      "definition": "The Watcher's instinct. Described on the Watcher's showdown story event and basic action card."
+    },
+    {
+      "term": "Acceleration",
+      "definition": "Add +1d10 movement to a move action. Before moving, you may roll the Death Die and add the result to your movement for one move action this round."
+    },
+    {
+      "term": "Accessory",
+      "definition": "A gear special rule. Accessory gear may be worn in addition to armor on a hit location. Each accessory specifies the hit location it covers."
+    },
+    {
+      "term": "Accuracy (Attribute)",
+      "definition": "Represents permanent changes to attack rolls. Positive attribute adds to the dice roll, while negative attribute subtracts from the dice roll."
+    },
+    {
+      "term": "Accuracy (Weapon/Attack Profile)",
+      "definition": "The number that each attack roll result must meet or exceed in order to be considered a hit. Listed on monster attack profiles and weapon gear."
+    },
+    {
+      "term": "Acid Palms",
+      "definition": "An ability. Add 1d10 strength to wound attempts when attacking with Fist & Tooth."
+    },
+    {
+      "term": "Act",
+      "definition": "The part of the survivors' turn in which an individual survivor gains movement and activation. Each survivor must complete their act before another may start theirs, and all unused movement and activations are lost when a survivor ends their act."
+    },
+    {
+      "term": "Action",
+      "definition": "Most things a survivor or monster can do during the Showdown Phase, like moving and attacking, are actions."
+    },
+    {
+      "term": "Activation",
+      "definition": "Activation can be spent to attack, activate some gear, and interact with terrain. Survivors gain one activation during that survivor's act."
+    },
+    {
+      "term": "Activation Limit X",
+      "definition": "A gear special rule. A survivor may only activate/spend {q} on this gear the listed number of times during a showdown."
+    },
+    {
+      "term": "Adjacent (Miniature)",
+      "definition": "A miniature is adjacent to another when it occupies a space one space in a cardinal (non-diagonal) direction from a square occupied by the other miniature."
+    },
+    {
+      "term": "Advanced Play",
+      "definition": "An ability. You may set aside 2 dice with the High Roller knowledge. These dice must be from separate attacks."
+    },
+    {
+      "term": "Advance (instinct)",
+      "definition": "The Tyrant's instinct. Described on the Tyrant's showdown story event and basic action card."
+    },
+    {
+      "term": "Advance (knowledge)",
+      "definition": "A knowledge advances when appropriate observation conditions are met. Advancing a knowledge transforms it into something more powerful. When this happens, immediately replace the old knowledge with the new one on your survivor record sheet. Update your knowledge deck and the settlement record sheet, if applicable."
+    },
+    {
+      "term": "Affinity Bonus",
+      "definition": "A type of gear special rule. Having the indicated number of colored affinities will trigger the effect. Each affinity bonus only applies once, regardless of how many extra affinities a survivor has."
+    },
+    {
+      "term": "Affinity (Completed)",
+      "definition": "Some gear cards have red, blue, or green half-squares on the card edge. If a half-square is adjacent to a half-square of the same color on another gear card, the complete square they form is one affinity."
+    },
+    {
+      "term": "Afflicted",
+      "definition": "The Hyper Light neurosis. The symptoms return the moment you stop moving. At the end of your act, if you did not dash this round, you are knocked down and gain a bleeding token."
+    },
+    {
+      "term": "After Damage",
+      "definition": "An attack trigger found on some monster AI attack profiles. If there are any successful hits in the attack, resolve all damage from all hits in this attack (roll hit location dice, apply damage to hit location), then apply this trigger's attack effects. If there is no damage dealt from the attack, do not apply this effect."
+    },
+    {
+      "term": "After Hit",
+      "definition": "An attack trigger found on some monster AI attack profiles. If there are any successful hits in the attack, before rolling hit location dice, apply this trigger's attack effects."
+    },
+    {
+      "term": "Aftermath",
+      "definition": "The end of a Showdown Phase. Contains different outcomes based on the survivors' success or failure."
+    },
+    {
+      "term": "Ageless",
+      "definition": "An ability. You may hunt if you are retired. When you gain Hunt XP, you may instead choose not to gain it."
+    },
+    {
+      "term": "Ageless Apprentice",
+      "definition": "A secret fighting art from the Lion Knight expansion. It allows the survivor to rotate up to 3 gear cards in their gear grid. Each of these gear cards may be rotated 90, 180, or 270 degrees in either direction, as long as the card remains aligned with the printed square on the survivor's gear grid. This changes the positions of the affinities and arrows on those gear cards. The rules of the cards themselves remain unchanged."
+    },
+    {
+      "term": "Aggression Overload",
+      "definition": "Add an attack roll to an attack. During your attack, after making your attack rolls but before drawing hit locations, you may roll the Death Die as an additional attack roll."
+    },
+    {
+      "term": "AI Card",
+      "definition": "AI cards are made up of actions, flows and alerts. Some cards also have persistent injury and/or definition boxes. There are four kinds of AI cards - Basic, Advanced, Legendary, and Special."
+    },
+    {
+      "term": "AI Deck",
+      "definition": "Made up of AI cards used for a specific showdown. See the monster's story event for details of its AI deck. The AI Deck is reduced as the monster is wounded."
+    },
+    {
+      "term": "Alerts",
+      "definition": "Actions following an alert contain important conditional information that must be considered to determine if the action is performed. Continue to perform any further actions on the AI card unless stated otherwise. Survival may not be spent during an alert."
+    },
+    {
+      "term": "All Is Ash",
+      "definition": "The Gold Smoke Knight's instinct. Described on the Gold Smoke Knight's showdown story event and basic action card."
+    },
+    {
+      "term": "All Survivors",
+      "definition": "An effect during the showdown that refers to all survivors applies to all survivors currently on the showdown board."
+    },
+    {
+      "term": "Amber",
+      "definition": "A gear keyword. This gear is substantively crafted of amber."
+    },
+    {
+      "term": "Ambush (Monster)",
+      "definition": "If the monster moves into the survivors' hunt board space, it ambushes the survivors. End any current hunt events and start the showdown immediately. Survivors skip their first turn. In most cases, this means that the monster will take two turns in a row."
+    },
+    {
+      "term": "Ambush (Survivors)",
+      "definition": "Some hunt events allow the survivors to ambush the monster. If they do, survivors may go first in the showdown. Do not follow the setup rules on the monster's story event. Instead, place the listed showdown terrain, the monster, and survivors on the showdown board as the players decide (setup rules on terrain cards must still be followed)."
+    },
+    {
+      "term": "Ammo - Bow ",
+      "definition": "A gear special rule. You must have a bow in your gear grid to activate this card. Ammo has the range of a bow in your gear grid."
+    },
+    {
+      "term": "Ammunition",
+      "definition": "A gear keyword. This gear is ammunition for another weapon gear."
+    },
+    {
+      "term": "Amnesia",
+      "definition": "The Slenderman's instinct. Described on the Slenderman's showdown story event and basic action card."
+    },
+    {
+      "term": "Analyze",
+      "definition": "An ability. At the start of the survivors' turn, if you are adjacent to the monster, reveal the top AI card, then place it back on top of the deck."
+    },
+    {
+      "term": "Anemic",
+      "definition": "An impairment. It takes one fewer bleeding token to kill you. This impairment can be gained multiple times. If you gain Anemic enough times that it takes 0 bleeding tokens to kill you, you instantly die."
+    },
+    {
+      "term": "Archive",
+      "definition": "Remove this card from play and return it to the game box. Unless it is recorded into settlement storage or the survivor's record sheet, any archived card is permanently lost. It must be returned to its respective deck and be re-drawn to be gained again."
+    },
+    {
+      "term": "Armor",
+      "definition": "Gear with this keyword is armor. Protects the survivor from injury. Each piece of armor will have the hit location symbol for the hit location it can be worn on. Each hit location may only wear one piece of armor."
+    },
+    {
+      "term": "Armor Points {M}",
+      "definition": "Recorded on the survivor record sheet. Determined by armor gear in the survivor's gear grid, as well as other effects and events. Each point negates one point of damage to the hit location. Armor points decrease by 1 for each damage they negate."
+    },
+    {
+      "term": "Armor Set",
+      "definition": "Each armor set is comprised of all armor from a single settlement location with the keyword 'set'. For example, while a survivor is wearing the White Lion Helm, White Lion Gauntlets, White Lion Coat, White Lion Skirt, and White Lion Boots, they have completed the White Lion armor set."
+    },
+    {
+      "term": "Armor Set Bonus ",
+      "definition": "A survivor wearing a completed armor set gains the benefits of the armor set bonus listed on its corresponding armor set card."
+    },
+    {
+      "term": "Arms ",
+      "definition": "A survivor hit location. Damage to the arms beyond the heavy injury level results in a roll on the Arms section of the Severe Injury table."
+    },
+    {
+      "term": "Arrival ",
+      "definition": "The start of the showdown. Any survivors who have \"On Arrival\" effects apply them in the order of their choice."
+    },
+    {
+      "term": "Arrogance",
+      "definition": "The Marrowism neurosis. When you gain knowledge at the Forum that is not from Marrowism, it costs +2 lumi. You cannot refuse a Majestic Invitation from a Bone Eater."
+    },
+    {
+      "term": "Arrow",
+      "definition": "A gear keyword. This gear card is an arrow."
+    },
+    {
+      "term": "Astrocyte Excitation",
+      "definition": "An ability. Add +4 to your roll results during {s} Vaultless."
+    },
+    {
+      "term": "Astute",
+      "definition": "A survivor ability. On Arrival, if possible, add an Acanthus Plant terrain card to the showdown."
+    },
+    {
+      "term": "Astute Psyche",
+      "definition": "An ability. When you make an observation about a knowledge, make two observations instead."
+    },
+    {
+      "term": "Attack",
+      "definition": "The process of making attack rolls and resolving damage, wounds, or other effects."
+    },
+    {
+      "term": "Attack Effects",
+      "definition": "Attack effects are rules contained in a box below the attack profile on some AI cards, and applied when the trigger occurs. These effects are applied only once, even if the target is hit or damaged multiple times by this attack."
+    },
+    {
+      "term": "Attack Profile",
+      "definition": "Part of monster AI cards and basic actions. Lists the speed, accuracy, damage, and any triggers for a monster attack."
+    },
+    {
+      "term": "Attack Roll",
+      "definition": "The dice roll that represents an attempt to hit a target. A Lantern 10 will always result in a hit."
+    },
+    {
+      "term": "Attribute",
+      "definition": "An aspect of a survivor or monster described by a numerical value."
+    },
+    {
+      "term": "Attribute Modifier Token ",
+      "definition": "Attribute modifier tokens are used to indicate temporary changes to attributes. Attribute modifier tokens are double-sided to represent gains and losses for that attribute, and are combined with permanent attribute totals to determine the current level of each attribute. All tokens are removed at the end of each showdown."
+    },
+    {
+      "term": "Automatic Hit(s) ",
+      "definition": "Automatic hits happen in the place of attack rolls. When a survivor attacks, they make attack rolls equal to their weapon's Speed (plus modifiers). Each automatic hit foregoes one of these rolls and adds 1 to the total number of hits when hits are determined. The remaining attack rolls are performed normally, and all hits (rolled or automatic) are drawn and resolved together. Automatic hits are not Perfect hits."
+    },
+    {
+      "term": "Away (Movement)",
+      "definition": "A movement that puts the most possible spaces between two points on the showdown board, such as a monster, survivor, terrain, or board edge."
+    },
+    {
+      "term": "Axe",
+      "definition": "Gear with this keyword is an axe weapon. Survivors may gain levels of axe weapon proficiency with this weapon."
+    },
+    {
+      "term": "Back",
+      "definition": "The direction opposite the monster's facing."
+    },
+    {
+      "term": "Ballad [X]",
+      "definition": "A gear special rule. Spend {q} and archive X cards from the monster's wound stack to perform a Ballad. Ballads have different names and costs (denoted by [X]). Effects of Ballads last until the end of the Showdown Phase unless the gear that features it is archived or the survivor performing it dies. Only one Ballad may be performed at a time among all survivors unless an effect instructs otherwise."
+    },
+    {
+      "term": "Balm",
+      "definition": "A gear keyword. Balm items work by rubbing them on a survivor's skin."
+    },
+    {
+      "term": "Banshee Dura X",
+      "definition": "A special rule. At the start of your act, gain (or lose) howling tokens until you have X of them. During your act or a survival opportunity, you may spend 1 howling token to do one of the following: gain {a}, which must be spent immediately, limit once per round. Gain {q}, which must be spent immediately, limit once per round. Perform a survival action using the howling token in place of survival. Gain +1 STR token until the end of the round."
+    },
+    {
+      "term": "Barbed X",
+      "definition": "A gear special rule. On a Perfect hit, gain +X strength for the rest of the attack."
+    },
+    {
+      "term": "Bash",
+      "definition": "Causes survivors to be knocked down."
+    },
+    {
+      "term": "Basic Action",
+      "definition": "A Monster's basic action is detailed on its Basic Action card. A basic action consists of a target action and an attack action with an attack profile. Monsters will perform a basic action on some AI cards, in some reactions, or if the AI deck and discard are both empty. Performing a basic action does not count as an AI card being drawn."
+    },
+    {
+      "term": "Basic Action / Reference Card",
+      "definition": "Double-sided Basic Action/Reference cards contain a monster's basic action on one side and an overview of the monster's characteristics on the other side."
+    },
+    {
+      "term": "Basic Hunt Event ",
+      "definition": "100 events survivors may encounter out in the darkness. Found in the Basic Hunt Event section of the rulebook."
+    },
+    {
+      "term": "Basic Resources ",
+      "definition": "Generic resources that can be gained from most quarry monsters and many events."
+    },
+    {
+      "term": "Before Damage",
+      "definition": "A trigger found on some monster attack profiles. Apply this trigger's attack effect after hits and hit location dice are rolled, but before damage is dealt to hit locations."
+    },
+    {
+      "term": "Bile Body",
+      "definition": "An ability. On Arrival, gain +1 evasion token. When you suffer a severe injury, adjacent survivors and monsters are knocked down. Limit once per showdown."
+    },
+    {
+      "term": "Bile Smell",
+      "definition": "An impairment. You are always stinky. You do not generate endeavors. When a survivor ends their movement adjacent to you, they suffer 1 brain damage."
+    },
+    {
+      "term": "Bitter Frenzy",
+      "definition": "An ability. You may spend survival and use fighting arts, weapon specialization, and weapon mastery while Frenzied."
+    },
+    {
+      "term": "Bleeding Token ",
+      "definition": "Survivors can gain bleeding tokens from severe injuries, monster attacks, and some events. If a survivor has 5 or more bleeding tokens, they are dead. All tokens are removed at the end of each showdown."
+    },
+    {
+      "term": "Bleed X",
+      "definition": "The target gains X bleeding tokens."
+    },
+    {
+      "term": "Blindside",
+      "definition": "A gear special rule. When you wound the monster from its blind spot with this gear, all of its {r} REFLEX become {r} FAILURE until the attack ends. (This includes the current reaction.)"
+    },
+    {
+      "term": "Blind Spot ",
+      "definition": "Usually the spaces directly behind the monster. Survivors in the monster's blind spot are outside of its field of view, and gain +1 accuracy when attacking."
+    },
+    {
+      "term": "Block X",
+      "definition": "A gear special rule. Spend {q} to ignore X hits the next time you are attacked. Lasts until your next act. A survivor may not use block more than once per attack. When you Block X, lose all deflect tokens."
+    },
+    {
+      "term": "Bloodeater",
+      "definition": "A gear special rule. If you are adjacent to another survivor, you may spend {q} to kill them. You gain their bleeding tokens and it takes an additional 5 bleeding tokens to kill you this showdown."
+    },
+    {
+      "term": "Bloodthirst",
+      "definition": "A gear special rule. When you activate this gear, gain a bleeding token."
+    },
+    {
+      "term": "Body",
+      "definition": "A survivor hit location. Damage to the body beyond the heavy injury level results in a roll on the Body section of the Severe Injury table. This is the only hit location that appears twice on the hit location dice."
+    },
+    {
+      "term": "Body Blow ",
+      "definition": "An attack that always hits a survivor's body location. Do not roll hit location dice for this attack."
+    },
+    {
+      "term": "Body Count",
+      "definition": "Some survivors track their Body Count, which is the number of survivors they have killed."
+    },
+    {
+      "term": "Bone (Gear)",
+      "definition": "A gear keyword. Bone is one of the primary materials used to craft this gear."
+    },
+    {
+      "term": "Bone (Resource)",
+      "definition": "A common resource keyword."
+    },
+    {
+      "term": "Boost Heart",
+      "definition": "An ability. At the start of your act, gain +1 strength token. When you are knocked down, lose all your +1 strength tokens. When you have five or more +1 strength tokens, your heart bursts. Dead."
+    },
+    {
+      "term": "Bounding Legs",
+      "definition": "An ability. When you spend {m}, you must place yourself in an unoccupied space 5 spaces away from your current space and gain a +1 speed token for the rest of the round."
+    },
+    {
+      "term": "Bow",
+      "definition": "Gear with this keyword is a bow weapon. Survivors may gain levels of bow weapon proficiency with this weapon."
+    },
+    {
+      "term": "Brain",
+      "definition": "The Brain is a survivor location different from hit locations, and represents a survivor's mental fitness. Since the human mind is fragile, there is only one injury level for the Brain (indicated by the light-lined unfilled box). Any damage beyond the light injury level results in a roll on the Brain Trauma table. The Brain is only damaged by brain damage."
+    },
+    {
+      "term": "Brain Damage",
+      "definition": "Brain damage only affects the Brain location."
+    },
+    {
+      "term": "Brain Trauma Table ",
+      "definition": "Contains possible outcomes of excess damage to the Brain location."
+    },
+    {
+      "term": "Broken Lantern (Resource)",
+      "definition": "A basic resource with the Scrap keyword."
+    },
+    {
+      "term": "Broken Vow",
+      "definition": "An impairment. If any survivors with 0 Hunt XP in your hunting party die during the hunt or showdown, you retire."
+    },
+    {
+      "term": "Build (Location)",
+      "definition": "When a new location is built, place that settlement location in the play area and add the new location to your settlement record sheet. This is a permanent addition to your settlement."
+    },
+    {
+      "term": "Bullfrog Neck",
+      "definition": "An ability. Add +1 to your head severe injury roll results. Double your courage for any rolls that would take it into account."
+    },
+    {
+      "term": "Burnt Nerves ",
+      "definition": "An ability. You are immune to bash."
+    },
+    {
+      "term": "Campaign End (Strain Milestone)",
+      "definition": "A specific type of Strain Milestone that is checked at the end of a Campaign. If achieved, resolve its Permanent Effect and remove the achieved strain milestone card from your game. It can never be used again."
+    },
+    {
+      "term": "Campaign Limit X",
+      "definition": "A gear special rule. This gear may only be activated X times per campaign. Record this on your settlement record sheet to keep track."
+    },
+    {
+      "term": "Canceled Attack",
+      "definition": "A canceled attack immediately ends. Discard all unresolved hit locations. Do not perform any actions, special rules, critical effects, or reactions on these cards. This most commonly happens when the attacker is knocked down, draws a trap card, or is no longer in range of the monster during their attack."
+    },
+    {
+      "term": "Candypop",
+      "definition": "A wanderer ability. When you archive a resource with Phantom Friend, gain a random Unique soda gear and +1 permanent affinity of your choice."
+    },
+    {
+      "term": "Caratosis ",
+      "definition": "A survivor ability. Before making an attack roll, you may declare \"Caratosis X\" in a loud, booming voice. If you do, that attack gains X automatic hits. X cannot be more than your total red affinities. When the attack ends, gain +X Hunt XP."
+    },
+    {
+      "term": "Catalyze",
+      "definition": "A survivor status. When you gain this, place all your attribute tokens on this card. At the start of your act, remove a token from this card and suffer 3 damage to a random hit location. When there are no tokens on this card, archive it."
+    },
+    {
+      "term": "Catwalk",
+      "definition": "The Lion Knight's instinct. Described on the Lion Knight's showdown story event and basic action card."
+    },
+    {
+      "term": "Center",
+      "definition": "A gear special rule. This gear must be placed in the center of your gear grid. If you gain this and already have a gear in the center of your grid, archive it and place this in the center of your grid."
+    },
+    {
+      "term": "Character Card",
+      "definition": "A card that modifies how a survivor comes into the world. Character cards will bestow small benefits or penalties on newly named survivors."
+    },
+    {
+      "term": "Charge ",
+      "definition": "A gear special rule. Survivors spend movement and activation to move the maximum available spaces in a straight line in one direction. At the end of movement, if in range, perform an attack using a melee weapon, adding the number of spaces moved in this way to your strength for the attack. Charge does not impact any further attacks this turn."
+    },
+    {
+      "term": "Charged token",
+      "definition": "If you have a Charged token at the end of your attack with a metal weapon, if you hit the monster, it is shocked and suffers an automatic wound. Archive all Charged tokens at the end of each round."
+    },
+    {
+      "term": "Cheer Captain",
+      "definition": "An ability. Spend {v}{v} to cause departing survivors to suffer the frenzy brain trauma twice and ignore bash for the rest of the lantern year. Limit once per lantern year."
+    },
+    {
+      "term": "Child of the Sun",
+      "definition": "A special newborn blessed under a Solar Eclipse. Some cards and story events care about Children of the Sun."
+    },
+    {
+      "term": "Cleavage X",
+      "definition": "A gear special rule. When you attempt to wound a hit location with a persistent injury, gain +X luck for that wound attempt."
+    },
+    {
+      "term": "Cleave",
+      "definition": "A gear special rule. You may spend MA to activate and attack with this weapon. If you do, it gains the two-handed keyword, +4 strength, and slow for the attack. You cannot use Cleave if an injury or other effect is preventing you from activating gear with the two-handed keyword."
+    },
+    {
+      "term": "Cleaver",
+      "definition": "Gear with this keyword is a cleaver. Cleaver is a novel weapon proficiency type and cannot normally be selected."
+    },
+    {
+      "term": "Clobber X",
+      "definition": "A gear special rule. Gain +X strength while attempting to wound a Super-Dense hit location."
+    },
+    {
+      "term": "Closed Meridians",
+      "definition": "An impairment. Gain +6 permanent luck. At the start of your act, suffer -1 permanent luck. When you have 0 or less permanent luck, suffer the head explosion severe injury."
+    },
+    {
+      "term": "Closest Survivor",
+      "definition": "The survivor the least number of cardinal spaces away from the monster."
+    },
+    {
+      "term": "Closest Threat ",
+      "definition": "The threat the least number of cardinal spaces away from the monster."
+    },
+    {
+      "term": "Clothed & Satiated",
+      "definition": "An armor set bonus. You are Clothed & Satiated if you are wearing armor gear at 3+ different hit locations. You cannot claim this if you have already claimed an armor set bonus."
+    },
+    {
+      "term": "Club ",
+      "definition": "Gear with this keyword is a club weapon. Survivors may gain levels of club weapon proficiency with this weapon."
+    },
+    {
+      "term": "Coagulated",
+      "definition": "A type of hit location card. Wound attempts against a Coagulated hit location are automatic failures unless the attack can reach and is within line of sight of the highlighted space on the hit location card. To draw a random Coagulated hit location card, draw from the bottom of the Enchanted Flesh deck and place it atop the hit location deck. If an effects instructs you to find a specific Coagulated hit location, look through the deck, set the card aside, shuffle the searched deck(s), and place the specific card atop the hit location deck."
+    },
+    {
+      "term": "Collective Cognition (CC)",
+      "definition": "The accumulated sum of nutrients in a settlement's diet. Affects certain benefits commensurate with CC milestones. A quarry monster grants {l} CC the first {l} times it is defeated. (A Level 2 Phoenix grants 2 CC the first two times it is defeated.) Nemesis monsters grant 3 CC regardless of monster level and only once per level."
+    },
+    {
+      "term": "Collective Cognition Rewards",
+      "definition": "A deck of cards that represent the benefits bestowed upon a settlement as they earn more CC. During the Check Milestones step of the settlement phase, if the settlement has earned enough CC, reveal the top card of the CC rewards deck and perform its effects."
+    },
+    {
+      "term": "Collides ",
+      "definition": "If a monster moves through a space occupied by a survivor, they collide and the survivor suffers collision. If a monster ends its movement on a survivor, they collide, the survivor suffers collision and knockback 5. If a survivor is knocked back into impassable terrain, they collide with it and the survivor suffers collision. If a survivor suffers knockback into another survivor, complete the knockback movement normally. Both survivors suffer collision at the end of knockback. If the survivors would occupy the same space, instead place the knocked back survivor in the closest unoccupied space."
+    },
+    {
+      "term": "Collision ",
+      "definition": "When a survivor suffers collision, they are knocked down."
+    },
+    {
+      "term": "Compelled",
+      "definition": "The Champion neurosis. You must depart each lantern year. If you are unable to depart, you do so anyway but set your survival and insanity to 0."
+    },
+    {
+      "term": "Compound Grief",
+      "definition": "The Effervescence neurosis. On Arrival, Candy gains a random disorder. If all her disorder slots are already filled, she instead gains +1 permanent systemic pressure and suffers -1 disposition."
+    },
+    {
+      "term": "Compulsive Reaction",
+      "definition": "Compulsive reactions are always performed and cannot be canceled by any effect."
+    },
+    {
+      "term": "Concentrate",
+      "definition": "You need to focus your mind to perform extraordinary feats. At the start of your act declare your intent to Concentrate. Immediately end your act and attempt to Concentrate until the start of your next act. To successfully Concentrate you cannot: perform any kind of actions, move for any reason, suffer knocked down, suffer any kind of damage, gain any bleeding or negative attribute tokens."
+    },
+    {
+      "term": "Consecutive Spaces",
+      "definition": "When a survivor is instructed to move consecutive spaces, they must move without occupying the same space more than once. A survivor could not, for example, move back and forth between two spaces to fulfill consecutive space movement. They could, however, move around a monster or move in a straight line."
+    },
+    {
+      "term": "Constellation",
+      "definition": "Constellations are powerful upgrades available only to People of the Stars. Survivors can only have one constellation. Once a survivor has gained a constellation, they no longer record new Dragon Traits on their record sheet. If a survivor would gain two or more constellations at the same time, they choose which of them to gain."
+    },
+    {
+      "term": "Consumable ",
+      "definition": "A keyword. This is easily edible."
+    },
+    {
+      "term": "Consume",
+      "definition": "A special rule. Something that may be ingested for the listed result. It may be archived after use."
+    },
+    {
+      "term": "Core Countdown",
+      "definition": "The Dragon King's instinct. Described on the Dragon King's showdown story event and basic action card."
+    },
+    {
+      "term": "Counter Deck",
+      "definition": "An encounter monster deck. Counter cards dictate how an encounter monster will respond to the survivors' actions. Each monster has its own unique Counter conditions."
+    },
+    {
+      "term": "Courage",
+      "definition": "A survivor attribute listed on the survivor record sheet. Courage is a survivor's potentially ill-advised bravery, Reaching a courage level of 3 will trigger the Bold Story Event, while reaching a level of 9 will trigger the See the Truth Story Event."
+    },
+    {
+      "term": "Cowardly",
+      "definition": "An impairment. When you would die or cease to exist, you instead retreat to safety and rejoin the survivors during the Aftermath."
+    },
+    {
+      "term": "Cravings",
+      "definition": "The Consumption neurosis. If Aeneas is Hungry, she consumes and archives 1 consumable resource or gear in the settlement (including settlement storage) at the start of the Develop Step of the settlement phase."
+    },
+    {
+      "term": "Critical Wound ",
+      "definition": "Critical wounds are lucky blows that always wound a monster, even if the wound attempt does not exceed the monster's toughness. A critical wound occurs when a wound roll result is a Lantern 10 on a hit location with a critical wound effect. The luck attribute modifies the roll needed for a critical wound."
+    },
+    {
+      "term": "Critical Wound Deck",
+      "definition": "An encounter most deck. When a survivor rolls a critical wound against an encounter monster, draw a card from this deck and follow its instructions."
+    },
+    {
+      "term": "Critical Wound Effects ",
+      "definition": "Critical wound effects on monster AI cards are represented by the critical wound symbol, followed by rules that specify what happens when a monster is critically wounded at that location. Critical wounds effects are not reactions. On a critical wound, cancel all reactions on that hit location card."
+    },
+    {
+      "term": "Crumbling",
+      "definition": "A terrain rule. Survivors cannot voluntarily move onto crumbling terrain. Survivors can be placed on or suffer knockback into crumbling terrain. When they do, they collide with it painfully. Replace the crumbling terrain with a Rubble terrain tile. The survivor suffers 1 damage to a random hit location. When a monster collides with crumbling terrain, replace it with a Rubble terrain tile."
+    },
+    {
+      "term": "Crystal Skin ",
+      "definition": "You ignore cursed and cannot wear armor. When you depart gain 3 to all hit locations. Suffer -2 to the result of all severe injury rolls. When you participate in Intimacy, newborns gain Crystal Skin in addition to any other roll results."
+    },
+    {
+      "term": "Cumbersome",
+      "definition": "A gear special rule. Survivors must spend both movement and activation to activate Cumbersome gear."
+    },
+    {
+      "term": "Current X",
+      "definition": "A monster AI card effect. The shock arcs through you to a survivor with metal gear up to X spaces away. This cannot arc to a survivor who has already suffered damage from this attack. Perform this attack profile on the new survivor."
+    },
+    {
+      "term": "Cursed ",
+      "definition": "A gear special rule. This gear cannot be removed from the gear grid for any reason. If the survivor dies or ceases to exist, archive this gear."
+    },
+    {
+      "term": "Cutthroat",
+      "definition": "An ability. On a Perfect hit, gain {q} after your attack ends, which must be spent immediately. Limit once per round."
+    },
+    {
+      "term": "d100",
+      "definition": "A hundred-sided die. This is accomplished by using 2d10, with one die nominated to represent the \"tens\" digit and the other to represent the \"ones\" digit. Note that a roll showing 2 lanterns (result of 10 on each) indicates a result of 100."
+    },
+    {
+      "term": "d5",
+      "definition": "Roll 1d10, divide the result by two and round up to the nearest whole number."
+    },
+    {
+      "term": "Dagger",
+      "definition": "Gear with this keyword is a dagger weapon. Survivors may gain levels of dagger weapon proficiency with this weapon."
+    },
+    {
+      "term": "Damage (Attack Profile)",
+      "definition": "The amount of damage dealt for each hit in a monster's attack. Roll separate hit locations for each hit."
+    },
+    {
+      "term": "Damage (Attribute)",
+      "definition": "Damage is added to the damage listed on an attack profile to calculate the total damage of an attack."
+    },
+    {
+      "term": "Damage (Condition)",
+      "definition": "A hit damages a survivor if it removes armor points or causes an injury. Hits which are dodged, blocked, or ignored do not cause damage."
+    },
+    {
+      "term": "Dangerous Observation",
+      "definition": "A type of observation. Filling in observation boxes on knowledges with dangerous observations can have negative consequences for the survivor or settlement."
+    },
+    {
+      "term": "Dark Calling",
+      "definition": "An ability. Increase your range of Perfect hits by 1. When you are a returning survivor, roll 1d10. If the result is less than or equal to your HuntXP, you leave the settlement forever."
+    },
+    {
+      "term": "Dash",
+      "definition": "A survival action. When opportunity permits, a survivor may spend 1 survival to dash. They gain +1{m} which must be spent immediately. Each survivor may only Dash once per round, and only after the settlement has innovated the Paint innovation."
+    },
+    {
+      "term": "Dazed",
+      "definition": "When a monster or survivor is dazed, they gain a -1 speed token until the end of their turn. Monsters and survivors can only be dazed once per round."
+    },
+    {
+      "term": "Dead Again",
+      "definition": "An ability. When you die, do not gain the benefits of your Death principle. Instead, gain +1 population. This new survivor adopts the Deadism philosophy, gains Dead Again, and has your name."
+    },
+    {
+      "term": "Dead Inside ",
+      "definition": "A survivor impairment. Survivors with Dead Inside cannot gain survival."
+    },
+    {
+      "term": "Deadly X",
+      "definition": "A gear special rule. Gain +X luck while attacking with this weapon. This increases the odds of inflicting critical wounds. (If no numerical value is specified, aka Deadly, it is just +1 luck.)"
+    },
+    {
+      "term": "Deaf",
+      "definition": "The survivor cannot hear, or be impacted by encourage and other audible effects."
+    },
+    {
+      "term": "Death Count ",
+      "definition": "Part of the settlement record sheet. During the Settlement Phase, if any survivors perished during the previous Hunt or Showdown Phase, update the death count. If survivors perish during the Settlement Phase, update the death count immediately. The first time a settlement's death count is updated, trigger the Principle: Death story event."
+    },
+    {
+      "term": "Death Count (Survivor Status)",
+      "definition": "A survivor status. A survivor with Death Count will gain +1 survival at the end of each round and place a death count token on this card. They may surge an additional time for each token on Death Count. When there are 5+ tokens on Death Count, the survivor dies instantly."
+    },
+    {
+      "term": "Death Die ",
+      "definition": "A special orange ten-sided die. The Death Die replaces the Monster Controller tile. The player of the survivor with the Death Die controls the monster. At the start of the showdown, the player with the Final Lantern starts with the Death Die on Horripilation. At the start of each subsequent round, pass the Death Die to the Horripilation card to the left. The Watcher's final emanations continue to jump between lanterns of survivors that cannot act, including dead or absent survivors. Instead of the benefits on the Monster Controller tile, you may use Pulse Discoveries based on your settlements Lantern Research Level. Once per round, the survivor with the Death Die may use one of the settlement's unlocked Pulse Discoveries. After rolling the Death Die, return it to its current Horripilation card. In the Final Lantern is lost or archived, it is gone forever. Survivors cannot use the Death Die. Return to using the Monster Controller tile."
+    },
+    {
+      "term": "Death Geometry",
+      "definition": "A gear special rule. Spend {m}{m} to place yourself in an unoccupied space adjacent to a monster or survivor. If it is a survivor, you both suffer {l} brain damage."
+    },
+    {
+      "term": "Deathmetal (Gear)",
+      "definition": "A gear keyword. This gear is substantively crafted of deathmetal."
+    },
+    {
+      "term": "Deathmetal (Resource)",
+      "definition": "A resource keyword. Certain gear requires deathmetal to craft."
+    },
+    {
+      "term": "Death (Monster)",
+      "definition": "A monster is defeated when it is wounded and there are no AI cards in the AI deck or AI discard pile to move to the wound stack."
+    },
+    {
+      "term": "Death (Survivor)",
+      "definition": "A survivor can die in a variety of ways. Remove their miniature from the board. They can no longer participate in the hunt or showdown. Return their gear to the settlement storage and move their resources to another survivor. If all the survivors die during the showdown, all of their gear returns to the settlement and all resources not in the settlement storage are lost."
+    },
+    {
+      "term": "Death Token",
+      "definition": "A token acquired via certain knowledges, terrain tiles, and gear. Death tokens can be used or consumed for a variety of effects."
+    },
+    {
+      "term": "Defeat",
+      "definition": "When the survivors are defeated by a monster, follow the defeat rules in the Aftermath section of the monster's story event."
+    },
+    {
+      "term": "Defensive Spit Salve",
+      "definition": "The Dung Beetle Knight's instinct. Described on the Dung Beetle Knight's showdown story event and basic action card."
+    },
+    {
+      "term": "Deflect X",
+      "definition": "A gear special rule. Spend {q} to gain (or lose) deflect tokens until you have X of them. When you are hit, if you have any deflect tokens, you ignore that hit and lose a deflect token. When you Deflect X, you lose the benefits of Block."
+    },
+    {
+      "term": "Demolish",
+      "definition": "A gear special rule. Spend {q} to archive an adjacent impassable terrain tile. If a monster is standing on that terrain when it is archived, the monster is knocked down."
+    },
+    {
+      "term": "Depart (As in, \"When you Depart\")",
+      "definition": "These rules apply to departing survivors at the end of the Settlement Phase."
+    },
+    {
+      "term": "Departing Survivors",
+      "definition": "The survivors nominated to take part in the next hunt and showdown."
+    },
+    {
+      "term": "Destroy Armor ",
+      "definition": "An attack effect that reduces armor points of a survivor hit location to 0 before applying damage."
+    },
+    {
+      "term": "Destructible",
+      "definition": "A terrain special rule. When a survivor collides with destructible terrain, stop their movement and archive the terrain. The survivor suffers 1 damage to a random hit location. When a monster collides with destructible terrain, archive the terrain."
+    },
+    {
+      "term": "Destructive Vow",
+      "definition": "An ability. At the end of your act, gain +3 insanity if you have attacked this round. Otherwise, suffer 3 brain damage."
+    },
+    {
+      "term": "Devastating X ",
+      "definition": "A gear special rule. When a devastating weapon wounds a monster, it will inflict X additional wounds."
+    },
+    {
+      "term": "Dilettante",
+      "definition": "The Romanticism neurosis. When you depart, gain a random knowledge from the knowledge deck. If you have no empty knowledge slots, you must replace an existing knowledge."
+    },
+    {
+      "term": "Directional Knockback",
+      "definition": "During the Atlas showdown, survivors may suffer knockback in specific cardinal directions. When a card instructs a survivor to suffer directional knockback, refer to the North Star object to see which way your survivor will move."
+    },
+    {
+      "term": "Disarm",
+      "definition": "When a survivor suffers disarm or is disarmed, end their attack. Place a disarm tile on the attacking weapon and a matching tile 5 spaces away from that survivor. The survivor may not activate the weapon until they remove the tile on it or the showdown ends. When a survivor moves over the associated tile, archive it and remove the matching tile from your gear grid. Fist & Tooth and gear with the Locked special rule cannot be disarmed. If a survivor suffers disarm or is disarmed but is not attacking, choose a weapon in their gear grid to disarm and perform the effect as normal."
+    },
+    {
+      "term": "Discard",
+      "definition": "Put the card into the appropriate discard pile. It is no longer in play."
+    },
+    {
+      "term": "Discourse Savant",
+      "definition": "An ability. When you roll on a table while ranking up your philosophy, you may choose your roll result instead of rolling."
+    },
+    {
+      "term": "Disdain",
+      "definition": "The Phoenix's instinct. Described on the Phoenix's showdown story event and basic action card."
+    },
+    {
+      "term": "Disembodied",
+      "definition": "The Deadism neurosis. You cannot gain insanity."
+    },
+    {
+      "term": "Disorder",
+      "definition": "A mental impairment. Disorders are found on disorder cards. When a disorder is gained, record its rules on the survivor record sheet and return the card to the box. Survivors can have up to 3 disorders. Additional disorders gained must replace a disorder of your choice. If a survivor would gain a disorder they already have, nothing happens."
+    },
+    {
+      "term": "Disposition",
+      "definition": "A characteristic unique to Wanderers, represented by a heart. Disposition represents how a Wanderer feels about the settlement they are in. It can go up and down during a campaign. This may have great influence on a Wanderer's ranking up."
+    },
+    {
+      "term": "Distracted Cat",
+      "definition": "A special survival action. When the White Lion would Grab another survivor, spend 1 survival to distract it and roll 1d10. On a 6+, place the survivor in the monster's blind spot instead."
+    },
+    {
+      "term": "Diverting Ward",
+      "definition": "A gear special rule. If the monster would collide with you during its move action, spend 2 survival to roll 1d10. On a 10+, it ends it movement adjacent to you and is knocked down."
+    },
+    {
+      "term": "Dodge",
+      "definition": "A survival action. When a survivor is hit, after rolling hit location dice but before damage, they may spend 1 survival to dodge, canceling one hit. The dodged hit becomes a failed attack roll and does not cause damage. Any additional un-dodged hits resolve normally. Dodge is the only survival action that knocked down survivors can perform. Each survivor may only Dodge once per round."
+    },
+    {
+      "term": "Dominated",
+      "definition": "When a survivor is dominated, they are knocked down and cannot be encouraged or fist pumped. They are no longer dominated when they stand."
+    },
+    {
+      "term": "Doombound",
+      "definition": "A gear special rule. This gear is unresponsive outside the most terrible of circumstances. When you become doomed, place a doom token on this gear. You must spend both {q} and a doom token on this gear to activate it."
+    },
+    {
+      "term": "Doomed",
+      "definition": "While a survivor is doomed, they cannot perform any actions or spend survival. If a survivor is doomed by a monster's AI or Hit Location card, they are doomed until all actions on the card are performed and the card is resolved."
+    },
+    {
+      "term": "Dormenatus",
+      "definition": "A survivor ability. When you suffer damage, you may declare \"Dormenatus X\" in a loud, booming voice. If you do, add X armor points to each hit location. X cannot be more than your total green affinities. After the damage is resolved, gain +X Hunt XP."
+    },
+    {
+      "term": "Double-Sided Innovation",
+      "definition": "A double-sided innovation has two sides with two distinct innovations. A settlement may only have one of them at a time. If the settlement gains one innovation while it has the other, simply flip the innovation card to reflect this change and modify your settlement record sheet as appropriate."
+    },
+    {
+      "term": "Double-Sided Terrain Tiles",
+      "definition": "These terrain tiles have two corresponding terrain cards. Use the rules on the terrain card corresponding to the currently visible side of a terrain tile. Outside of specific showdowns, you will only use the side of the terrain tile corresponding to the terrain card you drew."
+    },
+    {
+      "term": "Dragon Traits",
+      "definition": "Dragon Traits are a collection of abilities, fighting arts, attribute modifiers, disorders, secret fighting arts, and surnames that survivors gain throughout a People of the Stars campaign. Dragon Traits are mentioned in bold, red text to remind players to mark them on their record sheet as they are gained. Once marked, Dragon Traits are permanent. Even if a survivor loses the original source of the trait, they are still considered to have that Dragon Trait. When a survivor has four Dragon Traits in a row (vertically or horizontally), they gain a Constellation via the Faces in the Sky story event."
+    },
+    {
+      "term": "Draw AI",
+      "definition": "The monster controller draws the top AI card of the monster's AI deck and plays it. If the AI deck is empty, shuffle the discard pile into it and draw the top card. If the AI deck and discard pile are empty, the monster performs its Basic Action."
+    },
+    {
+      "term": "Dreaded Pack",
+      "definition": "A burden borne by the Scout of Death. When a scout departs the settlement, they must take this with them and use the associated scout gear grid. The scout suffers -2 movement and their gear grid is reduced by 5 gear slot from the bulk of the Dreaded Pack. If all is Lost to the Darkness during Logistics of Death (page 141), the pack is also lost and the settlement cannot nominate a scout unless they craft another Dreaded Pack."
+    },
+    {
+      "term": "Dream Keeper's Legacy",
+      "definition": "An ability. During the showdown, if you have at least 1 permanent luck, you may set your luck to 0 and physically flip any token."
+    },
+    {
+      "term": "Dung (Resource)",
+      "definition": "A resource keyword. Dung is prized by the Dung Beetle Knight."
+    },
+    {
+      "term": "Duration",
+      "definition": "Duration cards are drawn twice. The first time a duration card is drawn, perform any \"when drawn face down\" actions. Then, instead of discarding it, place the duration card face up on top of the AI deck. The next time a monster draws an AI card, it draws the duration card for a second time. Perform any \"when drawn face up\" actions, then discard the card after resolving. Some duration cards have persistent effects while they are face up on top of the AI deck."
+    },
+    {
+      "term": "Early Iron",
+      "definition": "A gear special rule. When any of your attack roll results are a 1, cancel your attack."
+    },
+    {
+      "term": "Elastic",
+      "definition": "A terrain rule. Survivors cannot voluntarily move onto elastic terrain. They can be placed on or suffer knockback into elastic terrain. When they do, they collide with it. Survivors that suffer knockback into elastic terrain increase their knockback by 4 and change the bounce direction of their knockback (see Black Knight rulebook for more)."
+    },
+    {
+      "term": "Elevated",
+      "definition": "Survivors are elevated while atop specific terrain. They can move normally and ignore obstacles when drawing a line of sight. Monsters may always draw a line of sight to them."
+    },
+    {
+      "term": "Embolden",
+      "definition": "A unique survival action in People of the Sun. Once per round, if you have no +1 strength tokens, spend 1 survival to gain a +1 strength token. When you are knocked down, lose all +1 strength tokens."
+    },
+    {
+      "term": "Emotion (Resource)",
+      "definition": "A resource keyword. It makes you feel."
+    },
+    {
+      "term": "Enchanted Reflection",
+      "definition": "A special survival action. If adjacent to the Crimson Crocodile, spend 1 survival to illuminate the scales before you attack. During that attack, you can always reach the weak point on Coagulated hit locations."
+    },
+    {
+      "term": "Encounter",
+      "definition": "A type of showdown. Encounters may occur randomly during the hunt phase and offer additional challenges and rewards to players who choose to include them in their campaign. Each encounter has different rules, but all encounters take place on an encounter board. See the appropriate encounter setup page for more detailed information."
+    },
+    {
+      "term": "Encourage",
+      "definition": "A survival action. A standing survivor may spend 1 survival at any time to encourage a knocked down survivor, letting them stand. Deaf survivors may not be encouraged. Each survivor may only Encourage once per round, and only if the settlement has the Language innovation."
+    },
+    {
+      "term": "Endeavors ",
+      "definition": "Each returning survivor contributes +1 endeavor (+1{t}) to the settlement. Survivors can spend endeavors to innovate, build new settlement locations, or perform unique actions. To spend an endeavor, nominate a survivor, reduce the settlement's total endeavors by 1, and follow the rules for the action the endeavor was spent on. Unless stated otherwise, the action's effects apply only to the nominated survivor."
+    },
+    {
+      "term": "Endless Appetite",
+      "definition": "A wanderer impairment. This impairment cannot be removed for any reason. You cannot {s} Run Away or {s} Logistics of Death. You play with the Dual Modes - Hungry / Content tile."
+    },
+    {
+      "term": "Endless Babble ",
+      "definition": "An impairment. When you *depart*, *departing survivors* gain +1 insanity. You cannot encourage."
+    },
+    {
+      "term": "Endure",
+      "definition": "You may spend 7 survival minus your Luck to ignore a severe injury before you roll a result. Your Luck is determined by the sum of your permanent luck attribute, any luck modifiers, and any other gear or abilities affecting your luck at the time you endure."
+    },
+    {
+      "term": "Energy Card",
+      "definition": "A card used by the King. Energy cards are required to perform some {O}. When you put an energy card into play, perform the actions listed on the card."
+    },
+    {
+      "term": "Engorged Cure",
+      "definition": "An ability. Once per showdown, you may archive a Nightmare Tick vermin resource to remove all your bleeding tokens and fully heal yourself."
+    },
+    {
+      "term": "Epiphany",
+      "definition": "A knowledge undergoes an epiphany when appropriate observation conditions are met. Epiphanies transform a knowledge into a new form. When this happens, immediately add the new knowledge to your arc survivor record sheet (and knowledge deck, if new). Unlike Advancing, you do not erase or forget the old knowledge in this process unless specified."
+    },
+    {
+      "term": "Equip",
+      "definition": "Equipping refers to putting a piece of weapon gear into your gear grid. If an effect restricts the type of gear you can equip, you cannot place that type of gear into your gear grid."
+    },
+    {
+      "term": "Ethereal",
+      "definition": "A gear special ability. This gear is inextricably linked to saviors. When the settlement has no savior, archive this gear."
+    },
+    {
+      "term": "Evasion",
+      "definition": "When a monster or survivor with evasion is the target of an attack, increase the accuracy on the attack profile by the amount of evasion the target possesses. Evasion can be a negative number, in which case it is subtracted from the attack profile's accuracy. Regardless of evasion, a Lantern 10 on the attack roll is always a Perfect Hit, and an attack roll result of 1 will always be unsuccessful."
+    },
+    {
+      "term": "Event Damage",
+      "definition": "Some damage is incurred from events. Typically, this damage cannot be dodged or blocked. Event damage is non-lethal, and will reduce armor points and cause light and heavy injuries, but will not cause severe injuries or brain trauma."
+    },
+    {
+      "term": "Event Revealer",
+      "definition": "The event revealer reveals a hunt event, reads it aloud, and follows the rules on the card, making all decisions along for that hunt event."
+    },
+    {
+      "term": "Expertise",
+      "definition": "A gear special rule. On a Perfect hit, the monster suffers an automatic wound. Limit once per attack."
+    },
+    {
+      "term": "Explore ",
+      "definition": "An ability. When you roll on an investigate table, add +2 to your roll result."
+    },
+    {
+      "term": "Extra Long Arms",
+      "definition": "An ability. Your Fist & Tooth has reach 2."
+    },
+    {
+      "term": "Extra Sprint",
+      "definition": "An ability. You may dash 1 additional time each round."
+    },
+    {
+      "term": "Facing",
+      "definition": "A monster is facing all spaces on the board that are in front of the miniature."
+    },
+    {
+      "term": "Failure (Reaction)",
+      "definition": "A monster reaction. Performed in response to unsuccessful wound attempts at certain monster hit locations."
+    },
+    {
+      "term": "Fairy Ring",
+      "definition": "The Fairy Ring is a special feature of the Flower Knight showdown. It is not terrain. The Fairy Ring is always placed in the center of the showdown board, ignoring any effects that say otherwise (e.g. Ambush rules). If a terrain card or other effect directs you to place a terrain tile inside the Fairy Ring during the showdown or showdown setup, do not place it. If a rule or effect directs you to move a terrain tile into the Fairy Ring during the showdown, it inexplicably stops short at its border."
+    },
+    {
+      "term": "Fan",
+      "definition": "Gear with this keyword is a fan weapon."
+    },
+    {
+      "term": "Fated Battle",
+      "definition": "An ability. At the start of a showdown with the picked monster, gain +1 speed token."
+    },
+    {
+      "term": "Feather (Gear)",
+      "definition": "A gear keyword. This gear is substantively crafted of feathers."
+    },
+    {
+      "term": "Feinting Shot",
+      "definition": "A maneuver. Spend {m}{q} to move your survivor 3 spaces away from the monster. Activate and attack with a bow or arrow in your gear grid. This attack gains +3 accuracy and +3 range."
+    },
+    {
+      "term": "Ferrous Feed",
+      "definition": "An ability. During your act, consume and archive one of your attribute tokens to suffer bleed 1."
+    },
+    {
+      "term": "Field of View ",
+      "definition": "A survivor is in a monster's field of view unless they are in the monster's blind spot or the monster's line of sight is blocked by terrain with the Obstacle rule."
+    },
+    {
+      "term": "Fighting Arts ",
+      "definition": "Powerful battle techniques found on fighting art cards. When a fighting art is gained, record its rules on the survivor record sheet and return the card to the box. Survivors can have up to 3 fighting arts. Additional fighting arts gained replace a fighting art of your choice. If a survivor would gain a fighting art they already have, nothing happens."
+    },
+    {
+      "term": "Finesse",
+      "definition": "A gear keyword. This gear requires finesse to use."
+    },
+    {
+      "term": "First Strike ",
+      "definition": "A type of monster hit location. This hit location must be resolved before any others, except Traps. If multiple First Strike locations are drawn, the player decides the order in which to resolve them. Traps still precede and cancel all other hits."
+    },
+    {
+      "term": "Fish (Resource)",
+      "definition": "A resource keyword. These resources can be acquired via the special hunt event Sky Fishing."
+    },
+    {
+      "term": "Fist Pump",
+      "definition": "A survival action. Once per round, a standing survivor may spend 1 survival at any time to fist pump a knocked down survivor, letting them stand. Blind survivors cannot stand from fist pump. Survivors can only fist pump if the settlement has the Silent Dialect innovation."
+    },
+    {
+      "term": "Fist & Tooth",
+      "definition": "Fist & Tooth is a weapon always available to a survivor. The attack attributes for First & Tooth are listed on the gear grid. Survivors may gain levels of Fist & Tooth weapon proficiency with this weapon."
+    },
+    {
+      "term": "Fixated",
+      "definition": "The Faceism neurosis. You can only attack the monster from its facing or if it is knocked down."
+    },
+    {
+      "term": "Flammable ",
+      "definition": "A gear keyword. Fire can destroy this gear."
+    },
+    {
+      "term": "Flank",
+      "definition": "A space adjacent to the monster that is not in the monster's facing or blind spot."
+    },
+    {
+      "term": "Flay",
+      "definition": "An armor set effect. After you slam, spend {q} to move 1 space and attack with a melee weapon. If you are attacking with a dagger, increase the range of your Perfect hits by 2 for this attack."
+    },
+    {
+      "term": "Flesh (Gear)",
+      "definition": "A gear keyword. This gear is substantively crafted of flesh."
+    },
+    {
+      "term": "Flinch token",
+      "definition": "When a monster with a flinch token attempts to perform a reaction, cancel that reaction and discard this token. A monster cannot have more than one flinch token."
+    },
+    {
+      "term": "Flipper Feet",
+      "definition": "An ability. Gain +1 movement and +1 evasion. You cannot wear leg armor."
+    },
+    {
+      "term": "Flow",
+      "definition": "Flows are hesitations between monster actions. They give the survivors an opportunity to use survival actions. They are represented by a bar with an arrow."
+    },
+    {
+      "term": "Flower (Resource)",
+      "definition": "A resource keyword. Flowers are perishable resources that can be harvested in specific areas."
+    },
+    {
+      "term": "Focus Charge",
+      "definition": "A gear special rule. Spend {q}{m}, full move in a straight line, then activate a weapon and attack. This attack gains +1 accuracy for each space you moved."
+    },
+    {
+      "term": "Foresight",
+      "definition": "Survivors have Foresight if there are any revealed {O} or {N} cards on top of decks. When a deck is shuffled, all cards are turned face down and no longer grant Foresight unless otherwise specified. Survivors can gain Foresight from certain gear or abilities. Certain monster effects, such as Duration and Repeat cards, will also grant survivors Foresight."
+    },
+    {
+      "term": "Forgettable",
+      "definition": "A survivor ability. Gain +2 evasion. Forgettable survivors cannot be encouraged."
+    },
+    {
+      "term": "Fortune Sight",
+      "definition": "An ability. On Arrival, gain +1 accuracy tokens equal to your permanent luck."
+    },
+    {
+      "term": "Forward",
+      "definition": "The direction the miniature is facing."
+    },
+    {
+      "term": "Founder's Eye",
+      "definition": "An ability. A permanent design with intricate line work too fine for the naked eye to see. Gain +1 to all rolls on the Arc Intimacy story event."
+    },
+    {
+      "term": "Fragile",
+      "definition": "A gear keyword. This gear is easily broken."
+    },
+    {
+      "term": "Frail",
+      "definition": "A gear special rule. Frail weapons are destroyed if a survivor attempts to wound a Super-dense location with them. Archive the weapon at the end of the attack."
+    },
+    {
+      "term": "Frailty",
+      "definition": "The Verminism neurosis. No matter how protected you are, you know your insides are vulnerable. +1 systemic pressure."
+    },
+    {
+      "term": "Frenzy",
+      "definition": "A brain trauma result. A survivor who suffers this is Frenzied until the end of the Showdown Phase. Gain +1 strength token, +1 speed token, and 1d5 insanity. Ignore the \"slow\" special rule on melee weapons. A frenzied survivor may not spend survival or use fighting arts, weapon specialization, or weapon mastery. A survivor may be Frenzied multiple times."
+    },
+    {
+      "term": "Full Ensemble",
+      "definition": "A gear special rule. This armor gear is worn at every hit location. You may not equip armor gear at any hit location while wearing a Full Ensemble."
+    },
+    {
+      "term": "Full Move ",
+      "definition": "A game term that describes a monster's or survivor's maximum available movement, taking into account all movement modifier tokens."
+    },
+    {
+      "term": "Fur (Gear)",
+      "definition": "A gear keyword. This gear is substantively crafted of thick fur."
+    },
+    {
+      "term": "Fused",
+      "definition": "An ability. When you suffer a severe body injury, the monster suffers an automatic hit that inflicts a critical wound."
+    },
+    {
+      "term": "Gambler's Die",
+      "definition": "A special d10 used by the Gambler. A Gambler's Die has unique sides that differ from standard d10s. When instructed to roll a Gambler's Die, you may not roll another die in its place. Gambler's Dice do not have lantern 10s; instead there are Gambler icons on some die faces."
+    },
+    {
+      "term": "Game Master",
+      "definition": "An ability. When you are the monster controller and the monster draws {O}, instead draw 2 cards and select 1 to perform, placing the other back on top of the {O} deck."
+    },
+    {
+      "term": "Gear",
+      "definition": "Objects that survivors may carry and wear, represented by gear cards. Survivors may only use the gear in their individual gear grids. Except for gear with the weapon keyword, no survivor may have more than one copy of a gear card in their grid."
+    },
+    {
+      "term": "Gear Grid",
+      "definition": "A mat with space for 9 gear cards. Gear cards can be arranged in any configuration, but must remain right-side up. They cannot be rotated. Gear in gear grids can only be rearranged during the Settlement Phase."
+    },
+    {
+      "term": "Gear Keyword",
+      "definition": "Located directly under the name of a gear card,. They describe information about gear, such as weapon type, materials, use, or limiting factors. Keywords are referenced by other cards and events."
+    },
+    {
+      "term": "Gear Recipe",
+      "definition": "Found on the backs of Green Knight Armor. These recipes list the requirements needed to craft these rare and powerful gear cards."
+    },
+    {
+      "term": "Gear Special Rule ",
+      "definition": "Located on the bottom portion of a gear card. These list gear abilities, bonuses and requirements."
+    },
+    {
+      "term": "Germinate",
+      "definition": "The Flower Knight's instinct. Described on the Flower Knight's showdown story event and basic action card."
+    },
+    {
+      "term": "Ghost Geometry",
+      "definition": "The survivors may suddenly find themselves face-to-face with the King. When the King performs Ghost Geometry, place the monster adjacent to the target, on top of as many other survivors as possible. On collision, survivors suffer {l}+2 brain damage."
+    },
+    {
+      "term": "Gigaslayer",
+      "definition": "An ability. Gain +2 strength and +1 luck when attacking a 3x3 or larger monster. When you participate in Intimacy, newborns with your surname gain this ability in addition to any other benefits."
+    },
+    {
+      "term": "Gloomy",
+      "definition": "A gear keyword. This gear has an unnatural gloom to it."
+    },
+    {
+      "term": "Godspeed",
+      "definition": "The Godhand can respond to your attacks with impossible speed. When a hit location with Godspeed is selected, before making a wound attempt, if there are 2 or fewer hit locations to resolve (including this one), end all attacks and draw {O}."
+    },
+    {
+      "term": "Gormskin",
+      "definition": "A gear keyword. This gear is substantively crafted of gormskin."
+    },
+    {
+      "term": "Grab",
+      "definition": "Grab is an action performed by some monsters. To perform Grab, place target knocked down in front of the monster (in an unoccupied space). Target suffers 1 damage per monster level."
+    },
+    {
+      "term": "Grace of Power",
+      "definition": "A gear special rule. This weapon gains +1 strength for each red affinity you have."
+    },
+    {
+      "term": "Grace of Splendor",
+      "definition": "A gear special rule. Spend {m}{q} to gain +1 luck until the end of the round for every 2 blue affinities you have."
+    },
+    {
+      "term": "Grace of Valor",
+      "definition": "A gear special rule. When you depart, add {!} to all hit locations for every 2 green affinities you have."
+    },
+    {
+      "term": "Grand ",
+      "definition": "Gear with this keyword is a grand weapon. Survivors may gain levels of grand weapon proficiency with this weapon."
+    },
+    {
+      "term": "Gravel Guts",
+      "definition": "An ability. Add +1 to your body severe injury roll results. Ignore monster Intimidate actions."
+    },
+    {
+      "term": "Graze",
+      "definition": "The Screaming Antelope's instinct. Described on the Screaming Antelope's showdown story event and basic action card."
+    },
+    {
+      "term": "Grimstep",
+      "definition": "A gear special rule. When you are attacking and Block a hit, you may move up to 6 consecutive spaces. If you do, your next wound attempt this attack gains strength equal to the number of spaces moved."
+    },
+    {
+      "term": "Grounded",
+      "definition": "An ability. Once per lantern year, at any time, you may set your insanity to 0, 1, or 2."
+    },
+    {
+      "term": "Growth",
+      "definition": "The Lonely Tree's instinct. Described on the Lonely Tree's showdown story event and basic action card."
+    },
+    {
+      "term": "Guard (Gorm)",
+      "definition": "A gear special ability. At the end of your attack, if you are standing and have a shield in your gear grid, spend 1 survival to move 3 spaces directly away from the monster and Block 1 for free."
+    },
+    {
+      "term": "Guard (Instinct)",
+      "definition": "The King's Man's instinct. Described on the King's Man's showdown story event and basic action card."
+    },
+    {
+      "term": "Guardless",
+      "definition": "A special rule. A survivor with guardless may not dodge, block, deflect, or ignore hits. Attack rolls can still miss guardless survivors, as they still factor their evasion in."
+    },
+    {
+      "term": "Guilty",
+      "definition": "Survivors may become guilty during the Smog Singers showdown. A survivor is guilty if they have 3+ guilt tokens. The guiltiest survivor is the guilty survivor with the most guilt tokens (monster controller chooses in case of ties)."
+    },
+    {
+      "term": "Half Kill",
+      "definition": "When a monster has suffered at least half the wounds in its {O} deck (rounded up) or its Life total is at half or lower of its starting value, it is considered half killed."
+    },
+    {
+      "term": "Hamper - ATTRIBUTE",
+      "definition": "A gear special rule. When you hit with this, the monster gains a -1 attribute token of the specified type."
+    },
+    {
+      "term": "Harmony",
+      "definition": "A type of {O} card. When a Harmony card is drawn, each monster performs it one at a time. The monster controller chooses the order in which the monsters perform the harmony. Persistent injuries happen only once, and the harmony continues for the other monsters. The instinct does not cancel the harmony."
+    },
+    {
+      "term": "Hated Ones",
+      "definition": "A special survival action. After resolving the last hit location of an attack, spend 1 survival to strike the Smog Singer. The attacked monster suffers knockback 1. Then, you may pursue."
+    },
+    {
+      "term": "Head",
+      "definition": "A survivor hit location. Damage to the head beyond the heavy injury box will prompt a roll on the Head section of the Severe Injury table."
+    },
+    {
+      "term": "Head Hunter",
+      "definition": "An attack that always hits a survivor's head hit location. Do not roll hit location dice for this attack."
+    },
+    {
+      "term": "Healing (Survivors)",
+      "definition": "When survivors heal, erase all filled injury levels and restore all lost armor points."
+    },
+    {
+      "term": "Heal X",
+      "definition": "When a monster performs heal X, return X AI cards from the Wound Stack to the bottom of the AI deck without looking at them. When a monster with the Life trait heals, if the monster's current Life is less than its starting value, increase the Life number by the indicated amount (up to the starting value)."
+    },
+    {
+      "term": "Heart of the Sword",
+      "definition": "The Storm constellation ability. If you gain weapon proficiency during the Aftermath, gain an additional 3 levels. You cough up a hunk of your own solidified blood and gain 1 Iron strange resource."
+    },
+    {
+      "term": "Heart Strings",
+      "definition": "An ability. You cannot be the straggler. On Arrival, choose a board edge. You may move up to three additional spaces toward your chosen board edge after a {m} action."
+    },
+    {
+      "term": "Heavy (Gear)",
+      "definition": "A gear keyword. This gear has substantial weight."
+    },
+    {
+      "term": "Heavy Injury Level",
+      "definition": "A heavy lined injury level box. When a survivor's heavy injury level is filled, they are knocked down. Once it is filled, this injury level cannot be suffered again this showdown unless it is healed."
+    },
+    {
+      "term": "Heavy Spinstrike",
+      "definition": "A wanderer ability. At the start of your act, you may spend 6 survival to give melee weapons in your gear grid Cumbersome and Devastating 1 until the end of your act."
+    },
+    {
+      "term": "Hemostasis",
+      "definition": "An ability. It takes an additional bleeding token to kill you. This ability can be gained multiple times."
+    },
+    {
+      "term": "Herb",
+      "definition": "A resource and gear keyword. This item is an herb."
+    },
+    {
+      "term": "Herb Gathering",
+      "definition": "A story event that may be placed as a Special Hunt Event card on the Hunt Board when a survivor has a sickle."
+    },
+    {
+      "term": "Heroic",
+      "definition": "A gear special rule. During your attack roll with this weapon, reroll any natural 1s. You must keep the new results."
+    },
+    {
+      "term": "Hide (Resource)",
+      "definition": "A common resource keyword."
+    },
+    {
+      "term": "Hit Location Dice",
+      "definition": "Used to determine the survivor hit location hit by an attack."
+    },
+    {
+      "term": "Hit Location (Monster)",
+      "definition": "Each monster has a unique hit location deck composed of hit location cards. There are 5 types of hit location card: First Strike, Impervious, Super-dense, Trap, and Normal. Any hit location that has no listed type is Normal."
+    },
+    {
+      "term": "Hit Location (Survivors)",
+      "definition": "Hit locations are areas of the survivors' body that can wear armor and suffer damage. The hit locations are: Head, Arms, Body, Waist, and Legs. Hit locations may gain armor points from armor. Without armor, hit locations have 0 armor points."
+    },
+    {
+      "term": "Hit (Monster)",
+      "definition": "A hit is the result of an attack roll that meets or exceeds the accuracy for an attack using an attack profile. Hits which are dodged, blocked, or ignored are misses. Damage outside of an attack profile is not considered to be from a hit."
+    },
+    {
+      "term": "Hit Song",
+      "definition": "A maneuver. Spend {m}{q} to full move forward and attack. If you moved at least 4 spaces, the first time you wound during this attack, encourage all survivors."
+    },
+    {
+      "term": "Hit (Survivors)",
+      "definition": "A hit is the result of an attack roll that meets or exceeds the accuracy for an attack using a weapon."
+    },
+    {
+      "term": "Homing Instinct",
+      "definition": "A survivor ability. Add +5 to your rolls on the Run Away story event."
+    },
+    {
+      "term": "Honed X",
+      "definition": "A gear special rule. This gear has +X strength. After successfully wounding a Super-Dense or Parry hit location, the edge is ruined and the weapon loses its bonus strength. Some effects allow you regain Hone benefits. When the survivors return to the settlement, all Honed gear is mended, regaining its lost strength."
+    },
+    {
+      "term": "Hunt Board",
+      "definition": "The Hunt Board is used during the Hunt Phase to track a quarry monster."
+    },
+    {
+      "term": "Hunt Board Diagram ",
+      "definition": "Part of a monster's showdown story event. It indicates how to set up the hunt board for that monster."
+    },
+    {
+      "term": "Hunt Event ",
+      "definition": "A hunt event describes an encounter the survivors face on their journey. They can be disastrous, bizarre, or even beneficial. These appear on basic hunt event cards and monster hunt event cards."
+    },
+    {
+      "term": "Hunt Event Card (Monster)",
+      "definition": "Monster hunt event cards are only encountered when hunting a particular monster. They describe pitfalls and wonders specific to this monster. Each quarry monster has a unique set of hunt event cards."
+    },
+    {
+      "term": "Hunt Event Cards (Basic)",
+      "definition": "All basic hunt event cards are identical. They direct the event revealer to roll on the hunt event table."
+    },
+    {
+      "term": "Hunt Experience (XP)",
+      "definition": "Survivors gain Hunt Experience during the Aftermath of a victorious showdown. When a survivor gains Hunt XP, fill in the next unfilled Hunt XP box on their survivor record sheet. Some hunt experience levels are milestones (indicated by a heavy-lined box) that trigger the Age story event. The number of milestones filled indicates which Age rules apply. When the final hunt experience box is filled, the survivor is too old to hunt, and must retire."
+    },
+    {
+      "term": "Hunt Phase",
+      "definition": "The part of each session spent locating a quarry monster. When survivors determine what type and level of monster to hunt."
+    },
+    {
+      "term": "Hushed",
+      "definition": "Hushed survivors are cloaked in silence. They ignore vibration damage, are considered deaf, and cannot encourage, roar, scream, perform audible effects, or activate noisy gear."
+    },
+    {
+      "term": "Hybrid Armor Set",
+      "definition": "A survivor wearing all armor listed on a hybrid armor set will have completed the set and gains the benefits of the corresponding armor set card if the settlement has acquired it. When a survivor departs with a hybrid armor set bonus, set their armor points at all hit locations to the number of armor points printed on the hybrid armor set card (before adding modifiers). Losing an armor set bonus during the hunt or showdown does not change armor points at any hit locations. Multiple survivors may gain the same hybrid armor set bonus despite there being only one copy of the hybrid armor set card."
+    },
+    {
+      "term": "Hyperaemic Defense",
+      "definition": "An ability. During your act, you may gain a bleeding token to perform Block 1 at no cost. Limit once per round."
+    },
+    {
+      "term": "Ignore a Hit",
+      "definition": "To ignore a hit, reduce the number of hits by 1. This happens before hit locations are determined."
+    },
+    {
+      "term": "Ignore a Hit ",
+      "definition": "Reduce the number of hits by 1. This happens before hit locations are determined."
+    },
+    {
+      "term": "Illuminate",
+      "definition": "The Gorm's instinct. Described on the Gorm's showdown story event and basic action card."
+    },
+    {
+      "term": "Immortal Spin",
+      "definition": "A maneuver. Spend {m}{q} to move 3 spaces forward. If you do, activate a melee weapon with +1 strength for each of your bleeding tokens."
+    },
+    {
+      "term": "Impact Force",
+      "definition": "A showdown special rule. When a survivor is knocked down, or after a survivor suffers knockback, the sound of their impact is converted to force. They suffer 3 damage to a random hit location."
+    },
+    {
+      "term": "Impairments ",
+      "definition": "Permanent changes or injuries suffered by a survivor and recorded on the survivor record sheet. These often result from the severe injury table."
+    },
+    {
+      "term": "Impassable",
+      "definition": "A terrain special rule. A survivor cannot voluntarily move into or through any spaces this terrain occupies. Impassable terrain stops all movement, including knockback. If a survivor is knocked back into a space occupied by impassable terrain, they collide with the terrain and their movement ends just before the terrain."
+    },
+    {
+      "term": "Impatience",
+      "definition": "The Manhunter's instinct. Described on the Manhunter's showdown story event and basic action card."
+    },
+    {
+      "term": "Impeccable",
+      "definition": "A gear special rule. During your wound attempt with this weapon, reroll any natural 1s. You must keep the new results."
+    },
+    {
+      "term": "Impervious",
+      "definition": "A type of monster hit location. Impervious hit locations cannot be wounded, even with a Lantern 10 wound roll. Wound attempts will never remove AI cards. However, critical effects may still occur."
+    },
+    {
+      "term": "Important",
+      "definition": "The Optimism neurosis. When you depart, if your total number of armor points (after all bonuses) is the highest among all departing survivors armor point totals, you are filled with confidence. Gain survival up to the settlement's survival limit. Otherwise, lose all survival."
+    },
+    {
+      "term": "Improbable Survivor",
+      "definition": "An ability. When you suffer a severe injury, gain +1 luck token."
+    },
+    {
+      "term": "In Darkness",
+      "definition": "During the Showdown, a survivor is in darkness if something is casting a shadow and they are in that shadow. (Traditionally, this only occurs with a Sunspot Lantern or during the Sunstalker showdown.) Some cards care about survivors being in darkness."
+    },
+    {
+      "term": "Indestructible",
+      "definition": "A terrain special rule. This terrain cannot be destroyed or removed from the showdown board for any reason until the end of the showdown."
+    },
+    {
+      "term": "Indomitable Resources",
+      "definition": "Indomitable resources are often earned by defeating Level 3+ quarry monsters. Many indomitable resources can be used to craft special pattern gear cards. These resources are the only way to obtain their respective patterns."
+    },
+    {
+      "term": "Inevitable",
+      "definition": "An ability. When you gain this, choose a weapon. It gains Sharp. Record this on your survivor record sheet. Erase it when the gear is archived."
+    },
+    {
+      "term": "Inferiority Complex",
+      "definition": "The Regalism neurosis. You may not depart if you have the highest strength among all survivors."
+    },
+    {
+      "term": "Injury Level ",
+      "definition": "Indicates damage to a hit location. Recorded on the survivor record sheet. Most hit locations feature two levels, light and heavy, except for the Head (which only has a heavy injury level)."
+    },
+    {
+      "term": "Innovate",
+      "definition": "An endeavor action that survivors can take. Spend one endeavor, one bone, one hide, and one organ resource each to draw from your Innovation deck to see what your settlement innovates. This action is limited to once per lantern year."
+    },
+    {
+      "term": "Innovation ",
+      "definition": "A type of advancement for a settlement, gained at the Lantern Hoard. Innovations alter the settlement and the survivors' capabilities. Record new innovations on your settlement record sheet."
+    },
+    {
+      "term": "Innovation Consequences",
+      "definition": "When a settlement gains an innovation, they may find themselves adding its consequences to their innovation deck (a persistently evolving deck). Find all appropriate cards in your game box that have the correct consequence and shuffle them into your innovation deck."
+    },
+    {
+      "term": "Innovation Deck ",
+      "definition": "A settlement's innovation deck is a persistent deck that grows as the settlement innovates."
+    },
+    {
+      "term": "In Play",
+      "definition": "All cards are considered in play after they have been drawn and until they resolve. Most cards are discarded after resolving. Others, such as Moods, remain in play indefinitely or until a condition is satisfied."
+    },
+    {
+      "term": "In Range (Monster)",
+      "definition": "A survivor is in a monster's range if the number of spaces between them is less than or equal to its current movement (including modifiers). If \"in range\" is followed by a number, such as range (8), that number replaces the monster's movement when calculating to see if a survivor is in range."
+    },
+    {
+      "term": "Insane",
+      "definition": "A survivor with 3+ insanity."
+    },
+    {
+      "term": "Insanity ",
+      "definition": "Protects a survivor from brain damage."
+    },
+    {
+      "term": "Instinct ",
+      "definition": "The action the monster undertakes if it cannot find a target to attack. Each monster has a unique instinct described on its showdown story event."
+    },
+    {
+      "term": "Instrument",
+      "definition": "A gear keyword. This gear can be used to play music."
+    },
+    {
+      "term": "Instrument Force",
+      "definition": "A gear special rule.. Spend {q} to attack with an instrument in your gear grid. All survivors within 5 spaces, including you, suffer 3 damage to 3 random hit locations. Then, all monsters within 5 spaces of you are automatically hit 3 times. Each wound attempt for this attack gains +4d10 strength."
+    },
+    {
+      "term": "Insulated",
+      "definition": "A survivor is insulated if they have 6 or more gear cards that grant them armor points."
+    },
+    {
+      "term": "Internal Tempo",
+      "definition": "A survivor ability. You ignore the monster's accuracy tokens and always treat your evasion as 0. Your gear loses the noisy keyword while it is in your gear grid."
+    },
+    {
+      "term": "Intimidate Actions",
+      "definition": "Intimidate actions cause brain damage. Intimidate actions are not attacks or hits (survivors cannot spend survival to dodge Intimidate actions). Monsters don't need to be adjacent to their targets to intimidate."
+    },
+    {
+      "term": "Iridescent Hide",
+      "definition": "A survivor ability. When you depart, add {1} to each hit location for each different-colored affinity in your gear grid."
+    },
+    {
+      "term": "Iron Will",
+      "definition": "An ability. You cannot be knocked down. Reduce all knockback you suffer to knockback 1."
+    },
+    {
+      "term": "Irradiated",
+      "definition": "An impairment. Unseen illness. During the Update Timeline step, before settlement events are drawn, roll 1d10. On a 5 or less, you succumb to radiation poisoning. Dead."
+    },
+    {
+      "term": "Irreplaceable ",
+      "definition": "A gear special rule. If a survivor dies or ceases to exist, archive all irreplaceable gear in their gear grids."
+    },
+    {
+      "term": "Isolated",
+      "definition": "A survivor is isolated if they are not adjacent to any other survivors."
+    },
+    {
+      "term": "Item",
+      "definition": "A gear keyword. Gear that is neither a weapon nor armor."
+    },
+    {
+      "term": "Jewelry",
+      "definition": "A gear keyword. Decorative and functional!"
+    },
+    {
+      "term": "Joyless",
+      "definition": "An impairment. You cannot surge."
+    },
+    {
+      "term": "Jugular Incision",
+      "definition": "A head severe injury replacement. Your neck is expertly cut, even through layers of clothing and armor. Gain {l} bleeding tokens."
+    },
+    {
+      "term": "Juice Hunter",
+      "definition": "An ability. Once per hunt phase, when you are the event revealer, you may take a detour to search for a nest of lantern bugs. Roll a random hunt event. Afterwards, you return with bug juice and all survivors gain +1d5 survival."
+    },
+    {
+      "term": "Katana",
+      "definition": "Gear with this keyword is a katana weapon. Survivors may gain levels of Katana weapons proficiency with this weapon only if they have certain expansions."
+    },
+    {
+      "term": "Katar",
+      "definition": "Gear with this keyword is a katar weapon. Survivors may gain levels of katar weapon proficiency with this weapon."
+    },
+    {
+      "term": "Keen",
+      "definition": "Keen attacks ignore positive evasion modifiers."
+    },
+    {
+      "term": "Kinetic Discharge",
+      "definition": "A gear special rule. When you have any tokens and you attack, gain +4 strength for the attack. Discard all your tokens when the attack ends."
+    },
+    {
+      "term": "Knight (Gear)",
+      "definition": "A gear keyword. These gear have knightly qualities to them, bestowing tactical prowess upon their wearer."
+    },
+    {
+      "term": "Knight's Charge",
+      "definition": "Spend {M}{A}, full move in a straight line. At the end of the movement, activate Griswaldo and attack. If you moved more than 5 spaces, this attack gains devastating 2."
+    },
+    {
+      "term": "Knockback X",
+      "definition": "Move the target of knockback x spaces directly away from the cause of this effect."
+    },
+    {
+      "term": "Knocked Down (Monster)",
+      "definition": "While a monster is knocked down, attack rolls hit on 3+ (in place of normal accuracy). Cancel all reactions, including reactions that might be beneficial to survivors. This does not cancel critical wounds effects (since they are not reactions). If the monster is knocked down by a survivor during an {O}, cancel any remaining actions on its card. A knocked down monster stands when: it draws an AI card, a trap is played, or at the start of the next turn (monster or survivors')."
+    },
+    {
+      "term": "Knocked Down (Survivor)",
+      "definition": "When a survivor is knocked down, turn the miniature on its side. Knocked down survivors always stand at the end of the next monster turn. If a survivor is knocked down in the middle of their attack, the remainder of that attack is canceled. Knocked down survivors may only spend survival to dodge (remaining knocked down), and cannot spend activation or movement."
+    },
+    {
+      "term": "Lantern",
+      "definition": "A gear keyword. A lantern illuminates the darkness."
+    },
+    {
+      "term": "Lantern 10",
+      "definition": "A die roll result with the lantern face up. Equivalent to a 10 for other 10-sided die."
+    },
+    {
+      "term": "Lantern Armor Proficiency",
+      "definition": "A special type of proficiency. When a survivor is wearing a full Lantern Armor set, they may select Lantern Armor as their weapon proficiency type instead of a weapon. During the Aftermath, they are eligible to gain a proficiency rank if they suffered damage during the showdown. In order to claim the benefits of Specialization and/or Mastery, the survivor must be wearing a full Lantern Armor set and claim its armor set bonus card."
+    },
+    {
+      "term": "Lantern Research",
+      "definition": "A story event. Survivors can improve their Lantern Research Level during the settlement phase and expand the range of Pulse Discoveries available to them, allowing them to access further powers with the Death Die."
+    },
+    {
+      "term": "Lantern Year",
+      "definition": "Survivors' basic unit of time. The settlement typically advances by one lantern year as part of each Settlement Phase."
+    },
+    {
+      "term": "Lapsed Pathways",
+      "definition": "An impairment. When you gain a token, suffer 1 damage to a random hit location."
+    },
+    {
+      "term": "Largesse",
+      "definition": "An ability. During your act, if you are Honorable, you may give an adjacent survivor one of your survival. Limit once per round."
+    },
+    {
+      "term": "Last to Wound",
+      "definition": "The survivor who last wounded the monster."
+    },
+    {
+      "term": "Leap",
+      "definition": "A gear special rule. Spend {M}{A} to leap into the air! Place your survivor on an unoccupied space exactly 5 spaces away in a straight line, then activate a melee weapon with +2 accuracy and +5 strength."
+    },
+    {
+      "term": "Leaping Lure",
+      "definition": "A special survival action. When the Frogdog Leaps, spend 1 survival to attract it so it lands on the Mammoth Leaf closest to you."
+    },
+    {
+      "term": "Leather",
+      "definition": "A gear keyword. Cured hides are a crucial component of this gear."
+    },
+    {
+      "term": "Legendcaller",
+      "definition": "An ability. Once a lifetime, on a hunt board space after Overwhelming Darkness, in place of rolling a random hunt event, use \"53\" as your result."
+    },
+    {
+      "term": "Legs",
+      "definition": "A survivor hit location. Damage to the legs beyond the heavy injury box will prompt a roll on the Legs section of the Severe Injury table."
+    },
+    {
+      "term": "Legs Locked",
+      "definition": "When you gain the Death Die, you stand. While you have the Death Die, you can not be knocked down for any reason."
+    },
+    {
+      "term": "Leprosy",
+      "definition": "A survivor impairment. Reduce all damage suffered by 1 to a minimum of 1. Suffer -2 to severe injury rolls."
+    },
+    {
+      "term": "Levinblood",
+      "definition": "An ability. At the end of your attack with a weapon with the metal keyword, if you hit the monster, it is shocked and suffers an automatic wound."
+    },
+    {
+      "term": "Leyline Walker ",
+      "definition": "An ability. While there is no armor or accessory gear in your gear grid, gain +3 evasion."
+    },
+    {
+      "term": "Life Exchange",
+      "definition": "An ability. In the Aftermath, gain 1 additional Hunt XP. You may not wear other gear. If you trigger the White Secret story event, you cease to exist. When you retire, you cease to exist."
+    },
+    {
+      "term": "Life Trait",
+      "definition": "A core game variant. Instead wounding by removing AI cards to the wound stack, wound the monster by reducing the number on its Life trait. When the number is reduced to 0, the monster is dead."
+    },
+    {
+      "term": "Light Speed",
+      "definition": "A type of monster hit location. Light Speed hit locations are faster than First Strike hit locations. An attacker must select Light Speed hit locations before First Strike hit locations and before any other type of hit location cards. If multiple Light Speed hit locations are drawn in an attack, the attacker chooses which one to resolve first."
+    },
+    {
+      "term": "Limbic Stimulation",
+      "definition": "Atlas may suddenly yearn for something forgotten. To perform a limbic stimulation, shuffle the wound stack, then reveal cards from the top until you reveal a mood card and put it into play. If no moods are revealed, nothing happens."
+    },
+    {
+      "term": "Limb-maker",
+      "definition": "The Sculptor constellation ability. Once per settlement phase, spend 2 {E} to carve a prosthetic limb. Remove a survivor's dismembered severe injury and add 1 Bone basic resource to the settlement storage."
+    },
+    {
+      "term": "Limit, once per lifetime",
+      "definition": "This can only happen once to a survivor. If it occurs again, nothing happens. In rare cases, it is possible for a survivor to be part of a new campaign; the survivor still has only one lifetime and anything that already happened to them (with limit, once per lifetime) cannot happen again. If a survivor somehow dies and is reborn, they may gain these benefits again. Record once per lifetime effects on the survivor record sheet."
+    },
+    {
+      "term": "Living Film Parasites",
+      "definition": "An impairment. Add a filmy light injury level box to each hit location. You cannot erase your light injury level boxes for any reason."
+    },
+    {
+      "term": "Load",
+      "definition": "A gear special rule. This gear must be loaded before it can be used. Spend {q} to place a prep token on this gear if it does not already have one. Survivors must spend both an activation and a prep token on this gear to attack with it."
+    },
+    {
+      "term": "Locked",
+      "definition": "A gear special rule. This gear cannot be disarmed."
+    },
+    {
+      "term": "Lone Drifter",
+      "definition": "A wanderer ability. You may dash 1 additional time per round. You cannot perform any survival action except for dash. At the start of your act, gain survival up to the settlement limit."
+    },
+    {
+      "term": "Lucernae",
+      "definition": "A survivor ability. Before making a wound attempt, you may declare \"Lucernae X\" in a loud, booming voice. If you do, that wound attempt gains +X luck. X cannot be more than your total blue affinities. When the attack ends, gain +X Hunt XP."
+    },
+    {
+      "term": "Luck (Monster Attribute)",
+      "definition": "Every positive monster luck token reduces the range of wound roll results considered critical. Normally, critical wounds occur only on Lantern tens. Unless survivors have positive luck modifiers, a critical wound against a monster with 1 or more luck tokens is impossible. Each negative monster luck token increases the attackers' critical wound range by 1. The rule of Lantern 10 always applies, so even if a monster's luck makes critically wounding impossible, a wound roll of a Lantern 10 will still cause a normal wound."
+    },
+    {
+      "term": "Luck (Player Attribute)",
+      "definition": "Luck modifies a survivor's chance to cause a critical wound from a wound roll. +1 luck causes a critical wound on a wound roll result of 9 or 10, +2 luck on 8, 9, or 10, and so on. A luck modifier can be negative, making it impossible to critically wound."
+    },
+    {
+      "term": "Lumi",
+      "definition": "An arc survivor attribute. Lumi can be spent to acquire knowledge at the Forum settlement location and to perform various feats. Lumi does not automatically replenish. When an effects instructs you to spend lumi, reduce the lumi value on your arc survivor record sheet by the designated amount."
+    },
+    {
+      "term": "Mad Oracle",
+      "definition": "An ability. Once per showdown, as a monster draws an AI, name a card. If the AI card drawn is the named card, gain +1 evasion token."
+    },
+    {
+      "term": "Majestic Invitation",
+      "definition": "A Bone Eaters effect. Survivors who accept a Majestic Invitation are never seen again."
+    },
+    {
+      "term": "Manipulate",
+      "definition": "Some effects let players manipulate a deck of cards. This may involve revealing cards, discarding cards, or changing their positions in the deck. Wounding a monster and moving a card to the wound stack does not manipulate the deck, nor does drawing {N} to resolve from a successful attack. Face up Duration and Repeat cards ignore effects that manipulate the {O} card."
+    },
+    {
+      "term": "Mark of the Cyclops Knight",
+      "definition": "An ability. When you craft a Seed Pattern, gain +1 permanent strength and +1 Hunt XP. At 10+ Hunt XP, you leave the settlement."
+    },
+    {
+      "term": "Marrow Hunger",
+      "definition": "An impairment. If the Murder or Skull Eater settlement events are drawn, nominate this survivor."
+    },
+    {
+      "term": "Mask",
+      "definition": "A gear keyword. An accessory worn on the head."
+    },
+    {
+      "term": "Matchmaker",
+      "definition": "An ability. When you are a returning survivor, once per lantern year, you may spend {t} to {s} Intimacy."
+    },
+    {
+      "term": "Materialize",
+      "definition": "Remove the monster from the showdown board and place it adjacent to the target. It must be placed so its base covers as many other survivors as possible, colliding with the survivors."
+    },
+    {
+      "term": "Meal - [Monster]",
+      "definition": "A gear special rule. When you depart, consume this (do not archive) to gain its benefits. You can depart with only one meal. If a meal has a monster name, it is a unique meal from that monster gained via Supreme Cuisine."
+    },
+    {
+      "term": "Melee",
+      "definition": "A weapon gear keyword. To attack with a melee weapon, survivors must be in a space adjacent to the monster. Melee weapons with Reach can attack from further away."
+    },
+    {
+      "term": "Melting X",
+      "definition": "A gear special rule. On Arrival, place X +1 strength tokens on this gear. At the end of your act, remove a +1 strength token from this gear."
+    },
+    {
+      "term": "Menace",
+      "definition": "The Butcher's instinct. Described on the Butcher's showdown story event and basic action card."
+    },
+    {
+      "term": "Mend X",
+      "definition": "Restore injury levels and lost armor points up to the amount specified by X. Injury levels must be restored at a location before lost armor points."
+    },
+    {
+      "term": "Mentor",
+      "definition": "An ability. During the settlement phase, spend {v} to nominate a survivor with less Hunt XP than you. They gain +2 lumi and +2 Hunt XP. Limit once per lantern year."
+    },
+    {
+      "term": "Metabolic Surrender",
+      "definition": "An ability and a pulse discovery. Any time during the showdown, you may roll the Death Die. Gain twice that much survival. This round, ignore negative effects of permanent injuries, impairments, disorders, and negative attributes (including tokens). At the end of the round, you die."
+    },
+    {
+      "term": "Metal",
+      "definition": "A gear keyword. This gear is substantively crafted of metal."
+    },
+    {
+      "term": "Metal Maw",
+      "definition": "An ability. Your Fist & Tooth attacks gain Sharp (add 1d10 strength to each wound attempt)."
+    },
+    {
+      "term": "Mindlock X",
+      "definition": "A gear special rule. When you Mindlock X, gain (or lose) mindlock tokens until you have X of them. When you suffer brain damage, if you have any mindlock tokens, you ignore it and lose a mindlock token."
+    },
+    {
+      "term": "Mineral Gathering",
+      "definition": "A story event that may be placed as a Special Hunt Event card on the Hunt Board when a survivor has a pickaxe. Every survivor with a pickaxe rolls on the Mineral Gathering table."
+    },
+    {
+      "term": "Mineral (Gear)",
+      "definition": "A gear keyword. This gear has substantial amounts of minerals in its structure, making it a prime choice for Calcification."
+    },
+    {
+      "term": "Miniature",
+      "definition": "The physical representation of a monster or survivor, used in the Hunt and Showdown phases."
+    },
+    {
+      "term": "Minion",
+      "definition": "Minions are small monsters that appear in expansions. They often have their own Minion Actions, toughness, and unique attributes that are described on cards or in their rulebooks. Refer to the appropriate expansion rules for all details regarding the minions present in that expansion."
+    },
+    {
+      "term": "Monster AI Deck",
+      "definition": "Each monster has a unique AI deck. Its showdown story event describes how to construct a Monster AI Deck at the appropriate level."
+    },
+    {
+      "term": "Monster Controller",
+      "definition": "The player who draws the monster's AI card. They make any decisions and rolls to resolve a monster's actions for that round. Designated by the Monster Controller tile. Monster controller changes at the start of each round."
+    },
+    {
+      "term": "Monster Controller Bonus",
+      "definition": "When a monster controller's survivor becomes the target (or one of the targets) from a Pick Target list on an AI card, this foolhardy action earns that player's survivor +1 insanity."
+    },
+    {
+      "term": "Monster Controller Tile",
+      "definition": "Designates the monster controller. Moves clockwise to the next player or survivor at the start of each round."
+    },
+    {
+      "term": "Monster Fruit",
+      "definition": "A special terrain present in the Lonely Tree expansion (represented by the fruit miniatures). When a monster has Monster Fruit in play, perform the actions listed on Monster Fruit before any other actions during the monster turn. Proceed through the rest of the monster turn normally."
+    },
+    {
+      "term": "Monster Hit Location Card",
+      "definition": "Represents a location on the monster's body. These are hit by a survivor's successful attack roll. Many hit location cards feature special effects or actions."
+    },
+    {
+      "term": "Monster Hit Location Deck",
+      "definition": "The cards that collectively make up the locations a survivor may hit a given monster. Unique to each monster."
+    },
+    {
+      "term": "Monster-Impassable",
+      "definition": "A terrain special rule. Monster-Impassable terrain has all of the characteristics of impassable terrain, but with the following addition: Monsters may not move through spaces occupied by monster-impassable terrain. Monsters must move around monster-impassable terrain tiles, if possible. If this is not possible (such as when the monster is instructed to move in a straight line), they instead end their movement in the space before the terrain tile."
+    },
+    {
+      "term": "Monster Level",
+      "definition": "Monster level determines the difficulty of the showdown and the monster's placement on the hunt board. Higher-level monsters have longer hunts and more difficult showdowns."
+    },
+    {
+      "term": "Monster Reference Card / Basic Action",
+      "definition": "Contains a small overview of each monster's characteristics. They serve as a compact reminder of frequently-used monster information."
+    },
+    {
+      "term": "Monster Resources",
+      "definition": "Monster resource cards are gained only from fighting that monster. Each huntable monster has a unique deck. Monster resources can be used and spent as their resource type or as their specific resource name. Some monster resources have additional rules."
+    },
+    {
+      "term": "Monster Showdown Story Event",
+      "definition": "Contains relevant information for a particular monster's showdown and hunt, including instructions on constructing a monster AI deck, hunt and showdown board setup, the monster's instinct and basic attack, and information on the aftermath of the showdown."
+    },
+    {
+      "term": "Mood",
+      "definition": "A type of monster AI card. Once mood cards are drawn, leave them in the play area instead of discarding them at the end of the monster turn. Moods can be removed by some items or through conditions listed on the card. If a monster suffers a wound when it has an empty AI deck and discard pile but one or more active moods, it is defeated."
+    },
+    {
+      "term": "Most/Least X: ",
+      "definition": "The survivor with the most/least of the listed condition. Zero can count as most or least unless otherwise stated."
+    },
+    {
+      "term": "Mourn",
+      "definition": "The Lion God's instinct. Described on the Lion God's showdown story event and basic action card."
+    },
+    {
+      "term": "Move and Attack Target Action",
+      "definition": "A component of most AI cards. A Move and Attack Target Action follows a Pick Target Action. Full move the monster towards the target and perform the following attack profile."
+    },
+    {
+      "term": "Move into Range and Attack",
+      "definition": "Some monsters use Move into Range and Attack actions. When the monster is instructed to do so, end the monster's movement the specified number of spaces away from the target based on the Range. If the monster is closer to the target than the Range, move it until it is exactly in Range."
+    },
+    {
+      "term": "Movement (Attribute)",
+      "definition": "The maximum amount of spaces a monster or survivor may move with in single move action. A monster or survivor with less than 1 movement may still move 1 space each move action."
+    },
+    {
+      "term": "Move Through Target (Monster)",
+      "definition": "When a monster is instructed to move through a target, it moves towards the target but instead of stopping when adjacent, its movement continues. This will normally cause collision with the target."
+    },
+    {
+      "term": "Murderer",
+      "definition": "The Homicidalism neurosis. During the hunt or showdown, if you are ever alone with another survivor, you murder them. Keep track of your Body Count on your record sheet. Before resolving each rank of Homicidalism, roll 1d10 and subtract your Body Count from the roll result. On a 1 or lower, the settlement kills you."
+    },
+    {
+      "term": "Myopic Fighter",
+      "definition": "A survivor ability. Gain +2 accuracy. You may only attack with daggers and katars."
+    },
+    {
+      "term": "Necromancer (Secret Fighting Art)",
+      "definition": "A secret fighting art from the Lion God expansion. Necromancers gain a bonus on the Death Reading story event and from the event's rare gear. Necromancers roll on the Worm Trauma table instead of the severe injury table (for random severe injuries). If the Necromancer dies or loses the secret fighting art, the resilient worm returns to the settlement and they regain the Knowledge Worm innovation. This happens regardless of whether or not the Necromancer is hamstrung, frenzied, or otherwise unable to use fighting arts."
+    },
+    {
+      "term": "Nemesis Monster",
+      "definition": "Nemesis monsters show up at the outskirts of the settlement. They cannot be hunted, and will arrive during story events."
+    },
+    {
+      "term": "Neurosis",
+      "definition": "A compulsion unique to arc survivors. When they adopt a philosophy, they gain a neurosis, an unfavorable outcome of their beliefs that modifies their behavior throughout their life."
+    },
+    {
+      "term": "Next Monster Turn",
+      "definition": "Some effects persist until the next monster turn. If it is the survivors' turn, the effect will end on the monster turn immediately following this turn. If it is the monster's turn when this effect begins, it will end on the following monster turn."
+    },
+    {
+      "term": "Next Round",
+      "definition": "Some effects persist until the end of the next complete round. These effects will end after the monster, then the survivors, take another turn."
+    },
+    {
+      "term": "Nightmare Blood",
+      "definition": "A survivor ability. Whenever you gain a bleeding token, add {1} to all hit locations."
+    },
+    {
+      "term": "Nightmare Membrane",
+      "definition": "A survivor ability. You may spend {A}{M} to exchange any 1 of your tokens for a +1 strength token."
+    },
+    {
+      "term": "Nightmare Spurs",
+      "definition": "A survivor ability. Once per showdown, you may spend all your survival (at least 1) to lose all your +1 strength tokens and gain that many +1 luck tokens."
+    },
+    {
+      "term": "Node-Specific [Nx] Resource",
+      "definition": "A resource requirement. Node-specific resources must be obtained from showdowns with monsters of the listed node. See the Campaigns, Nodes, and Pillars section of the rulebook for more information (page 56)."
+    },
+    {
+      "term": "Noisy",
+      "definition": "A gear keyword. This gear is hard to keep quiet."
+    },
+    {
+      "term": "Non-deaf Survivor",
+      "definition": "Survivors not suffering from the deaf severe head injury."
+    },
+    {
+      "term": "North Star",
+      "definition": "A showdown board marker. The North Star is not a terrain tile. It denotes which direction is North during the Atnas nemesis showdown."
+    },
+    {
+      "term": "No Target",
+      "definition": "The last option on a monster's Pick Target list. It indicates what to do if no target is found. This is most often a monster's Instinct action. When a monster cannot find a target, subsequent actions on the card are not performed."
+    },
+    {
+      "term": "Novel Proficiency",
+      "definition": "Novel weapon proficiency types may not normally be selected to accumulate weapon proficiency levels. Only remarkable circumstances inspire survivors to train with these weapons. When survivors gain a novel weapon proficiency, they may select this weapon type and accumulate weapon proficiency ranks as normal. Mastering novel weapon types does not confer any benefits to other survivors in the settlement."
+    },
+    {
+      "term": "Novice",
+      "definition": "A novice is a survivor with 1 or less Hunt XP."
+    },
+    {
+      "term": "Nuclear",
+      "definition": "A gear keyword. This gear is crafted from a nuclear core, radiating with power."
+    },
+    {
+      "term": "Nullifying Antibody",
+      "definition": "An ability. You are resistant to radiation. When you roll 1d10 due to the Irradiated impairment, add +3 to the roll result. If this causes your roll result to become 11+, gain +1 permanent strength. When you participate in Intimacy, newborns gain Nullifying Antibody in addition to any other benefits."
+    },
+    {
+      "term": "Oath",
+      "definition": "A survival action. Once per round, if you do not have a shattered jaw, spend 1 survival to recite the forbidden words to another survivor and remove one of their tokens."
+    },
+    {
+      "term": "Object of Desire",
+      "definition": "A hunt event unique to the Lonely Tree expansion. It has a basic hunt event card back. It is shuffled into the basic hunt event cards, and can be randomly drawn from any hunt board space. The event is archived after it is resolved -- it is permanently removed from the basic hunt events and returned to the game box."
+    },
+    {
+      "term": "Observation",
+      "definition": "The accumulated examination of a survivor's thoughts as they process knowledge. Many knowledge cards have unique observation conditions, as well as a maximum number of observations that must be reached before advancing to a new rank, receiving a new knowledge, or suffering a negative effect. If the opportunity to make an observation is missed, that observation is lost and should not be performed/recorded. Dangerous observations, however, must be performed/recorded even if they are forgotten during gameplay. Some knowledge cards have no observations."
+    },
+    {
+      "term": "Obstacle",
+      "definition": "A terrain rule. This terrain blocks survivor and monster field of view, interrupting ranged weapon attacks and monster targeting. To check if field of view is blocked, draw an imaginary line from the center for the miniature's base to the center of the intended target's base. If the line comes in contact with a space occupied by an obstacle, the field of view is blocked and the target is not in field of view."
+    },
+    {
+      "term": "Olthawartta",
+      "definition": "At the start of your act, you may declare \"Olthawartta X\" in a loud, booming voice. If you do, ignore the effects of X special rules until the end of your act among the following: Cumbersome, Early Iron, Frail, Sentient, Slow, Unwieldy. X cannot be greater than your total pairs of red and blue affinities. When your act ends, gain +X Hunt XP. When you trigger your 2nd Hunt XP milestone, gain the Heart of Olthawartta secret fighting art."
+    },
+    {
+      "term": "On Collision",
+      "definition": "\"On collision\" is shorthand for when a monster, survivor, or terrain tile collides with something else. Cards that read \"on collision\" have special rules describing what happens when two things collide. Refer to the Kingdom Death: Monster core game for full collision rules."
+    },
+    {
+      "term": "One Two",
+      "definition": "An ability. When you die, do not gain the benefits of your Death principle. Two survivors emerge from your corpse. Refer to the Pariah rulebook for rules describing your division."
+    },
+    {
+      "term": "Onslaught",
+      "definition": "A gear special rule. If all your attack rolls hit, double your wound attempt totals for the attack."
+    },
+    {
+      "term": "Opportunity Deck",
+      "definition": "An encounter monster deck. Encounter monsters will draw opportunity cards from this deck when certain conditions are met."
+    },
+    {
+      "term": "Oracle's Eye",
+      "definition": "A survivor ability. At the start of the showdown, look through the AI deck, then shuffle it."
+    },
+    {
+      "term": "Organ (Resource)",
+      "definition": "A common resource keyword."
+    },
+    {
+      "term": "Other",
+      "definition": "A gear keyword. The effects of this gear are otherworldly. Saviors may never have Other gear in their gear grids."
+    },
+    {
+      "term": "Outfit",
+      "definition": "This completes an armor set if you're wearing the rest of the set and it shares a material keyword with the missing armor gear. For example, if you're wearing an Oxidized Lantern Helm and Phoenix Armor on every other hit location, you would gain the Phoenix Armor set bonus because the Phoenix Helm also has the metal keyword."
+    },
+    {
+      "term": "Outrider",
+      "definition": "An ability. When you are the scout, you may add +2 to any roll result during a hunt event. Limit once per hunt phase."
+    },
+    {
+      "term": "Overactive Imagination",
+      "definition": "An impairment. When you suffer a random brain trauma, roll twice and pick the lowest result. When you are a returning survivor, gain +2 {v}."
+    },
+    {
+      "term": "Overcharge",
+      "definition": "A unique survival action in People of the Sun. If you have any +1 strength tokens, you may spend 1 survival and remove them all to give your next attack this round devastating 1. Limit once per round."
+    },
+    {
+      "term": "Overwhelming Darkness",
+      "definition": "A space on the Hunt Board. The first time each hunt the survivors move into the Overwhelming Darkness space, they trigger the Overwhelming Darkness story event. The survivors cannot skip Overwhelming Darkness. If they move through the space, instead stop all movement and resolve Overwhelming Darkness before any other events or effects. Then, resolve other events or effects on this space. If, for some reason, the survivors move into or through Overwhelming Darkness more than once in a single Hunt Phase, treat it as a blank space. If the monster is on the Overwhelming Darkness space when the survivors move into it, skip its event and start the showdown immediately."
+    },
+    {
+      "term": "Paired",
+      "definition": "A gear special rule. Paired weapons are two weapons that are used as one. Add the speed of the second weapon when attacking with the first. These weapons must have the same name, and both must be in your gear grid."
+    },
+    {
+      "term": "Parry",
+      "definition": "A type of hit location. This hit location represents the monster skillfully deflecting an attack. When attempting to wound Parry hit locations, all wound attempts fail unless the wound roll result is critical. This failure triggers any Failure and Reflex reactions as normal."
+    },
+    {
+      "term": "Partner - \"(Partner Name)\"",
+      "definition": "An ability. When you both Arrive, gain survival up to the survival limit. Partners may only nominate each other for Intimacy. When a partner dies, the remaining partner gains a random disorder and loses this ability."
+    },
+    {
+      "term": "Pattern",
+      "definition": "A special invention born from the minds of insightful survivors. Patterns can be used to craft unusual and powerful gear cards that cannot be obtained otherwise. Patterns can be obtained from indomitable resources, the seed pattern deck, and general gameplay. Once obtained, patterns instruct players on how to craft the associated gear and which resources are needed. Seed Patterns may have additional requirements."
+    },
+    {
+      "term": "Pattern Card",
+      "definition": "Pattern cards represent the ingenuity of survivors. You can craft gear from Pattern cards during the Develop step of the settlement phase. Spend the resources in the crafting recipe and ensure that all requirements of the crafting process are present, then gain the gear."
+    },
+    {
+      "term": "Peerless",
+      "definition": "An ability. When you gain insanity, you may also gain an equal amount of survival."
+    },
+    {
+      "term": "People of the Sun (Terrain)",
+      "definition": "A terrain special rule. Only include this in your terrain deck if playing a People of the Sun campaign."
+    },
+    {
+      "term": "Perfect Hit",
+      "definition": "An attack dice roll result of a Lantern 10. This always results in a hit. When there are multiple Perfect hits in a single attack, trigger any rules applying to Perfect hits that many times."
+    },
+    {
+      "term": "Perfection X",
+      "definition": "A gear special rule. Increase the range of your Perfect hits by X while attacking with this gear."
+    },
+    {
+      "term": "Perfect Kidneys",
+      "definition": "An ability. Potent filtration. At the end of your act, remove one of your negative attribute tokens. When you suffer the bleeding kidneys severe injury, lose this ability."
+    },
+    {
+      "term": "Perfect (Resource)",
+      "definition": "A resource keyword. Certain gear requires perfect resources to craft."
+    },
+    {
+      "term": "Perishable",
+      "definition": "A resource rule. This cannot be added to settlement storage. At the end of the settlement phase, it is lost. Archive it."
+    },
+    {
+      "term": "Permanent Injury",
+      "definition": "An injury to a survivor that does not heal with time. Its effects always apply to that survivor unless canceled by another effect."
+    },
+    {
+      "term": "Persistence X",
+      "definition": "A gear special rule. On a Perfect hit, gain +X survival."
+    },
+    {
+      "term": "Persistent Injury",
+      "definition": "A special injury found on some hit location cards. When a monster suffers a critical wound on a hit location with a persistent injury, leave the card in play instead of discarding it. Some persistent injuries modify a monster's behavior, while others affect specific AI cards."
+    },
+    {
+      "term": "Persistent Injury Actions",
+      "definition": "Found on some AI cards. Persistent injury actions are conditional actions that replace the normal rules of an AI card. They are only performed when the monster draws an AI card with a persistent injury action that matches a persistent injury in play. If a persistent injury action is performed, ignore other actions on the card."
+    },
+    {
+      "term": "Philosophy",
+      "definition": "An accumulation of an arc survivor's guiding principles. Philosophy books replace the Age story event for arc survivors and have numerous impacts on their abilities, attributes, and individual narratives."
+    },
+    {
+      "term": "Philosophy Deck",
+      "definition": "The source of philosophies for a settlement. When a survivor adopts a philosophy, draw a card from the philosophy deck and record the tenet knowledge, neurosis, Hunt XP milestones, and other effects. Some events and CC milestone cards will add new philosophies to the deck."
+    },
+    {
+      "term": "Phototaxis",
+      "definition": "The Lanternism neurosis. You are bound by the light. While there is a Fallen Lantern terrain tile on the showdown board, you cannot spend survival."
+    },
+    {
+      "term": "Pickaxe",
+      "definition": "A gear keyword. In certain situations, this can be used to mine minerals."
+    },
+    {
+      "term": "Pick Target",
+      "definition": "A component of most AI cards. A Pick Target list has a series of conditions. The monster controller checks to see if each targeting condition is met, starting from the first and stopping when one is et. Sometimes targets are determined by an area or zone (such as adjacent survivors or all survivors in a zone). Some AI cards pick more than one target."
+    },
+    {
+      "term": "Place",
+      "definition": "Change the location of a miniature from one space on the showdown board to another. This does not count as movement."
+    },
+    {
+      "term": "Poise",
+      "definition": "A gear special rule. While you are attacking, you cannot be knocked down."
+    },
+    {
+      "term": "Ponder",
+      "definition": "The act of progressing through a philosophy. When an arc survivor returns to the settlement after reaching a designated Hunt XP milestone, they ponder and advance to the next rank of their philosophy during the Check Milestones steps of the settlement phase. A survivor can ponder only once per settlement phase."
+    },
+    {
+      "term": "Possessed",
+      "definition": "An impairment. The survivor cannot use weapon specialization, weapon mastery, or fighting arts."
+    },
+    {
+      "term": "Pounce",
+      "definition": "A gear special rule. Spend {m} and {q} to move 3 spaces forward in a straight line and activate a melee weapon. This attack gains +1 strength."
+    },
+    {
+      "term": "Precision X",
+      "definition": "A gear special rule. On a Perfect hit, inflict an automatic critical wound to the first X hit locations you resolve."
+    },
+    {
+      "term": "Prepared",
+      "definition": "An ability. When rolling to determine a straggler, add your Hunt XP to your roll result."
+    },
+    {
+      "term": "Presage",
+      "definition": "The Witch constellation ability. Each time you attack, before drawing hit locations, loudly say a name. You lightly bite the eye in your cheek to see what it sees. If you draw any hit locations with that name, gain +3 insanity and +10 strength when attempting to wound them."
+    },
+    {
+      "term": "Prevail",
+      "definition": "Survivors may find themselves in a predicament requiring a dangerous choice. Spend all your survival (at least 1) to prevail, or suffer the listed consequences."
+    },
+    {
+      "term": "Principle",
+      "definition": "Principles are your settlement's guiding philosophies. When a principle's story event triggers, your settlement must make a choice. Record the chosen principle on the settlement record sheet and add that principle's card to the settlement play area."
+    },
+    {
+      "term": "Priority Target",
+      "definition": "When a survivor gains the priority target token, they have captured the monster's attention. Only one survivor may have the priority target token at a time. Whenever a monster performs a Pick Target action, the survivor with the priority target token will always be picked. The priority target token is removed when the survivor with the token is picked, another survivor gains the priority target token, or an effect causes the priority target token to be removed."
+    },
+    {
+      "term": "Prismatic",
+      "definition": "An ability. Your complete affinities and incomplete affinity halves count as all colors."
+    },
+    {
+      "term": "Pristine",
+      "definition": "A survivor ability. When you suffer a dismembered severe injury, ignore it and gain a bleeding token instead."
+    },
+    {
+      "term": "Privileged",
+      "definition": "The Ambitionism tenet. Your tenet knowledge will be determined by the Rank 1 result in the Ambitionism booklet."
+    },
+    {
+      "term": "Proficiency",
+      "definition": "A survivor is proficient with the weapon they have declared and listed on their survivor record sheet next to their proficiency attribute. They are also proficient with the weapon if they have its Specialization or Mastery."
+    },
+    {
+      "term": "Propel",
+      "definition": "A gear special rule. Spend {q}{m}. Spend all armor points at a hit location. Suffer knockback in any direction equal to spent armor points, then activate a weapon and attack. Your attack gains this amount of strength."
+    },
+    {
+      "term": "Provoke",
+      "definition": "A gear special rule. When you wound with this weapon, gain the priority target token."
+    },
+    {
+      "term": "Proxy Cards",
+      "definition": "There are 8 proxy cards. These can be used to replace lost cards or create game variants."
+    },
+    {
+      "term": "Psychovore",
+      "definition": "The Reaper constellation ability. Once per showdown, you may eat an adjacent survivor's disorder. If you do, remove the disorder. They gain 1 bleeding token and you gain +1 permanent strength. At the end of the showdown, if you haven't eaten a disorder, you die."
+    },
+    {
+      "term": "Pubescent Vestment",
+      "definition": "An ability. When you depart, add {!} to all hit locations for each of your Hunt XP milestones. When you suffer a severe injury, you also suffer a random brain trauma."
+    },
+    {
+      "term": "Pulse Discoveries",
+      "definition": "A series of abilities that can be unlocked via Lantern Research. A Pulse Discovery can be performed by a survivor with the Death Die."
+    },
+    {
+      "term": "Purified",
+      "definition": "A status survivors can have. Some cards and story events care if a survivor is Purified."
+    },
+    {
+      "term": "Pursue",
+      "definition": "An effect that allows a survivor to give chase during an attack. Gain {m}, which must be spent immediately to move towards the monster. If you are now adjacent, draw another hit location."
+    },
+    {
+      "term": "Puzzle Affinity",
+      "definition": "A gear special rule. Puzzle affinity bonuses can only be gained if the affinities are completed using the affinities on that specific gear card (indicated by puzzle pieces instead of boxes)."
+    },
+    {
+      "term": "Quarry",
+      "definition": "The monster that the survivors have elected to hunt."
+    },
+    {
+      "term": "Radiant Presence",
+      "definition": "An ability. When you are a returning survivor, gain +2 lumi."
+    },
+    {
+      "term": "Random Hit Location (Survivor)",
+      "definition": "Determine using the included hit location dice."
+    },
+    {
+      "term": "Random Hunt Event",
+      "definition": "Roll d100 and apply the hunt event corresponding to this number on the Hunt Event table."
+    },
+    {
+      "term": "Random Survivor",
+      "definition": "The monster controller or event revealer typically determines a survivor by chance, using an equal probability of all possible outcomes."
+    },
+    {
+      "term": "Ranged",
+      "definition": "A gear keyword. A ranged weapon, like a bow or dart, allows survivors to attack from a distance."
+    },
+    {
+      "term": "Ranged Attack (Monster)",
+      "definition": "Some monsters can attack their targets at range. Refer to the monster's cards and rulebook to determine its range. Traditionally, the Range of a monster's attack will be stated on the card, but some monsters can attack with unlimited range."
+    },
+    {
+      "term": "Range: X (Gear)",
+      "definition": "A gear special rule. Survivors this many or fewer spaces away from a monster may attack with this weapon. Ranged weapons cannot be used if field of view to the monster is blocked (by terrain with the Obstacle rule)."
+    },
+    {
+      "term": "Ravenous",
+      "definition": "The Gourmandism neurosis. You may spend {q} to consume a piece of gear or resource with the consumable keyword and archive it. During the Aftermath, if you did not do this at least once this lantern year, suffer -1 permanent strength."
+    },
+    {
+      "term": "Rawhide",
+      "definition": "A gear keyword. This gear is crafted of uncured hides."
+    },
+    {
+      "term": "Razor Sharp",
+      "definition": "A gear special rule. When attacking with a Razor Sharp weapon, roll the Razor Sharp die and add the result (denoted by the number of pips) to your wound attempt. This is not a wound roll and cannot cause critical wounds."
+    },
+    {
+      "term": "Razor Sharp Die",
+      "definition": "A special d6 included with certain game contents. The razor sharp die has different value than standard d6s. You can determine the result of a face by counting the number of pips showing."
+    },
+    {
+      "term": "Reach X",
+      "definition": "A gear special rule. Reach weapons are long enough to attack monsters when the survivor is not adjacent. Reach specifies the maximum number of spaces away that a survivor can attack with this weapon."
+    },
+    {
+      "term": "Reaction",
+      "definition": "A hit location rule. The 3 types of reactions are Wound, Failure, and Reflex. Each specifies the conditions for a reaction to occur. Reactions occur after rolling to wound the hit location they are found on and before resolving the next hit location."
+    },
+    {
+      "term": "Record and Archive",
+      "definition": "An instruction on certain cards, such as disorders and fighting arts. Make a note of the listed effects and return the card to the game box."
+    },
+    {
+      "term": "Red String of Fate",
+      "definition": "An ability. When you draw a trap, cancel it, discard it, then reshuffle the hit location discard into the hit location deck and draw a new card. Limit once per lifetime."
+    },
+    {
+      "term": "Refined",
+      "definition": "A gear special rule. When this fails to wound, you may reroll the wound attempt. Limit once per attack."
+    },
+    {
+      "term": "Reflection",
+      "definition": "A survivor ability. Your complete affinities and incomplete affinity halves count as all colors. You may dodge at any time and as many times as you like each round. When you attack from a blind spot, add +1d10 to all wound attempts for that attack."
+    },
+    {
+      "term": "Reflexive Shooter",
+      "definition": "An ability. Ignore Cumbersome on bows in your gear grid and reduce their range by 2."
+    },
+    {
+      "term": "Reflex (Reaction)",
+      "definition": "A type of monster reaction. This reaction occurs regardless of whether a wound attempt succeeds or fails."
+    },
+    {
+      "term": "Refraction",
+      "definition": "A survivor ability. Your complete affinities and incomplete affinity halves count as all colors. During the Showdown, after you perform a survival action, gain +1 survival."
+    },
+    {
+      "term": "Relentless",
+      "definition": "A type of monster AI Card. At the end of a Relentless card, if there are any threats in the monster's field of view, reveal the next AI card. If it is relentless, play it."
+    },
+    {
+      "term": "Remove from the Showdown Board (Monster)",
+      "definition": "Remove the monster miniature from the showdown board. Some cards will direct you to remove the monster from the showdown board. Set it aside and only place it back on the board when instructed to. Survivors cannot attack a monster while it is removed from the showdown board. Monsters still draw AI cards while removed from the showdown board, unless otherwise stated."
+    },
+    {
+      "term": "Remove from the Showdown Board (Survivor)",
+      "definition": "Remove the survivor miniature from the showdown board. Place it on its survivor status card, if it has one. A survivor removed from the showdown board has an Act, but may not spend movement, activation, or perform survival actions. Unless stated otherwise, they do not affect and are not affected by anything on the showdown board. When the showdown ends, any survivors who are removed from the board (but not dead) continue to the Aftermath as normal."
+    },
+    {
+      "term": "Repeat",
+      "definition": "A type of {O}. When this card is resolved, place it back on top of the {O} deck face up. While it is face up, ignore effects that manipulate the {O} deck. Some Repeat cards may place tokens on themselves to track escalating variables."
+    },
+    {
+      "term": "Reroller",
+      "definition": "An ability. When another survivor rolls a natural 1, you gain a reroll token. Limit once per round."
+    },
+    {
+      "term": "Reroll/Reroll Token",
+      "definition": "Some effects allow survivors to reroll a die result. They must spend the token or mark off their lifetime reroll box and reroll a single die from an action. The new result must be kept. Survivors may only use their reroll when they are affected by an action with a die roll."
+    },
+    {
+      "term": "Resolved",
+      "definition": "A card is resolved when there are no more instructions to follow on it. This may be due to performing every indicated action, or as a result of specific instructions on the card."
+    },
+    {
+      "term": "Resources",
+      "definition": "Resource cards are gained from defeating monsters and from events. They are spent to develop the settlement and craft gear. In the core game, there are 4 kinds: Basic, Monster, Strange, and Vermin."
+    },
+    {
+      "term": "Resource Types",
+      "definition": "In addition to the specific name listed, all resource cards have one or more types that the card may be used as. Common examples include Bone, Hide, Organ, and Scrap."
+    },
+    {
+      "term": "Restless",
+      "definition": "An ability. Ignore any effects that make you skip the next hunt. When you are a returning survivor, gain {v}{v}."
+    },
+    {
+      "term": "Retired",
+      "definition": "When the final Hunt XP box is filled in, the survivor retires. Some disorders and severe injuries also force retirement. Retired survivors cannot depart, but still contribute to the total population of the settlement and may participate in settlement events and endeavors."
+    },
+    {
+      "term": "Returning Survivors",
+      "definition": "All survivors that endured the previous showdown are returning survivors."
+    },
+    {
+      "term": "Reveal",
+      "definition": "Turn a card face up and examine it. (Do not play it.) Do not reshuffle a deck to reveal more cards than are in a deck."
+    },
+    {
+      "term": "Revenant",
+      "definition": "A wanderer impairment. Goth cannot be killed. If she would die, she gains +1 understanding and inexplicably survives instead. The first time Goth inexplicably survives each lantern year, she archives all tokens, erases all filled injury level boxes, and heals all permanent injuries. Each subsequent time she inexplicably survives the same lantern year, return her to the settlement immediately with -1 disposition."
+    },
+    {
+      "term": "Rewards",
+      "definition": "Rewards are gained by defeating monsters. They are listed on the monster's showdown story event. Gain rewards as a group, once per victorious showdown (unless stated otherwise)."
+    },
+    {
+      "term": "Riposte",
+      "definition": "A gear special rule. When you block or deflect a hit, gain {q} at the start of your next act. Limit once per round."
+    },
+    {
+      "term": "Rival's Scar",
+      "definition": "A survivor ability. This survivor gains +1 permanent strength and suffers -1 permanent evasion."
+    },
+    {
+      "term": "Role Cards",
+      "definition": "When beginning a showdown with the Lion Knight, these are distributed randomly to the survivors during the setup phase. They may move from one survivor to another during the showdown, but a survivor may never have more than one at a time. When a survivor dies, archive their role card unless playing with 5-6 players. In that case, a random survivor without a Role Card gains the dead survivor's role card. This modification continues until you are back to four survivors (then you archive the Role Cards of dead survivors as normal)."
+    },
+    {
+      "term": "Rooted to All",
+      "definition": "The Absolute constellation ability. If you are standing at the start of your act, reveal the top 2 cards of the AI deck and put them back in any order."
+    },
+    {
+      "term": "Rotter",
+      "definition": "The Disintegration neurosis. When you depart, set your armor points at each hit location to 0 after factoring all bonuses. When you are a returning survivor, you devour another. Suffer -1 population, the settlement does not gain benefits of their death principle."
+    },
+    {
+      "term": "Round (Showdown)",
+      "definition": "The showdown proceeds in rounds, consisting of the monster's turn followed by the survivors' turn. Rounds will continue until the monster or all the survivors are dead."
+    },
+    {
+      "term": "Run Away",
+      "definition": "Once a settlement has innovated Pictograph, survivors may abandon a Hunt or Showdown Phase at any time. Follow the instructions on the Run Away story event."
+    },
+    {
+      "term": "Rush",
+      "definition": "A special rule. When a survivor hits 3+ times in a single attack, they Rush for that attack."
+    },
+    {
+      "term": "Satchel",
+      "definition": "A Flower Knight gear card. This gear lets you take resources from the settlement storage back out onto a hunt and/or showdown. A Satchel allows the survivor to circumvent the Perishable resource rule."
+    },
+    {
+      "term": "Savage",
+      "definition": "A gear special rule. After the first critical wound in an attack, savage weapons cause 1 additional wound. This rule does not trigger on Impervious hit locations."
+    },
+    {
+      "term": "Saw",
+      "definition": "Gear with this keyword is a saw weapon. Survivors may not gain levels of saw weapon proficiency."
+    },
+    {
+      "term": "Saw (Rule)",
+      "definition": "A gear special rule. Spend {m}. For the rest of the round, your attacks with this weapon gain +2 luck. Limit once per round."
+    },
+    {
+      "term": "Scale",
+      "definition": "A gear keyword. This gear is substantively crafted of scales."
+    },
+    {
+      "term": "Scimitar",
+      "definition": "Gear with this keyword is a scimitar weapon. Survivors may not gain levels of scimitar weapon proficiency."
+    },
+    {
+      "term": "Scout Discovery",
+      "definition": "After the settlement innovates (scout) Pictograph, the scout can glean new teachings from defeating a difficult foe. A scout discovery is performed after defeating a Level 3+ quarry monster. A specific scout discovery can only be performed once per campaign."
+    },
+    {
+      "term": "Scout of Death",
+      "definition": "Scouts are survivors who bear the Dreaded Pack and the burden of retrieving the settlement's gear in case the party is defeated during the hunt or showdown. Each lantern year, the settlement may nominate a survivor to act as the scout for that hunt and showdown. If you do not have a scout, gear will not be returned to the settlement in the case of defeat. If a scout dies or is otherwise lost while hunting or in a showdown with a quarry monster but the remaining survivors are victorious, they carry the Dreaded Pack home. See the Scout rules (page 99) for more information."
+    },
+    {
+      "term": "Scrap (Resource)",
+      "definition": "A common resource keyword."
+    },
+    {
+      "term": "Scythe",
+      "definition": "Gear with this keyword is a scythe weapon. Survivors may gain levels of Scythe weapon proficiency with this weapon only if they have certain expansions."
+    },
+    {
+      "term": "Sealed",
+      "definition": "A gear special rule. Sealed gear has a bonus effect that can only be earned by training. A survivor can unseal the gear by declaring it as their weapon proficiency, forsaking the normal bonuses of selecting a weapon type. When the survivor reaches the specialization rank, they earn the effect listed after the Sealed special rule on the gear card. A survivor can only earn a gear's Sealed bonus once per lifetime. Example: A survivor declares Toxicimitar as their weapon proficiency (because it has a Sealed effect). When they reach rank 3 (specialization), they gain the Crescent Step secret fighting art."
+    },
+    {
+      "term": "Secret Fighting Arts",
+      "definition": "Secret Fighting Arts are fighting arts that cannot be gained normally. Each secret fighting art has a corresponding card that describes the rules for using it. These count toward your fighting art maximum of 3."
+    },
+    {
+      "term": "Seed (Gear)",
+      "definition": "A gear keyword. Gear cards with the seed keyword can be crafted only via their respective Seed Pattern recipes."
+    },
+    {
+      "term": "Seed Pattern",
+      "definition": "A type of pattern card obtained at the Drafting Table innovation. Many Seed Patterns require survivors with certain attributes or experiences, events, or other requisites to craft. Some may have temporary or permanent effects on survivors or the settlement. See the Seed Patterns section (page 96) for more information."
+    },
+    {
+      "term": "Selfish (Gear)",
+      "definition": "A gear special rule. Selfish gear cannot be in the same gear grid with any other gear with the \"other\" keyword."
+    },
+    {
+      "term": "Selfish (Neurosis)",
+      "definition": "The Survivalism neurosis. When you encourage another survivor, roll 1d10. On a 6+, you do not encourage. Keep your survival, and you cannot encourage again this round. If it is possible for your survivor to use Meat Shield to avoid harm, they must use it."
+    },
+    {
+      "term": "Selfless",
+      "definition": "The Collectivism neurosis. While you are alive, increase the settlement's survival limit by 1. (Each Collectivist increases the limit.) When you depart, set your survival to 0 after applying all bonuses."
+    },
+    {
+      "term": "Sense Memory",
+      "definition": "A Flower Knight story event. Survivors can perform Inspired Crafting to craft Flower Knight gear with the Flowers they harvest from the Flower Knight. They can also take special actions with the right innovations."
+    },
+    {
+      "term": "Sentient",
+      "definition": "A gear special rule. A survivor must be insane to activate this gear."
+    },
+    {
+      "term": "Servant of Fate",
+      "definition": "An impairment unique to Wanderer Luck. Luck's fortune prevents him from dying. if Luck would die, he instead returns to the settlement with -1 disposition. When Luck departs with an Immortal survivor, he gains +1 disposition."
+    },
+    {
+      "term": "Session",
+      "definition": "A typical session is comprised of three phases: Hunt Phase, Showdown Phase, and Settlement Phase. Some events may make survivors skip one or more of these phases. For example, Nemesis Encounters have no Hunt Phase."
+    },
+    {
+      "term": "Set",
+      "definition": "A gear keyword listed on some armor cards. This means this armor is part of an armor set."
+    },
+    {
+      "term": "Settlement",
+      "definition": "The unique collection of locations, innovations, principles, gear, resources, and survivors that represent the survivors' home. Survivors are at the settlement during the Settlement Phase."
+    },
+    {
+      "term": "Settlement Board",
+      "definition": "The settlement board is located on the reverse side of the Hunt Board. The spaces on the board correspond to steps in the Settlement Phase to guide players along."
+    },
+    {
+      "term": "Settlement Event",
+      "definition": "An event occurring during the Settlement Phase."
+    },
+    {
+      "term": "Settlement Phase",
+      "definition": "During the Settlement Phase, survivors experience settlement and story events, spend endeavors, craft gear, and determine which survivors depart on the next hunt. This is the only phase where survivors may change or rearrange their gear grids."
+    },
+    {
+      "term": "Settlement Record Sheet",
+      "definition": "Helps the players keep track of the development of their settlement."
+    },
+    {
+      "term": "Severe Injury Tables",
+      "definition": "Contains sections of possible severe injuries to hit locations. Each hit that causes a severe injury prompts a roll on that location's severe injury table."
+    },
+    {
+      "term": "Severe [Location] Injury",
+      "definition": "When survivors' armor points and injury levels are exhausted, they may accumulate temporary or permanent severe injuries from the severe injury table. When a survivor suffers permanent injuries, note the name and rules on your record sheet and adjust their attributes as necessary. Some injuries fill the Skip Next Hunt box on the survivor record sheet. Otherwise, severe injuries last until the end of the showdown and are marked by attribute tokens."
+    },
+    {
+      "term": "Shadow Caesar",
+      "definition": "An ability. You control the settlement from the shadows. Each lantern year, you choose the departing survivors. You may nominate anyone to depart, even those who are retired or could not otherwise do so."
+    },
+    {
+      "term": "Shadow Vibrations",
+      "definition": "The Sunstalker's instinct. Described on the Sunstalker's showdown story event and basic action card."
+    },
+    {
+      "term": "Shadow Walk",
+      "definition": "A special type of movement. When you Shadow Walk, you may move through spaces survivors occupy without causing collision. (You cannot end your movement on spaces survivors occupy.)"
+    },
+    {
+      "term": "Share (Knowledge)",
+      "definition": "The settlement may be able to propagate additional concepts of knowledge at the Forum. To share a specific knowledge, find its associated card and place it on the Forum. If an effect does not specify which knowledge is shared, draw a random card from the Knowledge deck to share. If the settlement does not have a Forum when you try to share Knowledge, nothing happens."
+    },
+    {
+      "term": "Sharp",
+      "definition": "A gear special rule. Add 1d10 strength to each wound attempt using this gear. This d10 is not a wound roll, and cannot cause critical wounds nor automatically fail."
+    },
+    {
+      "term": "Shield",
+      "definition": "Gear with this keyword is a shield weapon. Survivors may gain levels of shield weapon proficiency with this weapon."
+    },
+    {
+      "term": "Showdown Board",
+      "definition": "Used to represent the area where the survivors face the monster in battle. Specific rules for setting up the showdown board are found on each monster's showdown story event."
+    },
+    {
+      "term": "Showdown Board Edge",
+      "definition": "Generally, monster or survivors cannot move off the edge of the showdown board. Any knockback or full move effects that would bring a miniature past a board edge stops at the edge instead."
+    },
+    {
+      "term": "Showdown Phase",
+      "definition": "The part of a session where survivors face off against a monster. See individual monster showdown pages for instructions on how to start and end the Showdown Phase."
+    },
+    {
+      "term": "Showdown Setup",
+      "definition": "A component of each monster's showdown story event. Contains instructions for setting up terrain tiles and monster and survivor miniatures on the showdown board before a battle."
+    },
+    {
+      "term": "Shred",
+      "definition": "A gear special rule. During your act, you may spend an attribute token to gain {q} which must be spent immediately to activate a melee weapon and attack. Limit once per round."
+    },
+    {
+      "term": "Sickle",
+      "definition": "A gear keyword. In certain situations, this can be used to harvest herbs."
+    },
+    {
+      "term": "Silent Rebellion",
+      "definition": "A special survival action. Before performing an action against the King, spend 1 survival to hold your breath and focus on the void. You are hushed during that action."
+    },
+    {
+      "term": "Silk (Gear)",
+      "definition": "A gear keyword. This gear is substantively crafted of silk."
+    },
+    {
+      "term": "Silk (Resource)",
+      "definition": "A resource keyword. These resources can be used and refined to craft silk gear."
+    },
+    {
+      "term": "Sinister Confusion",
+      "definition": "An impairment. When you activate a weapon to attack, choose either -2 accuracy or -3 strength for that attack."
+    },
+    {
+      "term": "Sizzling Blood",
+      "definition": "An impairment. During the showdown, when you gain a bleeding token, also gain -1 evasion token."
+    },
+    {
+      "term": "Skewer",
+      "definition": "After you Slam, spend {q} to move 1 space and activate a melee weapon with +2 strength. If you wound with a spear, apply that wound roll result to the next selected hit location this attack."
+    },
+    {
+      "term": "Skillful Stitcher",
+      "definition": "An ability. During the Aftermath, you may archive a resource to erase a permanent injury that another survivor suffered this showdown."
+    },
+    {
+      "term": "Skip Next Hunt",
+      "definition": "Fill in the Skip Next Hunt box on the survivor's record sheet. The survivor may not be selected as a departing survivor. After departing survivors are chosen, erase all filled Skip Next Hunt boxes on all survivor record sheets."
+    },
+    {
+      "term": "Slam",
+      "definition": "A gear special rule. Spend {m} and full move forward in a straight line. If you move 4+ spaces and stop adjacent to a monster, it suffers knock back 1 and -1 toughness until the end of the round."
+    },
+    {
+      "term": "Sleepless",
+      "definition": "The Dreamism neurosis. You cannot gain survival during the hunt or showdown."
+    },
+    {
+      "term": "Slipped Plate",
+      "definition": "An impairment. Your skull digs into your brain's pleasure center. Whenever you critically wound, you wince. After resolving the critical wound, you are knocked down."
+    },
+    {
+      "term": "Slow",
+      "definition": "A gear special rule. Slow weapons always have an attack speed of 1. Do not add speed modifiers."
+    },
+    {
+      "term": "Sniff",
+      "definition": "The White Lion's instinct. Described on the White Lion's showdown story event and basic action card."
+    },
+    {
+      "term": "Soda Vender",
+      "definition": "An ability. You may carry any number of soda rare gear outside of your gear grid. (All sodas you carry must be different.) You may give a soda gear to an adjacent survivor anytime during your act."
+    },
+    {
+      "term": "Solar Flare",
+      "definition": "A special action. When the third space of the Solar Track is occupied by a face down AI card, perform the steps listed on that space. (Any effects that trigger on or after a Solar Flare occur at the appropriate time.)"
+    },
+    {
+      "term": "Solar Track",
+      "definition": "A special tracker used in the Sunstalker expansion. This tracker helps determine the direction where light is coming from, the power level of the Sun, and directions to perform a Solar Flare."
+    },
+    {
+      "term": "Soluble",
+      "definition": "A gear keyword. Able to be dissolved in liquid."
+    },
+    {
+      "term": "Song",
+      "definition": "A survivor status card/ A survivor is singing only if they have a face up Song survivor status card."
+    },
+    {
+      "term": "Songheart",
+      "definition": "An ability. Your Ballads cost 1 less to perform."
+    },
+    {
+      "term": "Sour Death",
+      "definition": "An ability. When you are knocked down, you may encourage yourself (even if you are deaf). If you do, gain +1 strength token."
+    },
+    {
+      "term": "Spark of Aspiration",
+      "definition": "An ability. When a survivor is named, they gain a random knowledge."
+    },
+    {
+      "term": "Spark of Joy",
+      "definition": "Atnas's blade bursts from its sheath. End all other ongoing actions. Survivors take turns flipping and resolving one of their Sword Craft cards. Continue cycling through survivors, one card at a time, until all Sword Craft cards are resolved. If a survivor dies, continue to resolve Sword Craft cards on their corpse before removing their miniature from the showdown board."
+    },
+    {
+      "term": "Spear",
+      "definition": "Gear with this keyword is a spear weapon. Survivors may gain levels of spear weapon proficiency with this weapon."
+    },
+    {
+      "term": "Special Innovate",
+      "definition": "An endeavor action that survivors can take to gain a specified innovation. This does not count towards your settlement's usual \"Innovate once per lantern year\" rules."
+    },
+    {
+      "term": "Special Showdown",
+      "definition": "Special Showdowns interrupt the Settlement Phase. After they conclude (regardless of Victory or Defeat), the Settlement Phase returns to the Update Death Count step (5). Survivors that embarked on a Special Showdown are not considered returning survivors. Do not advance the timeline by a lantern year, generate endeavors, or draw a new settlement event card."
+    },
+    {
+      "term": "Spectral Stomach",
+      "definition": "An ability. When you consume and archive something, roll 1d10. On an 8+, it comes out the other end intact! Do not archive it."
+    },
+    {
+      "term": "Speed (Attack Profile/Weapon)",
+      "definition": "The number of attack rolls (number of dice rolled). Usually determined by a monster AI card's attack profile or speed on a survivor's weapon."
+    },
+    {
+      "term": "Speed (Attribute/Modifier/Bonus)",
+      "definition": "Speed is added to a survivor's weapon speed or a monster's attack profile speed to determine the number of attack rolls. If speed is negative, subtract it from the number of dice rolled for an attack. A monster or survivor attack with less than one speed still has one attack roll. Weapons with the Slow keyword cannot benefit from positive speed bonuses."
+    },
+    {
+      "term": "Spin",
+      "definition": "The Spidicules's instinct. Described on the Spidicules's showdown story event and basic action card."
+    },
+    {
+      "term": "Spoiled",
+      "definition": "The Ambitionism neurosis. When you are a returning survivor, if the settlement's CC did not increase, skip the next hunt."
+    },
+    {
+      "term": "Stalwart",
+      "definition": "An ability. Ignore knocked down effects of brain trauma, disorders, and Intimidate actions."
+    },
+    {
+      "term": "Starvation",
+      "definition": "If the survivors move into this space (including starting the showdown), apply the rules listed on the hunt board."
+    },
+    {
+      "term": "Steadfast Friend",
+      "definition": "An ability. When you encourage, gain +2 accuracy tokens until the end of the round."
+    },
+    {
+      "term": "Stinging Edge",
+      "definition": "An ability. Once per showdown, you may archive a Sword Beetle vermin resource to give your attacks Sharp for the remainder of the showdown."
+    },
+    {
+      "term": "Stinky",
+      "definition": "A gear keyword. This item has a strong odor."
+    },
+    {
+      "term": "Stinky Threat or Survivor (Targeting)",
+      "definition": "Survivors become stinky as a result of carrying gear with the stinky keyword in their gear grids, or through status cards, disorders, or other effects that make them stinky targets."
+    },
+    {
+      "term": "Stone Crusher",
+      "definition": "An ability. Before making a wound attempt with Fist & Tooth, you may discard another drawn {N} to double the wound roll result."
+    },
+    {
+      "term": "Stone Face Engraver",
+      "definition": "An ability. When a survivor adopts a philosophy, they draw an additional card and select one to adopt."
+    },
+    {
+      "term": "Story Event",
+      "definition": "An event which impacts the settlement/survivors. Common triggers include: the settlement timeline, survivor milestones in Hunt XP/courage/understanding, monster cards, and settlement events. When {s} appears, trigger the story event by turning to the appropriate page in the rulebook and following its instructions."
+    },
+    {
+      "term": "Story of the Forsaker",
+      "definition": "An ability. You cannot be knocked down during a showdown with a Nemesis monster."
+    },
+    {
+      "term": "Story of the Goblin",
+      "definition": "An ability. Once per showdown, you may roll 1d10. On a 3+, gain the priority target token and the monster gains a +1 damage token."
+    },
+    {
+      "term": "Story of the Young Hero",
+      "definition": "An ability. At the start of each of your acts, you may choose to gain +1 survival and 2 bleeding tokens."
+    },
+    {
+      "term": "Straggler",
+      "definition": "Straggler is a survivor condition gained during hunt events that affects survivor while resolving the hunt event."
+    },
+    {
+      "term": "Strain Fighting Art",
+      "definition": "Strain fighting arts are special fighting arts that are added to your game via strain milestones. A campaign can have a maximum of 5 strain fighting arts in the fighting arts deck. If you would add a 6th strain fighting art, replace an old strain fighting art (remove it from the deck) with the new one instead. If any survivors have the removed fighting art, they still keep it. When you start a new campaign, if you have earned more than 5 strain fighting arts, you must randomly determine which 5 to add to your fighting arts deck. Any other earned strain fighting arts should be stored in your game box for later campaigns."
+    },
+    {
+      "term": "Strain Milestone",
+      "definition": "A strain milestone describes a rare milestone event that, if reached, will permanently alter the future of your Kingdom Death: Monster campaigns. During the Check Milestones step (#6) of the settlement phase, check to see if you have achieved a strain's Milestone's Condition. If you have, resolve its Permanent Effect and remove the achieved strain milestone card from your game. It can never be used again."
+    },
+    {
+      "term": "Strange Resources",
+      "definition": "Resource cards only gained in specific circumstances. Strange monster resources are not shuffled into monster resource decks."
+    },
+    {
+      "term": "Strength (Attribute/Modifiers/Bonus)",
+      "definition": "Strength is added to the result of a wound attempt. If strength is a negative number, subtract is from the wound attempt result."
+    },
+    {
+      "term": "Strength (Weapon)",
+      "definition": "The number a weapon adds to wound attempts."
+    },
+    {
+      "term": "Subconscious",
+      "definition": "A special rule. You can use this while frenzied."
+    },
+    {
+      "term": "Sun Symbol",
+      "definition": "An icon used in the Sunstalker expansion. This symbol is equal to the number of face down cards currently on the Solar Track."
+    },
+    {
+      "term": "Super-dense",
+      "definition": "A type of hit location. This hit location is unusually hard. If a survivor attempts to wound one of these locations with a frail weapon, it is destroyed and archived at the end of the attack."
+    },
+    {
+      "term": "Super Hair",
+      "definition": "A survivor ability. You may spend {A} to freely exchange any tokens with adjacent survivors who have Super Hair."
+    },
+    {
+      "term": "Surge",
+      "definition": "A type of survival action. When opportunity permits, a survivor may spend 1 survival to Surge. Gain +1 {q} which must be spent immediately. This allows them to activate a weapon, interact with terrain, use gear, and anything else spending an activation allows them to do. Resolve the results of Surge (including any monster reactions) before resuming the turn. Each survivor may only Surge once per round, and only if the settlement has the Inner Lantern innovation."
+    },
+    {
+      "term": "Surpass X",
+      "definition": "A gear special rule. When your wound attempt total surpasses the monster's toughness by X or more, the monster suffers an additional wound."
+    },
+    {
+      "term": "Survival",
+      "definition": "Survival is the desperate desire to cling to life. Survival points are gained and lost throughout the campaign. They are spent to perform extraordinary feats and change your fate. Update the survival box on your survivor record sheet as it is gained and lost."
+    },
+    {
+      "term": "Survival Action",
+      "definition": "Survival actions are the most common uses for survival points. In the core game, there are 5: Dodge, Encourage, Dash, Surge, and Endure."
+    },
+    {
+      "term": "Survival Limit",
+      "definition": "Survival limit is the maximum amount of survival a survivor may have. Survival limit is recorded on the settlement record sheet. Innovations and events raise the settlement's survival limit. At the start of the campaign, the survival limit is 1. Survival gained over the survival limit is lost."
+    },
+    {
+      "term": "Survival Opportunity",
+      "definition": "The only times that survivors may Dash or Surge. Survival opportunities exist at the following times: during flows on monster AI cards, between actions on the survivors' turn, before performing reactions, after critical wound effects, or when a monster is knocked down."
+    },
+    {
+      "term": "Survivor Record Sheet",
+      "definition": "Represents the permanent status of a survivor. Some sections include: attributes, Hunt XP, Weapon Proficiency and permanent changes."
+    },
+    {
+      "term": "Survivor Status Card",
+      "definition": "Special (S) AI cards that track conditions for an individual survivor rather than the monster. When a survivor gains a survivor status card, place it next to their gear grid. The card's effects apply only to them. Some status cards change and need to be tracked. Some grant survivors unique actions. If a monster's story event has a Survivor Status card in its setup, all survivors gain the card at the start of the showdown."
+    },
+    {
+      "term": "Sweet Battle",
+      "definition": "An ability. Once per round, you may Surge without spending survival. If you do, the activation gained must be used to activate a weapon. You may use Sweet Battle even if your settlement cannot normally Surge. You may also use Sweet Battle when you have no survival and/or cannot spend survival. This does not let you Surge more than once per round."
+    },
+    {
+      "term": "Sword",
+      "definition": "Gear with this keyword is a sword weapon. Survivors may gain levels of sword weapon proficiency with this weapon."
+    },
+    {
+      "term": "Sword Craft",
+      "definition": "A special deck used by Atnas. These cards are not shuffled into the monster's {O} deck. When instructed, deal Sword Craft cards directly to a survivor. Always deal Sword Craft cards face down unless otherwise specified. You may not look at face down Sword Craft cards unless an effect instructs you to."
+    },
+    {
+      "term": "Symbol",
+      "definition": "A gear keyword. Symbols are strange gear traditionally gained through the Death Reading story event."
+    },
+    {
+      "term": "Synchronic Attack",
+      "definition": "A type of attack on {O}. Synchronic attacks have a singular target but also strike larger areas of effect that cause damage or effects to other survivors caught in the zone. These additional survivors are not considered targets."
+    },
+    {
+      "term": "Systemic Pressure",
+      "definition": "An arc survivor attribute. When an arc survivor makes a roll on the severe injury table, subtract 1 from their result for each systemic pressure they have. Non-arc survivors are unaffected by systemic pressure."
+    },
+    {
+      "term": "Tactics",
+      "definition": "Tactics are often found in expansions with Knight monsters. They provide survivors with new ways to fight, using what they've learned from fighting Knights. Tactics are drawn from a Tactics deck by any badge-wearers at the start of the showdown. During the showdown, the badge-wearer may use their current Tactic(s) to help defeat their foes."
+    },
+    {
+      "term": "Target",
+      "definition": "The recipient of an attack or effect. Some attacks or effects may impact survivors other than the target."
+    },
+    {
+      "term": "Tenet",
+      "definition": "The principle knowledge of an arc survivor's philosophy. This knowledge may not be removed from the arc survivor record sheet unless its associated philosophy is abandoned."
+    },
+    {
+      "term": "Terrain Cards",
+      "definition": "Represent terrain that can be encountered during the Showdown Phase and contain rules for how monsters and survivors interact with them. Terrain cards place one or more terrain tiles on the showdown board."
+    },
+    {
+      "term": "Terrain Tile",
+      "definition": "Terrain tiles are placed on the Showdown Board to represent physical features. The type and amount of terrain added to the Showdown Board is determined by the terrain card specified in the setup section of each monster's showdown story event."
+    },
+    {
+      "term": "Terrified",
+      "definition": "A survivor status. you are guardless and ignore any bonuses to brain trauma rolls. If you have at least 1 insanity, you may spend ~q~ to archive this card."
+    },
+    {
+      "term": "The Forest Wants What It Wants",
+      "definition": "A special hunt event card that replaces/covers Overwhelming Darkness. When survivors encounter this space, trigger The Forest Wants What It Wants story event instead of the Overwhelming Darkness story event. The space retains all of its normal rules and cannot be skipped or ignored."
+    },
+    {
+      "term": "Theory",
+      "definition": "A knowledge special rule. An inkling of an idea that currently has no effect. With enough observation, the theory may advance into something useful."
+    },
+    {
+      "term": "The Penalty",
+      "definition": "The Hand's instinct. Described on The Hand's showdown story event and basic action card."
+    },
+    {
+      "term": "Thin-Skinned",
+      "definition": "A survivor impairment. You cannot gain insanity for any reason."
+    },
+    {
+      "term": "Threat",
+      "definition": "A threat is any survivor that is not knocked down or using special gear, terrain, or abilities to prevent being considered a threat."
+    },
+    {
+      "term": "Thrown",
+      "definition": "Gear with this keyword is a thrown weapon. Survivors may not gain levels of thrown weapon proficiency."
+    },
+    {
+      "term": "Thundercaller",
+      "definition": "An ability. Once a lifetime, on a hunt board space after Overwhelming Darkness, in place of rolling a random hunt event, use \"100\" as your result."
+    },
+    {
+      "term": "Timeline",
+      "definition": "Tracks the number of lantern years since the establishment of your settlement on the Settlement Record Sheet. Trigger story and settlement events as the timeline advances."
+    },
+    {
+      "term": "Tinker",
+      "definition": "An ability. When you are a returning survivor, gain +1 {t}."
+    },
+    {
+      "term": "Toned",
+      "definition": "A Bone Eater status. While a Bone Eater is toned, it suffers -3 movement and gains +3 damage. After performing its Basic Action (including any drawn opportunity cards), the Bone Eater is no longer toned. Track this by placing a toned token (black lantern tokens) under the monster."
+    },
+    {
+      "term": "Tool",
+      "definition": "A gear keyword. Some tools trigger story events or grant bonuses."
+    },
+    {
+      "term": "Toothpicker ",
+      "definition": "A special survivor action. Before you attack the Screaming Antelope, spend 1 survival to aim for the monster's broken teeth. If a reaction during that attack would archive a survivor's weapon, ignore it."
+    },
+    {
+      "term": "Torment ",
+      "definition": "An arc survivor attribute. When an arc survivor makes a roll on the brain trauma table, subtract 1 from their result for each torment they have. Non-arc survivors are unaffected by torment.."
+    },
+    {
+      "term": "Toughness",
+      "definition": "Toughness is the number a wound attempt total must meet or exceed to successfully wound a monster."
+    },
+    {
+      "term": "Toward (Movement)",
+      "definition": "A direction used in reference to another point on the showdown board, such as a monster, survivor, terrain tile., or board edge."
+    },
+    {
+      "term": "Trait",
+      "definition": "A type of monster AI card. Describes permanent changes to the characteristics or behaviors of the monster. Trait cards are not discarded at the end of the monster turn."
+    },
+    {
+      "term": "Transmute",
+      "definition": "A special action at the Gormchymy settlement location. Spend 2 organ resources and roll 1d10. Add 1d10 for each Gormchymy innovation in your settlement. Add the roll results and gain the corresponding gear or resources."
+    },
+    {
+      "term": "Trap",
+      "definition": "A type of monster hit location. A trap cancels all the attacker's hits, ends their attack, and causes the monster to stand, in addition to the actions listed on the card. After the Trap's actions are resolved, shuffle the entire hit location deck."
+    },
+    {
+      "term": "Trigger",
+      "definition": "Part of a monster's attack profile. Indicates that an Attack Effect is part of this attack."
+    },
+    {
+      "term": "Trinket",
+      "definition": "A gear special rule. This gear is portable enough to carry without being an encumbrance. A survivor may carry up to 1 Trinket gear outside of their gear grid."
+    },
+    {
+      "term": "True Ghost Step ",
+      "definition": "Move the mosnter until it passes through the target. Then, stop and turn to face the target. Any survivors the monster passes through (other than the target) suffer the decapitation severe head injury."
+    },
+    {
+      "term": "True Peace",
+      "definition": "A survivor ability. When you gain this ability, set your systemic pressure and torment to 0. You cannot gain systemic pressure or torment."
+    },
+    {
+      "term": "Turn (Monster)",
+      "definition": "The first part of a round, when the monster acts. The monster controller should apply any \"at start of turn\" effects, draw and play AI cards, then apply any \"at end of turn\" effects."
+    },
+    {
+      "term": "Turn (Survivors')",
+      "definition": "The second part of a round is the survivors' turn. During the survivors' turn, survivors act one at a time, each completing their entire act before another survivor may take their act. Survivors may choose to act in any order."
+    },
+    {
+      "term": "Twelve Fingers",
+      "definition": "The Gambler constellation ability. You cannot carry two-handed gear. On a Perfect hit, your right hand pulses. Gain +5 insanity and +1 luck for the attack. However, for each natural 1 rolled when attempting to hit, your left hand shakes. Suffer 5 brain damage and -1 luck for the attack."
+    },
+    {
+      "term": "Two-handed",
+      "definition": "A gear keyword. This weapon requires two hands to use. Some gear and rules do not work with two-handed weapons."
+    },
+    {
+      "term": "Unburdened",
+      "definition": "A survivor abillity. You may only wear Cloth (no other armor or accessories). Gain +2 strength from your resolve."
+    },
+    {
+      "term": "Undeathable",
+      "definition": "A special rule. If the survivor would die, roll 1d10. On a result of 6+, instead the survivor lives. If this roll occurs from the survivor having a lethal amount of bleeding tokens, the survivor will not die until they gain another bleeding token."
+    },
+    {
+      "term": "Understanding",
+      "definition": "A survivor attribute listed on the survivor record sheet. Represents a survivor's insight about the world. Reaching an understanding level of 3 will trigger the Insight Story Event, while reaching a level of 9 will trigger the White Secret Story Event."
+    },
+    {
+      "term": "Unforeseen Strike ",
+      "definition": "A special survival action. Before you attack the Phoenix, spend 1 survival. For this attack, draw all hit locations face down, only revealing them as you resolve each one. Ignore Rewind for this attack."
+    },
+    {
+      "term": "Unfurled",
+      "definition": "A gear special rule. While you have any deflect tokens, this weapon has +2 speed and -4 strength."
+    },
+    {
+      "term": "Uninhibited Rage",
+      "definition": "Add +1d10 strength to a wound attempt. After a wound attempt is rolled you may roll the Death Die and add the result to the strength of your wound attempt."
+    },
+    {
+      "term": "Unique",
+      "definition": "A gear special rule. A settlement may only have one copy of this gear card at a time."
+    },
+    {
+      "term": "Unrestrained ",
+      "definition": "The Impermanism neurosis. All your weapons, except Fist & Tooth, have Frail while in your gear grid. If you wound a Super-Dense hit location with Fist & Tooth, suffer the broken arm severe injury at the end of the attack."
+    },
+    {
+      "term": "Unshakable",
+      "definition": "A gear special rule. When this survivor draws a trap card, roll 1d10. On a result of 6+, ignore the trap. Discard it and shuffle the hit location deck."
+    },
+    {
+      "term": "Unstoppable",
+      "definition": "A gear special rule. Replace all wound rolls with a 1d10 roll. On a 1-5, fail to wound, on 6+ wound. You cannot cause a critical wound while using this rule."
+    },
+    {
+      "term": "Unwieldy",
+      "definition": "A gear special rule. If any attack dice roll results are 1, the weapon causes 1 random damage to the survivor for each 1 rolled. Continue the attack as normal."
+    },
+    {
+      "term": "Vanity",
+      "definition": "A survivor's sense of pride and self-worth. When a survivor suffers a severe injury, they archive all their vanity tokens and set their vanity to 0."
+    },
+    {
+      "term": "Vasodilated ",
+      "definition": "A type of hit location. Against stronger Crimson Crocodiles, these locations may become problematic."
+    },
+    {
+      "term": "Venom Token ",
+      "definition": "A token that inflicts wounds on a monster as they are accumulated."
+    },
+    {
+      "term": "Vermin Resources",
+      "definition": "Vermin resources can be found in Bug Patches during showdowns or as a result of events. Vermin cards describe how each vermin can be used. Vermin can also be used in the Cooking Story Event."
+    },
+    {
+      "term": "Veteran ",
+      "definition": "A survivor ability. During the Aftermath, gain +1 Hunt XP."
+    },
+    {
+      "term": "Vibration Damage",
+      "definition": "A damage type. Hits that cause vibration damage cannot be dodged. do not roll hit location dice. Add the damage of all hits or sources together and deal it to hit locations of your choice 1 point at a time. After a survivor is done resolving their vibration damage, they archive all fragile gear."
+    },
+    {
+      "term": "Victory",
+      "definition": "Part of a monster's Aftermath. Use this result if the monster is defeated. Add that monster to the Defeated Monsters section of the settlement record sheet. If a Nemesis monster was defeated, update the Nemesis monster section as well."
+    },
+    {
+      "term": "Vital",
+      "definition": "A gear special rule. If the settlement has any gear with this rule, the survivors cannot depart without this gear. If the survivor holding Vital gear perishes before the showdown, another survivor must pick up the Vital gear (discarding gear to make room in their grid if needed)."
+    },
+    {
+      "term": "Vocal Force ",
+      "definition": "A showdown special rule. When a survivor performs encourage or any effect that describes them roaring, yelling, or screaming, their head explodes as the sound is converted to force. They suffer the head explosion severe injury."
+    },
+    {
+      "term": "Waist",
+      "definition": "A survivor hit location. Damage to the waist beyond the heavy injury level results in a roll on the Waist section of the Severe Injury table."
+    },
+    {
+      "term": "Warmed Up",
+      "definition": "An ability. You never suffer the effects of cold. On Arrival, gain +1 movement and +1 speed tokens. When you are a returning survivor, +5 {v}. Only you may spend these endeavors."
+    },
+    {
+      "term": "Way of the Rust",
+      "definition": "The Rust constellation ability. Your bleeding tokens are also +1 evasion tokens."
+    },
+    {
+      "term": "Weapon",
+      "definition": "A type of gear card. Weapon types in the core game include axe, blow, club, dagger, fist & tooth, grand, katar, shield. spear, sword, twilight sword and whip."
+    },
+    {
+      "term": "Weapon Mastery",
+      "definition": "Achieved when a survivor has eight or more levels of weapon proficiency. When any survivor attains a weapon mastery, add that mastery to the settlement as an innovation. All survivors automatically gain the Specialist bonus for that weapon type in addition to any weapon proficiencies they already have."
+    },
+    {
+      "term": "Weapon Proficiency",
+      "definition": "A survivor attribute listed on the survivor record sheet. Weapon proficiency represents a survivor's skill with a weapon type. May be earned for the following weapon types: axe, bow, club, dagger, fist & tooth, grand, katar, shield, spear, sword, twilight sword and whip. After reaching the first Hunt XP milestone, survivors can declare a weapon type to gain weapon proficiency in. A survivor must first declare a weapon type before departing on a hunt (write it in the space on the record sheet) and then wound a monster at least once during a showdown with that weapon type in order to gain levels of weapon proficiency."
+    },
+    {
+      "term": "Weapon Specialization",
+      "definition": "Achieved when a survivor has three or more levels of weapon proficiency. Survivors develop new skills which often empower that weapon,"
+    },
+    {
+      "term": "Wear",
+      "definition": "Wearing a piece of gear refers to a piece of armor or accessory gear in your gear grid. If an effect restricts the type of gear you can wear, you cannot place that type of gear into your gear grid."
+    },
+    {
+      "term": "Whip",
+      "definition": "Gear with this keyword is a whip weapon. Survivors may gain levels of whip weapon proficiency with this weapon."
+    },
+    {
+      "term": "Winged Escape",
+      "definition": "A survivor ability. Once per showdown, you may archive a Cyclops Fly vermin resource to discard the Trap and reshuffle the hit location deck."
+    },
+    {
+      "term": "Woebegone ",
+      "definition": "The Blessed First neurosis. While Luck is on the showdown board, all other survivor's weapons gain Unwieldy."
+    },
+    {
+      "term": "Worm Trauma Table",
+      "definition": "A special severe injury table that the Necromancer rolls on in place of the traditional severe injury table. Refer to the back side of the Necromancer secret fighting art card for this table. (Specified severe injuries remain unchanged.)"
+    },
+    {
+      "term": "Wound",
+      "definition": "When a survivor successfully wounds a monster, remove the top card from its AI Deck and place it in the Wound Stack. If the AI Deck is empty, shuffle the AI discard to create a new deck first."
+    },
+    {
+      "term": "Wound Attempt",
+      "definition": "The total power of a survivor's hit. Add the wound roll result (1d10) to the attacking weapon's strength, along with any other strength modifiers. If a wound attempt total meets or exceeds the monster's toughness, then the hit location is wounded."
+    },
+    {
+      "term": "Wound (Reaction)",
+      "definition": "Listed on some monster hit location cards. An action that a monster performs in response to a successful wound attempt at certain hit locations."
+    },
+    {
+      "term": "Wound Roll",
+      "definition": "Represents the variable ferocity of a survivor's hit. Roll 1d10 and add the result to the wound attempt. The result of this d10 (adding luck modifiers) determines whether or not a critical wound is caused on locations with critical wound effects."
+    },
+    {
+      "term": "Wrecked Wrist ",
+      "definition": "A survivor impairment. When you activate a weapon or terrain, suffer 1 damage to the arms hit location."
+    },
+    {
+      "term": "(X)d10",
+      "definition": "A number (X) of ten-sided dice. The included dice feature a Lantern on the \"10\" face."
+    },
+    {
+      "term": "Zone of [ ]/[ ] Zone",
+      "definition": "The indicated area for actions and reactions on some monster AI and hit location cards."
+    }
+  ],
+  "lastUpdated": "2026-02-05T19:18:00.453Z",
+  "version": "1.0.0"
+}
