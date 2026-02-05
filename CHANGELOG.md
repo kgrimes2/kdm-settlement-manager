@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-02-05
+
+### Fixed
+- Mobile layout issues:
+  - Fixed focus-container incorrectly rendering on mobile devices causing duplicate survivor sheets
+  - Fixed weapon proficiency section overflow on small screens - now wraps properly
+  - Added mobile secondary sheet below main sheet with full-page scrolling
+  - Fixed secondary sheet styling to match desktop appearance (labels, borders, backgrounds)
+  - Enabled full-page scrolling on mobile instead of separate scroll areas
+  - Survivor sheet and permanent injuries/notes now scroll together as one unit
+
+### Technical
+- Added `!isMobileDevice` check to focus-container rendering condition
+- Added responsive CSS for weapon proficiency wrapping on screens ≤1000px
+- Moved permanent injuries and auxiliary notes styles outside desktop-only media query
+- Updated body and root overflow settings for mobile scrolling
+- Adjusted app-layout, container, and quadrant heights for mobile auto-sizing
+
 ## [1.0.2] - 2026-02-05
 
 ### Added

@@ -12,7 +12,7 @@ import {
 import GlossaryModal from './components/GlossaryModal'
 import glossaryData from './data/glossary.json'
 
-const APP_VERSION = '1.0.2'
+const APP_VERSION = '1.0.3'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
