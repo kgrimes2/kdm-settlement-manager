@@ -10,9 +10,10 @@ import {
   CURRENT_DATA_VERSION
 } from './migrations'
 import GlossaryModal from './components/GlossaryModal'
+import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
 
-const APP_VERSION = '1.0.2'
+const APP_VERSION = '1.0.4'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -64,6 +65,10 @@ function App() {
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+  const [showTutorial, setShowTutorial] = useState(() => {
+    const completed = localStorage.getItem('tutorial-completed')
+    return completed !== APP_VERSION
+  })
   const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
   const [settlementDialog, setSettlementDialog] = useState<{ type: 'create' | 'rename'; settlementId?: string; currentName?: string } | null>(null)
   const [settlementInputValue, setSettlementInputValue] = useState('')
@@ -137,12 +142,60 @@ function App() {
       } else if (e.key === 'ArrowRight') {
         e.preventDefault()
         handleNextQuadrant()
+      } else if (e.key === ' ' && focusedQuadrant !== null && !showTutorial) {
+        e.preventDefault()
+        handleNextQuadrant()
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant])
+  }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant, showTutorial])
+
+  // Handle swipe gestures on mobile for cycling survivors in focus mode
+  useEffect(() => {
+    if (!isMobileDevice || focusedQuadrant === null) return
+
+    let touchStartX = 0
+    let touchStartY = 0
+    let touchEndX = 0
+    let touchEndY = 0
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX
+      touchStartY = e.changedTouches[0].screenY
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX
+      touchEndY = e.changedTouches[0].screenY
+      handleSwipe()
+    }
+
+    const handleSwipe = () => {
+      const deltaX = touchEndX - touchStartX
+      const deltaY = touchEndY - touchStartY
+
+      // Only trigger if horizontal swipe is more significant than vertical
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          // Swipe right - go to previous
+          handlePreviousQuadrant()
+        } else {
+          // Swipe left - go to next
+          handleNextQuadrant()
+        }
+      }
+    }
+
+    document.addEventListener('touchstart', handleTouchStart)
+    document.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [isMobileDevice, focusedQuadrant])
 
   // Close settlement dropdown when clicking outside
   useEffect(() => {
@@ -1104,6 +1157,14 @@ function App() {
           </div>
           <div className="toolbar-right">
           <button
+            className="toolbar-button tutorial-button"
+            onClick={() => setShowTutorial(true)}
+            aria-label="Tutorial"
+            title="Show Tutorial"
+          >
+            🎓 Tutorial
+          </button>
+          <button
             className="toolbar-button glossary-button"
             onClick={() => handleOpenGlossary()}
             aria-label="KDM Glossary"
@@ -1592,6 +1653,12 @@ function App() {
         glossaryTerms={glossaryData.terms}
         initialQuery={glossaryInitialQuery}
         lastUpdated={glossaryData.lastUpdated}
+      />
+
+      <Tutorial
+        isOpen={showTutorial}
+        onClose={() => setShowTutorial(false)}
+        appVersion={APP_VERSION}
       />
     </div>
   )

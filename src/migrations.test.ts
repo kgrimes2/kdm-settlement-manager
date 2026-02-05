@@ -78,13 +78,13 @@ describe('Data Migrations', () => {
       expect(migrated.settlements[0].survivors[1]?.name).toBe('Survivor1')
     })
 
-    it('should handle huntXP migration (16 to 15 items)', () => {
-      const dataWithLongHuntXP = {
+    it('should handle huntXP migration (extend 15 to 16 items)', () => {
+      const dataWithShortHuntXP = {
         survivors: {
           1: {
             ...initialSurvivorData,
             name: 'Test',
-            huntXP: Array(16).fill(true), // Old format with 16 items
+            huntXP: Array(15).fill(true), // Old format with 15 items
             createdAt: '2024-01-01T00:00:00.000Z'
           },
           2: null,
@@ -93,9 +93,9 @@ describe('Data Migrations', () => {
         }
       }
 
-      const migrated = migrateData(dataWithLongHuntXP)
+      const migrated = migrateData(dataWithShortHuntXP)
 
-      expect(migrated.settlements[0].survivors[1]?.huntXP).toHaveLength(15)
+      expect(migrated.settlements[0].survivors[1]?.huntXP).toHaveLength(16)
     })
 
     it('should add createdAt if missing', () => {
@@ -268,7 +268,7 @@ describe('Data Migrations', () => {
       expect(survivor).toBeTruthy()
       expect(survivor?.name).toBeDefined()
       expect(survivor?.createdAt).toBeDefined()
-      expect(survivor?.huntXP).toHaveLength(15)
+      expect(survivor?.huntXP).toHaveLength(16)
       expect(survivor?.stats).toBeDefined()
       expect(survivor?.bodyLocations).toBeDefined()
       expect(survivor?.survivalAbilities).toBeDefined()
@@ -373,7 +373,7 @@ describe('Data Migrations', () => {
       expect(survivor?.stats).toBeDefined()
       expect(survivor?.bodyLocations).toBeDefined()
       expect(survivor?.survivalAbilities).toBeDefined()
-      expect(survivor?.huntXP).toHaveLength(15)
+      expect(survivor?.huntXP).toHaveLength(16)
     })
 
     it('should preserve custom values while filling in defaults', () => {
