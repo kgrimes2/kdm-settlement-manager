@@ -792,12 +792,37 @@ input[type="radio"]:checked::after {
   font-size: 0.65rem;
   font-weight: 600;
   white-space: nowrap;
+  position: relative;
+}
+
+.pill-in-glossary {
+  background-color: #6a5a4a;
+  border: 1px solid #8a7a6a;
+  padding-left: 1.2rem;
+}
+
+.pill-in-glossary::before {
+  content: '📖';
+  position: absolute;
+  left: 0.3rem;
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 .pill span {
   max-width: 150px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.pill-text {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.pill-text:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 .pill-remove {
