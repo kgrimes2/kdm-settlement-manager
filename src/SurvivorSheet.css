@@ -68,7 +68,7 @@
   color: #2a1a1a;
   font-weight: bold;
   font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .gender-section {
@@ -135,6 +135,22 @@
   font-size: 0.6rem;
   font-weight: bold;
   color: #3a3230;
+}
+
+.checkbox-box.retirement-age {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.checkbox-box.retirement-age input[type="checkbox"] {
+  background-color: rgba(220, 38, 38, 0.4);
+}
+
+.retired-label {
+  font-size: 0.65rem;
+  color: #5a4a3a;
+  margin-left: 0.3rem;
+  font-style: italic;
 }
 
 .checkbox-box input[type="checkbox"] {
@@ -607,6 +623,7 @@
   font-size: 0.4rem;
   margin-right: 0.15rem;
   letter-spacing: 0.05rem;
+  color: #fff9c4;
 }
 
 .max-note {
