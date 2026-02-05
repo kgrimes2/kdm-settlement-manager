@@ -541,6 +541,176 @@
   }
 }
 
+/* Permanent injuries and notes styles (global - applies to both desktop and mobile) */
+.permanent-injuries-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.permanent-injuries-section > h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  border-bottom: 2px solid #3a3230;
+  padding-bottom: 0.25rem;
+}
+
+.injury-legend {
+  font-size: 0.65rem;
+  color: #5a4a3a;
+  margin: 0.3rem 0;
+  padding: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #8a7a6a;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legend-box {
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid #3a3230;
+  display: inline-block;
+}
+
+.red-legend {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.injury-location-group {
+  border: 1px solid #3a3230;
+  padding: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.injury-location-group h4 {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  text-transform: capitalize;
+}
+
+.no-injuries {
+  font-size: 0.65rem;
+  color: #8a7a6a;
+  font-style: italic;
+  padding: 0.2rem 0;
+}
+
+.injury-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.3rem;
+  padding: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+}
+
+.injury-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #2a1a1a;
+}
+
+.injury-checkboxes {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.injury-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0;
+}
+
+.injury-checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  position: relative;
+}
+
+.injury-checkbox input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #3a3230;
+}
+
+.injury-checkbox.red-checkbox {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.injury-checkbox.red-checkbox input[type="checkbox"] {
+  background-color: rgba(220, 38, 38, 0.4);
+}
+
+.auxiliary-notes-section {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  min-height: 300px;
+}
+
+.auxiliary-notes-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  border-bottom: 2px solid #3a3230;
+  padding-bottom: 0.25rem;
+}
+
+.auxiliary-notes-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: inherit;
+  font-size: 0.75rem;
+  color: #2a1a1a;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.auxiliary-notes-textarea:focus {
+  outline: 2px solid #5a4a3a;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.auxiliary-notes-textarea::placeholder {
+  color: #8a7a6a;
+  font-style: italic;
+}
+
 /* Larger focus mode on iPad */
 @media (min-width: 1001px) and (max-width: 1440px) {
   .quadrant.focused {
@@ -1714,6 +1884,25 @@
   .quadrant.active-mobile.focused {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Enable full page scrolling on mobile */
+  .app-layout {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .container {
+    height: auto;
+    min-height: 0;
+  }
+
+  .quadrant {
+    height: auto;
+    min-height: 400px;
   }
 
   /* Make toolbar collapsible on small screens */
@@ -1805,4 +1994,24 @@
   .toolbar-title-group {
     display: none;
   }
+}
+
+/* Mobile secondary sheet */
+.mobile-secondary-sheet {
+  background-color: #d4c5a9;
+  padding: 1rem;
+  margin-bottom: 3rem;
+}
+
+.mobile-secondary-sheet .permanent-injuries-section {
+  margin-bottom: 1.5rem;
+}
+
+.mobile-secondary-sheet .auxiliary-notes-section {
+  min-height: 200px;
+}
+
+.mobile-secondary-sheet .auxiliary-notes-textarea {
+  min-height: 150px;
+  max-height: 300px;
 }
