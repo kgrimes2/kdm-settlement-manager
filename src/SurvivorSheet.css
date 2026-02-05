@@ -673,6 +673,20 @@
     align-items: flex-start;
     gap: 0.25rem;
   }
+
+  .weapon-proficiency-inline {
+    flex-wrap: wrap;
+  }
+
+  .proficiency-row {
+    width: 100%;
+  }
+
+  .proficiency-milestones {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
 }
 
 .fighting-arts h3,
