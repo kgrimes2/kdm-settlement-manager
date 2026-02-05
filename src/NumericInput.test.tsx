@@ -57,8 +57,10 @@ describe('NumericInput', () => {
     const input = screen.getByRole('spinbutton')
     await user.click(input)
 
-    // Decrement button should not exist when at min value
-    expect(screen.queryByText('-1')).not.toBeInTheDocument()
+    // Decrement button should be disabled when at min value
+    const decrementBtn = screen.getByText('-1')
+    expect(decrementBtn).toBeDisabled()
+    await user.click(decrementBtn)
     expect(onChange).not.toHaveBeenCalled()
   })
 
@@ -70,8 +72,10 @@ describe('NumericInput', () => {
     const input = screen.getByRole('spinbutton')
     await user.click(input)
 
-    // Increment button should not exist when at max value
-    expect(screen.queryByText('+1')).not.toBeInTheDocument()
+    // Increment button should be disabled when at max value
+    const incrementBtn = screen.getByText('+1')
+    expect(incrementBtn).toBeDisabled()
+    await user.click(incrementBtn)
     expect(onChange).not.toHaveBeenCalled()
   })
 
@@ -81,15 +85,17 @@ describe('NumericInput', () => {
     expect(input.readOnly).toBe(true)
   })
 
-  it('hides increment button when at max value', async () => {
+  it('disables increment button when at max value', async () => {
     const user = userEvent.setup()
     render(<NumericInput value={5} onChange={vi.fn()} max={5} />)
 
     const input = screen.getByRole('spinbutton')
     await user.click(input)
 
-    expect(screen.queryByText('+1')).not.toBeInTheDocument()
+    const incrementBtn = screen.getByText('+1')
+    expect(incrementBtn).toBeDisabled()
     expect(screen.getByText('-1')).toBeInTheDocument()
+    expect(screen.getByText('-1')).not.toBeDisabled()
   })
 
   it('applies custom className', () => {
