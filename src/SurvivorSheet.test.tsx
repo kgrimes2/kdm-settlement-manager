@@ -5,14 +5,17 @@ import SurvivorSheet, { initialSurvivorData } from './SurvivorSheet'
 
 describe('SurvivorSheet', () => {
   const mockOnUpdate = vi.fn()
+  const mockOnOpenGlossary = vi.fn()
+  const mockGlossaryTerms: any[] = []
 
   beforeEach(() => {
     mockOnUpdate.mockClear()
+    mockOnOpenGlossary.mockClear()
   })
 
   it('renders survivor name input', () => {
     const survivor = { ...initialSurvivorData, name: 'Test Hero' }
-    render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const nameInput = screen.getByDisplayValue('Test Hero')
     expect(nameInput).toBeInTheDocument()
@@ -20,7 +23,7 @@ describe('SurvivorSheet', () => {
 
   it('updates survivor name when typed', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const nameInput = document.querySelector('.name-input') as HTMLInputElement
     await user.type(nameInput, 'A')
@@ -32,7 +35,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles gender selection', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const maleRadio = screen.getByRole('radio', { name: /m/i })
     await user.click(maleRadio)
@@ -44,7 +47,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles hunt XP checkboxes', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const checkboxes = screen.getAllByRole('checkbox')
     const huntXPCheckbox = checkboxes.find(cb =>
@@ -60,7 +63,7 @@ describe('SurvivorSheet', () => {
   it('updates survival value', async () => {
     const user = userEvent.setup()
     const survivor = { ...initialSurvivorData, survival: 3, survivalLimit: 10 }
-    render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     // Find survival input by its container
     const survivalSection = screen.getByText('Survival').closest('.survival-section')!
@@ -77,7 +80,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles survival abilities', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const dodgeCheckbox = screen.getByRole('checkbox', { name: /dodge/i })
     await user.click(dodgeCheckbox)
@@ -91,7 +94,7 @@ describe('SurvivorSheet', () => {
 
   it('updates stats correctly', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     // Movement is the first stat (default 5)
     const movementInput = screen.getAllByRole('spinbutton').find(input =>
@@ -113,7 +116,7 @@ describe('SurvivorSheet', () => {
 
   it('updates weapon proficiency type', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const weaponInput = screen.getByPlaceholderText(/Type.../i)
     await user.type(weaponInput, 'Sword{Enter}')
@@ -126,7 +129,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles courage checkboxes', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const courageSection = screen.getByText('Courage').closest('.courage-section')
     expect(courageSection).toBeInTheDocument()
@@ -139,7 +142,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles understanding checkboxes', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const understandingSection = screen.getByText('Understanding').closest('.understanding-section')
     expect(understandingSection).toBeInTheDocument()
@@ -152,7 +155,7 @@ describe('SurvivorSheet', () => {
 
   it('updates fighting arts', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const fightingArtsInput = screen.getByPlaceholderText(/Add fighting art.../i)
     await user.type(fightingArtsInput, 'Berserker{Enter}')
@@ -165,7 +168,7 @@ describe('SurvivorSheet', () => {
 
   it('updates disorders', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const disordersInput = screen.getByPlaceholderText(/Add disorder.../i)
     await user.type(disordersInput, 'Anxiety{Enter}')
@@ -178,7 +181,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles cannot spend survival checkbox', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const cannotSpendCheckbox = screen.getByRole('checkbox', { name: /cannot spend/i })
     await user.click(cannotSpendCheckbox)
@@ -190,7 +193,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles skip next hunt checkbox', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const skipHuntCheckbox = screen.getByRole('checkbox', { name: /skip next hunt/i })
     await user.click(skipHuntCheckbox)
@@ -202,7 +205,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles cannot use fighting arts checkbox', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const cannotUseFACheckbox = screen.getByRole('checkbox', { name: /cannot use fighting arts/i })
     await user.click(cannotUseFACheckbox)
@@ -214,7 +217,7 @@ describe('SurvivorSheet', () => {
 
   it('toggles reroll used checkbox', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
+    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
     const rerollCheckbox = screen.getByRole('checkbox', { name: /reroll used/i })
     await user.click(rerollCheckbox)
