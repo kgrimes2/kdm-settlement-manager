@@ -12,7 +12,7 @@ import {
 import GlossaryModal from './components/GlossaryModal'
 import glossaryData from './data/glossary.json'
 
-const APP_VERSION = '1.0.2'
+const APP_VERSION = '1.0.3'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -1365,7 +1365,7 @@ function App() {
       )}
 
       <div className="container" onClick={handleContainerClick}>
-        {focusedQuadrant !== null && currentSettlement?.survivors[focusedQuadrant] && (() => {
+        {focusedQuadrant !== null && !isMobileDevice && currentSettlement?.survivors[focusedQuadrant] && (() => {
           const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
           return (
           <div className="focus-container">
@@ -1578,6 +1578,81 @@ function App() {
           )}
         </div>
       </div>
+
+      {focusedQuadrant !== null && isMobileDevice && currentSettlement?.survivors[focusedQuadrant] && (() => {
+        const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
+        return (
+          <div className="mobile-secondary-sheet">
+            <div className="permanent-injuries-section">
+              <h3>Permanent Severe Injuries</h3>
+              <div className="injury-legend">
+                <span className="legend-item">
+                  <span className="legend-box red-legend"></span>
+                  Red background = Retired
+                </span>
+              </div>
+              {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                <div key={location} className="injury-location-group">
+                  <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                  {focusedSurvivor.permanentInjuries[location].length === 0 ? (
+                    <div className="no-injuries">No injuries</div>
+                  ) : (
+                    focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
+                      <div key={injuryIndex} className="injury-item">
+                        <span className="injury-name">{injury.name}</span>
+                        <div className="injury-checkboxes">
+                          {injury.checkboxes.map((checked, checkboxIndex) => {
+                            const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                            const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                            return (
+                              <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => {
+                                    const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
+                                    newInjuries[injuryIndex] = {
+                                      ...newInjuries[injuryIndex],
+                                      checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                        i === checkboxIndex ? !cb : cb
+                                      )
+                                    }
+                                    updateSurvivor(focusedQuadrant, {
+                                      ...focusedSurvivor,
+                                      permanentInjuries: {
+                                        ...focusedSurvivor.permanentInjuries,
+                                        [location]: newInjuries
+                                      }
+                                    })
+                                  }}
+                                />
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="auxiliary-notes-section">
+              <h3>Notes</h3>
+              <textarea
+                className="auxiliary-notes-textarea"
+                value={focusedSurvivor.auxiliaryNotes}
+                onChange={(e) => {
+                  updateSurvivor(focusedQuadrant, {
+                    ...focusedSurvivor,
+                    auxiliaryNotes: e.target.value
+                  })
+                }}
+                placeholder="Add notes about this survivor..."
+              />
+            </div>
+          </div>
+        )
+      })()}
 
       <div className="bottom-disclaimer-banner">
         Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
