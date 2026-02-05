@@ -9,6 +9,8 @@ import {
   createDefaultAppState,
   CURRENT_DATA_VERSION
 } from './migrations'
+import GlossaryModal from './components/GlossaryModal'
+import glossaryData from './data/glossary.json'
 
 const APP_VERSION = '1.0.2'
 
@@ -60,6 +62,8 @@ function App() {
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
+  const [showGlossaryModal, setShowGlossaryModal] = useState(false)
+  const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
   const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
   const [settlementDialog, setSettlementDialog] = useState<{ type: 'create' | 'rename'; settlementId?: string; currentName?: string } | null>(null)
   const [settlementInputValue, setSettlementInputValue] = useState('')
@@ -310,6 +314,11 @@ function App() {
           : s
       )
     }))
+  }
+
+  const handleOpenGlossary = (searchTerm?: string) => {
+    setGlossaryInitialQuery(searchTerm)
+    setShowGlossaryModal(true)
   }
 
   const handleExport = () => {
@@ -1095,23 +1104,31 @@ function App() {
           </div>
           <div className="toolbar-right">
           <button
+            className="toolbar-button glossary-button"
+            onClick={() => handleOpenGlossary()}
+            aria-label="KDM Glossary"
+            title="KDM Glossary"
+          >
+            📖 Glossary
+          </button>
+          <button
             className="toolbar-button"
             onClick={handleExport}
           >
-            Export
+            ⬆️ Export
           </button>
           <button
             className="toolbar-button"
             onClick={handleImport}
           >
-            Import
+            ⬇️ Import
           </button>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
               onClick={() => setFocusedQuadrant(null)}
             >
-              Return to Overview
+              ↩️ Return to Overview
             </button>
           )}
           <button
@@ -1119,7 +1136,7 @@ function App() {
             onClick={toggleSurvivorList}
             aria-label="Manage survivors"
           >
-            Manage Survivors
+            👥 Manage Survivors
           </button>
         </div>
         {focusedQuadrant !== null && !isMobileDevice && (
@@ -1127,7 +1144,7 @@ function App() {
             className="return-to-overview-button"
             onClick={() => setFocusedQuadrant(null)}
           >
-            Return to Overview
+            ↩️ Return to Overview
           </button>
         )}
         <input
@@ -1348,13 +1365,17 @@ function App() {
       )}
 
       <div className="container" onClick={handleContainerClick}>
-        {focusedQuadrant !== null && currentSettlement?.survivors[focusedQuadrant] && (
+        {focusedQuadrant !== null && currentSettlement?.survivors[focusedQuadrant] && (() => {
+          const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
+          return (
           <div className="focus-container">
             <div className="focused-main-sheet">
               <SurvivorSheet
                 key={`survivor-${focusedQuadrant}-focused`}
-                survivor={currentSettlement.survivors[focusedQuadrant]}
+                survivor={focusedSurvivor}
                 onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
+                onOpenGlossary={handleOpenGlossary}
+                glossaryTerms={glossaryData.terms}
               />
             </div>
             <div className="secondary-sheet">
@@ -1369,10 +1390,10 @@ function App() {
                 {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
                   <div key={location} className="injury-location-group">
                     <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                    {currentSettlement.survivors[focusedQuadrant].permanentInjuries[location].length === 0 ? (
+                    {focusedSurvivor.permanentInjuries[location].length === 0 ? (
                       <div className="no-injuries">No injuries</div>
                     ) : (
-                      currentSettlement.survivors[focusedQuadrant].permanentInjuries[location].map((injury, injuryIndex) => (
+                      focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
                         <div key={injuryIndex} className="injury-item">
                           <span className="injury-name">{injury.name}</span>
                           <div className="injury-checkboxes">
@@ -1385,9 +1406,7 @@ function App() {
                                     type="checkbox"
                                     checked={checked}
                                     onChange={() => {
-                                    const survivor = currentSettlement.survivors[focusedQuadrant]
-                                    if (survivor) {
-                                      const newInjuries = [...survivor.permanentInjuries[location]]
+                                      const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
                                       newInjuries[injuryIndex] = {
                                         ...newInjuries[injuryIndex],
                                         checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
@@ -1395,13 +1414,12 @@ function App() {
                                         )
                                       }
                                       updateSurvivor(focusedQuadrant, {
-                                        ...survivor,
+                                        ...focusedSurvivor,
                                         permanentInjuries: {
-                                          ...survivor.permanentInjuries,
+                                          ...focusedSurvivor.permanentInjuries,
                                           [location]: newInjuries
                                         }
                                       })
-                                    }
                                   }}
                                 />
                               </label>
@@ -1418,22 +1436,20 @@ function App() {
                 <h3>Notes</h3>
                 <textarea
                   className="auxiliary-notes-textarea"
-                  value={currentSettlement.survivors[focusedQuadrant].auxiliaryNotes}
+                  value={focusedSurvivor.auxiliaryNotes}
                   onChange={(e) => {
-                    const survivor = currentSettlement.survivors[focusedQuadrant]
-                    if (survivor) {
-                      updateSurvivor(focusedQuadrant, {
-                        ...survivor,
-                        auxiliaryNotes: e.target.value
-                      })
-                    }
+                    updateSurvivor(focusedQuadrant, {
+                      ...focusedSurvivor,
+                      auxiliaryNotes: e.target.value
+                    })
                   }}
                   placeholder="Add notes about this survivor..."
                 />
               </div>
             </div>
           </div>
-        )}
+          )
+        })()}
         <div
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}
@@ -1450,6 +1466,8 @@ function App() {
               key={`survivor-1-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[1]}
               onUpdate={(survivor) => updateSurvivor(1, survivor)}
+              onOpenGlossary={handleOpenGlossary}
+              glossaryTerms={glossaryData.terms}
             />
           ) : (
             <div
@@ -1480,6 +1498,8 @@ function App() {
               key={`survivor-2-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[2]}
               onUpdate={(survivor) => updateSurvivor(2, survivor)}
+              onOpenGlossary={handleOpenGlossary}
+              glossaryTerms={glossaryData.terms}
             />
           ) : (
             <div
@@ -1510,6 +1530,8 @@ function App() {
               key={`survivor-3-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[3]}
               onUpdate={(survivor) => updateSurvivor(3, survivor)}
+              onOpenGlossary={handleOpenGlossary}
+              glossaryTerms={glossaryData.terms}
             />
           ) : (
             <div
@@ -1540,6 +1562,8 @@ function App() {
               key={`survivor-4-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[4]}
               onUpdate={(survivor) => updateSurvivor(4, survivor)}
+              onOpenGlossary={handleOpenGlossary}
+              glossaryTerms={glossaryData.terms}
             />
           ) : (
             <div
@@ -1558,6 +1582,17 @@ function App() {
       <div className="bottom-disclaimer-banner">
         Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
       </div>
+
+      <GlossaryModal
+        isOpen={showGlossaryModal}
+        onClose={() => {
+          setShowGlossaryModal(false)
+          setGlossaryInitialQuery(undefined)
+        }}
+        glossaryTerms={glossaryData.terms}
+        initialQuery={glossaryInitialQuery}
+        lastUpdated={glossaryData.lastUpdated}
+      />
     </div>
   )
 }

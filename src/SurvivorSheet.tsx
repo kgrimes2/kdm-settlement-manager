@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import './SurvivorSheet.css'
 import NumericInput from './NumericInput'
+import type { GlossaryTerm } from './types/glossary'
 
 export interface BodyLocation {
   armor: number
@@ -175,12 +176,39 @@ export const initialSurvivorData: SurvivorData = {
 interface SurvivorSheetProps {
   survivor: SurvivorData
   onUpdate: (survivor: SurvivorData) => void
+  onOpenGlossary: (searchTerm: string) => void
+  glossaryTerms: GlossaryTerm[]
 }
 
-export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps) {
+export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
   const survivorId = survivor.createdAt
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
+
+  // Create a set of normalized glossary terms for fast lookup
+  const glossaryTermsSet = useMemo(() => {
+    return new Set(glossaryTerms.map(term => term.term.toLowerCase().trim()))
+  }, [glossaryTerms])
+
+  // Create a map for normalizing term casing
+  const glossaryTermsMap = useMemo(() => {
+    const map = new Map<string, string>()
+    glossaryTerms.forEach(term => {
+      map.set(term.term.toLowerCase().trim(), term.term)
+    })
+    return map
+  }, [glossaryTerms])
+
+  // Helper function to check if a term is in the glossary
+  const isInGlossary = (text: string): boolean => {
+    return glossaryTermsSet.has(text.toLowerCase().trim())
+  }
+
+  // Helper function to normalize text to match glossary casing
+  const normalizeToGlossary = (text: string): string => {
+    const normalized = text.toLowerCase().trim()
+    return glossaryTermsMap.get(normalized) || text.trim()
+  }
 
   const updateField = <K extends keyof SurvivorData>(field: K, value: SurvivorData[K]) => {
     onUpdate({ ...survivor, [field]: value })
@@ -188,9 +216,10 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
   const addWeaponType = (type: string) => {
     if (type.trim() && survivor.weaponProficiency.types.length < 1) {
+      const normalizedType = normalizeToGlossary(type)
       updateField('weaponProficiency', {
         ...survivor.weaponProficiency,
-        types: [...survivor.weaponProficiency.types, type.trim()]
+        types: [...survivor.weaponProficiency.types, normalizedType]
       })
       setWeaponTypeInput('')
     }
@@ -214,7 +243,8 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
       }
 
       if (currentItems.length < limits[field]) {
-        updateField(field, [...currentItems, value.trim(), ''])
+        const normalizedValue = normalizeToGlossary(value)
+        updateField(field, [...currentItems, normalizedValue, ''])
       }
     }
   }
@@ -298,12 +328,6 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
   const toggleUnderstandingMilestone = (index: number) => {
     updateField('understandingMilestone', survivor.understandingMilestone === index ? null : index)
-  }
-
-  const updateListItem = (field: 'fightingArts' | 'disorders' | 'abilitiesImpairments' | 'oncePerLifetime', index: number, value: string) => {
-    const newList = [...survivor[field]]
-    newList[index] = value
-    updateField(field, newList)
   }
 
   return (
@@ -496,8 +520,13 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
               <h3>Weapon Proficiency</h3>
               <div className="pill-container">
                 {survivor.weaponProficiency.types.map((type, index) => (
-                  <div key={index} className="pill">
-                    <span>{type}</span>
+                  <div key={index} className={`pill ${isInGlossary(type) ? 'pill-in-glossary' : ''}`}>
+                    <span
+                      className="pill-text"
+                      onClick={() => onOpenGlossary(type)}
+                    >
+                      {type}
+                    </span>
                     <button
                       className="pill-remove"
                       onClick={() => removeWeaponType(index)}
@@ -670,8 +699,13 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             </div>
             <div className="pill-container">
               {survivor.fightingArts.filter(art => art).map((art, i) => (
-                <div key={i} className="pill">
-                  <span>{art}</span>
+                <div key={i} className={`pill ${isInGlossary(art) ? 'pill-in-glossary' : ''}`}>
+                  <span
+                    className="pill-text"
+                    onClick={() => onOpenGlossary(art)}
+                  >
+                    {art}
+                  </span>
                   <button
                     className="pill-remove"
                     onClick={() => removeFromList('fightingArts', survivor.fightingArts.indexOf(art))}
@@ -704,8 +738,13 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             </div>
             <div className="pill-container">
               {survivor.disorders.filter(d => d).map((disorder, i) => (
-                <div key={i} className="pill">
-                  <span>{disorder}</span>
+                <div key={i} className={`pill ${isInGlossary(disorder) ? 'pill-in-glossary' : ''}`}>
+                  <span
+                    className="pill-text"
+                    onClick={() => onOpenGlossary(disorder)}
+                  >
+                    {disorder}
+                  </span>
                   <button
                     className="pill-remove"
                     onClick={() => removeFromList('disorders', survivor.disorders.indexOf(disorder))}
@@ -746,8 +785,13 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             </div>
             <div className="pill-container">
               {survivor.abilitiesImpairments.filter(item => item).map((item, i) => (
-                <div key={i} className="pill">
-                  <span>{item}</span>
+                <div key={i} className={`pill ${isInGlossary(item) ? 'pill-in-glossary' : ''}`}>
+                  <span
+                    className="pill-text"
+                    onClick={() => onOpenGlossary(item)}
+                  >
+                    {item}
+                  </span>
                   <button
                     className="pill-remove"
                     onClick={() => removeFromList('abilitiesImpairments', survivor.abilitiesImpairments.indexOf(item))}
@@ -786,8 +830,13 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
             </div>
             <div className="pill-container">
               {survivor.oncePerLifetime.filter(item => item).map((item, i) => (
-                <div key={i} className="pill">
-                  <span>{item}</span>
+                <div key={i} className={`pill ${isInGlossary(item) ? 'pill-in-glossary' : ''}`}>
+                  <span
+                    className="pill-text"
+                    onClick={() => onOpenGlossary(item)}
+                  >
+                    {item}
+                  </span>
                   <button
                     className="pill-remove"
                     onClick={() => removeFromList('oncePerLifetime', survivor.oncePerLifetime.indexOf(item))}
