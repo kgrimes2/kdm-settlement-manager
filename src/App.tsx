@@ -10,7 +10,7 @@ import {
   CURRENT_DATA_VERSION
 } from './migrations'
 
-const APP_VERSION = '1.0.1'
+const APP_VERSION = '1.0.2'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
