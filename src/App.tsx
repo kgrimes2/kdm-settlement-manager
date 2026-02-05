@@ -1365,7 +1365,7 @@ function App() {
       )}
 
       <div className="container" onClick={handleContainerClick}>
-        {focusedQuadrant !== null && currentSettlement?.survivors[focusedQuadrant] && (() => {
+        {focusedQuadrant !== null && !isMobileDevice && currentSettlement?.survivors[focusedQuadrant] && (() => {
           const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
           return (
           <div className="focus-container">
