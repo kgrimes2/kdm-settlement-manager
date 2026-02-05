@@ -1,6 +1,6 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 7
+export const CURRENT_DATA_VERSION = 8
 
 export interface SettlementData {
   id: string
@@ -75,9 +75,9 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     }
   }
 
-  // Migration: trim huntXP from 16 to 15 items if needed
-  if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length > 15) {
-    migratedSurvivor.huntXP = migratedSurvivor.huntXP.slice(0, 15)
+  // Migration: extend huntXP to 16 items if needed (version 8)
+  if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length < 16) {
+    migratedSurvivor.huntXP = [...migratedSurvivor.huntXP, ...Array(16 - migratedSurvivor.huntXP.length).fill(false)]
   }
 
   // Migration: add gearBonuses if missing

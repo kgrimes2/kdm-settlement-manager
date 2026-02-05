@@ -7,6 +7,9 @@ import App from './App'
 global.URL.createObjectURL = vi.fn(() => 'blob:mock-url')
 global.URL.revokeObjectURL = vi.fn()
 
+// Mock scrollIntoView for tutorial tests (not available in JSDOM)
+Element.prototype.scrollIntoView = vi.fn()
+
 describe('App', () => {
   beforeEach(() => {
     localStorage.clear()
@@ -16,8 +19,11 @@ describe('App', () => {
 
   describe('Initial Render', () => {
     it('renders the app with default survivors', () => {
+      // Mock tutorial completion to prevent it from showing
+      localStorage.setItem('tutorial-completed', '1.0.4')
+
       render(<App />)
-      expect(screen.getByText(/KDM Settlement Manager/i)).toBeInTheDocument()
+      expect(screen.getByRole('heading', { name: /KDM Settlement Manager/i })).toBeInTheDocument()
       expect(screen.getByDisplayValue('Allister')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Erza')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Lucy')).toBeInTheDocument()
@@ -622,12 +628,12 @@ describe('App', () => {
   })
 
   describe('Edge Cases', () => {
-    it('migrates huntXP from 16 to 15 items on load', async () => {
+    it('extends huntXP from 15 to 16 items on load', async () => {
       const mockSurvivor = {
         name: 'Hero',
         gender: 'M',
         createdAt: new Date().toISOString(),
-        huntXP: Array(16).fill(false), // Old format with 16 items
+        huntXP: Array(15).fill(false), // Old format with 15 items
         survival: 0,
         survivalLimit: 0,
         cannotSpendSurvival: false,
@@ -669,11 +675,11 @@ describe('App', () => {
 
       render(<App />)
 
-      // Verify the huntXP array was trimmed to 15 items
+      // Verify the huntXP array was extended to 16 items
       // Wait for debounced save
       await waitFor(() => {
         const savedState = JSON.parse(localStorage.getItem('kdm-app-state')!)
-        expect(savedState.settlements[0].survivors[1].huntXP.length).toBe(15)
+        expect(savedState.settlements[0].survivors[1].huntXP.length).toBe(16)
       }, { timeout: 2000 })
     })
 

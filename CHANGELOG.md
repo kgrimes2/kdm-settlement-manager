@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2026-02-05
+
+### Added
+- Interactive tutorial system for new users:
+  - Step-by-step walkthrough of all major features
+  - Highlights UI elements during tutorial
+  - Spacebar navigation to advance through steps
+  - Tutorial styled to match app's Kingdom Death parchment theme
+  - Auto-shows on first launch (can be skipped)
+  - 🎓 Tutorial button in toolbar to reopen tutorial anytime
+- Mobile survivor cycling with swipe gestures (left/right swipe in focus mode)
+- Age milestone tracking on Hunt XP track:
+  - 16th Hunt XP box with red background for retirement age
+  - Condensed age milestone label: "x1 - x4 ■ Age"
+  - "(retired)" label next to retirement box
+  - Yellow milestone markers matching milestone checkbox colors
+
+### Changed
+- Narrowed name input width from 200px to 120px for better layout
+- Unfocused quadrants now darken (brightness 30%) instead of fading out
+- Removed all focus/unfocus zoom animations for instant transitions
+- Removed hover zoom effect on quadrants
+- Spacebar in focus mode now cycles through survivors
+
+### Fixed
+- Checkbox color inconsistency: injury checkboxes now match stat box colors (30% white)
+
+### Technical
+- Data version bumped to v8
+- Migration system updated to extend huntXP arrays from 15 to 16 boxes
+- Added Tutorial component with keyboard and touch event handling
+- Added swipe gesture detection for mobile devices
+
 ## [1.0.2] - 2026-02-05
 
 ### Added
