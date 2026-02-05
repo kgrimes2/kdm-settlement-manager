@@ -266,8 +266,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   background-color: #ef4444;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.6),
