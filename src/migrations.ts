@@ -1,6 +1,6 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 8
+export const CURRENT_DATA_VERSION = 7
 
 export interface SettlementData {
   id: string
@@ -201,11 +201,6 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
       types: oldType ? [oldType] : [],
     }
     delete (migratedSurvivor.weaponProficiency as any).type
-  }
-
-  // Migration: add spent field if missing (version 8)
-  if (!('spent' in migratedSurvivor)) {
-    migratedSurvivor.spent = false
   }
 
   return migratedSurvivor
