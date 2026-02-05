@@ -79,6 +79,25 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.numeric-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #3a3a3a;
+  border-color: #2a2a2a;
+  color: #6a6a6a;
+}
+
+.numeric-button:disabled:hover {
+  transform: none;
+  background-color: #3a3a3a;
+  border-color: #2a2a2a;
+}
+
+.numeric-button:disabled:active {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
 /* Make buttons larger on touch devices */
 @media (hover: none) and (pointer: coarse) {
   .numeric-button {

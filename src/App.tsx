@@ -1348,6 +1348,92 @@ function App() {
       )}
 
       <div className="container" onClick={handleContainerClick}>
+        {focusedQuadrant !== null && currentSettlement?.survivors[focusedQuadrant] && (
+          <div className="focus-container">
+            <div className="focused-main-sheet">
+              <SurvivorSheet
+                key={`survivor-${focusedQuadrant}-focused`}
+                survivor={currentSettlement.survivors[focusedQuadrant]}
+                onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
+              />
+            </div>
+            <div className="secondary-sheet">
+              <div className="permanent-injuries-section">
+                <h3>Permanent Severe Injuries</h3>
+                <div className="injury-legend">
+                  <span className="legend-item">
+                    <span className="legend-box red-legend"></span>
+                    Red background = Retired
+                  </span>
+                </div>
+                {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                  <div key={location} className="injury-location-group">
+                    <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                    {currentSettlement.survivors[focusedQuadrant].permanentInjuries[location].length === 0 ? (
+                      <div className="no-injuries">No injuries</div>
+                    ) : (
+                      currentSettlement.survivors[focusedQuadrant].permanentInjuries[location].map((injury, injuryIndex) => (
+                        <div key={injuryIndex} className="injury-item">
+                          <span className="injury-name">{injury.name}</span>
+                          <div className="injury-checkboxes">
+                            {injury.checkboxes.map((checked, checkboxIndex) => {
+                              const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                              const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                              return (
+                                <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                  <input
+                                    type="checkbox"
+                                    checked={checked}
+                                    onChange={() => {
+                                    const survivor = currentSettlement.survivors[focusedQuadrant]
+                                    if (survivor) {
+                                      const newInjuries = [...survivor.permanentInjuries[location]]
+                                      newInjuries[injuryIndex] = {
+                                        ...newInjuries[injuryIndex],
+                                        checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                          i === checkboxIndex ? !cb : cb
+                                        )
+                                      }
+                                      updateSurvivor(focusedQuadrant, {
+                                        ...survivor,
+                                        permanentInjuries: {
+                                          ...survivor.permanentInjuries,
+                                          [location]: newInjuries
+                                        }
+                                      })
+                                    }
+                                  }}
+                                />
+                              </label>
+                            )
+                            })}
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                ))}
+              </div>
+              <div className="auxiliary-notes-section">
+                <h3>Notes</h3>
+                <textarea
+                  className="auxiliary-notes-textarea"
+                  value={currentSettlement.survivors[focusedQuadrant].auxiliaryNotes}
+                  onChange={(e) => {
+                    const survivor = currentSettlement.survivors[focusedQuadrant]
+                    if (survivor) {
+                      updateSurvivor(focusedQuadrant, {
+                        ...survivor,
+                        auxiliaryNotes: e.target.value
+                      })
+                    }
+                  }}
+                  placeholder="Add notes about this survivor..."
+                />
+              </div>
+            </div>
+          </div>
+        )}
         <div
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}

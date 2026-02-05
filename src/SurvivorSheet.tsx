@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './SurvivorSheet.css'
 import NumericInput from './NumericInput'
 
@@ -6,6 +7,13 @@ export interface BodyLocation {
   light: boolean
   heavy: boolean
 }
+
+export interface PermanentInjury {
+  name: string
+  checkboxes: boolean[]
+}
+
+export type BodyLocationKey = 'head' | 'arms' | 'body' | 'waist' | 'legs'
 
 export interface SurvivorData {
   name: string
@@ -49,7 +57,7 @@ export interface SurvivorData {
     legs: BodyLocation
   }
   weaponProficiency: {
-    type: string
+    types: string[]
     level: boolean[]
   }
   courage: boolean[]
@@ -64,6 +72,14 @@ export interface SurvivorData {
   skipNextHunt: boolean
   cannotUseFightingArts: boolean
   rerollUsed: boolean
+  auxiliaryNotes: string
+  permanentInjuries: {
+    head: PermanentInjury[]
+    arms: PermanentInjury[]
+    body: PermanentInjury[]
+    waist: PermanentInjury[]
+    legs: PermanentInjury[]
+  }
 }
 
 export const initialSurvivorData: SurvivorData = {
@@ -108,7 +124,7 @@ export const initialSurvivorData: SurvivorData = {
     legs: { armor: 0, light: false, heavy: false },
   },
   weaponProficiency: {
-    type: '',
+    types: [],
     level: Array(8).fill(false),
   },
   courage: Array(9).fill(false),
@@ -123,6 +139,37 @@ export const initialSurvivorData: SurvivorData = {
   skipNextHunt: false,
   cannotUseFightingArts: false,
   rerollUsed: false,
+  auxiliaryNotes: '',
+  permanentInjuries: {
+    head: [
+      { name: 'Intracranial Hemorrhage', checkboxes: [false] },
+      { name: 'Deaf', checkboxes: [false] },
+      { name: 'Blind', checkboxes: [false, false] },
+      { name: 'Shattered Jaw', checkboxes: [false] },
+    ],
+    arms: [
+      { name: 'Broken Arm', checkboxes: [false, false] },
+      { name: 'Dismembered Arm', checkboxes: [false, false] },
+      { name: 'Ruptured Muscle', checkboxes: [false] },
+      { name: 'Contracture', checkboxes: [false, false, false, false, false] },
+    ],
+    body: [
+      { name: 'Gaping Chest Wound', checkboxes: [false, false, false, false, false] },
+      { name: 'Destroyed Back', checkboxes: [false] },
+      { name: 'Broken Rib', checkboxes: [false, false, false, false, false] },
+    ],
+    waist: [
+      { name: 'Intestinal Prolapse', checkboxes: [false] },
+      { name: 'Warped Pelvis', checkboxes: [false, false, false, false, false] },
+      { name: 'Destroyed Genitals', checkboxes: [false] },
+      { name: 'Broken Hip', checkboxes: [false] },
+    ],
+    legs: [
+      { name: 'Dismembered Leg', checkboxes: [false, false] },
+      { name: 'Hamstrung', checkboxes: [false] },
+      { name: 'Broken Leg', checkboxes: [false, false] },
+    ],
+  },
 }
 
 interface SurvivorSheetProps {
@@ -133,9 +180,48 @@ interface SurvivorSheetProps {
 export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
   const survivorId = survivor.createdAt
+  const [weaponTypeInput, setWeaponTypeInput] = useState('')
 
   const updateField = <K extends keyof SurvivorData>(field: K, value: SurvivorData[K]) => {
     onUpdate({ ...survivor, [field]: value })
+  }
+
+  const addWeaponType = (type: string) => {
+    if (type.trim() && survivor.weaponProficiency.types.length < 1) {
+      updateField('weaponProficiency', {
+        ...survivor.weaponProficiency,
+        types: [...survivor.weaponProficiency.types, type.trim()]
+      })
+      setWeaponTypeInput('')
+    }
+  }
+
+  const removeWeaponType = (index: number) => {
+    updateField('weaponProficiency', {
+      ...survivor.weaponProficiency,
+      types: survivor.weaponProficiency.types.filter((_, i) => i !== index)
+    })
+  }
+
+  const addToList = (field: 'fightingArts' | 'disorders' | 'abilitiesImpairments' | 'oncePerLifetime', value: string) => {
+    if (value.trim()) {
+      const currentItems = survivor[field].filter(item => item !== '')
+      const limits = {
+        fightingArts: 3,
+        disorders: 3,
+        abilitiesImpairments: Infinity,
+        oncePerLifetime: Infinity
+      }
+
+      if (currentItems.length < limits[field]) {
+        updateField(field, [...currentItems, value.trim(), ''])
+      }
+    }
+  }
+
+  const removeFromList = (field: 'fightingArts' | 'disorders' | 'abilitiesImpairments' | 'oncePerLifetime', index: number) => {
+    const newList = survivor[field].filter((_, i) => i !== index)
+    updateField(field, newList.length === 0 ? [''] : newList)
   }
 
   const toggleHuntXP = (index: number) => {
@@ -397,7 +483,6 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                     value={survivor.gearBonuses[stat as keyof SurvivorData['gearBonuses']]}
                     onChange={(newValue) => updateGearBonus(stat as keyof SurvivorData['gearBonuses'], newValue)}
                     className="stat-input gear-bonus-input"
-                    min={0}
                   />
                 </div>
               </div>
@@ -407,32 +492,56 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
 
         <div className="right-column">
           <div className="weapon-proficiency">
-            <h3>Weapon Proficiency</h3>
-            <input
-              type="text"
-              value={survivor.weaponProficiency.type}
-              onChange={(e) => updateField('weaponProficiency', { ...survivor.weaponProficiency, type: e.target.value })}
-              placeholder="Type:"
-              className="weapon-type-input"
-            />
-            <div className="proficiency-row">
-              <div className="proficiency-boxes">
-                {survivor.weaponProficiency.level.map((checked, i) => {
-                  const isMilestone = i === 2 || i === 7
-                  return (
-                    <label key={i} className={`checkbox-box ${isMilestone ? 'proficiency-milestone' : ''}`}>
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => toggleWeaponLevel(i)}
-                      />
-                    </label>
-                  )
-                })}
+            <div className="weapon-proficiency-inline">
+              <h3>Weapon Proficiency</h3>
+              <div className="pill-container">
+                {survivor.weaponProficiency.types.map((type, index) => (
+                  <div key={index} className="pill">
+                    <span>{type}</span>
+                    <button
+                      className="pill-remove"
+                      onClick={() => removeWeaponType(index)}
+                      aria-label="Remove"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {survivor.weaponProficiency.types.length < 1 && (
+                  <input
+                    type="text"
+                    value={weaponTypeInput}
+                    onChange={(e) => setWeaponTypeInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault()
+                        addWeaponType(weaponTypeInput)
+                      }
+                    }}
+                    placeholder="Type..."
+                    className="pill-input"
+                  />
+                )}
               </div>
-              <div className="proficiency-milestones">
-                <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
-                <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
+              <div className="proficiency-row">
+                <div className="proficiency-boxes">
+                  {survivor.weaponProficiency.level.map((checked, i) => {
+                    const isMilestone = i === 2 || i === 7
+                    return (
+                      <label key={i} className={`checkbox-box ${isMilestone ? 'proficiency-milestone' : ''}`}>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleWeaponLevel(i)}
+                        />
+                      </label>
+                    )
+                  })}
+                </div>
+                <div className="proficiency-milestones">
+                  <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
+                  <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
+                </div>
               </div>
             </div>
           </div>
@@ -559,30 +668,68 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                 Cannot use Fighting Arts
               </label>
             </div>
-            {survivor.fightingArts.map((art, i) => (
-              <input
-                key={i}
-                type="text"
-                value={art}
-                onChange={(e) => updateListItem('fightingArts', i, e.target.value)}
-                className="text-line"
-              />
-            ))}
+            <div className="pill-container">
+              {survivor.fightingArts.filter(art => art).map((art, i) => (
+                <div key={i} className="pill">
+                  <span>{art}</span>
+                  <button
+                    className="pill-remove"
+                    onClick={() => removeFromList('fightingArts', survivor.fightingArts.indexOf(art))}
+                    aria-label="Remove"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              {survivor.fightingArts.filter(art => art).length < 3 && (
+                <input
+                  type="text"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      addToList('fightingArts', e.currentTarget.value)
+                      e.currentTarget.value = ''
+                    }
+                  }}
+                  placeholder="Add fighting art..."
+                  className="pill-input"
+                />
+              )}
+            </div>
           </div>
 
           <div className="disorders">
             <div className="section-header">
               <h3>Disorders <span className="max-note">(max. 3)</span></h3>
             </div>
-            {survivor.disorders.map((disorder, i) => (
-              <input
-                key={i}
-                type="text"
-                value={disorder}
-                onChange={(e) => updateListItem('disorders', i, e.target.value)}
-                className="text-line"
-              />
-            ))}
+            <div className="pill-container">
+              {survivor.disorders.filter(d => d).map((disorder, i) => (
+                <div key={i} className="pill">
+                  <span>{disorder}</span>
+                  <button
+                    className="pill-remove"
+                    onClick={() => removeFromList('disorders', survivor.disorders.indexOf(disorder))}
+                    aria-label="Remove"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+              {survivor.disorders.filter(d => d).length < 3 && (
+                <input
+                  type="text"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault()
+                      addToList('disorders', e.currentTarget.value)
+                      e.currentTarget.value = ''
+                    }
+                  }}
+                  placeholder="Add disorder..."
+                  className="pill-input"
+                />
+              )}
+            </div>
           </div>
 
           <div className="abilities-impairments">
@@ -597,15 +744,32 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                 Skip Next Hunt
               </label>
             </div>
-            {survivor.abilitiesImpairments.map((item, i) => (
+            <div className="pill-container">
+              {survivor.abilitiesImpairments.filter(item => item).map((item, i) => (
+                <div key={i} className="pill">
+                  <span>{item}</span>
+                  <button
+                    className="pill-remove"
+                    onClick={() => removeFromList('abilitiesImpairments', survivor.abilitiesImpairments.indexOf(item))}
+                    aria-label="Remove"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
               <input
-                key={i}
                 type="text"
-                value={item}
-                onChange={(e) => updateListItem('abilitiesImpairments', i, e.target.value)}
-                className="text-line"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addToList('abilitiesImpairments', e.currentTarget.value)
+                    e.currentTarget.value = ''
+                  }
+                }}
+                placeholder="Add ability or impairment..."
+                className="pill-input"
               />
-            ))}
+            </div>
           </div>
 
           <div className="once-per-lifetime">
@@ -620,15 +784,32 @@ export default function SurvivorSheet({ survivor, onUpdate }: SurvivorSheetProps
                 Reroll Used
               </label>
             </div>
-            {survivor.oncePerLifetime.map((item, i) => (
+            <div className="pill-container">
+              {survivor.oncePerLifetime.filter(item => item).map((item, i) => (
+                <div key={i} className="pill">
+                  <span>{item}</span>
+                  <button
+                    className="pill-remove"
+                    onClick={() => removeFromList('oncePerLifetime', survivor.oncePerLifetime.indexOf(item))}
+                    aria-label="Remove"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
               <input
-                key={i}
                 type="text"
-                value={item}
-                onChange={(e) => updateListItem('oncePerLifetime', i, e.target.value)}
-                className="text-line"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault()
+                    addToList('oncePerLifetime', e.currentTarget.value)
+                    e.currentTarget.value = ''
+                  }
+                }}
+                placeholder="Add once per lifetime..."
+                className="pill-input"
               />
-            ))}
+            </div>
           </div>
         </div>
       </div>

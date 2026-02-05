@@ -115,12 +115,13 @@ describe('SurvivorSheet', () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
 
-    const weaponInput = screen.getByPlaceholderText(/type:/i)
-    await user.type(weaponInput, 'S')
+    const weaponInput = screen.getByPlaceholderText(/Type.../i)
+    await user.type(weaponInput, 'Sword{Enter}')
 
     expect(mockOnUpdate).toHaveBeenCalled()
-    // Check that weaponProficiency was updated
-    expect(mockOnUpdate.mock.calls.length).toBeGreaterThan(0)
+    // Check that weaponProficiency types array was updated
+    const lastCall = mockOnUpdate.mock.calls[mockOnUpdate.mock.calls.length - 1][0]
+    expect(lastCall.weaponProficiency.types).toContain('Sword')
   })
 
   it('toggles courage checkboxes', async () => {
@@ -153,24 +154,26 @@ describe('SurvivorSheet', () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
 
-    const fightingArtsSection = screen.getAllByText(/fighting arts/i)[0].closest('.fighting-arts')
-    const fightingArtsInputs = fightingArtsSection!.querySelectorAll('.text-line')
-
-    await user.type(fightingArtsInputs[0], 'Berserker')
+    const fightingArtsInput = screen.getByPlaceholderText(/Add fighting art.../i)
+    await user.type(fightingArtsInput, 'Berserker{Enter}')
 
     expect(mockOnUpdate).toHaveBeenCalled()
+    // Check that fighting arts array was updated
+    const lastCall = mockOnUpdate.mock.calls[mockOnUpdate.mock.calls.length - 1][0]
+    expect(lastCall.fightingArts).toContain('Berserker')
   })
 
   it('updates disorders', async () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} />)
 
-    const disordersSection = screen.getAllByText(/disorders/i)[0].closest('.disorders')
-    const disordersInputs = disordersSection!.querySelectorAll('.text-line')
-
-    await user.type(disordersInputs[0], 'Anxiety')
+    const disordersInput = screen.getByPlaceholderText(/Add disorder.../i)
+    await user.type(disordersInput, 'Anxiety{Enter}')
 
     expect(mockOnUpdate).toHaveBeenCalled()
+    // Check that disorders array was updated
+    const lastCall = mockOnUpdate.mock.calls[mockOnUpdate.mock.calls.length - 1][0]
+    expect(lastCall.disorders).toContain('Anxiety')
   })
 
   it('toggles cannot spend survival checkbox', async () => {
