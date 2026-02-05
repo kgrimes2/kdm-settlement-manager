@@ -1884,6 +1884,25 @@
   .quadrant.active-mobile.focused {
     grid-column: 1 / -1;
     grid-row: 1 / -1;
+    height: auto;
+    min-height: 0;
+  }
+
+  /* Enable full page scrolling on mobile */
+  .app-layout {
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .container {
+    height: auto;
+    min-height: 0;
+  }
+
+  .quadrant {
+    height: auto;
+    min-height: 400px;
   }
 
   /* Make toolbar collapsible on small screens */
@@ -1981,8 +2000,6 @@
 .mobile-secondary-sheet {
   background-color: #d4c5a9;
   padding: 1rem;
-  overflow-y: auto;
-  max-height: 70vh;
   margin-bottom: 3rem;
 }
 
