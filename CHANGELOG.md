@@ -19,12 +19,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Users press Enter to create pills, click X to remove them
 - Input fields automatically hide when limits are reached
 - Max limit indicators shown in section headers
+- **Interactive KDM Glossary**:
+  - Searchable glossary modal with 650+ Kingdom Death terms
+  - Keyboard navigation (↑↓ arrows, Enter, Esc)
+  - Clickable pills automatically open glossary with search
+  - Visual indicator (📖 book icon) on pills matching glossary entries
+  - Auto-capitalize pill text to match official glossary terms
+  - Last updated date and link to official KDM living glossary
+  - Fuzzy search with real-time results
 
 ### Changed
 - Weapon Proficiency section now displays on one line (heading, type pill, checkboxes, and milestone labels)
 - Increment/decrement buttons always visible with disabled state (instead of hiding when at limits)
 - Weapon Proficiency specialist and master labels hidden on tablets and mobile in focus mode for better space utilization
 - Gear bonus inputs now accept negative values
+- Toolbar buttons now include emojis for consistent height and visual clarity:
+  - 📖 Glossary (new)
+  - ⬆️ Export
+  - ⬇️ Import
+  - 👥 Manage Survivors
+  - ↩️ Return to Overview
 
 ### Technical
 - Data version bumped to v7
@@ -32,6 +46,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added comprehensive test coverage for pill UI functionality
 - Updated NumericInput tests to check for disabled state instead of element removal
 - Enhanced migration system to merge survivor data with defaults for missing fields
+- Added GlossaryModal component with fuzzy search functionality
+- Added glossary data (3,014 lines of term definitions)
+- Created search utilities with case-insensitive matching
+- Updated SurvivorSheet tests to include new glossary props
 
 ## [1.0.1] - 2026-02-04
 
