@@ -1144,6 +1144,7 @@ function App() {
           >
             📖
           </button>
+          <div className="export-import-buttons">
           <button
             className="toolbar-button toolbar-icon-button"
             onClick={handleExport}
@@ -1160,6 +1161,7 @@ function App() {
           >
             ⬇️
           </button>
+          </div>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
