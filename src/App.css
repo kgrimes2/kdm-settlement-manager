@@ -213,24 +213,168 @@
 }
 
 /* Marker button styles */
-.marker-mode-button {
-  padding: 0.5rem 1rem;
-  min-width: 140px;
+.marker-button-group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  background-color: #3a3230;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  height: 40px;
+}
+
+/* Disable hover transform on touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .marker-button-group:hover {
+    background-color: #4a3a38;
+    border-color: #6a5a4a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Touch device hover without transform */
+@media (hover: none) or (pointer: coarse) {
+  .marker-button-group:hover {
+    background-color: #4a3a38;
+    border-color: #6a5a4a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.marker-button-group.active {
+  background-color: rgba(212, 197, 169, 0.15);
+  border-color: #d4c5a9;
+}
+
+.marker-mode-button,
+.marker-legend-button {
+  padding: 0;
+  min-width: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  color: #d4c5a9;
+  cursor: pointer;
+  box-shadow: none;
+  height: 100%;
+  margin: 0 0.5rem;
+}
+
+.marker-mode-button:hover,
+.marker-mode-button:active,
+.marker-legend-button:hover,
+.marker-legend-button:active {
+  background: none;
+  border: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.marker-dropdown-arrow {
+  padding: 0.35rem 0.4rem;
+  min-width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid rgba(90, 74, 58, 0.8);
+  font-size: 0.7rem;
+  background: none;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  color: #d4c5a9;
+  cursor: pointer;
+  box-shadow: none;
+  border-radius: 0;
+  height: 100%;
+}
+
+.marker-dropdown-arrow:hover,
+.marker-dropdown-arrow:active {
+  background: none;
+  transform: none;
+  box-shadow: none;
+}
+
+.marker-color-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.25rem;
+  background-color: #3a3230;
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.marker-color-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  color: #d4c5a9;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.marker-color-option:hover {
+  background-color: #4a3a38;
+}
+
+.marker-color-option:first-child {
+  border-radius: 2px 2px 0 0;
+}
+
+.marker-color-option:last-child {
+  border-radius: 0 0 2px 2px;
+}
+
+.marker-color-option .arrow {
+  font-size: 0.75rem;
+}
+
+.marker-mode-button svg,
+.marker-legend-button svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.marker-legend-button .arrow {
+  line-height: 1;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* Marker legend button */
+.marker-legend-button {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
-  margin-right: 1rem;
+  padding: 0.35rem 0.75rem;
+  min-width: auto;
 }
 
-.marker-mode-button.active {
-  background-color: rgba(239, 68, 68, 0.2);
-  border-color: #ef4444;
+.marker-legend-button.active {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
 }
 
-.marker-icon {
-  font-size: 1.2rem;
-  display: inline-block;
+.marker-legend-button .arrow {
+  color: #d4c5a9;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
 
 /* Marker overlay when in marker mode */
@@ -268,26 +412,45 @@
   transform: translate(-50%, -50%);
   width: 120px;
   height: 120px;
-  background-color: #ef4444;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.6),
-              inset 0 2px 4px rgba(255, 255, 255, 0.3),
-              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
   z-index: 10;
   cursor: pointer;
   transition: all 0.2s ease;
+  animation: markerRotate 30s linear infinite;
+}
+
+@keyframes markerRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.marker-indicator.marker-solid {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+  animation: none;
 }
 
 .marker-indicator:hover {
-  background-color: #dc2626;
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.8),
-              inset 0 2px 4px rgba(255, 255, 255, 0.3),
-              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+}
+
+.marker-indicator:hover circle {
+  stroke-width: 10;
+}
+
+.marker-indicator.marker-solid:hover {
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.6));
 }
 
 .marker-indicator:active {
-  transform: translate(-50%, -50%) scale(0.95);
+  animation-play-state: paused;
+}
+
+.marker-indicator.marker-solid:active {
+  animation-play-state: running;
 }
 
 /* Smaller markers on mobile */
@@ -757,6 +920,21 @@
 
   .focus-container {
     transform: translate(-50%, -50%) scale(1.6);
+  }
+
+  .marker-button-group {
+    align-items: center;
+  }
+
+  .marker-legend-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .marker-legend-button svg,
+  .marker-legend-button .arrow {
+    align-self: center;
   }
 }
 

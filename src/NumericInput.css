@@ -14,6 +14,17 @@
   -moz-appearance: textfield;
 }
 
+.numeric-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: transparent;
+  cursor: default;
+}
+
 .numeric-buttons {
   display: flex;
   gap: 0.25rem;
