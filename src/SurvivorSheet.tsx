@@ -87,7 +87,7 @@ export const initialSurvivorData: SurvivorData = {
   name: '',
   createdAt: new Date().toISOString(),
   gender: '',
-  huntXP: Array(15).fill(false),
+  huntXP: Array(16).fill(false),
   survival: 0,
   survivalLimit: 0,
   cannotSpendSurvival: false,
@@ -367,10 +367,11 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
         <div className="hunt-xp-section">
           <span>Hunt XP</span>
           <div className="hunt-xp-boxes">
-            {survivor.huntXP.map((checked, i) => {
+            {[...survivor.huntXP, ...(survivor.huntXP.length < 16 ? [false] : [])].map((checked, i) => {
               const isAgeMilestone = [1, 5, 9, 14].includes(i)
+              const isRetirementAge = i === 15
               return (
-                <label key={i} className={`checkbox-box ${isAgeMilestone ? 'age-milestone' : ''}`}>
+                <label key={i} className={`checkbox-box ${isAgeMilestone ? 'age-milestone' : ''} ${isRetirementAge ? 'retirement-age' : ''}`}>
                   <input
                     type="checkbox"
                     checked={checked}
@@ -379,6 +380,10 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                 </label>
               )
             })}
+            <span className="retired-label">(retired)</span>
+          </div>
+          <div className="milestones">
+            <div className="milestone-label">x1 - x4 <span className="milestone-marker">■</span> Age</div>
           </div>
         </div>
       </div>

@@ -205,16 +205,36 @@
     linear-gradient(180deg, rgba(255,255,255,.02) 0%, transparent 100%);
   border: 1px solid #3a3230;
   box-shadow: inset 0 0 60px rgba(0,0,0,0.08), inset 0 0 30px rgba(0,0,0,0.05);
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s ease;
+  transition: none;
   position: relative;
   overflow: hidden;
   transform-origin: center center;
   cursor: pointer;
 }
 
-.quadrant-hover-overlay {
+/* Marker button styles */
+.marker-mode-button {
+  padding: 0.5rem 1rem;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+.marker-mode-button.active {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+}
+
+.marker-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+/* Marker overlay when in marker mode */
+.marker-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -224,46 +244,234 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
   z-index: 10;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.quadrant-hover-overlay span {
+.marker-overlay:hover {
+  background-color: rgba(58, 50, 48, 0.85);
+}
+
+.marker-add-icon {
+  font-size: 4rem;
   color: #d4c5a9;
-  font-size: 2rem;
-  font-weight: 700;
+  font-weight: 300;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-  letter-spacing: 1px;
 }
 
-.quadrant:not(.focused):not(.unfocused):hover {
-  transform: scale(1.02);
-  box-shadow: inset 0 0 60px rgba(0,0,0,0.08), inset 0 0 30px rgba(0,0,0,0.05),
-              0 8px 24px rgba(0,0,0,0.3);
-  z-index: 5;
+/* Red circle marker indicator */
+.marker-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  background-color: #ef4444;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.6),
+              inset 0 2px 4px rgba(255, 255, 255, 0.3),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.quadrant:not(.focused):not(.unfocused):hover .quadrant-hover-overlay {
-  opacity: 1;
+.marker-indicator:hover {
+  background-color: #dc2626;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.8),
+              inset 0 2px 4px rgba(255, 255, 255, 0.3),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Disable hover overlays on touch devices */
-@media (hover: none) {
-  .quadrant-hover-overlay {
-    display: none !important;
-  }
+.marker-indicator:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
 
-  .quadrant:not(.focused):not(.unfocused):hover {
-    transform: none;
-    box-shadow: inset 0 0 60px rgba(0,0,0,0.08), inset 0 0 30px rgba(0,0,0,0.05);
+/* Smaller markers on mobile */
+@media (max-width: 1000px) {
+  .marker-indicator {
+    width: 80px;
+    height: 80px;
   }
 }
 
 .quadrant:focus {
   outline: 3px solid #666;
   outline-offset: -3px;
+}
+
+/* Permanent injuries and notes styles (apply to all screen sizes) */
+.permanent-injuries-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.permanent-injuries-section > h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  border-bottom: 2px solid #3a3230;
+  padding-bottom: 0.25rem;
+}
+
+.injury-legend {
+  font-size: 0.65rem;
+  color: #5a4a3a;
+  margin: 0.3rem 0;
+  padding: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #8a7a6a;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legend-box {
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 1px solid #3a3230;
+  display: inline-block;
+}
+
+.red-legend {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.injury-location-group {
+  border: 1px solid #3a3230;
+  padding: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.injury-location-group h4 {
+  margin: 0 0 0.3rem 0;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  text-transform: capitalize;
+}
+
+.no-injuries {
+  font-size: 0.65rem;
+  color: #8a7a6a;
+  font-style: italic;
+  padding: 0.2rem 0;
+}
+
+.injury-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 0.3rem;
+  padding: 0.2rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+}
+
+.injury-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #2a1a1a;
+}
+
+.injury-checkboxes {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.injury-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0;
+}
+
+.injury-checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  position: relative;
+}
+
+.injury-checkbox input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #3a3230;
+}
+
+.injury-checkbox.red-checkbox {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.injury-checkbox.red-checkbox input[type="checkbox"] {
+  background-color: rgba(220, 38, 38, 0.4);
+}
+
+.auxiliary-notes-section {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  min-height: 300px;
+}
+
+.auxiliary-notes-section h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #2a1a1a;
+  border-bottom: 2px solid #3a3230;
+  padding-bottom: 0.25rem;
+}
+
+.auxiliary-notes-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-family: inherit;
+  font-size: 0.7rem;
+  color: #2a1a1a;
+  resize: none;
+  line-height: 1.4;
+  min-height: 100px;
+}
+
+.auxiliary-notes-textarea:focus {
+  outline: 2px solid #5a4a3a;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.auxiliary-notes-textarea::placeholder {
+  color: #8a7a6a;
+  font-style: italic;
 }
 
 /* Top-left quadrant grows right and down */
@@ -368,176 +576,6 @@
     background: linear-gradient(to top, #d4c5a9 0%, transparent 100%);
     z-index: 1;
     pointer-events: none;
-  }
-
-  .permanent-injuries-section {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .permanent-injuries-section > h3 {
-    margin: 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #2a1a1a;
-    border-bottom: 2px solid #3a3230;
-    padding-bottom: 0.25rem;
-  }
-
-  .injury-legend {
-    font-size: 0.65rem;
-    color: #5a4a3a;
-    margin: 0.3rem 0;
-    padding: 0.2rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid #8a7a6a;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .legend-box {
-    width: 0.7rem;
-    height: 0.7rem;
-    border: 1px solid #3a3230;
-    display: inline-block;
-  }
-
-  .red-legend {
-    background-color: rgba(220, 38, 38, 0.4);
-    border-color: #991b1b;
-  }
-
-  .injury-location-group {
-    border: 1px solid #3a3230;
-    padding: 0.3rem;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-
-  .injury-location-group h4 {
-    margin: 0 0 0.3rem 0;
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: #2a1a1a;
-    text-transform: capitalize;
-  }
-
-  .no-injuries {
-    font-size: 0.65rem;
-    color: #8a7a6a;
-    font-style: italic;
-    padding: 0.2rem 0;
-  }
-
-  .injury-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    margin-bottom: 0.3rem;
-    padding: 0.2rem;
-    background-color: rgba(255, 255, 255, 0.3);
-    border: 1px solid #5a4a3a;
-  }
-
-  .injury-name {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #2a1a1a;
-  }
-
-  .injury-checkboxes {
-    display: flex;
-    gap: 0.2rem;
-    flex-wrap: wrap;
-  }
-
-  .injury-checkbox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.85rem;
-    height: 0.85rem;
-    border: 1px solid #3a3230;
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 0;
-  }
-
-  .injury-checkbox input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 0.7rem;
-    height: 0.7rem;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    position: relative;
-  }
-
-  .injury-checkbox input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: #3a3230;
-  }
-
-  .injury-checkbox.red-checkbox {
-    background-color: rgba(220, 38, 38, 0.4);
-    border-color: #991b1b;
-  }
-
-  .injury-checkbox.red-checkbox input[type="checkbox"] {
-    background-color: rgba(220, 38, 38, 0.4);
-  }
-
-  .auxiliary-notes-section {
-    display: flex;
-    flex-direction: column;
-    flex: 3;
-    min-height: 300px;
-  }
-
-  .auxiliary-notes-section h3 {
-    margin: 0 0 0.5rem 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #2a1a1a;
-    border-bottom: 2px solid #3a3230;
-    padding-bottom: 0.25rem;
-  }
-
-  .auxiliary-notes-textarea {
-    flex: 1;
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #3a3230;
-    background-color: rgba(255, 255, 255, 0.3);
-    font-family: inherit;
-    font-size: 0.7rem;
-    color: #2a1a1a;
-    resize: none;
-    line-height: 1.4;
-    min-height: 100px;
-  }
-
-  .auxiliary-notes-textarea:focus {
-    outline: 2px solid #5a4a3a;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .auxiliary-notes-textarea::placeholder {
-    color: #8a7a6a;
-    font-style: italic;
   }
 }
 
@@ -723,9 +761,22 @@
 }
 
 .quadrant.unfocused {
-  opacity: 0;
-  transform: scale(0.9);
+  filter: brightness(0.3);
   pointer-events: none;
+  position: relative;
+  transform: scale(1);
+}
+
+.quadrant.unfocused::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .top-toolbar {
@@ -916,6 +967,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.export-import-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* Settlement Management Drawer */
@@ -1180,6 +1237,12 @@
 
 .glossary-button {
   /* Removed font-size override to match other toolbar buttons */
+}
+
+.toolbar-icon-button {
+  padding: 0.35rem 0.5rem;
+  min-width: 2.5rem;
+  font-size: 1.25rem;
 }
 
 .nav-button {
@@ -1911,6 +1974,7 @@
     gap: 0.25rem;
     flex-wrap: wrap;
     justify-content: flex-start;
+    z-index: 101;
   }
 
   .mobile-menu-button {
@@ -1993,6 +2057,62 @@
 
   .toolbar-title-group {
     display: none;
+  }
+
+  /* Fix disclaimer banner on mobile */
+  .bottom-disclaimer-banner {
+    font-size: 0.5rem;
+    padding: 0.25rem 0.35rem;
+    line-height: 1.2;
+  }
+
+  /* Mobile focus mode layout */
+  .focus-container {
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    right: 0;
+    bottom: 1.5rem;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 100;
+  }
+
+  .focused-main-sheet {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border: 1px solid #3a3230;
+    background-color: #d4c5a9;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(0,0,0,.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(255,255,255,.02) 0%, transparent 100%);
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.08), inset 0 0 30px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+  }
+
+  .secondary-sheet {
+    width: 100%;
+    height: auto;
+    position: relative;
+    background-color: #d4c5a9;
+    background-image:
+      radial-gradient(circle at 20% 50%, rgba(0,0,0,.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(255,255,255,.02) 0%, transparent 100%);
+    border: 1px solid #3a3230;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.08), inset 0 0 30px rgba(0,0,0,0.05);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex-shrink: 0;
   }
 }
 
