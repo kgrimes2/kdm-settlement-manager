@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import './SurvivorSheet.css'
 import NumericInput from './NumericInput'
 import type { GlossaryTerm } from './types/glossary'
@@ -81,6 +81,7 @@ export interface SurvivorData {
     waist: PermanentInjury[]
     legs: PermanentInjury[]
   }
+  image?: string
 }
 
 export const initialSurvivorData: SurvivorData = {
@@ -184,6 +185,45 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
   // Generate a unique identifier for this survivor's radio buttons
   const survivorId = survivor.createdAt
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (event) => {
+      const img = new Image()
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        let width = img.width
+        let height = img.height
+
+        // Resize to max 128x128 while maintaining aspect ratio
+        if (width > height) {
+          if (width > 128) {
+            height = (height * 128) / width
+            width = 128
+          }
+        } else {
+          if (height > 128) {
+            width = (width * 128) / height
+            height = 128
+          }
+        }
+
+        canvas.width = width
+        canvas.height = height
+        const ctx = canvas.getContext('2d')
+        ctx?.drawImage(img, 0, 0, width, height)
+
+        const resizedImage = canvas.toDataURL('image/jpeg', 0.8)
+        updateField('image', resizedImage)
+      }
+      img.src = event.target?.result as string
+    }
+    reader.readAsDataURL(file)
+  }
 
   // Create a set of normalized glossary terms for fast lookup
   const glossaryTermsSet = useMemo(() => {
@@ -332,63 +372,39 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
 
   return (
     <div className="survivor-sheet">
-      <div className="sheet-header">
-        <div className="name-section">
-          <label>Name</label>
-          <input
-            type="text"
-            value={survivor.name}
-            onChange={(e) => updateField('name', e.target.value)}
-            className="name-input"
-          />
-        </div>
-        <div className="gender-section">
-          <label onClick={(e) => e.stopPropagation()}>
-            <input
-              type="radio"
-              name={`gender-${survivorId}`}
-              value="M"
-              checked={survivor.gender === 'M'}
-              onChange={() => updateField('gender', 'M')}
-            />
-            M
-          </label>
-          <label onClick={(e) => e.stopPropagation()}>
-            <input
-              type="radio"
-              name={`gender-${survivorId}`}
-              value="F"
-              checked={survivor.gender === 'F'}
-              onChange={() => updateField('gender', 'F')}
-            />
-            F
-          </label>
-        </div>
-        <div className="hunt-xp-section">
-          <span>Hunt XP</span>
-          <div className="hunt-xp-boxes">
-            {[...survivor.huntXP, ...(survivor.huntXP.length < 16 ? [false] : [])].map((checked, i) => {
-              const isAgeMilestone = [1, 5, 9, 14].includes(i)
-              const isRetirementAge = i === 15
-              return (
-                <label key={i} className={`checkbox-box ${isAgeMilestone ? 'age-milestone' : ''} ${isRetirementAge ? 'retirement-age' : ''}`}>
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => toggleHuntXP(i)}
-                  />
-                </label>
-              )
-            })}
-          </div>
-          <div className="milestones">
-            <div className="milestone-label">x1 - x4 <span className="milestone-marker">■</span> Age</div>
-          </div>
-        </div>
-      </div>
-
       <div className="sheet-content">
         <div className="left-column">
+          <div className="image-name-container">
+            <div className="name-gender-column">
+              <input
+                type="text"
+                value={survivor.name}
+                onChange={(e) => updateField('name', e.target.value)}
+                className="vertical-name"
+                placeholder="Name"
+              />
+              <div
+                className="gender-toggle"
+                onClick={() => updateField('gender', survivor.gender === 'M' ? 'F' : 'M')}
+              >
+                {survivor.gender === 'F' ? '♀' : '♂'}
+              </div>
+            </div>
+            <div className="camera-section" onClick={() => fileInputRef.current?.click()}>
+              {survivor.image ? (
+                <img src={survivor.image} alt="Survivor" className="survivor-image" />
+              ) : (
+                '📷'
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+            </div>
+          </div>
           <div className="survival-section">
             <div className="survival-header">
               <h3>Survival</h3>
@@ -411,90 +427,118 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                 min={0}
                 max={survivor.survivalLimit}
               />
-              <label className="cannot-spend-survival">
-                <span>Cannot spend<br />survival</span>
-                <input
-                  type="checkbox"
-                  checked={survivor.cannotSpendSurvival}
-                  onChange={() => updateField('cannotSpendSurvival', !survivor.cannotSpendSurvival)}
-                />
-              </label>
-            </div>
-            <div className="survival-abilities">
-              {Object.entries(survivor.survivalAbilities).map(([key, checked]) => (
-                <label key={key}>
-                  <span>{key.charAt(0).toUpperCase() + key.slice(1)}</span>
+              <div className="survival-right">
+                <label className="cannot-spend-survival">
+                  <span>Cannot spend survival</span>
                   <input
                     type="checkbox"
-                    checked={checked}
-                    onChange={() => toggleCheckbox(key as keyof SurvivorData['survivalAbilities'])}
+                    checked={survivor.cannotSpendSurvival}
+                    onChange={() => updateField('cannotSpendSurvival', !survivor.cannotSpendSurvival)}
                   />
                 </label>
-              ))}
-            </div>
-          </div>
-
-          <div className="brain-section">
-            <div className="brain-shield-group">
-              <div className={`shield-icon ${survivor.brainArmor >= 3 ? 'insane-shield' : ''}`}>
-                <NumericInput
-                  value={survivor.brainArmor}
-                  onChange={(value) => updateField('brainArmor', value)}
-                  className="shield-input"
-                  min={0}
-                />
+                <div className="survival-abilities">
+                  {Object.entries(survivor.survivalAbilities).map(([key, checked]) => (
+                    <div
+                      key={key}
+                      className={`survival-ability-label ${checked ? 'active' : ''}`}
+                      onClick={() => toggleCheckbox(key as keyof SurvivorData['survivalAbilities'])}
+                    >
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-            <span className="brain-label">
-              Brain (insanity)
-              <span className="brain-note">insane on 3+</span>
-            </span>
-            <label className="brain-checkbox">
-              <input
-                type="checkbox"
-                checked={survivor.insane}
-                onChange={() => updateField('insane', !survivor.insane)}
-              />
-            </label>
           </div>
 
           <div className="body-locations">
             {Object.entries(survivor.bodyLocations).map(([location, boxes]) => (
-              <div key={location} className="body-location">
-                <div className="shield-icon">
-                  <NumericInput
-                    value={boxes.armor}
-                    onChange={(value) => updateBodyArmor(location as keyof SurvivorData['bodyLocations'], value)}
-                    className="shield-input"
-                    min={0}
-                  />
-                </div>
-                <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
-                {location !== 'head' && (
+              <div key={location} className="body-location-group">
+                {location === 'head' && (
+                  <div className="brain-section">
+                    <div className="brain-shield-group">
+                      <div className={`shield-icon ${survivor.brainArmor >= 3 ? 'insane-shield' : ''}`}>
+                        <NumericInput
+                          value={survivor.brainArmor}
+                          onChange={(value) => updateField('brainArmor', value)}
+                          className="shield-input"
+                          min={0}
+                        />
+                      </div>
+                    </div>
+                    <span className="brain-label">
+                      Brain (insanity)
+                      <span className="brain-note">insane on 3+</span>
+                    </span>
+                    <label className="brain-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={survivor.insane}
+                        onChange={() => updateField('insane', !survivor.insane)}
+                      />
+                    </label>
+                  </div>
+                )}
+                <div className="body-location">
+                  <div className="shield-icon">
+                    <NumericInput
+                      value={boxes.armor}
+                      onChange={(value) => updateBodyArmor(location as keyof SurvivorData['bodyLocations'], value)}
+                      className="shield-input"
+                      min={0}
+                    />
+                  </div>
+                  <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
+                  {location !== 'head' && (
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={boxes.light}
+                        onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'light')}
+                      />
+                      L
+                    </label>
+                  )}
                   <label>
                     <input
                       type="checkbox"
-                      checked={boxes.light}
-                      onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'light')}
+                      checked={boxes.heavy}
+                      onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'heavy')}
+                      className="heavy-injury-checkbox"
                     />
-                    L
+                    H
                   </label>
-                )}
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={boxes.heavy}
-                    onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'heavy')}
-                    className="heavy-injury-checkbox"
-                  />
-                  H
-                </label>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="middle-column">
+        <div className="right-columns-container">
+          <div className="hunt-xp-section">
+            <span>Hunt XP</span>
+            <div className="hunt-xp-boxes">
+              {[...survivor.huntXP, ...(survivor.huntXP.length < 16 ? [false] : [])].map((checked, i) => {
+                const isAgeMilestone = [1, 5, 9, 14].includes(i)
+                const isRetirementAge = i === 15
+                return (
+                  <label key={i} className={`checkbox-box ${isAgeMilestone ? 'age-milestone' : ''} ${isRetirementAge ? 'retirement-age' : ''}`}>
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleHuntXP(i)}
+                    />
+                  </label>
+                )
+              })}
+            </div>
+            <div className="milestones">
+              <div className="milestone-label">x1 - x4 <span className="milestone-marker">■</span> Age</div>
+            </div>
+          </div>
+
+          <div className="columns-wrapper">
+            <div className="middle-column">
           <div className="stats-section">
             {Object.entries(survivor.stats).map(([stat, value]) => (
               <div key={stat} className="stat-box">
@@ -863,6 +907,8 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                 className="pill-input"
               />
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
