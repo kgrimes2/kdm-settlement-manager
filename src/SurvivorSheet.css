@@ -68,7 +68,7 @@
   color: #2a1a1a;
   font-weight: bold;
   font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
-  max-width: 200px;
+  max-width: 120px;
 }
 
 .gender-section {
@@ -135,6 +135,22 @@
   font-size: 0.6rem;
   font-weight: bold;
   color: #3a3230;
+}
+
+.checkbox-box.retirement-age {
+  background-color: rgba(220, 38, 38, 0.4);
+  border-color: #991b1b;
+}
+
+.checkbox-box.retirement-age input[type="checkbox"] {
+  background-color: rgba(220, 38, 38, 0.4);
+}
+
+.retired-label {
+  font-size: 0.65rem;
+  color: #5a4a3a;
+  margin-left: 0.3rem;
+  font-style: italic;
 }
 
 .checkbox-box input[type="checkbox"] {
@@ -607,6 +623,7 @@
   font-size: 0.4rem;
   margin-right: 0.15rem;
   letter-spacing: 0.05rem;
+  color: #fff9c4;
 }
 
 .max-note {
@@ -674,18 +691,41 @@
     gap: 0.25rem;
   }
 
+  /* Prevent weapon proficiency overflow on mobile */
   .weapon-proficiency-inline {
     flex-wrap: wrap;
+    gap: 0.2rem;
   }
 
-  .proficiency-row {
-    width: 100%;
+  .weapon-proficiency-inline .proficiency-row {
+    flex-wrap: wrap;
+    gap: 0.1rem;
   }
 
+  .proficiency-boxes {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+  }
+
+  .proficiency-checkboxes {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+  }
+
+  /* Hide milestone labels on mobile to save space */
   .proficiency-milestones {
-    width: 100%;
-    margin-left: 0;
-    justify-content: flex-start;
+    display: none;
+  }
+
+  /* Prevent understanding/courage overflow on mobile */
+  .understanding-section,
+  .courage-section {
+    min-width: 0;
+  }
+
+  .attribute-boxes {
+    flex-wrap: wrap;
+    gap: 0.15rem;
   }
 }
 
@@ -879,6 +919,14 @@ input[type="radio"]:checked::after {
 .pill-input::placeholder {
   color: #8a7a6a;
   font-style: italic;
+}
+
+/* Stack weapon proficiency milestone labels on iPad overview */
+@media (min-width: 1001px) and (max-width: 1440px) {
+  .proficiency-milestones {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
