@@ -380,7 +380,6 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                 </label>
               )
             })}
-            <span className="retired-label">(retired)</span>
           </div>
           <div className="milestones">
             <div className="milestone-label">x1 - x4 <span className="milestone-marker">■</span> Age</div>
