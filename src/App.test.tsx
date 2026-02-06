@@ -750,4 +750,130 @@ describe('App', () => {
       expect(screen.getByText('Survivor Management')).toBeInTheDocument()
     })
   })
+
+  describe('Layout Overflow Detection', () => {
+    const setViewportWidth = (width: number) => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: width,
+      })
+      window.dispatchEvent(new Event('resize'))
+    }
+
+    beforeEach(() => {
+      localStorage.setItem('tutorial-completed', '1.0.4')
+    })
+
+    it('should not have horizontal overflow on mobile (375px)', () => {
+      setViewportWidth(375)
+      const { container } = render(<App />)
+
+      const body = document.body
+      const hasOverflow = body.scrollWidth > body.clientWidth
+
+      if (hasOverflow) {
+        console.warn(`Horizontal overflow detected: scrollWidth=${body.scrollWidth}, clientWidth=${body.clientWidth}`)
+      }
+
+      expect(body.scrollWidth).toBeLessThanOrEqual(body.clientWidth)
+    })
+
+    it('should not have horizontal overflow on tablet (768px)', () => {
+      setViewportWidth(768)
+      const { container } = render(<App />)
+
+      const body = document.body
+      const hasOverflow = body.scrollWidth > body.clientWidth
+
+      if (hasOverflow) {
+        console.warn(`Horizontal overflow detected: scrollWidth=${body.scrollWidth}, clientWidth=${body.clientWidth}`)
+      }
+
+      expect(body.scrollWidth).toBeLessThanOrEqual(body.clientWidth)
+    })
+
+    it('should not have horizontal overflow on desktop (1920px)', () => {
+      setViewportWidth(1920)
+      const { container } = render(<App />)
+
+      const body = document.body
+      const hasOverflow = body.scrollWidth > body.clientWidth
+
+      if (hasOverflow) {
+        console.warn(`Horizontal overflow detected: scrollWidth=${body.scrollWidth}, clientWidth=${body.clientWidth}`)
+      }
+
+      expect(body.scrollWidth).toBeLessThanOrEqual(body.clientWidth)
+    })
+
+    it('should not overflow when survivor sheet is focused on mobile', async () => {
+      setViewportWidth(375)
+      const user = userEvent.setup()
+      const { container } = render(<App />)
+
+      // Focus on a quadrant
+      const quadrant = container.querySelector('.quadrant-1')
+      if (quadrant) {
+        await user.click(quadrant)
+      }
+
+      await waitFor(() => {
+        const focusContainer = container.querySelector('.focus-container')
+        if (focusContainer) {
+          const containerWidth = focusContainer.clientWidth
+          const scrollWidth = focusContainer.scrollWidth
+
+          if (scrollWidth > containerWidth) {
+            console.warn(`Focus container overflow: scrollWidth=${scrollWidth}, clientWidth=${containerWidth}`)
+          }
+
+          expect(scrollWidth).toBeLessThanOrEqual(containerWidth)
+        }
+      })
+    })
+
+    it('should not have overflowing weapon proficiency section', () => {
+      const { container } = render(<App />)
+
+      const weaponProficiency = container.querySelector('.weapon-proficiency')
+      if (weaponProficiency) {
+        const parent = weaponProficiency.parentElement
+        if (parent) {
+          const parentWidth = parent.clientWidth
+          const childWidth = weaponProficiency.scrollWidth
+
+          if (childWidth > parentWidth) {
+            console.warn(`Weapon proficiency overflow: childWidth=${childWidth}, parentWidth=${parentWidth}`)
+          }
+
+          expect(childWidth).toBeLessThanOrEqual(parentWidth + 2) // Allow 2px tolerance for borders
+        }
+      }
+    })
+
+    it('should not have overflowing understanding/courage sections on mobile', () => {
+      setViewportWidth(375)
+      const { container } = render(<App />)
+
+      const courageSection = container.querySelector('.courage-section')
+      const understandingSection = container.querySelector('.understanding-section')
+
+      ;[courageSection, understandingSection].forEach((section) => {
+        if (section) {
+          const parent = section.parentElement
+          if (parent) {
+            const parentWidth = parent.clientWidth
+            const childWidth = section.scrollWidth
+
+            if (childWidth > parentWidth) {
+              console.warn(`Section overflow: childWidth=${childWidth}, parentWidth=${parentWidth}`)
+            }
+
+            expect(childWidth).toBeLessThanOrEqual(parentWidth + 2)
+          }
+        }
+      })
+    })
+  })
 })

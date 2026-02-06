@@ -17,7 +17,7 @@ interface TutorialProps {
 const tutorialSteps: TutorialStep[] = [
   {
     title: 'Welcome to KDM Settlement Manager!',
-    description: 'This quick tutorial will show you how to manage your Kingdom Death: Monster survivors. You can skip this anytime by clicking "Skip Tutorial".',
+    description: 'This quick tutorial will show you how to manage your Kingdom Death: Monster survivors. You can skip this anytime by clicking the "×" button in the top right.',
     position: 'center'
   },
   {
@@ -57,22 +57,28 @@ const tutorialSteps: TutorialStep[] = [
     position: 'bottom'
   },
   {
+    title: 'Temporary Markers',
+    description: 'Click the "🔴 Add Marker" button to place red circle markers on survivors. Click the button to activate marker mode, then click a survivor to place the marker. Click the red circle to remove it. Markers are temporary and clear on refresh.',
+    target: '.marker-mode-button',
+    position: 'bottom'
+  },
+  {
     title: 'Managing Survivors',
     description: 'Click "👥 Manage Survivors" to create new survivors, move survivors between active/pool, or mark them as retired/deceased.',
-    target: 'button:has-text("Manage Survivors")',
+    target: 'button[aria-label="Manage Survivors"]',
     position: 'center'
   },
   {
     title: 'Multiple Settlements',
     description: 'Use the settlement dropdown to switch between campaigns. Click "Manage Settlements..." to create, rename, or delete settlements.',
-    target: '.settlement-selector',
+    target: '.settlement-dropdown-button',
     position: 'bottom'
   },
   {
     title: 'Auto-Save',
     description: 'All changes save automatically to your browser. Use ⬆️ Export to backup your data, or ⬇️ Import to restore from a file.',
-    target: '.toolbar-right',
-    position: 'bottom'
+    target: '.export-import-buttons',
+    position: 'center'
   },
   {
     title: 'You\'re All Set!',

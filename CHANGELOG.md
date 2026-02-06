@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Marker mode auto-deactivates after adding a marker
   - Markers are temporary (not persisted, reset on refresh)
   - Markers auto-clear when survivors are deactivated
+- Tutorial step explaining marker functionality
 
 ### Removed
 - "Click to edit" hover overlays on quadrants
@@ -27,11 +28,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Settlement selector moved to right side of toolbar
 - Removed spent/marker functionality from v1.0.4 (replaced with new temporary marker system)
 - Reverted data version from 8 back to 7
+- Tutorial improvements:
+  - Updated welcome step to reference "×" button instead of non-existent "Skip Tutorial" button
+  - Fixed step highlighting for "Managing Survivors", "Multiple Settlements", and "Auto-Save" steps
+  - Centered dialog position for key tutorial steps
+  - Export and Import buttons now highlighted together in Auto-Save step
 
 ### Technical
 - Added marker state management (Set-based, component-level only)
 - Removed hover overlay logic and event handlers
 - Simplified quadrant interaction model
+- Added wrapper div for export/import buttons to enable grouped highlighting in tutorial
 
 ## [1.0.4] - 2026-02-05
 

@@ -545,9 +545,8 @@
 
 .proficiency-milestones {
   display: flex;
-  flex-direction: column;
   gap: 0.2rem;
-  align-items: flex-start;
+  align-items: center;
   margin-left: auto;
 }
 
@@ -690,6 +689,43 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
+  }
+
+  /* Prevent weapon proficiency overflow on mobile */
+  .weapon-proficiency-inline {
+    flex-wrap: wrap;
+    gap: 0.2rem;
+  }
+
+  .weapon-proficiency-inline .proficiency-row {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+  }
+
+  .proficiency-boxes {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+  }
+
+  .proficiency-checkboxes {
+    flex-wrap: wrap;
+    gap: 0.1rem;
+  }
+
+  /* Hide milestone labels on mobile to save space */
+  .proficiency-milestones {
+    display: none;
+  }
+
+  /* Prevent understanding/courage overflow on mobile */
+  .understanding-section,
+  .courage-section {
+    min-width: 0;
+  }
+
+  .attribute-boxes {
+    flex-wrap: wrap;
+    gap: 0.15rem;
   }
 }
 
@@ -883,6 +919,14 @@ input[type="radio"]:checked::after {
 .pill-input::placeholder {
   color: #8a7a6a;
   font-style: italic;
+}
+
+/* Stack weapon proficiency milestone labels on iPad overview */
+@media (min-width: 1001px) and (max-width: 1440px) {
+  .proficiency-milestones {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
