@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react'
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react'
 import './SurvivorSheet.css'
 import NumericInput from './NumericInput'
 import type { GlossaryTerm } from './types/glossary'
@@ -186,6 +186,25 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
   const survivorId = survivor.createdAt
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const nameRef = useRef<HTMLTextAreaElement>(null)
+  const [nameFontSize, setNameFontSize] = useState(0.8)
+  const [nameEditing, setNameEditing] = useState(false)
+
+  const fitNameText = useCallback(() => {
+    const el = nameRef.current
+    if (!el) return
+    let size = 0.8
+    el.style.fontSize = size + 'rem'
+    while (el.scrollWidth > el.clientWidth && size > 0.3) {
+      size -= 0.05
+      el.style.fontSize = size + 'rem'
+    }
+    setNameFontSize(size)
+  }, [])
+
+  useEffect(() => {
+    fitNameText()
+  }, [survivor.name, fitNameText])
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -376,15 +395,32 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
         <div className="left-column">
           <div className="image-name-container">
             <div className="name-gender-column">
-              <input
-                type="text"
-                value={survivor.name}
-                onChange={(e) => updateField('name', e.target.value)}
-                className="vertical-name"
-                placeholder="Name"
-              />
+              <div className="name-wrapper" onClick={() => setNameEditing(true)}>
+                {nameEditing ? (
+                  <input
+                    type="text"
+                    value={survivor.name}
+                    onChange={(e) => updateField('name', e.target.value)}
+                    onBlur={() => setNameEditing(false)}
+                    onKeyDown={(e) => { if (e.key === 'Enter') setNameEditing(false) }}
+                    className="survivor-name-edit"
+                    placeholder="Name"
+                    autoFocus
+                  />
+                ) : (
+                  <textarea
+                    ref={nameRef}
+                    value={survivor.name}
+                    readOnly
+                    className="survivor-name"
+                    placeholder="Name"
+                    rows={2}
+                    style={{ fontSize: nameFontSize + 'rem' }}
+                  />
+                )}
+              </div>
               <div
-                className="gender-toggle"
+                className={`gender-toggle ${survivor.gender === 'M' ? 'male' : 'female'}`}
                 onClick={() => updateField('gender', survivor.gender === 'M' ? 'F' : 'M')}
               >
                 {survivor.gender === 'F' ? '♀' : '♂'}
