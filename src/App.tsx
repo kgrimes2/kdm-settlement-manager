@@ -10,9 +10,10 @@ import {
   CURRENT_DATA_VERSION
 } from './migrations'
 import GlossaryModal from './components/GlossaryModal'
+import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
 
-const APP_VERSION = '1.0.3'
+const APP_VERSION = '1.0.5'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -55,15 +56,18 @@ function App() {
   const [showActiveSurvivors, setShowActiveSurvivors] = useState(true)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
-  const [hoveredQuadrant, setHoveredQuadrant] = useState<QuadrantId>(null)
-  const [showHoverOverlay, setShowHoverOverlay] = useState<QuadrantId>(null)
-  const hoverTimeoutRef = useRef<number | null>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
+  const [markers, setMarkers] = useState<Set<1 | 2 | 3 | 4>>(new Set())
+  const [showMarkerMode, setShowMarkerMode] = useState(false)
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+  const [showTutorial, setShowTutorial] = useState(() => {
+    const completed = localStorage.getItem('tutorial-completed')
+    return completed !== APP_VERSION
+  })
   const [isClosingSettlementDrawer, setIsClosingSettlementDrawer] = useState(false)
   const [settlementDialog, setSettlementDialog] = useState<{ type: 'create' | 'rename'; settlementId?: string; currentName?: string } | null>(null)
   const [settlementInputValue, setSettlementInputValue] = useState('')
@@ -137,12 +141,60 @@ function App() {
       } else if (e.key === 'ArrowRight') {
         e.preventDefault()
         handleNextQuadrant()
+      } else if (e.key === ' ' && focusedQuadrant !== null && !showTutorial) {
+        e.preventDefault()
+        handleNextQuadrant()
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant])
+  }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant, showTutorial])
+
+  // Handle swipe gestures on mobile for cycling survivors in focus mode
+  useEffect(() => {
+    if (!isMobileDevice || focusedQuadrant === null) return
+
+    let touchStartX = 0
+    let touchStartY = 0
+    let touchEndX = 0
+    let touchEndY = 0
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX
+      touchStartY = e.changedTouches[0].screenY
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX
+      touchEndY = e.changedTouches[0].screenY
+      handleSwipe()
+    }
+
+    const handleSwipe = () => {
+      const deltaX = touchEndX - touchStartX
+      const deltaY = touchEndY - touchStartY
+
+      // Only trigger if horizontal swipe is more significant than vertical
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          // Swipe right - go to previous
+          handlePreviousQuadrant()
+        } else {
+          // Swipe left - go to next
+          handleNextQuadrant()
+        }
+      }
+    }
+
+    document.addEventListener('touchstart', handleTouchStart)
+    document.addEventListener('touchend', handleTouchEnd)
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart)
+      document.removeEventListener('touchend', handleTouchEnd)
+    }
+  }, [isMobileDevice, focusedQuadrant])
 
   // Close settlement dropdown when clicking outside
   useEffect(() => {
@@ -162,62 +214,20 @@ function App() {
     }
   }, [showSettlementDropdown])
 
-  // Auto-hide hover overlay after 5 seconds of no mouse movement
-  useEffect(() => {
-    if (hoveredQuadrant === null) {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current)
-        hoverTimeoutRef.current = null
+  const toggleMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setMarkers(prev => {
+      const newMarkers = new Set(prev)
+      if (newMarkers.has(quadrant)) {
+        // Removing a marker - don't deactivate marker mode
+        newMarkers.delete(quadrant)
+      } else {
+        // Adding a marker - deactivate marker mode after adding
+        newMarkers.add(quadrant)
+        setShowMarkerMode(false)
       }
-      return
-    }
-
-    const resetHoverTimer = () => {
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current)
-      }
-
-      // Show overlay on hover/movement
-      setShowHoverOverlay(hoveredQuadrant)
-
-      // Hide after 5 seconds of no movement
-      hoverTimeoutRef.current = window.setTimeout(() => {
-        setShowHoverOverlay(null)
-      }, 5000)
-    }
-
-    // Start the timer
-    resetHoverTimer()
-
-    // Reset timer on mouse movement
-    const handleMouseMove = () => {
-      resetHoverTimer()
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      if (hoverTimeoutRef.current) {
-        clearTimeout(hoverTimeoutRef.current)
-      }
-    }
-  }, [hoveredQuadrant])
-
-  const handleQuadrantMouseEnter = (quadrant: QuadrantId) => {
-    // Don't show overlay when a quadrant is focused (zoomed in) or on mobile devices
-    if (focusedQuadrant !== null || isMobileDevice) return
-    setHoveredQuadrant(quadrant)
-    setShowHoverOverlay(quadrant)
-  }
-
-  const handleQuadrantMouseLeave = () => {
-    setHoveredQuadrant(null)
-    setShowHoverOverlay(null)
-    if (hoverTimeoutRef.current) {
-      clearTimeout(hoverTimeoutRef.current)
-      hoverTimeoutRef.current = null
-    }
+      return newMarkers
+    })
   }
 
   const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
@@ -371,6 +381,13 @@ function App() {
   }
 
   const handleDeactivateSurvivor = (quadrant: 1 | 2 | 3 | 4) => {
+    // Clear marker for this quadrant
+    setMarkers(prev => {
+      const newMarkers = new Set(prev)
+      newMarkers.delete(quadrant)
+      return newMarkers
+    })
+
     setAppState(prev => ({
       ...prev,
       settlements: prev.settlements.map(s => {
@@ -1067,6 +1084,16 @@ function App() {
             </div>
           </div>
           <div className="toolbar-center">
+          <button
+            className={`toolbar-button marker-mode-button ${showMarkerMode ? 'active' : ''}`}
+            onClick={() => setShowMarkerMode(!showMarkerMode)}
+            aria-label="Toggle Marker Mode"
+            title="Toggle Marker Mode"
+          >
+            <span className="marker-icon">🔴</span> Add Marker
+          </button>
+          </div>
+          <div className="toolbar-right">
           <div className="settlement-selector">
             <button
               className="settlement-dropdown-button"
@@ -1101,28 +1128,40 @@ function App() {
               </div>
             )}
           </div>
-          </div>
-          <div className="toolbar-right">
           <button
-            className="toolbar-button glossary-button"
+            className="toolbar-button toolbar-icon-button tutorial-button"
+            onClick={() => setShowTutorial(true)}
+            aria-label="Tutorial"
+            title="Tutorial"
+          >
+            🎓
+          </button>
+          <button
+            className="toolbar-button toolbar-icon-button glossary-button"
             onClick={() => handleOpenGlossary()}
-            aria-label="KDM Glossary"
-            title="KDM Glossary"
+            aria-label="Glossary"
+            title="Glossary"
           >
-            📖 Glossary
+            📖
           </button>
+          <div className="export-import-buttons">
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={handleExport}
+            aria-label="Export"
+            title="Export Data"
           >
-            ⬆️ Export
+            ⬆️
           </button>
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={handleImport}
+            aria-label="Import"
+            title="Import Data"
           >
-            ⬇️ Import
+            ⬇️
           </button>
+          </div>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
@@ -1132,11 +1171,12 @@ function App() {
             </button>
           )}
           <button
-            className="toolbar-button"
+            className="toolbar-button toolbar-icon-button"
             onClick={toggleSurvivorList}
-            aria-label="Manage survivors"
+            aria-label="Manage Survivors"
+            title="Manage Survivors"
           >
-            👥 Manage Survivors
+            👥
           </button>
         </div>
         {focusedQuadrant !== null && !isMobileDevice && (
@@ -1453,13 +1493,14 @@ function App() {
         <div
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}
-          onMouseEnter={() => handleQuadrantMouseEnter(1)}
-          onMouseLeave={handleQuadrantMouseLeave}
         >
-          {showHoverOverlay === 1 && (
-            <div className="quadrant-hover-overlay">
-              <span>Click to edit</span>
+          {showMarkerMode && !markers.has(1) && currentSettlement?.survivors[1] && (
+            <div className="marker-overlay" onClick={(e) => toggleMarker(1, e)}>
+              <div className="marker-add-icon">+</div>
             </div>
+          )}
+          {markers.has(1) && (
+            <div className="marker-indicator" onClick={(e) => toggleMarker(1, e)} />
           )}
           {currentSettlement?.survivors[1] ? (
             <SurvivorSheet
@@ -1485,13 +1526,14 @@ function App() {
         <div
           className={getQuadrantClass(2)}
           onClick={(e) => handleQuadrantClick(2, e)}
-          onMouseEnter={() => handleQuadrantMouseEnter(2)}
-          onMouseLeave={handleQuadrantMouseLeave}
         >
-          {showHoverOverlay === 2 && (
-            <div className="quadrant-hover-overlay">
-              <span>Click to edit</span>
+          {showMarkerMode && !markers.has(2) && currentSettlement?.survivors[2] && (
+            <div className="marker-overlay" onClick={(e) => toggleMarker(2, e)}>
+              <div className="marker-add-icon">+</div>
             </div>
+          )}
+          {markers.has(2) && (
+            <div className="marker-indicator" onClick={(e) => toggleMarker(2, e)} />
           )}
           {currentSettlement?.survivors[2] ? (
             <SurvivorSheet
@@ -1517,13 +1559,14 @@ function App() {
         <div
           className={getQuadrantClass(3)}
           onClick={(e) => handleQuadrantClick(3, e)}
-          onMouseEnter={() => handleQuadrantMouseEnter(3)}
-          onMouseLeave={handleQuadrantMouseLeave}
         >
-          {showHoverOverlay === 3 && (
-            <div className="quadrant-hover-overlay">
-              <span>Click to edit</span>
+          {showMarkerMode && !markers.has(3) && currentSettlement?.survivors[3] && (
+            <div className="marker-overlay" onClick={(e) => toggleMarker(3, e)}>
+              <div className="marker-add-icon">+</div>
             </div>
+          )}
+          {markers.has(3) && (
+            <div className="marker-indicator" onClick={(e) => toggleMarker(3, e)} />
           )}
           {currentSettlement?.survivors[3] ? (
             <SurvivorSheet
@@ -1549,13 +1592,14 @@ function App() {
         <div
           className={getQuadrantClass(4)}
           onClick={(e) => handleQuadrantClick(4, e)}
-          onMouseEnter={() => handleQuadrantMouseEnter(4)}
-          onMouseLeave={handleQuadrantMouseLeave}
         >
-          {showHoverOverlay === 4 && (
-            <div className="quadrant-hover-overlay">
-              <span>Click to edit</span>
+          {showMarkerMode && !markers.has(4) && currentSettlement?.survivors[4] && (
+            <div className="marker-overlay" onClick={(e) => toggleMarker(4, e)}>
+              <div className="marker-add-icon">+</div>
             </div>
+          )}
+          {markers.has(4) && (
+            <div className="marker-indicator" onClick={(e) => toggleMarker(4, e)} />
           )}
           {currentSettlement?.survivors[4] ? (
             <SurvivorSheet
@@ -1667,6 +1711,12 @@ function App() {
         glossaryTerms={glossaryData.terms}
         initialQuery={glossaryInitialQuery}
         lastUpdated={glossaryData.lastUpdated}
+      />
+
+      <Tutorial
+        isOpen={showTutorial}
+        onClose={() => setShowTutorial(false)}
+        appVersion={APP_VERSION}
       />
     </div>
   )
