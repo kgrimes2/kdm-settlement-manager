@@ -28,31 +28,23 @@ export default function NumericInput({ value, onChange, className = '', min, max
   }
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Node
-      const clickedOutsideContainer = containerRef.current && !containerRef.current.contains(target)
-      const clickedOutsideButtons = buttonsRef.current && !buttonsRef.current.contains(target)
-
-      if (clickedOutsideContainer && clickedOutsideButtons) {
-        setShowButtons(false)
-      }
-    }
-
     if (showButtons) {
       updateButtonPosition()
-      document.addEventListener('mousedown', handleClickOutside)
-      document.addEventListener('touchstart', handleClickOutside as any)
       window.addEventListener('scroll', updateButtonPosition, true)
       window.addEventListener('resize', updateButtonPosition)
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('touchstart', handleClickOutside as any)
       window.removeEventListener('scroll', updateButtonPosition, true)
       window.removeEventListener('resize', updateButtonPosition)
     }
   }, [showButtons])
+
+  const handleOverlayClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setShowButtons(false)
+  }
 
   const handleIncrement = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -88,39 +80,46 @@ export default function NumericInput({ value, onChange, className = '', min, max
         />
       </div>
       {showButtons && createPortal(
-        <div
-          ref={buttonsRef}
-          className="numeric-buttons"
-          style={{
-            position: 'fixed',
-            top: `${buttonPosition.top}px`,
-            left: `${buttonPosition.left}px`,
-            transform: 'translateY(-50%)'
-          }}
-        >
-          <button
-            className="numeric-button decrement"
-            onClick={handleDecrement}
-            onTouchEnd={(e) => {
-              e.preventDefault()
-              handleDecrement(e as any)
+        <>
+          <div
+            className="numeric-overlay"
+            onClick={handleOverlayClick}
+            onTouchEnd={handleOverlayClick}
+          />
+          <div
+            ref={buttonsRef}
+            className="numeric-buttons"
+            style={{
+              position: 'fixed',
+              top: `${buttonPosition.top}px`,
+              left: `${buttonPosition.left}px`,
+              transform: 'translateY(-50%)'
             }}
-            disabled={min !== undefined && value <= min}
           >
-            -1
-          </button>
-          <button
-            className="numeric-button increment"
-            onClick={handleIncrement}
-            onTouchEnd={(e) => {
-              e.preventDefault()
-              handleIncrement(e as any)
-            }}
-            disabled={max !== undefined && value >= max}
-          >
-            +1
-          </button>
-        </div>,
+            <button
+              className="numeric-button decrement"
+              onClick={handleDecrement}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                handleDecrement(e as any)
+              }}
+              disabled={min !== undefined && value <= min}
+            >
+              -1
+            </button>
+            <button
+              className="numeric-button increment"
+              onClick={handleIncrement}
+              onTouchEnd={(e) => {
+                e.preventDefault()
+                handleIncrement(e as any)
+              }}
+              disabled={max !== undefined && value >= max}
+            >
+              +1
+            </button>
+          </div>
+        </>,
         document.body
       )}
     </>
