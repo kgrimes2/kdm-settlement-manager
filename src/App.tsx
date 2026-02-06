@@ -58,13 +58,25 @@ function App() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
-  const [markers, setMarkers] = useState<Set<1 | 2 | 3 | 4>>(new Set())
+  type MarkerState = { state: 'dashed' | 'solid'; color: string; id: string }
+  const [markers, setMarkers] = useState<Map<1 | 2 | 3 | 4, MarkerState[]>>(new Map())
   const [showMarkerMode, setShowMarkerMode] = useState(false)
+  const [markerModeType, setMarkerModeType] = useState<'2-state' | '3-state'>('2-state')
+  const [markerColor2State, setMarkerColor2State] = useState('#f97316') // default orange
+  const [markerColor3State, setMarkerColor3State] = useState('#22c55e') // default green
+  const [show2StateDropdown, setShow2StateDropdown] = useState(false)
+  const [show3StateDropdown, setShow3StateDropdown] = useState(false)
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
   const [showTutorial, setShowTutorial] = useState(() => {
+    // Check if mobile device
+    const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      || window.innerWidth <= 1000
+    // Don't show tutorial on mobile
+    if (isMobile) return false
+
     const completed = localStorage.getItem('tutorial-completed')
     return completed !== APP_VERSION
   })
@@ -214,18 +226,67 @@ function App() {
     }
   }, [showSettlementDropdown])
 
-  const toggleMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
+  // Close marker dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.marker-button-group')) {
+        setShow2StateDropdown(false)
+        setShow3StateDropdown(false)
+      }
+    }
+
+    if (show2StateDropdown || show3StateDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [show2StateDropdown, show3StateDropdown])
+
+  const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
     e.stopPropagation()
     setMarkers(prev => {
-      const newMarkers = new Set(prev)
-      if (newMarkers.has(quadrant)) {
-        // Removing a marker - don't deactivate marker mode
+      const newMarkers = new Map(prev)
+      const existingMarkers = newMarkers.get(quadrant) || []
+      const color = markerModeType === '2-state' ? markerColor2State : markerColor3State
+      const id = `${quadrant}-${Date.now()}`
+
+      const newMarker: MarkerState = markerModeType === '2-state'
+        ? { state: 'solid', color, id }
+        : { state: 'dashed', color, id }
+
+      newMarkers.set(quadrant, [...existingMarkers, newMarker])
+      setShowMarkerMode(false)
+      return newMarkers
+    })
+  }
+
+  const toggleMarker = (quadrant: 1 | 2 | 3 | 4, markerId: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    setMarkers(prev => {
+      const newMarkers = new Map(prev)
+      const existingMarkers = newMarkers.get(quadrant) || []
+
+      const updatedMarkers = existingMarkers.map(marker => {
+        if (marker.id !== markerId) return marker
+
+        // Cycle through states
+        if (marker.state === 'dashed') {
+          return { ...marker, state: 'solid' as const }
+        } else {
+          // Remove marker by filtering it out
+          return null
+        }
+      }).filter((m): m is MarkerState => m !== null)
+
+      if (updatedMarkers.length === 0) {
         newMarkers.delete(quadrant)
       } else {
-        // Adding a marker - deactivate marker mode after adding
-        newMarkers.add(quadrant)
-        setShowMarkerMode(false)
+        newMarkers.set(quadrant, updatedMarkers)
       }
+
       return newMarkers
     })
   }
@@ -383,7 +444,7 @@ function App() {
   const handleDeactivateSurvivor = (quadrant: 1 | 2 | 3 | 4) => {
     // Clear marker for this quadrant
     setMarkers(prev => {
-      const newMarkers = new Set(prev)
+      const newMarkers = new Map(prev)
       newMarkers.delete(quadrant)
       return newMarkers
     })
@@ -1084,14 +1145,162 @@ function App() {
             </div>
           </div>
           <div className="toolbar-center">
-          <button
-            className={`toolbar-button marker-mode-button ${showMarkerMode ? 'active' : ''}`}
-            onClick={() => setShowMarkerMode(!showMarkerMode)}
-            aria-label="Toggle Marker Mode"
-            title="Toggle Marker Mode"
-          >
-            <span className="marker-icon">🔴</span> Add Marker
-          </button>
+          <div className={`marker-button-group ${showMarkerMode && markerModeType === '2-state' ? 'active' : ''}`}>
+            <button
+              className="marker-mode-button"
+              onClick={() => {
+                setMarkerModeType('2-state')
+                setShowMarkerMode(!showMarkerMode || markerModeType !== '2-state')
+                setShow2StateDropdown(false)
+              }}
+              aria-label="Toggle 2-State Marker Mode"
+              title="Add Marker (2-state)"
+            >
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="15"
+                  fill={markerColor2State}
+                  stroke={markerColor2State}
+                  strokeWidth="3"
+                />
+              </svg>
+            </button>
+            <button
+              className="marker-dropdown-arrow"
+              onClick={(e) => {
+                e.stopPropagation()
+                setShow2StateDropdown(!show2StateDropdown)
+                setShow3StateDropdown(false)
+              }}
+              aria-label="Select Marker Color"
+            >
+              ▼
+            </button>
+            {show2StateDropdown && (
+              <div className="marker-color-dropdown">
+                {[
+                  '#22c55e',
+                  '#ef4444',
+                  '#3b82f6',
+                  '#eab308',
+                  '#8b5cf6',
+                  '#f97316',
+                ].map((color) => (
+                  <div
+                    key={color}
+                    className="marker-color-option"
+                    onClick={() => {
+                      setMarkerColor2State(color)
+                      setShow2StateDropdown(false)
+                    }}
+                  >
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="12"
+                        fill={color}
+                        stroke={color}
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className={`marker-button-group ${showMarkerMode && markerModeType === '3-state' ? 'active' : ''}`}>
+            <button
+              className="marker-legend-button"
+              onClick={() => {
+                setMarkerModeType('3-state')
+                setShowMarkerMode(!showMarkerMode || markerModeType !== '3-state')
+                setShow3StateDropdown(false)
+              }}
+              aria-label="Toggle 3-State Marker Mode"
+              title="Add Progressive Marker (3-state)"
+            >
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="15"
+                  fill="transparent"
+                  stroke={markerColor3State}
+                  strokeWidth="3"
+                  strokeDasharray="12 6"
+                />
+              </svg>
+              <span className="arrow">→</span>
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="15"
+                  fill={markerColor3State}
+                  stroke={markerColor3State}
+                  strokeWidth="3"
+                />
+              </svg>
+            </button>
+            <button
+              className="marker-dropdown-arrow"
+              onClick={(e) => {
+                e.stopPropagation()
+                setShow3StateDropdown(!show3StateDropdown)
+                setShow2StateDropdown(false)
+              }}
+              aria-label="Select Marker Color"
+            >
+              ▼
+            </button>
+            {show3StateDropdown && (
+              <div className="marker-color-dropdown">
+                {[
+                  '#22c55e',
+                  '#ef4444',
+                  '#3b82f6',
+                  '#eab308',
+                  '#8b5cf6',
+                  '#f97316',
+                ].map((color) => (
+                  <div
+                    key={color}
+                    className="marker-color-option"
+                    onClick={() => {
+                      setMarkerColor3State(color)
+                      setShow3StateDropdown(false)
+                    }}
+                  >
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="12"
+                        fill="transparent"
+                        stroke={color}
+                        strokeWidth="2.5"
+                        strokeDasharray="10 5"
+                      />
+                    </svg>
+                    <span className="arrow">→</span>
+                    <svg width="32" height="32" viewBox="0 0 32 32">
+                      <circle
+                        cx="16"
+                        cy="16"
+                        r="12"
+                        fill={color}
+                        stroke={color}
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           </div>
           <div className="toolbar-right">
           <div className="settlement-selector">
@@ -1128,14 +1337,16 @@ function App() {
               </div>
             )}
           </div>
-          <button
-            className="toolbar-button toolbar-icon-button tutorial-button"
-            onClick={() => setShowTutorial(true)}
-            aria-label="Tutorial"
-            title="Tutorial"
-          >
-            🎓
-          </button>
+          {!isMobileDevice && (
+            <button
+              className="toolbar-button toolbar-icon-button tutorial-button"
+              onClick={() => setShowTutorial(true)}
+              aria-label="Tutorial"
+              title="Tutorial"
+            >
+              🎓
+            </button>
+          )}
           <button
             className="toolbar-button toolbar-icon-button glossary-button"
             onClick={() => handleOpenGlossary()}
@@ -1494,14 +1705,57 @@ function App() {
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}
         >
-          {showMarkerMode && !markers.has(1) && currentSettlement?.survivors[1] && (
-            <div className="marker-overlay" onClick={(e) => toggleMarker(1, e)}>
+          {showMarkerMode && currentSettlement?.survivors[1] && (
+            <div className="marker-overlay" onClick={(e) => addMarker(1, e)}>
               <div className="marker-add-icon">+</div>
             </div>
           )}
-          {markers.has(1) && (
-            <div className="marker-indicator" onClick={(e) => toggleMarker(1, e)} />
-          )}
+          {markers.has(1) && (() => {
+            const markerList = markers.get(1)!
+            const count = markerList.length
+
+            // Calculate scale based on count
+            let scale = 1
+            if (count > 8) scale = 0.6
+            else if (count > 4) scale = 0.8
+
+            // Calculate grid layout
+            const maxPerRow = 4
+            const rows = Math.ceil(count / maxPerRow)
+            const spacing = 140 * scale
+
+            return markerList.map((marker, index) => {
+              const row = Math.floor(index / maxPerRow)
+              const col = index % maxPerRow
+              const itemsInRow = Math.min(maxPerRow, count - row * maxPerRow)
+              const rowStartOffset = -(itemsInRow - 1) * spacing / 2
+              const verticalOffset = (row - (rows - 1) / 2) * spacing
+
+              return (
+                <svg
+                  key={marker.id}
+                  className={`marker-indicator ${marker.state === 'solid' ? 'marker-solid' : ''}`}
+                  onClick={(e) => toggleMarker(1, marker.id, e)}
+                  viewBox="0 0 120 120"
+                  style={{
+                    left: `calc(50% + ${rowStartOffset + col * spacing}px)`,
+                    top: `calc(50% + ${verticalOffset}px)`,
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                  }}
+                >
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    fill={marker.state === 'solid' ? marker.color : 'transparent'}
+                    stroke={marker.color}
+                    strokeWidth={marker.state === 'solid' ? '8' : '12'}
+                    strokeDasharray={marker.state === 'solid' ? '0' : '40 20'}
+                  />
+                </svg>
+              )
+            })
+          })()}
           {currentSettlement?.survivors[1] ? (
             <SurvivorSheet
               key={`survivor-1-${focusedQuadrant}-${activeQuadrant}`}
@@ -1527,14 +1781,55 @@ function App() {
           className={getQuadrantClass(2)}
           onClick={(e) => handleQuadrantClick(2, e)}
         >
-          {showMarkerMode && !markers.has(2) && currentSettlement?.survivors[2] && (
-            <div className="marker-overlay" onClick={(e) => toggleMarker(2, e)}>
+          {showMarkerMode && currentSettlement?.survivors[2] && (
+            <div className="marker-overlay" onClick={(e) => addMarker(2, e)}>
               <div className="marker-add-icon">+</div>
             </div>
           )}
-          {markers.has(2) && (
-            <div className="marker-indicator" onClick={(e) => toggleMarker(2, e)} />
-          )}
+          {markers.has(2) && (() => {
+            const markerList = markers.get(2)!
+            const count = markerList.length
+
+            let scale = 1
+            if (count > 8) scale = 0.6
+            else if (count > 4) scale = 0.8
+
+            const maxPerRow = 4
+            const rows = Math.ceil(count / maxPerRow)
+            const spacing = 140 * scale
+
+            return markerList.map((marker, index) => {
+              const row = Math.floor(index / maxPerRow)
+              const col = index % maxPerRow
+              const itemsInRow = Math.min(maxPerRow, count - row * maxPerRow)
+              const rowStartOffset = -(itemsInRow - 1) * spacing / 2
+              const verticalOffset = (row - (rows - 1) / 2) * spacing
+
+              return (
+                <svg
+                  key={marker.id}
+                  className={`marker-indicator ${marker.state === 'solid' ? 'marker-solid' : ''}`}
+                  onClick={(e) => toggleMarker(2, marker.id, e)}
+                  viewBox="0 0 120 120"
+                  style={{
+                    left: `calc(50% + ${rowStartOffset + col * spacing}px)`,
+                    top: `calc(50% + ${verticalOffset}px)`,
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                  }}
+                >
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    fill={marker.state === 'solid' ? marker.color : 'transparent'}
+                    stroke={marker.color}
+                    strokeWidth={marker.state === 'solid' ? '8' : '12'}
+                    strokeDasharray={marker.state === 'solid' ? '0' : '40 20'}
+                  />
+                </svg>
+              )
+            })
+          })()}
           {currentSettlement?.survivors[2] ? (
             <SurvivorSheet
               key={`survivor-2-${focusedQuadrant}-${activeQuadrant}`}
@@ -1560,14 +1855,55 @@ function App() {
           className={getQuadrantClass(3)}
           onClick={(e) => handleQuadrantClick(3, e)}
         >
-          {showMarkerMode && !markers.has(3) && currentSettlement?.survivors[3] && (
-            <div className="marker-overlay" onClick={(e) => toggleMarker(3, e)}>
+          {showMarkerMode && currentSettlement?.survivors[3] && (
+            <div className="marker-overlay" onClick={(e) => addMarker(3, e)}>
               <div className="marker-add-icon">+</div>
             </div>
           )}
-          {markers.has(3) && (
-            <div className="marker-indicator" onClick={(e) => toggleMarker(3, e)} />
-          )}
+          {markers.has(3) && (() => {
+            const markerList = markers.get(3)!
+            const count = markerList.length
+
+            let scale = 1
+            if (count > 8) scale = 0.6
+            else if (count > 4) scale = 0.8
+
+            const maxPerRow = 4
+            const rows = Math.ceil(count / maxPerRow)
+            const spacing = 140 * scale
+
+            return markerList.map((marker, index) => {
+              const row = Math.floor(index / maxPerRow)
+              const col = index % maxPerRow
+              const itemsInRow = Math.min(maxPerRow, count - row * maxPerRow)
+              const rowStartOffset = -(itemsInRow - 1) * spacing / 2
+              const verticalOffset = (row - (rows - 1) / 2) * spacing
+
+              return (
+                <svg
+                  key={marker.id}
+                  className={`marker-indicator ${marker.state === 'solid' ? 'marker-solid' : ''}`}
+                  onClick={(e) => toggleMarker(3, marker.id, e)}
+                  viewBox="0 0 120 120"
+                  style={{
+                    left: `calc(50% + ${rowStartOffset + col * spacing}px)`,
+                    top: `calc(50% + ${verticalOffset}px)`,
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                  }}
+                >
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    fill={marker.state === 'solid' ? marker.color : 'transparent'}
+                    stroke={marker.color}
+                    strokeWidth={marker.state === 'solid' ? '8' : '12'}
+                    strokeDasharray={marker.state === 'solid' ? '0' : '40 20'}
+                  />
+                </svg>
+              )
+            })
+          })()}
           {currentSettlement?.survivors[3] ? (
             <SurvivorSheet
               key={`survivor-3-${focusedQuadrant}-${activeQuadrant}`}
@@ -1593,14 +1929,55 @@ function App() {
           className={getQuadrantClass(4)}
           onClick={(e) => handleQuadrantClick(4, e)}
         >
-          {showMarkerMode && !markers.has(4) && currentSettlement?.survivors[4] && (
-            <div className="marker-overlay" onClick={(e) => toggleMarker(4, e)}>
+          {showMarkerMode && currentSettlement?.survivors[4] && (
+            <div className="marker-overlay" onClick={(e) => addMarker(4, e)}>
               <div className="marker-add-icon">+</div>
             </div>
           )}
-          {markers.has(4) && (
-            <div className="marker-indicator" onClick={(e) => toggleMarker(4, e)} />
-          )}
+          {markers.has(4) && (() => {
+            const markerList = markers.get(4)!
+            const count = markerList.length
+
+            let scale = 1
+            if (count > 8) scale = 0.6
+            else if (count > 4) scale = 0.8
+
+            const maxPerRow = 4
+            const rows = Math.ceil(count / maxPerRow)
+            const spacing = 140 * scale
+
+            return markerList.map((marker, index) => {
+              const row = Math.floor(index / maxPerRow)
+              const col = index % maxPerRow
+              const itemsInRow = Math.min(maxPerRow, count - row * maxPerRow)
+              const rowStartOffset = -(itemsInRow - 1) * spacing / 2
+              const verticalOffset = (row - (rows - 1) / 2) * spacing
+
+              return (
+                <svg
+                  key={marker.id}
+                  className={`marker-indicator ${marker.state === 'solid' ? 'marker-solid' : ''}`}
+                  onClick={(e) => toggleMarker(4, marker.id, e)}
+                  viewBox="0 0 120 120"
+                  style={{
+                    left: `calc(50% + ${rowStartOffset + col * spacing}px)`,
+                    top: `calc(50% + ${verticalOffset}px)`,
+                    transform: `translate(-50%, -50%) scale(${scale})`,
+                  }}
+                >
+                  <circle
+                    cx="60"
+                    cy="60"
+                    r="52"
+                    fill={marker.state === 'solid' ? marker.color : 'transparent'}
+                    stroke={marker.color}
+                    strokeWidth={marker.state === 'solid' ? '8' : '12'}
+                    strokeDasharray={marker.state === 'solid' ? '0' : '40 20'}
+                  />
+                </svg>
+              )
+            })
+          })()}
           {currentSettlement?.survivors[4] ? (
             <SurvivorSheet
               key={`survivor-4-${focusedQuadrant}-${activeQuadrant}`}
@@ -1713,11 +2090,13 @@ function App() {
         lastUpdated={glossaryData.lastUpdated}
       />
 
-      <Tutorial
-        isOpen={showTutorial}
-        onClose={() => setShowTutorial(false)}
-        appVersion={APP_VERSION}
-      />
+      {!isMobileDevice && (
+        <Tutorial
+          isOpen={showTutorial}
+          onClose={() => setShowTutorial(false)}
+          appVersion={APP_VERSION}
+        />
+      )}
     </div>
   )
 }
