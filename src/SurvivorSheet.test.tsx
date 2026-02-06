@@ -13,35 +13,39 @@ describe('SurvivorSheet', () => {
     mockOnOpenGlossary.mockClear()
   })
 
-  it('renders survivor name input', () => {
+  it('renders survivor name', () => {
     const survivor = { ...initialSurvivorData, name: 'Test Hero' }
     render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
-    const nameInput = screen.getByDisplayValue('Test Hero')
-    expect(nameInput).toBeInTheDocument()
+    const nameDisplay = screen.getByDisplayValue('Test Hero')
+    expect(nameDisplay).toBeInTheDocument()
   })
 
   it('updates survivor name when typed', async () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
-    const nameInput = document.querySelector('.name-input') as HTMLInputElement
+    // Click the name wrapper to open the edit input
+    const nameWrapper = document.querySelector('.name-wrapper') as HTMLElement
+    await user.click(nameWrapper)
+
+    const nameInput = document.querySelector('.survivor-name-edit') as HTMLInputElement
     await user.type(nameInput, 'A')
 
     expect(mockOnUpdate).toHaveBeenCalled()
-    // Check that the name was updated
     expect(mockOnUpdate.mock.calls.length).toBeGreaterThan(0)
   })
 
   it('toggles gender selection', async () => {
     const user = userEvent.setup()
-    render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
+    const survivor = { ...initialSurvivorData, gender: 'M' as const }
+    render(<SurvivorSheet survivor={survivor} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
-    const maleRadio = screen.getByRole('radio', { name: /m/i })
-    await user.click(maleRadio)
+    const genderToggle = document.querySelector('.gender-toggle') as HTMLElement
+    await user.click(genderToggle)
 
     expect(mockOnUpdate).toHaveBeenCalledWith(
-      expect.objectContaining({ gender: 'M' })
+      expect.objectContaining({ gender: 'F' })
     )
   })
 
@@ -82,8 +86,8 @@ describe('SurvivorSheet', () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
-    const dodgeCheckbox = screen.getByRole('checkbox', { name: /dodge/i })
-    await user.click(dodgeCheckbox)
+    const dodgeLabel = screen.getByText('Dodge')
+    await user.click(dodgeLabel)
 
     expect(mockOnUpdate).toHaveBeenCalledWith(
       expect.objectContaining({
