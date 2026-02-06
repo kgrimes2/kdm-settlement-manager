@@ -7,6 +7,72 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-02-05
+
+### Added
+- Temporary marker system with red circle indicators:
+  - "Add Marker" button in toolbar (positioned left of settlement selector)
+  - Click button to show overlay on available quadrants
+  - Click overlay to add red circle marker to quadrant center
+  - Click red circle to remove marker
+  - Marker mode auto-deactivates after adding a marker
+  - Markers are temporary (not persisted, reset on refresh)
+  - Markers auto-clear when survivors are deactivated
+- Tutorial step explaining marker functionality
+
+### Removed
+- "Click to edit" hover overlays on quadrants
+- Hover overlay CSS and related state management
+
+### Changed
+- Settlement selector moved to right side of toolbar
+- Removed spent/marker functionality from v1.0.4 (replaced with new temporary marker system)
+- Reverted data version from 8 back to 7
+- Tutorial improvements:
+  - Updated welcome step to reference "×" button instead of non-existent "Skip Tutorial" button
+  - Fixed step highlighting for "Managing Survivors", "Multiple Settlements", and "Auto-Save" steps
+  - Centered dialog position for key tutorial steps
+  - Export and Import buttons now highlighted together in Auto-Save step
+
+### Technical
+- Added marker state management (Set-based, component-level only)
+- Removed hover overlay logic and event handlers
+- Simplified quadrant interaction model
+- Added wrapper div for export/import buttons to enable grouped highlighting in tutorial
+
+## [1.0.4] - 2026-02-05
+
+### Added
+- Interactive tutorial system for new users:
+  - Step-by-step walkthrough of all major features
+  - Highlights UI elements during tutorial
+  - Spacebar navigation to advance through steps
+  - Tutorial styled to match app's Kingdom Death parchment theme
+  - Auto-shows on first launch (can be skipped)
+  - 🎓 Tutorial button in toolbar to reopen tutorial anytime
+- Mobile survivor cycling with swipe gestures (left/right swipe in focus mode)
+- Age milestone tracking on Hunt XP track:
+  - 16th Hunt XP box with red background for retirement age
+  - Condensed age milestone label: "x1 - x4 ■ Age"
+  - "(retired)" label next to retirement box
+  - Yellow milestone markers matching milestone checkbox colors
+
+### Changed
+- Narrowed name input width from 200px to 120px for better layout
+- Unfocused quadrants now darken (brightness 30%) instead of fading out
+- Removed all focus/unfocus zoom animations for instant transitions
+- Removed hover zoom effect on quadrants
+- Spacebar in focus mode now cycles through survivors
+
+### Fixed
+- Checkbox color inconsistency: injury checkboxes now match stat box colors (30% white)
+
+### Technical
+- Data version bumped to v8
+- Migration system updated to extend huntXP arrays from 15 to 16 boxes
+- Added Tutorial component with keyboard and touch event handling
+- Added swipe gesture detection for mobile devices
+
 ## [1.0.3] - 2026-02-05
 
 ### Fixed
