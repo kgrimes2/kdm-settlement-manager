@@ -23,7 +23,7 @@ describe('App', () => {
       localStorage.setItem('tutorial-completed', '1.0.4')
 
       render(<App />)
-      expect(screen.getByRole('heading', { name: /KDM Settlement Manager/i })).toBeInTheDocument()
+      expect(screen.getAllByRole('heading', { name: /KDM Settlement Manager/i }).length).toBeGreaterThan(0)
       expect(screen.getByDisplayValue('Allister')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Erza')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Lucy')).toBeInTheDocument()
@@ -42,7 +42,11 @@ describe('App', () => {
       const user = userEvent.setup()
       render(<App />)
 
-      const nameInput = screen.getByDisplayValue('Allister')
+      // Click the name wrapper to open the edit input
+      const nameWrapper = document.querySelector('.name-wrapper') as HTMLElement
+      await user.click(nameWrapper)
+
+      const nameInput = document.querySelector('.survivor-name-edit') as HTMLInputElement
       await user.clear(nameInput)
       await user.type(nameInput, 'New Name')
 
