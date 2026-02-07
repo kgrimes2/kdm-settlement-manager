@@ -1,7 +1,13 @@
-import type { GlossaryTerm } from '../types/glossary'
+import type { GlossaryTerm, WikiCategoryInfo } from '../types/glossary'
 
 export interface SearchResult {
   term: GlossaryTerm
+  score: number
+  source?: 'official' | 'wiki'
+}
+
+export interface CategorySearchResult {
+  category: WikiCategoryInfo
   score: number
 }
 
@@ -33,21 +39,61 @@ export function searchGlossary(
   return results.slice(0, maxResults)
 }
 
+/**
+ * Search categories by name
+ */
+export function searchCategories(
+  categories: WikiCategoryInfo[],
+  query: string
+): CategorySearchResult[] {
+  if (!query.trim()) return []
+
+  const normalizedQuery = query.toLowerCase().trim()
+  const results: CategorySearchResult[] = []
+
+  for (const category of categories) {
+    const catLower = category.category.toLowerCase()
+
+    if (catLower === normalizedQuery) {
+      results.push({ category, score: 100 })
+    } else if (catLower.startsWith(normalizedQuery)) {
+      results.push({ category, score: 80 })
+    } else if (catLower.includes(normalizedQuery)) {
+      results.push({ category, score: 60 })
+    }
+  }
+
+  results.sort((a, b) => b.score - a.score)
+  return results
+}
+
 function calculateScore(term: GlossaryTerm, query: string): number {
   const termLower = term.term.toLowerCase()
+  // Strip parenthetical qualifier: "Berserker (Fighting Art)" -> "berserker"
+  const baseTerm = termLower.replace(/\s*\(.*?\)\s*$/, '').trim()
 
   // Exact match (highest score)
-  if (termLower === query) {
+  if (termLower === query || baseTerm === query) {
     return 100
   }
 
-  // Starts with query
+  // Base term starts with query: "berserker" matches "Berserker (Fighting Art)"
+  if (baseTerm.startsWith(query)) {
+    return 90
+  }
+
+  // Full term starts with query
   if (termLower.startsWith(query)) {
     return 80
   }
 
-  // Contains query as whole word
+  // Query matches base term as whole word
   const wordBoundaryPattern = new RegExp(`\\b${escapeRegex(query)}\\b`)
+  if (wordBoundaryPattern.test(baseTerm)) {
+    return 70
+  }
+
+  // Contains query as whole word in full term
   if (wordBoundaryPattern.test(termLower)) {
     return 60
   }
@@ -57,7 +103,13 @@ function calculateScore(term: GlossaryTerm, query: string): number {
     return 40
   }
 
-  // Fuzzy match (allow some character differences)
+  // Fuzzy match against base term (more forgiving)
+  const baseFuzzy = fuzzyMatch(baseTerm, query)
+  if (baseFuzzy > 0.6) {
+    return Math.floor(baseFuzzy * 35)
+  }
+
+  // Fuzzy match against full term
   const fuzzyScore = fuzzyMatch(termLower, query)
   if (fuzzyScore > 0.6) {
     return Math.floor(fuzzyScore * 30)

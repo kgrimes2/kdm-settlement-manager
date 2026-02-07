@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import './GlossaryModal.css'
-import type { GlossaryTerm } from '../types/glossary'
-import { searchGlossary, type SearchResult } from '../utils/glossarySearch'
+import type { GlossaryTerm, WikiCategoryInfo } from '../types/glossary'
+import { searchGlossary, searchCategories, type SearchResult } from '../utils/glossarySearch'
 
 interface GlossaryModalProps {
   isOpen: boolean
@@ -9,50 +9,78 @@ interface GlossaryModalProps {
   glossaryTerms: GlossaryTerm[]
   initialQuery?: string
   lastUpdated?: string
+  wikiCategories: WikiCategoryInfo[]
+  loadedWikiTerms: GlossaryTerm[]
+  onLoadCategory: (slug: string) => Promise<void>
+  loadingCategory: string | null
+  onSearchWiki: (query: string) => Promise<void>
 }
 
-export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQuery, lastUpdated }: GlossaryModalProps) {
+type ViewMode = 'search' | 'categories' | 'category-detail'
+
+export default function GlossaryModal({
+  isOpen, onClose, glossaryTerms, initialQuery, lastUpdated,
+  wikiCategories, loadedWikiTerms, onLoadCategory, loadingCategory,
+  onSearchWiki,
+}: GlossaryModalProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
   const [selectedTerm, setSelectedTerm] = useState<GlossaryTerm | null>(null)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const [viewMode, setViewMode] = useState<ViewMode>('search')
+  const [selectedCategory, setSelectedCategory] = useState<WikiCategoryInfo | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // All searchable terms = official glossary + loaded wiki terms
+  const allTerms = [...glossaryTerms, ...loadedWikiTerms]
 
   useEffect(() => {
     if (isOpen) {
-      // Reset modal state when opened
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setQuery(initialQuery || '')
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([])
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedTerm(null)
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHighlightedIndex(0)
-      // Focus input when modal opens
+      setViewMode('search')
+      setSelectedCategory(null)
       setTimeout(() => inputRef.current?.focus(), 100)
+      if (initialQuery) {
+        onSearchWiki(initialQuery)
+      }
     }
   }, [isOpen, initialQuery])
 
   useEffect(() => {
     if (query.trim()) {
-      const searchResults = searchGlossary(glossaryTerms, query)
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+      const searchResults = searchGlossary(allTerms, query)
       setResults(searchResults)
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHighlightedIndex(0)
     } else {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setResults([])
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setHighlightedIndex(0)
     }
-  }, [query, glossaryTerms])
+  }, [query, glossaryTerms, loadedWikiTerms])
+
+  // Auto-load wiki categories that contain matching terms
+  useEffect(() => {
+    if (!query.trim() || query.trim().length < 2) return
+    const timer = setTimeout(() => {
+      onSearchWiki(query)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [query, onSearchWiki])
+
+  // Category search results (shown alongside term results)
+  const categoryResults = query.trim() ? searchCategories(wikiCategories, query) : []
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       if (selectedTerm) {
         setSelectedTerm(null)
+      } else if (viewMode === 'category-detail') {
+        setViewMode('categories')
+        setSelectedCategory(null)
+      } else if (viewMode === 'categories') {
+        setViewMode('search')
       } else {
         onClose()
       }
@@ -74,6 +102,20 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
     }
   }
 
+  const handleCategoryClick = async (cat: WikiCategoryInfo) => {
+    setSelectedCategory(cat)
+    setViewMode('category-detail')
+    await onLoadCategory(cat.slug)
+  }
+
+  const getCategoryTerms = (category: string): GlossaryTerm[] => {
+    return loadedWikiTerms.filter(t => t.category === category)
+  }
+
+  const getTermSource = (term: GlossaryTerm): 'official' | 'wiki' => {
+    return glossaryTerms.some(t => t.term === term.term) ? 'official' : 'wiki'
+  }
+
   if (!isOpen) return null
 
   return (
@@ -81,13 +123,30 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
       <div className="glossary-modal">
         <div className="glossary-modal-header">
           <h2>Kingdom Death Glossary</h2>
-          <button className="glossary-close-btn" onClick={onClose} aria-label="Close">
-            ×
-          </button>
+          <div className="glossary-header-actions">
+            <div className="glossary-view-toggle">
+              <button
+                className={`glossary-toggle-btn ${viewMode === 'search' ? 'active' : ''}`}
+                onClick={() => { setViewMode('search'); setSelectedTerm(null) }}
+              >
+                Search
+              </button>
+              <button
+                className={`glossary-toggle-btn ${viewMode === 'categories' || viewMode === 'category-detail' ? 'active' : ''}`}
+                onClick={() => { setViewMode('categories'); setSelectedTerm(null); setSelectedCategory(null) }}
+              >
+                Browse
+              </button>
+            </div>
+            <button className="glossary-close-btn" onClick={onClose} aria-label="Close">
+              ×
+            </button>
+          </div>
         </div>
 
         <div className="glossary-modal-content">
-          {!selectedTerm ? (
+          {/* Search mode */}
+          {viewMode === 'search' && !selectedTerm && (
             <>
               <div className="glossary-search-box">
                 <input
@@ -101,7 +160,23 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
                 />
               </div>
 
-              {query && results.length === 0 && (
+              {/* Category matches */}
+              {categoryResults.length > 0 && (
+                <div className="glossary-category-matches">
+                  {categoryResults.map(({ category }) => (
+                    <button
+                      key={category.slug}
+                      className="glossary-category-pill"
+                      onClick={() => handleCategoryClick(category)}
+                    >
+                      {category.category}
+                      <span className="glossary-category-pill-count">{category.count}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {query && results.length === 0 && categoryResults.length === 0 && (
                 <div className="glossary-no-results">
                   No terms found for "{query}"
                 </div>
@@ -111,12 +186,17 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
                 <div className="glossary-results">
                   {results.map((result, index) => (
                     <div
-                      key={result.term.term}
+                      key={`${result.term.term}-${index}`}
                       className={`glossary-result-item ${index === highlightedIndex ? 'highlighted' : ''}`}
                       onClick={() => setSelectedTerm(result.term)}
                       onMouseEnter={() => setHighlightedIndex(index)}
                     >
-                      <div className="glossary-result-term">{result.term.term}</div>
+                      <div className="glossary-result-term">
+                        {result.term.term}
+                        <span className={`glossary-source-badge ${getTermSource(result.term)}`}>
+                          {getTermSource(result.term) === 'official' ? 'Official' : 'Wiki'}
+                        </span>
+                      </div>
                       <div className="glossary-result-preview">
                         {result.term.definition.substring(0, 100)}
                         {result.term.definition.length > 100 ? '...' : ''}
@@ -125,8 +205,100 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
                   ))}
                 </div>
               )}
+
+              {!query && (
+                <div className="glossary-search-hint">
+                  <p>Type to search {glossaryTerms.length.toLocaleString()} official terms
+                    {loadedWikiTerms.length > 0 && ` + ${loadedWikiTerms.length.toLocaleString()} wiki terms`}
+                  </p>
+                  <p className="glossary-browse-hint">
+                    Or switch to <button className="glossary-inline-link" onClick={() => setViewMode('categories')}>Browse</button> to explore {wikiCategories.length} wiki categories
+                  </p>
+                </div>
+              )}
             </>
-          ) : (
+          )}
+
+          {/* Category browse mode */}
+          {viewMode === 'categories' && (
+            <div className="glossary-categories-view">
+              <div className="glossary-categories-header">
+                <h3>Browse Wiki Categories</h3>
+                <span className="glossary-categories-count">
+                  {wikiCategories.reduce((sum, c) => sum + c.count, 0).toLocaleString()} terms across {wikiCategories.length} categories
+                </span>
+              </div>
+              <div className="glossary-category-grid">
+                {wikiCategories.map((cat) => (
+                  <button
+                    key={cat.slug}
+                    className="glossary-category-card"
+                    onClick={() => handleCategoryClick(cat)}
+                  >
+                    <div className="glossary-category-card-name">{cat.category}</div>
+                    <div className="glossary-category-card-count">{cat.count} terms</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Category detail mode */}
+          {viewMode === 'category-detail' && selectedCategory && (
+            <div className="glossary-category-detail">
+              <button
+                className="glossary-back-btn"
+                onClick={() => { setViewMode('categories'); setSelectedCategory(null); setSelectedTerm(null) }}
+              >
+                ← Back to categories
+              </button>
+              <div className="glossary-category-detail-header">
+                <h3>{selectedCategory.category}</h3>
+                <span className="glossary-category-detail-count">{selectedCategory.count} terms</span>
+              </div>
+
+              {loadingCategory === selectedCategory.slug ? (
+                <div className="glossary-loading">
+                  <div className="glossary-spinner" />
+                  Loading {selectedCategory.category}...
+                </div>
+              ) : selectedTerm ? (
+                <div className="glossary-term-display">
+                  <button
+                    className="glossary-back-btn"
+                    onClick={() => setSelectedTerm(null)}
+                  >
+                    ← Back to {selectedCategory.category}
+                  </button>
+                  {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
+                </div>
+              ) : (
+                <div className="glossary-results">
+                  {getCategoryTerms(selectedCategory.category).map((term, index) => (
+                    <div
+                      key={`${term.term}-${index}`}
+                      className="glossary-result-item"
+                      onClick={() => setSelectedTerm(term)}
+                    >
+                      <div className="glossary-result-term">{term.term}</div>
+                      <div className="glossary-result-preview">
+                        {term.definition.substring(0, 100)}
+                        {term.definition.length > 100 ? '...' : ''}
+                      </div>
+                    </div>
+                  ))}
+                  {getCategoryTerms(selectedCategory.category).length === 0 && !loadingCategory && (
+                    <div className="glossary-no-results">
+                      No terms loaded for this category yet.
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Term detail (from search mode) */}
+          {viewMode === 'search' && selectedTerm && (
             <div className="glossary-term-display">
               <button
                 className="glossary-back-btn"
@@ -134,42 +306,7 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
               >
                 ← Back to search
               </button>
-
-              <div className="glossary-term-content">
-                <h3 className="glossary-term-title">{selectedTerm.term}</h3>
-                {selectedTerm.category && (
-                  <div className="glossary-term-category">{selectedTerm.category}</div>
-                )}
-                <div className="glossary-term-definition">{selectedTerm.definition}</div>
-
-                {selectedTerm.relatedTerms && selectedTerm.relatedTerms.length > 0 && (
-                  <div className="glossary-related-terms">
-                    <strong>Related terms:</strong>{' '}
-                    {selectedTerm.relatedTerms.map((related, idx) => (
-                      <span key={related}>
-                        <button
-                          className="glossary-related-link"
-                          onClick={() => {
-                            const relatedTerm = glossaryTerms.find(t => t.term === related)
-                            if (relatedTerm) setSelectedTerm(relatedTerm)
-                          }}
-                        >
-                          {related}
-                        </button>
-                        {idx < selectedTerm.relatedTerms!.length - 1 ? ', ' : ''}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {selectedTerm.url && (
-                  <div className="glossary-term-link">
-                    <a href={selectedTerm.url} target="_blank" rel="noopener noreferrer">
-                      View on kingdomdeath.com →
-                    </a>
-                  </div>
-                )}
-              </div>
+              {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
             </div>
           )}
         </div>
@@ -177,7 +314,7 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
         <div className="glossary-modal-footer">
           <div className="glossary-footer-left">
             <span className="glossary-hint">
-              {!selectedTerm && '↑↓ to navigate • Enter to select • Esc to close'}
+              {viewMode === 'search' && !selectedTerm && '↑↓ to navigate • Enter to select • Esc to close'}
             </span>
             <a
               href="https://kingdomdeath.com/rules/living-glossary"
@@ -195,6 +332,56 @@ export default function GlossaryModal({ isOpen, onClose, glossaryTerms, initialQ
           )}
         </div>
       </div>
+    </div>
+  )
+}
+
+function renderTermContent(
+  term: GlossaryTerm,
+  allTerms: GlossaryTerm[],
+  setSelectedTerm: (t: GlossaryTerm | null) => void,
+  getTermSource: (t: GlossaryTerm) => 'official' | 'wiki',
+) {
+  return (
+    <div className="glossary-term-content">
+      <h3 className="glossary-term-title">
+        {term.term}
+        <span className={`glossary-source-badge ${getTermSource(term)}`}>
+          {getTermSource(term) === 'official' ? 'Official' : 'Wiki'}
+        </span>
+      </h3>
+      {term.category && (
+        <div className="glossary-term-category">{term.category}</div>
+      )}
+      <div className="glossary-term-definition">{term.definition}</div>
+
+      {term.relatedTerms && term.relatedTerms.length > 0 && (
+        <div className="glossary-related-terms">
+          <strong>Related terms:</strong>{' '}
+          {term.relatedTerms.map((related, idx) => (
+            <span key={related}>
+              <button
+                className="glossary-related-link"
+                onClick={() => {
+                  const relatedTerm = allTerms.find(t => t.term === related)
+                  if (relatedTerm) setSelectedTerm(relatedTerm)
+                }}
+              >
+                {related}
+              </button>
+              {idx < term.relatedTerms!.length - 1 ? ', ' : ''}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {term.url && (
+        <div className="glossary-term-link">
+          <a href={term.url} target="_blank" rel="noopener noreferrer">
+            {term.url.includes('fandom.com') ? 'View on KDM Wiki →' : 'View on kingdomdeath.com →'}
+          </a>
+        </div>
+      )}
     </div>
   )
 }
