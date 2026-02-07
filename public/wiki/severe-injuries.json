@@ -1,0 +1,198 @@
+{
+  "category": "Severe Injuries",
+  "terms": [
+    {
+      "term": "Blind",
+      "definition": "An impairment. Lose an eye. Suffer -1 permanent accuracy. This injury is permanent and can be recorded twice. A survivor with two blind severe injuries suffers -4 permanent accuracy and retires at the end of the next showdown or settlement phase, having lost all sight.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blind",
+      "relatedTerms": [
+        "impairment",
+        "accuracy",
+        "Retired",
+        "showdown",
+        "Settlement Phase"
+      ]
+    },
+    {
+      "term": "Broken arm",
+      "definition": "An impairment. An ear-shattering crunch. Suffer -1 permanent accuracy and -1 permanent strength. This injury is permanent, and can be recorded twice.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_arm",
+      "relatedTerms": [
+        "impairment",
+        "accuracy",
+        "strength"
+      ]
+    },
+    {
+      "term": "Broken Hip",
+      "definition": "An impairment. Your hip is dislocated. You can no longer dodge. Suffer -1 permanent movement. This injury is permanent, and can be recorded once. Gain 1 bleeding token.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_Hip",
+      "relatedTerms": [
+        "impairment",
+        "dodge",
+        "movement",
+        "Bleeding Token"
+      ]
+    },
+    {
+      "term": "Broken Leg",
+      "definition": "An impairment. An ear-shattering crunch! Adjacent survivors suffer 1 brain damage. Suffer -1 permanent movement. This injury is permanent. and can be recorded twice.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_Leg",
+      "relatedTerms": [
+        "impairment",
+        "Brain Damage",
+        "movement"
+      ]
+    },
+    {
+      "term": "Broken rib",
+      "definition": "An impairment. It even hurts to breathe. Suffer -1 permanent speed. This injury is permanent, and can be recorded multiple times.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_rib",
+      "relatedTerms": [
+        "impairment",
+        "speed"
+      ]
+    },
+    {
+      "term": "Contracture",
+      "definition": "An impairment. The arm will never be the same. Suffer -1 permanent accuracy. This injury is permanent, and can be recorded multiple times.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Contracture",
+      "relatedTerms": [
+        "impairment",
+        "accuracy"
+      ]
+    },
+    {
+      "term": "Deaf",
+      "definition": "An impairment. You won't hear it coming. Suffer -1 permanent evasion. This injury is permanent and can be recorded once.\n\nGlossary definition.\nThe survivor cannot hear, or be impacted by encourage and other audible effects.\n\nA non-deaf survivor ignores this.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Deaf",
+      "relatedTerms": [
+        "impairment",
+        "evasion",
+        "encourage",
+        "Non-deaf Survivor"
+      ]
+    },
+    {
+      "term": "Destroyed back",
+      "definition": "An impairment. A sharp crackling noise. Suffer -2 permanent movement. You can no longer activate any gear that has 2+ strength. This injury is permanent, and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Destroyed_back",
+      "relatedTerms": [
+        "impairment",
+        "movement",
+        "gear",
+        "strength"
+      ]
+    },
+    {
+      "term": "Dismembered Arm",
+      "definition": "An impairment. Lose an arm. You can no longer activate two-handed weapons. This injury is permanent, and can be recorded twice. A survivor with two dismembered arm severe injuries cannot activate any weapons.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dismembered_Arm",
+      "relatedTerms": [
+        "impairment",
+        "Activation",
+        "Two-handed",
+        "survivor",
+        "Severe Injury",
+        "weapons"
+      ]
+    },
+    {
+      "term": "Dismembered Leg",
+      "definition": "An impairment. Lose a leg. You suffer -2 permanent movement. and can no longer dash. This injury is permanent. and can be recorded twice. A survivor with two dismembered leg severe injuries has lost both of their legs and must retire at the end of the next showdown or settlement phase.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dismembered_Leg",
+      "relatedTerms": [
+        "impairment",
+        "movement",
+        "dash",
+        "Retired",
+        "showdown",
+        "Settlement Phase"
+      ]
+    },
+    {
+      "term": "Gaping chest wound",
+      "definition": "An impairment. Suffer -1 permanent strength. This injury is permanent, and can be recorded multiple times.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gaping_chest_wound",
+      "relatedTerms": [
+        "impairment",
+        "strength"
+      ]
+    },
+    {
+      "term": "Hamstrung",
+      "definition": "An impairment. A painful rip. The leg is unusable. You can no longer use any fighting arts or abilities. This injury is permanent. and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hamstrung",
+      "relatedTerms": [
+        "impairment",
+        "Fighting Art",
+        "abilities"
+      ]
+    },
+    {
+      "term": "Intestinal Prolapse",
+      "definition": "An impairment. Your gut is gravely injured. You can no longer equip any gear on your waist, as it is too painful to wear. This injury is permanent, and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Intestinal_Prolapse",
+      "relatedTerms": [
+        "impairment",
+        "gear",
+        "waist"
+      ]
+    },
+    {
+      "term": "Intracranial hemorrhage",
+      "definition": "An impairment. You can no longer use or gain any survival. This injury is permanent and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Intracranial_hemorrhage",
+      "relatedTerms": [
+        "impairment",
+        "survival"
+      ]
+    },
+    {
+      "term": "Ruptured muscle",
+      "definition": "An impairment. A painful rip. The arm hangs limp. You can no longer activate fighting arts. This injury is permanent, and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ruptured_muscle",
+      "relatedTerms": [
+        "impairment",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Shattered Jaw",
+      "definition": "An impairment. You drink your meat through a straw. You can no longer consume or be affected by events requiring you to consume. You can no longer encourage. This injury is permanent and can be recorded once.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shattered_Jaw",
+      "relatedTerms": [
+        "impairment",
+        "consume",
+        "encourage"
+      ]
+    },
+    {
+      "term": "Warped Pelvis",
+      "definition": "An impairment. Your pelvis is disfigured. Suffer -1 permanent luck. This injury is permanent and can be recorded multiple times.",
+      "category": "Severe Injuries",
+      "url": "https://kingdomdeath.fandom.com/wiki/Warped_Pelvis",
+      "relatedTerms": [
+        "impairment",
+        "luck"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.571Z"
+}

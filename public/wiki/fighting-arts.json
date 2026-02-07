@@ -1,0 +1,2563 @@
+{
+  "category": "Fighting Arts",
+  "terms": [
+    {
+      "term": "A Warm Virus",
+      "definition": "is a story event in the Flower Knight Expansion rule book.\n\nEvent Text.\nNominate a survivor that can consume to be the host. If that's not possible, the flowers withers and this event ends. The host presses the Virus Flower to their mouth, its delicate petals changing color to match their flesh. A cozy and inspired warmth fills their being as they gently push the flower by its stem down their throat.\n\nDown their Throat.\nroll 1d10\n\nIf you rolled a 2, 3, 4 or 5, and if the settlement chose the Graves Death Principle, the host builds a small grave and tearfully bids farewell. Nominate a survivor with the least hunt XP. They are moved and gain the Swordsman's Promise secret fighting art. Then, welcome the guest. \n\nIf you rolled a 6, 7, 8 or 9, and if the settlement has innovated Sculpture, the host creates a grand throne from debris and trash. Completing it, they announce \"One day, the King will come to claim this.\" The message sends a ripple of dread through the settlement. Departing survivors gain +5 insanity and a random fighting art. Then, welcome the guest.\n\nWelcome the Guest.\nAs the flower is digested, a virus enters the host's blood stream and travels to their brain. The host experiences a state of euphoria, as viral genomes are injected into the cells of their prefrontal cortex and pallum.\n\nThe host feels as if a satisfying itch within their skull has finally been scratched. That sensation is the last thing they experience as their original self.\n\nThe host's brain is newborn, replacing the sum of their life with that of the Guest's.\n\nThe host loses all fighting arts, disorders, abilities and impairments. Then, they gain all the Guest's fighting arts, disorders, positive attributes and weapon proficiency levels (including type). They do not gain the Guest's abilities or impairments.\n\nThe host may choose to keep their name or take up the Guest's\n\nGuest Reminder\n\nThe Guest is the survivor that had the Sleeping Virus Flower in their gear grid when they died.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/A_Warm_Virus",
+      "relatedTerms": [
+        "Story Event",
+        "Flower Knight Expansion",
+        "survivor",
+        "consume",
+        "Sleeping Virus Flower",
+        "1d10",
+        "Departing Survivors",
+        "courage",
+        "settlement",
+        "strength",
+        "Graves",
+        "Principle: Death",
+        "Hunt Experience",
+        "Swordsman's Promise",
+        "Secret Fighting Arts",
+        "Sculpture",
+        "insanity",
+        "Fighting Arts",
+        "disorders",
+        "abilities"
+      ]
+    },
+    {
+      "term": "Absent Seizures",
+      "definition": "is a disorder card found within the Gorm Expansion.\n\nCard Text.\nNo one knows where your mind goes when you're gone, not even you.\n\nThe first time you would suffer a brain trauma each showdown, you are instead knocked down and forget a fighting art (erase it).",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Absent_Seizures",
+      "relatedTerms": [
+        "Disorders",
+        "disorder",
+        "Gorm Expansion",
+        "Brain Trauma Table",
+        "showdown",
+        "Knocked Down",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Abyssal Sadist",
+      "definition": "Abyssal Sadist is a fighting art card found within the Manhunter Expansion.\n\nCard Text.\nThe first time you wound the monster each attack, gain +1 survival and +1 insanity.\n\nIgnore the effects of the Fear of the Dark and Prey disorders.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Abyssal_Sadist",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Manhunter Expansion",
+        "wound",
+        "attack",
+        "survival",
+        "insanity",
+        "Fear of the Dark",
+        "Prey",
+        "disorders"
+      ]
+    },
+    {
+      "term": "Acanthus Doctor",
+      "definition": "Acanthus Doctor is a secret fighting art card found within the Flower Knight Expansion.\n\nCard Text.\nYou may wear up to 3 Satchel gear cards.\n\nWhen you depart, if you are not wearing any armor, for each you have, gain +1 strength token and add to all hit locations.\n\nSpend and a Flower Resource or Fresh Acanthus resource to heal a permanent injury you or an adjacent survivor suffered this showdown.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Acanthus_Doctor",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Flower Knight Expansion",
+        "Satchel",
+        "gear",
+        "depart",
+        "armor",
+        "strength",
+        "Attribute Modifier Token",
+        "Hit Location",
+        "Monster Resources#Flower Knight",
+        "Fresh Acanthus",
+        "resource",
+        "Healing",
+        "Permanent Injury",
+        "adjacent",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Achilles Tendon",
+      "definition": "A Manhunter Hit Location.\n\nCard Text.\n-2 toughness to wound this location.\n\nDeath Blow.\nIf the Manhunter is killed at this location, it falls on its gun. It fires, blowing a hole in the monster's chest. Blood sprays everywhere!\n\nThe survivors cheer as their predator dies. Perhaps they'll finally be safe.\n\nAll survivors gain:\n+5 insanity\n+1 understanding\n+1 courage\n1 random fighting art",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Achilles_Tendon",
+      "relatedTerms": [
+        "Manhunter",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Acrobatics",
+      "definition": "is a fighting art card found within the Dragon King Expansion.\n\nCard Text.\nWhen you are adjacent to the monster, you may spend to place your survivor on any other space adjacent to the monster.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Acrobatics",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dragon King Expansion",
+        "adjacent"
+      ]
+    },
+    {
+      "term": "Actualize",
+      "definition": "Actualize is a secret fighting art Atnas card found within the Gambler's Chest Expansion.\nCard Text.\nGain +1 speed when attacking with a sword.\n\nAfter you make attack rolls with a sword, you may discard a roll result to increase another roll result by 1. You may do this as many times as you like, so long as there is at least 1 attack roll result left.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Actualize",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Atnas",
+        "Gambler's Chest Expansion",
+        "speed",
+        "Attack"
+      ]
+    },
+    {
+      "term": "Aerial transfusion",
+      "definition": "is a Crimson Crocodile secret fighting art card found within the Gambler's Chest Expansion.\nCard Text.\nIt requires an additional two bleeding tokens to kill you.\n\nDuring your act, you may spend Activation to freely rearrange all survivors' bleeding tokens.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Aerial_transfusion",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion",
+        "Activation"
+      ]
+    },
+    {
+      "term": "Age",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nYour time in the darkness changes you.\n\nGain the benefits for the Hunt XP milestone you have reached. A survivor may only gain each milestone benefit once a lifetime.\n\n1 | Weapon Proficiency.\nYou may now select a weapon type for weapon proficiency. (If you wound a monster with the selected weapon type, you are eligible to gain a proficiency level during the aftermath. Roll on the table below\n\nAvailable Weapon Types:\naxe, bow, club, dagger, fist & tooth, grand weapon, katar, shield, spear, sword, and whip.\n\n2 | Improved Reflexes.\nThe years sharpen your reflexes. Roll on the table below.\n\n3 | Enhanced Senses.\nExperience sharpens your instincts. Roll on the table below.\n\n4 | Lucky Elder.\nAge is the rarest resource of all. Roll on the table below.\n\nWays to Trigger.\n\nNotes.\nWith the addition of the Sunstalker Expansion and the Dragon King Expansion it is possible to gain weapon proficiency levels in the katana and scythe weapon types respectively.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Age",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "Hunt XP",
+        "survivor",
+        "Limit, Once Per Lifetime",
+        "weapon",
+        "Weapon Proficiency",
+        "wound",
+        "aftermath",
+        "axe",
+        "bow",
+        "club",
+        "dagger",
+        "Fist & Tooth",
+        "Grand Weapon",
+        "katar",
+        "shield",
+        "spear",
+        "sword",
+        "whip"
+      ]
+    },
+    {
+      "term": "Ageless Apprentice",
+      "definition": "Ageless Apprentice is a secret fighting art card found within the Lion Knight Expansion.\n\nCard Text.\nWhen you gain Hunt XP, you may decide not to gain it.\n\nWhen you depart, you may rotate up to 3 gear cards in your gear grid. This changes the location of their affinities and arrows. Otherwise, the gear functions normally.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ageless_Apprentice",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Lion Knight Expansion",
+        "Hunt Experience",
+        "depart",
+        "gear",
+        "Gear Grid",
+        "Affinity"
+      ]
+    },
+    {
+      "term": "Agility Fighter",
+      "definition": "is a strain fighting art found in the Survivors of Death 1 expansion.\n\nCard Text.\nOn Arrival, gain a +1 evasion token if you have a dagger or sword in your gear grid.\n\nWhen you attack with a dagger or sword, add your evasion to you strength for the attack.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Agility_Fighter",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Incidental Learning Strain",
+        "Survivors of Death 1",
+        "Arrival",
+        "Evasion"
+      ]
+    },
+    {
+      "term": "Altered Destiny",
+      "definition": "is a secret fighting art card found within the Dragon King Expansion.\n\nCard Text.\nIf you would gain a negative attribute token, gain a positive attribute token of that type instead.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Altered_Destiny",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Dragon King Expansion",
+        "Attribute Modifier Token",
+        "attribute"
+      ]
+    },
+    {
+      "term": "Ambidextrous",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nAll melee weapons in your gear grid gain paired.\n\nAmbidextrous cannot be used if there are any shields, two-handed, or heavy gear in your gear grid.\n\nNotes.\nThe two weapons activated must still have the same name, following the rules of the paired keyword.\nA character cannot pair two different weapon gear cards together. Question was asked and answered in the Official FAQ.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ambidextrous",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "melee",
+        "Weapon",
+        "Gear Grid",
+        "paired",
+        "Shield",
+        "two-handed",
+        "heavy",
+        "gear"
+      ]
+    },
+    {
+      "term": "Applause",
+      "definition": "is a special Hand AI card found in the Kingdom Death: Monster Core Game. \nCard Text.\n\nAt the start of the showdown, place this card face down at the bottom of the AI deck.\n\nThe survivors fall to their knees in agony, their bones suddenly twisting and changing. For each survivor, cure all broken injuries and roll 1d10. Then, end the showdown. The survivors are victorious.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Applause",
+      "relatedTerms": [
+        "Hand",
+        "AI card",
+        "Kingdom Death: Monster Core Game",
+        "Showdown Phase",
+        "AI Deck",
+        "survivors",
+        "Permanent Injury",
+        "1d10",
+        "Victory",
+        "Death",
+        "survival",
+        "strength",
+        "accuracy",
+        "evasion",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Armored Fist",
+      "definition": "Armored Fist is a strain fighting art found in the Echoes of Death 3 white box expansion.\n\nCard Text.\nRequires Fist & Tooth Proficiency.\n\nYour Fist & Tooth attacks gain strength equal to the current armor value of your arms hit location.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Armored_Fist",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Echoes of Death 3",
+        "White Box",
+        "Fist & Tooth Proficiency",
+        "Fist & Tooth",
+        "Attack",
+        "strength",
+        "Armor Point",
+        "arms",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Backstabber",
+      "definition": "is a strain fighting art card found within the Echoes of Death white box expansion.\n\nCard Text.\nOn a Perfect hit with a dagger, your first wound attempt in that attack gains Devastating 1.\n\nWhen you attack a monster with a dagger from its blind spot, if you have the Hoarder or Secretive disorder, increase the range of your Perfect hits by 1.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Backstabber",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death",
+        "White Box",
+        "Perfect Hit",
+        "dagger",
+        "Wound Attempt",
+        "attack",
+        "Devastating X",
+        "Blind Spot",
+        "Hoarder",
+        "Secretive",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Barber Surgeon",
+      "definition": "The Barber Surgeon is a settlement location found in the Kingdom Death: Monster Core Game. It is unlocked by endeavoring at the Organ Grinder.\n\nLocation Text.\nCraftable Gear.\nAlmanac\nBlue Charm\nBug Trap\nFirst Aid Kit\nGreen Charm\nMusk Bomb\nRed Charm\nScavenger Kit\n\nTrepanning.\nAn auger, gingerly applied to the skull of the survivor is used to drill through the bone in the dangerous pursuit of remedies by releasing blood built-up in the brain.\n\nNotes.\nPrior to the release of Kingdom Death: Monster 1.6, the Elder Earrings, Brain Mint, and Speed Powder were crafted at this location, but were moved to the Stone Circle settlement location. Additionally, this location gained the ability to craft the Blue Charm, Green Charm, and Red Charm.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Barber_Surgeon",
+      "relatedTerms": [
+        "Settlement Location",
+        "Kingdom Death: Monster Core Game",
+        "Build",
+        "Endeavors",
+        "Organ Grinder",
+        "Almanac",
+        "Blue Charm",
+        "Bug Trap",
+        "First Aid Kit",
+        "Green Charm",
+        "Musk Bomb",
+        "Red Charm",
+        "Scavenger Kit",
+        "Intracranial Hemorrhage",
+        "Severe Injury",
+        "disorder",
+        "Fighting Art",
+        "Elder Earrings",
+        "Brain Mint",
+        "Speed Powder"
+      ]
+    },
+    {
+      "term": "Beast of Caratosis",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou may Concentrate. If you do, perform Beast of Caratosis at the start of your next act.\n\nBeast of Caratosis:.\nYou reach into the dream and disappear in a shimmer of heat. Place your survivor adjacent to the monster. Activate a weapon in your grid and attack the monster. For this attack, your attack speed is equal to your red affinities, you hit automatically, and you gain strength equal to double your red affinities. Then, gain +6 Hunt XP.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beast_of_Caratosis",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Concentrate",
+        "act",
+        "survivor",
+        "adjacent",
+        "monster",
+        "Activation",
+        "weapon",
+        "Gear Grid",
+        "attack",
+        "speed",
+        "Affinity",
+        "Automatic Hit",
+        "strength",
+        "Hunt XP"
+      ]
+    },
+    {
+      "term": "Beast of Sorrow",
+      "definition": "is a Legendary Monster found within the Kingdom Death: Monster Core Game.\n\nStat Breakdown.\n\nVictory.\nUse Level 3 White Lion Victory\n+1 Iron strange resource\nNominate the survivor that dealt the killing blow. That survivor gains a fighting art of their choice.\n\nDefeat.\nThe settlement is paralyzed by grief. No may be spent the next settlement phase.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beast_of_Sorrow",
+      "relatedTerms": [
+        "White Lion",
+        "Showdown: White Lion",
+        "Legendary Monsters",
+        "Kingdom Death: Monster Core Game",
+        "Cunning",
+        "Trample",
+        "Weak Spot (AI Card)",
+        "Iron (Strange Resource)",
+        "Strange Resources",
+        "survivor",
+        "Killing Blow",
+        "Fighting Arts",
+        "settlement",
+        "Settlement Phase"
+      ]
+    },
+    {
+      "term": "Beetle Strength",
+      "definition": "Beetle Strength is a secret fighting art card found within the Dung Beetle Knight Expansion.\n\nCard Text.\nOnce per showdown, you may spend to shove an adjacent obstacle terrain. If you do, move the terrain directly away from you in a straight line until it encounters a board edge or another obstacle terrain. Any monsters the terrain passes over suffer a wound, and any survivors it collides with suffer knockback 7.\n\nThe display of strength is so exhausting it ages you. You are knocked down and gain +1 Hunt XP.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beetle_Strength",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Dung Beetle Knight Expansion",
+        "showdown",
+        "adjacent",
+        "obstacle",
+        "terrain",
+        "Showdown Board Edge",
+        "wound",
+        "collides",
+        "Knockback X",
+        "Knocked Down",
+        "Hunt XP"
+      ]
+    },
+    {
+      "term": "Berserker (Fighting Art)",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOnce per showdown, you may spend to suffer bash and the frenzy brain trauma.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Berserker_(Fighting_Art)",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "showdown",
+        "bash",
+        "frenzy",
+        "brain",
+        "Brain Trauma Table"
+      ]
+    },
+    {
+      "term": "Black Guard Style",
+      "definition": "is a secret fighting art card found within the Percival White Box.\n\nCard Text.\nSwords in your gear grid gain Block 1.\n\nWhen you block a hit with a sword, your next attack that round with a sword gains +2 accuracy. +2 strength, and +2 speed. Limit, once per round.\n\nDuring the settlement phase, you may spend to train a survivor. They gain the Black Guard Style secret fighting art. You lose it and suffer the broken arm severe injury.\n\nNotes.\nThis card erroneously has a quotation mark inserted when it instructs you to suffer the broken arm severe injury.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_Guard_Style",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Percival",
+        "Sword",
+        "Gear Grid",
+        "Block X",
+        "hit",
+        "attack",
+        "round",
+        "accuracy",
+        "strength",
+        "speed",
+        "Settlement Phase",
+        "Severe Arm Injury Table",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Blackout",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nAll at once and without warning, the collected sum of the settlement's lanterns go black. The settlement is plunged into darkness.\n\nLife at the Bottom.\nThe survivors' victory over the Watcher is a meaningless event in the teeming world around them.\n\nThe settlement's conviction is shaken. Lose the Ultimate Weapon or Final Fighting Art.\n\nHow can something so insignificant continue to survive? Unless, a greater purpose beyond death awaits. The settlement discovers a way to come and innovates Destiny.\n\nContinue to Life in the Darkness.\n\nLife in the Darkness.\nThe Watcher's tangled lantern mass is extinguished. Archive the Lantern Hoard settlement location and gain the Exhausted Lantern Hoard settlement location. (The settlement can no longer innovate.)\n\nThe darkness closes in as the survivors gather around the fading lights of the Watcher. Tangled in sinews, a final lantern remains. The light within pulses and swirls with desperate energy.\n\nThe settlement tears the strange new lantern from the corpse and gains the Final Lantern rare gear. Anyone that holds it bristles with energy. Visions of wisdom and coursing vigor jolt from the lantern through the survivor.\n\nThe settlement quickly discovers they can use the Final Lantern to repair broken ones. Gain 3 Survivor's Lantern gear cards.\n\nContinue to the Final Knowledge.\n\nThe Final Knowledge.\nThe Final Lantern glistens with nervous energy. The settlement commences Lantern Research.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blackout",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "Watcher",
+        "Ultimate Weapon",
+        "Final Fighting Art",
+        "innovation",
+        "Destiny",
+        "Archive",
+        "Lantern Hoard",
+        "Settlement Location",
+        "Exhausted Lantern Hoard",
+        "Settlement Locations",
+        "survivors",
+        "Final Lantern",
+        "Rare Gear",
+        "survivor",
+        "Survivors' Lantern",
+        "gear",
+        "Lantern Research"
+      ]
+    },
+    {
+      "term": "Bloodzerker",
+      "definition": "is a Crimson Crocodile fighting art card found within the Gambler's Chest Expansion.\nCard Text.\nGain +1 strength for each of your bleeding tokens.\n\nWhen you have 3+ bleeding tokens, you lose yourself to the blood and are guardless!",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bloodzerker",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion",
+        "guardless"
+      ]
+    },
+    {
+      "term": "Blotted Out",
+      "definition": "Blotted Out is a fighting art card found within the Slenderman Expansion.\n\nCard Text.\nWhenever you suffer a brain trauma, gain a bleeding token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blotted_Out",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Slenderman Expansion",
+        "Brain Trauma Table",
+        "Bleeding Token"
+      ]
+    },
+    {
+      "term": "Bone Whisperer",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen another survivor dies on the showdown board, place a token where they died. If you pass over it, remove the token and eat their skull. Heal your survivor and roll 1d10 + your Hunt XP",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bone_Whisperer",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Death",
+        "Showdown Board",
+        "Healing",
+        "1d10",
+        "Hunt XP",
+        "movement",
+        "speed",
+        "evasion",
+        "strength",
+        "Fighting Art",
+        "survival",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Burning Ambition",
+      "definition": "Burning Ambition is a fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nWhen you are instructed to skip the next hunt, ignore it.\n\nThe \"Skip Next Hunt\" box on your survivor record sheet cannot be filled in.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Burning_Ambition",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Sunstalker Expansion",
+        "Skip Next Hunt",
+        "Survivor Record Sheet"
+      ]
+    },
+    {
+      "term": "Burning Focus",
+      "definition": "Burning Focus is a fighting art card found within the Lion God Expansion.\n\nCard Text.\nIf you have 0 survival at the start of your act, gain 1 survival.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Burning_Focus",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion God Expansion",
+        "survival",
+        "act"
+      ]
+    },
+    {
+      "term": "Carapace of Will",
+      "definition": "is a fighting art card found within the Dung Beetle Knight Expansion.\n\nCard Text.\nOn Arrival, gain the Steadfast survivor\nstatus card.\n\nWhen you are attacked, if you have 2+ steadfast tokens, ignore a hit and remove all your steadfast tokens.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Carapace_of_Will",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dung Beetle Knight Expansion",
+        "Arrival",
+        "Steadfast",
+        "Survivor Status Card",
+        "hit"
+      ]
+    },
+    {
+      "term": "Champion's Rite",
+      "definition": "is a dragon trait and fighting art card found within the Dragon King Expansion.\n\nCard Text.\nBefore making an attack, you may add your understanding to your accuracy attribute for that attack. \n\nLimit, once per showdown.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Champion's_Rite",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dragon Trait",
+        "Dragon King Expansion",
+        "understanding",
+        "accuracy",
+        "attribute",
+        "attack",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Choreia",
+      "definition": "An innovation card found within the Spidicules Expansion.\n\nCard Text.\n Spider Dance. Nominate a male and a female survivor and roll 1d10.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Choreia",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Forbidden Dance",
+        "innovation",
+        "Spidicules Expansion",
+        "Harvestman",
+        "Death Touch"
+      ]
+    },
+    {
+      "term": "Clarity of Darkness",
+      "definition": "Clarity of Darkness is a secret fighting art card found within the Slenderman Expansion.\n\nCard Text.\nOn Arrival, gain the Path of Gloom survivor status card.\n\nThere is a deadly, otherworldly presence about you. Other survivors cannot voluntarily end their movement adjacent to you.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Clarity_of_Darkness",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Slenderman Expansion",
+        "Arrival",
+        "Path of Gloom",
+        "Survivor Status Card",
+        "movement",
+        "adjacent"
+      ]
+    },
+    {
+      "term": "Cloaked Stranger",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA cloaked form steps out from a patch of darkness ahead of the survivors. Its ill-fitting garment shifts atop its form and its trudging leaves dark, black puddles in the mouths of the rain-slick stone on the ground.\n\nThe event revealer approaches the stranger and rolls 1d10.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cloaked_Stranger",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "1d10",
+        "Ruptured Spleen",
+        "Severe Injury",
+        "Non-deaf Survivor",
+        "brain",
+        "Event Damage",
+        "Bleeding Token",
+        "Fighting Art",
+        "survival",
+        "understanding",
+        "Iron Will",
+        "ability",
+        "Knocked Down",
+        "Knockback X"
+      ]
+    },
+    {
+      "term": "Clutch Fighter",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhile you have 3 or more bleeding tokens, gain +1 strength and +1 accuracy.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Clutch_Fighter",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Bleeding Token",
+        "Strength",
+        "Accuracy"
+      ]
+    },
+    {
+      "term": "Combo Master",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOn a perfect hit make 1 additional attack roll.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Combo_Master",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Perfect Hit",
+        "Attack Roll"
+      ]
+    },
+    {
+      "term": "Convalescer",
+      "definition": "is a strain fighting art card found within the Echoes of Death 2 white box expansion.\n\nCard Text.\nSympathy and tenderness elevate your care. Whenever you remove bleeding tokens, gain survival, or add armor points, increase this benefit by 1.\n\n(e.g. if you use Bandages on another survivor, they remove up to 3 bleeding tokens.)\n\nIn contrast to your care, your attacks become more crude. They gain the club keyword.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Convalescer",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death 2",
+        "White Box",
+        "Bleeding Token",
+        "survival",
+        "Armor Points",
+        "Bandages",
+        "club",
+        "Gear Keyword"
+      ]
+    },
+    {
+      "term": "Courtly Screenwriter",
+      "definition": "Courtly Screenwriter is a secret fighting art card found within the Lion Knight Expansion.\n\nCard Text.\nOn Arrival, secretly write down on a scrap of paper which survivors will live and who will deal the killing blow. During the aftermath, if your predictions were correct, raise the settlement's Survival Limit by 1.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Courtly_Screenwriter",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Lion Knight Expansion",
+        "Arrival",
+        "Killing Blow",
+        "aftermath",
+        "Survival Limit"
+      ]
+    },
+    {
+      "term": "Crazed",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOn a perfect hit, gain +1 insanity.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crazed",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Perfect Hit",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Crescent Step",
+      "definition": "is a secret fighting art card found within the Badar Limited Release/White Box Expansion.\n\nCard Text.\nDuring your act, when your attack ends, gain . Limit, once per round",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crescent_Step",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Sealed",
+        "Toxicimitar",
+        "Badar",
+        "Limited Releases",
+        "White Boxes",
+        "act",
+        "attack",
+        "round"
+      ]
+    },
+    {
+      "term": "Crossarm Block",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhenever you are hit, after hit locations are rolled, you may change 1 result to the arms hit location.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crossarm_Block",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "hit",
+        "Hit Location",
+        "arms"
+      ]
+    },
+    {
+      "term": "Dark Manifestation",
+      "definition": "Dark Manifestation is a strain fighting art found in the Echoes of Death 3 white box expansion.\n\nCard Text.\nOnce per round, at the start of your act, you may spend the requisite insanity to perform one of the following abilities:",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dark_Manifestation",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Echoes of Death 3",
+        "White Box",
+        "round",
+        "act",
+        "insanity",
+        "abilities",
+        "strength",
+        "Block X",
+        "adjacent",
+        "(X)d10",
+        "wound"
+      ]
+    },
+    {
+      "term": "Death Touch",
+      "definition": "is a secret fighting art card found within the Spidicules Expansion.\n\nCard Text.\nGain +1 accuracy when attacking with Fist & Tooth.\n\nWhen you wound a monster, it gains -1 toughness until the end of your attack.\n\nYou cannot use this if you are male.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Death_Touch",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Spidicules Expansion",
+        "accuracy",
+        "Attack",
+        "Fist & Tooth",
+        "wound",
+        "toughness"
+      ]
+    },
+    {
+      "term": "Defender",
+      "definition": "Defender is a fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nWhen a survivor adjacent to you is knocked down, you may spend 1 survival. If you do, they stand and gain +1 survival from your words of encouragement.\n\nYou cannot use this if you have the shattered jaw severe injury.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Defender",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Sunstalker Expansion",
+        "adjacent",
+        "Knocked Down",
+        "survival",
+        "Severe Head Injury Table",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Devil's Melody",
+      "definition": "is a secret fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\n\nBallad of the Devil's Melody [4]:.\nGain +10 Survival, +10 Insanity, +1 Movement token, and +1 Speed token. At the start of each round, the monster suffers an automatic Wound and each survivor suffers a random Severe Injury.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Devil's_Melody",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Smog Singers",
+        "Gambler's Chest Expansion",
+        "Survival",
+        "Insanity",
+        "Movement",
+        "Speed",
+        "Wound",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Double Dash",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nDuring your act, once per round, you may spend to gain",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Double_Dash",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Act",
+        "round"
+      ]
+    },
+    {
+      "term": "Drawings",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nCowering in a cave, the survivors find strange drawings decorating the walls. They appear to contain a message. Any survivor with 3+ understanding may try to decipher the drawings by rolling 1d10. If the settlement has Pictographs, every survivor may roll (regardless of their understanding) and add +4 to their rolls.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Drawings",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "understanding",
+        "1d10",
+        "Pictographs",
+        "Monster Level",
+        "brain",
+        "Event Damage",
+        "insanity",
+        "survival",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Escape Artist",
+      "definition": "is a fighting art card found within the Black Knight Expansion.\n\nCard Text.\nIf you would suffer an After Damage effect, roll 1d10. On an 8+, you deftly escape. Ignore the effect.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Escape_Artist",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Black Knight",
+        "Black Knight Expansion",
+        "After Damage"
+      ]
+    },
+    {
+      "term": "Eternal Will",
+      "definition": "is a secret fighting art card found within the Manhunter Expansion.\n\nCard Text.\nGain +1 accuracy and +1 strength for each permanent injury you have.\n\nYou may always depart, even when retired.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Eternal_Will",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Manhunter Expansion",
+        "accuracy",
+        "strength",
+        "Permanent Injury",
+        "depart",
+        "retired"
+      ]
+    },
+    {
+      "term": "Ethereal Pact",
+      "definition": "is a strain fighting art card found within the Echoes of Death white box expansion.\n\nCard Text.\nAdd +3 to your brain trauma rolls.\n\nWhen you suffer the Impossible!, brain trauma, the fungus in your head connects to the dreaming. Birth of a Savior and choose a dream. (If you've already reached Age 2, you cannot gain your dream's secret fighting art.)\n\nIf you are a savior, this fighting art has no effect.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ethereal_Pact",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death",
+        "White Box",
+        "Brain Trauma Table",
+        "Birth of a Savior",
+        "Age",
+        "Secret Fighting Art",
+        "savior",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Extra Sense",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou may dodge 1 additional time per round.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Extra_Sense",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "dodge",
+        "round"
+      ]
+    },
+    {
+      "term": "Fated Blow",
+      "definition": "is a dragon trait and fighting art card found within the Dragon King Expansion.\n\nCard Text.\nOnce per showdown, you may give your next wound attempt +2 strength and Devastating 1.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fated_Blow",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dragon Trait",
+        "Dragon King Expansion",
+        "showdown",
+        "Wound Attempt",
+        "strength",
+        "Devastating X"
+      ]
+    },
+    {
+      "term": "Fateful Feather",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe survivors pass a ruined settlement. At its center, an altar holds a lustrous feather. Its glow illuminates the ghostly image of frozen worshippers.\n\nEach survivor rolls 1d10. The lowest scoring survivor (roll off in case of ties) becomes a straggler. The straggler cannot resist grasping the feather.\n\nThe straggler instantly forgets the sum of their life. Set the survivor's Weapon Proficiency and Hunt XP to 0 (the survivor may gain the benefits of Age again). Remove all disorders and fighting arts. Gain 1 Tail Feather Phoenix resource.\n\nIf any survivor has the Hours Ring, they may spend 2 survival to save the straggler and ignore this event.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fateful_Feather",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "settlement",
+        "1d10",
+        "straggler",
+        "Weapon Proficiency",
+        "Hunt XP",
+        "Age",
+        "Disorder",
+        "Fighting Arts",
+        "Tail Feathers (Resource)",
+        "Phoenix#Resources",
+        "Hours Ring",
+        "survival"
+      ]
+    },
+    {
+      "term": "Fencing",
+      "definition": "Fencing is a secret fighting art card found within the Flower Knight Expansion.\n\nCard Text.\nIgnore Parry when attempting to wound hit locations. (Attempt to wound these locations normally.)\n\nWhen a monster attacks you, roll 1d10. On a 6+, ignore 1 hit. Limit, once per round.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fencing",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Flower Knight Expansion",
+        "Parry",
+        "Wound Attempt",
+        "Hit Location",
+        "attack",
+        "(X)d10",
+        "Ignore a Hit",
+        "round"
+      ]
+    },
+    {
+      "term": "Feral Shout",
+      "definition": "is a fighting art card found within the Frogdog Expansion.\nCard Text.\nYour sudden bark spooks the monster!\n\nIf you are adjacent to the monster, spend to have it suffer knockback 1 away from you.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Feral_Shout",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Frogdog Expansion",
+        "Knockback X"
+      ]
+    },
+    {
+      "term": "Feral Strength",
+      "definition": "is a fighting art card found within the Black Knight Expansion.\n\nCard Text.\nGain +1 strength if insane when attacking with a non-finesse weapon.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Feral_Strength",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Black Knight",
+        "Black Knight Expansion",
+        "Insane",
+        "Finesse"
+      ]
+    },
+    {
+      "term": "First Step",
+      "definition": "is a fighting art card found within the Gambler's Chest Expansion, for The King.\nCard Text.\nWhenever you attack, after drawing a monster's Hit Location but before rolling to wound, you may suffer brain damage to choose a drawn monster's Hit Location and then discard it to draw a new one.\n\nTraps cancel this effect.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/First_Step",
+      "relatedTerms": [
+        "Fighting Arts",
+        "King",
+        "Gambler's Chest Expansion",
+        "The King",
+        "Hit Location",
+        "Trap"
+      ]
+    },
+    {
+      "term": "Forgotten Fear",
+      "definition": "is a story event in the Slenderman Expansion rule book.\n\nEvent Text.\nIn an instant, you recall the horrors of the past and see a familiar, delicate figure standing unheeded among the survivors. Your screams are choked by gouts of black water spewing from your mouth.\n\nNominate a survivor with the Blotted Out fighting art to remember.\nIf no survivors have Blotted Out, then Reveal the Horror and the Slenderman ambushes the survivors.\n\nRemember.\nremove Blotted Out and roll 1d10\n\nReveal the Horror.\nThe Slenderman's shape ripples into view before the survivors' eyes.\n\nIf there is a Nemesis Encounter - Slenderman on the timeline this year, remove it.\n\nStop the settlement phase and depart for a Special Showdown with the Slenderman. After the showdown, resume the settlement phase. Do not gain , draw a settlement event card, or advance the lantern year.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Forgotten_Fear",
+      "relatedTerms": [
+        "Story Event",
+        "Slenderman Expansion",
+        "Dark Water",
+        "Blotted Out",
+        "Fighting Arts",
+        "Slenderman",
+        "Ambush",
+        "Survivors",
+        "1d10",
+        "Survivor",
+        "Severe Head Injury Table",
+        "Spiral Ganglia",
+        "Disorders",
+        "Secret Fighting Arts",
+        "Understanding",
+        "Nemesis",
+        "Settlement Phase",
+        "depart",
+        "Special Showdown",
+        "Showdown Phase"
+      ]
+    },
+    {
+      "term": "Frozen Star",
+      "definition": "Frozen Star is a dragon trait and secret fighting art card found within the Dragon King Expansion.\n\nCard Text.\nOnce per round, you may spend 1 survival to freeze a monster's brain. They gain -2 accuracy until the end of the round.\n\nOnce per round, you may spend 1 survival to freeze a survivor's brain, killing them instantly. They die.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Frozen_Star",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Dragon Trait",
+        "Dragon King Expansion",
+        "round",
+        "survival",
+        "accuracy",
+        "Death"
+      ]
+    },
+    {
+      "term": "Giant's Blood",
+      "definition": "is a strain fighting art card found within the Echoes of Death white box expansion.\n\nCard Text.\nYou overproduce growth hormones! When you gain this fighting art, gain +1 strength, -1 evasion permanently.\n\nYou may consume skulls. If you do, gain the Marrow Hunger impairment.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Giant's_Blood",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death",
+        "White Box",
+        "Fighting Art",
+        "strength",
+        "evasion",
+        "consume",
+        "Skull",
+        "Marrow Hunger",
+        "impairment"
+      ]
+    },
+    {
+      "term": "Glass Mask",
+      "definition": "is a Crimson Crocodile fighting art card found within the Gambler's Chest Expansion.\nCard Text.\nWhen you depart, you lightly cut your ears, rub blood all over your face, and wait for it to dry. Gain +3 insanity.\n\nIf you have Face Painting, you create a seal between your glass mask and your armor. Gain an additional +3 insanity.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glass_Mask",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion",
+        "depart",
+        "Face Painting"
+      ]
+    },
+    {
+      "term": "Glorious Eye",
+      "definition": "is a Phoenix hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWound.\nIf the attacker has any age tokens, they suffer rewind.\n\nRewind: Undo the survivor's attack. Restore any wounds or persistent injuries this attack caused to the monster. Place the survivor 5 spaces away from the monster.\n\nCritical Wound.\nThe monster's eye bursts with milky ichor. An adjacent survivor gains +1 insanity and +1 survival. If they are insane, they may spend 3 survival to find deep inspiration in the taste and gain 1 random fighting art.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glorious_Eye",
+      "relatedTerms": [
+        "Phoenix",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "attacker",
+        "Dreaded Decade",
+        "survivor",
+        "wound",
+        "Persistent Injury",
+        "monster",
+        "away",
+        "adjacent",
+        "insanity",
+        "survival",
+        "insane",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "God of Cheaters",
+      "definition": "is a secret fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nGain +4 Luck.\n\nAdd your luck attribute to your strength and evasion Attributes.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/God_of_Cheaters",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Gambler",
+        "Gambler's Chest Expansion",
+        "Luck",
+        "Attribute"
+      ]
+    },
+    {
+      "term": "Grace of Dormenatus",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou may Concentrate. If you do, perform Grace of Dormenatus at the start of your next act.\n\nGrace of Dormenatus: You reach into the dream and remove a twisting green crown. The crown explodes. A glittering rain of shards coats the survivors.\n\nAll survivors gain armor at all hit locations equal to your green affinities. They may remove up to the same number of tokens. Then, gain +6 Hunt XP. If you still exist, gain the priority target token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Grace_of_Dormenatus",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Concentrate",
+        "act",
+        "Survivor",
+        "All Survivors",
+        "armor",
+        "Hit Location",
+        "Affinity",
+        "Attribute Modifier Token",
+        "Hunt XP",
+        "Priority Target"
+      ]
+    },
+    {
+      "term": "Harvestman",
+      "definition": "Harvestman is a fighting art card found within the Spidicules Expansion.\n\nCard Text.\nGain +3 movement. Whenever you are knocked down, gain -1 movement token.\n\nIf you have the Tiny Arachnophobia disorder, you are too scared of spiders to imitate them and you cannot use this fighting art.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Harvestman",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Spidicules Expansion",
+        "movement",
+        "Knocked Down",
+        "Attribute Modifier Token",
+        "Tiny Arachnophobia",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Headliner",
+      "definition": "Headliner is a fighting art card found within the Lion Knight Expansion.\n\nCard Text.\nWhen you become doomed or gain the priority target token, you may choose to gain +1 survival or +1 strength token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Headliner",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion Knight Expansion",
+        "doomed",
+        "Priority Target",
+        "survival",
+        "strength",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Hellfire",
+      "definition": "is a secret fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nYou cannot lose or remove this fighting art.\n\nGain +1 strength for each you have. You cannot be nominated for Intimacy. You ignore Extreme Heat.\n\nAt the start of your act, lose 1 survival. At the end of your act, if your survival is 0 or you have any +1 strength tokens, your organs cook themselves and you die.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hellfire",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Sunstalker Expansion",
+        "Fighting Art",
+        "strength",
+        "Intimacy",
+        "The Sun#Extreme Heat",
+        "act",
+        "survival",
+        "Attribute Modifier Token",
+        "Death"
+      ]
+    },
+    {
+      "term": "Heroic",
+      "definition": "Heroic is a fighting art card found within the Lion God Expansion.\n\nCard Text.\nOnce per showdown, if you are standing adjacent to the monster and have 3+ survival, you may spend all of your survival for one automatic hit that inflicts a critical wound.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Heroic",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion God Expansion",
+        "Showdown Phase",
+        "adjacent",
+        "monster",
+        "survival",
+        "Automatic Hit",
+        "Critical Wound"
+      ]
+    },
+    {
+      "term": "Immovable Object",
+      "definition": "is a secret fighting art card found within the Gorm Expansion.\n\nCard Text.\nIf you are an unoccupied space, you stand firm in the face of any force. You cannot be knocked down and may ignore knockback.\n\n(If you occupy the same space as a monster, an impassable terrain tile, or another survivor, you are knocked down and suffer knockback.)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Immovable_Object",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Gorm Expansion",
+        "Knocked Down",
+        "Knockback X",
+        "impassable",
+        "Terrain Tile"
+      ]
+    },
+    {
+      "term": "Infernal Rhythm",
+      "definition": "is a strain fighting art card found within the Echoes of Death 2 white box expansion.\n\nCard Text.\nYou may spend to play an instrument in your gear grid. Reveal the next 3 monster hit locations, then put them back in any order.\n\nWhenever you activate an instrument, gain a lantern token. At the start of another survivor's act, you may spend 5 lantern tokens to stir their blood. They gain and .",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Infernal_Rhythm",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death 2",
+        "White Box",
+        "instrument",
+        "Gear Grid",
+        "Reveal",
+        "Hit Location",
+        "Activation",
+        "act"
+      ]
+    },
+    {
+      "term": "Infinite Lives",
+      "definition": "is a strain fighting art card found within the Echoes of Death white box expansion.\n\nCard Text.\nYou cannot create new memories.\n\nYou cannot gain new fighting arts or disorders. When you would gain one, instead gain a new lifetime! Give yourself a new name and a once per lifetime reroll. \n\n(Gain +1 survival for naming. Gain the reroll regardless of principle. Only 1 once per lifetime roll at a time.)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Infinite_Lives",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death",
+        "White Box",
+        "Fighting Arts",
+        "disorders",
+        "Limit, Once Per Lifetime",
+        "survival",
+        "principle"
+      ]
+    },
+    {
+      "term": "Intimacy (Dragon King Expansion)",
+      "definition": "Intimacy is a story event in the Dragon King Expansion rule book.\n\nEvent Text.\nNominate one consenting male and one consenting female survivor and roll on the intimacy table below.\n\nIf you rolled a 4 or 5 and if the settlement has the Protect the Young New Life Principle, the parents give the child the Noble surname.\nIf you rolled a 6 or a 7, and if the settlement has the Survival of the Fittest New Life Principle, the newborn survivor gains a second Dragon's Inheritance.\nIf you rolled a 10 and if the settlement innovated Hovel, a favored child is born. Roll 1d10 to determine which ability the newborn survivor gains.\n\nDragon's Inheritance.\nChoose an inheritance for the new survivor and note the resulting characteristic on the newborn survivor's record sheet.\nGain half of a parent's courage (rounded down).\nGain half of a parent's understanding (rounded down).\nGain one of the parent's fighting arts.\nGain all of parent's disorders.\nGain one parent's surname.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Intimacy_(Dragon_King_Expansion)",
+      "relatedTerms": [
+        "Story Event",
+        "Dragon King Expansion",
+        "Tyrant",
+        "death",
+        "Destroyed Genitals",
+        "Severe Injury",
+        "Dragon Trait",
+        "strength",
+        "Protect the Young",
+        "Principle: New Life",
+        "Survival of the Fittest",
+        "innovation",
+        "Hovel",
+        "1d10",
+        "ability",
+        "Hit Location",
+        "affinity",
+        "Gear Grid",
+        "showdown",
+        "AI Deck"
+      ]
+    },
+    {
+      "term": "Invigorator",
+      "definition": "is a Crimson Crocodile fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nGain +1 accuracy and +1 speed while you have no insanity.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Invigorator",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion"
+      ]
+    },
+    {
+      "term": "King of a Thousand Battles",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nGain +2 accuracy, +2 strength, +2 evasion.\n\nYou may dodge any number of times in a round.\n\nOnly 1 survivor may have this Secret Fighting Art.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/King_of_a_Thousand_Battles",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "accuracy",
+        "strength",
+        "evasion",
+        "dodge",
+        "round"
+      ]
+    },
+    {
+      "term": "King's Step (Secret Fighting Art)",
+      "definition": "King&#39;s Step is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhenever you attack, you may discard any number of Battle Pressure hit locations drawn and draw an equal number of new hit locations.\n\nWhenever you attack, after drawing hit locations, but before rolling to wound, you may choose one hit location drawn and discard it to draw a new hit location.\n\nTraps will cancel these effects.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/King's_Step_(Secret_Fighting_Art)",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "attack",
+        "Battle Pressure",
+        "Hit Location",
+        "Wound Attempt",
+        "discard"
+      ]
+    },
+    {
+      "term": "Last Man Standing",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\nCard Text.\nWhile you are the only survivor on the showdown board, you may not gain bleeding tokens or be knocked down.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Last_Man_Standing",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Showdown Board",
+        "Bleeding Token",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Leader",
+      "definition": "Leader is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhenever you encourage a survivor, they gain +1 speed token until the end of the round.\n\nOnce per hunt phase, you may inspire another survivor. They use your understanding and courage to resolve a hunt or story event.\n\n(Example: if you have 3+ courage you can inspire another survivor to walk the path of the brave during Overwhelming Darkness.)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Leader",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "encourage",
+        "speed",
+        "Attribute Modifier Token",
+        "round",
+        "Hunt Phase",
+        "understanding",
+        "courage",
+        "Hunt Event",
+        "Story Event",
+        "Overwhelming Darkness"
+      ]
+    },
+    {
+      "term": "Legendary Lungs (Secret Fighting Art)",
+      "definition": "Legendary Lungs is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOnce per attack, for each successful hit, make an additional attack roll.\n\nUses for Legendary Lungs.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Legendary_Lungs_(Secret_Fighting_Art)",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "attack",
+        "hit",
+        "Attack Roll"
+      ]
+    },
+    {
+      "term": "Lights in the Sky",
+      "definition": "is a settlement event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nA spectacular light show erupts against the limitless darkness above. Swirling vivid trails streak overhead. They lift everyone's spirits!\n\nLingering Effects.\nThe settlement's collective imagination is set aflame. After rolling for any endeavor, you may add +1 or +2 to the result.\n\nOnce per settlement phase.\n Requires Graves\n\nOnce per settlement phase.\n Requires Face Painting\n\nOnce per settlement phase.\n Requires Inner Lantern\n\nNotes.\nThe second endeavor effect erroneously states that it requires \"Face-Painting\" instead of Face Painting.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lights_in_the_Sky",
+      "relatedTerms": [
+        "endeavor",
+        "Graves",
+        "Face Painting",
+        "Inner Lantern",
+        "Settlement Event",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "survival",
+        "insane",
+        "depart",
+        "Lantern Year",
+        "Stranger in the Dark",
+        "timeline",
+        "Quixotic",
+        "disorder",
+        "Fighting Art",
+        "Skull Eater",
+        "understanding"
+      ]
+    },
+    {
+      "term": "Lucernae's Lantern",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou may Concentrate. If you do, perform Lucernae's Lantern at the start of your next act.\n\nLucernae's Lantern: You reach into the dream and excise a screeching skull, darker than darkness. It hurtles at the monster.\n\nReveal hit locations equal to half your blue affinities (rounded down) one at a time. The monster suffers a critical wound at any locations with critical wound effects (Ignore the effects of the trap.) Then reshuffle the hit location deck. Gain +6 Hunt XP.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lucernae's_Lantern",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Concentrate",
+        "act",
+        "monster",
+        "Hit Location",
+        "Affinity",
+        "Critical Wound",
+        "Critical Wound Effect",
+        "trap",
+        "Hunt XP"
+      ]
+    },
+    {
+      "term": "Lure Epilepsy",
+      "definition": "is a fighting art card found within the Gorm Expansion.\n\nCard Text.\nOnce per showdown, you may spend to give yourself a seizure. You suffer a random brain trauma and are knocked down.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lure_Epilepsy",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Gorm Expansion",
+        "showdown",
+        "Brain Trauma Table",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Mammoth Hunting",
+      "definition": "is a fighting art card found within the Gorm Expansion.\n\nCard Text.\nGain +1 strength when attacking from adjacent spaces outside the monster's facing and blind spot.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mammoth_Hunting",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Gorm Expansion",
+        "strength",
+        "adjacent",
+        "facing",
+        "Blind Spot"
+      ]
+    },
+    {
+      "term": "Midnight's Children",
+      "definition": "Midnight's Children is a story event in the Dragon King Expansion rule book.\n\nThe People of the Stars campaign adds story event to Lantern year 5.\n\nEvent Text.\nWeakness is the anathema to strength.\n\nThe Tyrant descends the obsidian staircase with a gift. It places the gift at the settlement's center, and heat washes over the cold stone ground for the first time. The settlement gains the Radiating Orb innovation.\n\nThe Tyrant beckons each survivor into the light. The gathered survivors Marvel at Their Reflection in the gleaming obsidian.\n\nMarvel at Their Reflection.\nCount the number of survivors in the settlement that have at least 1 Dragon Trait.\n\n3 or less - a pale reflection\nThe Tyrant gazes bitterly at the pale, anemic limbs crowding into the warmth of the radiant Orb, their chilled goose-flesh resembling nothing of the proud people he imagined they would be. Roll 1d10.\n\n4 or more - a flickering reflection\nAmong the survivors' dim reflections in the polished black stone of the settlement, the ghosts of the dragons appear to walk among the settlement. Roll 1d10.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Midnight's_Children",
+      "relatedTerms": [
+        "Story Event",
+        "Dragon King Expansion",
+        "People of the Stars",
+        "Tyrant",
+        "Radiating Orb",
+        "innovation",
+        "survivor",
+        "survivors",
+        "settlement",
+        "Dragon Trait",
+        "1d10",
+        "Unbreakable",
+        "Fighting Art",
+        "death",
+        "strength",
+        "accuracy",
+        "Permanent Injury",
+        "Regal Edge",
+        "Rare Gear",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Mighty Strike",
+      "definition": "Mighty Strike is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOn a perfect hit, gain +2 strength until the end of the attack.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mighty_Strike",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Perfect Hit",
+        "strength",
+        "attack"
+      ]
+    },
+    {
+      "term": "Mind Palace",
+      "definition": "is a secret fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nWhen you Depart or gain this, choose a Fighting Arts from the deck. For the rest of the lantern year, treat the effects of the chosen card as an ability.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mind_Palace",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "The King",
+        "Gambler's Chest Expansion",
+        "Depart",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Monster Claw Style",
+      "definition": "Monster Claw Style is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYour Fist & Tooth attacks gain +1 accuracy, +1 strength and savage.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Claw_Style",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Fist & Tooth",
+        "accuracy",
+        "strength",
+        "savage"
+      ]
+    },
+    {
+      "term": "Monster Empathy",
+      "definition": "is a Smog Singers fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nAttuning your feelings to the monster's teaches you how to defeat it.\n\nGain +1 strength for each mood in play.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Empathy",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Smog Singers",
+        "Gambler's Chest Expansion",
+        "Strength"
+      ]
+    },
+    {
+      "term": "Murder",
+      "definition": "is a settlement event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nSomeone in the settlement has been murdered! The survivor with the highest Hunt XP is the victim. They are dead. The murderer - the survivor with the highest insanity - was caught in the act, and is awaiting punishment.\n\nSelect the table that corresponds with your settlement's Society Principle and roll 1d10 to determine the fate of the murderer.\n\nCollective Toil.\n\nAccept Darkness.\n\nNo Society Principle.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Murder",
+      "relatedTerms": [
+        "Settlement Event",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "Hunt XP",
+        "dead",
+        "insanity",
+        "Principle: Society",
+        "1d10",
+        "Stranger in the Dark",
+        "timeline",
+        "Lantern Year",
+        "Departing Survivors",
+        "Fighting Art",
+        "Iron",
+        "Strange Resource",
+        "Immortal",
+        "disorder",
+        "survival",
+        "Hit Location",
+        "settlement"
+      ]
+    },
+    {
+      "term": "Necromancer (Secret Fighting Art)",
+      "definition": "Necromancer is a secret fighting art card found within the Lion God Expansion. This card features a unique severe injury table featured on the reverse face of the card.\n\nCard Text.\nWhen you depart, gain + to all hit locations for each gear card in your grid with the symbol keyword.\n\nIf you would roll on the severe injury table, roll on the Worm Trauma table on the other side of this card instead.\n\nWhen you die or forget this, the settlement gains the The Knowledge Worm innovation.\n\nWorm Trauma.\nWhenever you would suffer an unspecified severe injury, roll 1d10 on the following table instead of on the severe injury table. (Specified severe injuries remain unchanged.)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Necromancer_(Secret_Fighting_Art)",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Lion God Expansion",
+        "Severe Injury Tables",
+        "depart",
+        "Hit Location",
+        "gear",
+        "Gear Grid",
+        "symbol",
+        "Gear Keyword",
+        "Death",
+        "innovation",
+        "Severe Injury",
+        "1d10",
+        "Bleeding Token",
+        "evasion",
+        "Attribute Modifier Token",
+        "d5",
+        "insanity",
+        "strength",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Orator of Death",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOnce per showdown, you may spend to have all non-deaf survivors gain +2 insanity.\n\nWhen you die, you encourage all survivors with your last words.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Orator_of_Death",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "showdown",
+        "Non-deaf Survivor",
+        "insanity",
+        "Death",
+        "encourage"
+      ]
+    },
+    {
+      "term": "Otherworldly Luck",
+      "definition": "Otherworldly Luck is a fighting art card found within the Flower Knight Expansion.\n\nCard Text.\nDuring the hunt and settlement phase, whenever you roll on a table, you may add +1 to the roll result. This may not exceed the highest possible result of that table.\n\n(This includes Hunt Events, Story Events, Endeavors, Settlement Events, etc)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Otherworldly_Luck",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Flower Knight Expansion",
+        "Hunt Phase",
+        "Settlement Phase",
+        "Hunt Event",
+        "Story Events",
+        "Endeavors",
+        "Settlement Event"
+      ]
+    },
+    {
+      "term": "Phantom Friend",
+      "definition": "Phantom Friend is a fighting art card found within the Slenderman Expansion.\n\nCard Text.\nThe first time you gain a resource during a showdown, you may feed it to your phantom friend. If you do, archive the resource and gain +1 evasion token.\n\nLose this token if you are deaf or become deaf during the showdown.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phantom_Friend",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Slenderman Expansion",
+        "resource",
+        "showdown",
+        "archive",
+        "evasion",
+        "Attribute Modifier Token",
+        "deaf"
+      ]
+    },
+    {
+      "term": "Piercer",
+      "definition": "is a fighting art card found within the Black Knight Expansion.\n\nCard Text.\nDagger and swords gain Precision 1 when you attack Knight monsters.\n\nPrecision 1: On a Perfect Hit, inflict an automatic critical wound to the first hit location you resolve.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Piercer",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Black Knight",
+        "Black Knight Expansion",
+        "Knight (Keyword)",
+        "Perfect Hit"
+      ]
+    },
+    {
+      "term": "Propulsion Drive",
+      "definition": "is a fighting art card found within the Dung Beetle Knight Expansion.\n\nCard Text.\nOn Arrival, gain the Momentum survivor status card.\n\nWhen you attack, if you have 5+ momentum tokens, remove them all and roll 1d10. Gain that amount of luck and strength when attempting to wound the first selected hit location for this attack.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Propulsion_Drive",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dung Beetle Knight Expansion",
+        "Arrival",
+        "Momentum",
+        "Survivor Status Card",
+        "attack",
+        "1d10",
+        "luck",
+        "strength",
+        "Wound Attempt",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Purpose",
+      "definition": "Purpose is a fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nYour comrades make you strong enough to exceed the limits of death itself.\n\nDuring the showdown, if you would gain a lethal number of bleeding tokens while there are any other standing survivors, roll 1d10. On a 6+, you live but are knocked down. You will not bleed to death until you gain another bleeding token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Purpose",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Sunstalker Expansion",
+        "showdown",
+        "Bleeding Token",
+        "1d10",
+        "Knocked Down",
+        "death"
+      ]
+    },
+    {
+      "term": "Red Fist",
+      "definition": "Red Fist is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nAt the start of each showdown, each survivor gains +1 strength token.\n\nSurvivors may spend +1 strength tokens in place of survival.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Red_Fist",
+      "relatedTerms": [
+        "Secret Fighting Art",
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "showdown",
+        "Survivors",
+        "strength",
+        "Attribute Modifier Token",
+        "survival"
+      ]
+    },
+    {
+      "term": "Regicide (Fighting Art)",
+      "definition": "is a fighting art card found within the Gambler's Chest Expansion, for The King.\nCard Text.\nWhen another survivor performs encourage, an action that makes them scream or roar, or any other audible effect, you may absorb it. Cancel the action and gain +1 strength token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Regicide_(Fighting_Art)",
+      "relatedTerms": [
+        "Fighting Arts",
+        "King",
+        "Gambler's Chest Expansion",
+        "The King",
+        "Encourage"
+      ]
+    },
+    {
+      "term": "Relentless",
+      "definition": "is a Smog Singers fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nWhen a monster moves away from you during your attack, you may pursue. Limit once per attack.\n\nPursue: Gain , which must be immediately spent to move towards the monster. If you moved and are now adjacent, draw another Hit Location.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Relentless",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Smog Singers",
+        "Gambler's Chest Expansion",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Rhythm Chaser",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\nCard Text.\nOn Arrival, gain +1 evasion token. When you are knocked down, if you don't have an instrument in your gear grid, remove all your +1 evasion tokens.\n\nRhythm Chaser cannot be used if there is any heavy gear in your gear grid.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rhythm_Chaser",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Arrival",
+        "evasion",
+        "Attribute Modifier Token",
+        "Knocked Down",
+        "Instrument",
+        "Gear Grid",
+        "Heavy",
+        "gear"
+      ]
+    },
+    {
+      "term": "Rolling Gait",
+      "definition": "is a strain fighting art card found within the Echoes of Death 2 white box expansion.\n\nCard Text.\nSpend to notch an arrow. Your next attack with a bow ignores cumbersome.\n\nAt the end of your attack with a bow or arrow, if you hit the monster from outside it's facing, it gains a flinch token.\n\nFlinch token: When a monster with a flinch token attempts to perform , cancel and discard this token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rolling_Gait",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death 2",
+        "White Box",
+        "arrow",
+        "bow",
+        "cumbersome",
+        "attack",
+        "hit",
+        "facing",
+        "flinch token"
+      ]
+    },
+    {
+      "term": "Ruthless",
+      "definition": "Ruthless is a fighting art card found within the Lion God Expansion.\n\nCard Text.\nWhenever a survivor dies during the showdown, roll 1d10. On a 7+, gain a Skull basic resource.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ruthless",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion God Expansion",
+        "Death",
+        "showdown",
+        "(X)d10",
+        "Skull",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Scholar of Death",
+      "definition": "is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOn Arrival, gain reroll tokens equal to the number of volumes recorded about your quarry. (e.g., if your settlement has White Lion Volumes 1, 2 and 3, when you fight a White Lion, gain 3 reroll tokens.)\n\nDiscard a reroll token to reroll one of your results during the showdown. This includes monster roll results when you are the monster controller.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scholar_of_Death",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Arrival",
+        "quarry",
+        "White Lion",
+        "Records",
+        "showdown",
+        "Monster Controller"
+      ]
+    },
+    {
+      "term": "Sculpture",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou create an Inspirational Statue. Skip the\nnext hunt and lose a fighting art. Record this\nfighting art on the Settlement Record Sheet.\nA settlement can only have one Inspirational\nStatue. (You cannot make another! Secret\nFighting arts are not fighting arts!)\n\nYou study the Inspirational Statue. Roll 1d10.\nOn a 6+, gain the recorded fighting art.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sculpture",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Paint",
+        "Pottery",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Seasoned Hunter",
+      "definition": "Seasoned Hunter is a fighting art card found within the Manhunter Expansion.\n\nCard Text.\nWhenever a random hunt event result is:\n11, 22, 33, 44, 55, 66, 77, 88, 99, or 100,\nthe event revealer gains +1 understanding and +1 courage.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Seasoned_Hunter",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Manhunter Expansion",
+        "Hunt Event",
+        "Monster Droppings",
+        "Acid Rain",
+        "It Whispers Your Name",
+        "Opportunists",
+        "Mudslide",
+        "Forbidden Word",
+        "Sinkhole (Hunt Event)",
+        "The Sword and the Statue",
+        "Portcullis",
+        "The Finale",
+        "Event Revealer",
+        "understanding",
+        "courage"
+      ]
+    },
+    {
+      "term": "Serpent Abdomen",
+      "definition": "is a Dragon King Hit Location card found in the Dragon King Expansion.\nCard Text.\n-2 toughness to wound this location.\n\nDeath Blow.\nIf the Dragon King is killed at this hit location, its radioactive heart sputters and dims. Gain 1 Radiant Heart strange resource. The survivors celebrate their triumph!\n\nAll survivors gain:\n+1 courage\n+1 understanding\n1 random fighting art",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Serpent_Abdomen",
+      "relatedTerms": [
+        "Dragon King",
+        "Hit Location",
+        "Dragon King Expansion",
+        "toughness",
+        "wound",
+        "Radiant Heart",
+        "courage",
+        "understanding",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Settlement Watch",
+      "definition": "An innovation card found within the Manhunter Expansion.\n\nCard Text.\nDeparting survivors gain +2 survival when\nthey depart for a Nemesis Encounter\nor a Special Showdown.\n\n New Recruits - roll 1d10",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Settlement_Watch",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Hovel",
+        "innovation",
+        "Manhunter Expansion",
+        "Departing Survivors",
+        "depart",
+        "Nemesis Monster",
+        "Special Showdown",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Shadow Dancing",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nYou may only endeavor here if a survivor died during the last hunt or showdown.\n\n Final Dance - once per year, roll 1d10",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shadow_Dancing",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Hovel",
+        "innovation",
+        "Sunstalker Expansion",
+        "Sneak Attack"
+      ]
+    },
+    {
+      "term": "Shielderang",
+      "definition": "is a strain fighting art card found within the Echoes of Death 2 white box expansion.\n\nCard Text.\nYou are impervious behind your shield. If you have a shield in your gear grid, ignore the first severe injury you suffer each showdown.\n\nIf you have Shield Specialization, shields in your gear grid gain Reach 3 and +1 strength for each weapon proficiency you have beyond 3.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shielderang",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Strain Fighting Arts",
+        "Echoes of Death 2",
+        "White Box",
+        "shield",
+        "Gear Grid",
+        "Severe Injury",
+        "showdown",
+        "Shield Proficiency",
+        "Reach",
+        "strength",
+        "Weapon Proficiency"
+      ]
+    },
+    {
+      "term": "Showdown: King's Man",
+      "definition": "is a story event found in the Kingdom Death: Monster Core Game rulebook.\n\nLore.\nThere was once a monster that was to lead its master's regal procession. First the monster came as a herald, then its hungry masters. So fierce were the monster's masters that it never thought to protect its own back, knowing what horrors lay behind it.\n\nAftermath.\nVictory.\nAny victorious survivors may immediately select Spear weapon proficiency, regardless of age milestones. (Any accrued ranks of weapon proficiency are lost when switching to a new weapon type.)\nLevel 1+\n+1 Hunt XP\n+1 Weapon Proficiency Level or + Spear Proficiency Levels\n+Rewards\n\nRewards.\nThe air grows still and a palpable feeling of dread comes over the survivor that dealt the final wound to the King's Man. .\n\nRoll 1d10 + defeated monster's level on the table below. The group gains the following rewards:\n\nIf the settlement innovated Nightmare Training when they defeat a level 3+ King's Man, the survivors are inspired by the battle. Each remaining survivor rolls 1d10.\n\nOn a result of a 3+, the survivor gains King's Step secret fighting art.\n\nDefeat.\nThe King's Man rudely breaks something as it leaves the settlement. If the settlement innovated Pottery, return it to the innovation deck.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_King's_Man",
+      "relatedTerms": [
+        "Guard",
+        "King's Man",
+        "toughness",
+        "3 Stone Columns",
+        "Terrain",
+        "Speed",
+        "Accuracy",
+        "Damage",
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "Victory",
+        "Spear Proficiency",
+        "Age",
+        "milestones",
+        "Weapon Proficiency",
+        "weapon",
+        "Hunt XP",
+        "Rewards",
+        "survivor",
+        "1d10"
+      ]
+    },
+    {
+      "term": "Showdown: Tyrant",
+      "definition": "is a showdown story event found in the Dragon King Expansion.\n\nLore.\nThere was a monster whose only fear was to be forgotten. Driven by that terror smoldering in its heart, the monster inscribed its face in the sky with a glowing breath. All who saw it grew sick and died leaving nothing alive that could remember the monster's face.\n\nAftermath.\nVictory.\n+1 Hunt XP\n+1 Weapon Proficiency (if eligible)\n+Rewards\n\nRewards.\nThe Tyrant looks shaken, startled at the surprising ferocity of the survivors' spirit.\n\nThe survivor that dealt the killing blow is brought before the Tyrant. With glowing fists, it reaches into the survivor's bruised flesh, tearing away their very essence with a ripping, searing sound. The survivor may choose to gain: Iridescent Hide or Oracle's Eye ability.\n\nIf the settlement has innovated Nightmare Training when they defeat the level 3 Tyrant, they gain the Arena innovation at no cost.\n\nDefeat.\nThe Tyrant turns its disappointed gaze on the remaining survivors in the settlement. Nominate one survivor. They gain the Destined disorder.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_Tyrant",
+      "relatedTerms": [
+        "Advance",
+        "Crooked Step",
+        "Full Move",
+        "towards",
+        "Closest Survivor",
+        "Turn#Monster",
+        "Terrain",
+        "Nemesis Monster",
+        "Showdown Board",
+        "survivors",
+        "Speed",
+        "Accuracy",
+        "Damage",
+        "Showdown Phase",
+        "Story Event",
+        "Dragon King Expansion",
+        "Hunt XP",
+        "Weapon Proficiency",
+        "Rewards",
+        "Tyrant"
+      ]
+    },
+    {
+      "term": "Silk Surgeon",
+      "definition": "Silk Surgeon is a secret fighting art card found within the Spidicules Expansion. Silk Surgeon begins at Rank 0, and may be upgraded through the Silk Surgery story event. Record the rank of Silk Surgeon on the survivor record sheet. The bonuses granted by the different ranks are cumulative: A survivor who is rank 2 will gain all benefits granted by rank 1 and rank 2 of Silk Surgeon.\n\nCard Text.\nRank 1.\nYou may spend while adjacent to another survivor to add to one of their hit locations.\nRank 2.\nWhile all armor in your gear grid is silk and all jewelry is amber, gain +2 evasion.\nRank 3.\nDuring the aftermath, roll 1d10 for each other survivor that died during the showdown. On a 7+, revive them.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silk_Surgeon",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Spidicules Expansion",
+        "Silk Surgery",
+        "Story Event",
+        "Survivor Record Sheet",
+        "adjacent",
+        "Hit Location",
+        "armor",
+        "Gear Grid",
+        "silk",
+        "jewelry",
+        "amber",
+        "evasion",
+        "aftermath",
+        "(X)d10",
+        "Death",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Sneak Attack",
+      "definition": "Sneak Attack is a fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nWhen you attack a monster from its blind spot, gain +4 strength for that attack.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sneak_Attack",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Sunstalker Expansion",
+        "attack",
+        "Blind Spot",
+        "strength"
+      ]
+    },
+    {
+      "term": "Soft Landing",
+      "definition": "is a fighting art card found within the Frogdog Expansion.\n\nCard Text.\nYou crash gracefully. If you would suffer collision with terrain because of knockback, roll 1d10. On a 6+, you recover your footing! End your knockback on the pace directly before colliding with the terrain. Limit once per round.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Soft_Landing",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Frogdog Expansion",
+        "collision",
+        "terrain",
+        "Knockback X",
+        "Collision"
+      ]
+    },
+    {
+      "term": "Sonorous Rest",
+      "definition": "is a story event in the Manhunter Expansion rule book.\n\nEvent Text.\nThe survivors activate their Reverberating Lantern. Its unsettling vibrations cause headaches, but drown out all the sound within its small area. The group can now pause safely while the Lantern remains active.\n\nEach survivor has time to either Rest or Tune.\n\nRest.\nYou plug your ears and do you best to relax, sleep, and let your body restore itself.\n\nGain +2 survival.\nGain an additional +1 survival for each you have.\n\nTune.\nSleep is for the weak. You stare into the darkness and become one with the reverberations.\n\nGain +3 insanity.\nGain an additional +1 insanity for each you have.\n\n- War Room.\nIf the settlement has innovated War Room, the survivors use vibration cancellers to allow them to be more productive within the reverberation area. They prepare in silence for the upcoming battle.\n\nEach survivor may do both of the following:\nRepair up to d5 points of armor damage suffered during the Hunt Phase.\nRemove 1 token gained during the Hunt Phase.\n\n- Storytelling.\nIf the settlement has innovated Storytelling, they put on a play with shadow puppets. Roll 1d10.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sonorous_Rest",
+      "relatedTerms": [
+        "Story Event",
+        "Manhunter Expansion",
+        "survivors",
+        "Reverberating Lantern",
+        "survivor",
+        "survival",
+        "insanity",
+        "innovation",
+        "War Room",
+        "d5",
+        "Armor Points",
+        "Hunt Phase",
+        "Attribute Modifier Token",
+        "Storytelling",
+        "1d10",
+        "courage",
+        "understanding",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Spelunking of Death",
+      "definition": "is a story event in the Dung Beetle Knight Expansion rule book.\n\nEvent Text.\nThe group investigates the monster's network of tunnels and are inspired by the rich vegetation. If your settlement does not already have it, gain the Subterranean Agriculture innovation. Nominate up to 4 victorious survivors from the last showdown to be spelunkers. One at a time, each spelunker rolls 1d10 on the table below.\n\nTrial of Valor.\nRoll 1d10, adding half your courage (rounding up).\n\nTrial of Wits.\nRoll 1d10, adding half your understanding (round up).\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Spelunking_of_Death",
+      "relatedTerms": [
+        "Story Event",
+        "Dung Beetle Knight Expansion",
+        "settlement",
+        "Subterranean Agriculture",
+        "innovation",
+        "victory",
+        "showdown",
+        "1d10",
+        "death",
+        "Resin Dung Ball",
+        "Preserved Caustic Dung",
+        "Dung Beetle Knight Expansion#Resources",
+        "pickaxe",
+        "Skull",
+        "Basic Resource",
+        "Iron",
+        "Strange Resource",
+        "courage",
+        "Archive",
+        "gear"
+      ]
+    },
+    {
+      "term": "Stockist",
+      "definition": "Stockist is a strain fighting art found in the Echoes of Death 3 white box expansion.\n\nCard Text.\nYou may Concentrate. If you do, perform Stock Shot at the start of your next act.\n\nStock Shot: Activate a bow in your gear grid and attack the monster. For this attack, you bow's Range and strength are equal to the number of resources in the settlement storage. Limit once per showdown.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stockist",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Echoes of Death 3",
+        "White Box",
+        "Concentrate",
+        "act",
+        "Activation",
+        "bow",
+        "Gear Grid",
+        "attack",
+        "Range",
+        "strength",
+        "resources",
+        "Settlement Storage",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Story of Blood 1",
+      "definition": "is a strain fighting art found in the 10th Anniversary White Speaker white box expansion.\n\nCard Text.\nAt some point in your life, you learned a miraculous thing! You cannot recall who taught you or what it was. For a moment, you see a spectrum of colors in your blood . The first time you gain a bleeding token during the showdown, gain +1 survival.\n\nObservation: When is spent at Bloodletting or Sacrifice, gain +1 .\nRevelation (4 observations): Advance Story of Blood 2",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Story_of_Blood_1",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "10th Anniversary White Speaker",
+        "White Box",
+        "Bleeding Token",
+        "showdown",
+        "survival",
+        "Observation",
+        "Bloodletting",
+        "Sacrifice",
+        "Revelation",
+        "Story of Blood 2"
+      ]
+    },
+    {
+      "term": "Story of Blood 2",
+      "definition": "is a strain fighting art found in the 10th Anniversary White Speaker white box expansion.\n\nCard Text.\nYou dream of your skin hardening and turning deep red. Your own image turns your stomach. Spend to convert a bleeding token into scab armor. Add to any hit location and suffer 1 brain damage.\n\nObservation: When you use this while you have 4+ bleeding tokens, gain +1 .\nRevelation (4 observations): Advance Story of Blood 3",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Story_of_Blood_2",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Story of Blood 1",
+        "10th Anniversary White Speaker",
+        "White Box",
+        "Bleeding Token",
+        "Hit Location",
+        "Brain Damage",
+        "Observation",
+        "Revelation",
+        "Story of Blood 3"
+      ]
+    },
+    {
+      "term": "Story of Blood 3",
+      "definition": "is a strain fighting art found in the 10th Anniversary White Speaker white box expansion.\n\nCard Text.\nThe red creature of your nightmares wears your skin and speaks of unending torment and eternal life. Spend to convert a bleeding token into scab armor. Add to any hit location.\n\nObservation: When another survivor dies from bleeding tokens, gain +1 .\nRevelation (3 observations): Advance Story of Blood 4",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Story_of_Blood_3",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Story of Blood 2",
+        "10th Anniversary White Speaker",
+        "White Box",
+        "Bleeding Token",
+        "Hit Location",
+        "Observation",
+        "Death",
+        "Revelation",
+        "Story of Blood 4"
+      ]
+    },
+    {
+      "term": "Story of Blood 4",
+      "definition": "is a strain fighting art found in the 10th Anniversary White Speaker white box expansion.\n\nCard Text.\nYou peel back the monster's skin to reveal a mass of blood with your likeness. It hangs in the air briefly before collapsing and washing the wasteland red. Spend to convert a bleeding token into scab armor. Add to all hit locations. You may spend your bleeding tokens in place of survival.\n\nObservation: When you use this, gain +1 .\nRevelation (7 observations): You stress your heart. Roll 1d10. On a 6+, lose 1 . Otherwise, you have a heart attack and die.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Story_of_Blood_4",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Story of Blood 3",
+        "10th Anniversary White Speaker",
+        "White Box",
+        "Bleeding Token",
+        "Hit Location",
+        "survival",
+        "Observation",
+        "Revelation",
+        "1d10",
+        "Death"
+      ]
+    },
+    {
+      "term": "Strategist",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nDuring the showdown setup, after placing terrain, you may add a Giant Stone Face or a Toppled Pillar terrain card to the showdown board.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Strategist",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Showdown Setup",
+        "terrain",
+        "Giant Stone Face",
+        "Toppled Pillar",
+        "Showdown Board"
+      ]
+    },
+    {
+      "term": "Sun Eater",
+      "definition": "is a secret fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nYour body mysteriously absorbs light. On Arrival, gain survival up to the settlement's Survival Limit.\n\nIf you have any +1 strength tokens, you may spend them all to perform the Surge survival action (following all of its normal rules and restrictions).",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sun_Eater",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Sunstalker Expansion",
+        "Arrival",
+        "survival",
+        "Survival Limit",
+        "strength",
+        "Attribute Modifier Token",
+        "Surge",
+        "Survival Action"
+      ]
+    },
+    {
+      "term": "Suppressed Shadow",
+      "definition": "Suppressed Shadow is a secret fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nYou no longer cast a shadow and you never hesitate. Ignore First Strike.\n\nOn a Perfect hit, your first wound attempt of the attack automatically succeeds and inflicts a critical wound.\n\nIf you die during the showdown, place a Shade minion in the space you occupied.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Suppressed_Shadow",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Sunstalker Expansion",
+        "First Strike",
+        "Perfect Hit",
+        "Wound Attempt",
+        "attack",
+        "Critical Wound",
+        "Death",
+        "showdown",
+        "Shade",
+        "minion"
+      ]
+    },
+    {
+      "term": "Sword Oath",
+      "definition": "Sword Oath is a strain fighting art found in the Echoes of Death 3 white box expansion.\n\nCard Text.\nWhen you gain this, write the name of any sword gear on your record sheet. Note each time you wound with the named sword.\n\nIf you have wounded 18+ times with this sword, it gains Devastating 1 and Sentient while you have it equipped. When you suffer the Flee brain trauma, lose this fighting art.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sword_Oath",
+      "relatedTerms": [
+        "Strain Fighting Art",
+        "Echoes of Death 3",
+        "White Box",
+        "sword",
+        "gear",
+        "Survivor Record Sheet",
+        "wound",
+        "Devastating X",
+        "Sentient",
+        "Brain Trauma Table",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Swordsman's Promise",
+      "definition": "Swordsman&#39;s Promise is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nOn Arrival, gain survival up to your settlement's Survival Limit if you have a sword in your gear grid.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Swordsman's_Promise",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Arrival",
+        "survival",
+        "Survival Limit",
+        "sword",
+        "Gear Grid"
+      ]
+    },
+    {
+      "term": "Synchronized Strike",
+      "definition": "Synchronized Strike is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWith flawless coordination, you strike as one.\n\nWhen you're adjacent to a monster, attack with a melee weapon, and have an Attack Assist. Your attack gains +1 accuracy, +1 strength. Limit, once per round.\n\nAttack Assist: A survivor who also has Synchronized Strike and is in the right spot. They are standing adjacent to the monster on its opposite side, and parallel to you.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Synchronized_Strike",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "adjacent",
+        "attack",
+        "melee",
+        "weapon",
+        "accuracy",
+        "strength",
+        "round"
+      ]
+    },
+    {
+      "term": "Tenacious",
+      "definition": "Tenacious is a fighting art card found within the Lion Knight Expansion.\n\nCard Text.\nWhen your wound attempt on a hit location is a failure, you may put that hit location back on top of the deck instead of in the discard pile.\n\nLimit, once per round.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tenacious",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion Knight Expansion",
+        "Wound Attempt",
+        "Hit Location",
+        "failure",
+        "discard",
+        "round"
+      ]
+    },
+    {
+      "term": "The Great Sky Gift",
+      "definition": "is a story event in the Sunstalker Expansion rule book.\n\nEvent Text.\nThe sun's mouth opens, creating a deafening drone, and begins to power vomit water directly into the sacred pool. The survivors recognize the gift and cheer as the mineral and bacteria-infused liquid gushes out, its surface casting colorful reflections off of lanterns around the settlement.\n\nThe settlement embraces the Sky Vomit Festival.\n\nFeeling a collective need to preserve as much of the gift as possible for the spawn living inside it, the settlement may nominate a survivor to Enlarge the Sacred Pool.\n\nSky Vomit Festival.\nroll 1d10\n\nIf you rolled a 4 - 10: If the settlement has innovated Sculpture, they whisk the surface of the sky vomit, collecting a mud-like substance that they sculpt into a grand monument to their friend in the sky.\nIncrease the settlement's Survival Limit by +1 and proceed to A Grand Proclamation (6+ result).\n\nEnlarge the Sacred Pool.\nYou may upgrade the Sacred Pool's level once per lantern year. Indicate it's level on your settlement record sheet.\n\nUpgrade from level 1 to 2.\n6x resources\nYou lead the settlement to extend the pool, lovingly creating new icons and symbols of adoration. While working, you have an idea. Gain 1 random fighting art.\n\nUpgrade from level 2 to 3.\nYou lead the settlement to build out the Sacred Pool, fulfilling your long term vision. The satisfaction changes you! Gain the Sun Eater secret fighting art.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Great_Sky_Gift",
+      "relatedTerms": [
+        "Story Event",
+        "Sunstalker Expansion",
+        "The Sun",
+        "Sacred Pool",
+        "survivors",
+        "settlement",
+        "survivor",
+        "1d10",
+        "Population",
+        "Hagfish",
+        "Strange Resources",
+        "courage",
+        "Defender",
+        "Fighting Arts",
+        "strength",
+        "Sculpture",
+        "Survival Limit",
+        "Lantern Year",
+        "Settlement Record Sheet",
+        "Resources"
+      ]
+    },
+    {
+      "term": "The Tomb",
+      "definition": "is a story event in the Dragon King Expansion rule book.\n\nThe People of the Stars campaign adds story event to Lantern year 20.\n\nThe People of the Stars settlement sheet incorrectly refers to this story event as \"The Dragon Tomb\".\n\nEvent Text.\nThe Tyrant's voice booms from the throne, cracking the glassy ground below. It delivers a final edict.\n\n\"Erect a fearsome tomb to celebrate my death. When the deed is done, you will lay me in it.\"\n\nBefore their eyes, the Tyrant grows enormous, hideously twisting and tearing itself into its true form.\n\nA mountain of shining, black muscle and a delicate glowing membrane lays curled around its throne, rhythmically undulating with weary breath.\n\nThe survivors slowly stir from their slack-jawed horror, clumsily starting to clear the outskirts of the settlement for the tomb's foundation.\n\nAdd Tomb: Part 1 to the next year on the timeline.\n\nIf the settlement's population has more normal survivors than People of the Stars, the settlement gains the Ultimate Weapon innovation.\n\nIf the settlement's population has more People of the Stars than normal survivors, the settlement gains the Final Fighting Art innovation.\n\nPart 1.\nThe settlement begins the Tomb's foundation. This lantern year, archive all basic resources brought back by returning survivors (rounded down). Gain 1 Hazmat Shield rare gear. If there are fewer than 4 People of the Stars in the settlement, the settlement sacrifices 2 survivors without constellations (if possible). The departing survivors gain +1 luck token. Add Tomb: Part 2 to the next year on the timeline.\n\nPart 2.\nThe construction is demanding. This lantern year, archive all basic resources brought back by returning survivors (rounded down). If there are fewer than 4 People of the Stars in the settlement, -4 . The departing survivors gain +1 luck token. Add Tomb: Part 3 to the next year on the timeline. \n\nReturning survivors roll 1d10.\n\nPart 3.\nOverwork and lack of rest take their toll. This lantern year, archive all basic resources brought back by returning survivors (rounded down). If there are fewer than 4 People of the Stars in the settlement, any survivors with 0 Hunt XP die.\n\nThe departing survivors hide, avoiding labor. They heal all broken severe injuries and gain +2 luck tokens. Add Tomb: Part 4 to the next year on the timeline. \n\nPart 4.\nDoomsday approaches. The settlement feels the languid gaze of God searching their innermost resolve. The departing survivors gain +2 luck tokens.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Tomb",
+      "relatedTerms": [
+        "Story Event",
+        "Dragon King Expansion",
+        "People of the Stars",
+        "Tyrant",
+        "Dragon King",
+        "survivors",
+        "settlement",
+        "population",
+        "Ultimate Weapon",
+        "innovation",
+        "Final Fighting Art",
+        "Lantern Year",
+        "archive",
+        "Basic Resources",
+        "Hazmat Shield",
+        "Rare Gear",
+        "Constellation",
+        "Departing Survivors",
+        "luck",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Thrill Seeker",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhenever you gain survival during the showdown phase, gain 1 additional survival.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Thrill_Seeker",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "survival",
+        "Showdown Phase"
+      ]
+    },
+    {
+      "term": "Timeless Eye",
+      "definition": "Timeless Eye is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYour attack roll is a perfect hit on a result of 9 or 10.\n\nYou cannot use Timeless Eye if you have the blind severe head injury.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Timeless_Eye",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Attack Roll",
+        "Perfect Hit",
+        "Severe Head Injury Table",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Tools of War",
+      "definition": "is a story event in the Manhunter Expansion rule book.\n\nEvent Text.\nThe eldest player nominates a victorious survivor to be the veteran and search the corpse.\n\nSearch the Corpse.\nThe veteran notices something heavy strapped to the Manhunter, and recovers a large, multi-pocketed belt.\n\nGain the Tool Belt rare gear.\n\nThe veteran spreads the tool belt out on the floor. Amidst the many vicious implements, a small toy seems out of place. Its crude appearance and signs of wear lend it a certain charm. The veteran reflects, looking past the toy at their own experiences, and draws strength from their sadness. They gain +1 permanent strength and the Seasoned Hunter fighting art.\n\nThe veteran leaves the battlefield, the nostalgic chill filling them with a soothing haze of wonder. They grimly understand the meaning of war and gain the War Room innovation.\n\nUnderstanding the Meaning of War.\nRoll 1d10.\n\nIf you rolled a 7, 8, 9, or 10 and if the settlement has innovated Sculpture, an exquisite trophy is crafted. Nominate the survivor most deserving of the trophy. That survivor gains the Trailblazer fighting art and is celebrated as a hero! Remove the Afraid of the Dark and Prey disorders from all survivors in the settlement.\n\nNotes.\nThe disorder Fear of the Dark is erroneously referred to as \"Afraid of the Dark\".",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tools_of_War",
+      "relatedTerms": [
+        "Story Event",
+        "Manhunter Expansion",
+        "victory",
+        "Tool Belt",
+        "Rare Gear",
+        "strength",
+        "Seasoned Hunter",
+        "Fighting Art",
+        "innovation",
+        "1d10",
+        "Hoarder",
+        "disorder",
+        "understanding",
+        "Trailblazer",
+        "Fear of the Dark",
+        "Prey",
+        "Sculpture",
+        "Fighting Arts",
+        "disorders"
+      ]
+    },
+    {
+      "term": "Tough",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen rolling on a severe injury table, unless you roll a 1, add +1 to the result. \n\n(This does not include brain trauma. The result cannot exceed 10.)",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tough",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Severe Injury Tables",
+        "Brain Trauma Table"
+      ]
+    },
+    {
+      "term": "Trailblazer",
+      "definition": "Trailblazer is a fighting art card found within the Manhunter Expansion.\n\nCard Text.\nThe hunting party may start the hunt phase 1 space closer to the monster.\n\nAt the start of the showdown, all survivors gain +1 survival and up to +1 insanity.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Trailblazer",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Manhunter Expansion",
+        "Hunt Phase",
+        "showdown",
+        "survival",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Transcended Masochist",
+      "definition": "Transcended Masochist is a fighting art card found within the Manhunter Expansion.\n\nCard Text.\nWhen you gain a bleeding token, gain +1 survival and +1 insanity.\n\nIgnore the effects of the Aichmophobia and Apathetic disorders.\n\nNotes.\nThe artwork for Transcended Masochist features the survivor Breccia found in the White Gigalion vignette.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Transcended_Masochist",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Manhunter Expansion",
+        "Bleeding Token",
+        "survival",
+        "insanity",
+        "Aichmophobia",
+        "Apathetic",
+        "disorders",
+        "Breccia",
+        "Vignette of Death: White Gigalion",
+        "vignette"
+      ]
+    },
+    {
+      "term": "Trick Attack",
+      "definition": "Trick Attack is a fighting art card found within the Sunstalker Expansion.\n\nCard Text.\nOnce per showdown, when you wound a monster from its blind spot, a survivor adjacent to you may gain the priority target token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Trick_Attack",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Sunstalker Expansion",
+        "showdown",
+        "wound",
+        "Blind Spot",
+        "adjacent",
+        "Priority Target"
+      ]
+    },
+    {
+      "term": "True Blade",
+      "definition": "True Blade is a secret fighting art card found within the Flower Knight Expansion.\n\nCard Text.\nAll swords in your gear grid gain deadly.\n\nGain +3 luck when attacking with a sword if you have the Ghostly Beauty and Narcissistic disorders.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/True_Blade",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Showdown: Flower Knight",
+        "Flower Knight Expansion",
+        "sword",
+        "Gear Grid",
+        "deadly",
+        "luck",
+        "Attack",
+        "Ghostly Beauty",
+        "Narcissistic",
+        "disorders"
+      ]
+    },
+    {
+      "term": "Tumble",
+      "definition": "is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen something would collide with you, roll 1d10. On a result of 6+, you successfully tumble out of harms way. Instead, place your survivor standing on the closest free space outside of the collision path.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tumble",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "collides",
+        "1d10"
+      ]
+    },
+    {
+      "term": "Umbilical Symbiosis",
+      "definition": "is a story event in the Sunstalker Expansion rule book.\n\nEvent Text.\nFollow the steps below.\n\n1.\nNominate a survivor born this year to be the newborn.\n\nIf the newborn has been Purified add +1d10 when you Synchronize.\nIf the newborn is a Child of the Sun add +3d10 when you Sychronize.\n\n2.\nPrepare for the procedure.\n\nAny amount of the following modifications can be applied by spending Life String strange resources equal to the indicated number. Each modification may be applied once per Umbilical Symbiosis. If the synchronization is a failure, all modifications are lost, as are the resources spent.\n1: The newborn gains +1 permanent strength.\n1: The newborn gains +1 permanent accuracy.\n4: The newborn gains +1 permanent luck.\n4: The newborn gains +1 permanent evasion.\n8: Select two different attributes. The newborn gains +1 permanently to each one.\n3: A mineral-rich infusion relaxes the Sunstalker. It passes instinct patterns to the newborn. Draw 7 fighting arts and select 2 for the newborn to gain.\n3: Replacing the life string as it dries increases the purity of the nutrient flow between the two entities. Add +1d10 when you Sychronize.\n\n3.\nSychronize.\n\nNominate a female survivor with at least 1 Hunt XP to be the Caretaker. Roll 1d10 + any bonus 1d10 earned from steps 1 and 2.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Umbilical_Symbiosis",
+      "relatedTerms": [
+        "Story Event",
+        "Sunstalker Expansion",
+        "survivor",
+        "Lantern Year",
+        "Sacred Pool",
+        "1d10",
+        "Intimacy (Sunstalker Expansion)",
+        "(X)d10",
+        "Life String",
+        "Strange Resources",
+        "Umbilical Symbiosis",
+        "resources",
+        "strength",
+        "accuracy",
+        "luck",
+        "evasion",
+        "Attribute",
+        "Sunstalker",
+        "Fighting Arts",
+        "Survivor (Female)"
+      ]
+    },
+    {
+      "term": "Unbreakable",
+      "definition": "Unbreakable is a dragon trait and fighting art card found within the Dragon King Expansion.\n\nCard Text.\nOnce per lantern year, you may ignore one of your severe injury roll results. If you do, gain a random disorder.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unbreakable",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Dragon Trait",
+        "Dragon King Expansion",
+        "Lantern Year",
+        "Severe Injury",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Unconscious Fighter",
+      "definition": "Unconscious Fighter is a fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nIt takes 7 bleeding tokens to kill you.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unconscious_Fighter",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "Bleeding Token",
+        "Death"
+      ]
+    },
+    {
+      "term": "Unfroggable",
+      "definition": "is a fighting art card found within the Frogdog Expansion.\n\nCard Text.\nFastidious self-care.\n\nYou are never stinky and cannot gain stink tokens.\n\nIf you have any stinky gear in your gear grid when you depart, archive it and gain +1 survival and +1 evasion token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unfroggable",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Frogdog Expansion",
+        "stinky",
+        "gear",
+        "Gear Grid",
+        "depart",
+        "archive",
+        "survival",
+        "evasion",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Unrelenting",
+      "definition": "Unrelenting is a fighting art card found within the Lion God Expansion.\n\nCard Text.\nIf all of your attack rolls in an attack miss, you may spend 1 survival to re-roll all attack rolls.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unrelenting",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion God Expansion",
+        "Attack Roll",
+        "attack",
+        "survival"
+      ]
+    },
+    {
+      "term": "Vengeance (Fighting Art)",
+      "definition": "Vengeance is a fighting art card found within the Spidicules Expansion.\n\nCard Text.\nWhen a survivor dies during the showdown, gain +4 survival and +1 strength token.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Vengeance_(Fighting_Art)",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Spidicules Expansion",
+        "Death",
+        "showdown",
+        "survival",
+        "strength",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Virtuoso",
+      "definition": "is a Smog Singers fighting art card found within the Gambler's Chest Expansion.\n\nCard Text.\nWehn you activate an instrument, all survivors are encouraged.\n\nYour Ballads cost 2 less to perform.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Virtuoso",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Smog Singers",
+        "Gambler's Chest Expansion",
+        "Encourage",
+        "Ballad"
+      ]
+    },
+    {
+      "term": "Wardrobe Expert",
+      "definition": "Wardrobe Expert is a fighting art card found within the Lion Knight Expansion.\n\nCard Text.\nWhen you suffer a severe injury at a hit location, you may archive a gear worn at that location to ignore it and gain +1 survival.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wardrobe_Expert",
+      "relatedTerms": [
+        "Fighting Arts",
+        "Lion Knight Expansion",
+        "Severe Injury",
+        "Hit Location",
+        "archive",
+        "gear",
+        "survival"
+      ]
+    },
+    {
+      "term": "Watched",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nDark spots spread across the lantern hoard. A nervous hush falls over the settlement. Slowly, the most daring survivors peer past the darkened lanterns, venturing beneath them in a vast chamber, unknown and undreamed of. Slumbering in the center of the chamber, the survivors can feel a presence of immense danger. Their ultimate predator would soon wake, extinguishing the lantern light that holds the endless darkness at bay.\n\nStarting with this settlement phase, the survivors may awaken and face the sleeping menace. You may move Nemesis Encounter - Watcher to the current lantern year. You cannot move it to a year that already has a Nemesis Encounter on the timeline.\n\nThe settlement have a different response to the discovery based on their Conviction.\n\nBarbaric Response.\nThe survivors decide they must craft the perfect weapon to prepare themselves. Gain the Ultimate Weapon Innovation. This does not count towards your settlement's innovation total. Nominate a survivor and roll 1d10.\n\nRomantic Response.\nThe survivors decide they must learn the perfect fighting art to prepare themselves. Gain the Final Fighting Art Innovation. This does not count towards your settlement's innovation total. Nominate survivor and roll 1d10.\n\nWays to Trigger.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Watched",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "Lantern Hoard",
+        "settlement",
+        "survivors",
+        "Settlement Phase",
+        "Showdown: Watcher",
+        "Lantern Year",
+        "Nemesis",
+        "timeline",
+        "Principle: Conviction",
+        "Ultimate Weapon",
+        "Innovation",
+        "survivor",
+        "1d10",
+        "Hands of Heat",
+        "insanity",
+        "Quixotic",
+        "disorder",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Zero Presence (Secret Fighting Art)",
+      "definition": "Zero Presence is a secret fighting art card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nGain +1 strength when attacking a monster from its blind spot.\n\nWhenever you attack a monster, you are always considered to be in its blind spot.",
+      "category": "Fighting Arts",
+      "url": "https://kingdomdeath.fandom.com/wiki/Zero_Presence_(Secret_Fighting_Art)",
+      "relatedTerms": [
+        "Secret Fighting Arts",
+        "Kingdom Death: Monster Core Game",
+        "strength",
+        "Blind Spot",
+        "attack"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.555Z"
+}
