@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-06
+
+### Added
+- **KDM Fandom Wiki integration**: Crawled 3,269 terms across 25 categories from kingdomdeath.fandom.com
+  - Browse by Category mode in glossary modal with category grid
+  - Lazy-loading: per-category JSON files fetched on demand from `public/wiki/`
+  - Auto-search: typing in glossary auto-loads matching wiki categories
+  - Source indicator badges (Official / Wiki) on all search results
+  - Category pill suggestions when searching category names (e.g., "monsters")
+  - Loading spinner during category fetch
+- Wiki crawler script (`scripts/crawl-wiki.mjs`):
+  - Uses MediaWiki API for reliable data extraction
+  - Rate limiting (1 req/sec) with exponential backoff
+  - Resume support via checkpoint files in `scripts/.wiki-cache/`
+  - Wikitext cleaning (strips templates, tables, markup, converts links)
+  - Category priority assignment (Fighting Arts > Disorders > Gear > etc.)
+- New `npm run wiki:crawl` command
+- Glossary search improvements:
+  - Parenthetical qualifier stripping: "berserker" now matches "Berserker (Fighting Art)" with top score
+  - Category-name search: typing "monsters" surfaces the Monsters category
+  - Base-term matching ranked higher than full-term matching
+- Test coverage for glossary search and GlossaryModal (28 new tests)
+
+### Changed
+- Glossary modal header now includes Search/Browse toggle
+- Wiki index (56KB) eagerly loaded; category data (2.9MB total) lazy-loaded
+- Search runs against official glossary + all loaded wiki terms
+
+### Technical
+- Wiki data split: `src/data/wiki-index.json` (term names + categories) + `public/wiki/*.json` (full terms per category)
+- Category files served as static assets via `public/` directory (not bundled by Vite)
+- Added `WikiCategoryInfo`, `WikiIndex`, `WikiCategoryData` types to `glossary.ts`
+- Added `searchCategories()` utility to `glossarySearch.ts`
+
 ## [1.0.5] - 2026-02-05
 
 ### Added

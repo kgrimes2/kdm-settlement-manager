@@ -1615,8 +1615,8 @@
 .survivor-list-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem;
+  align-items: stretch;
+  padding: 0;
   background-color: #c9b89a;
   background-image:
     radial-gradient(circle at 30% 40%, rgba(0,0,0,.02) 0%, transparent 40%);
@@ -1624,6 +1624,7 @@
   border-radius: 4px;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
 .survivor-list-item:hover {
@@ -1633,113 +1634,115 @@
 
 .survivor-info {
   flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  min-width: 0;
 }
 
 .survivor-actions {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0;
+  flex-wrap: nowrap;
 }
 
-.survivor-name {
-  font-size: 1.25rem;
+.survivor-list-item .survivor-name {
+  font-size: 1rem;
   font-weight: 600;
   color: #2a1a1a;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0;
   text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .survivor-meta {
-  font-size: 0.875rem;
-  color: #5a4a3a;
+  display: none;
 }
 
 .deactivate-button {
-  padding: 0.35rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
   background-color: #6b5a3a;
-  border: 2px solid #4a3a2a;
-  border-radius: 4px;
+  border: none;
+  border-left: 1px solid #4a3a2a;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .deactivate-button:hover {
   background-color: #7b6a4a;
-  border-color: #5a4a3a;
-  transform: translateY(-1px);
 }
 
 .deactivate-button:active {
-  transform: translateY(0);
+  background-color: #5b4a2a;
 }
 
 .activate-button {
-  padding: 0.35rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
   background-color: #5a6b4a;
-  border: 2px solid #3a4a2a;
-  border-radius: 4px;
+  border: none;
+  border-left: 1px solid #3a4a2a;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .activate-button:hover {
   background-color: #6a7b5a;
-  border-color: #4a5a3a;
-  transform: translateY(-1px);
 }
 
 .activate-button:active {
-  transform: translateY(0);
+  background-color: #4a5b3a;
 }
 
 .retire-button {
-  padding: 0.35rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
   background-color: #6b5a3a;
-  border: 2px solid #4a3a2a;
-  border-radius: 4px;
+  border: none;
+  border-left: 1px solid #4a3a2a;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .retire-button:hover {
   background-color: #7b6a4a;
-  border-color: #5a4a3a;
-  transform: translateY(-1px);
 }
 
 .retire-button:active {
-  transform: translateY(0);
+  background-color: #5b4a2a;
 }
 
 .deceased-button {
-  padding: 0.35rem 1rem;
+  padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
   background-color: #6b4a4a;
-  border: 2px solid #4a2a2a;
-  border-radius: 4px;
+  border: none;
+  border-left: 1px solid #4a2a2a;
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .deceased-button:hover {
   background-color: #7b5a5a;
-  border-color: #5a3a3a;
-  transform: translateY(-1px);
 }
 
 .deceased-button:active {
-  transform: translateY(0);
+  background-color: #5b3a3a;
 }
 
 .bulk-actions-section {

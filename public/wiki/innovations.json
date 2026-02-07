@@ -1,0 +1,1422 @@
+{
+  "category": "Innovations",
+  "terms": [
+    {
+      "term": "Accept Darkness",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe settlement no longer fears the\ndarkness. Letting go means your resolve\ncannot be cracked.\n\nAdd +2 to all Brain Trauma rolls.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Accept_Darkness",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Brain Trauma Table"
+      ]
+    },
+    {
+      "term": "Ammonia",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nA pungent, bilious substance ideal for crafting leather and treating wounds.\n\nDeparting survivors gain +1 survival.\n\nAdd ammonia consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ammonia",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "Language",
+        "Bloodletting",
+        "Lantern Oven",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Departing Survivors",
+        "survival"
+      ]
+    },
+    {
+      "term": "Aquarobics",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nSurvival Limit: +1\n\n Underwater Train - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Aquarobics",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Hands of the Sun",
+        "innovation",
+        "Sunstalker Expansion",
+        "Legendary Lungs (Secret Fighting Art)",
+        "Secret Fighting Arts"
+      ]
+    },
+    {
+      "term": "Arena",
+      "definition": "An innovation card found within the Dragon King Expansion.\n\nCard Text.\n Spar - Spend 1 Iron and roll 1d10.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Arena",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Nightmare Training",
+        "innovation",
+        "Dragon King Expansion",
+        "Iron",
+        "Frozen Star"
+      ]
+    },
+    {
+      "term": "Barbaric",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nBelieve in the power of human strength to overpower any obstacle.\n\nAll current and newborn survivors gain +1 permanent strength.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Barbaric",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Survival Limit",
+        "strength"
+      ]
+    },
+    {
+      "term": "Bed",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit +1\n\n Rest - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bed",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Hovel",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Survival Limit",
+        "1d10",
+        "insanity",
+        "endeavor",
+        "Settlement Phase",
+        "Skip Next Hunt",
+        "Broken Arm",
+        "Severe Injury",
+        "Broken Hip",
+        "Broken Rib",
+        "Ruptured Muscle"
+      ]
+    },
+    {
+      "term": "Bell of Challenge",
+      "definition": "is an innovation card found within the Black Knight Expansion.\n\nCard Text.\n : Harken - Gain Honorable.\n\nDeparting Survivors with Honorable gain the following benefits\n\nLvl 1 Gain +1 survival.\n\nLvl 2 Add to all hit locations.\n\nLvl 3 Gain +1 strength token.\n\nLvl 4 Gain a reroll token.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bell_of_Challenge",
+      "relatedTerms": [
+        ":Category:Faith Innovations",
+        "innovation",
+        "Black Knight Expansion",
+        "Honorable",
+        "Departing Survivors"
+      ]
+    },
+    {
+      "term": "Black Mask",
+      "definition": "An innovation card found within the Lion Knight Expansion.\n\nBlack Mask and White Mask are on opposite sides of the same innovation card.\n\nCard Text.\n Visit the retinue. Strange Caravan\n\n Face the Monster - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_Mask",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Lion Knight Expansion",
+        "White Mask",
+        "Strange Caravan",
+        "Skull",
+        "???",
+        "Legendary Lungs"
+      ]
+    },
+    {
+      "term": "Bloodline",
+      "definition": "An innovation card found within the Dragon King Expansion.\n\nCard Text.\nNewborn survivors inherit the following from their parents:\nThe Oracle's Eye, Iridescent Hide, or Pristine ability (choose 1)\n\nHalf of one parents weapon proficiency levels (rounded up)\nAdd bloodline consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bloodline",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Hovel",
+        "Empire",
+        "innovation",
+        "Dragon King Expansion",
+        "Oracle's Eye",
+        "Iridescent Hide",
+        "Pristine"
+      ]
+    },
+    {
+      "term": "Cannibalize",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nWhenever a survivor dies, draw 1 basic resource and add it to settlement storage. Do not gain a resource if a survivor is lost, ceases to exist, or is exiled.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cannibalize",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Survival Limit",
+        "Death",
+        "Basic Resource",
+        "Settlement Storage"
+      ]
+    },
+    {
+      "term": "Character (Innovation)",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion. It cannot be used in a campaign until unlocked by winning the People of the Dream Keeper campaign.\n\nCard Text.\nSurvival Limit: +1\n\nThe settlement values its self-worth and\nappreciates each crack in every stone face.\n\nWhen a survivor is named, they\ngain a random character card.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Character_(Innovation)",
+      "relatedTerms": [
+        "Inner Lantern",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "People of the Dream Keeper",
+        "character"
+      ]
+    },
+    {
+      "term": "Citrinitas",
+      "definition": "is an innovation card found within the Gorm Expansion.\n\nCard Text.\nSurvival Limit: +1\n\n Once this lantern year - roll 1d10\n\nAdd citrinitas consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Citrinitas",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        ":Category:Gormchymy Innovations",
+        "Albedo",
+        "Rubedo",
+        "innovation",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Clan of Death",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe enduring strength of your clan passes through generations.\n\nAll newborn survivors gain: +1 Accuracy, +1 Strength, +1 Evasion.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Clan_of_Death",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Family",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Accuracy",
+        "Strength",
+        "Evasion"
+      ]
+    },
+    {
+      "term": "Collective Toil",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYour settlement leans into the storm. If everyone holds strong, you will triumph.\n\nAt the start of the settlement phase, gain +1 for every 10 population.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Collective_Toil",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Settlement Phase"
+      ]
+    },
+    {
+      "term": "Cooking (Innovation)",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n+1 (At the start of the Settlement Phase, gain +1 endeavor.)\n\nSurvival Limit: +1\n\n Cooking\n\n Spend 1 organ and 1 bone to cook stone nose gruel. During the next hunt phase, ignore Starvation.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cooking_(Innovation)",
+      "relatedTerms": [
+        ":Category:Science Innovations",
+        "Lantern Oven",
+        "Radiating Orb",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Settlement Phase",
+        "Endeavors",
+        "Survival Limit",
+        "Cooking (Story Event)",
+        "organ",
+        "bone",
+        "Hunt Phase"
+      ]
+    },
+    {
+      "term": "Crimson Candy",
+      "definition": "An innovation card found within the Manhunter Expansion.\n\nCard Text.\nAt the start of the showdown, each\nsurvivor gains survival.\n\n Crimson Cannibalism - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crimson_Candy",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Manhunter Expansion",
+        "Intracranial Hemorrhage",
+        "Gaping Chest Wound"
+      ]
+    },
+    {
+      "term": "Death Pact",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nWhen the survivors perish on the hunt or are defeated in the showdown, Logistics of Death.\n\nSpecial Innovate Pictograph (1x hide, 1x organ)",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Death_Pact",
+      "relatedTerms": [
+        "Extinguished Guidepost",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Logistics of Death",
+        "Special Innovate",
+        "Pictograph (Scout)",
+        "hide",
+        "organ"
+      ]
+    },
+    {
+      "term": "Destiny",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nThe settlement's future is unavoidable. All survivors gain the Endure survival action.\n\nEndure: You may spend 7 survival minus your luck to ignore a severe injury before you roll a result.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Destiny",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Survival Limit",
+        "Survival Action",
+        "Endure",
+        "survival",
+        "luck",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Dragon Speech",
+      "definition": "An innovation card found within the Dragon King Expansion.\n\nCard Text.\nSurvival Limit: +1\n\nAll survivors gain the Encourage survival action.\n\nEncourage: Once per round, if standing,\nspend 1 survival to call out to a non-deaf\nsurvival. They stand if knocked down.\n(See detailed rules in rulebook).\n\nAdd language consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dragon_Speech",
+      "relatedTerms": [
+        ":Category: Starting Innovations",
+        "innovation",
+        "Dragon King Expansion",
+        "Encourage"
+      ]
+    },
+    {
+      "term": "Dream Schematics",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nAt the start of the develop step, a survivor must Build the Dream.\n\nBuild the Dream - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dream_Schematics",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "Wondrous Design",
+        "Perfect Punt",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "(X)d10",
+        "broken arm",
+        "Severe Injury",
+        "Resources",
+        "lumi",
+        "construction point",
+        "Settlement Record Sheet"
+      ]
+    },
+    {
+      "term": "Dreamless Language",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nSurvival Limit: +1\n\nAll survivors gain the Encourage survival action.\n\nEncourage: Once per round, if standing,\nspend 1 survival to call out to a non-deaf\nsurvivor. They stand if knocked down.\n\nAdd language consequences to\nthe innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dreamless_Language",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Starting Innovations",
+        "Paint",
+        "Symposium",
+        "Inner Lantern",
+        "Drums",
+        "Hovel",
+        "Ammonia",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "survivors",
+        "Survival Action",
+        "Encourage",
+        "standing",
+        "survival",
+        "Non-deaf Survivor",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Drums",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n Bone Beats - select one\nYou drum alone. Gain +2 insanity.\nRhythmic trance. Gain +2 survival.\nGain Rhythm Chaser fighting art or Synchronized Strike secret fighting art.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Drums",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Language",
+        "Forbidden Dance",
+        "Song of the Brave",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "insanity",
+        "survival",
+        "Rhythm Chaser",
+        "Fighting Art",
+        "Synchronized Strike",
+        "Secret Fighting Art"
+      ]
+    },
+    {
+      "term": "Empire",
+      "definition": "An innovation card found within the Dragon King Expansion.\n\nCard Text.\nNewborn survivors are born with\n+1 permanent strength\nand the Pristine ability.\n\nPristine: When you suffer a\ndismemebered severe injury, ignore it\nand gain 1 bleeding token.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Empire",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Bloodline",
+        "innovation",
+        "Dragon King Expansion",
+        "Pristine"
+      ]
+    },
+    {
+      "term": "Face Painting",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n Battle Paint - roll 1d10\n\n Founder's Eye - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Face_Painting",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Paint",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Filleting Table",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nOnce per settlement phase, if the returning survivors are victorious, gain 1 random basic resource.\n\n Advanced Cutting - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Filleting_Table",
+      "relatedTerms": [
+        ":Category:Science Innovations",
+        "innovation",
+        "Sunstalker Expansion",
+        "Settlement Phase",
+        "Returning Survivors",
+        "Basic Resources",
+        "(X)d10",
+        "Dismembered Arm",
+        "Severe Injury",
+        "Trick Attack",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Final Fighting Art",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nOnce per showdown, you may select a\ncard from the discard pile or wound stack\nand place it on top of the AI deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Final_Fighting_Art",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "AI Deck"
+      ]
+    },
+    {
+      "term": "Forbidden Dance",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen a survivor uses the Synchronized Strike\nsecret fighting art, reroll missed attack rolls once.\n\n Once per lifetime - roll 1d10\n\nAdd forbidden dance consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Forbidden_Dance",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Drums",
+        "Heart Flute",
+        "Petal Spiral",
+        "Choreia",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Synchronized Strike",
+        "King's Step"
+      ]
+    },
+    {
+      "term": "Found Relic",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nAmidst the endless stone faces, the event revealer notices an unusual object on the ground. The event revealer investigates and rolls 1d10.\n\nIf the settlement has Records, add +6 to the result.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Found_Relic",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "investigate",
+        "1d10",
+        "Records",
+        "Secretive",
+        "disorder",
+        "movement",
+        "Attribute Modifier Token",
+        "insanity",
+        "Settlement Phase",
+        "innovations",
+        "Final Lantern",
+        "brain",
+        "Event Damage"
+      ]
+    },
+    {
+      "term": "Gaming Gazebo",
+      "definition": "Gaming Gazebo is a settlement location found in the Gambler's Chest Expansion. When unlocked, it replaces the starting settlement location.\n\nGaming Gazebo introduces the following rules, endeavor, and gear.\n\nGaming Gazebo.\nThe light of inspiration persists. You may continue to innovate.\n\nGear.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gaming_Gazebo",
+      "relatedTerms": [
+        "Settlement Locations",
+        "Gambler's Chest Expansion",
+        "starting settlement location",
+        "Endeavors",
+        "gear",
+        "innovate",
+        "Black Lichen",
+        "(X)d10",
+        "lumi",
+        "luck",
+        "Game Master",
+        "Abilities",
+        "Rage Pawn",
+        "Joy of Gaming",
+        "Lucky Dice",
+        "High Roller",
+        "Fortune Lantern Sword",
+        "Lantern Sword",
+        "iron",
+        "Fortune Lantern Dagger"
+      ]
+    },
+    {
+      "term": "Gorm Climate",
+      "definition": "Gorm Climate is a settlement event card found in the Gorm Expansion.\nCard Text.\nThe returning survivors find the settlement tormented by relentless foul weather. Add Gorm Climate to the next lantern year on the timeline and roll 1d10.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gorm_Climate",
+      "relatedTerms": [
+        "Settlement Event",
+        "Gorm Expansion",
+        "Gorm Climate",
+        "1d10",
+        "settlement",
+        "Hovel",
+        "endeavor",
+        "Returning Survivors",
+        "insanity",
+        "Hunt Phase",
+        "Storytelling",
+        "Hunt XP",
+        "understanding",
+        "courage"
+      ]
+    },
+    {
+      "term": "Graves",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nAll new survivors gain +1 understanding.\n\nWhen a survivor dies during the hunt or\nshowdown phase, gain +2 .\n\nWhen a survivor dies during the\nsettlement phase, gain +1 .",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Graves",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Guidepost",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe soft glow of its light\nfills the survivors with a\nsense of security.\nDeparting survivors gain +1 survival.\n\nThe survivor attempts\nto pull the weapon free\nfrom the ground. Roll\n1d10 and add their\nstrength. If the result is\n12+, gain the Lantern Halberd rare gear and\nlose this innovation\n(archive this card).",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Guidepost",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Lantern Halberd"
+      ]
+    },
+    {
+      "term": "Hands of the Sun",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nThe settlement embraces their protective feelings. All survivors gain the Overcharge survival action.\n\nOvercharge: If you have any +1 strength tokens, you may spend 1 survival and remove them all to give your next attack this round gain \nDevastating 1. Limit, once per round.\n\nAdd hands of the sun consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hands_of_the_Sun",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Sun Language",
+        "Aquarobics",
+        "Sauna Shrine",
+        "innovation",
+        "Sunstalker Expansion",
+        "settlement",
+        "Survivor",
+        "action",
+        "Overcharge",
+        "strength",
+        "survival",
+        "attack",
+        "round",
+        "Devastating X",
+        "Innovation Deck"
+      ]
+    },
+    {
+      "term": "Heart Flute",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen a survivor uses the Synchronized Strike fighting art, their attack assist may spend 1 survival to change any monster to a FAILURE before any wound attempts are made. Limit, once per attack.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Heart_Flute",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Forbidden Dance",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Synchronized Strike"
+      ]
+    },
+    {
+      "term": "Hovel",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nThe settlement accepts this nightmarish\nlandscape as their home.\n\nDeparting survivors gain +1 survival.\n\nAdd hovel consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hovel",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Language",
+        "Family",
+        "Bed",
+        "Partnership",
+        "Bloodline",
+        "Settlement Watch",
+        "Shadow Dancing",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Inner Lantern",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe settlement finds the light within.\nAll survivors gain the surge survival action.\n\nSurge: Once per round, spend 1 survival\nto gain +1 and use it immediately.\n(See detailed rules in rulebook).\n\nAdd inner lantern consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Inner_Lantern",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Language",
+        "Scarification",
+        "Shrine",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Surge"
+      ]
+    },
+    {
+      "term": "Language",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nAll survivors gain the Encourage survival action.\n\nEncourage: Once per round, if standing,\nspend 1 survival to call out to a non-deaf\nsurvival. They stand if knocked down.\n(See detailed rules in rulebook).\n\nAdd language consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Language",
+      "relatedTerms": [
+        ":Category: Starting Innovations",
+        "Paint",
+        "Symposium",
+        "Inner Lantern",
+        "Drums",
+        "Hovel",
+        "Ammonia",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Encourage"
+      ]
+    },
+    {
+      "term": "Lantern Hoard",
+      "definition": "The Lantern Hoard is a settlement location found in the Kingdom Death: Monster Core Game. It is unlocked during the People of the Lantern story event Returning Survivors.\n\nLocation Text.\nInnovate.\nCost:\n1x \n1x Bone\n1x Organ\n1x Hide\n\nOnce per Settlement Phase, you may spend the listed resources to draw 2 innovation cards. Keep 1 and return the other to the deck.\n\n Build Bone Smith \n Build Skinnery \n Build Organ Grinder\n\nShared Experience.\nNominate a survivor that has 2 or more Hunt XP than yourself. They describe illuminating details of their destined death. If you are not deaf, gain +1 Hunt XP from their story. If the nominated survivor has a shattered jaw, instead gain +1 insanity.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lantern_Hoard",
+      "relatedTerms": [
+        "Settlement Location",
+        "Kingdom Death: Monster Core Game",
+        "People of the Lantern",
+        "Story Event",
+        "Returning Survivors",
+        "Bone",
+        "Organ",
+        "Hide",
+        "Settlement Phase",
+        "resources",
+        "innovation",
+        "Build",
+        "Bone Smith",
+        "Skinnery",
+        "Organ Grinder",
+        "Hunt XP",
+        "death",
+        "Non-deaf Survivor",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Lantern Oven",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n Heat\nBy agitating lanterns, a source of Heat\nbecomes available to the settlement.\n\nDeparting Survivors gain +1 survival.\n\nAdd lantern oven consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lantern_Oven",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "Ammonia",
+        "Scrap Smelting",
+        "Cooking",
+        "Morgue",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Heat",
+        "settlement",
+        "Departing Survivors",
+        "survival",
+        ":Category:Lantern Oven Consequences",
+        "Innovation Deck"
+      ]
+    },
+    {
+      "term": "Legless Ball",
+      "definition": "An innovation card found within the Spidicules Expansion.\n\nCard Text.\nDeparting survivors gain +2 insanity.\nSpend only 1 here per settlement phase.\n\n Add 1 Web Silk strange resource to\nsettlement storage.\n\n A survivor with 10+ insanity may put the\nSpidicules out of its misery. Gain the\nGrinning Visage rare gear and lose this\ninnovation. (Archive this card).",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Legless_Ball",
+      "relatedTerms": [
+        "Spidisisyphus",
+        "innovation",
+        "Spidicules Expansion",
+        "Web Silk",
+        "Strange Resources",
+        "Settlement Storage",
+        "Spidicules",
+        "Grinning Visage",
+        ":Category: Rare Gear"
+      ]
+    },
+    {
+      "term": "Lorekeeper",
+      "definition": "Lorekeeper is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA gnarled old crone approaches the hunting party. Her fingers are sewn together and strange black marks shift around on the palms of her hands. \"I am the Lorekeeper. See me and remember.\" Nominate a survivor to investigate. Roll 1d10.Roll 1d10 - Nominated Survivor",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lorekeeper",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "investigate",
+        "1d10",
+        "Survivor",
+        "Arithmophilia",
+        "Disorder",
+        "Hunt Event",
+        "Understanding",
+        "Brain",
+        "Event Damage",
+        "Innovation Deck"
+      ]
+    },
+    {
+      "term": "Mere Omens",
+      "definition": "is an innovation card found within the Frogdog Expansion.\n\nCard Text.\nAn interpreter of radical change.\n\n : The Mere Navi spends 3 omens to add Metamorphosis Festival to the next lantern year on the timeline.\n\n : Transmogrify. If there is no Mere Navi, a survivor consumes Golden Frog, if they survive, they become the Mere Navi.\n\n : Bitter Prophecy. The Mere Navi archives Gilled Fugus. The settlement gains a +1 insanity departing survivor bonus. (Record this on your settlement sheet.)",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mere_Omens",
+      "relatedTerms": [
+        ":Category: faith Innovations",
+        "Lingering Cough",
+        "innovation",
+        "Frogdog Expansion",
+        "Golden Frog",
+        "Gilled Fugus",
+        "Departing Survivors"
+      ]
+    },
+    {
+      "term": "Momento Mori",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nMay be used once per settlement phase.\n Nominate a survivor that died in\nthe last showdown and roll 1d10.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Momento_Mori",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Pictograph",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Nigredo",
+      "definition": "is an innovation card found within the Gorm Expansion.\n\nCard Text.\nSurvival Limit: +1\n\n Once this lantern year - roll 1d10\n\nAdd nigredo consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Nigredo",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        ":Category: Gormchymy Innovations",
+        "Albedo",
+        "innovation",
+        "Gorm Expansion",
+        "Dense Bone"
+      ]
+    },
+    {
+      "term": "Nutrition",
+      "definition": "Nutrition is an innovation card in the Gambler's Chest Expansion.\n\nCard text.\nShare +1 Forum Knowledge\n\nAnthocyanins. Gain +1 lumi.\n\nOmega-3. Gain +4 lumi.\n\nProtein Training. Gain +1 accuracy and +1 strength. Limit once per lifetime.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Nutrition",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Food Innovations",
+        ":Category: Collective Cognition Innovations",
+        "Metabolic Improvements",
+        "Innovations",
+        "Gambler's Chest Expansion",
+        "Forum",
+        "Knowledge",
+        "lumi",
+        "accuracy",
+        "strength",
+        "Limit, Once Per Lifetime"
+      ]
+    },
+    {
+      "term": "Paint",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe settlement swells with creative energy. All survivors gain the Dash survival action.\n\nDash: Once per round, spend 1 survival to gain +1 and use it immediately. (See detailed rules in rulebook.)",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Paint",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Language",
+        "Face Painting",
+        "Pictograph",
+        "Sculpture",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "Survivor",
+        "action",
+        "Dash",
+        "round",
+        "survival"
+      ]
+    },
+    {
+      "term": "Partnership",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\nCard Text.\n : Nominate two survivors. They pair\noff, and each gains the Partner ability. A\nsurvivor may be nominated for \nPartnership once per lifetime.\n\nPartner - \"(Partner's Name)\": When you\nboth Arrive, gain survival up to the\nsurvival limit. Partners may only nominate\neach other for Intimacy. When a\npartner dies, the remaining partner gains\na random disorder and loses this ability.\n\nSee Also.\nPrinciple: Bonding",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Partnership",
+      "relatedTerms": [
+        ":Category: Home Innovations",
+        "Hovel",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Partner",
+        "Limit, Once Per Lifetime",
+        "Arrival",
+        "survival",
+        "Survival Limit",
+        "Intimacy",
+        "Death",
+        "Disorders",
+        "Principle: Bonding"
+      ]
+    },
+    {
+      "term": "Phantom",
+      "definition": "Phantom is a settlement event card found in the Slenderman Expansion.\nCard Text.\nSurvivors find themselves overcome with a bittersweet mix of affection and loss that haunts them in different moments and places around the settlement.\n\nFor each innovation the settlement has listed below, roll 1d10 on its corresponding table.\n\nRequires Language.\n\nRequires Bed.\n\nRequires Storytelling.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phantom",
+      "relatedTerms": [
+        "Settlement Event",
+        "Slenderman Expansion",
+        "Survivors",
+        "settlement",
+        "innovation",
+        "1d10",
+        "Language",
+        "survivors",
+        "gear",
+        "depart",
+        "survivor",
+        "Hit Location",
+        "Phantom Friend",
+        "Fighting Art",
+        "Bed",
+        "Settlement Phase",
+        "Departing Survivors",
+        "survival",
+        "Survival Limit",
+        "Storytelling"
+      ]
+    },
+    {
+      "term": "Pictograph",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nAt the start of a survivor's act, they may\ndecide to skip their act and Run Away.\n\nAfter a hunt event is resolved, a survivor may\ndecide it's time to go home and Run Away.\n\nAdd pictograph consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pictograph",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Paint",
+        "Momento Mori",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Run Away"
+      ]
+    },
+    {
+      "term": "Pictograph (Scout)",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion. It replaces Pictograph in campaigns with Scouts.\nCard Text.\nThe first time a Level 3+ quarry monster is defeated by survivors accompanied by a scout, gain the Scout Discovery for that monster.\n\nAdd pictograph consequences to the innovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pictograph_(Scout)",
+      "relatedTerms": [
+        ":Category: Scout Innovations",
+        ":Category: Art Innovations",
+        "Paint",
+        "Momento Mori",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Pictograph",
+        "Campaign",
+        "Scouts",
+        "quarry",
+        "monster",
+        "Scout Discovery",
+        "pictograph",
+        "Innovation Deck"
+      ]
+    },
+    {
+      "term": "Principle: Bonding",
+      "definition": "is a set of prototype rules found in the Till Death Do Us Part white box expansion. It allows the settlement to access a new set of principles for use by the survivors.\nCard Text.\nThis is prototype content.\nWhen your settlement innovates Partnership, select a Bonding Principle: Enduring Legacy or Devoted Union.\n\nWhen a pair of survivors become partners, they gain the benefits and abilities of your chosen Bonding Principle, instead of gaining the benefits of Partnership.\n\nDevoted Union.\nNominate two survivors. They gain the Partner ability. Limit, once per lifetime.\n\nPartner - \"(Partner's Name)\": Partners may only nominate each other for Intimacy. When your partner dies, gain a random disorder and lose this ability.\n\nDuring the survivors' turn, while you and your partner are within range of the monster you may perform a combined attack. Limit, once per round.\n\nCombined attack: Partners each spend and activate a weapon. They simultaneously make attack rolls, determining hits based on their individual accuracy. Draw hit locations for all hits together. Resolve hit locations one at a time. Partners choose which survivor attempts to wound each hit location (including the trap). Each partner may not make more wound attempts than the number of their attack rolls.\n\nEnduring Legacy.\nNominate two survivors. They gain the Partner ability. Limit, once per lifetime.\n\nPartner - \"(Partner's Name)\": Partners may only nominate each other for Intimacy. When your partner dies, gain a random disorder and lose this ability.\n\nChildren of partners may inherit one point of a positive attribute and one fighting art from among their parents. They gain these benefits when parents give birth or adopt. During the Settlement Phase, partners may adopt an unnamed survivor that has never departed the settlement. Survivors may only inherit from parents once per lifetime.\n\nWhen parents have 3+ children, their family is complete. They retire and stop having children forever.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Principle%3A_Bonding",
+      "relatedTerms": [
+        "Till Death Do Us Part",
+        "White Box",
+        "principle",
+        "Partnership",
+        "ability",
+        "Limit, Once Per Lifetime",
+        "Intimacy",
+        "death",
+        "disorder",
+        "turn",
+        "range",
+        "round",
+        "Combined Attack",
+        "activation",
+        "weapon",
+        "Attack Roll",
+        "hits",
+        "accuracy",
+        "Hit Location",
+        "Resolved"
+      ]
+    },
+    {
+      "term": "Protect the Young",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe children are the future.\n\nWhen rolling on the Intimacy story event,\nroll twice and pick 1 result.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Protect_the_Young",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Intimacy"
+      ]
+    },
+    {
+      "term": "Radiating Orb",
+      "definition": "An innovation card found within the Dragon King Expansion.\n\nCard Text.\n Heat\nDeparting survivors and newborn\nsurvivors gain +1 survival.\n\nDeparting survivors with a\nconstellation gain +1 survival.\n\nAdd lantern oven consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Radiating_Orb",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Dragon King Expansion",
+        "Heat",
+        "Departing Survivors",
+        "survivors",
+        "survival",
+        "constellation",
+        "Lantern Oven",
+        ":Category:Lantern Oven Consequences",
+        "Innovation Deck"
+      ]
+    },
+    {
+      "term": "Records",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n You gain the Scholar of Death secret fighting art.\n\n You laboriously create a volume about a monster you have defeated during your lifetime. Add \"Monster Name\" Vol. X where X is the level of the defeated monster, to the Settlement Record Sheet. The work is exhausting, you retire. There can be up to 3 volumes for each monster.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Records",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Storytelling",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Scholar of Death",
+        "Settlement Record Sheet"
+      ]
+    },
+    {
+      "term": "Romantic",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nBelieve in the potential for beauty, decency,\nand ingenuity in others.\n\nWhen you gain a random fighting art, draw 3\nfighting art cards and select 1 to keep.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Romantic",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Romantic (Arc)",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nSurvival Limit: +1\n\nAdd the Romanticism philosophy card to the philosophy deck.\n\nReduce the lumi cost to learn knowledge at the Forum by 1 (to a minimum of 1).",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Romantic_(Arc)",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Innovation Principles",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Romanticism",
+        "Philosphies",
+        "lumi",
+        "knowledge",
+        "Forum"
+      ]
+    },
+    {
+      "term": "Rubedo",
+      "definition": "is an innovation card found within the Gorm Expansion.\n\nCard Text.\n Once this lantern year - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rubedo",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        ":Category: Gormchymy Innovations",
+        "Citrinitas",
+        "innovation",
+        "Gorm Expansion",
+        "Hemophobia"
+      ]
+    },
+    {
+      "term": "Saga",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nA telling of the settlement's survival set to\na soft rhythmic beating of drums.\n\nAll newborn survivors gain: +2 courage, +2 understanding, +2 Hunt XP",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Saga",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Song of the Brave",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "courage",
+        "understanding",
+        "Hunt Experience"
+      ]
+    },
+    {
+      "term": "Sauna Shrine",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nWhen survivors depart for a Nemesis Encounter or Special Showdown, they \ngain +10 survival.\n\n Tribute - spend 1 organ and roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sauna_Shrine",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Hands of the Sun",
+        "innovation",
+        "Sunstalker Expansion",
+        "depart",
+        "Nemesis Monster",
+        "Special Showdown",
+        "Departing Survivors"
+      ]
+    },
+    {
+      "term": "Scarification",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n Initiation - Once per lifetime, gain\n+1 courage and roll the hit location die.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scarification",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Inner Lantern",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Severe Head Injury Table",
+        "Tough",
+        "Severe Waist Injury Table"
+      ]
+    },
+    {
+      "term": "Scrap Smelting",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\n Purification - roll 1d10\n\n Build Blacksmith\n6x bone\n3x scrap",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scrap_Smelting",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "Lantern Oven",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Scrap",
+        "Iron (Strange Resource)",
+        "Settlement Storage",
+        "Blacksmith",
+        "bone",
+        "scrap"
+      ]
+    },
+    {
+      "term": "Sculpture (Arc)",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nYou bare your soul to create an inspirational statue. Skip the\nnext hunt and lose a knowledge (it will be embodied in the statue). Note this on the Settlement Record Sheet.\nA settlement can only ever have one inspirational\nstatue.\n\nAlways Share this knowledge in addition to others at the Forum. It costs 1 less lumi to gain.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sculpture_(Arc)",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Art Innovations",
+        "Paint",
+        "Pottery",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Skip Next Hunt",
+        "knowledge",
+        "Settlement Record Sheet"
+      ]
+    },
+    {
+      "term": "Shrine",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nMay be used once per settlement phase.\n Armor Ritual - roll 1d10\n\nAdd shrine consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shrine",
+      "relatedTerms": [
+        ":Category: Faith Innovations",
+        "Inner Lantern",
+        "Sacrifice",
+        "innovation",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Silent Dialect",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nThe settlement develops a silent form of communication to cope with the ever-present din of snoring dreamers. All survivors gain the Fist Pump survival action.\n\nFist Pump: Once per round, if standing, spend\n1 survival to gesture to a Non-blind Survivor.\nThey stand if knocked down.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silent_Dialect",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Starting Innovations",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "survivors",
+        "Fist Pump",
+        "Survival Action",
+        "survival",
+        "blind",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Silk-Refining",
+      "definition": "An innovation card found within the Spidicules Expansion.\n\nCard Text.\nSurvival Limit: +1\n Silk Surgery\n\n Convert 1 silk resource into\n1 hide basic resource.\n\n Build Silk Mill\nCost.\n2x silk\n1x bone\n1x organ",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silk-Refining",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Spidicules Expansion",
+        "Silk Surgery",
+        "silk",
+        "bone",
+        "organ"
+      ]
+    },
+    {
+      "term": "Song of Concord",
+      "definition": "Song of Concord is an innovation card in the Gambler's Chest Expansion.\n\nCard text.\nDeparting survivors start their hunt with this whispered song, each gaining +5 survival.\n\nArchive this when you hunt Smog Singers.\n\nEndeavor: Song of Silence - Roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Song_of_Concord",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Showdown: Smog Singers",
+        "Innovations",
+        "Gambler's Chest Expansion",
+        "Departing Survivors",
+        "survival",
+        "Archive",
+        "Smog Singers",
+        "Endeavors",
+        "(X)d10",
+        "hushed",
+        "Lantern Year"
+      ]
+    },
+    {
+      "term": "Song of the Brave",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe survivors lift their voices into\nthe darkness. On Arrival, each non-deaf\nsurvivor may remove 1 negative\nattribute token.\n\nDuring the Overwhelming Darkness story\nevent, each non-deaf survivor may select\nthe Path of the Brave.\n\nAdd song of the brave consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Song_of_the_Brave",
+      "relatedTerms": [
+        ":Category: Music Innovations",
+        "Drums",
+        "Saga",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Arrival",
+        "Overwhelming Darkness",
+        "Path of the Brave"
+      ]
+    },
+    {
+      "term": "Stoic Statue",
+      "definition": "An innovation card found within the Lion Knight Expansion.\n\nCard Text.\n Worship the monster. You may not depart or endeavor again this settlement phase. Roll 1d10.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stoic_Statue",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Lion Knight Expansion",
+        "depart",
+        "Departing Survivors"
+      ]
+    },
+    {
+      "term": "Stone Plate",
+      "definition": "Stone Plate is an innovation card in the Gambler's Chest Expansion.\n\nCard text.\nThe settlement tenderly scrapes together comforting meals. Survivors may claim the Clothed & Satiated armor set bonus card if they meet its requirements.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stone_Plate",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        ":Category: Food Innovations",
+        ":Category: Collective Cognition Innovations",
+        "Pleasing Plating",
+        "Innovations",
+        "Gambler's Chest Expansion",
+        "Clothed & Satiated",
+        "Armor Set Bonus"
+      ]
+    },
+    {
+      "term": "Stone Stairs",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\nDuring the settlement phase, if a survivor runs away, is exiled, or dies, they Climb the Stairs instead.\n\nClimb the Stairs - roll 1d10",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stone_Stairs",
+      "relatedTerms": [
+        ":Category: Arc Innovations",
+        "Regalism",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Settlement Phase",
+        "survivor",
+        "(X)d10",
+        "Dead",
+        "Principle: Death",
+        "Returning Survivors",
+        "lumi"
+      ]
+    },
+    {
+      "term": "Storytelling",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\n Story Time - roll 1d10\n\nAdd storytelling consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Storytelling",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Symposium",
+        "Records",
+        "War Room",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "White Speaker"
+      ]
+    },
+    {
+      "term": "Subterranean Agriculture",
+      "definition": "An innovation card found within the Dung Beetle Knight Expansion.\n\nCard Text.\n If Black Harvest is not on the timeline, Underground Sow.\n\n If Black Harvest is on the timeline, you\nmay spend 1 Preserved Caustic Dung to\nincrease its rank by 1 to a maximum rank\nof 3. Limit, once per settlement phase.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Subterranean_Agriculture",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Dung Beetle Knight Expansion",
+        "Black Harvest",
+        "Underground Sow",
+        "Preserved Caustic Dung"
+      ]
+    },
+    {
+      "term": "Sun Language",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nSurvival Limit: +1\n\nAll survivors gain the Embolden survival action.\n\nEmbolden: Once per round, if you have no +1 strength tokens, spend 1 survival to gain a +1 strength token. When you are knocked down, lose all +1 strength tokens.\n\nAdd Ammonia, Drums, Hovel, Paint,\nSymposium, and Hands of the Sun to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sun_Language",
+      "relatedTerms": [
+        ":Category: Starting Innovations",
+        "Ammonia",
+        "Drums",
+        "Hovel",
+        "Paint",
+        "Symposium",
+        "Hands of the Sun",
+        "innovation",
+        "Sunstalker Expansion",
+        "Embolden",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Supreme Cuisine",
+      "definition": "Supreme Cuisine is an innovation card in the Gambler's Chest Expansion.\n\nCard text.\nSurvival Limit +3\n\nFood is a light in the darkness. Returning survivors get +2 lumi.\n\nMonster Style. Select a quarry monster. If the settlement has earned at least 10 CC from the monster, gain its meal gear card.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Supreme_Cuisine",
+      "relatedTerms": [
+        "Innovations",
+        "Gambler's Chest Expansion",
+        ":Category: Arc Innovations",
+        ":Category: Food Innovations",
+        ":Category: Collective Cognition Innovations",
+        "Culinary Ingenuity",
+        "Survival Limit",
+        "Returning Survivors",
+        "lumi",
+        "quarry",
+        "monster",
+        "Collective cognition",
+        "meal gear"
+      ]
+    },
+    {
+      "term": "Survival of the Fittest",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nWhen rolling on the Intimacy story event,\nroll twice and pick the lowest result. All current and newborn survivors gain +1 strength and evasion.\n\nOnce per lifetime, a survivor may reroll a single roll result. They must keep this new result.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Survival_of_the_Fittest",
+      "relatedTerms": [
+        ":Category: Innovation Principles",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Intimacy"
+      ]
+    },
+    {
+      "term": "Symposium",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen a survivor innovates, draw an\nadditional 2 Innovation Cards\nto choose from.\n\nAdd symposium consequences to the\ninnovation deck.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Symposium",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Language",
+        "Nightmare Training",
+        "Storytelling",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Innovation"
+      ]
+    },
+    {
+      "term": "The Knowledge Worm (Innovation)",
+      "definition": "An innovation card found within the Lion God Expansion.\n\nCard Text.\nAt the start of each settlement phase,\nadd 1 scrap to settlement storage.\n\nDeparting survivors gain +3 survival\nand +3 insanity. If any of those\nsurvivors have 10+ insanity, A Gracious Host.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Knowledge_Worm_(Innovation)",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Lion God Expansion",
+        "Settlement Phase",
+        "scrap",
+        "Departing Survivors",
+        "survival",
+        "insanity",
+        "A Gracious Host"
+      ]
+    },
+    {
+      "term": "The Sun",
+      "definition": "The Sun is a settlement location found in the Sunstalker Expansion. It is unlocked during the People of the Sun story event The Pool and the Sun.\n\nLocation Text.\nExtreme Heat.\nSurvivors cannot wear heavy gear1.\nSuper Nova.\nIf you suffer defeat against a nemesis monster, the sun cleanses the settlement, instantly killing everyone. Game Over.\nInnovate.\nCost:\n1x \n1x Bone\n1x Organ\n1x Hide\n\nOnce per Settlement Phase, you may spend the listed resources to draw 2 innovation cards. Keep 1 and return the other to the deck.\nBuild One.\nBone Smith\nOrgan Grinder\nSkinnery\n\nNotes.\n1: The heavy gear restriction only applies to armor. Survivors may still equip heavy weapons.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Sun",
+      "relatedTerms": [
+        "Settlement Location",
+        "Sunstalker Expansion",
+        "People of the Sun",
+        "Story Event",
+        "The Pool and the Sun",
+        "heavy",
+        "gear",
+        "defeat",
+        "Nemesis Monster",
+        "settlement",
+        "Death",
+        "Game Over",
+        "Bone",
+        "Organ",
+        "Hide",
+        "Settlement Phase",
+        "resources",
+        "innovation",
+        "Bone Smith",
+        "Organ Grinder"
+      ]
+    },
+    {
+      "term": "The Throne",
+      "definition": "The Throne is a settlement location found in the Dragon King Expansion. It is unlocked during the People of the Stars story event Foundlings.\n\nLocation Text.\nInnovate.\nCost:\n1x \n1x Hide\n1x Bone\n1x Organ\n\nOnce per Settlement Phase, you may spend the listed resources to draw 2 innovation cards. Keep 1 and return the other to the deck.\n\nFear and Trembling.\nThe cowering settlement turns their squinting gaze to the lone figure that mounts the obsidian steps.\n\nOnce per settlement phase, a survivor may spend to approach the throne and roll 1d10.\n\nBuild One.\nBone Smith\nOrgan Grinder\nSkinnery",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Throne",
+      "relatedTerms": [
+        "Settlement Location",
+        "Dragon King Expansion",
+        "People of the Stars",
+        "Story Event",
+        "Foundlings",
+        "Hide",
+        "Bone",
+        "Organ",
+        "Settlement Phase",
+        "resources",
+        "innovation",
+        "(X)d10",
+        "death",
+        "Severe Injury",
+        "Tyrant",
+        "Permanent Injury",
+        "Bone Smith",
+        "Organ Grinder",
+        "Skinnery"
+      ]
+    },
+    {
+      "term": "Toppled Bell",
+      "definition": "is an innovation card found within the Black Knight Expansion.\nCard Text.\n : Corrupt - Gain Dishonorable.\n\nSurvivors with Dishonorable may always depart.\n\nSurvivors with Honorable can no longer depart.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Toppled_Bell",
+      "relatedTerms": [
+        ":Category:Faith Innovations",
+        "Death of the Black Knight",
+        "innovation",
+        "Black Knight Expansion",
+        "Dishonorable",
+        "Honorable"
+      ]
+    },
+    {
+      "term": "Umbilical Bank",
+      "definition": "An innovation card found within the Sunstalker Expansion.\n\nCard Text.\nWhen a new survivor is born, you may add\n1 Life String strange resource to storage.\n\n Umbilical Symbiosis\n\n Special Innovate Pottery\nCost.\n3x organ\n\nNotes.\nEditor Note: The Life String strange resource's card is included in the Legendary Card Pack I (1.6 Update). -- October 16, 2024\nAuthor Note: The Life String strange resource does not have a card to represent it. --Maximo1984 (talk) 14:05, August 28, 2019 (UTC)",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Umbilical_Bank",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Sunstalker Expansion",
+        "Settlement Storage",
+        "Umbilical Symbiosis",
+        "Pottery",
+        "organ",
+        "User talk:Maximo1984"
+      ]
+    },
+    {
+      "term": "War Room",
+      "definition": "An innovation card found within the Manhunter Expansion.\n\nCard Text.\nSurvival Limit: +1\n\nA dangerous room of plans and tools.\n\nQuarries cannot move off the hunt board. If the survivors would move backwards on the hunt board, roll 1d10. On a 4+, they don't.\n\nThe hunt team makes a plan. The group\nmay reroll 1 Hunt Event Table result (d100) \nthis lantern year. They must reroll before\nperforming the event.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/War_Room",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Storytelling",
+        "innovation",
+        "Manhunter Expansion",
+        "Hunt Event Table"
+      ]
+    },
+    {
+      "term": "Water of Life",
+      "definition": "Water of Life is an innovation card in the Gambler's Chest Expansion.\n\nCard text.\nSurvival Limit +1\n\nMiracle. Remove a disorder of your choice. Limit once per lifetime.\n\nFalse Miracle - roll 1d10.",
+      "category": "Innovations",
+      "url": "https://kingdomdeath.fandom.com/wiki/Water_of_Life",
+      "relatedTerms": [
+        "Innovations",
+        "Gambler's Chest Expansion",
+        ":Category: Art Innovations",
+        ":Category: Science Innovations",
+        ":Category: faith Innovations",
+        "Lantern Festival",
+        "Survival Limit",
+        "Disorders",
+        "Limit, Once Per Lifetime",
+        "(X)d10"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.563Z"
+}

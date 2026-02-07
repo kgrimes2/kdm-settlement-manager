@@ -1,0 +1,80 @@
+{
+  "category": "Principles",
+  "terms": [
+    {
+      "term": "Death",
+      "definition": "Monster.\nA monster is defeated when it is wounded and there are no AI cards in the AI deck or AI discard pile to move to the wound stack.\n\nSurvivor.\nA survivor can die in a variety of ways. Remove their miniature from the board. They can no longer participate in the hunt or showdown. Return their gear to the settlement storage (except any gear with the irreplaceable rule) and move their resources to another survivor. If all the survivors die during the showdown, all of their gear returns to the settlement (except irreplaceable gear) and all resources not in the settlement storage are lost.",
+      "category": "Principles",
+      "url": "https://kingdomdeath.fandom.com/wiki/Death",
+      "relatedTerms": [
+        "Wound",
+        "AI Card",
+        "AI Deck",
+        ":Category:Ways to Die",
+        "miniature",
+        "Hunt Phase",
+        "Showdown Phase",
+        "gear",
+        "irreplaceable",
+        "resources"
+      ]
+    },
+    {
+      "term": "Principle: Conviction",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nThe survivors must find a reason to be. Treasure the darkness in all its mystery, or seek to master it and grow strong.\n\nThe group must choose one.\n\nMaster the Darkness.\nLife is finding the perfect death. The lantern is power. By its light, all will be led to their final glorious moment. Add \" Hands of Heat\" to the next year on the timeline.\n\nThe settlement gains the Conviction Principle: Barbaric. Find and place the card on the settlement board and note it on the settlement record sheet. After adding the card to the settlement, roll 1d10.\n\nTreasure the Mystery.\nLife is like a quickly fading lantern. Every precious moment must be lived to its absolute fullest! Add \" Bone Witch\" to the next year on the timeline.\n\nThe settlement gains the Conviction Principle: Romantic. Find and place the card on the settlement board and note it on the settlement record sheet. After adding the card to the settlement roll 1d10.",
+      "category": "Principles",
+      "url": "https://kingdomdeath.fandom.com/wiki/Principle%3A_Conviction",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Hands of Heat",
+        "timeline",
+        "settlement",
+        "Principle",
+        "Barbaric",
+        "Settlement Board",
+        "Settlement Record Sheet",
+        "1d10",
+        "resources",
+        "Settlement Storage",
+        "Departing Survivors",
+        "speed",
+        "Honorable",
+        "disorder",
+        "courage",
+        "ability",
+        "Thundercaller"
+      ]
+    },
+    {
+      "term": "Principle: Death",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nThe group must decide what to do with their first survivor corpse. Choose one.\n\nThe First Harvest.\nThe settlement decides to harvest the body for resources.\n\nThe settlement gains the Death Principle: Cannibalize. Find and place the card on the settlement board and note it on the settlement record sheet.\n\nAfter adding the card to the settlement roll 1d10.\n\nThe First Grave.\nThe settlement decides to build a small monument to mark their loss.\n\nThe settlement gains the Death Principle: Graves. Find and place the card on the settlement board and note it on the settlement record sheet. \n\nAfter adding the card to the settlement roll 1d10.\n\nNote.\nIf you are currently working your way through the First Story, return to the settlement section and proceed to the develop step",
+      "category": "Principles",
+      "url": "https://kingdomdeath.fandom.com/wiki/Principle%3A_Death",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "resources",
+        "Principle",
+        "Cannibalize",
+        "Settlement Board",
+        "Settlement Record Sheet",
+        "1d10",
+        "Founding Stone",
+        "gear",
+        "Departing Survivors",
+        "insanity",
+        "survivor",
+        "speed",
+        "Graves",
+        "survival",
+        "understanding",
+        "luck",
+        "First Story"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.576Z"
+}
