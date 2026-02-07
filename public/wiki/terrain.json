@@ -1,0 +1,483 @@
+{
+  "category": "Terrain",
+  "terms": [
+    {
+      "term": "2 Acanthus Plants",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nRoll 1d10. If carrying a Sickle, instead roll 2d10 and add the results.\n\nSetup.\nSet up at least 6 spaces away from all other Acanthus Plants.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/2_Acanthus_Plants",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Arms",
+        "Fresh Acanthus"
+      ]
+    },
+    {
+      "term": "2 Salt Sculptures",
+      "definition": "A terrain card found within the Sunstalker Expansion.\n\nCard Text.\nObstacle, Impassable, Destructible\n\nIf you are in darkness, you crack the surface and harvest a handful of salt, carefully storing it. Light penetrates the sculpture from the inside and in one brilliant moment, it is gone. Gain 1 Salt strange resource. Archive the terrain tile.\nSetup.\nSet up at least 4 spaces from all other terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/2_Salt_Sculptures",
+      "relatedTerms": [
+        "Sunstalker Expansion",
+        "Sunstalker",
+        "Terrain Cards",
+        "Obstacle",
+        "Impassable",
+        "Destructible",
+        "Salt"
+      ]
+    },
+    {
+      "term": "2 Tall Grass",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvivors in spaces occupied by Tall Grass gain +2 evasion.\n\nIf you are standing on a space occupied by Tall Grass, you disappear into it. If you have the priority target token, remove it. You are not a threat until you attack or move out of a space occupied b Tall Grass.\n\nSetup.\nSet up at least 4 spaces away from all Tall Grass.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/2_Tall_Grass",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Priority Target",
+        "threat"
+      ]
+    },
+    {
+      "term": "3 Stone Columns",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nObstacle, Impassable\n\nDestructible: When a survivor collides with this, stop their movement and archive the terrain. They suffer 1 damage to a random hit location. \nWhen a monster passes over this, archive the terrain.\n\nSetup.\nSet up at least 4 spaces from all other terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/3_Stone_Columns",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Obstacle",
+        "Impassable"
+      ]
+    },
+    {
+      "term": "Balcony",
+      "definition": "A terrain card found within the Lion Knight Expansion.\n\nCard Text.\nWhile the Damsel is standing on the Balcony, the monster suffers -1 speed.\nA trapdoor! If the survivor is standing on the Balcony, place them knocked down in a space on the Stage.\n\nSetup.\nSet up according to the showdown instructions.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Balcony",
+      "relatedTerms": [
+        "Lion Knight Expansion",
+        "Lion Knight",
+        "Terrain Cards",
+        "Damsel",
+        "Stage"
+      ]
+    },
+    {
+      "term": "Beheaded Corpse",
+      "definition": "' is a terrain card and 1x1 terrain tile found in the Gambler's Chest Expansion. The card has the Atnas crest.\n\nCard text.\nObstacle, Impassable, Destructible\n\nA petrified corpse. Its hollow neck bubbles angrily with an acrid stench.\n\nIf a survivor collides with this, they suffer brain damage in addition to the 1 damage suffered for destroying it.\n\nSet up adjacent to a survivor..",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beheaded_Corpse",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Atnas crest",
+        "Atnas",
+        "Obstacle",
+        "Impassable",
+        "Destructible"
+      ]
+    },
+    {
+      "term": "Blood Pool",
+      "definition": "Blood Pool is a terrain card and 3x3 terrain tile found in the Gambler's Chest Expansion. The card has the Crimson Crocodile crest.\n\nCard text.\nDrink from the pool and roll 1d10. If you are standing in the center of the Blood Pool, add +1 to your roll result. Survivors with Hemophobia may not drink.\n\nSet up at least 3 spaces away from all board edges..",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blood_Pool",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Crimson Crocodile crest",
+        "Showdown: Crimson Crocodile",
+        "Crimson Crocodile",
+        "Hemophobia",
+        "insanity",
+        "Immortal"
+      ]
+    },
+    {
+      "term": "Destructible",
+      "definition": "A terrain special rule. When a survivor collides with destructible terrain, stop their movement and archive the terrain. The survivor suffers 1 damage to a random hit location. When a monster collides with destructible terrain, archive the terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Destructible",
+      "relatedTerms": [
+        "terrain",
+        "collides",
+        "movement",
+        "archive",
+        "damage",
+        "Random Hit Location"
+      ]
+    },
+    {
+      "term": "Egg Sacs",
+      "definition": "A terrain card found within the Spidicules Expansion.\n\nCard Text.\nWhen fighting Spidicules, set up x 2 Egg Sacs. \nThe Egg Sac explodes! Gain 1 Web Silk strange resource and replace the terrain tile with a Spiderling. Roll 1d10.\n\nSetup.\nSet up no more than 3 spaces away from another Egg Sac.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Egg_Sacs",
+      "relatedTerms": [
+        "Spidicules Expansion",
+        "Spidicules",
+        "Terrain Cards",
+        "Web Silk",
+        "Spiderling",
+        "Priority Target"
+      ]
+    },
+    {
+      "term": "Fallen Lantern",
+      "definition": "' is a terrain card and 1x1 terrain tile found in the Gambler's Chest Expansion. The card has the Arc Survivor crest.\n\nCard text.\nYou harvest the lantern light. Archive this terrain and roll 1d10.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fallen_Lantern",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Arc Survivor crest",
+        "Arc Survivor",
+        "Death Collector",
+        "frenzy"
+      ]
+    },
+    {
+      "term": "Gabel's Tree",
+      "definition": "' is a terrain card and 3x3 terrain tile found in the Gambler's Chest Expansion. The card has the King crest and cannot appear outside of Showdown: King.\n\nCard text.\nSurvivors in spaces occupied by are elevated and gain +2 evasion.\n\nThe tree oozes a conductive fluid, submerging the entire showdown board.\n\nWhile a survivor is not on terrain, they are knee-deep in the fluid. They are always affected by Current, even if they are out of its range or are not wearing metal.\n\nYou pass through the door at the base of the tree. Gain +1 insanity and place yourself adjacent to the King in its facing. You cannot do this if all of these spaces are occupied.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gabel's_Tree",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Showdown: King",
+        "King",
+        "elevated",
+        "Current"
+      ]
+    },
+    {
+      "term": "Giant Stone Face (Terrain)",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nObstacle: Blocks survivor and monster field of view. (Interrupts ranged weapon attacks and monster targeting).\n\nImpassable: Survivors cannot move through spaces occupied by this terrain.\n\nMove onto any space occupied by Giant Stone Face. Ranged weapons gain +2 range and +2 accuracy while atop Giant Stone Face.\n\nSurvivors atop the Giant Stone Face move normally on it and ignore obstacles when drawing a line of sight. Monsters may always draw a line of sight to them.\n\nSetup.\nSet up at least 5 spaces away from all board edges.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Giant_Stone_Face_(Terrain)",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        ":Category: Ranged Weapons"
+      ]
+    },
+    {
+      "term": "Glowing Waypoint",
+      "definition": "Blood Pool is a terrain card and 2x1 terrain tile found in the Gambler's Chest Expansion. The card has no crest and can appear in any showdown.\n\nCard text.\nObstacle, Impassable\n\nYou may attempt to pull the waypoint from the ground. Roll 1d10 and add your strength to the result.\n\nSet up at least 5 spaces away from all other terrain..",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glowing_Waypoint",
+      "relatedTerms": [
+        "Gambler's Chest Expansion",
+        "Obstacle",
+        "Impassable",
+        "Terrain Cards",
+        "Terrain Tile",
+        "crest",
+        "Lantern Halberd"
+      ]
+    },
+    {
+      "term": "Hidden Face",
+      "definition": "' is a terrain card and 1x1 terrain tile found in the Gambler's Chest Expansion. The card has the Scout crest. The card is not included in the Terrain Deck. It enters play by the Stone Face Cloak.\n\nCard text.\nImpassable, Destructible\n\nSwap places with the Hidden Face tile.\n\nWhen this is destroyed, place yourself in the nearest unoccupied space. You are knocked down and suffer a random severe injury.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hidden_Face",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Scout crest",
+        "Terrain Deck",
+        "Stone Face Cloak",
+        "Scouts",
+        "Impassable",
+        "Destructible"
+      ]
+    },
+    {
+      "term": "Horn",
+      "definition": "A terrain card found within the Lion Knight Expansion.\n\nCard Text.\nHonk! Gain the priority target token. Archive the terrain tile. Use this only if you are the Fool.\n\nSetup.\nSet up according to the showdown instructions.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Horn",
+      "relatedTerms": [
+        "Lion Knight Expansion",
+        "Lion Knight",
+        "Terrain Cards",
+        "Priority Target",
+        "Fool"
+      ]
+    },
+    {
+      "term": "Impassable",
+      "definition": "A terrain special rule. A survivor cannot voluntarily move into or through any spaces this terrain occupies. Impassable terrain stops all movement, including knockback. If a survivor is knocked back into a space occupied by impassable terrain, they collide with the terrain and their movement ends just before the terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Impassable",
+      "relatedTerms": [
+        "terrain",
+        "movement",
+        "Knockback X",
+        "collides"
+      ]
+    },
+    {
+      "term": "Lava Pool",
+      "definition": "A terrain card found within the Dragon King Expansion.\n\nCard Text.\nIf a survivor moves through or ends movement on this terrain, they suffer 1 damage and return all of their flammable gear to the settlement storage.\nIf any other terrain is placed on this, it melts and is archived.\nYou hop from one stone to another. Roll 1d10.\n\nSetup.\nSet up adjacent to the monster.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lava_Pool",
+      "relatedTerms": [
+        "Dragon King Expansion",
+        "Dragon King",
+        "Terrain Cards",
+        "flammable",
+        "courage"
+      ]
+    },
+    {
+      "term": "Lion Statue",
+      "definition": "A terrain card found within the Lion God Expansion.\n\nCard Text.\nObstacle, Impassable\n\nRead hieroglyphics. Use once per showdown. Roll 1d10 and add your understanding to the result. On an 11+,\nyou may re-roll your next result on a story event during this showdown.\nSetup.\nSet up adjacent to the monster. (Unless otherwise stated in the showdown setup instructions.)",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion_Statue",
+      "relatedTerms": [
+        "Lion God Expansion",
+        "Lion God",
+        "Terrain Cards",
+        "Obstacle",
+        "Impassable"
+      ]
+    },
+    {
+      "term": "Monster-Impassable",
+      "definition": "A terrain special rule. The Lonely Tree terrain has the monster-impassable rule, which has all of the characteristics of impassable terrain, but with the following addition: Monsters may not move through spaces occupied by monster-impassable terrain.\n\nMonsters must move around monster-impassable terrain tiles, if possible. If this is not possible (such as when the monster is instructed to move in a straight line), they instead end their movement in the space before the terrain tile.\nImpassable Terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster-Impassable",
+      "relatedTerms": [
+        "terrain",
+        "Lonely Tree",
+        "Monster"
+      ]
+    },
+    {
+      "term": "Nightmare Tree",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nObstacle: Blocks survivor and monster field of view (Interrupts ranged weapon attacks and monster targeting).\n\nImpassable: Survivors cannot move through spaces occupied by this terrain.\n\nRoll 1d10. Each survivor may use this once per showdown.\n\nSetup.\nSet up at least 5 spaces away from all board edges.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Nightmare_Tree",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Lonely Ant",
+        "Vermin Resources",
+        "Broken Lantern",
+        "Basic Resources"
+      ]
+    },
+    {
+      "term": "Obstacle",
+      "definition": "A terrain rule. This terrain blocks survivor and monster field of view, interrupting ranged weapon attacks and monster targeting. To check if field of view is blocked, draw an imaginary line from the center of the miniature's base to the center of the intended target's base. If the line comes in contact with a space occupied by an obstacle, the field of view is blocked and the target is not in field of view.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Obstacle",
+      "relatedTerms": [
+        "terrain",
+        "Field of View",
+        "ranged",
+        "weapon",
+        "Attack",
+        "Target",
+        "miniature"
+      ]
+    },
+    {
+      "term": "Ore Vein",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nRoll 1d10. If carrying a Pickaxe, instead roll 2d10 and add the results.\n\nSetup.\nSet up at least 6 spaces from all other terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ore_Vein",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Iron"
+      ]
+    },
+    {
+      "term": "Resin Dung Ball",
+      "definition": "A terrain card found within the Dung Beetle Knight Expansion.\n\nCard Text.\n(See expansion book for rules.)\n\nObstacle, Impassable, Indestructible\n\nIndestructible: This terrain cannot be destroyed or removed from the\nshowdown board for any reason.\n Push: Move the Resin Dung Ball 1d5\nspaces directly away from you. If you're not fighting the Dung Beetle Knight, the\nball is empty and you may move it\nup to 5 spaces instead.\n\nSetup.\nSet up adjacent to the monster.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Resin_Dung_Ball",
+      "relatedTerms": [
+        "Dung Beetle Knight Expansion",
+        "Dung Beetle Knight",
+        "Terrain Cards",
+        "Obstacle",
+        "Impassable",
+        "Indestructible"
+      ]
+    },
+    {
+      "term": "Royal Causeway",
+      "definition": "' is a terrain card and 3x3 terrain tile found in the Gambler's Chest Expansion. The card has the King crest and cannot appear outside of Showdown: King.\n\nCard text.\nObstacle, Impassable\n\nYou ascend the peculiar structure. Move onto any space occupied by Royal Causeway. You are elevated while atop Royal Causeway.\n\nElevated: Survivors are elevated while atop specific terrain. They can move normally and ignore obstacles when drawing line of sight. Monsters may always draw a line of sight to them.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Royal_Causeway",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Showdown: King",
+        "King",
+        "Obstacle",
+        "Impassable",
+        "elevated",
+        "obstacle",
+        "line of sight",
+        "Monster"
+      ]
+    },
+    {
+      "term": "Showdown: The Hand",
+      "definition": "is a story event found in the Kingdom Death: Monster Core Game rulebook.\n\nLore.\nThere was once an entity that knew everything, but never spoke. For every secret that escaped, it became weaker and its enemies stronger.\n\nAftermath.\nVictory.\nAny victorious survivors may immediately select Fist & Tooth weapon proficiency, regardless of age milestones. (Any accrued ranks of weapon proficiency are lost when switching to a new weapon type.)\nLevel 1+\n+1 Hunt XP\n+1 Weapon Proficiency Level or + Fist & Tooth Proficiency Levels\n+Rewards\n\nRewards.\nThe Hand hesitates before leaving. Roll 1d10 and consult the table below. The group gains any listed resources or gear.\n\nIf the settlement has the Sword Mastery innovation when they defeat a level 3+ Hand, The Hand takes a moment to share some fighting techniques. Roll 1d10 for each survivor. \n\nOn a result of a 3+, the survivor gains Swordsman's Promise secret fighting art.\n\nDefeat.\nIf the settlement has the Guidepost innovation, The Hand leaves in peace. Otherwise, he slaughters all retired survivors in the settlement.\n\nWays to Trigger.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_The_Hand",
+      "relatedTerms": [
+        "The Penalty",
+        "Giant Stone Face",
+        "Terrain",
+        "3 Stone Columns",
+        "Speed",
+        "Accuracy",
+        "Damage",
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "Victory",
+        "Fist & Tooth Proficiency",
+        "Age",
+        "milestones",
+        "Weapon Proficiency",
+        "weapon",
+        "Hunt XP",
+        "Rewards",
+        "The Hand",
+        "1d10",
+        "Broken Lantern"
+      ]
+    },
+    {
+      "term": "Silk Nest",
+      "definition": "A terrain card found within the Spidicules Expansion.\n\nCard Text.\nObstacle, Impassable\nPlace a Spiderling in the free space nearest to the survivor then roll 1d10. Each survivor may use this once per showdown.\n\nSetup.\nSet up at least 6 spaces from all other terrain.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silk_Nest",
+      "relatedTerms": [
+        "Spidicules Expansion",
+        "Spidicules",
+        "Terrain Cards",
+        "Obstacle",
+        "Impassable",
+        "Spiderling",
+        "Skull"
+      ]
+    },
+    {
+      "term": "Sinkhole (Terrain)",
+      "definition": "A terrain card found within the Lion God Expansion.\n\nCard Text.\nIndestructible\n\nSurvivors may not voluntarily pass through the Sinkhole. If a survivor ends their movement on a Sinkhole, they fall into the darkness and are dead! If a terrain tile would occupy any spaces occupied by the Sinkhole, it falls in and is archived.\n\nPlunge into the depths.\nGain 1 survival and Necropolis.\nUse once per survivor per showdown, only if fighting the Lion God and if another survivor is adjacent to the Sinkhole.\nSetup.\nSet up adjacent to the monster.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sinkhole_(Terrain)",
+      "relatedTerms": [
+        "Lion God Expansion",
+        "Lion God",
+        "Terrain Cards",
+        "Indestructible",
+        "Necropolis"
+      ]
+    },
+    {
+      "term": "Smog Incense",
+      "definition": "' is a terrain card and 2x2 terrain tile found in the Gambler's Chest Expansion. The card has the Smog Singers crest.\n\nCard text.\nIf a survivor moves through this, they suffer damage to their body and roll 1d10. On a 6+, they are knocked down coughing.\n\nScavenge. Roll 1d10.\n\nSet up anywhere..",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Smog_Incense",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Smog Singers crest",
+        "Smog Singers",
+        "Showdown: Smog Singers",
+        "heal",
+        "Crystal Ember"
+      ]
+    },
+    {
+      "term": "Stage",
+      "definition": "A terrain card found within the Lion Knight Expansion.\n\nCard Text.\nWhile the Villain is on the Stage, they ignore the effects of being doomed.\n\nSetup.\nSet up according to the showdown instructions.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stage",
+      "relatedTerms": [
+        "Lion Knight Expansion",
+        "Lion Knight",
+        "Terrain Cards",
+        "Villain",
+        "doomed"
+      ]
+    },
+    {
+      "term": "Stone Fingers",
+      "definition": "' is a terrain card and a set of 8 terrain tiles found in the Gambler's Chest Expansion. The card has the Bone Eaters crest and can appear only when called for by the showdown rules. \n\nCard text.\nObstacle, Impassable\n\nThe remains of the giant Bone Eaters.\n\nSet up according to showdown rules..",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stone_Fingers",
+      "relatedTerms": [
+        "Terrain Cards",
+        "Terrain Tile",
+        "Gambler's Chest Expansion",
+        "Bone Eaters crest",
+        "Encounter: Bone Eaters",
+        "Bone Eaters",
+        "Obstacle",
+        "Impassable"
+      ]
+    },
+    {
+      "term": "The Lonely Tree",
+      "definition": "A terrain card found within the Lonely Tree Expansion.\n\nCard Text.\nObstacle, Monster-Impassable, Indestructible.\n\nSet up the showdown with Nightmare Fruit\nminiatures placed adjacent to the Lonely Tree.\nThese fruit are impassable terrain tiles that\noccupy 1 space.\nThe monster starts the showdown with\nNightmare Fruit and Monster Fruit in play.\n\nIf the survivors are victorious, and any Nightmare \nFruit miniatures remain on the showdown board,\nthey gain the Lonely Fruit strange resource.\n\nSetup.\nSet up at least 4 spaces away\nfrom all board edges.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Lonely_Tree",
+      "relatedTerms": [
+        "Lonely Tree Expansion",
+        "Lonely Tree",
+        "Terrain Cards",
+        "Obstacle",
+        "Monster-Impassable",
+        "Indestructible",
+        "Nightmare Fruit",
+        "Monster Fruit",
+        "Lonely Fruit"
+      ]
+    },
+    {
+      "term": "Throne",
+      "definition": "A terrain card found within the Lion Knight Expansion.\n\nCard Text.\nIf the Ruler is standing on the Throne at the beginning of their act, all survivors gain +1 survival.\n\nSetup.\nSet up according to the showdown instructions.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Throne",
+      "relatedTerms": [
+        "Lion Knight Expansion",
+        "Lion Knight",
+        "Terrain Cards",
+        "Ruler",
+        "All Survivors",
+        "survival"
+      ]
+    },
+    {
+      "term": "Toppled Pillar",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nObstacle: Blocks survivor and monster field of view, (Interrupts ranged weapon attacks and monster targeting).\nImpassable: Survivors cannot move through spaces occupied by this terrain.\nIf adjacent to the Toppled Pillar on one of its long sides, you may hop over it. Place your survivor in the corresponding space on its opposite side.\n\nSetup.\nSet up at least 5 spaces away from the monster.",
+      "category": "Terrain",
+      "url": "https://kingdomdeath.fandom.com/wiki/Toppled_Pillar",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.549Z"
+}

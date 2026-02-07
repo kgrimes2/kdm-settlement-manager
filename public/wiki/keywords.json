@@ -1,0 +1,39 @@
+{
+  "category": "Keywords",
+  "terms": [
+    {
+      "term": "Gormskin",
+      "definition": "Gear.\nA gear keyword. This gear is crafted at the Gormery Settlement Location.\n\nList of Gormskin Gear.",
+      "category": "Keywords",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gormskin",
+      "relatedTerms": [
+        "gear",
+        ":Category:Keywords",
+        "Gormery",
+        "Settlement Location"
+      ]
+    },
+    {
+      "term": "Iron",
+      "definition": "monster resource from the Dragon King has the iron keyword.]]\nA common resource keyword.\n\nUses for Iron.",
+      "category": "Keywords",
+      "url": "https://kingdomdeath.fandom.com/wiki/Iron",
+      "relatedTerms": [
+        "Monster Resources",
+        "Dragon King",
+        "Resources",
+        ":Category:Keywords"
+      ]
+    },
+    {
+      "term": "Perfect",
+      "definition": "A resource keyword.\n\nList of Perfect resources.",
+      "category": "Keywords",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect",
+      "relatedTerms": [
+        "Resources"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.576Z"
+}

@@ -26,6 +26,9 @@ dist-ssr
 # Claude Code
 .claude/
 
+# Wiki crawler cache
+scripts/.wiki-cache/
+
 # Temporary files
 TEST_README.md
 survivor.pdf
