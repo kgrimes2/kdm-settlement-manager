@@ -1,0 +1,3775 @@
+{
+  "category": "Resources",
+  "terms": [
+    {
+      "term": "???",
+      "definition": "A basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou have no idea what monster bit this is. Can be used as a bone, organ or hide!",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/%3F%3F%3F",
+      "relatedTerms": [
+        "Basic Resources",
+        "bone",
+        "hide",
+        "organ",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "1,000 Year Sunspot",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nWhen you craft with this, nominate a survivor. They suffer the blind severe injury from working with this resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/1%2C000_Year_Sunspot",
+      "relatedTerms": [
+        "Strange Resource",
+        "bone",
+        "organ",
+        "Sunstalker Expansion",
+        "Severe Head Injury Table",
+        "Severe Injury",
+        "resource"
+      ]
+    },
+    {
+      "term": "3,000 Year Sunspot",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nWhen you craft with this, nominate a survivor and roll 1d10. On a 5+, they get a terrible headache and die.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/3%2C000_Year_Sunspot",
+      "relatedTerms": [
+        "Strange Resource",
+        "bone",
+        "organ",
+        "scrap",
+        "Sunstalker Expansion",
+        "survivor",
+        "(X)d10",
+        "Death"
+      ]
+    },
+    {
+      "term": "Acid Gland",
+      "definition": "This is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nMelts skin",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Acid_Gland",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Active Thyroid",
+      "definition": "is a strange resource card found in the Gorm Expansion.\n\nCard Text.\nConsume: Archive this and roll 1d10. On a 7+, gain +1 permanent speed. Otherwise, your heart explodes, killing you instantly.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Active_Thyroid",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Gorm Expansion",
+        "Consume",
+        "Archive",
+        "1d10",
+        "speed",
+        "death"
+      ]
+    },
+    {
+      "term": "Ancient Indigestion",
+      "definition": "is a legendary Gorm AI card found in the Gorm Expansion.\n\nCard Text.\n\nSurvivors who are damaged by Retch gain 1 bleeding token and lose 1 survival.\n\nIf the Gorm is defeated when this card is in play, the settlement gains +2 Gorm resources during the Aftermath.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ancient_Indigestion",
+      "relatedTerms": [
+        "Gorm",
+        "AI card",
+        "Gorm Expansion",
+        "Survivors",
+        "Damage",
+        "Retch",
+        "Bleeding Token",
+        "Survival",
+        "Victory",
+        "In Play",
+        "settlement",
+        "Resources",
+        "Aftermath"
+      ]
+    },
+    {
+      "term": "Arachnid Heart",
+      "definition": "This is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nCold to the touch, even when freshly removed.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Arachnid_Heart",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Beast Steak",
+      "definition": "Beast Steak is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nShockingly Appetizing.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beast_Steak",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Beast's Chest",
+      "definition": "is a White Lion hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nFailure.\nFull move monster forward in a straight line. Cancel all hits now out of range. Any survivors passed over suffer Grab.\n\nGrab: Place target knocked down in front of the monster. Target suffers 1 damage per monster level.\n\nCritical Wound.\n(Cancel on this card.)\n\nYou strike the White Lion's stout heart. Gain 1 random White Lion resource. Roll 1d10. If the result is 10, the White Lion dies instantly.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beast's_Chest",
+      "relatedTerms": [
+        "White Lion",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "Full Move",
+        "monster",
+        "forward",
+        "hits",
+        "range",
+        "survivors",
+        "Grab",
+        "target",
+        "Knocked Down",
+        "damage",
+        "Monster Level",
+        "White Lion#Resources",
+        "1d10",
+        "Victory"
+      ]
+    },
+    {
+      "term": "Beast's Femur",
+      "definition": "is a White Lion hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe blow lands on the monster's leg.\n\nCritical Wound.\n(Cancel on this card.)\n\nYou bruise the White Lion's femur, crippling its graceful movement.\n\nThe White Lion gains -1 movement token. Gain 1 random White Lion resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beast's_Femur",
+      "relatedTerms": [
+        "White Lion",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "movement",
+        "Attribute Modifier Token",
+        "White Lion#Resources"
+      ]
+    },
+    {
+      "term": "Beetle Horn",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\n Requires Scarification\nHorn Ceremony - Archive and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Beetle_Horn",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion",
+        "Scarification",
+        "Death",
+        "Age",
+        "Hunt XP"
+      ]
+    },
+    {
+      "term": "Bird Beak",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurprisingly toothy.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bird_Beak",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Black Lens",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThese eyes are filled with a savory, gluey substance that dries when exposed to air",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_Lens",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Black Lichen",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nMalleable, pungent and attractive.\n\nYou may consume this. If you do, your lips turn gray, your hair whitens and you become infertile. Gain +1 courage, +1 understanding and suffer the destroyed genitals severe waist injury.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_Lichen",
+      "relatedTerms": [
+        "Strange Resource",
+        "bone",
+        "hide",
+        "organ",
+        "consumable",
+        "other",
+        "Kingdom Death: Monster Core Game",
+        "consume",
+        "courage",
+        "understanding",
+        "Severe Waist Injury Table"
+      ]
+    },
+    {
+      "term": "Black Skull",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nAged to perfection.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_Skull",
+      "relatedTerms": [
+        "Monster Resources",
+        "iron",
+        "skull",
+        "bone",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Bladder",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nSmells like urine.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bladder",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Blistering Plasma Fruit",
+      "definition": "This is a Lonely Tree Strange Resource found in the Lonely Tree Expansion.\n\nCard Text.\nYou may consume and archive this to gain the following ability:\n\nNightmare Blood: Whenever you gain a bleeding token, add to all hit locations.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blistering_Plasma_Fruit",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "consumable",
+        "Lonely Tree",
+        "Strange Resource",
+        "Lonely Tree Expansion",
+        "consume",
+        "archive",
+        "Abilities",
+        "Nightmare Blood",
+        "Bleeding Token",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Blood Diamond Tear",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Crimson Crocodile crest, and is therefore only used in campaigns with Crimson Crocodile.\n\nCard text.\nWhen you gain this, gain the Phobophobia disorder.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blood_Diamond_Tear",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Crimson Crocodile crest",
+        "Campaign",
+        "Crimson Crocodile",
+        "Phobophobia"
+      ]
+    },
+    {
+      "term": "Blood Stool",
+      "definition": "is a Crimson Crocodile Monster Resource found in the Gambler's Chest Expansion.\n\nCard Text.\nConsume: Archive this to roll 1d10. On a 1-3, you become ill from the fetid mass. Gain the Anemic impairment. On a 9+, it goes down with relative ease. Gain the Hemostasis ability.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Blood_Stool",
+      "relatedTerms": [
+        "organ",
+        "consumable",
+        "Crimson Crocodile",
+        "Monster Resource",
+        "Gambler's Chest Expansion",
+        "Consume",
+        "Archive",
+        "Anemic",
+        "Impairments",
+        "Hemostasis",
+        "Abilities"
+      ]
+    },
+    {
+      "term": "Brain Root",
+      "definition": "This is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThe strands of the root are strong and elastic. The meat on top is useless",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Brain_Root",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Broken Lantern",
+      "definition": "A basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nRemains of an extinguished lantern.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_Lantern",
+      "relatedTerms": [
+        "Basic Resources",
+        "scrap",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Broken Lantern Oven",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors come across the shattered ruins of a small settlement. Ashen corpses dot the ruins, disintegrating at the slightest touch. An extinguished lantern oven stands intact at the center of the settlement.\n\nThe event revealer rolls 1d10 and adds their understanding. If the result is 5+, gain the Lantern Oven innovation. If the settlement already has this innovation, the event revealer harvests a broken lantern basic resource from the remains.\n\nIf the settlement has Song of the Brave, the group may nominate a brave survivor to investigate the ruins of the settlement's lantern hoard. They gain +1 courage and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_Lantern_Oven",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "1d10",
+        "understanding",
+        "Lantern Oven",
+        "innovation",
+        "Broken Lantern",
+        "Basic Resource",
+        "Song of the Brave",
+        "investigate",
+        "courage",
+        "Apathetic",
+        "disorder",
+        "Vermin Resources"
+      ]
+    },
+    {
+      "term": "Bug Patch",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nRoll 1d10 to scavenge. If carrying a Scavenger Kit, add +1 to the result.\n\nSetup.\nSet up adjacent to the monster. (Unless otherwise stated in the showdown setup instructions.)",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bug_Patch",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Scavenger Kit",
+        "Basic Resources",
+        "Archive",
+        "Vermin Resources"
+      ]
+    },
+    {
+      "term": "Bugfish",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nConsume: Gain +2 survival. There is something in its belly! Gain 1 random vermin and consume it immediately. Archive this card.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bugfish",
+      "relatedTerms": [
+        "Strange Resource",
+        "fish",
+        "organ",
+        "Sunstalker Expansion",
+        "Consume",
+        "survival",
+        "Vermin Resource",
+        "Archive"
+      ]
+    },
+    {
+      "term": "Cabled Vein",
+      "definition": "This is a Dragon King Monster Resource found in the Dragon King Expansion.\n\nCard Text.\nA dense bundle of bloody tubes.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cabled_Vein",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Dragon King",
+        "Monster Resource",
+        "Dragon King Expansion"
+      ]
+    },
+    {
+      "term": "Canopic Jar",
+      "definition": "This is a Lion God Strange Resource found in the Lion God Expansion.\n\nCard Text.\nWhen you gain this, remove 2 bleeding tokens.\nDuring the settlement phase, you may archive this to Death Reading.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Canopic_Jar",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "scrap",
+        "Lion God",
+        "Strange Resource",
+        "Lion God Expansion",
+        "Settlement Phase",
+        "archive",
+        "Death Reading"
+      ]
+    },
+    {
+      "term": "Century Fingernails",
+      "definition": "This is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nThese nails are never clipped. Instead, they are folded and hammered hundreds of times into an impossibly fine edge.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Century_Fingernails",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Century Shell",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nThis ancient and mineral-rich armor plate is covered with razor wind scratches.\n\nYou may spend this as if it were a Scarab Shell resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Century_Shell",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "iron",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion",
+        "Scarab Shell"
+      ]
+    },
+    {
+      "term": "Chitin",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nA flaky, bitter-smelling husk.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Chitin",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Cocoon Membrane",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThin copper hairs permeate this jellylike substance. Lanterns are repelled by the copper hairs, their light bending to avoid them.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cocoon_Membrane",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "other",
+        "Strange Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Compound Eye",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nA cluster of differently colored eyes, each filled with a creamy, tangy syrup. If you have 3+ courage, you may consume and archive this to gain +3d10 insanity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Compound_Eye",
+      "relatedTerms": [
+        "Monster Resource",
+        "organ",
+        "consumable",
+        "Dung Beetle Knight",
+        "Dung Beetle Knight Expansion",
+        "courage",
+        "consume",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Cosmic Tentacle",
+      "definition": "is a Sunstalker hit location card found in the Sunstalker Expansion.\nCard Text.\nReflex.\nTurn the monster to face the attacker. If you are in darkness, rotate the Sun Dial 90° clockwise.\n\nCritical Wound.\nGain 1 random Sunstalker resource.\n\nYour attack separates a squirmy appendage from the monster!\n Persistent Injury - Severed Tentacle\nAffects some AI cards.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cosmic_Tentacle",
+      "relatedTerms": [
+        "Sunstalker",
+        "Hit Location",
+        "Sunstalker Expansion",
+        "Light & Shadow",
+        "Sun Dial"
+      ]
+    },
+    {
+      "term": "Crab Spider",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and\ngain +3 survival.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crab_Spider",
+      "relatedTerms": [
+        "Vermin Resources",
+        "hide",
+        "vermin",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "survival"
+      ]
+    },
+    {
+      "term": "Crimson Gland",
+      "definition": "is a Crimson Crocodile Indomitable Resource found in the Gambler's Chest Expansion.\n\nCard Text.\nWhen you gain this, Gain Fear Spear\n\nPulses with light similar to your lantern's.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crimson_Gland",
+      "relatedTerms": [
+        "Indomitable Resources",
+        "indomitable",
+        "perfect",
+        "organ",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion",
+        "Fear Spear"
+      ]
+    },
+    {
+      "term": "Crimson Vial",
+      "definition": "is a strange resource card found in the Manhunter Expansion.\n\nCard Text.\nYou may consume and archive this to remove all bleeding tokens and any severe injury of your choice.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crimson_Vial",
+      "relatedTerms": [
+        "Strange Resource",
+        "iron",
+        "consumable",
+        "Manhunter Expansion",
+        "consume",
+        "archive",
+        "Bleeding Token",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Crippling Misery",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nEach survivor rolls 1d10. The lowest-scoring survivor (or survivors, in case of ties) becomes the straggler. If any survivor (or survivors) has the Anxiety disorder, they are the straggler. Do not roll.\n\nThe straggler is lost in a moment of profound self doubt. They slip, not having the will to catch themselves, and tumble off a steep hill of stone faces. They land awkwardly with a crunch, suffering the broken leg severe injury. Sobbing to themselves, they come to grips with just how terrible their life is and gain +1 understanding.\n\nIf the straggler has the Binge Eating disorder, they wipe away their tears and reach out to a nearby critter, instinctually cramming it into their mouth for comfort. Draw 1 random vermin resource and consume it.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crippling_Misery",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "straggler",
+        "Anxiety",
+        "disorder",
+        "Severe Leg Injury Table",
+        "Severe Injury",
+        "understanding",
+        "Binge Eating",
+        "Vermin Resource",
+        "consume"
+      ]
+    },
+    {
+      "term": "Crystal Sword Mold",
+      "definition": "is a Strange Resource found within the Slenderman Expansion.\n\nCard Text.\nThis strange crystal refracts light, concentrating it within a natural, sword-shaped chamber.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crystal_Sword_Mold",
+      "relatedTerms": [
+        "Strange Resources",
+        "scrap",
+        "iron",
+        "Strange Resource",
+        "Slenderman Expansion"
+      ]
+    },
+    {
+      "term": "Cultivated Crypt",
+      "definition": "Cultivated Crypt is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou uncover a crypt littered with the preserved corpses of dragons. You may Defile the Crypt and draw up to 3 random Dragon King resources. Otherwise, gain +1 understanding and roll a random hunt event.\n\nDefile the Crypt.\nIf you draw 1+ resource, the Dragon King begins the showdown with the Overheat mood in play.\n\nIf you draw 2+ resources, the Dragon King also begins the showdown with a +1 damage token.\n\nIf you draw 3+ resources, the Dragon King also begins the showdown with a +1 speed token.\n\nRoll a random hunt event if you do not Defile the Crypt",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cultivated_Crypt",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Dragon King#Resources",
+        "understanding",
+        "resource",
+        "showdown",
+        "Overheat",
+        "mood",
+        "resources",
+        "damage",
+        "Attribute Modifier Token",
+        "speed"
+      ]
+    },
+    {
+      "term": "Curious Hand",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen you gain this, a random survivor gains +1 insanity.\n\nHolding this fills you with sadness.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Curious_Hand",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Cycloid Scales",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nExtremely reflective and colorful.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cycloid_Scales",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Cyclops Fly",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cyclops_Fly",
+      "relatedTerms": [
+        "Vermin Resources",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "1d10",
+        "death",
+        "accuracy"
+      ]
+    },
+    {
+      "term": "Dark Tower's Ledger",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the King crest, and is therefore only used in campaigns with the King quarry monster.\n\nCard text.\nA heavy hunk of metal etched with a shifting sequence of foreign characters.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dark_Tower's_Ledger",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Campaign",
+        "King",
+        "quarry",
+        "monster"
+      ]
+    },
+    {
+      "term": "Dark Water Research",
+      "definition": "An innovation card found within the Slenderman Expansion.\n\nCard Text.\nDeparting survivors gain +2 insanity.\n\n Light-Forging\n\n Spend 2x resources and 2x Dark Water to\nincrease the level of Dark Water\nResearch by 1, to a maximum of 3.\n(Update your settlement record sheet).\n\nRules Explanation.\nThe Dark Water research innovations included in the Slenderman expansion has 3 levels: 1-3. These levels are recorded on the Settlement Record Sheet. When a settlement first gains the innovation, its level is always 1.\n\nThe levels of Dark Water Research increase through endeavoring at the innovation. Settlements with higher levels of Dark Water Research have more options within the Light-Forging Slenderman Story Event. Increasing the levels of Dark Water Research does not count as gaining a new innovation.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dark_Water_Research",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Slenderman Expansion",
+        "Light-Forging",
+        "Dark Water",
+        "Settlement Record Sheet",
+        "settlement",
+        "Story Event"
+      ]
+    },
+    {
+      "term": "Dead Antelope",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe survivors are struck by the scent of rotting meat wafting from a hulking corpse ahead.\n\nThe event revealer may lead the survivors to investigate. If they do, gain 1 random vermin resource, 2 random Screaming Antelope resources and roll 1d10. On a result of 7+, the survivors are startled by the arrival of the antelope's killer, a White Lion.\n\nEnd the hunt now. Start a showdown with a White Lion 1 level higher than the quarry or the highest level available, using its setup rules. Add a Dead Monster terrain card to the showdown.\n\nIf they don't investigate: roll a random hunt event.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Antelope",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "event revealer",
+        "investigate",
+        "Vermin Resources",
+        "1d10",
+        "White Lion",
+        "showdown",
+        "Monster Level",
+        "quarry",
+        "Showdown Setup",
+        "Dead Monster",
+        "Terrain Cards"
+      ]
+    },
+    {
+      "term": "Dead Monster (Terrain)",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nIf Dead Monster is drawn during the Showdown Setup, survivors may start the showdown anywhere on the showdown board. Survivors may go first. \nScavenge. Roll 1d10.\n\nSetup.\nSet up adjacent to the monster.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Monster_(Terrain)",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Showdown Setup",
+        "Basic Resources",
+        "Monster Resources"
+      ]
+    },
+    {
+      "term": "Deathmetal",
+      "definition": "' is a resource type and a strange resource card found in the Gambler's Chest Expansion. The strange resource card has the King crest, and is therefore only used in campaigns with the King quarry monster.\n\nCard text.\nDense and heavy.\n\nList of Deathmetal Resources.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Deathmetal",
+      "relatedTerms": [
+        "Resource Types",
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Campaign",
+        "King",
+        "quarry"
+      ]
+    },
+    {
+      "term": "Debris",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nRoll 1d10 to scavenge. If carrying a Scavenger Kit, add +3 to the result.\n\nSetup.\nSet up adjacent to any board edge.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Debris",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Scavenger Kit",
+        "Basic Resources",
+        "Bone Blade",
+        "Scrap Sword"
+      ]
+    },
+    {
+      "term": "Delicate Shoulder Joint",
+      "definition": "A Flower Knight Hit Location.\n\nCard Text.\nThis armor joint is delicate. -2 toughness to wound this location.\n\nCritical Wound.\nThe Flower Knight's sword arm is ruined! Attacker gains +1 survival and 1 random\nFlower resource.\n\nIf the Flower Knight is inside the Fairy Ring, it gains -1 accuracy token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Delicate_Shoulder_Joint",
+      "relatedTerms": [
+        "Flower Knight",
+        "Hit Location",
+        "toughness",
+        "wound",
+        "survival",
+        ":Category: Flower Resources",
+        "accuracy"
+      ]
+    },
+    {
+      "term": "Dense Bone",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nSturdy",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dense_Bone",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Diffuser Heart",
+      "definition": "is a Crimson Crocodile Indomitable Resource found in the Gambler's Chest Expansion.\nCard Text.\nWhen you gain this, Gain Immortal Arm.\n\nYou may spend to archive this and suck from an artery. Gain Bloodzerker",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Diffuser_Heart",
+      "relatedTerms": [
+        "Indomitable Resources",
+        "indomitable",
+        "perfect",
+        "organ",
+        "Crimson Crocodile",
+        "Gambler's Chest Expansion",
+        "Immortal Arm",
+        "Bloodzerker"
+      ]
+    },
+    {
+      "term": "Dragon Iron",
+      "definition": "is a Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nIt feels heavy, but when dropped, falls as slowly as a feather.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dragon_Iron",
+      "relatedTerms": [
+        "Monster Resources",
+        "Iron",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Drifting Dream Fruit",
+      "definition": "is a Lonely Tree Strange Resource found in the Lonely Tree Expansion.\n\nCard Text.\nYou may consume and archive this to select a Dream on the Birth of a Savior story event and gain all associated abilities.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Drifting_Dream_Fruit",
+      "relatedTerms": [
+        "Strange Resources",
+        "consumable",
+        "Lonely Tree",
+        "Strange Resource",
+        "Lonely Tree Expansion",
+        "consume",
+        "archive",
+        "Birth of a Savior",
+        "Story Event",
+        "abilities"
+      ]
+    },
+    {
+      "term": "Elder Cat Teeth",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nAs sharp as they are strange.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Elder_Cat_Teeth",
+      "relatedTerms": [
+        "Strange Resources",
+        "bone",
+        "Strange Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Elytra",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nThe ribbed underside of these large shells makes an ideal surface to grind weapons. A survivor may archive this to give all of their attacks in the next showdown Sharp.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Elytra",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "hide",
+        "organ",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion",
+        "survivor",
+        "Showdown Phase",
+        "Sharp"
+      ]
+    },
+    {
+      "term": "Exoskeleton",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nMalleable, interlocking plates.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Exoskeleton",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Eye of Cat",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA perfectly preserved eye.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Eye_of_Cat",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Eye of Immortal",
+      "definition": "is a Crimson Crocodile Monster Resource found in the Gambler's Chest Expansion.\n\nCard Text.\nWhen you gain this, gain the Phobophobia disorder.\n\nConsume: Archive this to roll 1d10. On a 6+, gain the Immortal disorder.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Eye_of_Immortal",
+      "relatedTerms": [
+        "organ",
+        "consumable",
+        "other",
+        "Crimson Crocodile",
+        "Monster Resource",
+        "Gambler's Chest Expansion",
+        "Phobophobia",
+        "Disorders",
+        "Consume",
+        "Archive",
+        "Immortal"
+      ]
+    },
+    {
+      "term": "Eyeballs",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nEach points in a different direction.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Eyeballs",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Feathered Body",
+      "definition": "is a Phoenix hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\n+2 toughness to wound this location.\n\nCritical Wound.\nThe terrific attack slams into the Phoenix's massive frame. It hesitates, shocked that a puny human could harm it.\n\nGain 1 random Phoenix resource. The Phoenix staggers. Cancel any until the end of the attack.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Feathered_Body",
+      "relatedTerms": [
+        "Phoenix",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "toughness",
+        "wound",
+        "attack",
+        "Phoenix#Resources"
+      ]
+    },
+    {
+      "term": "Feathered Neck",
+      "definition": "is a Phoenix hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou strike the monster's thick neck.\nCritical Wound.\nYour blow damages the cervical vertebra, crippling the Phoenix's defenses.\n\nGain 1 random Phoenix resource. The Phoenix gains -1 toughness token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Feathered_Neck",
+      "relatedTerms": [
+        "Phoenix",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "Phoenix#Resources",
+        "toughness",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Fertility Tentacle",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThis tube-like appendage has a cavity at the base that stores eggs",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fertility_Tentacle",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Fetid Grotto",
+      "definition": "is a story event in the Gorm Expansion rule book.\n\nEvent Text.\nApproaching their quarry, the survivors are overcome by a sickening miasma.\n\nWhen the survivors arrive at the showdown, each survivor Approaches the Cave. During the aftermath, all victorious survivors make a Blind Exit.\n\nApproach the Cave.\neach survivor rolls 1d10.\n\nThe Gorm's den can be tracked by smell from a great distance. Your eyes water and your stomach twists in knots as you approach.\n\n|-\n|4 - 7||The entrance to the Gorm's den swims with putrid vapor. As the survivors consult amongst themselves in hushed, rasping tones, you decide to combat the miasma with a little ingenuity, putting your waist armor on your head. Add your current waist armor points to your head armor points and reduce your waist armor points to 0. Gain +2 insanity and +2 survival.\n|-\n|8 - 10||Tears streaming and lungs burning, you stumble into the den. Roll 1d10.\n\n|}\n\nBlind Exit.\neach victorious survivor rolls 1d10.\n\nSickened and exhausted, the survivors attempt to investigate the hazy Gorm den.\n\nWays to Trigger.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fetid_Grotto",
+      "relatedTerms": [
+        "Story Event",
+        "Gorm Expansion",
+        "survivors",
+        "showdown",
+        "survivor",
+        "1d10",
+        "Severe Body Injury Table",
+        "Event Damage",
+        "armor",
+        "Insanity",
+        "Survival",
+        "Accuracy",
+        "Attribute Modifier Token",
+        "Monster Bone",
+        "Basic Resources",
+        "Frenzy",
+        "Brain Trauma Table",
+        "Gorm",
+        "Strength",
+        "Courage"
+      ]
+    },
+    {
+      "term": "Fey Breastplate",
+      "definition": "A Flower Knight Hit Location.\n\nWound.\nThe Flower Knight's eyes beam strangely.\nAttacker gains +1 courage and is knocked down unless they spend 1 survival.\n\nCritical Wound.\nThe sight of the elaborate armor in ruins is gratifying.\nIf the Flower Knight is inside the Fairy Ring, it gains -1 toughness tokens and attacker gains +1 luck token and 1 random Flower resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fey_Breastplate",
+      "relatedTerms": [
+        "Flower Knight",
+        "Hit Location",
+        "courage",
+        "Knocked Down",
+        "survival",
+        "Critical Wound",
+        "toughness",
+        "luck",
+        ":Category: Flower Resources"
+      ]
+    },
+    {
+      "term": "Fey Breeches",
+      "definition": "A Flower Knight Hit Location.\n\nWound.\nThe Flower Knight's eyes beam strangely.\nAttacker gains +1 courage and is knocked down unless they spend 1 survival.\n\nCritical Wound.\nThe delicate iridescent fabric is destroyed.\nAttacker gains +1 luck token and 1 random Flower resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fey_Breeches",
+      "relatedTerms": [
+        "Flower Knight",
+        "Hit Location",
+        "courage",
+        "survival",
+        "luck",
+        ":Category: Flower Resources"
+      ]
+    },
+    {
+      "term": "Fey Helm Wings",
+      "definition": "A Flower Knight Hit Location.\n\nReflex.\nThe Flower Knight slowly cranes its neck towards the attacker.\nIf the attacker has any stinky gear in their gear grid, they gain the priority target token.\n\nCritical Wound.\nThe Flower Knight's helmet is damaged.\nIf the monster is inside the Fairy Ring, it gains -1 accuracy token and attacker gains +1 luck token and 1 random Flower resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fey_Helm_Wings",
+      "relatedTerms": [
+        "Flower Knight",
+        "Hit Location",
+        "stinky",
+        "gear",
+        "Gear Grid",
+        "Priority Target",
+        "Critical Wound",
+        "accuracy",
+        "luck",
+        ":Category: Flower Resources"
+      ]
+    },
+    {
+      "term": "Filthy Gut",
+      "definition": "is a Dung Beetle Knight hit location card found in the Dung Beetle Knight Expansion.\nCard Text.\n The monster crushes a keystone. Move the ball 1d10 spaces towards the monster. Cancel the reaction on this hit location.\n\nReflex.\nIf the attacker is within 3 spaces of the monster, they are grabbed and smashed into the ball. Place the attacker in the nearest unoccupied space adjacent to the Resin Dung Ball. They collide with it and suffer 5 damage to hit locations.\n\nCritical Wound.\nGain 1 random Dung Beetle Knight resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Filthy_Gut",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "Hit Location",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "First Story",
+      "definition": "The is a story event in the Kingdom Death: Monster Core Game rule book. Following immediately after the , it consists of a showdown against a White Lion with a specially-constructed AI Deck and then a Settlement Phase that uses First Day instead of a random Settlement Event. It is meant to teach the core rules of the game through gameplay and prepare players to begin a campaign.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/First_Story",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "Showdown Phase",
+        "White Lion",
+        "AI Deck",
+        "Settlement Phase",
+        "First Day",
+        "Settlement Event",
+        "campaign"
+      ]
+    },
+    {
+      "term": "Flower Patch",
+      "definition": "A terrain card found within the Flower Knight Expansion.\n\nCard Text.\nPick a flower. Archive this terrain tile and roll 1d10. Add +1 to your roll if you have a Sickle in your gear grid.\n\nSetup.\nSet up within 2 spaces of a board edge. (Unless otherwise stated in the showdown setup instructions.)",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Flower_Patch",
+      "relatedTerms": [
+        "Flower Knight Expansion",
+        "Flower Knight",
+        "Terrain Cards",
+        ":Category: Flower Resources"
+      ]
+    },
+    {
+      "term": "Fresh Acanthus",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nArchive this to fully heal 1 hit location, including injury levels and armor points.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fresh_Acanthus",
+      "relatedTerms": [
+        "Strange Resources",
+        "herb",
+        "Strange Resource",
+        "Kingdom Death: Monster Core Game",
+        "Archive",
+        "Healing",
+        "Hit Location",
+        "Injury Level",
+        "Armor Points"
+      ]
+    },
+    {
+      "term": "Fresh Kill (Basic Hunt Event)",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA carpet of skittering bugs points the survivors to a freshly killed monster. The scavenging insects try to defend their dinner, but the survivors fight them to claim the prize. \n\nEach survivor rolls 2d10 and adds their Hunt XP. The highest-scoring survivor (roll off in case of ties) slays the most vermin and wins the putrid prize for themselves. They gain 1 random basic resource and 1 random vermin resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fresh_Kill_(Basic_Hunt_Event)",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "(X)d10",
+        "Hunt XP",
+        "Basic Resource",
+        "Vermin Resource"
+      ]
+    },
+    {
+      "term": "Fresh Kill (Strange Resource)",
+      "definition": "Fresh Kill is a beta strange resource card found in the Summer Aya White Box/Limited Release.\n\nCard Text.\n Consume: Archive this and set your survival equal to half your survival limit, rounded up.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fresh_Kill_(Strange_Resource)",
+      "relatedTerms": [
+        "Strange Resource",
+        "bone",
+        "hide",
+        "organ",
+        "consumable",
+        "Beta Content",
+        "Summer Aya",
+        "White Box",
+        "Limited Release",
+        "Consume",
+        "Archive",
+        "survival",
+        "Survival Limit"
+      ]
+    },
+    {
+      "term": "Furry Tail",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou strike the magnificent, bushy tail.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nThe Screaming Antelope is off balance. The monster gains -1 accuracy token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Furry_Tail",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        ":Category: Screaming Antelope Monster Resources",
+        "monster",
+        "accuracy",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Furry Throat",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nIf you hit with a club or shield, you clobber the monster and gain +2 luck when attempting to wound this location!\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nThere is a chance that this blow snaps the Screaming Antelope's neck, killing it.\nRoll another 1d10. On a result of 10, the Screaming Antelope dies instantly.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Furry_Throat",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "hit",
+        "club",
+        "shield",
+        "monster",
+        "luck",
+        "Wound Attempt",
+        ":Category: Screaming Antelope Monster Resources",
+        "(X)d10",
+        "Lantern 10",
+        "Victory"
+      ]
+    },
+    {
+      "term": "Ghost Pepper",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Scout crest, and is therefore only used in campaigns with Scouts.\n\nCard text.\nConsume: Archive this to gain the Spectral Stomach ability.\n\nSpectral Stomach: When you consume and archive something, roll 1d10. On a 8+, it comes out the other end intact! Do not archive it.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ghost_Pepper",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Scout crest",
+        "Campaign",
+        "Scouts",
+        "Consume",
+        "Archive",
+        "Spectral Stomach"
+      ]
+    },
+    {
+      "term": "Giant Teeth",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\n\n(Super-Dense: If the attacker hits this location with a frail weapon, it is damaged. Archive the weapon at the end of this attack.)\n\nCritical Wound.\nGain 1 Screaming Antelope resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Giant_Teeth",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "Super-Dense",
+        "hits",
+        "frail",
+        "weapon",
+        "Archive",
+        "attack",
+        ":Category: Screaming Antelope Monster Resources"
+      ]
+    },
+    {
+      "term": "Giant Tongue",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\n-2 toughness to wound this location.\n\nWound.\nBlood and spittle erupt from the Screaming Antelope's wounded under-maw. If the wound roll result is even, suffer 1 brain damage. If the wound roll result is odd, gain 1 insanity.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Giant_Tongue",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "toughness",
+        "wound",
+        "Wound Roll",
+        "Brain Damage",
+        "insanity",
+        ":Category: Screaming Antelope Monster Resources"
+      ]
+    },
+    {
+      "term": "Gibbering Haremite",
+      "definition": "is a vermin resource found in the Pinup Easter Twilight Knight white box expansion.\n\nCard Text.\nWhen you gain this, unless you consume it immediately, it latches on and removes all head armor points. If this is in the settlement storage when survivors depart, add another to storage and suffer -1 population.\n\nConsume: Archive this and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gibbering_Haremite",
+      "relatedTerms": [
+        "Vermin Resources",
+        "consumable",
+        "Pinup Easter Twilight Knight",
+        "White Boxes",
+        "consume",
+        "head",
+        "Armor Points",
+        "Settlement Storage",
+        "depart",
+        "Consume",
+        "Archive",
+        "(X)d10",
+        "death",
+        "survival",
+        "movement"
+      ]
+    },
+    {
+      "term": "Glorious Crest",
+      "definition": "is a Phoenix hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nTurn to face the attacker.\n\nWound.\nPerform displacement.\n\nDisplacement: Place the Phoenix anywhere along the board edge furthest from the attacker. If the attacker has any age tokens, they may attempt to follow the Phoenix. Roll 1d10. If the result is equal to or less than their Hunt XP, place them in a free space adjacent to the Phoenix after it is placed. Otherwise, cancel all hits now out of range.\n\nCritical Wound.\nGain 1 random Phoenix resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glorious_Crest",
+      "relatedTerms": [
+        "Phoenix",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "face",
+        "attacker",
+        "Showdown Board Edge",
+        "Dreaded Decade",
+        "1d10",
+        "Hunt Experience",
+        "adjacent",
+        "hits",
+        "range",
+        "Phoenix#Resources"
+      ]
+    },
+    {
+      "term": "Glorious Handed Feet",
+      "definition": "is a Phoenix hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nReflex.\nThe monster's glare pierces the survivor's puny mind, causing explosions of pain.\n\nTurn to face the attacker and roll 1d10. If the result is higher than the attacker's Hunt XP, they suffer 1 brain damage for each age token they have.\n\nCritical Wound.\nGain 1 random Phoenix resource.\n\nYou smash apart the monster's foot. In triumph, you may spend 1 survival to howl and encourage all knocked down survivors.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glorious_Handed_Feet",
+      "relatedTerms": [
+        "Phoenix",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "monster",
+        "survivor",
+        "face",
+        "attacker",
+        "1d10",
+        "Hunt Experience",
+        "Brain Damage",
+        "Dreaded Decade",
+        "Phoenix#Resources",
+        "survival",
+        "encourage",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Gnarled Horns",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game. \n\n1.5 Card Text.\nFailure.\nIf the attacker is adjacent to the monster, their weapon is stuck. Tugging frantically, it comes loose, but you stumble and suffer knockback 5.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\n Persistent Injury - Crushed Crown\nBlood pours from the ruined crown. Affects some AI cards.\n\n1.6 Card Text.\nFailure.\nIf the attacker is adjacent to the monster, their weapon is stuck. Tugging frantically, it comes loose, but you stumble and suffer knockback 5.\n\nCritical Wound.\nGain 1 Screaming Antelope Resource.\n\n Persistent Injury - Ruined Horns\nBlood pours from the ruined crown. Affects some AI cards.\n\nNote.\nCrushed Crown Persistent Injury in the 1.5 version of the card refers to Gore's Ruined Horns Persistent Injury. The Crushed Crown Persistent Injury is not associated with any AI cards and Ruined Horns doesn't appear on any HL cards. This issue was fixed with the release of the Legendary Card Pack and the game's update to version 1.6.\n\nSee Also.\nGore",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gnarled_Horns",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "attacker",
+        "adjacent",
+        "monster",
+        "weapon",
+        "Knockback X",
+        ":Category: Screaming Antelope Monster Resources",
+        "Persistent Injury",
+        "AI Card",
+        "Gore",
+        "Legendary Card Pack"
+      ]
+    },
+    {
+      "term": "Golden Eyed King of 1,000 Years",
+      "definition": "A Legendary Monster found within the Kingdom Death: Monster Core Game.\n\nLore.\nThey say that at the summit of the tallest tree, there is a \nglimmer of golden light. Those who have stared into it for too \nlong are marked by their white hair, and claim to know how \nthey will die.\n\nStat Breakdown.\n\nVictory.\n+1 Hunt XP\n+1 Weapon proficiency (if eligible)\nLevel 3 Phoenix Rewards.\n6x Basic Resources\n9x Phoenix Monster Resources\n1x Phoenix Crest\n1x Black Lichen\nNominate the survivor that dealt the killing \nblow. At that moment, time splits and you experience a \nthousand lifetimes and a thousand deaths simultaneously. Your \nveins feel as if they will burn themselves free from your skin, \nand you cling desperately to a single heart beat, as you find \nyourself within the cyclone of existence that howls without end. \nThe experience ends as abruptly as it started. All of what \nhappened or what will happen is gone. forgotten, and you find \nyourself on your knees vomiting a thick creamy foam. The \nnominated survivor gains +1,000 insanity and the King of a Thousand Battles secret fighting art.\n\nDefeat.\nUse Phoenix defeat.\nYou may not Run Away from this encounter.\n\nWays to Trigger.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Golden_Eyed_King_of_1%2C000_Years",
+      "relatedTerms": [
+        "Phoenix",
+        "Showdown: Phoenix",
+        "Bored",
+        "Wing Punch",
+        "The Difference Between Us",
+        "Pustule Cannons",
+        "Gouge & Feast",
+        "Ripple",
+        "Instant Wing Strike",
+        "Peck",
+        "Ore Vein",
+        "Bug Patch",
+        "Glorious Arm Pit",
+        "Soft Lower Gut",
+        "Legendary Monsters",
+        "Kingdom Death: Monster Core Game",
+        "Life Trait",
+        "Dreaded Decade",
+        "Weak Spot (King's Man AI Card)",
+        "Materialize"
+      ]
+    },
+    {
+      "term": "Golden Frog",
+      "definition": "is a vermin resource found in the Frogdog Expansion.\nCard Text.\nConsume: Archive this and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Golden_Frog",
+      "relatedTerms": [
+        "Vermin Resources",
+        "vermin",
+        "consumable",
+        "Noodling of Death (Story Event)",
+        "Mere Omens",
+        "Frogdog Expansion",
+        "Consume",
+        "Archive",
+        "(X)d10",
+        "Dead",
+        "speed",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Golden Whiskers",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThese whiskers are tough!",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Golden_Whiskers",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Gorm Brain",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nSurprisingly small",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gorm_Brain",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Gormchymist",
+      "definition": "The Gormchymist is a settlement location found in the Gorm Expansion. It is unlocked the first time survivors defeat a Gorm.\n\nLocation Text.\nTransmute: Spend 2 organs and roll 1d10. Add 1d10 for each Gormchymy innovation in your settlement. Add the roll results and gain the corresponding gear or resources.\n\nArchive 1 Gormchymist potion to reroll 1 dice result.\n\nSpecial Innovate.\nGain the next Gormchymy innovation.\nCost:\n1x Strange Resource\n1x Gorm Brain",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gormchymist",
+      "relatedTerms": [
+        "Settlement Location",
+        "Gorm Expansion",
+        "victory",
+        "Gorm",
+        "organ",
+        "(X)d10",
+        ":Category:Gormchymy Innovations",
+        "innovation",
+        "settlement",
+        "gear",
+        "resources",
+        "Archive",
+        "Healing Potion",
+        "Wisdom Potion",
+        "Steadfast Potion",
+        "Power Potion",
+        "Life Elixir",
+        "Gormite",
+        "Strange Resource",
+        "Gorm Brain"
+      ]
+    },
+    {
+      "term": "Gormite",
+      "definition": "is a strange resource card found in the Gorm Expansion.\n\nCard Text.\nThe toughest stuff known to man.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gormite",
+      "relatedTerms": [
+        "Strange Resource",
+        "scrap",
+        "iron",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Great Cat Bones",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nStrong and surprisingly light.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Great_Cat_Bones",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Great Golden Cat",
+      "definition": "is a Legendary Monster found within the Kingdom Death: Monster Core Game.\n\nLore.\nThey say that some thunderstorms on the horizon are actually the Great Golden Cat playing with a meal before devouring it.\n\nStat Breakdown.\n\nVictory.\nUse Level 3 White Lion Victory\n+1 White Lion resource of your choice\nNominate the survivor that dealt the killing blow. That survivor gains a +2 permanent strength and the Timeless Eye and Combo Master fighting arts.\n\nDefeat.\nUse White Lion defeat.\n\nWays to Trigger.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Great_Golden_Cat",
+      "relatedTerms": [
+        "White Lion",
+        "Showdown: White Lion",
+        "Combo Claw",
+        "Vicious Claw",
+        "Terrifying Roar",
+        "Power Swat",
+        "Vanish",
+        "Bloody Claw",
+        "Terrain Cards",
+        "Legendary Monsters",
+        "Kingdom Death: Monster Core Game",
+        "Life Trait",
+        "Merciless",
+        "Golden Eyes",
+        "Cunning",
+        "Trample",
+        "Accuracy",
+        "Luck",
+        ":Category:White Lion Monster Resources",
+        "survivor"
+      ]
+    },
+    {
+      "term": "Gregalope",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA massive Gregalope stands astride the horizon, its ancient body bloated with tumors and scar tissue. Its milky eyes catch sight of the survivors and it bounds away. Driven by sudden desire, the survivors give chase. The event revealer rolls 1d10 and adds their movement to their roll.\n\nIf any survivor has the Strategist fighting art, they may corner the Gregalope at a giant stone face instead of giving chase. If they do, end the hunt immediately. Start a showdown with a level 2 Screaming Antelope, using its setup rules. In addition, place a Giant Stone Face adjacent to the monster and give the monster the Butcher's Berserker trait card. If the survivors prevail, gain the normal showdown rewards and 3 additional Screaming Antelope resources.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gregalope",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "1d10",
+        "movement",
+        "Strategist",
+        "Fighting Art",
+        "Hunt Phase",
+        "showdown",
+        "Monster Level",
+        "Screaming Antelope",
+        "Showdown: Screaming Antelope",
+        "Giant Stone Face",
+        "adjacent",
+        "Butcher",
+        "Berserker (Butcher AI Card)",
+        "trait",
+        "AI Card",
+        "rewards",
+        "Monster Resources#Screaming Antelope"
+      ]
+    },
+    {
+      "term": "Hagfish",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nConsume: Your hair turns gray and you gain +1 Hunt XP. Archive this card.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hagfish",
+      "relatedTerms": [
+        "Strange Resource",
+        "fish",
+        "bone",
+        "hide",
+        "Sunstalker Expansion",
+        "Consume",
+        "Hunt XP",
+        "Archive"
+      ]
+    },
+    {
+      "term": "Handed Skull",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nIncomparibly dense",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Handed_Skull",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Hardened Ribs",
+      "definition": "is a Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nStrong, flexible, and hollow.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hardened_Ribs",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Hissing Cockroach",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this to lose all survival and gain 2d10 insanity.\n\nIf you are insane, you must consume this.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hissing_Cockroach",
+      "relatedTerms": [
+        "vermin",
+        "consumable",
+        "Vermin Resources",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "survival",
+        "(X)d10",
+        "insanity",
+        "insane"
+      ]
+    },
+    {
+      "term": "Hollow Stone",
+      "definition": "Hollow Stone is a strange resource found in the Gambler's Chest Expansion. It has the Scout crest, and is therefore only used in campaigns with Scouts.\n\nA smooth, empty face.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hollow_Stone",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Scout crest",
+        "Campaign",
+        "Scouts",
+        "Outskirts"
+      ]
+    },
+    {
+      "term": "Hollow Wing Bones",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nDelicate and finely balanced.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hollow_Wing_Bones",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Horn Fragment",
+      "definition": "is a Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nNearby speech causes them to resonate.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Horn_Fragment",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Huge Sunteeth",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThese tough but light teeth are made of hundreds of thin layers of bone, separated by rows of dicot stems.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Huge_Sunteeth",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Husk",
+      "definition": "is a Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA decaying layer of former skin.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Husk",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Inner Shadow Skin",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThis soft, yet rubbery material blocks light.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Inner_Shadow_Skin",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Iridescent Abdomen",
+      "definition": "is a Dung Beetle Knight hit location card found in the Dung Beetle Knight Expansion.\nCard Text.\nSuper-Dense\n\n Before attempting to wound, perform Ground Pound. Cancel the reaction on this hit location.\n\nFailure.\nPerform Basic Action, target the attacker.\n\nCritical Wound.\nGain 1 random Dung Beetle Knight resource. The monster vomits chunks of boiling resin that hit the ground and momentarily form an unhappy face. Gain +1 strength token. You may spend 4 survival to cherish this moment forever. If you do, gain +1 permanent strength.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Iridescent_Abdomen",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "Hit Location",
+        "Dung Beetle Knight Expansion",
+        "Super-Dense",
+        "Ground Pound",
+        "Basic Action",
+        "strength"
+      ]
+    },
+    {
+      "term": "Iron (Strange Resource)",
+      "definition": "Iron is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nHarder than bone.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Iron_(Strange_Resource)",
+      "relatedTerms": [
+        "Strange Resources",
+        "iron",
+        "scrap",
+        "Strange Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Irregular Optic Nerve",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Crimson Crocodile crest, and is therefore only used in campaigns with Crimson Crocodile.\n\nCard Text.\nIf the settlement has a Barber Surgeon, you may undergo a procedure there! Archive this and roll 1d10. Add +4 to your roll if there is a Silk Surgeon. On a 6+, the surgeon swaps your optic nerve. Cure the blind severe head injury. Otherwise, suffer it from a terrible accident.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Irregular_Optic_Nerve",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Crimson Crocodile crest",
+        "Campaign",
+        "Crimson Crocodile",
+        "Barber Surgeon",
+        "Archive",
+        "Silk Surgeon",
+        "blind"
+      ]
+    },
+    {
+      "term": "Jagged Marrow Fruit",
+      "definition": "is a Lonely Tree Strange Resource found in the Lonely Tree Expansion.\n\nCard Text.\nYou may consume and archive this to gain the following ability.\n\nNightmare Spurs: Once per showdown, you may spend all your survival (at least 1) to lose all your +1 strength tokens and gain that many +1 luck tokens.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Jagged_Marrow_Fruit",
+      "relatedTerms": [
+        "Strange Resources",
+        "bone",
+        "scrap",
+        "consumable",
+        "Lonely Tree",
+        "Strange Resource",
+        "Lonely Tree Expansion",
+        "consume",
+        "archive",
+        "Abilities",
+        "Nightmare Spurs",
+        "survival",
+        "strength",
+        "luck"
+      ]
+    },
+    {
+      "term": "Jiggling Lard",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nThick, quivering mass",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Jiggling_Lard",
+      "relatedTerms": [
+        "Monster Resource",
+        "organ",
+        "hide",
+        "Gorm",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Jowls",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nWhen you gain Jowls, it bites off your nose! If you have no nose, you die.\n\nIf you have Jowls, Hagfish, and Bugfish, you are inspired. You may archive all 3 to gain the Filleting Table innovation.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Jowls",
+      "relatedTerms": [
+        "Strange Resource",
+        "fish",
+        "iron",
+        "Sunstalker Expansion",
+        "death",
+        "Hagfish",
+        "Bugfish",
+        "archive",
+        "Filleting Table",
+        "innovation"
+      ]
+    },
+    {
+      "term": "Joy of Gaming",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Dream Keeper crest, and is therefore only used in People of the Dream Keeper campaigns.\n\nCard text.\nA feeling of elation that makes everything else seem worth it.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Joy_of_Gaming",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Dream Keeper crest",
+        "People of the Dream Keeper",
+        "Campaign"
+      ]
+    },
+    {
+      "term": "King's Claws",
+      "definition": "is a Dragon King Monster Resource found in the Dragon King Expansion.\n\nCard Text.\nDisturbingly warm, and sharp enough to draw blood with a touch.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/King's_Claws",
+      "relatedTerms": [
+        "Monster Resources",
+        "Bone",
+        "Dragon King",
+        "Monster Resource",
+        "Dragon King Expansion"
+      ]
+    },
+    {
+      "term": "King’s Claws",
+      "definition": "A Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nDisturbingly warm, and sharp enough to draw blood with a touch.\n\nSee Also.\nUses for",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/King%E2%80%99s_Claws",
+      "relatedTerms": [
+        "bone",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game",
+        ":Category: Uses for {{PAGENAME}}"
+      ]
+    },
+    {
+      "term": "King's Tongue",
+      "definition": "is a Dragon King Monster Resource found in the Dragon King Expansion.\n\nCard Text.\nSmooth, dry, and sharp.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/King's_Tongue",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Dragon King",
+        "Monster Resource",
+        "Dragon King Expansion"
+      ]
+    },
+    {
+      "term": "Lantern Bloom",
+      "definition": "is a Flower Knight Monster Resource found in the Flower Knight Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lantern_Bloom",
+      "relatedTerms": [
+        "Monster Resources",
+        "flower",
+        "hide",
+        "Flower Knight",
+        "Monster Resource",
+        "Flower Knight Expansion"
+      ]
+    },
+    {
+      "term": "Lantern Bud",
+      "definition": "is a Flower Knight Monster Resource found in the Flower Knight Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lantern_Bud",
+      "relatedTerms": [
+        "Monster Resources",
+        "flower",
+        "scrap",
+        "Flower Knight",
+        "Monster Resource",
+        "Flower Knight Expansion"
+      ]
+    },
+    {
+      "term": "Lantern Tube",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA fleshy, muscle-lined tube.\n\nWhen you gain this, roll 1d10. On a 6+, you find something stuck inside! Add 1 Broken Lantern basic resource to the settlement's storage.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lantern_Tube",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "scrap",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "Broken Lantern",
+        "Basic Resource",
+        "Settlement Storage"
+      ]
+    },
+    {
+      "term": "Large Appendage",
+      "definition": "This is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nCould come in handy.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Large_Appendage",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Large Flat Tooth",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen you gain this, a survivor of your choice gains +1 insanity.\nIts surface is rough and bumpy.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Large_Flat_Tooth",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Leather (Strange Resource)",
+      "definition": "Leather is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nNever goes out of style.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Leather_(Strange_Resource)",
+      "relatedTerms": [
+        "Strange Resource",
+        "hide",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Legendary Horns (Strange Resource)",
+      "definition": "Legendary Horns is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nHolding them fills you with power.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Legendary_Horns_(Strange_Resource)",
+      "relatedTerms": [
+        "Strange Resource",
+        "bone",
+        "scrap",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Life String",
+      "definition": "is a Strange Resource found in the Sunstalker Expansion. There is no card for this.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Life_String",
+      "relatedTerms": [
+        "Strange Resources",
+        "Strange Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Lion Claw",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA razor-sharp, retractable claw.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion_Claw",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Lion Tail",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nIt's surprisingly heavy.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion_Tail",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Lion Testes",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA hefty pair of nuts.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion_Testes",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Lonely Ant",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this to swap your insanity and survival values.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lonely_Ant",
+      "relatedTerms": [
+        "Vermin Resources",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "insanity",
+        "survival"
+      ]
+    },
+    {
+      "term": "Lonely Fruit",
+      "definition": "is a Lonely Tree Strange Resource found in the Lonely Tree Expansion.\n\nCard Text.\nDuring the settlement phase, you may consume and archive this to Lonely Lady.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lonely_Fruit",
+      "relatedTerms": [
+        "Strange Resources",
+        "consumable",
+        "Lonely Tree",
+        "Strange Resource",
+        "Lonely Tree Expansion",
+        "Settlement Phase",
+        "consume",
+        "archive",
+        "The Lonely Lady"
+      ]
+    },
+    {
+      "term": "Lottery",
+      "definition": "is a story event in the Manhunter Expansion rule book.\n\nEvent Text.\nThe Manhunter is pleased with how easy it is to cull your settlement. It returns to claim a survivor for an unknown purpose.\n\nThe settlement gathers to Draw Lots.\n\nDraw Lots and then choose to Rebel or Obey. Roll 1d10.\n\nIf you rolled a 3 or a 4 and if the settlement has the Collective Toil Society Principle, use the Give me a slave! result instead.\nIf you rolled a 5 or a 6 and if the settlement has the Accept Darkness Society Principle, use the Give me your smartest! result instead.\n\nRebel.\nStop the Settlement Phase for a Special Showdown with the Manhunter.\n\nObey.\nThe nominated survivor is taken away. Remove them from the settlement. Do not gain the benefits of the Cannibalize Death Principle. Add Lottery to the timeline two lantern years from now. The Manhunter provides the settlement with Payment. Roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lottery",
+      "relatedTerms": [
+        "Story Event",
+        "Manhunter Expansion",
+        "Manhunter",
+        "settlement",
+        "survivor",
+        "1d10",
+        "Secret Fighting Art",
+        "Hunt XP",
+        "Weapon Proficiency",
+        "strength",
+        "Collective Toil",
+        "Principle: Society",
+        "Accept Darkness",
+        "Settlement Phase",
+        "Special Showdown",
+        "Cannibalize",
+        "Principle: Death",
+        "timeline",
+        "Love Juice",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Love Juice",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nDuring the settlement phase, you may\narchive this to . Nominated\nsurvivors must be able to consume.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Love_Juice",
+      "relatedTerms": [
+        "Basic Resources",
+        "organ",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Settlement Phase",
+        "survivors",
+        "consume"
+      ]
+    },
+    {
+      "term": "Lucky Dice",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Dream Keeper crest, and is therefore only used in People of the Dream Keeper campaigns.\n\nCard text.\nPressurized ammonia.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lucky_Dice",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Dream Keeper crest",
+        "People of the Dream Keeper",
+        "Campaign"
+      ]
+    },
+    {
+      "term": "Lustrous Tooth",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Crimson Crocodile crest, and is therefore only used in campaigns with Crimson Crocodile.\n\nCard text.\nEons of tongue polishing have made the perfect tooth!",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lustrous_Tooth",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Crimson Crocodile crest",
+        "Campaign",
+        "Crimson Crocodile"
+      ]
+    },
+    {
+      "term": "Mad Steed",
+      "definition": "is a Legendary Monster found within the Kingdom Death: Monster Core Game.\n\nLore.\nThey say that The Hand once trained a great, horned beast to be ridden by him along. As the beast carried The Hand from one terrible task to the next, its appetite grew, and its horns took on twisted shapes.\n\nStat Breakdown.\n\nVictory.\nUse Level 3 Screaming Antelope Victory\n+1 Screaming Antelope resource of your choice.\nNominate the survivor that dealt the killing blow. As your weapon strikes down the steed, it emits a gurgling roar from its under-maw, and bursts into an explosion of flames. Inside the inferno's swirling vortex, you feel only calm. A hooded figure stands before you, and points at your arm. With a blinding flash and a spray of molten flesh, it explodes, causing you to scream and black out. When you wake, you peel the remaining charred flesh off of what used to be your arm, revealing a beautiful sword underneath. The nominated survivor suffers the dismembered arm severe injury, and gains the Red Fist secret fighting art, +9 courage, and the Adventure Sword rare gear.\n\nDefeat.\nThe Mad Steed rampages through the settlement, leaving immeasurable destruction in its wake. -3 population.\n\nWays to Trigger.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mad_Steed",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Showdown: Screaming Antelope",
+        "Crush and Devour",
+        "Stomp & Snort",
+        "Ravenous",
+        "Bite",
+        "Great Kick",
+        "Terrain Cards",
+        "Furry Throat",
+        "Legendary Monsters",
+        "Kingdom Death: Monster Core Game",
+        "The Hand",
+        "Life Trait",
+        "Diabolical",
+        "Berserker (AI Card)",
+        "Hypermetabolism",
+        "Trample",
+        "King's Aura",
+        "Legendary Horns",
+        "Accuracy"
+      ]
+    },
+    {
+      "term": "Mammoth Bloated Face",
+      "definition": "is a Gorm hit location card found in the Gorm Expansion.\n\nCard Text.\nYou strike at the Gorm's swinging jowls.\n\nCritical Wound.\nGain 1 random Gorm resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mammoth_Bloated_Face",
+      "relatedTerms": [
+        "Gorm",
+        "Hit Location",
+        "Gorm Expansion",
+        ":Category: Gorm Monster Resources"
+      ]
+    },
+    {
+      "term": "Mammoth Crowded Fangs",
+      "definition": "is a Gorm hit location card found in the Gorm Expansion.\n\nCard Text.\nIf you attack from the Gorm's Flank, gain +2 strength when attempting to wound this location.\n\nFlank: A space adjacent to the monster that is\nnot in the monster's facing or blind spot.\n\nCritical Wound.\nThe Gorm's teeth rain to the ground. The attacker gains 1 random Gorm resource and +1 courage.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mammoth_Crowded_Fangs",
+      "relatedTerms": [
+        "Gorm",
+        "Hit Location",
+        "Gorm Expansion",
+        "attack",
+        "strength",
+        "Wound Attempt",
+        "Flank",
+        "adjacent",
+        "monster",
+        "facing",
+        "Blind Spot",
+        ":Category: Gorm Monster Resources",
+        "courage"
+      ]
+    },
+    {
+      "term": "Mammoth Hand",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nAn enormous, leather glove",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mammoth_Hand",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "hide",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Mammoth Rump",
+      "definition": "is a Gorm hit location card found in the Gorm Expansion.\nCard Text.\nWound.\nPerform Retch.\n\nCritical Wound.\nGain 1 random Gorm resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mammoth_Rump",
+      "relatedTerms": [
+        "Gorm",
+        "Hit Location",
+        "Gorm Expansion",
+        "Retch",
+        ":Category:Gorm Monster Resources"
+      ]
+    },
+    {
+      "term": "Man-stealers",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nExhausted, the survivors rest. During their fitful sleep, a small insect approaches undetected. Choose 1 random male survivor and roll on the table. If there are no male survivors, nothing happens.\n\nIf the chosen survivor has the Unconscious Fighter fighting art, they crush the bug while still snoring; do not roll on the table. They awake, confused, with a random vermin resource in their hands.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Man-stealers",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Unconscious Fighter",
+        "Fighting Art",
+        "Vermin Resource",
+        "Destroyed Genitals",
+        "Severe Injury",
+        "Event Damage",
+        "waist"
+      ]
+    },
+    {
+      "term": "Master Key",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the King crest, and is therefore only used in campaigns with the King quarry monster.\n\nCard text.\nThe Master Key can open anything! Archive this to ignore any locked requirement. Departing survivors can take this with them.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Master_Key",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Campaign",
+        "King",
+        "quarry",
+        "monster",
+        "Archive",
+        "locked",
+        "Departing Survivors"
+      ]
+    },
+    {
+      "term": "Mating Fields",
+      "definition": "Mating Fields is a Gorm hunt event card found in the Gorm Expansion.\n\nCard Text.\nAhead, the ground is covered in mounds of foul-smelling corrosive vomit. Any of the survivors may choose to investigate. Each that does gains +1 courage and rolls on the table.\n\n1d10 - Each survivor, one at a time\n\nRoll a random hunt event if no survivors investigate.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mating_Fields",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "survivors",
+        "investigate",
+        "courage",
+        "1d10",
+        "survivor",
+        "Event Damage",
+        "Brain Damage",
+        "Gorm#Resources",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Meaty Rib",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nUseful and delicious",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Meaty_Rib",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Milky Eye",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nWhen this resource is gained, select a survivor to gain +3 insanity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Milky_Eye",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Monster Bone",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nA bone suitable for crafting.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Bone",
+      "relatedTerms": [
+        "Basic Resources",
+        "bone",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Monster Hide",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe skin of a beast.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Hide",
+      "relatedTerms": [
+        "Basic Resources",
+        "hide",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Morgue",
+      "definition": "is an innovation card found within the Gambler's Chest Expansion.\n\nCard Text.\n Cooling\nBy creating a radiative chamber, a source of\nCooling becomes available to the settlement.\n\nIf the settlement has Cannibalize, it harvests preserved bodies. At the start of the develop step, gain 1 random basic resource for every 10 survivors in your death count, rounded down.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Morgue",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "Lantern Oven",
+        "innovation",
+        "Gambler's Chest Expansion",
+        "Cooling",
+        "settlement",
+        "Cannibalize",
+        "develop",
+        "Basic Resources",
+        "Death Count"
+      ]
+    },
+    {
+      "term": "Muculent Droppings",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nDelicately scented, papery husk.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Muculent_Droppings",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Muscly Gums",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nDifficult to pry apart.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Muscly_Gums",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Nest of Beards",
+      "definition": "' is the Phoenix Scout Discovery. It is found in the Gambler's Chest Expansion.\n\nCard text.\nGain the Phoenix Tablet scout gear.\n\nClimbing the giant nightmare tree, the scout discovers a nest. Instead of eggs, they find a mass of hoary whiskers. A brood of shriveled ancient phoenixes sits with their long beards tangled together. They look at the scout helplessly. Roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Nest_of_Beards",
+      "relatedTerms": [
+        "Phoenix",
+        "Scout Discovery",
+        "Gambler's Chest Expansion",
+        "Phoenix Tablet",
+        "scout",
+        "gear",
+        "(X)d10",
+        "survivors",
+        "Hunt Experience",
+        "resources",
+        "random",
+        "quarry",
+        "monster",
+        "campaign",
+        "reset",
+        "departure",
+        "Lantern Year",
+        "insanity",
+        "understanding"
+      ]
+    },
+    {
+      "term": "Nightmare Tick",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Nightmare_Tick",
+      "relatedTerms": [
+        "Vermin Resources",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "1d10",
+        "death",
+        "evasion"
+      ]
+    },
+    {
+      "term": "Old Blue Box",
+      "definition": "is a Lion God Strange Resource found in the Lion God Expansion.\n\nCard Text.\nDuring the settlement phase, you may archive this to Death Reading.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Old_Blue_Box",
+      "relatedTerms": [
+        "Strange Resources",
+        "scrap",
+        "Lion God",
+        "Strange Resource",
+        "Lion God Expansion",
+        "Settlement Phase",
+        "archive",
+        "Death Reading"
+      ]
+    },
+    {
+      "term": "Open Maw",
+      "definition": "is a settlement event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nA large stone face slowly opens its mouth. Survivors prove their bravery by running into it.\n\nLingering Effects.\nBrave the Maw - roll any number of d10 and add the results.\nIf you roll any doubles, the maw snaps shut, leaving you trapped in the darkness. You are dead, and no one else may endeavor here this year.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Open_Maw",
+      "relatedTerms": [
+        "Settlement Event",
+        "Kingdom Death: Monster Core Game",
+        "Survivors",
+        "endeavor",
+        "Severe Leg Injury Table",
+        "courage",
+        "1d10",
+        "Vermin Resources",
+        "settlement",
+        "sword",
+        "Lantern Sword",
+        "gear",
+        "Departing Survivors",
+        "Lantern Year",
+        "ability",
+        "Iron Will",
+        "Knocked Down",
+        "Knockback X"
+      ]
+    },
+    {
+      "term": "Osseous Bloom",
+      "definition": "is a Flower Knight Monster Resource found in the Flower Knight Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Osseous_Bloom",
+      "relatedTerms": [
+        "Monster Resources",
+        "flower",
+        "bone",
+        "Flower Knight",
+        "Monster Resource",
+        "Flower Knight Expansion"
+      ]
+    },
+    {
+      "term": "Pelt",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nCoarse and warm.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pelt",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Perfect Bone",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nA mind numbingly perfect bone.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect_Bone",
+      "relatedTerms": [
+        "Basic Resources",
+        "bone",
+        "perfect",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Perfect Crucible",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen you craft with Perfect Crucible, an ancient bacteria is released into the air. Suffer -1d10 population and archive this card.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect_Crucible",
+      "relatedTerms": [
+        "Strange Resource",
+        "iron",
+        "Kingdom Death: Monster Core Game",
+        "archive"
+      ]
+    },
+    {
+      "term": "Perfect Hide",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSupreme texture.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect_Hide",
+      "relatedTerms": [
+        "Basic Resources",
+        "hide",
+        "perfect",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Perfect Organ",
+      "definition": "A basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nIf you consume this, archive this card. Roll 1d10. On a result of 6+, you contract a millennium parasite and gain +10 Hunt XP.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect_Organ",
+      "relatedTerms": [
+        "Basic Resources",
+        "organ",
+        "consumable",
+        "perfect",
+        "Kingdom Death: Monster Core Game",
+        "consume",
+        "archive",
+        "Hunt Experience"
+      ]
+    },
+    {
+      "term": "Phoenix Crest",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nFirm and supple.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phoenix_Crest",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Phoenix Eye",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nFilled with a thick metallic liquid.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phoenix_Eye",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "scrap",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Phoenix Finger",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen you gain this, a survivor of your choice gains +3 insanity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phoenix_Finger",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Phoenix Whisker",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nSilky, yet robust.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Phoenix_Whisker",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Pituitary Gland",
+      "definition": "is a strange resource card found in the Dragon King Expansion.\n\nCard Text.\nConsume: Archive this and roll 1d10. On a 4+, gain +1 permanent strength. Otherwise, you grow to giant size and die.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pituitary_Gland",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Dragon King Expansion",
+        "Consume",
+        "Archive",
+        "(X)d10",
+        "strength",
+        "death"
+      ]
+    },
+    {
+      "term": "Porous Flesh Fruit",
+      "definition": "is a Lonely Tree Strange Resource found in the Lonely Tree Expansion.\n\nCard Text.\nYou may consume and archive this to gain the following ability:\n\nNightmare Membrane: You may spend to exchange any 1 of your tokens for a +1 strength token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Porous_Flesh_Fruit",
+      "relatedTerms": [
+        "Strange Resources",
+        "hide",
+        "consumable",
+        "Lonely Tree",
+        "Strange Resource",
+        "Lonely Tree Expansion",
+        "consume",
+        "archive",
+        "Abilities",
+        "Nightmare Membrane",
+        "strength"
+      ]
+    },
+    {
+      "term": "Pottery",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nFermentation. Spend 1 organ resource and gain 1 Love Juice basic resource. Limit, once per lantern year.\n\nRet. Spend 1 herb resource and gain 1 hide basic resource. Limit, once per lantern year.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pottery",
+      "relatedTerms": [
+        ":Category: Art Innovations",
+        "Sculpture",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "organ",
+        "resource",
+        "Love Juice",
+        "Lantern Year",
+        "herb",
+        "hide"
+      ]
+    },
+    {
+      "term": "Preserved Caustic Dung",
+      "definition": "is a Dung Beetle Knight Strange Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nThe live cultures in this exotic mixture of matured dung have been preserved within a delicate, airtight jelly casing.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Preserved_Caustic_Dung",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "consumable",
+        "dung",
+        "Dung Beetle Knight",
+        "Strange Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Principle: Society",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nThere was once a mad woman who spent her days talking into the darkness. One day, it spoke back. \n\nThe group must choose one.\n\nCollective Toil.\nTainted by darkness, a survivor nearly brought ruin to the settlement. On the day of her exile, the people decided that all must spend equal time hunting and working to avoid future disasters. -1 population. Add \" Bone Witch\" to the timeline 3 years from now.\n\nThe settlement gains the Society Principle: Collective Toil. Find and place the card on the settlement board and note it on the settlement record sheet.\n\nAfter adding the card to the settlement roll 1d10.\n\nAccept Darkness.\nThe darkness spoke startling truths. It told the people they were monsters just like the ones they hunted. The people accepted their monstrosity and their place stalking in the darkness.\n\nThe settlement gains the Society Principle: Accept Darkness. Find and place the card on the settlement board and note it on the settlement record sheet. \n\nAfter adding the card to the settlement roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Principle%3A_Society",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "population",
+        "Bone Witch",
+        "timeline",
+        "settlement",
+        "Principle",
+        "Collective Toil",
+        "Settlement Board",
+        "Settlement Record Sheet",
+        "1d10",
+        "survival",
+        "Survival Limit",
+        "survivors",
+        "White Lion#Resources",
+        "skull",
+        "resource",
+        "Accept Darkness",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Prismatic Gills (Resource)",
+      "definition": "Prismatic Gills is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThe gills emit a fuzzy color trail.\nWhen you gain this, gain the Emotionless disorder.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Prismatic_Gills_(Resource)",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion",
+        "Emotionless",
+        "Disorder"
+      ]
+    },
+    {
+      "term": "Pseudopenis",
+      "definition": "is a Crimson Crocodile Monster Resource found in the Gambler's Chest Expansion.\n\nCard Text.\nConsume: Archive this to gain +3 survival and the Invigorator fighting art.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pseudopenis",
+      "relatedTerms": [
+        "organ",
+        "consumable",
+        "Crimson Crocodile",
+        "Monster Resource",
+        "Gambler's Chest Expansion",
+        "Consume",
+        "Archive",
+        "survival",
+        "Invigorator",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Pure Bulb",
+      "definition": "is a strange resource card found in the Gorm Expansion.\n\nCard Text.\nDon't stare at it.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pure_Bulb",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Pustules",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe aroma is tempting.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pustules",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Radiant Heart",
+      "definition": "is a strange resource card found in the Dragon King Expansion.\n\nCard Text.\nWhen you gain this resource, roll 1d10. On a 3+, you burst into flames and die.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Radiant_Heart",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Dragon King Expansion",
+        "resource",
+        "1d10",
+        "death"
+      ]
+    },
+    {
+      "term": "Radioactive Dung",
+      "definition": "is a Dragon King Strange Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nGives off smoke with an acrid odor.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Radioactive_Dung",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "scrap",
+        "Dragon King",
+        "Strange Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Rage Pawn",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the Gambler crest, and is therefore only used in People of the Dream Keeper campaigns.\n\nCard text.\nThumbing the broken edges pulls you back to that same bitter feeling.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rage_Pawn",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "Gambler crest",
+        "People of the Dream Keeper",
+        "Campaign"
+      ]
+    },
+    {
+      "term": "Rainbow Droppings",
+      "definition": "is a Phoenix Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and roll 1d10. On a 7+, gain +1 permanent speed. Otherwise, your heart explodes, killing you instantly.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rainbow_Droppings",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Phoenix",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "1d10",
+        "speed",
+        "death"
+      ]
+    },
+    {
+      "term": "Red Vial",
+      "definition": "is a strange resource card found in the Manhunter Expansion.\n\nCard Text.\nYou may consume and archive this to remove 2 bleeding tokens and gain +1 survival.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Red_Vial",
+      "relatedTerms": [
+        "Strange Resource",
+        "consumable",
+        "Manhunter Expansion",
+        "consume",
+        "archive",
+        "Bleeding Token"
+      ]
+    },
+    {
+      "term": "Restless Chest",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nWound.\nTurn the Screaming Antelope to face the attacker and full move forward in a straight line.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nInternal bleeding weakens the monster. The Screaming Antelope gains -1 damage token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Chest",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "face",
+        "attacker",
+        "full move",
+        "forward",
+        ":Category: Screaming Antelope Monster Resources",
+        "monster",
+        "damage"
+      ]
+    },
+    {
+      "term": "Restless Flank",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nReflex.\nThe monster turns to face the attacker.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nBlood runs down the Screaming Antelope's side. The blood loss weakens the monster, it gains -1 toughness token.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Flank",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "monster",
+        "facing",
+        "attack",
+        ":Category: Screaming Antelope Monster Resources",
+        "toughness",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Restless Hoof",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nFailure.\nIf attacking with a melee weapon, it is kicked out of reach by the Screaming Antelope's thrashing hooves. Spend to retrieve your lost weapon before it can be used again.\n\nIf fighting with Fist & Tooth, suffer the dislocated shoulder severe arm injury.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\n Persistent Injury - Destroyed Hoof\nThe Screaming Antelope's hoof is ruined. Affects some AI cards.\nSee Also.\nBack Kick",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Hoof",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "attack",
+        "melee",
+        "weapon",
+        "Fist & Tooth",
+        "dislocated shoulder",
+        "Severe Injury",
+        ":Category: Screaming Antelope Monster Resources",
+        "Persistent Injury",
+        "AI Card",
+        "Back Kick"
+      ]
+    },
+    {
+      "term": "Restless Rump",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nReflex.\nTurn the monster to face away from the attacker and full move forward in a straight line. Cancel all hits now out of range.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Rump",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "monster",
+        "away",
+        "attack",
+        "Full Move",
+        "forward",
+        "hits",
+        "range",
+        ":Category: Screaming Antelope Monster Resources"
+      ]
+    },
+    {
+      "term": "Restless Shank",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nReflex.\nRoll 1d10 for each survivor currently in the monster's blind spot. On a result of 3+, they are brutally back-kicked and suffer 3 damage to a random hit location and knockback 5.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nYour attack wrecks one of the monster's legs. If insane, you may spend 5 survival to treasure this moment forever and gain +1 permanent movement.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Shank",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "survivor",
+        "monster",
+        "Blind Spot",
+        "damage",
+        "Knockback X",
+        ":Category: Screaming Antelope Monster Resources",
+        "attack",
+        "insane",
+        "survival",
+        "movement"
+      ]
+    },
+    {
+      "term": "Restless Shoulder",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWound.\nYour blow clips the Screaming Antelope's shoulder and it jumps back. Turn to face the attacker, then without turning, move the monster 1 space directly away from attacker. Cancel all hits now out of range.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Shoulder",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "facing",
+        "attack",
+        "movement",
+        "monster",
+        "away",
+        "hits",
+        "range",
+        ":Category: Screaming Antelope Monster Resources"
+      ]
+    },
+    {
+      "term": "Restless Tiny Hands",
+      "definition": "is a Screaming Antelope hit location card found in the Kingdom Death: Monster Core Game.\nCard Text.\nFailure.\nGrasping, tiny hands knock your weapon away. Spend to retrieve your lost weapon before it can be used again.\n\nCritical Wound.\nGain 1 Screaming Antelope resource.\n\nTwitching, tiny fingers rain down. All adjacent survivors gain +1 insanity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Restless_Tiny_Hands",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "weapon",
+        ":Category: Screaming Antelope Monster Resources",
+        "adjacent",
+        "survivors",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Round Stone Training",
+      "definition": "An innovation card found within the Dung Beetle Knight Expansion.\n\nCard Text.\n Train - spend 1 resource and roll 1d10",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Round_Stone_Training",
+      "relatedTerms": [
+        ":Category: Education Innovations",
+        "Nightmare Training",
+        "innovation",
+        "Dung Beetle Knight Expansion",
+        "Motion Sickness",
+        "Crossarm Block",
+        "Tumble",
+        "Carapace of Will",
+        "Propulsion Drive",
+        "Secret Fighting Arts"
+      ]
+    },
+    {
+      "term": "Salt",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nYou may add this to any cooking recipe to gain +1 permanent strength in addition to the recipe's listed benefits.\n\nWhen exposed to lantern light, it evaporates, forming a crust.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Salt",
+      "relatedTerms": [
+        "Strange Resource",
+        "Sunstalker Expansion",
+        "Cooking",
+        "strength"
+      ]
+    },
+    {
+      "term": "Sarcophagus",
+      "definition": "is a Lion God Strange Resource found in the Lion God Expansion.\n\nCard Text.\n-2 movement while you have this.\nDuring the settlement phase, you may archive this to Death Reading.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sarcophagus",
+      "relatedTerms": [
+        "Strange Resources",
+        "iron",
+        "Lion God",
+        "Strange Resource",
+        "Lion God Expansion",
+        "Settlement Phase",
+        "archive",
+        "Death Reading"
+      ]
+    },
+    {
+      "term": "Scarab Shell",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nCool and oily to the touch. Lantern light reveals a brilliant band of color dancing on its surface.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scarab_Shell",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Scarab Wing",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nWhen soaked in water, these vein-filled wings gain some elasticity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scarab_Wing",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Scell",
+      "definition": "is a Dung Beetle Knight Strange Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nAs the monster ages, this sticky and corrosive material builds between the thin layers of its scarab shells. It breaks down fecal product, preventing the knight's joints from locking up. During , a Restorer can make excellent use of a Scell, using it to nearly perfect the final step of the calcification process.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scell",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "consumable",
+        "Dung Beetle Knight",
+        "Strange Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Screaming Brain",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and gain survival up to the current limit.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Screaming_Brain",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "survival",
+        "Survival Limit"
+      ]
+    },
+    {
+      "term": "Second Heart",
+      "definition": "is a strange resource card found in the Kingdom Death: Monster Core Game.\nCard Text.\nIt still tries to bite you.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Second_Heart",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "bone",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Serpent Talon",
+      "definition": "is a Dragon King Hit Location card found in the Dragon King Expansion.\nCard Text.\nFailure.\nThe Dragon King laughs at your uselessness. The monster loses all negative toughness tokens.\n\nCritical Wound.\nYou dislodge an enormous toe-claw.\n\nGain 1 random Dragon King resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Serpent_Talon",
+      "relatedTerms": [
+        "Dragon King",
+        "Hit Location",
+        "Dragon King Expansion",
+        "monster",
+        "toughness",
+        ":Category: Dragon King Monster Resources"
+      ]
+    },
+    {
+      "term": "Shadow Ink Gland",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThe ink can be used to paint shadows that varnish in the lantern light.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shadow_Ink_Gland",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Shadow Tentacles (Resource)",
+      "definition": "Shadow Tentacles is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nWhen you gain this during the hunt or showdown, return it to the resource deck and draw again if any survivors are blind.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shadow_Tentacles_(Resource)",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "hide",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion",
+        "blind"
+      ]
+    },
+    {
+      "term": "Shank Bone",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nStrangely jointed.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shank_Bone",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Shark Tongue",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nSo slippery that it's hard to hold!",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shark_Tongue",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Shimmering Halo",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nCuriously heavy.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shimmering_Halo",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Shimmering Mane",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nArchive this to gain 2 basic hide resources.\n\nIt shimmers in the lantern light.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shimmering_Mane",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game",
+        "Archive"
+      ]
+    },
+    {
+      "term": "Shining Liver",
+      "definition": "is a strange resource card found in the Dragon King Expansion.\n\nCard Text.\nWhen exposed to light, it filters it into heat and becomes darker.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shining_Liver",
+      "relatedTerms": [
+        "Strange Resource",
+        "Bone",
+        "Dragon King Expansion"
+      ]
+    },
+    {
+      "term": "Showdown: Dragon King",
+      "definition": "is a showdown story event in the Dragon King Expansion.\n\nLore.\nThere was a monster that was alone in the world. Abandoned in its grief, the monster crawled deep inside its aching heart until it broke nad was set aflame. Now, the power of its grief and fury pours like invisible poison from the weeping face it hides inside its hulking body.\n\nAftermath.\nVictory.\n+1 Hunt XP\n+1 Weapon Proficiency Level (if eligible)\n+Rewards\n\nRewards.\nThe first time the Dragon King is defeated, add the Dragon Armory to the settlement locations.\n\nThe group gains the following rewards:\n\nLevel 1\n4 basic resources \n4 Dragon King resources\nLevel 2\n4 basic resources\n6 Dragon King resources\n1 Pituitary Gland strange resource\nLevel 3\n4 basic resources\n8 Dragon King resources\n1 Shining Liver strange resource\n\nIf the settlement has innovated Sculpture when you defeat a Level 2 Dragon King, gain a Radiant Core strange resource.\n\nDefeat.\nYou may choose to leave or recover the remains. If you leave, do not gain the benefits of the settlement's Death Principle. If you recover the remains, gain the benefits of your Death Principle but a survivor becomes sick in the process. Suffer -1 population.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_Dragon_King",
+      "relatedTerms": [
+        "Speed",
+        "Accuracy",
+        "Damage",
+        "Core Countdown",
+        "threat",
+        "Irradiate",
+        "Dragon King",
+        "Toppled Pillar",
+        "Terrain Cards",
+        "3 Stone Columns",
+        "Showdown Board",
+        "Showdown Phase",
+        "Story Event",
+        "Dragon King Expansion",
+        "Hunt XP",
+        "Weapon Proficiency",
+        "Rewards",
+        "Dragon Armory",
+        "Basic Resources",
+        "Pituitary Gland"
+      ]
+    },
+    {
+      "term": "Showdown: Flower Knight",
+      "definition": "is a story event in the Flower Knight Expansion.\n\nLore.\nIn the heart of the forest dwells a delicate gardener who appreciates solitude over all things. Sadly, the dangerous flora and fauna it cultivates are desired by many. To preserve the hidden world it has created for itself, it trades its tools for a deadly blade without hesitation.\n\nHunt Setup.\nSelect an encounter level and set up the hunt board. When survivors land on the Overwhelming Darkness space, they instead resolve The Forest Wants What It Wants.\n\nAftermath.\nVictory.\n+1 Hunt XP\n+1 Weapon Proficiency (if eligible)\n+Rewards\n\nRewards.\nWhen the survivors defeat the Flower Knight, they gain the Flower Knight Badge rare gear. Add the Petal Spiral innovation to the settlement's innovation deck.\n\nIf any survivors have the Fencing secret fighting art and the Ghostly Beauty disorder, they gain the Narcissistic disorder and +1 permanent evasion.\n\nNext settlement phase, Sense Memory\n\nThe group gains the following rewards:\n\nLevel 1\n4 basic resources \n4 Flower resources\nLevel 2\n4 basic resources \n6 Flower resources\nLevel 3\n4 basic resources \n8 Flower resources\n1 Sleeping Virus Flower rare gear\n\nIf the settlement innovated Petal Spiral when you defeat a Level 3 Flower Knight, all survivors with the Fencing secret fighting art and the Ghostly Beauty and Narcissistic disorders gain the True Blade secret fighting art.\n\nDefeat.\nThe Flower Knight makes rich fertilizer of the survivors' corpses. Gain no benefits from your Death Principle from losing these survivors.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_Flower_Knight",
+      "relatedTerms": [
+        "Germinate",
+        "Fairy Ring",
+        "Place",
+        "luck",
+        "survivors",
+        "Flower Patch",
+        "threat",
+        "facing",
+        "survivor",
+        "Story Event",
+        "Flower Knight Expansion",
+        "Overwhelming Darkness",
+        "The Forest Wants What It Wants",
+        "Hunt XP",
+        "Weapon Proficiency",
+        "Rewards",
+        "Flower Knight Badge",
+        "Rare Gear",
+        "Petal Spiral",
+        "Fencing"
+      ]
+    },
+    {
+      "term": "Showdown: Sunstalker",
+      "definition": "is a story event in the Sunstalker Expansion.\n\nLore.\nThere is a great castle in the sky shaped like a sword. At the top stands the Storm. Tired of its ineffective challengers, the Storm sought to give them an advantage. The Storm dragged the oldest Sun into the sky and chained it to the top of its castle to give its challengers light. Now, when a challenger is defeated and rain strikes the stone-faced floor, the Sun cries out for help, igniting the sky with desperate flashes of light.\n\nAftermath.\nVictory.\n+1 Hunt XP\n+1 Weapon Proficiency Level (if eligible)\n+Rewards\n\nRewards.\nThe first time the Sunstalker is defeated, gain the Sky Reef Sanctuary settlement location.\n\nEach survivor who has defeated 1 or more Shades gains +1 courage.\n\nLevel 1\n4 basic resources \n4 Sunstalker resources\n1 Sunstones strange resource\nLevel 2\n4 basic resources \n6 Sunstalker resources\n1 1,000 Year Sunspot strange resource\nLevel 3\n7 basic resources \n8 Sunstalker resources\n1 3,000 Year Sunspot strange resource\n\nIf the settlement has innovated Storytelling when you defeat a Level 3 Sunstalker for the first time, add Edged Tonometry to the next year on the timeline.\n\nDefeat.\nThe tormented shadows of the defeated survivors rush back to the settlement, fading to nothing as they embrace their terrified loved ones. If the settlement has the Graves Death Principle, the settlement gains the Shadow Dance innovation.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Showdown%3A_Sunstalker",
+      "relatedTerms": [
+        "Speed",
+        "Accuracy",
+        "Damage",
+        "Shadow Vibrations",
+        "Place",
+        "Shade",
+        "Sun Dial",
+        "Survivor",
+        "Sunspot Lantern",
+        "Solar Track",
+        "3 Stone Columns",
+        "2 Salt Sculptures",
+        "Story Event",
+        "Sunstalker Expansion",
+        "Hunt XP",
+        "Weapon Proficiency",
+        "Rewards",
+        "Skyreef Sanctuary",
+        "courage",
+        "Basic Resources"
+      ]
+    },
+    {
+      "term": "Sighing Bloom",
+      "definition": "is a Flower Knight Monster Resource found in the Flower Knight Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sighing_Bloom",
+      "relatedTerms": [
+        "Monster Resources",
+        "flower",
+        "organ",
+        "Flower Knight",
+        "Monster Resource",
+        "Flower Knight Expansion"
+      ]
+    },
+    {
+      "term": "Silk Storm",
+      "definition": "is a settlement event card found in the Spidicules Expansion.\nCard Text.\nThe settlement wakes to find everything and everyone inexplicably covered in a blanket of thick silk.\n\nLingering Effects.\nGain +2 this settlement phase that can only be spend on Spidicules innovations.\n\nThe settlement is completely covered in this sticky stuff! Survivors cannot depart this year unless they have at least 1 empty space in their gear grid.\n\nTalk to Legless Ball - roll 1d10.\nThe Spidicules' eyes rattle in its head, and it babbles like crazy!\n\nRequires Legless Ball\n\nSilk Diet - roll 1d10.\n\nSilk Net.\nRequires Silk Refining\n4x Silk, 3x resources\nErect a huge silk neat at the edge of the settlement. Use it to Special Showdown the monster of your choice this year.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silk_Storm",
+      "relatedTerms": [
+        "Settlement Event",
+        "Spidicules Expansion",
+        "settlement",
+        "Settlement Phase",
+        ":Category:Spidicules Innovations",
+        "Survivors",
+        "depart",
+        "Lantern Year",
+        "Gear Grid",
+        "Legless Ball",
+        "1d10",
+        "insanity",
+        "Spidicules",
+        "Bladder",
+        "Screaming Antelope#Resources",
+        "Settlement Storage",
+        "survival",
+        "Skip Next Hunt",
+        "Vermin Resource",
+        "Silk-Refining"
+      ]
+    },
+    {
+      "term": "Silken Nervous System",
+      "definition": "is a Strange Resource found within the Spidicules Expansion.\n\nCard Text.\nSeparates into tiny golden threads.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silken_Nervous_System",
+      "relatedTerms": [
+        "Strange Resources",
+        "organ",
+        "Strange Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Silver Urn",
+      "definition": "is a Lion God Strange Resource found in the Lion God Expansion.\n\nCard Text.\nDuring the settlement phase, you may archive this to Death Reading.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silver_Urn",
+      "relatedTerms": [
+        "Strange Resources",
+        "bone",
+        "scrap",
+        "Lion God",
+        "Strange Resource",
+        "Lion God Expansion",
+        "Settlement Phase",
+        "archive",
+        "Death Reading"
+      ]
+    },
+    {
+      "term": "Sinew",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThese stringy guts are quite useful.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sinew",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Skull",
+      "definition": "is a basic resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhen you gain this, a survivor of your\nchoice gains +1 insanity.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Skull",
+      "relatedTerms": [
+        "Basic Resources",
+        "bone",
+        "Kingdom Death: Monster Core Game",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Small Appendages",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nThe inner hands look surprisingly human.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Small_Appendages",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Small Feathers",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nSoft interior with razor sharp edges.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Small_Feathers",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Small Hand Parasites",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nStill wriggling.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Small_Hand_Parasites",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Small Sunteeth",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Small_Sunteeth",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Soft Belly",
+      "definition": "is a White Lion hit location card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA debilitating blow to the soft belly.\n\n Critical Wound\nGain 1 random White Lion resource.\n\n Persistent Injury - Organ Trail\nThe White Lion's intestines hang from the wound on its gut, dragging on the floor.\n\nAt the start of every monster turn, before it draws an AI card, roll 1d10. On a result of 1, the monster suffers 1 wound.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Soft_Belly",
+      "relatedTerms": [
+        "White Lion",
+        "Hit Location",
+        "Kingdom Death: Monster Core Game",
+        "White Lion#Resources",
+        "resource",
+        "Persistent Injury",
+        "monster",
+        "turn",
+        "AI Card",
+        "1d10",
+        "wound"
+      ]
+    },
+    {
+      "term": "Spinnerets",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nMore complex than any device.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Spinnerets",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "scrap",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Spiral Horn",
+      "definition": "is a Screaming Antelope Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nMoans balefully when blown.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Spiral_Horn",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Screaming Antelope",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Stink Lung",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nWhen squeezed, a funny noise emerges followed by a tantalizing aroma.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stink_Lung",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Stomach",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nConsume: Archive this card to gain +1 Hunt XP.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stomach",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion",
+        "Consume",
+        "Archive",
+        "Hunt XP"
+      ]
+    },
+    {
+      "term": "Stomach Lining",
+      "definition": "is a strange resource card found in the Gorm Expansion.\n\nCard Text.\nSteadily expands and contracts.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stomach_Lining",
+      "relatedTerms": [
+        "Strange Resource",
+        "organ",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Stout Heart",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nA titanic pump",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stout_Heart",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Stout Hide",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nTough, wrinkly skin",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stout_Hide",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Stout Kidney",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nConsume: Archive this and roll 1d10. On a result of 6+, gain 10 survival. Otherwise, reduce your survival to 0.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stout_Kidney",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion",
+        "Archive",
+        "survival"
+      ]
+    },
+    {
+      "term": "Stout Vertebrae",
+      "definition": "is a Gorm Monster Resource found in the Gorm Expansion.\n\nCard Text.\nHefty and intricately jointed.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stout_Vertebrae",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Gorm",
+        "Monster Resource",
+        "Gorm Expansion"
+      ]
+    },
+    {
+      "term": "Sunshark Blubber",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nWhen inflated with air, this blubber gently floats.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sunshark_Blubber",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Sunshark Bone",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nThe center is filled with water.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sunshark_Bone",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Sunshark Fin",
+      "definition": "is a Sunstalker Monster Resource found in the Sunstalker Expansion.\n\nCard Text.\nRemoving the slimy hands reveals a curable, viscous substance.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sunshark_Fin",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "hide",
+        "Sunstalker",
+        "Monster Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Sunshark Snout",
+      "definition": "is a Sunstalker hit location card found in the Sunstalker Expansion.\nCard Text.\nFirst Strike\n\nFailure.\nPerform Basic Action, target the attacker. This attack gains + damage.\n\nCritical Wound.\nGain 1 random Sunstalker resource. Chunks of gore fly into the air, casting a momentary shadow! You are in darkness until the end of the attack.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sunshark_Snout",
+      "relatedTerms": [
+        "Sunstalker",
+        "Hit Location",
+        "Sunstalker Expansion",
+        "First Strike",
+        "Basic Action",
+        "Resources",
+        "Light & Shadow"
+      ]
+    },
+    {
+      "term": "Sunstones",
+      "definition": "is a strange resource card found in the Sunstalker Expansion.\n\nCard Text.\nSmall and warm.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sunstones",
+      "relatedTerms": [
+        "Strange Resources",
+        "bone",
+        "Strange Resource",
+        "Sunstalker Expansion"
+      ]
+    },
+    {
+      "term": "Survivor Corpse",
+      "definition": "A terrain card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nIf a survivor moves through the space occupied by this terrain they suffer brain damage.\nScavenge. Roll 1d10.\n\nSetup.\nSet up at least 6 spaces from all other terrain.\n\nSurvival Spear.\nThe Survival Spear beta gear card found in the Summer Aya Limited Release/White Box expansion modifies this terrain card.\n\nCard Text.\nWhen you scavenge a Survivor Corpse and roll 10+, gain the Survival Spear beta gear. Limit, once per campaign.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Survivor_Corpse",
+      "relatedTerms": [
+        "Kingdom Death: Monster Core Game",
+        "Terrain Cards",
+        "Skull",
+        "Survival Spear",
+        "gear",
+        "Summer Aya",
+        "Limited Release",
+        "White Box",
+        "campaign"
+      ]
+    },
+    {
+      "term": "Sword Beetle",
+      "definition": "is a Vermin Resource found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nConsume: Archive this and roll 1d10",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sword_Beetle",
+      "relatedTerms": [
+        "Vermin Resources",
+        "consumable",
+        "Kingdom Death: Monster Core Game",
+        "Consume",
+        "Archive",
+        "1d10",
+        "death",
+        "strength"
+      ]
+    },
+    {
+      "term": "Tail Feathers (Resource)",
+      "definition": "Tail Feathers is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nLighter than air.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tail_Feathers_(Resource)",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "The King's Mouth",
+      "definition": "is a Dragon King Hit Location card found in the Dragon King Expansion.\nCard Text.\nReflex.\nThe Dragon King's neck elongates and the head darts towards the attacker.\n\nIf the attacker is within 6 spaces, they suffer bleed 2 and archive all of their resources unless they spend 2 survival.\n\nCritical Wound.\nYou've damaged the Dragon King's perfect smile. The monster gains -1 damage token.\n\nGain the King's Tongue Dragon King resource. Archive this card.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_King's_Mouth",
+      "relatedTerms": [
+        "Dragon King",
+        "Hit Location",
+        "Dragon King Expansion",
+        "Bleed X",
+        "archive",
+        "resources",
+        "survival",
+        "damage",
+        "King's Tongue",
+        "Dragon King#Resources",
+        "Archive"
+      ]
+    },
+    {
+      "term": "Thick Web Silk",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nImpossible to pierce.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Thick_Web_Silk",
+      "relatedTerms": [
+        "Monster Resources",
+        "silk",
+        "hide",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "Triptych",
+      "definition": "is a Lion God Strange Resource found in the Lion God Expansion.\n\nCard Text.\nWhen you gain this, gain +3 insanity.\nDuring the settlement phase, you may archive this to Death Reading.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Triptych",
+      "relatedTerms": [
+        "Strange Resources",
+        "hide",
+        "scrap",
+        "Lion God",
+        "Strange Resource",
+        "Lion God Expansion",
+        "insanity",
+        "Settlement Phase",
+        "archive",
+        "Death Reading"
+      ]
+    },
+    {
+      "term": "Ultimate Weapon",
+      "definition": "is an innovation card found within the Kingdom Death: Monster Core Game.\n\nCard Text.\nSurvival Limit: +1\n\nWhen you defeat a monster, gain 1\nmonster resource of your choice from\nits resource deck.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ultimate_Weapon",
+      "relatedTerms": [
+        ":Category: Science Innovations",
+        "innovation",
+        "Kingdom Death: Monster Core Game",
+        "Monster Resources"
+      ]
+    },
+    {
+      "term": "Unclean Endroot",
+      "definition": "' is a strange resource found in the Gambler's Chest Expansion. It has the King crest, and is therefore only used in campaigns with the King quarry monster.\n\nCard text.\nA root of pure evil from a species of trees that grew into the ground instead of towards the dark sky.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unclean_Endroot",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "King crest",
+        "Campaign",
+        "King",
+        "quarry",
+        "monster"
+      ]
+    },
+    {
+      "term": "Underplate Fungus",
+      "definition": "is a Dung Beetle Knight Monster Resource found in the Dung Beetle Knight Expansion.\n\nCard Text.\nA corkscrew-shaped fungus that grows in the empty channels between the Dung Beetle Knight's armor plating.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Underplate_Fungus",
+      "relatedTerms": [
+        "Monster Resources",
+        "herb",
+        "hide",
+        "consumable",
+        "Dung Beetle Knight",
+        "Monster Resource",
+        "Dung Beetle Knight Expansion"
+      ]
+    },
+    {
+      "term": "Unlaid Eggs",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nDuring the settlement phase, you may consume and archive these delicious little eggs to gain 10 survival.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Unlaid_Eggs",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion",
+        "consume",
+        "Archive"
+      ]
+    },
+    {
+      "term": "Untrained Parry",
+      "definition": "is a Dung Beetle Knight hit location card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nParry\n(Wound attempts on this location fail unless the wound roll result is critical.)\n\nFailure.\nFull move towards the attacker.\nIf the monster is adjacent to the attacker, attacker suffers bash and knockback 7.\n\nCritical Wound.\nGain 1 random Dung Beetle Knight resource.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Untrained_Parry",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "Hit Location",
+        "Dung Beetle Knight Expansion",
+        "Parry",
+        "Wound Attempt",
+        "Critical Wound",
+        "Failure",
+        "adjacent",
+        "bash",
+        "Knockback X"
+      ]
+    },
+    {
+      "term": "Veined Wing",
+      "definition": "is a Dragon King Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nBlood drips from it at a constant rate.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Veined_Wing",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "Dragon King",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "Venom Sac",
+      "definition": "is a Spidicules Monster Resource found in the Spidicules Expansion.\n\nCard Text.\nConsume: Archive this card and roll 1d10. On a 1-5, you die instantly. On a 6+, gain the Death Touch secret fighting art.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Venom_Sac",
+      "relatedTerms": [
+        "Monster Resources",
+        "organ",
+        "consumable",
+        "Spidicules",
+        "Monster Resource",
+        "Spidicules Expansion",
+        "Consume",
+        "Archive",
+        "(X)d10",
+        "Death",
+        "Death Touch",
+        "Secret Fighting Arts"
+      ]
+    },
+    {
+      "term": "Warbling Bloom",
+      "definition": "is a Flower Knight Monster Resource found in the Flower Knight Expansion.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Warbling_Bloom",
+      "relatedTerms": [
+        "Monster Resources",
+        "flower",
+        "hide",
+        "Flower Knight",
+        "Monster Resource",
+        "Flower Knight Expansion"
+      ]
+    },
+    {
+      "term": "Web Silk",
+      "definition": "is a Strange Resource found within the Spidicules Expansion.\n\nCard Text.\nImpossible to tear.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Web_Silk",
+      "relatedTerms": [
+        "Strange Resources",
+        "silk",
+        "Strange Resource",
+        "Spidicules Expansion"
+      ]
+    },
+    {
+      "term": "White Charcoal",
+      "definition": "White Charcoal is a strange resource found in the Gambler's Chest Expansion. It has the scout crest, and is therefore only used in campaigns with Scouts.\n\nCard text.\nIf the settlement does not have a Dreaded Pack, they may archive this to wrap it in bundles of cloth. Regain the scout gear grid.\n\nYou fear what this came from.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/White_Charcoal",
+      "relatedTerms": [
+        "Strange Resources",
+        "Gambler's Chest Expansion",
+        "scout crest",
+        "Campaign",
+        "Scouts",
+        "Dreaded Pack",
+        "archive",
+        "scout gear grid"
+      ]
+    },
+    {
+      "term": "White Fur",
+      "definition": "is a White Lion Monster Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nLuxurious and soft to the touch.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/White_Fur",
+      "relatedTerms": [
+        "Monster Resources",
+        "hide",
+        "White Lion",
+        "Monster Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    },
+    {
+      "term": "White Mask",
+      "definition": "An innovation card found within the Lion Knight Expansion.\n\nBlack Mask and White Mask are on opposite sides of the same innovation card.\n\nCard Text.\n Visit the retinue. Strange Caravan\n\n Leave the monster an offering. Spend 1 resource and roll 1d10.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/White_Mask",
+      "relatedTerms": [
+        ":Category: Other Innovations",
+        "innovation",
+        "Lion Knight Expansion",
+        "Black Mask",
+        "Strange Caravan",
+        "Departing Survivors",
+        "Red Fist"
+      ]
+    },
+    {
+      "term": "Wishbone",
+      "definition": "is a Phoenix Resource found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA delicate bone with a strange aura.",
+      "category": "Resources",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wishbone",
+      "relatedTerms": [
+        "Monster Resources",
+        "bone",
+        "Phoenix",
+        "Resource",
+        "Kingdom Death: Monster Core Game"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.540Z"
+}

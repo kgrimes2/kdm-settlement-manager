@@ -1,7 +1,7 @@
 {
   "name": "kdm-app",
   "private": true,
-  "version": "1.0.5",
+  "version": "1.1.0",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -13,6 +13,7 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "glossary:scrape": "node scripts/scrape-glossary.mjs",
+    "wiki:crawl": "node scripts/crawl-wiki.mjs",
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch"
