@@ -1,6 +1,6 @@
 # Kingdom Death Monster Settlement Manager
 
-A comprehensive web application for managing Kingdom Death Monster survivors and settlements. Track up to 4 active survivors per settlement with full character sheet support, manage survivor pools, and handle multiple settlements. test
+A comprehensive web application for managing Kingdom Death Monster survivors and settlements. Track up to 4 active survivors per settlement with full character sheet support, manage survivor pools, and handle multiple settlements.
 
 ## Disclaimer
 
