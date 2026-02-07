@@ -1,0 +1,2624 @@
+{
+  "category": "Hunt Events",
+  "terms": [
+    {
+      "term": "A Familiar Face",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nIf no survivors have died yet this campaign, ignore this event and roll again on the hunt event table before moving on the hunt board.\n\nEach survivor rolls 1d10. The lowest scoring survivor (or survivors, in case of ties) becomes a straggler.\n\nWhile examining the stone faces underfoot, the straggler recognizes the face of a fallen friend. Bittersweet memories reduce them to tears. Reduce their insanity to 0 and they gain +1 understanding",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/A_Familiar_Face",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "death",
+        "campaign",
+        "Hunt Event Table",
+        "Hunt Board",
+        "1d10",
+        "straggler",
+        "insanity",
+        "understanding"
+      ]
+    },
+    {
+      "term": "Abandoned Resin Ball",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nYou spot a large spherical object covered in flora resting at the base of a small valley. Your lantern light catches a glimpse of a face on it.\n\nYou may descend and investigate. If you do, gain +1 courage and roll 1d10.\n\nIf you do not investigate, roll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Abandoned_Resin_Ball",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "investigate",
+        "courage",
+        "1d10",
+        "Preserved Caustic Dung",
+        "survival",
+        "settlement",
+        "Innovate",
+        "Pictograph",
+        "Stranger in the Dark",
+        "understanding",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Acid Rain",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe darkness above is suddenly alight with a storm of acid rain. It smells terrible, burns flesh, and forms hissing pools in the upturned mouths of the stone faces. All survivors suffer monster level event damage to every hit location as they scramble to find shelter.\n\nIf the settlement has Sculpture, the survivors silently watch the storm erode the stone faces, erasing their features. They wonder exactly who or what repairs the broken faces, if there is such a thing. The survivors share a dark laugh, each gaining monster level survival.\n\nRoll 1d10. On a 6+, the storm moves homeward. Add the Acid Storm settlement event to the timeline next year.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Acid_Rain",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Monster Level",
+        "Event Damage",
+        "Hit Location",
+        "Sculpture",
+        "survival",
+        "1d10",
+        "Acid Storm",
+        "Settlement Event",
+        "timeline"
+      ]
+    },
+    {
+      "term": "Antler-Gouged",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA great battle for dominance between two enormous antelopes has left the stone-faced ground gouged with crisscrossing scars. Each survivor rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Antler-Gouged",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Screaming Antelope",
+        "1d10",
+        "Torn Muscle",
+        "Founding Stone",
+        "Starting Gear"
+      ]
+    },
+    {
+      "term": "Aromatic Breeze",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe hungry lion sniffs the survivors' musk on the wind.\n\nMove the White Lion 1 space toward the survivors on the hunt board. If it moves into the survivors' space, the White Lion ambushes the survivors.\n\nIf the White Lion ambushes survivors, they skip their first turn.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Aromatic_Breeze",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "hunt board",
+        "Ambush"
+      ]
+    },
+    {
+      "term": "Bad Vibrations",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe air around the survivors suddenly feels strange. A metallic cackling becomes audible all around them. The survivors are unable to identify its source, but are certain that they are being watched.\n\nThe event revealer rolls 1d10. If the result is even, set up the showdown with Spiderlings adjacent to the Silk Nest. If the result is odd, move the Spidicules 1 space backwards on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bad_Vibrations",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "Event Revealer",
+        "(X)d10",
+        "showdown",
+        "Spiderlings",
+        "adjacent",
+        "Silk Nest",
+        "Spidicules",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Banquet Trees",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA small copse of trees rises over an otherwise lifeless plain. Enticing red fruit hangs from the branches. Each survivor must spend 1 survival to resist the temptation to consume the fruit. Insane survivors and survivors with the Binge Eating disorder must consume.\n\nIf any survivor has a sickle, they carve a line across the tree, drawing blood! The fruit instantly sours. End this event.\n\nAll survivors who consume the fruit roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Banquet_Trees",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "survival",
+        "consume",
+        "Insane",
+        "Binge Eating",
+        "disorder",
+        "sickle",
+        "1d10",
+        "Event Damage",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Basic Hunt Event",
+      "definition": "Basic Hunt Events describe events that survivors may encounter during the Hunt Phase. These are found on Basic Hunt Event cards that are mostly identical and directs the event revealer to roll 1d100 on the Basic Hunt Event section of the Kingdom Death: Monster core rulebook. Additional basic hunt events that do not reference the hunt event table have been added to the game in expansion content.\n\n100 events survivors may encounter out in the darkness. Found in the Basic Hunt Event section of the rulebook. Survivors encounter these events by revealing basic hunt event cards on the hunt board.\n\nList of Basic Hunt Events.\nCore Game.\nBroken Lanterns\nCorpse\nCancer Pigeons\nFamine\nFlesh Fields\nFaceless Statue\nHungry Ground\nWailing Smoke\nGolden Light\nHarvester\nMonster Droppings\nDestiny-Bound\nOverload\nChance Encounter\nMan-trap\nNight Terrors\nFace-to-Face\nDead Weed\nExhalation of Darkness\nDry Lands\nDrawings\nAcid Rain\nClean Water\nFood from the Mouths of Others\nTitans in the Dark\nPit\nMan-stealers\nTrollbird\nDark Blacksmith\nRotten Faces\nStrange Path\nSudden Madness\nIt Whispers Your Name\nCrippling Misery\nBroken Lantern Oven\nOn the Trail\nLost\nGregalope\nHeavy Mist\nDream\nNightmare\nSurgeon\nFresh Kill\nOpportunists\nJagged Valley\nRiver\nBanquet Trees\nDeath Wager\nPus Fields\nGibbet\nRefugees\nMadflies\nMask Salesman\nBone Storm\nMudslide\nDead Monster\nGorm's Laughter\nScent on the Wind\nSigns of Battle\nWildfire\nFrozen Lightning\nSpace Between the Rocks\nFeet\nStone Fountain\nStatue\nForbidden Word\nSaliva Pools\nA Familiar Face\nTime Lapse\nTomb of Excellence\nFound Relic\nSomething to Pass the Time\nGolden Ember\nAntler-Gouged\nOops!\nDream the Way\nSinkhole\nDead Great Game Hunter\nDying Small Prospector\nLovelorn Rock\nField of Arms\nConsuming Grass\nFlesh Monolith\nScribe's Book\nTest of Courage\nPutrid Tunnels\nWeeping Faces\nThe Sword and the Statue\nCleaner Birds\nLight on the Horizon\nThe Beginning\nFailed Start\nLost Survivor\nSickening Mess\nGrim and Frostbitten\nCloaked Stranger\nLiving Stone\nBloody Eyes\nPortcullis\nThe Finale\n\nExpansion.\nAdditional basic hunt events have been added through some White Box and expansion sets.\nBaby and the Sword\nDead Warrior\nObject of Desire\nSword in the Stone\n\nRemoved Hunt Events.\nWhen Kingdom Death: Monster updated from 1.3 to 1.5 several hunt events were replaced in the Hunt Event table.\nCauldron - replaced by Cloaked Stranger\nGlowing Blood - replaced by Bloody Eyes\nOil Fields - replaced by Pus Fields\nQuarantine Camp - replaced by Putrid Tunnels\nScattered Lanterns - replaced by Field of Arms\nWailing Fire - replaced by Golden Ember",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Basic_Hunt_Event",
+      "relatedTerms": [
+        "Hunt Phase",
+        "Event Revealer",
+        "1d100",
+        "Hunt Event Cards",
+        "Hunt Board",
+        "Broken Lanterns",
+        "Corpse",
+        "Cancer Pigeons",
+        "Famine",
+        "Flesh Fields",
+        "Faceless Statue",
+        "Hungry Ground",
+        "Wailing Smoke",
+        "Golden Light",
+        "Harvester",
+        "Monster Droppings",
+        "Destiny-Bound",
+        "Overload",
+        "Chance Encounter",
+        "Man-trap"
+      ]
+    },
+    {
+      "term": "Bird-Brained",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe Phoenix fussily gathers materials for its temporary nest.\n\nRoll 1d10.\n\nIf the result is even, move the Phoenix 2 spaces forward on the hunt board.\n\nIf the result is odd, move the Phoenix 2 spaces backwards.\n\nIf the Phoenix lands on or passes over the survivors' current hunt space, start the showdown immediately. The Phoenix ambushes the survivors.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bird-Brained",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "Hunt Board",
+        "survivor",
+        "Showdown Phase",
+        "Ambush"
+      ]
+    },
+    {
+      "term": "Black to Blue",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nYou notice your clothes have changed colors. This clearly must be a sign that you are near the entity you seek. However, not everyone agrees that the colors have indeed changed. Roll on the table.\n\n1d10 - event revealer",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Black_to_Blue",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "survivors",
+        "survivor",
+        "Event Damage",
+        "Affinity",
+        "ambush"
+      ]
+    },
+    {
+      "term": "Bloody Eyes",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find a trail of blood. It pools in the eye sockets of the stone-faced ground. The blood is still warm.\n\nThe event revealer may investigate and roll 1d10, or ignore the trail and end this event.\n\nNotes.\nThe huge box referenced in this hunt event is depicted in Lokman Lam's short comic at the end of the core game's rulebook. In this comic the red-headed survivor Aya is trapped in the box by a monster that resembles a giant hand made out of smaller hands.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bloody_Eyes",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "investigate",
+        "1d10",
+        "Bleeding Token",
+        "brain",
+        "Event Damage",
+        "showdown",
+        "wound",
+        "Lokman Lam",
+        "Aya"
+      ]
+    },
+    {
+      "term": "Broken Lanterns",
+      "definition": "Broken Lanterns is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors feel something crunching beneath their feet. The event revealer may choose to lower their lantern and investigate or ignore the sensation and continue their journey.\n\nIf they choose to investigate, the event revealer gains +1 courage and rolls 1d10. Otherwise, roll again on the hunt event table before moving on the hunt event board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Broken_Lanterns",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "lantern",
+        "investigate",
+        "courage",
+        "(X)d10",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Monster Level",
+        "Event Damage",
+        "legs",
+        "Broken Lantern",
+        "Basic Resource",
+        "insanity",
+        "Settlement Storage"
+      ]
+    },
+    {
+      "term": "Brown Ground",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nThe ground opens into a massive pool, brimming with a creamy and rancid substance. The survivors may brave the muck. If they do each gains +1 courage and rolls on the table.\n\nRoll 3 random hunt events if you don't brave the muck.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Brown_Ground",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "survivors",
+        "courage",
+        "1d10",
+        "survivor",
+        "insanity",
+        "survival",
+        "Brain Damage",
+        "Event Damage",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Bug Man",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nA cloaked form appears from the darkness. Its garment bulges in inhuman ways and ichor drips from the shadow-clad mouth. Roll 1d10. If the result is equal to or lower than your courage, you investigate. Otherwise, you panic.\nInvestigate - roll 1d10\n\nPanic - roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Bug_Man",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "1d10",
+        "courage",
+        "investigate",
+        "Fecal Salve",
+        "gear",
+        "Gear Grid",
+        "understanding",
+        "survivors",
+        "survival"
+      ]
+    },
+    {
+      "term": "Carpet of Ticks",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe ground is covered with a carpet of huge, writhing ticks.\n\nEach survivor must try to fend off the swarm. Roll 1d10 and add your Hunt XP to the result.\n\nOn a result of 6+, you successfully smash the ticks away in a shower of gore.\n\nOtherwise, on a result below 6, the ticks make you sick. Reduce your survival to 0. Roll 1d10. On a result of 8+, suffer a permanent -1 strength.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Carpet_of_Ticks",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Survivors",
+        "(X)d10",
+        "Hunt Experience",
+        "survival",
+        "strength"
+      ]
+    },
+    {
+      "term": "Chance Encounter",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors encounter a bewitching, barefoot waif with soot-covered feet. If you already rolled this event on this hunt, or if all survivors are insane, she turns her back and disappears into the darkness. Roll again on the hunt event table before moving on the hunt board.\n\nOtherwise, exclaiming wildly at the survivors, the woman's presence fills everyone with the alien feeling of hope. All survivors gain +1 courage, +1 understanding.\n\nIf the settlement has Hovel, she snaps her fingers and ages before their eyes! A chill passes over the survivors. Their bodies and armor spontaneously knit themselves back together. Heal all injury levels and lost armor points. Then, she pulls a random survivor aside and whispers secrets of the upcoming hunt. They gain +1 accuracy token.\n\nNotes.\nThe character featured in the artwork for this event is the savior, Snow.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Chance_Encounter",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "insane",
+        "Hunt Event Table",
+        "Hunt Board",
+        "courage",
+        "understanding",
+        "Hovel",
+        "Healing",
+        "Injury Level",
+        "Armor Points",
+        "accuracy",
+        "Attribute Modifier Token",
+        "savior",
+        "Savior (Female)"
+      ]
+    },
+    {
+      "term": "Choking Heat",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nThe survivors enter a heavily-forested area. Vined plants twist all around, exhaling putrid steam. The air is stiflingly humid and the survivors' armor chafes and lies heavy on their bodies. All survivors wearing armor at the body location roll on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Choking_Heat",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "armor",
+        "body",
+        "1d10",
+        "survivor",
+        "movement",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Clang",
+      "definition": "is a basic King's Man AI card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\n\nThe King's Man bangs its lantern halberd rhythmically against the ground.\n\nIntimidate All Survivors.\n\nAll non-deaf survivors suffer 3 brain damage. If the settlement innovated Song of the Brave, they suffer 1 brain damage instead.\n\nFull move the King's Man away from the most survivors. Turn to face the nearest survivor.\n\nPlace any discarded Battle Pressure cards on top of the hit location deck.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Clang",
+      "relatedTerms": [
+        "King's Man",
+        "AI card",
+        "Kingdom Death: Monster Core Game",
+        "Lantern Halberd",
+        "Intimidate Actions",
+        "Non-deaf Survivor",
+        "Brain Damage",
+        "Innovations",
+        "Song of the Brave",
+        "Full Move",
+        "away",
+        "survivors",
+        "facing",
+        "Battle Pressure",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Cleaner Birds",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nTiny, ragged birds with needle-thin beaks fly overhead. Each survivor rolls 1d10. The lowest-scoring survivor (roll off in case of ties) becomes a straggler.\n\nThe birds swarm the straggler. Once forces its way into the straggler's mouth and down their throat. The survivor vomits up the well-fed bird, their insides scrambled and scarred. Gain +1 permanent luck, -1 permanent speed.\n\nIf any survivor has a whip, they crack it and fell the offensive creature. Gain 1 random basic resource.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cleaner_Birds",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "straggler",
+        "luck",
+        "speed",
+        "whip",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Cocoons",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe survivors come across a large, off-white ball of silk. Deep within is the dark shadow of its contents. The survivors may nominate someone from among them with 3+ courage to investigate. If they do, they roll on the table.\n\nIf no one investigates, roll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cocoons",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "courage",
+        "investigate",
+        "speed",
+        "Attribute Modifier Token",
+        "brain",
+        "Event Damage",
+        "???",
+        "Basic Resource",
+        "Basic Hunt Event"
+      ]
+    },
+    {
+      "term": "Corpse",
+      "definition": "Corpse is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors are overcome by a sudden chill, their breath seizing in their lungs. The survivors' teeth chatter mercilessly. All survivors lose monster level survival. At the center of the sudden frost is a perfectly preserved corpse.\n\nIf the settlement has Cannibalize, the event revealer gains 1 random basic resource.\n\nIf the settlement has Graves, the event revealer examines the corpse and gains +1 courage and +1 understanding.\n\nIf the settlement has Momento Mori, the event revealer understands a little about what happened to the corpse. They gain 1 random fighting art.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Corpse",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Monster Level",
+        "survival",
+        "Cannibalize",
+        "Event Revealer",
+        "Basic Resource",
+        "Graves",
+        "courage",
+        "understanding",
+        "Momento Mori",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Crater Lake",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\n\nCard Text.\nCresting a hill, the survivors look down on a still body of water, perfectly round and unnaturally deep. Ominous lights move beneath the surface. If the survivors don't want to waste time moving around the lake, they may brave the deep. If they do, each rolls on the table.\n\nRoll a random hunt event if you do not brave the deep.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Crater_Lake",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "1d10",
+        "survivor",
+        "Death",
+        "accuracy",
+        "evasion",
+        "Legendary Lungs",
+        "Secret Fighting Art"
+      ]
+    },
+    {
+      "term": "Cuddling Skeletons",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nWhile sifting through some suspicious mud you find a skeleton cradling the skeletons of an infant and a small monster. The area is not safe, and you only have enough time to investigate the cradling skeleton or the monster skeleton. Choose one and roll on the table blow.\n\nCradling Skeleton - event revealer rolls 1d10\n\nMonster Skeleton - event revealer rolls 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Cuddling_Skeletons",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "Sunstalker Infant",
+        "investigate",
+        "event revealer",
+        "1d10",
+        "Emotionless",
+        "disorder",
+        "Insanity",
+        "Apostle Crown",
+        "Rare Gear",
+        "understanding",
+        "Small Sunteeth",
+        "Sunstalker#Resources"
+      ]
+    },
+    {
+      "term": "Dead Great Game Hunter",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find a corpse dressed in brightly-colored clothing,, clutching something to its chest. The event revealer may investigate. If they do so, they gain +1 courage and roll 1d10. If any survivor has a whip, they lash the corpse from afar; add +4 to your roll.\n\nOtherwise, roll again on the hunt event table before moving on the hunt board.\n\nSee Also.\nGreat Game Hunter (Male)\nGreat Game Hunter (Female)\nGreat Game Hunter Rogue (Male)\nGreat Game Hunter Rogue (Female)\nThe Great City",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Great_Game_Hunter",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "investigate",
+        "courage",
+        "1d10",
+        "whip",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Dismembered Arm",
+        "Severe Injury",
+        "accuracy",
+        "Attribute Modifier Token",
+        "Cannibalize",
+        "Basic Resource",
+        "Graves",
+        "understanding",
+        "Frenzy Drink",
+        "gear",
+        "Great Game Hunter (Male)"
+      ]
+    },
+    {
+      "term": "Dead Monster (Basic Hunt Event)",
+      "definition": "Dead Monster is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find a decomposed monster corpse. It's too rotten to yield any resources.\n\nIf any survivor has 3+ understanding, the survivors cover themselves in the dead monster's spilled blood. The stench will help them sneak up on their quarry. When the showdown starts, the survivors ambush the monster. If any survivor has the Squeamish disorder, they refuse to soil themselves. Do not ambush the monster.\n\nIf no survivor has 3+ understanding, the starving survivors feast on the rotting corpse, immediately losing control of their twisting guts. Each survivor loses 1 survival and cannot consume for the rest of the lantern year.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Monster_(Basic_Hunt_Event)",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "understanding",
+        "quarry",
+        "showdown",
+        "ambush",
+        "Squeamish",
+        "disorder",
+        "survival",
+        "consume",
+        "Lantern Year"
+      ]
+    },
+    {
+      "term": "Dead Warrior",
+      "definition": "Dead Warrior is a basic hunt event card found in the Percival white box expansion.\n\nCard Text.\nThe survivors stop a man's length away from a one-handed skeleton clad in ancient, rusted armor. A strange tablet covered in inscriptions lies next to it. If the settlement has Pictographs, a survivor with 3+ understanding may investigate.\n\nRoll a random hunt event if you do not investigate.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Warrior",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Percival",
+        "White Box",
+        "Pictographs",
+        "understanding",
+        "investigate",
+        "Severe Head Injury Table",
+        "Death",
+        "Black Guard Style",
+        "Secret Fighting Arts",
+        "Honorable",
+        "disorder",
+        "Bone",
+        "Basic Resources",
+        "Hunt Event Table"
+      ]
+    },
+    {
+      "term": "Dead Weed",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nYou find a strange plant growing from the eyes of a stone face. The event revealer tries to harvest it. Roll 1d10. If any survivor has a sickle, add +4 to their roll.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dead_Weed",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "(X)d10",
+        "sickle",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Death Wager",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors are awoken by a traveler hidden in a deep cloak. The traveler pulls back its hood and reveals a deformed face with two chins curving away from each other, each with its own grinning mouth.\n\nIn a dreamlike state, the survivors all understand this entity known as The Gambler and if they speak they will die. Until the event is completed, only the event revealer may speak. If any other player speaks, their survivor turns cold. Dead.\n\nThe survivors must play The Gambler's game or be trapped with him forever. Each survivor rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Death_Wager",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "entity",
+        "The Gambler",
+        "Event Revealer",
+        "Death",
+        "1d10",
+        "luck"
+      ]
+    },
+    {
+      "term": "Destiny-Bound",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors collectively feel a heightened level of anticipation. Their goal is close at hand. The event revealer gains +1 courage! The survivors may skip the next hunt space. If this movement starts the showdown, the survivors ambush their quarry.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Destiny-Bound",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "courage",
+        "showdown",
+        "ambush",
+        "quarry"
+      ]
+    },
+    {
+      "term": "Devoured Grounds",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe stone-face ground is littered with the leavings of ravenous, passing beasts. Half-eaten acanthus plants are strewn everywhere.\n\nIf any survivor has 3+ understanding, the survivors may skip the next hunt space.\n\nOtherwise:\nRoll random hunt event",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Devoured_Grounds",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Dried Acanthus",
+        "survivor",
+        "understanding",
+        "survivors",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Distant Destruction",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\n\nCard Text.\nThe survivors feel a tremor in the ground and hear a booming on the horizon. The accompanying roar tells them that something very large and angry is responsible.\n\nAny survivors with less than 4 courage lose 1 survival. A random survivor among those gains the following ability:\n\nHoming Instinct: Add +5 to your rolls on the Run Away story event.\n\nSet up the showdown with one less Lion Statue terrain tile on the showdown board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Distant_Destruction",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "courage",
+        "survival",
+        "survivor",
+        "ability",
+        "Homing Instinct",
+        "Run Away",
+        "Story Event",
+        "showdown",
+        "Lion Statue",
+        "Terrain Tile",
+        "Showdown Board"
+      ]
+    },
+    {
+      "term": "Doppel Den",
+      "definition": "Doppel Den is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWalking through a dense mist, the survivors find themselves inexplicably... home? An unctuous pall of smoke permeates the false settlement. Each survivor rolls 1d10 and adds their understanding.Roll 1d10 - Each survivor one at a time.\n\nIf any survivors gain the Marrow Hunger impairment, add the Murder settlement event to the next year on the timeline.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Doppel_Den",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "settlement",
+        "survivor",
+        "1d10",
+        "understanding",
+        "Marrow Hunger",
+        "Impairments",
+        "Insanity",
+        "impairment",
+        "Murder",
+        "Settlement Event",
+        "Lantern Year",
+        "timeline"
+      ]
+    },
+    {
+      "term": "Dream",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe event revealer dreams of the upcoming hunt. They stand before the great beast, weapons ready, but it strikes them down.\n\nIf the event revealer has 3+ courage, or if any survivor is a savior, the event revealer is emboldened by the dream and gains +1 evasion token. Otherwise the dream is merely rattling. Suffer 1 brain event damage.\n\nIf any survivor has the Twilight Sword, they dream of indiscriminate slaughter. Add the Murder settlement event to the timeline 1d5 years from now.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dream",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "courage",
+        "savior",
+        "evasion",
+        "Attribute Modifier Token",
+        "brain",
+        "Event Damage",
+        "Twilight Sword",
+        "Murder",
+        "Settlement Event",
+        "timeline",
+        "d5"
+      ]
+    },
+    {
+      "term": "Dream the Way",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors have vivid, fevered visions of what lies ahead. All at once, they are startled awake and frantically compare the horrors they saw.\n\nEach survivor rolls 1d10. If any survivor is a savior, their powerful dream envelopes the group; each survivor may select whatever die roll result they want. If any survivors' rolls are the same, those survivors discover they had the exact same dream. They gain +1 insanity. If any duplicate rolls are 10s, the event revealer may re-roll any one result this hunt phase (ant one die roll, not just their roll).",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dream_the_Way",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "savior",
+        "insanity",
+        "Event Revealer",
+        "Hunt Phase"
+      ]
+    },
+    {
+      "term": "Dying Small Prospector",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nIf your settlement already has a Portcullis Key, the prospector is gone. Roll again on the hunt event table before moving on the hunt board.\n\nThe survivors discover a body slumped against a large stone face. Moving closer, they find a small, dying prospector riddled with arrows. As they approach, he growls a warning, threatening them with a huge stone shard. When he see they are not evil monsters, he calms down and gives them a key. With his dying breath he says: This is the key to the portcullis. Without it, you will never get through.\n\nRecord the Portcullis Key in the settlement record sheet notes.\n\nIf the settlement has Graves, the event revealer builds a small monument of broken stone noses and gains +1 understanding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Dying_Small_Prospector",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Portcullis Key",
+        "Hunt Event Table",
+        "Hunt Board",
+        "portcullis",
+        "Settlement Record Sheet",
+        "Graves",
+        "Event Revealer",
+        "understanding"
+      ]
+    },
+    {
+      "term": "Empty Pool",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nYou notice the edge of a multicolored band stretching into the dark. You may nominate a survivor with a Sunspot Lantern to investigate.\n\nInvestigate\n\nYour lantern reacts to the band, cutting a path into the atmosphere. Following it, you push through a veil of black mist into a strange ruin with an empty pool in its center.\n\nAt the bottom of the pool is the source of the reaction: a handful of shimmering stones clutched in a petrified tentacle. Moved by the remains, you gain 1 Sunstones strange resource and the Overprotective disorder.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Empty_Pool",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "survivor",
+        "Sunspot Lantern",
+        "investigate",
+        "Sunstones",
+        "Strange Resource",
+        "Overprotective",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Endless Screams",
+      "definition": "is a story event in the Kingdom Death: Monster Core Game rule book.\n\nEvent Text.\nA scream pierces the silence around the settlement. As the noise fades, a chorus of horror rises up in answer.\n\nThe settlement erupts into chaos trying to comprehend the source of the terrible wail.\n\nYou may now hunt the Screaming Antelope. Add it to the quarry list on the settlement record sheet. Nominate a single survivor to stand amidst the madness. They gain +1 courage and become the Voice of Reason.\n\nVoice of Reason.\nRoll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Endless_Screams",
+      "relatedTerms": [
+        "Story Event",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "Screaming Antelope",
+        "quarry",
+        "Settlement Record Sheet",
+        "survivor",
+        "courage",
+        "1d10",
+        "Severe Head Injury Table",
+        "Severe Injury",
+        "understanding",
+        "Returning Survivors",
+        "insanity",
+        "Orator of Death",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Face-to-Face",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nAmidst the sea of stone faces, one catches the event revealer's eye. They feel compelled to investigate. Gain +1 courage and roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Face-to-Face",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "investigate",
+        "courage",
+        "(X)d10",
+        "D5",
+        "survival",
+        "understanding",
+        "Monster Level",
+        "brain",
+        "Event Damage"
+      ]
+    },
+    {
+      "term": "Failed Start",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find the tattered remains of four humans. Clad in loinclothes and clutching stone shards, they bear the distinct marks of White Lion claws.\n\nEach survivor suffers 1 brain event damage and gains 1 Founding Stone starting gear. Survivors with 3+ understanding also gain +1d10 insanity.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Failed_Start",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "White Lion",
+        "brain",
+        "Event Damage",
+        "Founding Stone",
+        "Starting Gear",
+        "understanding",
+        "1d10",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Fault Line",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nSuddenly, the ground rumbles and tears, throwing the survivors into chaos! Each survivor rolls 1d10. The lowest-rolling survivor (roll off in the case of ties) becomes the straggler. They tumble into the newly formed chasm and roll on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fault_Line",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "survivor",
+        "1d10",
+        "straggler",
+        "Fear of the Dark",
+        "disorder",
+        "Brain Damage",
+        "Event Damage",
+        "Zero Presence (Secret Fighting Art)",
+        "Secret Fighting Art"
+      ]
+    },
+    {
+      "term": "Feet",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\n\nThe stone faces ahead are replaced by an expanse of stone feet sprouting from the ground. The survivors walk sole-to-sole with the feet.\n\nIf any survivor is insane, they are convinced they have reached the underside of the world. They clutch the ground for dear life, terrified of falling off. Their raucous terror slows the survivors and attracts unwanted attention. Roll once on the hunt event table for each insane survivor before moving on the hunt board. If any of these rolls result in Feet, ignore it and re-roll.\n\nIf all survivors are insane, they fall of the underside of the world. The survivors are dead unless the settlement chose Survival of the Fittest. If they did, the survivors bite down hard on the feet. Their teeth grind against the stone as they refuse to let go. At once, the feet shatter, revealing ordinary stone faces beneath. Set all survivors' insanity to 0. Each survivor suffers the shattered jaw severe head injury. Do not roll any additional hunt events caused by Feet.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Feet",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "insane",
+        "Hunt Event Table",
+        "Hunt Board",
+        "death",
+        "Survival of the Fittest",
+        "insanity",
+        "Shattered Jaw",
+        "Severe Injury",
+        "Hunt Event"
+      ]
+    },
+    {
+      "term": "Fertile Field",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe survivors approach a writhing field littered with Phoenix droppings. Twisting up through the rocks, some Acanthus plants grow vigorously, while others wither and disintegrate before their eyes.\n\nAll survivors suffer 3 brain event damage and gain +1 understanding.\n\nIf any survivor has a Sickle, they gain 1 Fresh Acanthus strange resource.\n\nIf any survivor has a Scavenger Kit, they gain 1 Muculent Droppings Phoenix resource.\n\nRoll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Fertile_Field",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Fresh Acanthus",
+        "event damage",
+        "understanding",
+        "Sickle",
+        "Strange Resources",
+        "Scavenger Kit",
+        "Muculent Droppings",
+        "Phoenix#Resources",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Field of Arms",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors carefully tread along the back of a massive, sleeping monster. Instead of fur, it has elongated arms, several of them twitching to whatever dream the great beast is in the midst of. The survivors don't disturb the monster's deep sleep and cross without issue.\n\nIf any survivor has a sickle, they gingerly remove some tough skin from one of the arms and gain 1 Hide basic resource.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Field_of_Arms",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "sickle",
+        "Hide",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Filth from the Sky",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nAll survivors roll 1d10. The lowest scoring survivor (or survivors in case of ties) becomes a straggler\n\nThe straggler is struck by a slimy mass hurtling from the sky. Roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Filth_from_the_Sky",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "All Survivors",
+        "(X)d10",
+        "survivor",
+        "straggler",
+        "1d10",
+        "Armor Points",
+        "Hit Location",
+        "Event Damage",
+        "Muculent Droppings",
+        "Phoenix# Resources",
+        "showdown",
+        "Priority Target",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Flatter Earth",
+      "definition": "Flatter Earth is a Gorm hunt event card found in the Gorm Expansion.\n\nCard Text.\nThe survivors lose their quarry's trail in a field of stone faces so badly crushed by the passing of Gorm herds that nothing remains but a carpet of fine pebbles. Roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Flatter_Earth",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "survivors",
+        "1d10",
+        "Random Hunt Event",
+        "Founding Stone",
+        "gear"
+      ]
+    },
+    {
+      "term": "Flesh Fields",
+      "definition": "Flesh Fields is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nAhead, the stone faces on the ground give way to a field of man-sized, fleshy boils sprouting thick black hair. The sinuous terrain radiates moist heat. As they travel, every survivor suffers heat exhaustion, losing 1 survival.\n\nThe event revealer rolls 1d10. If any survivor has a sickle, they help clear a path by cutting back the thick, black hair. Add +4 to your roll.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Flesh_Fields",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "survival",
+        "Event Revealer",
+        "(X)d10",
+        "sickle",
+        "arms",
+        "legs",
+        "dismembered",
+        "Severe Injury",
+        "Hit Location",
+        "insane",
+        "Monster Level",
+        "Event Damage",
+        "hide",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Flesh Monolith",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors approach a 5-sided monolith made of flesh that stretches into the darkness overhead. Limbs and faces human and bizarre protrude from all sides. The event revealer gains +1 courage and investigates.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Flesh_Monolith",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "courage",
+        "investigate",
+        "Death",
+        "brain",
+        "Event Damage",
+        "Post-Traumatic Stress",
+        "disorder",
+        "Survival of the Fittest",
+        "Dismembered Arm",
+        "Severe Injury",
+        "strength",
+        "insanity",
+        "survival",
+        "quarry",
+        "Monster Level",
+        "Graves",
+        "depart"
+      ]
+    },
+    {
+      "term": "Food from the Mouths of Others",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors pass a stone face that appears to be holding something in its mouth. The event revealer investigates. Gain +1 courage and roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Food_from_the_Mouths_of_Others",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "Investigate",
+        "courage",
+        "1d10",
+        "Monster Level",
+        "brain",
+        "Event Damage",
+        "arms",
+        "Founding Stone",
+        "Starting Gear",
+        "Basic Resource",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Forest Event Horizon",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nThin, dappled trees grow all around, crossing dizzily overhead and leaning in the same direction. In the pits of their stomachs, the survivors feel an aching pull along the tree line in the same direction.\n\nHelplessly disoriented, the survivors are drawn off their course, every step pulling their bodies ever faster into the darkness. Each survivor must roll 1d10. If the total of the results is less than 5, the survivors are pulled into a swirling singularity, never to be seen again. They are dead. Do not gain the benefits of the settlement's Death Principle.\n\nOtherwise, roll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Forest_Event_Horizon",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "survivor",
+        "1d10",
+        "Death"
+      ]
+    },
+    {
+      "term": "Geodes",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nThe landscape before the survivors is ripped to shreds. Rubble is strewn everywhere, bearing deep, silver-filled gashes. Whatever causes this destruction appears to have punched several holes in the earth itself, revealing clusters of subterranean outcroppings. All survivors may descend to:\n\n Mineral Gathering. - Worm Tunnels",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Geodes",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "Mineral Gathering (Story Event)#Worm Tunnels"
+      ]
+    },
+    {
+      "term": "Gibbet",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA crude iron cage swings from the branches of a massive tree. As the survivors approach, a man calls out to them from the cage, pleading to be freed. The survivors may pass him by and suffer 1 brain event damage as the prisoner weeps and pleads. If the survivors choose to free, the event revealer rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gibbet",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "brain",
+        "Event Damage",
+        "Event Revealer",
+        "1d10",
+        "resource",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Glimpse",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nA massive shadow passes over the survivors. They turn their gazes up in time to catch a glimpse of the indecipherable shape of the Phoenix disappearing into the darkness. The event revealer rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glimpse",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Survivor",
+        "Event Revealer",
+        "(X)d10",
+        "insanity",
+        "Basic Hunt Event",
+        "Hunt Board",
+        "Event Damage",
+        "Hunt Experience"
+      ]
+    },
+    {
+      "term": "Glowing Blood",
+      "definition": "was basic hunt event #98 found in the Kingdom Death: Monster Core Game 1.3. It was replaced by Bloody Eyes when the core game updated to 1.5.\n\nEvent Text.\nThe survivors find a trail of their quarry's blood, evidence of some horrific battle. The event revealer may taste the monster's blood. The blood brings a vision of the upcoming battle. The event revealer places a token on any space on the hunt board. If the survivors start the showdown on this space, they ambush the monster.\nRoll again on the hunt event table before moving on the hunt board.\n\nNotes.\nThis event erroneously directs players to \"roll again on the hunt event board\" instead of the hunt event table before moving forward on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Glowing_Blood",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Bloody Eyes",
+        "quarry",
+        "Event Revealer",
+        "Hunt Board",
+        "showdown",
+        "ambush"
+      ]
+    },
+    {
+      "term": "Gorm's Laughter",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe rhythmic wail of a Gorm's laughter reaches the survivors, filling them with fear. The cackling follows the survivors, tormenting them until they reach their quarry. Place a token on every hunt board space between the survivors and their quarry. When the survivors move into a space with a token, remove it and all non-deaf survivors suffer 1 brain event damage.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Gorm's_Laughter",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Gorm Expansion",
+        "quarry",
+        "Hunt Board",
+        "Non-deaf Survivor",
+        "brain",
+        "Event Damage"
+      ]
+    },
+    {
+      "term": "Grazing Field",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nAcanthus leaves sprout from the crevices in the stone ground. The survivors spend time gathering and eating the small leaves.\n\nEach survivor may heal any hit location of their choice, restoring all Injury Levelinjury levels]] and armor points.\n\nIf any survivor has a Sickle, they gain 1 Fresh Acanthus strange resource.\n\nRoll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Grazing_Field",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Fresh Acanthus",
+        "survivors",
+        "survivor",
+        "healing",
+        "Hit Location",
+        "Injury Level",
+        "Armor Points",
+        "Sickle",
+        "Strange Resource",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Heavy Mist",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA heavy mist envelops the survivors, obscuring their lantern light. Roll 1d10. If the result is even, the survivors stumble in the right direction. If the result is odd, they get turned around; roll again on the hunt event table before moving on the hunt event board.\n\nIf the showdown begins in the next space on the hunt board, the monster ambushes the survivors.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Heavy_Mist",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "Hunt Event Table",
+        "Hunt Board",
+        "showdown",
+        "Ambush"
+      ]
+    },
+    {
+      "term": "Heliophobia",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nYou begin to think about hunting the sun. If a survivor has the Emotionless disorder, they have a very logical discussion with you and this event ends.\n\nOtherwise, you are overwhelmed and panic! Gain +2 insanity as you spend a painfully long time curled up in a tiny ball, denying everything. Move the Sunstalker 2 spaces away from the survivors as you waste time.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Heliophobia",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "survivor",
+        "Emotionless",
+        "disorder",
+        "insanity",
+        "survivors"
+      ]
+    },
+    {
+      "term": "Herb Gathering (Special Hunt Event)",
+      "definition": "Herb Gathering is a special hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe survivors consume herbs and berries. All survivors gain +1 survival.\n\n Herb Gathering.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Herb_Gathering_(Special_Hunt_Event)",
+      "relatedTerms": [
+        "Special Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "survival",
+        "Herb Gathering (Story Event)"
+      ]
+    },
+    {
+      "term": "Horizon of Bones",
+      "definition": "Horizon of Bones is a Gorm hunt event card found in the Gorm Expansion.\n\nCard Text.\nThe darkness ahead is filled with steady flashes of green light. Enormous piles of jagged bones forebodingly line the horizon in an unbroken line. Inhuman, mournful laughter echoes through the air.\n\nIf any survivor has 5+ Hunt XP and 3+ courage, you press forward, fearfully sneaking through the bone wall. All survivors gain +1 courage.\n\nRoll a random hunt event if no survivor has 5+ Hunt XP and 3+ courage.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Horizon_of_Bones",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "Hunt XP",
+        "courage",
+        "survivors",
+        "Random Hunt Event",
+        "survivor"
+      ]
+    },
+    {
+      "term": "Hungry Ground",
+      "definition": "Hungry Ground is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe ground suddenly splits and a gaping stone mouth attempts to devour the event revealer whole! The event revealer rolls 1d10.\n\nIf another survivor has a whip, they throw a line to the event revealer. Add +4 to your roll.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hungry_Ground",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "(X)d10",
+        "whip",
+        "survival",
+        "Death",
+        "Event Damage",
+        "legs",
+        "Broken Lantern",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Hunt Event",
+      "definition": "Prowling Lion Monster Hunt Event card back/front, from Core set.]]\nA hunt event describes an encounter the survivors face on their journey during the Hunt Phase. They can be disastrous, bizarre, or even beneficial. These appear on basic hunt event cards, Special Hunt Event cards, and monster hunt event cards.\n\nRules.\nOften, hunt events will require players to roll on a table to determine the outcome of an event. Each event will specify who should roll (event revealer, random survivor, or survivors meeting certain criteria). If no survivor is specified, the event revealer rolls.\n\nThe event revealer is also responsible for making any randomized choices (picking random survivors, gear, etc.). The event revealer can use dice, names in a hat, or whatever they prefer.\n\nSome events will have requirements for survivors to participate. For instance, some events require survivors to have high levels of understanding or courage to participate in the event.\n\nList of Hunt Events.\n\nSee Also.\nOverwhelming Darkness\nStarvation",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Hunt_Event",
+      "relatedTerms": [
+        "Prowling Lion",
+        "Survivors",
+        "Hunt Phase",
+        "Basic Hunt Event",
+        "Special Hunt Event",
+        "Hunt Event Cards",
+        "Event Revealer",
+        "gear",
+        "understanding",
+        "courage",
+        "Overwhelming Darkness",
+        "Starvation"
+      ]
+    },
+    {
+      "term": "It Whispers Your Name",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe event revealer trips over a protruding nose in the ground. The lips of a stone face begin to move!\n\nIf the event revealer has no name, the lips stop moving and nothing else happens. Otherwise, the lips seductively whisper the survivor's name.\n\nIf the event revealer is insane, they are drawn in, savagely kissing the face. Repulsed and outraged, the other survivors suffer 1 brain event damage before pulling the crazed survivor from the ground and moving on.\n\nIf the event revealer is not insane, they gain +1 understanding, feeling on the cusp of learning something.\n\nIf any survivor has the Marrow Hunger impairment, the face secretly whispers their life's purpose. They gain +1 permanent strength. Add the Murder settlement event to the timeline next year.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/It_Whispers_Your_Name",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "insane",
+        "brain",
+        "Event Damage",
+        "understanding",
+        "Marrow Hunger",
+        "impairment",
+        "strength",
+        "Murder",
+        "Settlement Event",
+        "timeline"
+      ]
+    },
+    {
+      "term": "Itchy Palms",
+      "definition": "Itchy Palms is a Gorm hunt event card found in the Gorm Expansion.\n\nCard Text.\nThe survivors come across a field of huge boulders worn on all sides with deep, smooth grooves.\n\nIf any survivor has 3+ understanding, they realize the Gorms use these stone to scratch their enormous, delicate palms. Armed with these fresh tracks, they may hasten to their quarry, skipping the next hunt space! if this moves the survivors into the monster's space, they ambush the monster.\n\nRoll a random hunt event if no survivor has 3+ understanding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Itchy_Palms",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "survivors",
+        "survivor",
+        "understanding",
+        "quarry",
+        "ambush",
+        "monster",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Jagged Valley",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA valley of sharp, white stones opens before the survivors, looking just like a toothy maw. As the survivors push and climb through the jagged spires, they find that even the shallowest of nicks bleeds profusely. Each survivor suffers 1 event damage to the body. Unless a survivor has bandages to patch up their wounds, all survivors all gain 2 bleeding tokens!\n\nIf any survivor has a pickaxe, they may try to convince the other survivors to let them investigate a bit more. If they are convinced roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Jagged_Valley",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Damage",
+        "body",
+        "Bandages",
+        "Bleeding Token",
+        "pickaxe",
+        "investigate",
+        "1d10",
+        "survival",
+        "Death",
+        "Cannibalize",
+        "Hissing Cockroach",
+        "Vermin Resource",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Iron",
+        "Strange Resource"
+      ]
+    },
+    {
+      "term": "Light on the Horizon",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\n\nThe survivors hear a screeching howl, followed by a crash. They see an explosion of multicolored light on the horizon. The unnatural light illuminates the survivor's way. If at least one survivor is sane, they follow the light. You may reroll the next result on the hunt event table.\n\nIf all survivors are insane, they turn away from the light, walking back into the darkness. Move the survivors 2 spaces back on the hunt board.\n\nRegardless of what the survivors do, the light reaches the settlement, Add the Lights in the Sky settlement event to the timeline next year.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Light_on_the_Horizon",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Hunt Event Table",
+        "insane",
+        "Hunt Board",
+        "Lights in the Sky",
+        "Settlement Event",
+        "timeline"
+      ]
+    },
+    {
+      "term": "Lion in Heat",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nThe darkness is filled with unearthly screeching and yowling. Huddled together, the survivors close their eyes, but cannot sleep.\n\nAll survivors suffer 1 brain event damage.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion_in_Heat",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Brain Damage",
+        "event damage"
+      ]
+    },
+    {
+      "term": "Lion's Sculpture",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA crudely-arranged effigy stands before the survivors. Decorated with small metal trinkets, human fingers, and stuffed with dried tall grass, their quarry's sculpture confounds the survivors.\n\nThe survivors gaze at the arrangement, attempting to glean the substance of the White Lion's bizarre, inhuman intelligence. Each survivor gains +1 understanding and +1 insanity.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lion's_Sculpture",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "survivor",
+        "understanding",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Lone Traveler",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nThe survivors see a lone traveler with a determined look approaching with a drawing of a familiar face. The survivors must choose to lie or tell the truth. \n\nLie - event revealer rolls 1d10.\n\nTell the truth.\n\nThe traveler tips their hat, leaving 1 Iron strange resource before heading towards your settlement. -1 Population. All survivors lose 1 survival.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lone_Traveler",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "event revealer",
+        "1d10",
+        "survivor",
+        "Severe Body Injury Table",
+        "Severe Injury",
+        "Population",
+        "Brain Damage",
+        "Event Damage",
+        "Iron",
+        "Strange Resource",
+        "settlement",
+        "survival"
+      ]
+    },
+    {
+      "term": "Lone Traveller",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nThe survivors see a lone traveller with a determined look approaching with a drawing of a familiar face. The survivors must choose to lie or tell the truth. \n\nLie - event revealer rolls 1d10\n\nTell the truth\n\nThe traveller tips their hat, leaving 1 Iron strange resource before heading towards your settlement. -1 Population. All survivors lose 1 survival.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lone_Traveller",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "event revealer",
+        "1d10",
+        "survivor",
+        "Severe Body Injury Table",
+        "Severe Injury",
+        "Population",
+        "Brain Damage",
+        "Event Damage",
+        "Iron",
+        "Strange Resource",
+        "settlement",
+        "survival"
+      ]
+    },
+    {
+      "term": "Lonely Bridge",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe survivors reach a wide chasm, bridged by silk strands that cling to the sides at a dizzying height.\n\nRoll 1d10. Add the combined courage of the survivors to the result. On a 12+, they inch their way across the silk.\n\nOtherwise: Rolls 2 random hunt events.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lonely_Bridge",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "(X)d10",
+        "courage",
+        "Basic Hunt Event"
+      ]
+    },
+    {
+      "term": "Lost",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors are hopelessly lost in the unbroken darkness. Move the survivors 2 spaces back on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lost",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Lost Survivor",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nIn a hollow between two rocks, you find a corpse with fabulous hair clutching a book to its chest.\n\nIf the settlement has Pictographs, the event revealer may read from the book and roll 1d10. Otherwise, the survivors move on, deeply confused. The book tells the tragic tale of two survivors who found a love they could never have.\n\nThank you Johnson 'JT' Thurston for being an awesome backer!",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lost_Survivor",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Pictographs",
+        "Event Revealer",
+        "1d10",
+        "showdown",
+        "speed",
+        "Anxiety",
+        "Traumatized",
+        "disorders",
+        "courage",
+        "Tough",
+        "Last Man Standing",
+        "Fighting Arts"
+      ]
+    },
+    {
+      "term": "Lovelorn Rock (Hunt Event)",
+      "definition": "Lovelorn Rock is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors pass a ring of stones with an unassuming boulder at the center. Each survivor rolls 1d10. The lowest scoring survivor (randomize in case of ties) becomes a straggler.\n\nThe straggler hefts the boulder (it's heavy!) and promises to carry it everywhere, forever in love. They must always leave one space in their gear grid empty, as it contains their beloved rock. Record this on your survivor sheet. The rock can be lost or archived like other gear; if it is lost, the survivor mourns their beloved and reclaims the space in their gear grid.\n\nNotes.\nAs of the release of Vignette of Death: White Gigalion, the Lovelorn Rock is now an actual rare gear card that can be placed into a survivor's gear grid.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Lovelorn_Rock_(Hunt_Event)",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Lovelorn Rock (Gear)",
+        "1d10",
+        "straggler",
+        "Gear Grid",
+        "Survivor Record Sheet",
+        "archive",
+        "gear",
+        "Vignette of Death: White Gigalion",
+        "Rare Gear"
+      ]
+    },
+    {
+      "term": "Madflies",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nTiny, persistent insects swarm the survivors, flying into their ears and nostrils. The bugs buzz maddeningly in their heads, growing louder as they nest.\n\nEach survivors rolls 1d10.\n\nNotes.\nThis hunt event instructs each survivor to roll 1d10, but the roll table instructs the event revealer to roll instead.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Madflies",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "evasion",
+        "Attribute Modifier Token",
+        "insanity",
+        "frenzy",
+        "Brain Trauma Table",
+        "Rageholic",
+        "disorder",
+        "Berserker",
+        "Fighting Art",
+        "Event Revealer"
+      ]
+    },
+    {
+      "term": "Majestic Shadow",
+      "definition": "Majestic Shadow is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThere's a flash of light and the group is suddenly standing in a pool of darkness. Roll 1d10. If the result is equal to or lower than your courage, you gaze upward. Otherwise, you flee in terror.\n\nGaze Upward.\n\nFlee in Terror.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Majestic_Shadow",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "courage",
+        "Ambush",
+        "Event Damage",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Man-trap",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe event revealer springs a terrible trap! Roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Man-trap",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "(X)d10",
+        "Dismembered Leg",
+        "Severe Injury",
+        "Destroy Armor",
+        "legs",
+        "Hit Location",
+        "Event Damage",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Marked Territory",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nThe White Lion has marked this area.\n\nIf any survivor has 3+ understanding, they realize the area is covered in ammonia. If they have not innovated it yet, the survivor's settlement gains the Ammonia innovation.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Marked_Territory",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "understanding",
+        "ammonia",
+        "settlement",
+        "Ammonia"
+      ]
+    },
+    {
+      "term": "Meat Puppet",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nAt the top of a hill, the survivors see a single tree and a stranger, who gestures towards them with stiff and unnatural movements.\n\nThe event revealer may investigate. If they do, roll 1d10 and add their understanding to result. Otherwise, roll a random hunt event before continuing to the next hunt board space.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Meat_Puppet",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "Event Revealer",
+        "investigate",
+        "(X)d10",
+        "understanding",
+        "Basic Hunt Event",
+        "Hunt Board",
+        "brain",
+        "Event Damage",
+        "survivor",
+        "Spidicules",
+        "ambush"
+      ]
+    },
+    {
+      "term": "Migration",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nSome unseen force has set off a massive migration. Nothing remains but uprooted acanthus plants and shattered ground ruined by hooves.\n\nMove the Screaming Antelope 3 spaces away from the survivors on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Migration",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Fresh Acanthus",
+        "survivors",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Mineral Gathering (Special Hunt Event)",
+      "definition": "Mineral Gathering is a special hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\n Mineral Gathering.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mineral_Gathering_(Special_Hunt_Event)",
+      "relatedTerms": [
+        "Special Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Mineral Gathering (Story Event)"
+      ]
+    },
+    {
+      "term": "Monster Droppings",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find some monster droppings, like those of their quarry. The event revealer chooses to either investigate or consume the droppings (choose only one).\n\nIf the event revealer investigates, gain +1 understanding and roll 1d10.\n\nIf the event revealer consumes, gain +1 courage and roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Droppings",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "quarry",
+        "Event Revealer",
+        "investigate",
+        "consume",
+        "understanding",
+        "(X)d10",
+        "survival",
+        "Hunt Event Table",
+        "Hunt Board",
+        "showdown",
+        "ambush",
+        "courage",
+        "evasion",
+        "Quixotic",
+        "disorder",
+        "insanity",
+        "Immortal",
+        "speed"
+      ]
+    },
+    {
+      "term": "Mourning Bull",
+      "definition": "Mourning Bull is a Gorm hunt event card found in the Gorm Expansion.\nCard Text.\nYou approach the fresh corpse of a Gorm. The survivors must choose to steer clear or go near.\n\nSteer clear:.\nThe survivors hear a mournful cry rising at their backs, and each suffer 3 brain event damage.\n\nGo near:.\nAnother Gorm charges out of the darkness, wailing mournfully. The survivors are ambushed. Start the showdown immediately. The Gorm gains +1 damage token.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Mourning_Bull",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "survivors",
+        "Brain Damage",
+        "event damage",
+        "Ambush",
+        "showdown",
+        "damage",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Object of Desire",
+      "definition": "is a hunt event found in the Lonely Tree Expansion.\nCard Text.\nThe survivors see a tree in the distance, reaching up from the horizon like a desperate, gnarled hand. Players may nominate a survivor with 3+ courage to investigate. If they do, add the Lonely Tree terrain card to the showdown setup and roll on the table.\n\nRoll a random hunt event if you do not investigate.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Object_of_Desire",
+      "relatedTerms": [
+        "Hunt Event",
+        "Lonely Tree Expansion",
+        "survivor",
+        "courage",
+        "investigate",
+        "The Lonely Tree",
+        "Terrain Cards",
+        "Showdown Setup",
+        "Hunt Phase",
+        "Showdown Phase",
+        "Knocked Down",
+        "Priority Target",
+        "Brain Damage",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Oil Fields",
+      "definition": "was basic hunt event #49 found in the Kingdom Death: Monster Core Game 1.3. It was replaced by Pus Fields when the core game updated to 1.5.\n\nEvent Text.\nThe landscape is dotted with large red mounds oozing oil. The smallest spark threatens to ignite the foul-smelling mounds. Roll 1d10. On a result of 1 or 2, the fields ignite and all survivors take 1 event damage to a random hit location.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Oil_Fields",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Pus Fields",
+        "1d10",
+        "Event Damage",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Oops!",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nStumbling through the darkness, the event revealer crashes into the ground, crushing their lantern beneath them. The living light inside the lantern becomes agitated by the survivor's clumsiness and burns a piece of gear. The event revealer archives 1 gear of their choice from their gear grid",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Oops!",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "gear",
+        "archive",
+        "Gear Grid"
+      ]
+    },
+    {
+      "term": "Opportunists",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nWhile investigating their quarry's tracks, the survivors realize they are hunting not one, but two monsters. The two sets of tracks soon separate, leaving the event revealer to pick which tracks to follow.\n\nIf they follow the larger tracks, continue hunting as normal. If they follow the smaller tracks, start the showdown immediately. At the start of the showdown, the monster suffers 5 wounds. If the survivors are victorious, they gain half the basic resources and half the monster resources (rounded up) from the rewards in the aftermath.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Opportunists",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "quarry",
+        "Event Revealer",
+        "showdown",
+        "wound",
+        "victory",
+        "Basic Resources",
+        "Monster Resources",
+        "rewards",
+        "aftermath"
+      ]
+    },
+    {
+      "term": "Ornate Temple",
+      "definition": "Ornate Temple is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nAn enormous structure, larger than any the survivors have ever seen, stands in the distance. Strange, beautiful music beckons the group to approach.\n\nWhen the group reaches the temple's gates, the entire building fades into dust. A strong wind picks up, turning into a blinding sandstorm. When it's safe to open their eyes, the survivors see that the building is now far behind them.\n\n\"That which lives can never replace that which was glorious.\"\n\nHaunted, the survivors soldier on, not understanding what they have seen or whose disembodied voice they had heard.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Ornate_Temple",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors"
+      ]
+    },
+    {
+      "term": "Perfect Meadow",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nYou reach the crest of a glistening meadow. Soaked in warm light, soft blades of grass crunch under your feet. You decide to rest. Roll on the table below.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Perfect_Meadow",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "1d10",
+        "Event Revealer",
+        "survivors",
+        "Showdown Phase",
+        "ambush",
+        "understanding",
+        "Hunt Events"
+      ]
+    },
+    {
+      "term": "Picked Clean",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe survivors come across a fresh corpse being eaten to the bone by Spiderlings. The event revealer may choose to investigate and roll 1d10 on the table below.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Picked_Clean",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "Spiderlings",
+        "Event Revealer",
+        "investigate",
+        "(X)d10",
+        "Bleeding Token",
+        "Event Damage",
+        "Hit Location",
+        "weapon",
+        "The Weaver",
+        "Rare Gear"
+      ]
+    },
+    {
+      "term": "Portcullis",
+      "definition": "is a Basic Hunt Event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors approach a massive portcullis standing in the darkness. It is not attached to anything and does not bar their way.\n\nThey may choose to walk around it. If they do, roll again on the hunt event table before moving on the hunt board.\n\nIf the settlement has the Portcullis Key, they may erase it from the settlement record sheet and use it. Each survivor gains +1 courage. The portcullis creaks open and the survivors step through. A dank gloom awaits the survivors inside.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Portcullis",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Portcullis Key",
+        "Settlement Record Sheet",
+        "courage",
+        "death",
+        "Perfect Crucible",
+        "Strange Resource",
+        "Blacksmith",
+        "Perfect Slayer"
+      ]
+    },
+    {
+      "term": "Prowling Lion",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nWhile the survivors stalk the White Lion, the monster hunts something else. Move the White Lion one space away from the survivors on the hunt board in pursuit of its prey.\n\nThe White Lion starts the showdown with Ground Fighting in play.(build its AI deck normally).",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Prowling_Lion",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "hunt board",
+        "showdown",
+        "Ground Fighting"
+      ]
+    },
+    {
+      "term": "Pus Fields",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe landscape is dotted with large, swelling mounds oozing pus. The smallest jostle threatens to explode them. The survivors may carefully tread through the mounds or rush through.\n\nCarefully tread: You make it through without incident, but your progress is slowed. Roll again on the hunt event table before moving on the hunt board.\n\nRush through: Each survivor rolls 1d10 and adds their evasion to the result. On a 7 or less, they detonate one of the pus mounds! They suffer 2 event damage to a random hit location and become stinky for the rest of this lantern year.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Pus_Fields",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Hunt Event Table",
+        "Hunt Board",
+        "1d10",
+        "evasion",
+        "Event Damage",
+        "Hit Location",
+        "stinky",
+        "Lantern Year"
+      ]
+    },
+    {
+      "term": "Putrid Tunnels",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors smell it long before they see it, a series of cave mouths that emit noxious odors.\n\nEach survivor rolls 1d10. On a 9+ they enter one of the tunnels and sicover a wretched group of diseased survivors living in filth. All survivors who enter the cave catch their foul rotting disease. They have leprosy; reduce all damage suffered by 1 to a minimum of 1. Suffer -2 to severe injury rolls. Record this impairment.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Putrid_Tunnels",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "1d10",
+        "leprosy",
+        "damage",
+        "Severe Injury",
+        "impairment"
+      ]
+    },
+    {
+      "term": "Quarantine Camp",
+      "definition": "was basic hunt event #86 found in the Kingdom Death: Monster Core Game 1.3. It was replaced by Putrid Tunnels when the core game updated to 1.5.\n\nEvent Text.\nThe survivors smell the camp long before they see it. A squalid collection of tents and dirt hovels, the camp is all that remains of families exiled from their village when they contracted a strange disease.\n\nEach survivor rolls 1d10. On a result of 1 or 2, they catch the foul rotting disease of the exiles and gain the Leprosy impairment. From now on, reduce all damage suffered by 1 to a minimum of 1. When rolling on the severe injury table, -2 to any results. Record this impairment.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Quarantine_Camp",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Putrid Tunnels",
+        "1d10",
+        "Leprosy",
+        "impairment",
+        "damage",
+        "Severe Injury"
+      ]
+    },
+    {
+      "term": "Random Hunt Event",
+      "definition": "Roll d100 and apply the hunt event corresponding to this number on the Hunt Event table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Random_Hunt_Event",
+      "relatedTerms": [
+        "D100",
+        "Hunt Event",
+        "Hunt Event Table"
+      ]
+    },
+    {
+      "term": "Recurring Nightmare",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nWithout warning, the survivors are plucked from time and find themselves standing at the threshold of the Overwhelming Darkness.\n\nPlace the survivors on Overwhelming Darkness and trigger the story event, even if they have already encountered it this hunt phase.\n\nIf the monster is between the survivors and the Start space or onOverwhelming Darkness, the survivors are ambushed and begin the showdown immediately after resolving the event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Recurring_Nightmare",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Overwhelming Darkness",
+        "Story Event",
+        "Hunt Phase",
+        "monster",
+        "Ambush",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Rolling Fertilizer",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nYou notice an unusual amount of insects and plant life. If it isn't already on the hunt board, add the Herb Gathering hunt event to any other space. At the start of the showdown, the monster gains +1 damage token.\n\nRoll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Rolling_Fertilizer",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "Hunt Board",
+        "Herb Gathering (Special Hunt Event)",
+        "Hunt Event",
+        "Showdown Phase",
+        "damage",
+        "Attribute Modifier Token",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Salted Dream",
+      "definition": "is a Sunstalker hunt event card found in the Sunstalker Expansion.\n\nCard Text.\nThe event revealer happens upon an entity busily sculpting with white ash. It pauses, opening its maw to flash its work with light. Suddenly realizing they are dreaming, the event revealer may wake up or continue the dream.\n\nWake Up\n\nGroggily you shake the dream from your mind. Your eyes have the flash of teeth imprinted on them. Gain -1 accuracy token and +5 survival.\n\nContinue the Dream - roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Salted_Dream",
+      "relatedTerms": [
+        "Sunstalker",
+        "hunt event",
+        "Sunstalker Expansion",
+        "event revealer",
+        "accuracy",
+        "Attribute Modifier Token",
+        "survival",
+        "1d10",
+        "courage",
+        "Brain Damage"
+      ]
+    },
+    {
+      "term": "Scattered Lanterns",
+      "definition": "was basic hunt event #81 found in the Kingdom Death: Monster Core Game 1.3. It was replaced by Field of Arms when the core game updated to 1.5.\n\nEvent Text.\nFour lanterns lay discarded in the survivor's path. Each survivor may spend 1 survival to gain +1 understanding. \n\nIf any survivor has 3+ understanding, they suffer 1 brain event damage as they ponder who left the lanterns and why.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scattered_Lanterns",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Field of Arms",
+        "survival",
+        "understanding",
+        "Brain Damage",
+        "Event Damage"
+      ]
+    },
+    {
+      "term": "Scent on the Wind",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA strong wind blows, bringing with it the scents of distant places and things. The event revealer rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scent_on_the_Wind",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "1d10",
+        "showdown",
+        "ambush",
+        "quarry"
+      ]
+    },
+    {
+      "term": "Scratching Grounds",
+      "definition": "This is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nClaw marks scar the ground. The survivors may choose to investigate. Each survivor that investigates gains +1 courage and rolls on the table.\n\nIf no one investigates: Roll random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Scratching_Grounds",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "investigate",
+        "Investigate",
+        "courage",
+        "survivor",
+        "event damage",
+        "Lion Claw",
+        "White Lion#Resources",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Sea of Golden Grass",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nFields of golden grass lay ahead. The event revealer may chose to avoid the plains and roll twice on the hunt event table before moving on the hunt board. Otherwise, each survivor gains +1 courage and the event revealer rolls on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sea_of_Golden_Grass",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "event revealer",
+        "Hunt Event Table",
+        "hunt board",
+        "courage",
+        "quarry",
+        "showdown",
+        "ambush",
+        "survivors"
+      ]
+    },
+    {
+      "term": "Settlement Ruins",
+      "definition": "Settlement Ruins is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nYou happen upon a scorched settlement. The event revealer gains +1 courage and investigates. Roll 1d10.Roll 1d10 - Event Revealer.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Settlement_Ruins",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "settlement",
+        "event revealer",
+        "courage",
+        "investigate",
+        "1d10",
+        "Event Revealer",
+        "survival",
+        "Bleeding Token",
+        "survivors",
+        "Brain Damage",
+        "Event Damage",
+        "population"
+      ]
+    },
+    {
+      "term": "Shower",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nA sudden downpour soaks the survivors. To their horror, the droplets stick to their skin, crawling and burrowing hungrily. All survivors roll on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Shower",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "1d10",
+        "survivor",
+        "armor",
+        "accuracy",
+        "Attribute Modifier Token",
+        "speed"
+      ]
+    },
+    {
+      "term": "Sickening Mess",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors come upon a patch of badly-damaged ground. The stone faces are cracked and debris is strewn everywhere. Piles of toxic-smelling dung and half-digested viscera litter the area. The survivors approach, but survivors with the Squeamish disorder refuse to go any closer.\n\nInsane survivors consume what they find and make themselves sick; they gain -1 strength token. Sane survivors stop to investigate the mess. Each gains +1 courage, rolls 1d10, and adds their understanding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sickening_Mess",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Squeamish",
+        "disorder",
+        "Insane",
+        "consume",
+        "strength",
+        "Attribute Modifier Token",
+        "investigate",
+        "courage",
+        "1d10",
+        "understanding",
+        "Basic Resource",
+        "Event Damage",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Signs of Battle",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors come upon the remains of a terrible battle between their quarry and some unknown foe. The event revealer may choose to investigate. If they do, gain +1 courage and roll 1d10. Otherwise, roll again on the hunt event table before moving on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Signs_of_Battle",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "quarry",
+        "Event Revealer",
+        "investigate",
+        "courage",
+        "1d10",
+        "Hunt Event Table",
+        "Hunt Board",
+        "ambush",
+        "Showdown Setup",
+        "brain",
+        "Event Damage",
+        "Graves",
+        "survival",
+        "Cannibalize",
+        "Basic Resource"
+      ]
+    },
+    {
+      "term": "Silver Bug",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nA strange bug buzzes past, its wings made of shimmering silver. The survivors chase the bug through a large cave entrance, which snaps shut behind them like a giant mouth. Roll on the table.\n\n1d10 - event revealer",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Silver_Bug",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "survivors",
+        "1d10",
+        "event revealer",
+        "survival",
+        "Brain Damage",
+        "Event Damage",
+        "insanity",
+        "Bleeding Token",
+        "armor"
+      ]
+    },
+    {
+      "term": "Skittish",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nPanicked by the oncoming survivors, the Screaming Antelope moves 1 space away from the survivors on the hunt board.\n\nRoll a random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Skittish",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Sky Fishing (Special Hunt Event)",
+      "definition": "Sky Fishing is a special hunt event card found in the Sunstalker Expansion.\n\nCard Text.\n Sky Fishing.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sky_Fishing_(Special_Hunt_Event)",
+      "relatedTerms": [
+        "Special Hunt Event",
+        "Sunstalker Expansion",
+        "Sky Fishing (Story Event)"
+      ]
+    },
+    {
+      "term": "Sphinx",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nA Lion Statue with a booming voice harasses the survivors with insults as they venture past. The event revealer decides if the survivors confront the obnoxious statue or ignore it.\n\nConfront - roll 1d10\n\nIgnore - roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sphinx",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "Lion Statue",
+        "survivors",
+        "event revealer",
+        "1d10",
+        "Death",
+        "strength",
+        "Attribute Modifier Token",
+        "survivor",
+        "Enfeebled",
+        "disorder",
+        "survival"
+      ]
+    },
+    {
+      "term": "Sportsman’s Kill",
+      "definition": "Sportsman's Kill is a Gorm hunt event card found in the Gorm Expansion.\nCard Text.\nThe survivors pass a finely armored man commanding a retinue of slaves, who are busily butchering the remains of an enormous Gorm. The man proudly invites the survivors to marvel at his skill. Roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sportsman%E2%80%99s_Kill",
+      "relatedTerms": [
+        "Gorm",
+        "hunt event",
+        "Gorm Expansion",
+        "survivors",
+        "1d10",
+        "Event Revealer",
+        "showdown",
+        "Priority Target",
+        "Random Hunt Event",
+        "Hunt Phase",
+        "AI Deck"
+      ]
+    },
+    {
+      "term": "Stampede",
+      "definition": "is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA thunderous boom approaches. The survivors may hide. If they do, move the quarry 1 space away from the survivors on the hunt board.\n\nOtherwise, all survivors gain +1 courage and the event revealer rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stampede",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "quarry",
+        "Hunt Board",
+        "courage",
+        "Event Revealer",
+        "1d10",
+        "Event Damage",
+        "Hit Location",
+        "Brain Damage",
+        "showdown"
+      ]
+    },
+    {
+      "term": "Sticky Meadow",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nA dewy meadow lays before the survivors. Sloshing through the moist, sticky grass, any boots the survivors are wearing become waterlogged.\n\nHeavy with sweet-smelling nectar, the survivor finds it difficult to lift their feet as they walk.\n\nEach survivor with leg armor chooses to either gain a -1 movement token or reduce the armor at their legs location to 0.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sticky_Meadow",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "survivor",
+        "Legs",
+        "armor",
+        "movement",
+        "Attribute Modifier Token",
+        "legs"
+      ]
+    },
+    {
+      "term": "Stone Fountain",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nTwo cupped stone hands rise out of the ground. The hands hold clear, cold water that trickles through the stone fingers in a seemingly endless supply. Any survivor may consume from the fountain. If they do, gain +1 courage and roll 1d10.\n\nIf no one consumes, roll again on the hunt event table before moving on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Stone_Fountain",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "consume",
+        "courage",
+        "1d10",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Monster Level",
+        "brain",
+        "Event Damage",
+        "Hemophobia",
+        "disorder",
+        "survival"
+      ]
+    },
+    {
+      "term": "Strange Path",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors stop at the head of a path. Small lanterns twinkle, marking its edges.\n\nThe event revealer decides whether or not the survivors follow the path. If the event revealer is insane, they must. If the survivors follow the path, the event revealer gains +1 understanding then rolls 1d10 and adds their understanding.\n\nOtherwise, roll again on the hunt event table before moving on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Strange_Path",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "insane",
+        "understanding",
+        "1d10",
+        "Hunt Event Table",
+        "Hunt Board",
+        "Event Damage",
+        "Hit Location",
+        "survival",
+        "brain",
+        "Basic Resource",
+        "ambush",
+        "Honorable",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Sudden Life",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nThe branches overhead are suddenly alive with writhing insects.\n\nAll at once, thousands of insects begin to sing, filling the air with a vibrating wall of noise. The din brings the survivors to their knees. All non-deaf survivors suffer 1 event damage to their head hit location that ignores armor points.\n\nIf any survivor has 3+ understanding, they may plug up their ears with spongy moss and help the others do the same. Otherwise, the overwhelmed survivors suffer 1 brain event damage and begin the showdown knocked down.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sudden_Life",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "event damage",
+        "head",
+        "armor",
+        "survivor",
+        "understanding",
+        "Brain Damage",
+        "showdown",
+        "Knocked Down"
+      ]
+    },
+    {
+      "term": "Sudden Madness",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe event revealer is devastated by a piercing cacophony in their head. Roll 1d10. If the result is less than or equal to their current insanity, they go mad, lashing out at their compatriots! Each other survivor suffers 1 event damage to a random hit location before the event revealer regains control of themselves.\n\nIf the event revealer has the Crazed fighting art, they gain insight from their ordeal. Gain +10 insanity and +2 understanding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sudden_Madness",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "1d10",
+        "insanity",
+        "Event Damage",
+        "Hit Location",
+        "Crazed",
+        "Fighting Art",
+        "understanding"
+      ]
+    },
+    {
+      "term": "Sudden Rumbling",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nYou hear a low rumbling and suddenly see an enormous ball rolling right towards you! Roll 1d10. If the result is equal to or lower than your courage, you stand your ground! Otherwise, you dive away.\n\nStand Your Ground - roll 1d10\n\nDive Away - roll 1d10",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sudden_Rumbling",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "1d10",
+        "courage",
+        "Event Damage",
+        "showdown",
+        "Knocked Down",
+        "survivors",
+        "arms",
+        "Propulsion Drive",
+        "Fighting Art"
+      ]
+    },
+    {
+      "term": "Super Food",
+      "definition": "is a Dung Beetle Knight hunt event card found in the Dung Beetle Knight Expansion.\n\nCard Text.\nYou find a curious stone face. It is ringed with overgrown, dead acanthus plants. You may push the dead leaves aside to investigate. If you do roll 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Super_Food",
+      "relatedTerms": [
+        "Dung Beetle Knight",
+        "hunt event",
+        "Dung Beetle Knight Expansion",
+        "investigate",
+        "1d10",
+        "showdown",
+        "Rainbow Beetle",
+        "AI Card",
+        "consume",
+        "speed",
+        "Showdown Phase",
+        "Attribute Modifier Token",
+        "Rainbow Droppings",
+        "Phoenix#Resources"
+      ]
+    },
+    {
+      "term": "Surrounded",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe survivors stop in a clearing and bed down for the night. They are tormented in the darkness by small, spindly shapes lurking just outside their field of vision.\n\nThe survivor with the highest Hunt XP is suddenly grabbed at the legs by an angry Spiderling.\n\nEach of the other survivors rolls 1d10.\n\nIf the total result is 18+, they manage to stave off the creature without incident. Otherwise, the grabbed survivor suffers a random severe leg injury with +1 to the roll result.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Surrounded",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "survivors",
+        "survivor",
+        "Hunt XP",
+        "Spiderling",
+        "(X)d10",
+        "Severe Leg Injury Table"
+      ]
+    },
+    {
+      "term": "Sword in the Stone",
+      "definition": "Sword in the Stone is a basic hunt event card found in the White Speaker Sword Hunter white box expansion.\n\nCard Text.\nCrusted with flaking layers of dried blood, an obelisk juts from the ground. From its center protrudes a pristine hilt. Nominate a survivor to reach for it. Roll 1d10 and add their sword proficiency to the roll result.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Sword_in_the_Stone",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "White Speaker Sword Hunter",
+        "White Box",
+        "(X)d10",
+        "Sword Proficiency",
+        "Death",
+        "Event Damage",
+        "arms",
+        "Hit Location",
+        "Excalibur",
+        "gear",
+        "Sword Hunter",
+        "Settlement Event"
+      ]
+    },
+    {
+      "term": "Teething",
+      "definition": "Teething is a Screaming Antelope hunt event card found in the Kingdom Death: Monster Core Game.\n1.6 Card Text.\nThe survivors find a trail of large rotting teeth littering the ground. Each survivor may scavenge. Roll 1d10 on the table.\n\nIf no one scavenges: Roll random hunt event\n\n1.5 Card Text.\nThe survivors find a trail of large rotting teeth littering the ground. Each survivor may scavenge. Roll 1d10 on the table.\n\nIf no one scavenges: Roll random hunt event\n\nNotes.\nThis card was updated in Monster 1.6 to make it less rewarding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Teething",
+      "relatedTerms": [
+        "Screaming Antelope",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "survivor",
+        "1d10",
+        "Event Damage",
+        "Large Flat Tooth",
+        "Screaming Antelope#Resources",
+        "Random Hunt Event",
+        "The Legendary Card Pack"
+      ]
+    },
+    {
+      "term": "Test of Courage",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nLava flows from the eyes of a huge, grimacing stone face. Its gritted teeth hold a worn sword. If there are any survivors with 6+ courage, choose one to brave the lava. They gain the Adventure Sword rare gear If no one can test their mettle, the group moves on with feelings of inadequacy.\n\nIf the settlement already has the Adventure Sword and Storytelling, the survivors share stories of bravery; each survivor gains +1 survival. If the settlement also has Saga, the stories are exceptionally moving; each survivor also gains +1 courage.\n\nHope Stealer.\nThe Hope Stealer rare gear card found in the Santa Satan holiday white box expansion modifies this hunt event.\n\nCard Text.\nIf you’re insane when you pull the Adventure Sword from the grimacing stone face, you hear a distant cackle. You’re holding a much different weapon! Gain the Hope Stealer instead. (Hunt Event 85)",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Test_of_Courage",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "courage",
+        "Adventure Sword",
+        "Rare Gear",
+        "Storytelling",
+        "survival",
+        "Saga",
+        "Hope Stealer",
+        "Santa Satan",
+        "White Box",
+        "insane"
+      ]
+    },
+    {
+      "term": "The Beginning",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors stumble upon the scene of their settlement's first hunt. Whether they've seen it themselves or heard of it through stories, they immediately recognize it. Seeing the spot of their settlement's first triumph is electrifying.\n\nEach survivor gains +1 survival. If the settlement has Saga, each survivor gains +1 courage. If the settlement has Storytelling, each survivor gains +1 understanding.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Beginning",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Prologue",
+        "survival",
+        "Saga",
+        "courage",
+        "Storytelling",
+        "understanding"
+      ]
+    },
+    {
+      "term": "The Finale",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nAn enormous, metallic sound rings out form a distance. All survivors are electrified with dread; they suffer 2 brain event damage.\n\nThe survivors may follow the sound. Otherwise, they panic and retreat in the opposite direction; end this event and move the survivors 2 spaces back on the hunt board.\n\nEach survivor gains +1 courage and gingerly approaches the sound's origin. As they travel, they pass the shattered corpses of strange beasts.\n\nIf any survivor has 3+ understanding, they follow the trail of corpses. Otherwise, harvest 3 random basic resources from the corpses and end this event.\n\nArriving at a massive anvil, the survivors see a giant, one-eyed knight, its charcoal-colored armor reflecting their lantern light. The event revealer rolls 1d10.\n\nDoll.\nThe Doll limited release/white box expansion beta gear cards modify this event.\n\nCard Text.\nIf you reach The Finale, you may instead find the ruins of a broken doll. Gain the Mechanical Heart and Needle Sword beta gear. Limit, once per campaign. (Hunt Event 100)",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Finale",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "brain",
+        "Event Damage",
+        "Hunt Board",
+        "courage",
+        "understanding",
+        "Basic Resources",
+        "Cyclops Knight",
+        "Event Revealer",
+        "1d10",
+        "Death",
+        "Bleeding Token",
+        "Steel Sword",
+        "Steel Shield",
+        "Rare Gear",
+        "gear",
+        "Thunder Maul",
+        "weapon",
+        "Doll"
+      ]
+    },
+    {
+      "term": "The Forest Gate",
+      "definition": "is a special hunt event card found in the Flower Knight Expansion and Spidicules Expansion.\n\nCard Text.\nThe survivors approach an ominous gate. Trees and shadows lay beyond.\n\n The Forest Wants What It Wants",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Forest_Gate",
+      "relatedTerms": [
+        "Special Hunt Event",
+        "Flower Knight Expansion",
+        "Spidicules Expansion",
+        "The Forest Wants What It Wants"
+      ]
+    },
+    {
+      "term": "The Sword and the Statue",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA one-eyed statue, twice as tall as any man, sits before a great anvil with a hammer in each of its six hands. Transfixed, the survivors watch the statue beat a red-hot sword that lies across the anvil.\n\nEach survivor, starting with the event revealer and proceeding clockwise, may make one attempt to grab the sword from the anvil. If they do, they gain +1 courage, roll 1d10, and add their Hunt XP to their roll.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Sword_and_the_Statue",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "sword",
+        "Event Revealer",
+        "courage",
+        "1d10",
+        "Hunt XP",
+        "Death",
+        "Dismembered Arm",
+        "Severe Injury",
+        "Muramasa",
+        "Rare Gear"
+      ]
+    },
+    {
+      "term": "The Way is Narrow",
+      "definition": "is a hunt event card found in the Spidicules Expansion.\n\nCard Text.\nThe survivors walk between two cliffs that narrow until everyone is forced to walk single file. At some point, the survivors in front realize the last in line has disappeared.\n\nEach survivor rolls 1d10. The lowest-rolling survivor (roll off in case of ties) becomes the straggler. Remove the straggler from the rest of the Hunt Phase. They gain 1 bleeding token.\n\nIf the survivors return to the settlement before fighting Spidicules, the straggler is dead. Otherwise, the straggler starts the showdown knocked down adjacent to the monster.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/The_Way_is_Narrow",
+      "relatedTerms": [
+        "Hunt Event",
+        "Spidicules Expansion",
+        "(X)d10",
+        "straggler",
+        "Hunt Phase",
+        "Bleeding Token",
+        "Spidicules",
+        "death",
+        "showdown",
+        "Knocked Down",
+        "adjacent"
+      ]
+    },
+    {
+      "term": "Thespian Troupe",
+      "definition": "Thespian Troupe is a Dragon King hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nAn enormous man in a lion mask pulls a heavily laden rickshaw behind him. You may nominate a survivor to Enter the Rickshaw.\n\nRoll 1d10 - One Survivor\n\nRoll a random hunt event if you do not enter the rickshaw.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Thespian_Troupe",
+      "relatedTerms": [
+        "Dragon King",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivor",
+        "1d10",
+        "Survivor",
+        "Dismembered Arm",
+        "Severe Injury",
+        "Evasion",
+        "Depart",
+        "Unbreakable",
+        "Fighting Art",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "Time Flows Backwards",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nA blinding light accompanied by a bone-crushing vaccuum rushes over the survivors.\n\nAll survivors lose 1 level of Hunt XP for each level of their quarry.\n\nIf any survivors have no Hunt XP, they disappear. They are dead. No one remembers they even existed.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Time_Flows_Backwards",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "Hunt Experience",
+        "Monster Level",
+        "Quarry",
+        "Hunt XP",
+        "dead"
+      ]
+    },
+    {
+      "term": "Tomb of Excellence",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nThe survivors find a serene, luxurious tomb, immaculate in its construction and condition. Elegant murals decorate the walls, depicting glorious victories over the very monster the survivors are hunting. The survivors are baffled by its presence. The event revealer investigates and rolls 1d10.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Tomb_of_Excellence",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Event Revealer",
+        "investigate",
+        "1d10",
+        "survival",
+        "courage",
+        "understanding",
+        "Pictographs",
+        "quarry",
+        "showdown",
+        "trap",
+        "Hit Location"
+      ]
+    },
+    {
+      "term": "Wailing Fire",
+      "definition": "was basic hunt event #73 found in the Kingdom Death: Monster Core Game 1.3. It was replaced by Golden Ember when the core game updated to 1.5.\n\nEvent Text.\nThe survivors hear a terrible shrieking in the distance. The event revealer may investigate. If they do, all survivors gain +1 courage. They come upon a towering pyre burning intensely. The wail from the fire rattles their skulls. All survivors suffer 1 brain event damage.\n\nIf they do not investigate, roll again on the hunt event table before moving on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wailing_Fire",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Golden Ember",
+        "Event Revealer",
+        "investigate",
+        "courage",
+        "Brain Damage",
+        "Event Damage",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Watched (Hunt Event)",
+      "definition": "Watched is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nWhile walking among the enormous, scaly trunks of massive trees, the survivors come to a clearing. Thin, black, naked birches stand in a strange row before them. As they approach, the ground twitches and twists violently, knocking the survivors off their feet.\n\nA slit in the ground forms and widens, revealing the moist membrane of an enormous eye.\n\nReduce all survivors' insanity to 0 as they run away screaming, followed by the gaze of one colossal eye.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Watched_(Hunt_Event)",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "insanity"
+      ]
+    },
+    {
+      "term": "Weeping Faces",
+      "definition": "is a basic hunt event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nWater flows from the eyes of the surrounding stone faces, gathering in a small pool. Any survivor may consume from the pool and roll 1d10. If they have 3+ understanding, add +2 to their roll.\n\nInsane survivors are inconsolable, they lay on the ground sobbing heavily. If any survivor is insane, roll again on the hunt event table before moving on the hunt board.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Weeping_Faces",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "consume",
+        "1d10",
+        "understanding",
+        "Insane",
+        "Hunt Event Table",
+        "Hunt Board",
+        "brain",
+        "Event Damage",
+        "Healing",
+        "Injury Level",
+        "Hit Location",
+        "speed",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "Whispering Leaves",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nA sudden gust disturbs the enormous canopy of trees overhead. The rustle of leaves forms a distinct whisper in an unknown language. All survivors roll on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Whispering_Leaves",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "survivors",
+        "1d10",
+        "survivor",
+        "1d5",
+        "insanity",
+        "Bleeding Token",
+        "Brain Damage",
+        "event damage",
+        "movement",
+        "Attribute Modifier Token"
+      ]
+    },
+    {
+      "term": "White Lion Cub",
+      "definition": "is a White Lion hunt event card found in the Kingdom Death: Monster Core Game.\nCard Text.\nThe survivors find a White Lion cub. They may choose to slay the cub. If they do, each survivor gains 1 random basic resource. The event revealer rolls on the table below.\n\nIf they spare the cub: roll random hunt event.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/White_Lion_Cub",
+      "relatedTerms": [
+        "White Lion",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "Survivors",
+        "survivor",
+        "Basic Resources",
+        "Event Revealer",
+        "Enraged",
+        "AI deck",
+        "Random Hunt Event"
+      ]
+    },
+    {
+      "term": "White Pillar",
+      "definition": "is a Lion God hunt event card found in the Lion God Expansion.\nCard Text.\nA massive column of brilliant marble stands alone in the darkness, covered in bizarre symbols. Attempting to decipher them, the event revealer investigates and rolls on the table. Add their understanding to the result.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/White_Pillar",
+      "relatedTerms": [
+        "Lion God",
+        "hunt event",
+        "Lion God Expansion",
+        "event revealer",
+        "Investigate",
+        "understanding",
+        "1d10",
+        "survival",
+        "Hunt XP",
+        "Stark Raving",
+        "disorder"
+      ]
+    },
+    {
+      "term": "Wildfire",
+      "definition": "is a Basic Hunt Event found in the Kingdom Death: Monster Core Game.\n\nEvent Text.\nA massive wall of flame obstructs the survivors, incinerating the ground. It has destroyed whatever awaited the survivors and left chaos in its wake. Archive all hunt event cards on the next 2 hunt spaces. Place 2 basic hunt event cards in those spaces.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wildfire",
+      "relatedTerms": [
+        "Basic Hunt Event",
+        "Kingdom Death: Monster Core Game",
+        "Archive",
+        "Hunt Event Cards"
+      ]
+    },
+    {
+      "term": "Wind Tunnel",
+      "definition": "is a Phoenix hunt event card found in the Kingdom Death: Monster Core Game.\n\nCard Text.\nGusting winds threaten to push the survivors back. The survivors lock arms,struggling to move forward.\n\nRoll 1d10 and add all survivors' base strength attributes to the result.\n\nIf the result is 10+, move forward on the hunt board as normal. Otherwise, move the survivors 2 spaces back.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wind_Tunnel",
+      "relatedTerms": [
+        "Phoenix",
+        "hunt event",
+        "Kingdom Death: Monster Core Game",
+        "survivors",
+        "1d10",
+        "Strength",
+        "Attribute",
+        "Hunt Board"
+      ]
+    },
+    {
+      "term": "Wooly Root",
+      "definition": "is a Flower Knight hunt event card found in the Flower Knight Expansion.\nCard Text.\nStrange feathered leaves sprout from the ground. The event revealer investigates, pulling a plant from the ground. They roll on the table.",
+      "category": "Hunt Events",
+      "url": "https://kingdomdeath.fandom.com/wiki/Wooly_Root",
+      "relatedTerms": [
+        "Flower Knight",
+        "hunt event",
+        "Flower Knight Expansion",
+        "event revealer",
+        "Investigate",
+        "1d10",
+        "Event Revealer",
+        "hunt board",
+        "Brain Damage",
+        "event damage",
+        "evasion",
+        "accuracy",
+        "Attribute Modifier Token"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.551Z"
+}

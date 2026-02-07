@@ -269,7 +269,7 @@
   cursor: text;
 }
 
-.survivor-name {
+.survivor-sheet .survivor-name {
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-size: 0.8rem;
@@ -290,7 +290,7 @@
   align-content: center;
 }
 
-.survivor-name:focus {
+.survivor-sheet .survivor-name:focus {
   outline: none;
 }
 
