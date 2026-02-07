@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
@@ -12,8 +12,10 @@ import {
 import GlossaryModal from './components/GlossaryModal'
 import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
+import wikiIndex from './data/wiki-index.json'
+import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 
-const APP_VERSION = '1.0.6'
+const APP_VERSION = '1.1.0'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -86,6 +88,52 @@ function App() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
 
+  // Wiki state
+  const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
+  const [loadedCategories, setLoadedCategories] = useState<Set<string>>(new Set())
+  const [loadingCategory, setLoadingCategory] = useState<string | null>(null)
+
+  const wikiCategories = (wikiIndex.categories || []) as WikiCategoryInfo[]
+  const termsBySlug = (wikiIndex.termsBySlug || {}) as Record<string, string[]>
+
+  const handleLoadCategory = useCallback(async (slug: string) => {
+    if (loadedCategories.has(slug)) return
+    setLoadingCategory(slug)
+    try {
+      const response = await fetch(`${import.meta.env.BASE_URL}wiki/${slug}.json`)
+      if (!response.ok) throw new Error(`HTTP ${response.status}`)
+      const data = await response.json()
+      const terms = data.terms || []
+      setLoadedWikiTerms(prev => [...prev, ...terms])
+      setLoadedCategories(prev => new Set(prev).add(slug))
+    } catch (error) {
+      console.error(`Failed to load wiki category "${slug}":`, error)
+    } finally {
+      setLoadingCategory(null)
+    }
+  }, [loadedCategories])
+
+  // Search the wiki index for a query and auto-load matching categories
+  const searchAndLoadWikiTerms = useCallback(async (query: string) => {
+    if (!query.trim()) return
+    const q = query.toLowerCase().trim()
+    const slugsToLoad = new Set<string>()
+    for (const [slug, terms] of Object.entries(termsBySlug)) {
+      if (loadedCategories.has(slug)) continue
+      for (const term of terms) {
+        const termLower = term.toLowerCase()
+        const baseTerm = termLower.replace(/\s*\(.*?\)\s*$/, '')
+        if (baseTerm === q || baseTerm.startsWith(q) || termLower.startsWith(q) || termLower.includes(q)) {
+          slugsToLoad.add(slug)
+          break
+        }
+      }
+    }
+    for (const slug of slugsToLoad) {
+      await handleLoadCategory(slug)
+    }
+  }, [termsBySlug, loadedCategories, handleLoadCategory])
+
   // Helper to get current settlement
   const getCurrentSettlement = (): SettlementData | undefined => {
     return appState.settlements.find(s => s.id === appState.currentSettlementId)
@@ -118,6 +166,25 @@ function App() {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Reset scroll position when mobile keyboard dismisses
+  useEffect(() => {
+    if (!isMobileDevice) return
+    const viewport = window.visualViewport
+    if (!viewport) return
+
+    let keyboardOpen = false
+    const onResize = () => {
+      const isOpen = viewport.height < window.innerHeight * 0.75
+      if (keyboardOpen && !isOpen) {
+        window.scrollTo(0, 0)
+      }
+      keyboardOpen = isOpen
+    }
+
+    viewport.addEventListener('resize', onResize)
+    return () => viewport.removeEventListener('resize', onResize)
+  }, [isMobileDevice])
 
   // Auto-focus active quadrant on mobile devices
   useEffect(() => {
@@ -2088,6 +2155,11 @@ function App() {
         glossaryTerms={glossaryData.terms}
         initialQuery={glossaryInitialQuery}
         lastUpdated={glossaryData.lastUpdated}
+        wikiCategories={wikiCategories}
+        loadedWikiTerms={loadedWikiTerms}
+        onLoadCategory={handleLoadCategory}
+        loadingCategory={loadingCategory}
+        onSearchWiki={searchAndLoadWikiTerms}
       />
 
       {!isMobileDevice && (

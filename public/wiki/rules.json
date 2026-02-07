@@ -1,0 +1,74 @@
+{
+  "category": "Rules",
+  "terms": [
+    {
+      "term": "Impairments",
+      "definition": "Permanent changes or injuries suffered by a survivor and recorded on the survivor record sheet. These often result from the severe injury table.\n\nList of Impairments.",
+      "category": "Rules",
+      "url": "https://kingdomdeath.fandom.com/wiki/Impairments",
+      "relatedTerms": [
+        "Permanent Injury",
+        "Survivor Record Sheet",
+        "Severe Injury Tables"
+      ]
+    },
+    {
+      "term": "Monster Level Symbol",
+      "definition": "The symbol on all game cards and events refers to the monster's level. \n\nExamples.\nThe Gorm's Infrasonic Roar AI card instructs all survivors to suffer brain damage. In a showdown against a level 2 Gorm, this would be 2 brain damage.\nThe Spidicules' Hydraulic Leap AI card instructs all survivors to suffer brain damage. In a showdown against a level 2 Spidicules, this would be 2 brain damage.\nThe Flower Knight's Salute AI card instructs a survivor to suffer brain damage. In a showdown against a level 2 Flower Knight, this would be 2 brain damage.\nThe Dung Beetle Knight's Feculent Drumming AI card instructs all survivors to suffer + 2 brain damage. In a showdown against a level 2 Dung Beetle Knight, this would be 4 brain damage.\nThe Holy Utterance AI card instructs all survivors to suffer + 3 brain damage. In a showdown against a level 2 Lion God, this would be 5 brain damage.\nThe Dragon King's Lordly Roar instructs the target to suffer + 3 brain damage. In a showdown against a level 2 Dragon King, this would be 5 brain damage.\nThe Sunstalker's Cosmic Roar AI card instructs survivors to gain insanity. In a showdown against a level 2 Sunstalker, this would be 2 insanity.",
+      "category": "Rules",
+      "url": "https://kingdomdeath.fandom.com/wiki/Monster_Level_Symbol",
+      "relatedTerms": [
+        "Gorm",
+        "Infrasonic Roar",
+        "AI Card",
+        "All Survivors",
+        "Brain Damage",
+        "showdown",
+        "Spidicules",
+        "Hydraulic Leap",
+        "survivor",
+        "Flower Knight",
+        "Salute",
+        "Dung Beetle Knight",
+        "Feculent Drumming",
+        "Holy Utterance",
+        "Lion God",
+        "Dragon King",
+        "Lordly Roar",
+        "Sunstalker",
+        "Cosmic Roar"
+      ]
+    },
+    {
+      "term": "Resource Types",
+      "definition": "In addition to the specific name listed, all resource cards have one or more types that the card may be used as. Common examples include Bone, Hide, Organ, and Scrap.",
+      "category": "Rules",
+      "url": "https://kingdomdeath.fandom.com/wiki/Resource_Types",
+      "relatedTerms": [
+        "resource",
+        "Bone",
+        "Hide",
+        "Organ",
+        "Scrap"
+      ]
+    },
+    {
+      "term": "Retch",
+      "definition": "Some of the Gorm's AI and Hit Location cards direct it to perform Retch. This action causes damage to all survivors in the indicated zone. Terrain, survivors, or other effects on the board will not modify this zone.",
+      "category": "Rules",
+      "url": "https://kingdomdeath.fandom.com/wiki/Retch",
+      "relatedTerms": [
+        "Gorm",
+        "AI Card",
+        "Hit Location",
+        "action",
+        "damage",
+        "zone",
+        "Terrain",
+        "Survivor",
+        "Showdown Board"
+      ]
+    }
+  ],
+  "lastUpdated": "2026-02-07T01:00:31.577Z"
+}

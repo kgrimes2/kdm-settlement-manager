@@ -755,6 +755,112 @@ describe('App', () => {
     })
   })
 
+  describe('Mobile Keyboard Dismiss', () => {
+    const setViewportWidth = (width: number) => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: width,
+      })
+      window.dispatchEvent(new Event('resize'))
+    }
+
+    beforeEach(() => {
+      localStorage.setItem('tutorial-completed', '1.0.4')
+    })
+
+    it('scrolls back to top when mobile keyboard dismisses', async () => {
+      // Set up mobile viewport
+      setViewportWidth(375)
+      Object.defineProperty(window, 'innerHeight', {
+        writable: true,
+        configurable: true,
+        value: 800,
+      })
+
+      // Mock visualViewport as an EventTarget with a mutable height
+      const listeners: Record<string, Function[]> = {}
+      const mockViewport = {
+        height: 800,
+        addEventListener: (event: string, fn: Function) => {
+          if (!listeners[event]) listeners[event] = []
+          listeners[event].push(fn)
+        },
+        removeEventListener: (event: string, fn: Function) => {
+          if (listeners[event]) {
+            listeners[event] = listeners[event].filter(l => l !== fn)
+          }
+        },
+      }
+      Object.defineProperty(window, 'visualViewport', {
+        writable: true,
+        configurable: true,
+        value: mockViewport,
+      })
+
+      const scrollToSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+      render(<App />)
+
+      // Simulate keyboard opening (viewport shrinks below 75% of innerHeight)
+      mockViewport.height = 400
+      listeners['resize']?.forEach(fn => fn())
+
+      expect(scrollToSpy).not.toHaveBeenCalled()
+
+      // Simulate keyboard closing (viewport returns to full height)
+      mockViewport.height = 800
+      listeners['resize']?.forEach(fn => fn())
+
+      expect(scrollToSpy).toHaveBeenCalledWith(0, 0)
+
+      scrollToSpy.mockRestore()
+    })
+
+    it('does not scroll on desktop when viewport resizes', async () => {
+      setViewportWidth(1920)
+      Object.defineProperty(window, 'innerHeight', {
+        writable: true,
+        configurable: true,
+        value: 1080,
+      })
+
+      const listeners: Record<string, Function[]> = {}
+      const mockViewport = {
+        height: 1080,
+        addEventListener: (event: string, fn: Function) => {
+          if (!listeners[event]) listeners[event] = []
+          listeners[event].push(fn)
+        },
+        removeEventListener: (event: string, fn: Function) => {
+          if (listeners[event]) {
+            listeners[event] = listeners[event].filter(l => l !== fn)
+          }
+        },
+      }
+      Object.defineProperty(window, 'visualViewport', {
+        writable: true,
+        configurable: true,
+        value: mockViewport,
+      })
+
+      const scrollToSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+      render(<App />)
+
+      // Simulate a resize on desktop
+      mockViewport.height = 500
+      listeners['resize']?.forEach(fn => fn())
+      mockViewport.height = 1080
+      listeners['resize']?.forEach(fn => fn())
+
+      // Should not scroll since it's not a mobile device
+      expect(scrollToSpy).not.toHaveBeenCalled()
+
+      scrollToSpy.mockRestore()
+    })
+  })
+
   describe('Layout Overflow Detection', () => {
     const setViewportWidth = (width: number) => {
       Object.defineProperty(window, 'innerWidth', {
