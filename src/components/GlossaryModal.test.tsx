@@ -43,12 +43,13 @@ describe('GlossaryModal', () => {
     expect(screen.getByText('Kingdom Death Glossary')).toBeInTheDocument()
   })
 
-  it('shows search and browse toggle buttons', () => {
+  it('shows search, browse, and scan toggle buttons', () => {
     render(<GlossaryModal {...defaultProps} />)
-    expect(screen.getByText('Search')).toBeInTheDocument()
-    const toggleBrowse = document.querySelector('.glossary-view-toggle .glossary-toggle-btn:last-child')
-    expect(toggleBrowse).toBeInTheDocument()
-    expect(toggleBrowse?.textContent).toBe('Browse')
+    const toggleButtons = document.querySelectorAll('.glossary-view-toggle .glossary-toggle-btn')
+    expect(toggleButtons).toHaveLength(3)
+    expect(toggleButtons[0].textContent).toBe('Search')
+    expect(toggleButtons[1].textContent).toBe('Browse')
+    expect(toggleButtons[2].textContent).toBe('Scan')
   })
 
   it('shows search results when typing', async () => {
@@ -79,7 +80,7 @@ describe('GlossaryModal', () => {
     const user = userEvent.setup()
     render(<GlossaryModal {...defaultProps} />)
 
-    const browseBtn = document.querySelector('.glossary-view-toggle .glossary-toggle-btn:last-child') as HTMLElement
+    const browseBtn = document.querySelector('.glossary-view-toggle .glossary-toggle-btn:nth-child(2)') as HTMLElement
     await user.click(browseBtn)
 
     expect(screen.getByText('Browse Wiki Categories')).toBeInTheDocument()
@@ -93,7 +94,7 @@ describe('GlossaryModal', () => {
     const onLoadCategory = vi.fn().mockResolvedValue(undefined)
     render(<GlossaryModal {...defaultProps} onLoadCategory={onLoadCategory} />)
 
-    const browseBtn = document.querySelector('.glossary-view-toggle .glossary-toggle-btn:last-child') as HTMLElement
+    const browseBtn = document.querySelector('.glossary-view-toggle .glossary-toggle-btn:nth-child(2)') as HTMLElement
     await user.click(browseBtn)
     await user.click(screen.getByText('Fighting Arts'))
 
