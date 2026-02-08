@@ -94,6 +94,15 @@ function App() {
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
   const [loadedCategories, setLoadedCategories] = useState<Set<string>>(new Set())
+  const [collapsedInjuries, setCollapsedInjuries] = useState<Set<string>>(new Set())
+
+  const toggleInjuryCollapse = (location: string) => {
+    setCollapsedInjuries(prev => {
+      const next = new Set(prev)
+      next.has(location) ? next.delete(location) : next.add(location)
+      return next
+    })
+  }
   const [loadingCategory, setLoadingCategory] = useState<string | null>(null)
 
   const wikiCategories = (wikiIndex.categories || []) as WikiCategoryInfo[]
@@ -1508,7 +1517,7 @@ function App() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="survivor-list-header">
-              <h2>Survivor Management</h2>
+              <h2>{currentSettlement?.name || 'Settlement'} Survivors</h2>
               <div className="header-actions">
                 <button
                   className="create-survivor-button"
@@ -1720,59 +1729,6 @@ function App() {
               />
             </div>
             <div className="secondary-sheet">
-              <div className="permanent-injuries-section">
-                <h3>Permanent Severe Injuries</h3>
-                <div className="injury-legend">
-                  <span className="legend-item">
-                    <span className="legend-box red-legend"></span>
-                    Red background = Retired
-                  </span>
-                </div>
-                {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                  <div key={location} className="injury-location-group">
-                    <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                    {focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                      <div className="no-injuries">No injuries</div>
-                    ) : (
-                      focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                        <div key={injuryIndex} className="injury-item">
-                          <span className="injury-name">{injury.name}</span>
-                          <div className="injury-checkboxes">
-                            {injury.checkboxes.map((checked, checkboxIndex) => {
-                              const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                              const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                              return (
-                                <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                  <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={() => {
-                                      const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                      newInjuries[injuryIndex] = {
-                                        ...newInjuries[injuryIndex],
-                                        checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                          i === checkboxIndex ? !cb : cb
-                                        )
-                                      }
-                                      updateSurvivor(focusedQuadrant, {
-                                        ...focusedSurvivor,
-                                        permanentInjuries: {
-                                          ...focusedSurvivor.permanentInjuries,
-                                          [location]: newInjuries
-                                        }
-                                      })
-                                  }}
-                                />
-                              </label>
-                            )
-                            })}
-                          </div>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                ))}
-              </div>
               <div className="auxiliary-notes-section">
                 <h3>Notes</h3>
                 <textarea
@@ -1786,6 +1742,67 @@ function App() {
                   }}
                   placeholder="Add notes about this survivor..."
                 />
+              </div>
+              <div className="permanent-injuries-section">
+                <h3>Permanent Severe Injuries</h3>
+                <div className="injury-legend">
+                  <span className="legend-item">
+                    <span className="legend-box red-legend"></span>
+                    Red background = Retired
+                  </span>
+                </div>
+                {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                  <div key={location} className="injury-location-group">
+                    <div
+                      className="injury-location-header"
+                      onClick={() => toggleInjuryCollapse(location)}
+                    >
+                      <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                      <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
+                    </div>
+                    {!collapsedInjuries.has(location) && (
+                      focusedSurvivor.permanentInjuries[location].length === 0 ? (
+                        <div className="no-injuries">No injuries</div>
+                      ) : (
+                        focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
+                          <div key={injuryIndex} className="injury-item">
+                            <span className="injury-name">{injury.name}</span>
+                            <div className="injury-checkboxes">
+                              {injury.checkboxes.map((checked, checkboxIndex) => {
+                                const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                                const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                                return (
+                                  <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                    <input
+                                      type="checkbox"
+                                      checked={checked}
+                                      onChange={() => {
+                                        const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
+                                        newInjuries[injuryIndex] = {
+                                          ...newInjuries[injuryIndex],
+                                          checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                            i === checkboxIndex ? !cb : cb
+                                          )
+                                        }
+                                        updateSurvivor(focusedQuadrant, {
+                                          ...focusedSurvivor,
+                                          permanentInjuries: {
+                                            ...focusedSurvivor.permanentInjuries,
+                                            [location]: newInjuries
+                                          }
+                                        })
+                                    }}
+                                  />
+                                </label>
+                              )
+                              })}
+                            </div>
+                          </div>
+                        ))
+                      )
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -2188,6 +2205,7 @@ function App() {
       <InventoryModal
         isOpen={showInventoryModal}
         onClose={() => setShowInventoryModal(false)}
+        settlementName={currentSettlement?.name || 'Settlement'}
         inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
         onUpdateInventory={handleUpdateInventory}
         glossaryTerms={glossaryData.terms}
