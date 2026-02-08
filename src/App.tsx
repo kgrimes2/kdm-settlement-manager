@@ -17,7 +17,7 @@ import glossaryData from './data/glossary.json'
 import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 
-const APP_VERSION = '1.1.0'
+const APP_VERSION = '1.2.0'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -71,6 +71,7 @@ function App() {
   const [show2StateDropdown, setShow2StateDropdown] = useState(false)
   const [show3StateDropdown, setShow3StateDropdown] = useState(false)
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
+  const [showSavesDropdown, setShowSavesDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
   const [showInventoryModal, setShowInventoryModal] = useState(false)
@@ -304,6 +305,24 @@ function App() {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [showSettlementDropdown])
+
+  // Close saves dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.saves-selector')) {
+        setShowSavesDropdown(false)
+      }
+    }
+
+    if (showSavesDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showSavesDropdown])
 
   // Close marker dropdowns when clicking outside
   useEffect(() => {
@@ -650,6 +669,96 @@ function App() {
       setShowSurvivorPool(true)
       showNotification('New survivor created in Survivor Pool', 'success')
     }
+  }
+
+  const handleRetireFocused = () => {
+    if (focusedQuadrant === null) return
+    const settlement = getCurrentSettlement()
+    if (!settlement) return
+
+    const survivor = settlement.survivors[focusedQuadrant]
+    if (!survivor) return
+
+    const survivorName = survivor.name || 'this survivor'
+    const quadrant = focusedQuadrant
+
+    setConfirmDialog({
+      message: `Are you sure you want to retire ${survivorName}? This action is permanent and cannot be undone.`,
+      onConfirm: () => {
+        setMarkers(prev => {
+          const newMarkers = new Map(prev)
+          newMarkers.delete(quadrant)
+          return newMarkers
+        })
+
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const surv = s.survivors[quadrant]
+            if (!surv) return s
+
+            return {
+              ...s,
+              survivors: {
+                ...s.survivors,
+                [quadrant]: null
+              },
+              retiredSurvivors: [...s.retiredSurvivors, surv]
+            }
+          })
+        }))
+        setFocusedQuadrant(null)
+        showNotification(`${survivorName} retired`, 'success')
+        setConfirmDialog(null)
+      }
+    })
+  }
+
+  const handleDeceasedFocused = () => {
+    if (focusedQuadrant === null) return
+    const settlement = getCurrentSettlement()
+    if (!settlement) return
+
+    const survivor = settlement.survivors[focusedQuadrant]
+    if (!survivor) return
+
+    const survivorName = survivor.name || 'this survivor'
+    const quadrant = focusedQuadrant
+
+    setConfirmDialog({
+      message: `Are you sure you want to mark ${survivorName} as deceased? This action is permanent and cannot be undone.`,
+      onConfirm: () => {
+        setMarkers(prev => {
+          const newMarkers = new Map(prev)
+          newMarkers.delete(quadrant)
+          return newMarkers
+        })
+
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s => {
+            if (s.id !== prev.currentSettlementId) return s
+
+            const surv = s.survivors[quadrant]
+            if (!surv) return s
+
+            return {
+              ...s,
+              survivors: {
+                ...s.survivors,
+                [quadrant]: null
+              },
+              deceasedSurvivors: [...s.deceasedSurvivors, surv]
+            }
+          })
+        }))
+        setFocusedQuadrant(null)
+        showNotification(`${survivorName} marked as deceased`, 'success')
+        setConfirmDialog(null)
+      }
+    })
   }
 
   const handleRetireSurvivor = (index: number) => {
@@ -1177,6 +1286,29 @@ function App() {
                 )}
               </div>
 
+              <div className="tutorial-section">
+                <button
+                  className="tutorial-management-button"
+                  onClick={() => {
+                    closeSettlementManagement()
+                    setShowTutorial(true)
+                  }}
+                >
+                  🎓 Tutorial
+                </button>
+              </div>
+
+              <div className="feedback-section">
+                <a
+                  href="https://forms.gle/sggPzN1GuNeVVkjL8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="feedback-button"
+                >
+                  Send Feedback
+                </a>
+              </div>
+
               <div className="danger-zone">
                 <button
                   className="clear-all-button"
@@ -1428,16 +1560,6 @@ function App() {
               </div>
             )}
           </div>
-          {!isMobileDevice && (
-            <button
-              className="toolbar-button toolbar-icon-button tutorial-button"
-              onClick={() => setShowTutorial(true)}
-              aria-label="Tutorial"
-              title="Tutorial"
-            >
-              🎓
-            </button>
-          )}
           <button
             className="toolbar-button toolbar-icon-button glossary-button"
             onClick={() => handleOpenGlossary()}
@@ -1454,23 +1576,35 @@ function App() {
           >
             🎒
           </button>
-          <div className="export-import-buttons">
-          <button
-            className="toolbar-button toolbar-icon-button"
-            onClick={handleExport}
-            aria-label="Export"
-            title="Export Data"
-          >
-            ⬆️
-          </button>
-          <button
-            className="toolbar-button toolbar-icon-button"
-            onClick={handleImport}
-            aria-label="Import"
-            title="Import Data"
-          >
-            ⬇️
-          </button>
+          <div className="saves-selector">
+            <button
+              className="toolbar-button saves-dropdown-button"
+              onClick={() => setShowSavesDropdown(!showSavesDropdown)}
+            >
+              💾 Saves ▼
+            </button>
+            {showSavesDropdown && (
+              <div className="saves-dropdown-menu">
+                <div
+                  className="saves-dropdown-item"
+                  onClick={() => {
+                    setShowSavesDropdown(false)
+                    handleExport()
+                  }}
+                >
+                  ⬆️ Export
+                </div>
+                <div
+                  className="saves-dropdown-item"
+                  onClick={() => {
+                    setShowSavesDropdown(false)
+                    handleImport()
+                  }}
+                >
+                  ⬇️ Import
+                </div>
+              </div>
+            )}
           </div>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
@@ -1489,13 +1623,19 @@ function App() {
             👥
           </button>
         </div>
-        {focusedQuadrant !== null && !isMobileDevice && (
-          <button
-            className="return-to-overview-button"
-            onClick={() => setFocusedQuadrant(null)}
-          >
-            ↩️ Return to Overview
-          </button>
+        {focusedQuadrant !== null && (
+          <div className="focus-mode-actions">
+            <button className="toolbar-button retire-focus-button" onClick={handleRetireFocused}>Retire</button>
+            <button className="toolbar-button deceased-focus-button" onClick={handleDeceasedFocused}>Deceased</button>
+            {!isMobileDevice && (
+              <button
+                className="return-to-overview-button"
+                onClick={() => setFocusedQuadrant(null)}
+              >
+                ↩️ Return to Overview
+              </button>
+            )}
+          </div>
         )}
         <input
           ref={fileInputRef}
@@ -2111,59 +2251,6 @@ function App() {
         const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
         return (
           <div className="mobile-secondary-sheet">
-            <div className="permanent-injuries-section">
-              <h3>Permanent Severe Injuries</h3>
-              <div className="injury-legend">
-                <span className="legend-item">
-                  <span className="legend-box red-legend"></span>
-                  Red background = Retired
-                </span>
-              </div>
-              {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                <div key={location} className="injury-location-group">
-                  <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                  {focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                    <div className="no-injuries">No injuries</div>
-                  ) : (
-                    focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                      <div key={injuryIndex} className="injury-item">
-                        <span className="injury-name">{injury.name}</span>
-                        <div className="injury-checkboxes">
-                          {injury.checkboxes.map((checked, checkboxIndex) => {
-                            const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                            const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                            return (
-                              <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                <input
-                                  type="checkbox"
-                                  checked={checked}
-                                  onChange={() => {
-                                    const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                    newInjuries[injuryIndex] = {
-                                      ...newInjuries[injuryIndex],
-                                      checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                        i === checkboxIndex ? !cb : cb
-                                      )
-                                    }
-                                    updateSurvivor(focusedQuadrant, {
-                                      ...focusedSurvivor,
-                                      permanentInjuries: {
-                                        ...focusedSurvivor.permanentInjuries,
-                                        [location]: newInjuries
-                                      }
-                                    })
-                                  }}
-                                />
-                              </label>
-                            )
-                          })}
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              ))}
-            </div>
             <div className="auxiliary-notes-section">
               <h3>Notes</h3>
               <textarea
@@ -2177,6 +2264,67 @@ function App() {
                 }}
                 placeholder="Add notes about this survivor..."
               />
+            </div>
+            <div className="permanent-injuries-section">
+              <h3>Permanent Severe Injuries</h3>
+              <div className="injury-legend">
+                <span className="legend-item">
+                  <span className="legend-box red-legend"></span>
+                  Red background = Retired
+                </span>
+              </div>
+              {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                <div key={location} className="injury-location-group">
+                  <div
+                    className="injury-location-header"
+                    onClick={() => toggleInjuryCollapse(location)}
+                  >
+                    <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                    <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
+                  </div>
+                  {!collapsedInjuries.has(location) && (
+                    focusedSurvivor.permanentInjuries[location].length === 0 ? (
+                      <div className="no-injuries">No injuries</div>
+                    ) : (
+                      focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
+                        <div key={injuryIndex} className="injury-item">
+                          <span className="injury-name">{injury.name}</span>
+                          <div className="injury-checkboxes">
+                            {injury.checkboxes.map((checked, checkboxIndex) => {
+                              const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                              const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                              return (
+                                <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                  <input
+                                    type="checkbox"
+                                    checked={checked}
+                                    onChange={() => {
+                                      const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
+                                      newInjuries[injuryIndex] = {
+                                        ...newInjuries[injuryIndex],
+                                        checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                          i === checkboxIndex ? !cb : cb
+                                        )
+                                      }
+                                      updateSurvivor(focusedQuadrant, {
+                                        ...focusedSurvivor,
+                                        permanentInjuries: {
+                                          ...focusedSurvivor.permanentInjuries,
+                                          [location]: newInjuries
+                                        }
+                                      })
+                                    }}
+                                  />
+                                </label>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      ))
+                    )
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         )
