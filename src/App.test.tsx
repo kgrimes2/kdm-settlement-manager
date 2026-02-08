@@ -30,10 +30,14 @@ describe('App', () => {
       expect(screen.getByDisplayValue('Zachary')).toBeInTheDocument()
     })
 
-    it('renders toolbar buttons', () => {
+    it('renders toolbar buttons', async () => {
+      const user = userEvent.setup()
       render(<App />)
-      expect(screen.getByRole('button', { name: /export/i })).toBeInTheDocument()
-      expect(screen.getByRole('button', { name: /import/i })).toBeInTheDocument()
+      const savesBtn = screen.getByRole('button', { name: /saves/i })
+      expect(savesBtn).toBeInTheDocument()
+      await user.click(savesBtn)
+      expect(screen.getByText(/export/i)).toBeInTheDocument()
+      expect(screen.getByText(/import/i)).toBeInTheDocument()
     })
   })
 
@@ -127,8 +131,10 @@ describe('App', () => {
       const user = userEvent.setup()
       render(<App />)
 
-      const exportBtn = screen.getByRole('button', { name: /export/i })
-      await user.click(exportBtn)
+      const savesBtn = screen.getByRole('button', { name: /saves/i })
+      await user.click(savesBtn)
+      const exportItem = screen.getByText(/export/i)
+      await user.click(exportItem)
 
       expect(global.URL.createObjectURL).toHaveBeenCalled()
       expect(global.URL.revokeObjectURL).toHaveBeenCalled()
