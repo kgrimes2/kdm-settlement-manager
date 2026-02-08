@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, waitFor, within } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
 
@@ -221,7 +221,7 @@ describe('App', () => {
     })
   })
 
-  describe('Survivor Management', () => {
+  describe('Settlement 1 Survivors', () => {
     it('opens survivor list panel when menu button is clicked', async () => {
       const user = userEvent.setup()
       render(<App />)
@@ -229,7 +229,7 @@ describe('App', () => {
       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
       await user.click(menuBtn)
 
-      expect(screen.getByText('Survivor Management')).toBeInTheDocument()
+      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
     })
 
     it('creates a new survivor', async () => {
@@ -492,12 +492,12 @@ describe('App', () => {
       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
       await user.click(menuBtn)
 
-      expect(screen.getByText('Survivor Management')).toBeInTheDocument()
+      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
 
       await user.keyboard('{Escape}')
 
       await waitFor(() => {
-        expect(screen.queryByText('Survivor Management')).not.toBeInTheDocument()
+        expect(screen.queryByText('Settlement 1 Survivors')).not.toBeInTheDocument()
       })
     })
 
@@ -546,7 +546,7 @@ describe('App', () => {
       const emptySlot = screen.getAllByText('Empty Slot')[0]
       await user.click(emptySlot)
 
-      expect(screen.getByText('Survivor Management')).toBeInTheDocument()
+      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
     })
 
     it('notification disappears after timeout', async () => {
@@ -574,13 +574,13 @@ describe('App', () => {
       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
       await user.click(menuBtn)
 
-      expect(screen.getByText('Survivor Management')).toBeInTheDocument()
+      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
 
       const closeBtn = screen.getByRole('button', { name: /close/i })
       await user.click(closeBtn)
 
       await waitFor(() => {
-        expect(screen.queryByText('Survivor Management')).not.toBeInTheDocument()
+        expect(screen.queryByText('Settlement 1 Survivors')).not.toBeInTheDocument()
       }, { timeout: 500 })
     })
 
@@ -751,7 +751,7 @@ describe('App', () => {
       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
       await user.click(menuBtn)
 
-      expect(screen.getByText('Survivor Management')).toBeInTheDocument()
+      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
     })
   })
 
@@ -984,6 +984,95 @@ describe('App', () => {
           }
         }
       })
+    })
+  })
+
+  describe('Inventory Modal', () => {
+    it('shows settlement name in inventory title', async () => {
+      localStorage.setItem('tutorial-completed', '1.0.4')
+      const user = userEvent.setup()
+      render(<App />)
+
+      const inventoryBtn = screen.getByRole('button', { name: /inventory/i })
+      await user.click(inventoryBtn)
+
+      expect(screen.getByText('Settlement 1 Inventory')).toBeInTheDocument()
+    })
+  })
+
+  describe('Focus Mode Secondary Sheet', () => {
+    const setViewportWidth = (width: number) => {
+      Object.defineProperty(window, 'innerWidth', {
+        writable: true,
+        configurable: true,
+        value: width,
+      })
+      window.dispatchEvent(new Event('resize'))
+    }
+
+    it('shows notes section before injuries section', async () => {
+      setViewportWidth(1920)
+      localStorage.setItem('tutorial-completed', '1.0.4')
+      const { container } = render(<App />)
+
+      // Focus on a quadrant - use fireEvent so e.target === e.currentTarget
+      const quadrant = container.querySelector('.quadrant-1')
+      expect(quadrant).toBeTruthy()
+      fireEvent.click(quadrant!)
+
+      await waitFor(() => {
+        expect(container.querySelector('.secondary-sheet')).toBeTruthy()
+      })
+
+      const secondarySheet = container.querySelector('.secondary-sheet')!
+      const notes = secondarySheet.querySelector('.auxiliary-notes-section')
+      const injuries = secondarySheet.querySelector('.permanent-injuries-section')
+      expect(notes).toBeTruthy()
+      expect(injuries).toBeTruthy()
+
+      // Notes should come before injuries in DOM order
+      const children = Array.from(secondarySheet.children)
+      const notesIndex = children.indexOf(notes as Element)
+      const injuriesIndex = children.indexOf(injuries as Element)
+      expect(notesIndex).toBeLessThan(injuriesIndex)
+    })
+
+    it('collapses and expands injury location sections', async () => {
+      setViewportWidth(1920)
+      localStorage.setItem('tutorial-completed', '1.0.4')
+      const user = userEvent.setup()
+      const { container } = render(<App />)
+
+      // Focus on a quadrant - use fireEvent so e.target === e.currentTarget
+      const quadrant = container.querySelector('.quadrant-1')
+      expect(quadrant).toBeTruthy()
+      fireEvent.click(quadrant!)
+
+      await waitFor(() => {
+        expect(container.querySelector('.secondary-sheet')).toBeTruthy()
+      })
+
+      // Find the Head injury location header
+      const headers = container.querySelectorAll('.injury-location-header')
+      expect(headers.length).toBe(5) // head, arms, body, waist, legs
+
+      const headHeader = headers[0]
+      const headGroup = headHeader.closest('.injury-location-group')!
+
+      // Initially expanded - should have injury items or "No injuries"
+      expect(headGroup.querySelector('.injury-item, .no-injuries')).toBeTruthy()
+
+      // Click to collapse
+      await user.click(headHeader)
+
+      // Content should be hidden
+      expect(headGroup.querySelector('.injury-item, .no-injuries')).toBeFalsy()
+
+      // Click again to expand
+      await user.click(headHeader)
+
+      // Content should be visible again
+      expect(headGroup.querySelector('.injury-item, .no-injuries')).toBeTruthy()
     })
   })
 })
