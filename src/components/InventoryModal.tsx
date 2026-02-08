@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Tesseract from 'tesseract.js'
 import './InventoryModal.css'
 import type { GlossaryTerm } from '../types/glossary'
@@ -8,6 +8,7 @@ import { searchGlossary, type SearchResult } from '../utils/glossarySearch'
 interface InventoryModalProps {
   isOpen: boolean
   onClose: () => void
+  settlementName: string
   inventory: SettlementInventory
   onUpdateInventory: (inventory: SettlementInventory) => void
   glossaryTerms: GlossaryTerm[]
@@ -20,7 +21,7 @@ type SectionType = 'gear' | 'materials'
 type OcrStatus = 'idle' | 'processing' | 'done' | 'error'
 
 export default function InventoryModal({
-  isOpen, onClose, inventory, onUpdateInventory,
+  isOpen, onClose, settlementName, inventory, onUpdateInventory,
   glossaryTerms, loadedWikiTerms, onSearchWiki, onLoadCategory,
 }: InventoryModalProps) {
   const [activeSection, setActiveSection] = useState<SectionType>('gear')
@@ -41,6 +42,7 @@ export default function InventoryModal({
   const [ocrResults, setOcrResults] = useState<SearchResult[]>([])
   const [showScan, setShowScan] = useState(false)
   const ocrBusyRef = useRef(false)
+  const pauseAutoCaptureRef = useRef(false)
 
   const gearCategories = new Set(['Gear', 'Weapons', 'Armor'])
   const materialsCategories = new Set(['Resources'])
@@ -52,12 +54,35 @@ export default function InventoryModal({
       : materialsCategories.has(t.category)
   })
 
+  const kdmKeywords = new Set([
+    'head', 'arms', 'body', 'waist', 'legs',
+    'herb', 'consumable', 'ammunition', 'weapon', 'armor',
+    'heavy', 'two-handed', 'melee', 'ranged', 'shield',
+    'accessory', 'item', 'bone', 'organ', 'hide',
+    'scrap', 'iron', 'leather', 'fur', 'fragile',
+    'soluble', 'flammable', 'other', 'set', 'mask',
+  ])
+
+  const itemMeta = useMemo(() => {
+    const map = new Map<string, { tags: string[], url?: string }>()
+    for (const term of loadedWikiTerms) {
+      const tags = term.relatedTerms
+        ? term.relatedTerms.filter(rt => kdmKeywords.has(rt.toLowerCase())).map(rt => rt.toLowerCase())
+        : []
+      if (tags.length > 0 || term.url) {
+        map.set(term.term.toLowerCase(), { tags, url: term.url })
+      }
+    }
+    return map
+  }, [loadedWikiTerms])
+
   const stopCamera = useCallback(() => {
     if (streamRef.current) {
       streamRef.current.getTracks().forEach(track => track.stop())
       streamRef.current = null
     }
     ocrBusyRef.current = false
+    pauseAutoCaptureRef.current = false
     setScanning(false)
   }, [])
 
@@ -94,8 +119,8 @@ export default function InventoryModal({
     const fuzzyWordMatch = (ocrWord: string, termWord: string): boolean => {
       if (ocrWord === termWord) return true
       if (termWord.length < 3) return false
-      // Allow up to ~40% character errors to handle OCR noise
-      const maxErrors = Math.max(1, Math.ceil(termWord.length * 0.4))
+      // Allow up to ~20% character errors to handle OCR noise
+      const maxErrors = Math.max(1, Math.ceil(termWord.length * 0.2))
       if (Math.abs(ocrWord.length - termWord.length) > maxErrors) return false
       // Levenshtein distance
       const m = ocrWord.length
@@ -232,19 +257,20 @@ export default function InventoryModal({
     recognizeImage(file)
   }, [recognizeImage])
 
-  // Connect stream to video element once it mounts
-  useEffect(() => {
-    if (scanning && videoRef.current && streamRef.current) {
-      videoRef.current.srcObject = streamRef.current
+  // Connect stream to video element whenever it mounts
+  const videoCallbackRef = useCallback((node: HTMLVideoElement | null) => {
+    videoRef.current = node
+    if (node && streamRef.current) {
+      node.srcObject = streamRef.current
     }
-  }, [scanning])
+  }, [])
 
   // Auto-capture: periodically grab frames and run OCR while camera is active
   useEffect(() => {
     if (!scanning) return
 
     const tryAutoCapture = async () => {
-      if (ocrBusyRef.current) return
+      if (ocrBusyRef.current || pauseAutoCaptureRef.current) return
       const frame = captureFrame()
       if (!frame) return
 
@@ -259,7 +285,7 @@ export default function InventoryModal({
             setOcrText(text)
             setOcrResults(matches)
             setOcrStatus('done')
-            stopCamera()
+            pauseAutoCaptureRef.current = true
             return
           }
         }
@@ -272,7 +298,7 @@ export default function InventoryModal({
 
     // Start first attempt after a short delay to let the camera stabilize
     const initialTimeout = setTimeout(tryAutoCapture, 1000)
-    const interval = setInterval(tryAutoCapture, 2500)
+    const interval = setInterval(tryAutoCapture, 5000)
 
     return () => {
       clearTimeout(initialTimeout)
@@ -395,7 +421,7 @@ export default function InventoryModal({
     <div className="inventory-modal-backdrop" onClick={handleBackdropClick}>
       <div className="inventory-modal">
         <div className="inventory-modal-header">
-          <h2>Settlement Inventory</h2>
+          <h2>{settlementName} Inventory</h2>
           <button className="inventory-close-btn" onClick={onClose} aria-label="Close">
             ×
           </button>
@@ -513,7 +539,7 @@ export default function InventoryModal({
               {scanning && (
                 <>
                   <video
-                    ref={videoRef}
+                    ref={videoCallbackRef}
                     autoPlay
                     playsInline
                     muted
@@ -521,22 +547,21 @@ export default function InventoryModal({
                     onLoadedMetadata={() => videoRef.current?.play()}
                   />
                   <canvas ref={canvasRef} style={{ display: 'none' }} />
-                  <div className="glossary-ocr-status">
-                    <div className="glossary-spinner" />
-                    Scanning for card...
-                  </div>
+                  {!pauseAutoCaptureRef.current && (
+                    <div className="glossary-ocr-status">
+                      <div className="glossary-spinner" />
+                      Scanning for card...
+                    </div>
+                  )}
                   <div className="inventory-scan-actions">
-                    <button className="glossary-stop-camera-btn" onClick={stopCamera}>
+                    <button className="glossary-stop-camera-btn" onClick={() => {
+                      pauseAutoCaptureRef.current = false
+                      stopCamera()
+                    }}>
                       Cancel
                     </button>
                   </div>
                 </>
-              )}
-
-              {ocrStatus === 'done' && ocrText && (
-                <div className="glossary-ocr-raw">
-                  <strong>Detected text:</strong> {ocrText}
-                </div>
               )}
 
               {ocrStatus === 'done' && !ocrText && (
@@ -545,7 +570,28 @@ export default function InventoryModal({
                 </div>
               )}
 
-              {ocrStatus === 'done' && !scanning && (
+              {ocrResults.length > 0 && (
+                <div className="inventory-ocr-results">
+                  <div className="inventory-ocr-results-header">Tap a match to add to {activeSection}:</div>
+                  {ocrResults.map((result, index) => (
+                    <div
+                      key={`${result.term.term}-${index}`}
+                      className="inventory-ocr-result-item"
+                      onClick={() => {
+                        addItem(result.term.term)
+                        setOcrStatus('idle')
+                        setOcrText('')
+                        setOcrResults([])
+                        pauseAutoCaptureRef.current = false
+                      }}
+                    >
+                      {result.term.term}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {ocrStatus === 'done' && ocrResults.length === 0 && !scanning && (
                 <div className="inventory-scan-actions" style={{ marginTop: '0.5rem' }}>
                   <button className="glossary-capture-btn" onClick={startCamera}>
                     Start Camera
@@ -558,21 +604,6 @@ export default function InventoryModal({
                   </button>
                 </div>
               )}
-
-              {ocrResults.length > 0 && (
-                <div className="inventory-ocr-results">
-                  <div className="inventory-ocr-results-header">Tap a match to add to {activeSection}:</div>
-                  {ocrResults.map((result, index) => (
-                    <div
-                      key={`${result.term.term}-${index}`}
-                      className="inventory-ocr-result-item"
-                      onClick={() => addItem(result.term.term)}
-                    >
-                      {result.term.term}
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           )}
 
@@ -581,9 +612,24 @@ export default function InventoryModal({
               {sortedItems.length === 0 ? (
                 <div className="inventory-empty">No items yet</div>
               ) : (
-                sortedItems.map(([name, count]) => (
+                sortedItems.map(([name, count]) => {
+                  const meta = itemMeta.get(name.toLowerCase())
+                  const tags = meta?.tags || []
+                  const url = meta?.url
+                  return (
                   <div key={name} className="inventory-item-row">
-                    <span className="inventory-item-name">{name}</span>
+                    <div className="inventory-item-info">
+                      {url ? (
+                        <a className="inventory-item-name inventory-item-link" href={url} target="_blank" rel="noopener noreferrer">{name}</a>
+                      ) : (
+                        <span className="inventory-item-name">{name}</span>
+                      )}
+                      {tags.length > 0 && (
+                        <span className="inventory-item-tags">
+                          {tags.join(', ')}
+                        </span>
+                      )}
+                    </div>
                     <span className="inventory-item-count">x{count}</span>
                     <button
                       className="inventory-item-btn inventory-item-plus"
@@ -600,7 +646,8 @@ export default function InventoryModal({
                       -
                     </button>
                   </div>
-                ))
+                  )
+                })
               )}
             </div>
           )}
