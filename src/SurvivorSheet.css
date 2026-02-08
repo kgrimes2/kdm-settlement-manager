@@ -327,6 +327,7 @@
   justify-content: center;
   transition: all 0.15s ease;
   min-width: 28px;
+  flex-shrink: 0;
 }
 
 .gender-toggle.male {
@@ -945,6 +946,80 @@
   .attribute-boxes {
     flex-wrap: wrap;
     gap: 0.15rem;
+  }
+
+  .camera-section {
+    width: 80px;
+    height: 80px;
+  }
+
+  .name-gender-column {
+    height: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .survivor-sheet {
+    padding: 0.1rem;
+    overflow-y: visible;
+    overflow-x: visible;
+  }
+
+  .sheet-header {
+    gap: 0.15rem;
+    margin-bottom: 0.15rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .sheet-content {
+    gap: 0.15rem;
+    overflow: visible;
+  }
+
+  .columns-wrapper {
+    gap: 0.15rem;
+    overflow: visible;
+  }
+
+  .right-columns-container {
+    gap: 0.1rem;
+    overflow: visible;
+  }
+
+  .left-column,
+  .middle-column {
+    gap: 0.1rem;
+    overflow: visible;
+  }
+
+  .right-column {
+    gap: 0.1rem;
+    overflow: visible;
+  }
+
+  .camera-section {
+    display: none;
+  }
+
+  .milestones {
+    display: none;
+  }
+
+  .milestone-text {
+    font-size: 0;
+  }
+
+  .milestone-text strong {
+    font-size: 0.5rem;
+  }
+
+  .milestone-abilities {
+    gap: 0;
+  }
+
+  .milestone-ability {
+    gap: 0.15rem;
+    padding: 0.02rem;
   }
 }
 
