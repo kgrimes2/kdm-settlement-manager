@@ -4,12 +4,14 @@ import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './Survivo
 import {
   type AppState,
   type SettlementData,
+  type SettlementInventory,
   migrateData,
   validateAppState,
   createDefaultAppState,
   CURRENT_DATA_VERSION
 } from './migrations'
 import GlossaryModal from './components/GlossaryModal'
+import InventoryModal from './components/InventoryModal'
 import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
 import wikiIndex from './data/wiki-index.json'
@@ -71,6 +73,7 @@ function App() {
   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
+  const [showInventoryModal, setShowInventoryModal] = useState(false)
   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
   const [showTutorial, setShowTutorial] = useState(() => {
     // Check if mobile device
@@ -404,7 +407,8 @@ function App() {
       survivors: { 1: null, 2: null, 3: null, 4: null },
       removedSurvivors: [],
       retiredSurvivors: [],
-      deceasedSurvivors: []
+      deceasedSurvivors: [],
+      inventory: { gear: {}, materials: {} }
     }
     setAppState(prev => ({
       ...prev,
@@ -457,6 +461,17 @@ function App() {
   const handleOpenGlossary = (searchTerm?: string) => {
     setGlossaryInitialQuery(searchTerm)
     setShowGlossaryModal(true)
+  }
+
+  const handleUpdateInventory = (inventory: SettlementInventory) => {
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s =>
+        s.id === prev.currentSettlementId
+          ? { ...s, inventory }
+          : s
+      )
+    }))
   }
 
   const handleExport = () => {
@@ -1422,6 +1437,14 @@ function App() {
           >
             📖
           </button>
+          <button
+            className="toolbar-button toolbar-icon-button"
+            onClick={() => setShowInventoryModal(true)}
+            aria-label="Inventory"
+            title="Settlement Inventory"
+          >
+            🎒
+          </button>
           <div className="export-import-buttons">
           <button
             className="toolbar-button toolbar-icon-button"
@@ -2160,6 +2183,17 @@ function App() {
         onLoadCategory={handleLoadCategory}
         loadingCategory={loadingCategory}
         onSearchWiki={searchAndLoadWikiTerms}
+      />
+
+      <InventoryModal
+        isOpen={showInventoryModal}
+        onClose={() => setShowInventoryModal(false)}
+        inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
+        onUpdateInventory={handleUpdateInventory}
+        glossaryTerms={glossaryData.terms}
+        loadedWikiTerms={loadedWikiTerms}
+        onSearchWiki={searchAndLoadWikiTerms}
+        onLoadCategory={handleLoadCategory}
       />
 
       {!isMobileDevice && (
