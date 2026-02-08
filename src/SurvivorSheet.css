@@ -328,14 +328,15 @@
   transition: all 0.15s ease;
   min-width: 28px;
   flex-shrink: 0;
+  line-height: 1;
 }
 
 .gender-toggle.male {
-  background-color: rgba(173, 216, 230, 0.5);
+  background-color: transparent;
 }
 
 .gender-toggle.female {
-  background-color: rgba(255, 182, 193, 0.5);
+  background-color: transparent;
 }
 
 .gender-toggle:hover {
@@ -672,6 +673,12 @@
   white-space: nowrap;
 }
 
+.belt-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.1em;
+}
+
 .body-location label {
   display: flex;
   align-items: center;
@@ -723,20 +730,20 @@
 
 .weapon-proficiency-inline {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.3rem;
   width: 100%;
 }
 
 .weapon-proficiency-inline .proficiency-row {
-  width: auto;
+  width: 100%;
   flex-shrink: 0;
 }
 
 .weapon-proficiency-inline .pill-container {
   min-width: 80px;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
 }
 
 .weapon-type-input {
@@ -768,6 +775,7 @@
   gap: 0.2rem;
   align-items: center;
   margin-left: auto;
+  flex-shrink: 0;
 }
 
 .proficiency-milestone,
@@ -966,18 +974,100 @@
   }
 
   .sheet-header {
-    gap: 0.15rem;
-    margin-bottom: 0.15rem;
-    padding-bottom: 0.1rem;
+    gap: 0.1rem;
+    margin-bottom: 0.1rem;
+    padding-bottom: 0.05rem;
   }
 
+  /* Stack the layout vertically on phone */
   .sheet-content {
-    gap: 0.15rem;
+    gap: 0.1rem;
     overflow: visible;
+    grid-template-columns: 1fr;
+  }
+
+  /* Rearrange left column: name beside survival, hit locations in 2-col grid */
+  .left-column {
+    gap: 0.1rem;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .image-name-container {
+    grid-row: 1 / 3;
+  }
+
+  .name-gender-column {
+    height: auto;
+    width: auto;
+  }
+
+  .gender-toggle {
+    font-size: 0.75rem;
+    padding: 0.1rem;
+    min-width: auto;
+    align-self: flex-start;
+  }
+
+  .name-wrapper {
+    width: auto;
+    min-height: 0;
+  }
+
+  .survivor-sheet .survivor-name {
+    writing-mode: horizontal-tb;
+    transform: none;
+    height: auto;
+    width: 100%;
+    padding: 0.15rem 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .survivor-name-edit {
+    position: relative;
+    width: 100%;
+  }
+
+  .survival-section {
+    grid-column: 2;
+  }
+
+  .body-locations {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1rem;
+  }
+
+  /* Brain+Head group spans full width */
+  .body-location-group:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .body-location label:first-of-type {
+    margin-left: 0;
+  }
+
+  .brain-section {
+    padding: 0.1rem;
+    gap: 0.15rem;
+  }
+
+  /* Stack survival abilities into 2 columns */
+  .survival-abilities {
+    grid-template-columns: auto auto;
+    gap: 0.15rem;
+  }
+
+  .survival-top {
+    gap: 0.15rem;
+    margin-bottom: 0.1rem;
   }
 
   .columns-wrapper {
-    gap: 0.15rem;
+    gap: 0.1rem;
     overflow: visible;
   }
 
@@ -986,7 +1076,6 @@
     overflow: visible;
   }
 
-  .left-column,
   .middle-column {
     gap: 0.1rem;
     overflow: visible;
