@@ -1169,6 +1169,60 @@
   gap: 0.5rem;
 }
 
+.saves-selector {
+  position: relative;
+}
+
+.saves-dropdown-button {
+  padding: 0.35rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #3a3230;
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.saves-dropdown-button:hover {
+  background-color: #4a3a38;
+  border-color: #6a5a4a;
+}
+
+.saves-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #3a3230;
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.saves-dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #d4c5a9;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.saves-dropdown-item:hover {
+  background-color: #4a3a38;
+}
+
+.saves-dropdown-item:first-child {
+  border-radius: 4px 4px 0 0;
+}
+
+.saves-dropdown-item:last-child {
+  border-radius: 0 0 4px 4px;
+}
+
 /* Settlement Management Drawer */
 .settlement-management-overlay {
   position: fixed;
@@ -1191,10 +1245,12 @@
   left: 0;
   right: 0;
   max-height: 80vh;
+  display: flex;
+  flex-direction: column;
   background-color: #d4c5a9;
   border-bottom: 3px solid #3a3230;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  overflow-y: auto;
+  overflow: hidden;
   animation: slideDownIn 0.3s ease;
 }
 
@@ -1223,6 +1279,8 @@
 
 .settlement-management-content {
   padding: 1.5rem;
+  overflow-y: auto;
+  max-height: calc(80vh - 60px);
 }
 
 .active-settlement-section,
@@ -1761,6 +1819,52 @@
   background-color: #5b3a3a;
 }
 
+.focus-mode-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retire-focus-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #6b5a3a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retire-focus-button:hover {
+  background-color: #7b6a4a;
+}
+
+.retire-focus-button:active {
+  background-color: #5b4a2a;
+}
+
+.deceased-focus-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #6b4a4a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deceased-focus-button:hover {
+  background-color: #7b5a5a;
+}
+
+.deceased-focus-button:active {
+  background-color: #5b3a3a;
+}
+
 .bulk-actions-section {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
@@ -2022,6 +2126,53 @@
   border-color: #6a4a4a;
 }
 
+.tutorial-section {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.tutorial-management-button {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  background-color: #d4c5a9;
+  border: 2px solid #8a7a6a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tutorial-management-button:hover {
+  background-color: #c4b599;
+  border-color: #6a5a4a;
+}
+
+.feedback-section {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.feedback-button {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  background-color: #d4c5a9;
+  border: 2px solid #8a7a6a;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.feedback-button:hover {
+  background-color: #c4b599;
+  border-color: #6a5a4a;
+}
+
 .danger-zone {
   margin-top: 3rem;
   padding-top: 2rem;
@@ -2236,6 +2387,11 @@
     width: 100%;
     justify-content: flex-start;
     gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .focus-mode-actions {
+    flex-wrap: wrap;
   }
 
   .toolbar-title {

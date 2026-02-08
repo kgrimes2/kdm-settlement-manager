@@ -422,9 +422,7 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
               <div
                 className={`gender-toggle ${survivor.gender === 'M' ? 'male' : 'female'}`}
                 onClick={() => updateField('gender', survivor.gender === 'M' ? 'F' : 'M')}
-              >
-                {survivor.gender === 'F' ? '♀' : '♂'}
-              </div>
+              >{survivor.gender === 'F' ? '🚺' : '🚹'}</div>
             </div>
             <div className="camera-section" onClick={() => fileInputRef.current?.click()}>
               {survivor.image ? (
@@ -503,7 +501,7 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                       </div>
                     </div>
                     <span className="brain-label">
-                      Brain (insanity)
+                      🧠 Brain (insanity)
                       <span className="brain-note">insane on 3+</span>
                     </span>
                     <label className="brain-checkbox">
@@ -524,7 +522,7 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                       min={0}
                     />
                   </div>
-                  <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
+                  <span>{{ head: '😐', arms: '💪', body: '👕', waist: '', legs: '🦵' }[location]}{location === 'waist' && <svg className="belt-icon" viewBox="0 0 24 24" width="14" height="14"><rect x="1" y="9" width="22" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="8" y="7" width="8" height="10" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="11" y="9.5" width="2" height="5" rx="0.5" fill="currentColor"/></svg>} {location.charAt(0).toUpperCase() + location.slice(1)}</span>
                   {location !== 'head' && (
                     <label>
                       <input
@@ -636,6 +634,10 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                   />
                 )}
               </div>
+              <div className="proficiency-milestones">
+                <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
+                <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
+              </div>
               <div className="proficiency-row">
                 <div className="proficiency-boxes">
                   {survivor.weaponProficiency.level.map((checked, i) => {
@@ -650,10 +652,6 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                       </label>
                     )
                   })}
-                </div>
-                <div className="proficiency-milestones">
-                  <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
-                  <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
                 </div>
               </div>
             </div>
