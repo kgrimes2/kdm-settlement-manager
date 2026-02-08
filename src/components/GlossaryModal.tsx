@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import Tesseract from 'tesseract.js'
 import './GlossaryModal.css'
 import type { GlossaryTerm, WikiCategoryInfo } from '../types/glossary'
 import { searchGlossary, searchCategories, type SearchResult } from '../utils/glossarySearch'
@@ -16,7 +17,8 @@ interface GlossaryModalProps {
   onSearchWiki: (query: string) => Promise<void>
 }
 
-type ViewMode = 'search' | 'categories' | 'category-detail'
+type ViewMode = 'search' | 'categories' | 'category-detail' | 'scan'
+type OcrStatus = 'idle' | 'processing' | 'done' | 'error'
 
 export default function GlossaryModal({
   isOpen, onClose, glossaryTerms, initialQuery, lastUpdated,
@@ -30,9 +32,148 @@ export default function GlossaryModal({
   const [viewMode, setViewMode] = useState<ViewMode>('search')
   const [selectedCategory, setSelectedCategory] = useState<WikiCategoryInfo | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const streamRef = useRef<MediaStream | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const [scanning, setScanning] = useState(false)
+  const [ocrStatus, setOcrStatus] = useState<OcrStatus>('idle')
+  const [ocrText, setOcrText] = useState('')
+  const [ocrError, setOcrError] = useState('')
+  const [ocrResults, setOcrResults] = useState<SearchResult[]>([])
 
   // All searchable terms = official glossary + loaded wiki terms
   const allTerms = [...glossaryTerms, ...loadedWikiTerms]
+
+  const stopCamera = useCallback(() => {
+    if (streamRef.current) {
+      streamRef.current.getTracks().forEach(track => track.stop())
+      streamRef.current = null
+    }
+    setScanning(false)
+  }, [])
+
+  const startCamera = useCallback(async () => {
+    try {
+      setOcrError('')
+      // Use 'ideal' so it prefers rear camera but falls back to any available camera
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: 'environment' } }
+      })
+      streamRef.current = stream
+      setScanning(true)
+    } catch (err) {
+      const name = err instanceof DOMException ? err.name : ''
+      if (name === 'NotAllowedError') {
+        setOcrError('Camera permission was denied. Please allow camera access in your browser settings and try again.')
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        setOcrError('No camera found on this device.')
+      } else if (name === 'NotReadableError' || name === 'AbortError') {
+        setOcrError('Camera is in use by another application. Close other apps using the camera and try again.')
+      } else if (name === 'OverconstrainedError' || name === 'ConstraintNotSatisfiedError') {
+        setOcrError('No compatible camera found. Try uploading a photo instead.')
+      } else if (err instanceof TypeError) {
+        setOcrError('Camera is not available. Make sure you are using HTTPS and a supported browser.')
+      } else {
+        setOcrError('Could not start camera. Try uploading a photo instead.')
+      }
+      setScanning(false)
+    }
+  }, [])
+
+  const captureAndRecognize = useCallback(async () => {
+    const video = videoRef.current
+    const canvas = canvasRef.current
+    if (!video || !canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+
+    // Draw the current video frame
+    ctx.drawImage(video, 0, 0)
+
+    // Preprocess: convert to grayscale and boost contrast
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const data = imageData.data
+    for (let i = 0; i < data.length; i += 4) {
+      const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
+      // Boost contrast: stretch values away from midpoint
+      const contrasted = Math.min(255, Math.max(0, (gray - 128) * 1.5 + 128))
+      data[i] = contrasted
+      data[i + 1] = contrasted
+      data[i + 2] = contrasted
+    }
+    ctx.putImageData(imageData, 0, 0)
+
+    await recognizeImage(canvas)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const recognizeImage = useCallback(async (source: HTMLCanvasElement | File) => {
+    setOcrStatus('processing')
+    setOcrText('')
+    setOcrResults([])
+
+    try {
+      const result = await Tesseract.recognize(source, 'eng')
+      const text = result.data.text.trim()
+      setOcrText(text)
+
+      if (text) {
+        // Search using the raw OCR text and also individual words
+        const directResults = searchGlossary(allTerms, text)
+        const words = text.split(/\s+/).filter(w => w.length > 2)
+        const wordResults = words.flatMap(word => searchGlossary(allTerms, word))
+
+        // Deduplicate and sort by score
+        const seen = new Set<string>()
+        const combined: SearchResult[] = []
+        for (const r of [...directResults, ...wordResults]) {
+          if (!seen.has(r.term.term)) {
+            seen.add(r.term.term)
+            combined.push(r)
+          }
+        }
+        combined.sort((a, b) => b.score - a.score)
+        setOcrResults(combined.slice(0, 10))
+      }
+
+      setOcrStatus('done')
+    } catch {
+      setOcrStatus('error')
+      setOcrError('OCR processing failed. Please try again.')
+    }
+  }, [allTerms])
+
+  const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    // Reset the input so the same file can be re-selected
+    e.target.value = ''
+    recognizeImage(file)
+  }, [recognizeImage])
+
+  // Connect stream to video element once it mounts
+  useEffect(() => {
+    if (scanning && videoRef.current && streamRef.current) {
+      videoRef.current.srcObject = streamRef.current
+    }
+  }, [scanning])
+
+  // Stop camera when leaving scan mode or closing modal
+  useEffect(() => {
+    if (!isOpen || viewMode !== 'scan') {
+      stopCamera()
+    }
+  }, [isOpen, viewMode, stopCamera])
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => stopCamera()
+  }, [stopCamera])
 
   useEffect(() => {
     if (isOpen) {
@@ -42,6 +183,10 @@ export default function GlossaryModal({
       setHighlightedIndex(0)
       setViewMode('search')
       setSelectedCategory(null)
+      setOcrStatus('idle')
+      setOcrText('')
+      setOcrError('')
+      setOcrResults([])
       setTimeout(() => inputRef.current?.focus(), 100)
       if (initialQuery) {
         onSearchWiki(initialQuery)
@@ -76,6 +221,8 @@ export default function GlossaryModal({
     if (e.key === 'Escape') {
       if (selectedTerm) {
         setSelectedTerm(null)
+      } else if (viewMode === 'scan') {
+        setViewMode('search')
       } else if (viewMode === 'category-detail') {
         setViewMode('categories')
         setSelectedCategory(null)
@@ -136,6 +283,12 @@ export default function GlossaryModal({
                 onClick={() => { setViewMode('categories'); setSelectedTerm(null); setSelectedCategory(null) }}
               >
                 Browse
+              </button>
+              <button
+                className={`glossary-toggle-btn ${viewMode === 'scan' ? 'active' : ''}`}
+                onClick={() => { setViewMode('scan'); setSelectedTerm(null) }}
+              >
+                Scan
               </button>
             </div>
             <button className="glossary-close-btn" onClick={onClose} aria-label="Close">
@@ -294,6 +447,149 @@ export default function GlossaryModal({
                   )}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Scan mode */}
+          {viewMode === 'scan' && !selectedTerm && (
+            <div className="glossary-scan-view">
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                style={{ display: 'none' }}
+              />
+
+              {!scanning && ocrStatus === 'idle' && !ocrError && (
+                <div className="glossary-scan-prompt">
+                  <p>Scan a KDM card to look up its glossary entry.</p>
+                  <div className="glossary-scan-actions">
+                    <button className="glossary-capture-btn" onClick={startCamera}>
+                      Start Camera
+                    </button>
+                    <button
+                      className="glossary-capture-btn glossary-upload-btn"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      Upload Photo
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {ocrError && !scanning && (
+                <div className="glossary-ocr-status error">
+                  {ocrError}
+                  <div className="glossary-scan-actions" style={{ marginTop: '1rem' }}>
+                    <button className="glossary-capture-btn" onClick={startCamera}>
+                      Try Camera Again
+                    </button>
+                    <button
+                      className="glossary-capture-btn glossary-upload-btn"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      Upload Photo
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {scanning && (
+                <>
+                  <video
+                    ref={videoRef}
+                    autoPlay
+                    playsInline
+                    muted
+                    className="glossary-camera-feed"
+                    onLoadedMetadata={() => videoRef.current?.play()}
+                  />
+                  <canvas ref={canvasRef} style={{ display: 'none' }} />
+                  <div className="glossary-scan-actions">
+                    <button
+                      className="glossary-capture-btn"
+                      onClick={captureAndRecognize}
+                      disabled={ocrStatus === 'processing'}
+                    >
+                      {ocrStatus === 'processing' ? 'Processing...' : 'Capture'}
+                    </button>
+                    <button className="glossary-stop-camera-btn" onClick={stopCamera}>
+                      Stop Camera
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {ocrStatus === 'processing' && (
+                <div className="glossary-ocr-status">
+                  <div className="glossary-spinner" />
+                  Recognizing text...
+                </div>
+              )}
+
+              {ocrStatus === 'done' && ocrText && (
+                <div className="glossary-ocr-raw">
+                  <strong>Detected text:</strong> {ocrText}
+                </div>
+              )}
+
+              {ocrStatus === 'done' && !ocrText && (
+                <div className="glossary-ocr-status">
+                  No text detected. Try again with the card text clearly visible.
+                </div>
+              )}
+
+              {ocrStatus === 'done' && !scanning && (
+                <div className="glossary-scan-actions" style={{ marginTop: '0.5rem' }}>
+                  <button className="glossary-capture-btn" onClick={startCamera}>
+                    Start Camera
+                  </button>
+                  <button
+                    className="glossary-capture-btn glossary-upload-btn"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    Upload Another
+                  </button>
+                </div>
+              )}
+
+              {ocrResults.length > 0 && (
+                <div className="glossary-results">
+                  <div className="glossary-ocr-results-header">Matching glossary terms:</div>
+                  {ocrResults.map((result, index) => (
+                    <div
+                      key={`${result.term.term}-${index}`}
+                      className="glossary-result-item"
+                      onClick={() => setSelectedTerm(result.term)}
+                    >
+                      <div className="glossary-result-term">
+                        {result.term.term}
+                        <span className={`glossary-source-badge ${getTermSource(result.term)}`}>
+                          {getTermSource(result.term) === 'official' ? 'Official' : 'Wiki'}
+                        </span>
+                      </div>
+                      <div className="glossary-result-preview">
+                        {result.term.definition.substring(0, 100)}
+                        {result.term.definition.length > 100 ? '...' : ''}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Term detail (from scan mode) */}
+          {viewMode === 'scan' && selectedTerm && (
+            <div className="glossary-term-display">
+              <button
+                className="glossary-back-btn"
+                onClick={() => setSelectedTerm(null)}
+              >
+                ← Back to scan
+              </button>
+              {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
             </div>
           )}
 
