@@ -156,12 +156,13 @@ export default function GlossaryModal({
     recognizeImage(file)
   }, [recognizeImage])
 
-  // Connect stream to video element once it mounts
-  useEffect(() => {
-    if (scanning && videoRef.current && streamRef.current) {
-      videoRef.current.srcObject = streamRef.current
+  // Connect stream to video element whenever it mounts
+  const videoCallbackRef = useCallback((node: HTMLVideoElement | null) => {
+    videoRef.current = node
+    if (node && streamRef.current) {
+      node.srcObject = streamRef.current
     }
-  }, [scanning])
+  }, [])
 
   // Stop camera when leaving scan mode or closing modal
   useEffect(() => {
@@ -498,7 +499,7 @@ export default function GlossaryModal({
               {scanning && (
                 <>
                   <video
-                    ref={videoRef}
+                    ref={videoCallbackRef}
                     autoPlay
                     playsInline
                     muted
@@ -528,29 +529,9 @@ export default function GlossaryModal({
                 </div>
               )}
 
-              {ocrStatus === 'done' && ocrText && (
-                <div className="glossary-ocr-raw">
-                  <strong>Detected text:</strong> {ocrText}
-                </div>
-              )}
-
               {ocrStatus === 'done' && !ocrText && (
                 <div className="glossary-ocr-status">
                   No text detected. Try again with the card text clearly visible.
-                </div>
-              )}
-
-              {ocrStatus === 'done' && !scanning && (
-                <div className="glossary-scan-actions" style={{ marginTop: '0.5rem' }}>
-                  <button className="glossary-capture-btn" onClick={startCamera}>
-                    Start Camera
-                  </button>
-                  <button
-                    className="glossary-capture-btn glossary-upload-btn"
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    Upload Another
-                  </button>
                 </div>
               )}
 
@@ -585,7 +566,12 @@ export default function GlossaryModal({
             <div className="glossary-term-display">
               <button
                 className="glossary-back-btn"
-                onClick={() => setSelectedTerm(null)}
+                onClick={() => {
+                  setSelectedTerm(null)
+                  setOcrStatus('idle')
+                  setOcrText('')
+                  setOcrResults([])
+                }}
               >
                 ← Back to scan
               </button>
