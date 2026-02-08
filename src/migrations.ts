@@ -1,6 +1,11 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 7
+export const CURRENT_DATA_VERSION = 8
+
+export interface SettlementInventory {
+  gear: Record<string, number>
+  materials: Record<string, number>
+}
 
 export interface SettlementData {
   id: string
@@ -14,6 +19,7 @@ export interface SettlementData {
   removedSurvivors: SurvivorData[]
   retiredSurvivors: SurvivorData[]
   deceasedSurvivors: SurvivorData[]
+  inventory: SettlementInventory
 }
 
 export interface AppState {
@@ -38,7 +44,8 @@ function createDefaultSettlement(): SettlementData {
     },
     removedSurvivors: [],
     retiredSurvivors: [],
-    deceasedSurvivors: []
+    deceasedSurvivors: [],
+    inventory: { gear: {}, materials: {} }
   }
 }
 
@@ -222,6 +229,7 @@ function migrateSettlement(settlement: any): SettlementData {
     removedSurvivors: (settlement.removedSurvivors || settlement.archivedSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
+    inventory: settlement.inventory || { gear: {}, materials: {} },
   }
 }
 
