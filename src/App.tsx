@@ -1303,7 +1303,7 @@ function AppContent() {
        )}
 
       {mergeDialog && (
-        <div className="confirm-overlay" onClick={() => setMergeDialog(null)}>
+        <div className="confirm-overlay">
           <div className="confirm-dialog merge-dialog" onClick={(e) => e.stopPropagation()}>
             <h3 className="merge-dialog-title">Data Conflict Detected</h3>
             <div className="merge-dialog-content">
@@ -1326,14 +1326,6 @@ function AppContent() {
             </div>
             <div className="confirm-actions">
               <button
-                className="confirm-cancel"
-                onClick={() => {
-                  setMergeDialog(null)
-                }}
-              >
-                Cancel
-              </button>
-              <button
                 className="confirm-ok"
                 onClick={async () => {
                   // Keep local data, overwrite cloud
@@ -1351,6 +1343,10 @@ function AppContent() {
                   } catch (error) {
                     showNotification('Failed to sync local data', 'error')
                     console.error(error)
+                  }
+                  // Mark as checked so we don't show again on reload
+                  if (user) {
+                    sessionStorage.setItem(`cloudDataChecked_${user.username}`, 'true')
                   }
                   setMergeDialog(null)
                 }}
@@ -1397,6 +1393,10 @@ function AppContent() {
                     showNotification('Failed to load cloud data', 'error')
                     console.error(error)
                   }
+                  // Mark as checked so we don't show again on reload
+                  if (user) {
+                    sessionStorage.setItem(`cloudDataChecked_${user.username}`, 'true')
+                  }
                   setMergeDialog(null)
                 }}
               >
@@ -1405,7 +1405,7 @@ function AppContent() {
             </div>
           </div>
         </div>
-      )}
+       )}
 
        {showSettlementManagement && (
         <div
