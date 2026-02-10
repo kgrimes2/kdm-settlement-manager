@@ -12,7 +12,7 @@ A comprehensive web application for managing Kingdom Death Monster survivors and
 - Create and manage multiple settlements
 - Switch between settlements with dropdown selector
 - Rename and delete settlements
-- Import/export settlement data as JSON
+- All settlements automatically sync to the cloud
 
 ### Survivor Tracking
 - Track up to 4 active survivors per settlement in a 4-quadrant grid layout
@@ -38,13 +38,16 @@ A comprehensive web application for managing Kingdom Death Monster survivors and
 - Create new survivors on-the-fly
 
 ### User Experience
-- Auto-save to localStorage (no manual save required)
+- Cloud-synced data (automatic sync to DynamoDB every 2 seconds)
+- Persistent storage across devices and browser sessions
+- AWS Cognito authentication with email verification
 - Responsive design with mobile support
 - Keyboard navigation (Arrow keys, Escape, Tab)
 - Hover overlays with helpful hints
 - Confirmation dialogs for destructive actions
 - Success/error notifications
 - Clean, minimal black and white design
+- User profile display in toolbar
 
 ## Tech Stack
 
@@ -53,6 +56,12 @@ A comprehensive web application for managing Kingdom Death Monster survivors and
 - CSS Grid and Flexbox for responsive layout
 - Vitest for testing
 - Docker support for deployment
+- **AWS Cloud Services**
+  - Cognito for user authentication
+  - DynamoDB for data persistence
+  - Lambda for serverless backend logic
+  - API Gateway for REST API with JWT authorization
+  - S3 & AWS Backup for disaster recovery
 
 ## Getting Started
 
@@ -143,12 +152,6 @@ The app will be available at http://localhost:8080
 - Age milestones (Hunt XP boxes 2, 6, 10, 15) highlighted in orange
 - Weapon proficiency and attribute milestones highlighted
 
-### Import/Export
-- Click "Export" to download all settlement data as JSON
-- Click "Import" to load previously exported data
-- Supports both old single-settlement format and new multi-settlement format
-- All survivor data is preserved during import/export
-
 ### Keyboard Shortcuts
 - `Escape` - Return to grid view / Close drawers
 - `Arrow Left` - Previous survivor (when focused)
@@ -194,7 +197,57 @@ npm run version:patch  # 1.0.0 -> 1.0.1
 
 ## Data Storage
 
-All data is automatically saved to browser localStorage. Each browser/device maintains its own data. Use the Export feature to back up your data or transfer it between devices/browsers.
+Data is stored in two places for reliability and offline access:
+
+1. **Local Storage**: Browser cache for instant offline access
+2. **Cloud (DynamoDB)**: AWS backend synced every 2 seconds (when authenticated)
+
+Once you log in, your data automatically syncs to the cloud. Logging in on a different device or browser will pull your latest data from the cloud, so you can pick up where you left off.
+
+## Authentication & Cloud Sync
+
+The application now supports AWS Cognito-based authentication with automatic cloud data synchronization:
+
+### Login & Registration
+- Create a new account with email verification
+- Secure username/password authentication via AWS Cognito
+- User data is isolated per account
+
+### Cloud Data Sync
+- All settlement data automatically syncs to AWS DynamoDB every 2 seconds
+- Your data persists across browser sessions and devices
+- Signed in once, your data follows you anywhere
+
+### Account Management
+- Click the user profile icon in the toolbar to see your username
+- Click "🚪 Logout" to safely sign out
+- Your data remains secure in the cloud
+
+### Infrastructure Details
+The backend infrastructure is managed via Terraform and includes:
+- AWS Cognito User Pool for secure authentication
+- DynamoDB tables for data persistence
+- Lambda functions for CRUD operations on your data
+- API Gateway with JWT authorization
+- Automated backups and disaster recovery
+
+### Environment Setup (Development)
+
+To set up the authentication locally, you need a `.env.local` file:
+
+```bash
+# AWS Cognito Configuration
+VITE_COGNITO_USER_POOL_ID=<from terraform output cognito_user_pool_id>
+VITE_COGNITO_CLIENT_ID=<from terraform output cognito_client_id>
+VITE_COGNITO_REGION=us-west-2
+
+# API Gateway Configuration
+VITE_API_GATEWAY_URL=<from terraform output api_gateway_invoke_url>
+```
+
+**Note:** The `.env.local` file is gitignored for security. Never commit credentials to version control.
+
+See `infrastructure/terraform/README.md` for details on deploying the backend infrastructure.
 
 ## Browser Compatibility
 
