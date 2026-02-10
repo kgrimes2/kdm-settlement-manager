@@ -186,9 +186,6 @@ resource "aws_cloudfront_distribution" "app_distribution" {
   }
 }
 
-# Data source to get current AWS account ID
-data "aws_caller_identity" "current" {}
-
 # Outputs
 output "s3_bucket_name" {
   description = "S3 bucket name for the frontend app"
