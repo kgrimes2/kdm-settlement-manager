@@ -24,7 +24,7 @@ const APP_VERSION = '1.2.0'
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
 function AppContent() {
-  const { isAuthenticated, signOut, user } = useAuth()
+  const { signOut, user } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -76,8 +76,9 @@ function AppContent() {
   const [showSavesDropdown, setShowSavesDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
-  const [showInventoryModal, setShowInventoryModal] = useState(false)
-  const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+   const [showInventoryModal, setShowInventoryModal] = useState(false)
+   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+   const [showLoginModal, setShowLoginModal] = useState(false)
   const [showTutorial, setShowTutorial] = useState(() => {
     // Check if mobile device
     const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -988,10 +989,10 @@ function AppContent() {
     return `${baseClass} unfocused`
   }
 
-  // Always render the app, but show login modal on top if not authenticated
+  // Render app always, with optional login modal overlay
   return (
     <>
-      <div className="app-layout" style={{ pointerEvents: isAuthenticated ? 'auto' : 'none', opacity: isAuthenticated ? 1 : 0.7 }}>
+      <div className="app-layout">
         {notification && (
           <div className={`notification notification-${notification.type}`}>
             {notification.message}
@@ -1522,29 +1523,39 @@ function AppContent() {
              title="Settlement Inventory"
            >
              🎒
-           </button>
-           {user && (
-             <div className="user-profile" title={`Logged in as: ${user.username}`}>
-               <span className="user-icon">👤</span>
-               <span className="user-name">{user.username}</span>
-             </div>
-           )}
-           <button
-             className="toolbar-button logout-button"
-             onClick={async () => {
-               try {
-                 await signOut()
-                 location.reload()
-               } catch (error) {
-                 console.error('Logout error:', error)
-                 // Force reload anyway
-                 location.reload()
-               }
-             }}
-             title="Logout"
-           >
-             🚪 Logout
-           </button>
+            </button>
+            {user && (
+              <div className="user-profile" title={`Logged in as: ${user.username}`}>
+                <span className="user-icon">👤</span>
+                <span className="user-name">{user.username}</span>
+              </div>
+            )}
+            {user ? (
+              <button
+                className="toolbar-button logout-button"
+                onClick={async () => {
+                  try {
+                    await signOut()
+                    location.reload()
+                  } catch (error) {
+                    console.error('Logout error:', error)
+                    // Force reload anyway
+                    location.reload()
+                  }
+                }}
+                title="Logout"
+              >
+                🚪 Logout
+              </button>
+            ) : (
+              <button
+                className="toolbar-button login-button"
+                onClick={() => setShowLoginModal(true)}
+                title="Login or Sign Up"
+              >
+                🔐 Login
+              </button>
+            )}
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
@@ -2302,7 +2313,7 @@ function AppContent() {
         />
       )}
     </div>
-    <LoginModal isOpen={!isAuthenticated} onClose={() => {}} />
+    <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
     </>
   )
 }
