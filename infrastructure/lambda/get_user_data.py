@@ -102,12 +102,22 @@ def lambda_handler(event, context):
                 logger.warning(f"Settlement not found | user_id={user_id} | settlement_id={settlement_id}")
                 return {
                     'statusCode': 404,
+                    'headers': {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                        'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+                    },
                     'body': json.dumps({'error': 'Settlement not found'})
                 }
             
             logger.info(f"Successfully retrieved settlement | settlement_id={settlement_id}")
             return {
                 'statusCode': 200,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+                },
                 'body': json.dumps(item, cls=DecimalEncoder)
             }
         else:
@@ -124,6 +134,11 @@ def lambda_handler(event, context):
             logger.info(f"Successfully retrieved {len(items)} settlements | user_id={user_id}")
             return {
                 'statusCode': 200,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+                },
                 'body': json.dumps(items, cls=DecimalEncoder)
             }
             
@@ -131,11 +146,21 @@ def lambda_handler(event, context):
         logger.error(f"Validation error | error={str(e)} | traceback={traceback.format_exc()}")
         return {
             'statusCode': 401,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({'error': str(e)})
         }
     except Exception as e:
         logger.error(f"Unexpected error | error={str(e)} | traceback={traceback.format_exc()}")
         return {
             'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({'error': 'Internal server error'})
         }

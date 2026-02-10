@@ -112,6 +112,11 @@ def lambda_handler(event, context):
         
         return {
             'statusCode': 200,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({
                 'message': 'Data saved successfully',
                 'user_id': user_id,
@@ -123,17 +128,32 @@ def lambda_handler(event, context):
         logger.error(f"Invalid JSON | error={str(e)} | traceback={traceback.format_exc()}")
         return {
             'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({'error': 'Invalid JSON in request body'})
         }
     except ValueError as e:
         logger.error(f"Validation error | error={str(e)} | traceback={traceback.format_exc()}")
         return {
             'statusCode': 401,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({'error': str(e)})
         }
     except Exception as e:
         logger.error(f"Unexpected error | error={str(e)} | traceback={traceback.format_exc()}")
         return {
             'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+            },
             'body': json.dumps({'error': 'Internal server error'})
         }
