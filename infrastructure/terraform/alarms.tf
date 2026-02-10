@@ -1,12 +1,17 @@
 # CloudWatch Alarms for Security Monitoring
 
-# SNS Topic for alarm notifications (optional - configure email subscription manually)
+# SNS Topic for alarm notifications
 resource "aws_sns_topic" "alarms" {
   name = "${var.app_name}-alarms-${var.environment}"
 
   tags = {
     Name = "${var.app_name}-alarms"
   }
+}
+
+# Local variable for alarm actions (use alarms SNS topic for all environments)
+locals {
+  alarm_actions = [aws_sns_topic.alarms.arn]
 }
 
 # Alarm: High API Gateway Request Count (potential attack)
@@ -20,7 +25,7 @@ resource "aws_cloudwatch_metric_alarm" "api_high_request_count" {
   statistic           = "Sum"
   threshold           = 1000 # 1000 requests in 5 minutes
   alarm_description   = "Alert when API receives unusually high request count"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     ApiId = aws_api_gateway_rest_api.main.id
@@ -43,7 +48,7 @@ resource "aws_cloudwatch_metric_alarm" "api_high_4xx_errors" {
   statistic           = "Sum"
   threshold           = 50 # 50 4xx errors in 5 minutes
   alarm_description   = "Alert when API returns high 4XX error rate (potential attack/misconfiguration)"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     ApiId = aws_api_gateway_rest_api.main.id
@@ -66,7 +71,7 @@ resource "aws_cloudwatch_metric_alarm" "api_high_5xx_errors" {
   statistic           = "Sum"
   threshold           = 10 # 10 5xx errors in 5 minutes
   alarm_description   = "Alert when API returns high 5XX error rate (system issues)"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     ApiId = aws_api_gateway_rest_api.main.id
@@ -89,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_get_errors" {
   statistic           = "Sum"
   threshold           = 5
   alarm_description   = "Alert when get_user_data Lambda has high error count"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     FunctionName = aws_lambda_function.get_user_data.function_name
@@ -111,7 +116,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_save_errors" {
   statistic           = "Sum"
   threshold           = 5
   alarm_description   = "Alert when save_user_data Lambda has high error count"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     FunctionName = aws_lambda_function.save_user_data.function_name
@@ -133,7 +138,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_delete_errors" {
   statistic           = "Sum"
   threshold           = 5
   alarm_description   = "Alert when delete_user_data Lambda has high error count"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     FunctionName = aws_lambda_function.delete_user_data.function_name
@@ -155,7 +160,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_high_read_capacity" {
   statistic           = "Sum"
   threshold           = 1000 # Adjust based on expected usage
   alarm_description   = "Alert when DynamoDB read capacity is unusually high (potential attack)"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     TableName = aws_dynamodb_table.user_data.name
@@ -177,7 +182,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_high_write_capacity" {
   statistic           = "Sum"
   threshold           = 500 # Adjust based on expected usage
   alarm_description   = "Alert when DynamoDB write capacity is unusually high (potential attack/abuse)"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     TableName = aws_dynamodb_table.user_data.name
@@ -199,7 +204,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_user_errors" {
   statistic           = "Sum"
   threshold           = 10
   alarm_description   = "Alert when DynamoDB encounters user errors (throttling, etc.)"
-  alarm_actions       = [aws_sns_topic.alarms.arn]
+  alarm_actions       = local.alarm_actions
 
   dimensions = {
     TableName = aws_dynamodb_table.user_data.name
