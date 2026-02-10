@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
@@ -16,12 +16,15 @@ import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
 import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import LoginModal from './components/LoginModal'
 
-const APP_VERSION = '1.2.0'
+const APP_VERSION = '1.3.0'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
-function App() {
+function AppContent() {
+  const { signOut, user, dataService } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -50,8 +53,11 @@ function App() {
     console.log('Creating new default state')
     return createDefaultAppState()
   })
-  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-  const [showSurvivorList, setShowSurvivorList] = useState(false)
+   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+   const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
+   const [lastManualSyncTime, setLastManualSyncTime] = useState<Date | null>(null)
+   const [isSyncing, setIsSyncing] = useState(false)
+   const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
   const [showSurvivorPool, setShowSurvivorPool] = useState(false)
   const [showRetiredSection, setShowRetiredSection] = useState(false)
@@ -59,7 +65,6 @@ function App() {
   const [showBulkActions, setShowBulkActions] = useState(false)
   const [showActiveSurvivors, setShowActiveSurvivors] = useState(true)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
   type MarkerState = { state: 'dashed' | 'solid'; color: string; id: string }
@@ -74,8 +79,10 @@ function App() {
   const [showSavesDropdown, setShowSavesDropdown] = useState(false)
   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
-  const [showInventoryModal, setShowInventoryModal] = useState(false)
-  const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+   const [showInventoryModal, setShowInventoryModal] = useState(false)
+   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+   const [showLoginModal, setShowLoginModal] = useState(false)
+   const [mergeDialog, setMergeDialog] = useState<{ cloudData: any; localData: any; cloudSettlements: any[] } | null>(null)
   const [showTutorial, setShowTutorial] = useState(() => {
     // Check if mobile device
     const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -91,6 +98,10 @@ function App() {
   const [settlementInputValue, setSettlementInputValue] = useState('')
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
+  const [showSyncMenu, setShowSyncMenu] = useState(false)
+  const [, forceUpdate] = useState(0)
+  const needsSaveRef = useRef(false)
+  const appStateRef = useRef(appState)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -154,18 +165,33 @@ function App() {
 
   const currentSettlement = getCurrentSettlement()
 
-  // Save state to localStorage with 1000ms debounce
+  // Keep appStateRef in sync with appState (runs on every change, but just updates ref - cheap!)
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      try {
-        localStorage.setItem('kdm-app-state', JSON.stringify(appState))
-      } catch (error) {
-        console.error('Failed to save state:', error)
-      }
-    }, 1000)
+    appStateRef.current = appState
+    needsSaveRef.current = true
+    
+    // Mark as dirty when state changes (for cloud sync optimization)
+    if (user) {
+      localStorage.setItem('appStateDirty', 'true')
+    }
+  }, [appState, user])
 
-    return () => clearTimeout(timeoutId)
-  }, [appState])
+  // Separate effect that periodically saves (runs independently of state changes)
+  useEffect(() => {
+    const saveInterval = setInterval(() => {
+      if (needsSaveRef.current) {
+        try {
+          // Only stringify when we actually need to save
+          localStorage.setItem('kdm-app-state', JSON.stringify(appStateRef.current))
+          needsSaveRef.current = false
+        } catch (error) {
+          console.error('Failed to save state:', error)
+        }
+      }
+    }, 2000) // Save every 2 seconds if dirty
+
+    return () => clearInterval(saveInterval)
+  }, []) // Empty deps - runs once
 
   // Detect mobile devices and small screens
   useEffect(() => {
@@ -243,8 +269,172 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant, showTutorial])
 
-  // Handle swipe gestures on mobile for cycling survivors in focus mode
+  // Load cloud data on login and compare with localStorage
   useEffect(() => {
+    if (!user || !dataService || !currentSettlement) return
+    
+    // Check if we've already loaded for this session
+    const sessionKey = `dataLoaded_${user.username}`
+    if (sessionStorage.getItem(sessionKey)) {
+      console.log('Already loaded data for this session')
+      return
+    }
+
+    // Load cloud data and compare with localStorage
+    const loadAndCompare = async () => {
+      try {
+        console.log('Loading cloud data on app load')
+        const cloudData = await dataService.getUserData(currentSettlement.id)
+        
+        if (cloudData && cloudData.settlements && cloudData.settlements.length > 0) {
+          console.log('Found cloud data, comparing with localStorage')
+          
+          // Get current localStorage data
+          const localStorageData = localStorage.getItem('kdm-app-state')
+          const localData = localStorageData ? JSON.parse(localStorageData) : null
+          
+          // Compare localStorage with cloud data
+          const cloudStateString = JSON.stringify(cloudData.settlements)
+          const localStateString = localData ? JSON.stringify(localData.settlements) : null
+          
+          if (localStateString && cloudStateString !== localStateString) {
+            // Data is different - show conflict dialog
+            console.log('localStorage differs from cloud, showing conflict dialog')
+            setMergeDialog({
+              cloudData: [cloudData],
+              localData: localData || appState,
+              cloudSettlements: cloudData.settlements
+            })
+          } else {
+            // Data is the same or no local data - load cloud data and replace localStorage
+            console.log('Loading cloud data and replacing localStorage')
+            const mergedSettlements = [cloudData].map((d: any) => d.settlements || []).flat()
+            const mergedSurvivors = [cloudData].map((d: any) => d.survivors || []).flat()
+            const mergedInventory = Object.assign({}, ...[cloudData].map((d: any) => d.inventory || {}))
+            
+            const newAppState = {
+              ...appState,
+              settlements: mergedSettlements,
+              survivors: mergedSurvivors,
+              inventory: mergedInventory,
+            }
+            setAppState(newAppState)
+            
+            // Replace localStorage with cloud data
+            localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
+            localStorage.setItem('appStateDirty', 'false')
+            
+            showNotification('Cloud data loaded', 'success')
+          }
+          
+          // Mark that we've loaded for this session
+          sessionStorage.setItem(sessionKey, 'true')
+        } else {
+          console.log('No cloud data found')
+          // Mark as dirty so local data gets synced to cloud on next cycle
+          localStorage.setItem('appStateDirty', 'true')
+          sessionStorage.setItem(sessionKey, 'true')
+        }
+      } catch (error: any) {
+        const errorMessage = error.message || String(error)
+        if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+          console.log('No cloud data (404)')
+          // Mark as dirty so local data gets synced to cloud on next cycle
+          localStorage.setItem('appStateDirty', 'true')
+          sessionStorage.setItem(sessionKey, 'true')
+        } else {
+          // Network error or other failure - fail gracefully
+          console.error('Error loading cloud data:', error)
+          // Don't show error notification - just continue with local data
+          // Mark session as loaded so we don't retry
+          sessionStorage.setItem(sessionKey, 'true')
+        }
+      }
+    }
+
+    loadAndCompare()
+  }, [user, dataService, currentSettlement?.id])
+
+  // Clear session flags when user logs out
+  useEffect(() => {
+    if (!user) {
+      // Clear all session flags
+      Object.keys(sessionStorage).forEach(key => {
+        if (key.startsWith('dataLoaded_')) {
+          sessionStorage.removeItem(key)
+        }
+      })
+    }
+  }, [user])
+
+   // Auto-sync to cloud every 10 seconds when user is logged in
+   useEffect(() => {
+     if (!user || !dataService || !currentSettlement) return
+
+     const syncInterval = setInterval(async () => {
+       try {
+         // Check if state is dirty
+         const isDirty = localStorage.getItem('appStateDirty') === 'true'
+         
+         if (!isDirty) {
+           console.log('State is clean, skipping auto-sync')
+           return
+         }
+         
+         console.log('State is dirty, performing auto-sync')
+         
+         // Save current settlement to cloud
+         await dataService.saveUserData(currentSettlement.id, {
+           survivors: [],
+           settlements: [currentSettlement],
+           inventory: {
+             [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+           },
+         })
+         
+         // Update last sync time and mark as clean
+         setLastSyncTime(new Date())
+         localStorage.setItem('appStateDirty', 'false')
+         
+         console.log('Auto-sync complete, marked clean')
+       } catch (error) {
+         console.error('Auto-sync failed:', error)
+         // Keep dirty flag so we retry next time
+       }
+     }, 10000) // 10000ms = 10 seconds
+
+     return () => clearInterval(syncInterval)
+   }, [user, dataService, currentSettlement])
+
+   // Force re-render to update countdown timer and sync timestamp
+   useEffect(() => {
+     if (!lastManualSyncTime && !lastSyncTime) return
+     
+     const timer = setInterval(() => {
+       // Force a re-render to update the formatSyncTime display and countdown
+       forceUpdate(n => n + 1)
+     }, 1000) // Update every second
+     
+     return () => clearInterval(timer)
+   }, [lastManualSyncTime, lastSyncTime])
+
+   // Close sync menu when clicking outside
+   useEffect(() => {
+     if (!showSyncMenu) return
+     
+     const handleClickOutside = (e: MouseEvent) => {
+       const target = e.target as HTMLElement
+       if (!target.closest('.sync-menu-container')) {
+         setShowSyncMenu(false)
+       }
+     }
+     
+     document.addEventListener('click', handleClickOutside)
+     return () => document.removeEventListener('click', handleClickOutside)
+   }, [showSyncMenu])
+
+   // Handle swipe gestures on mobile for cycling survivors in focus mode
+   useEffect(() => {
     if (!isMobileDevice || focusedQuadrant === null) return
 
     let touchStartX = 0
@@ -502,29 +692,54 @@ function App() {
     }))
   }
 
-  const handleExport = () => {
-    const dataStr = JSON.stringify(appState, null, 2)
-    const dataBlob = new Blob([dataStr], { type: 'application/json' })
-    const url = URL.createObjectURL(dataBlob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `kdm-survivors-${new Date().toISOString().split('T')[0]}.json`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-  }
+   const showNotification = (message: string, type: 'success' | 'error') => {
+      setNotification({ message, type })
+      setTimeout(() => setNotification(null), 3000)
+    }
 
-  const handleImport = () => {
-    fileInputRef.current?.click()
-  }
+    const formatSyncTime = (date: Date): string => {
+      const now = new Date()
+      const diffMs = now.getTime() - date.getTime()
+      const diffSecs = Math.floor(diffMs / 1000)
+      const diffMins = Math.floor(diffSecs / 60)
+      const diffHours = Math.floor(diffMins / 60)
+      const diffDays = Math.floor(diffHours / 24)
 
-  const showNotification = (message: string, type: 'success' | 'error') => {
-    setNotification({ message, type })
-    setTimeout(() => setNotification(null), 3000)
-  }
+      if (diffSecs < 10) return 'just now'
+      if (diffMins < 60) return `${diffMins}m`
+      if (diffHours < 24) return `${diffHours}h`
+      return `${diffDays}d`
+    }
 
-  const closeSurvivorList = () => {
+    const handleManualSync = async () => {
+      if (!user || !dataService || !currentSettlement || isSyncing) return
+
+      setIsSyncing(true)
+      try {
+        // Save current settlement to cloud
+        await dataService.saveUserData(currentSettlement.id, {
+          survivors: [],
+          settlements: [currentSettlement],
+          inventory: {
+            [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+          },
+        })
+        // Update last sync time and last manual sync time, mark as clean
+        const now = new Date()
+        setLastSyncTime(now)
+        setLastManualSyncTime(now)
+        localStorage.setItem('appStateDirty', 'false')
+        
+        showNotification('Data synced to cloud', 'success')
+      } catch (error) {
+        console.error('Manual sync failed:', error)
+        showNotification('Failed to sync data', 'error')
+      } finally {
+        setIsSyncing(false)
+      }
+    }
+
+   const closeSurvivorList = () => {
     if (isClosingDrawer) return // Prevent multiple clicks during animation
     setIsClosingDrawer(true)
     setTimeout(() => {
@@ -995,46 +1210,6 @@ function App() {
     })
   }
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      try {
-        const data = JSON.parse(e.target?.result as string)
-
-        // Check if data has expected structure before migration
-        if (!data.survivors && !data.settlements) {
-          throw new Error('Invalid data format - missing survivors or settlements')
-        }
-
-        // Use the migration system to handle all data formats
-        const migrated = migrateData(data)
-
-        // Validate the migrated data
-        if (!validateAppState(migrated)) {
-          throw new Error('Imported data failed validation')
-        }
-
-        // Completely replace the state with imported data
-        setAppState(migrated)
-        const versionInfo = migrated.version === CURRENT_DATA_VERSION
-          ? ''
-          : ` (upgraded from v${data.version || 'legacy'} to v${CURRENT_DATA_VERSION})`
-        showNotification(`Data imported successfully${versionInfo}`, 'success')
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-        showNotification(`Failed to import: ${errorMessage}`, 'error')
-        console.error('Import error:', error)
-      }
-    }
-    reader.readAsText(file)
-
-    // Reset input so the same file can be selected again
-    event.target.value = ''
-  }
-
   const getQuadrantClass = (quadrant: QuadrantId) => {
     const baseClass = `quadrant quadrant-${quadrant}`
     const isActive = activeQuadrant === quadrant ? 'active-mobile' : 'inactive-mobile'
@@ -1043,15 +1218,17 @@ function App() {
     return `${baseClass} unfocused`
   }
 
+  // Render app always, with optional login modal overlay
   return (
-    <div className="app-layout">
-      {notification && (
-        <div className={`notification notification-${notification.type}`}>
-          {notification.message}
-        </div>
-      )}
+    <>
+       <div className="app-layout">
+          {notification && (
+            <div className={`notification notification-${notification.type}`}>
+              {notification.message}
+            </div>
+          )}
 
-      {confirmDialog && (
+        {confirmDialog && (
         <div className="confirm-overlay" onClick={() => setConfirmDialog(null)}>
           <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
             <p className="confirm-message">{confirmDialog.message}</p>
@@ -1184,9 +1361,117 @@ function App() {
             </div>
           </div>
         </div>
-      )}
+       )}
 
-      {showSettlementManagement && (
+      {mergeDialog && (
+        <div className="confirm-overlay">
+          <div className="confirm-dialog merge-dialog" onClick={(e) => e.stopPropagation()}>
+            <h3 className="merge-dialog-title">Data Conflict Detected</h3>
+            <div className="merge-dialog-content">
+              <p className="merge-dialog-description">
+                You have data saved in both the cloud and locally. Choose which version to keep:
+              </p>
+              <ul className="merge-dialog-list">
+                <li>
+                  <strong>Cloud data:</strong> {mergeDialog.cloudSettlements.length} settlement
+                  {mergeDialog.cloudSettlements.length !== 1 ? 's' : ''} from your account
+                </li>
+                <li>
+                  <strong>Local data:</strong> {mergeDialog.localData.settlements?.length || 0} settlement
+                  {(mergeDialog.localData.settlements?.length || 0) !== 1 ? 's' : ''} on this device
+                </li>
+              </ul>
+              <div className="merge-dialog-warning">
+                ⚠️ The data you don't choose will be replaced
+              </div>
+            </div>
+            <div className="confirm-actions">
+              <button
+                className="confirm-ok"
+                onClick={async () => {
+                  // Keep local data, overwrite cloud
+                  try {
+                    if (dataService && mergeDialog.localData.settlements) {
+                      for (const settlement of mergeDialog.localData.settlements) {
+                        await dataService.saveUserData(settlement.id, {
+                          survivors: mergeDialog.localData.survivors || [],
+                          settlements: [settlement],
+                          inventory: mergeDialog.localData.inventory || {},
+                        })
+                      }
+                      showNotification('Local data uploaded to cloud', 'success')
+                      setLastSyncTime(new Date())
+                      localStorage.setItem('appStateDirty', 'false')
+                    }
+                  } catch (error) {
+                      showNotification('Failed to sync local data', 'error')
+                      console.error(error)
+                    }
+                    // Mark session as loaded
+                    if (user) {
+                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                    }
+                    setMergeDialog(null)
+                }}
+              >
+                Keep Local
+              </button>
+              <button
+                className="confirm-ok"
+                onClick={async () => {
+                  // Use cloud data, overwrite local
+                  try {
+                    if (mergeDialog.cloudData && mergeDialog.cloudData.length > 0) {
+                      // Merge all cloud data into a single app state
+                      const mergedSettlements = mergeDialog.cloudData.map((d: any) => d.settlements || []).flat()
+                      const mergedSurvivors = mergeDialog.cloudData.map((d: any) => d.survivors || []).flat()
+                      const mergedInventory = Object.assign({}, ...mergeDialog.cloudData.map((d: any) => d.inventory || {}))
+                      
+                      const newAppState = {
+                        ...appState,
+                        settlements: mergedSettlements,
+                        survivors: mergedSurvivors,
+                        inventory: mergedInventory,
+                      }
+                      setAppState(newAppState)
+                      localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
+                      localStorage.setItem('appStateDirty', 'false')
+                      
+                      // Immediately sync the loaded data back to cloud
+                      if (dataService && currentSettlement) {
+                        try {
+                          await dataService.saveUserData(currentSettlement.id, {
+                            survivors: mergedSurvivors,
+                            settlements: [currentSettlement],
+                            inventory: mergedInventory,
+                          })
+                          setLastSyncTime(new Date())
+                        } catch (syncError) {
+                          console.error('Failed to sync after loading:', syncError)
+                        }
+                      }
+                      
+                      showNotification('Cloud data loaded locally', 'success')
+                    }
+                  } catch (error) {
+                      showNotification('Failed to load cloud data', 'error')
+                      console.error(error)
+                    }
+                    // Mark session as loaded
+                    if (user) {
+                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                    }
+                    setMergeDialog(null)
+                }}
+              >
+                Use Cloud
+              </button>
+            </div>
+          </div>
+        </div>
+       )}
+
+       {showSettlementManagement && (
         <div
           className={`settlement-management-overlay ${isClosingSettlementDrawer ? 'closing' : ''}`}
           onClick={() => closeSettlementManagement()}
@@ -1568,44 +1853,92 @@ function App() {
           >
             📖
           </button>
-          <button
-            className="toolbar-button toolbar-icon-button"
-            onClick={() => setShowInventoryModal(true)}
-            aria-label="Inventory"
-            title="Settlement Inventory"
-          >
-            🎒
-          </button>
-          <div className="saves-selector">
             <button
-              className="toolbar-button saves-dropdown-button"
-              onClick={() => setShowSavesDropdown(!showSavesDropdown)}
+              className="toolbar-button toolbar-icon-button"
+              onClick={() => setShowInventoryModal(true)}
+              aria-label="Inventory"
+              title="Settlement Inventory"
             >
-              💾 Saves ▼
-            </button>
-            {showSavesDropdown && (
-              <div className="saves-dropdown-menu">
-                <div
-                  className="saves-dropdown-item"
-                  onClick={() => {
-                    setShowSavesDropdown(false)
-                    handleExport()
-                  }}
-                >
-                  ⬆️ Export
+              🎒
+             </button>
+             {user && (
+                <div className="sync-menu-container">
+                  <button
+                    className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
+                    onClick={() => setShowSyncMenu(!showSyncMenu)}
+                    title={lastSyncTime ? `Last backup: ${formatSyncTime(lastSyncTime)}` : 'Cloud sync'}
+                    aria-label="Cloud sync menu"
+                  >
+                    <span className="sync-icon">{isSyncing ? '⟳' : '☁'}</span>
+                    {lastSyncTime && (
+                      <span className="sync-time-label">{formatSyncTime(lastSyncTime)}</span>
+                    )}
+                  </button>
+                  {showSyncMenu && (
+                    <div className="sync-dropdown-menu">
+                      <button
+                        className="sync-menu-item"
+                        onClick={async () => {
+                          setShowSyncMenu(false)
+                          await handleManualSync()
+                        }}
+                        disabled={isSyncing || (lastManualSyncTime !== null && Date.now() - lastManualSyncTime.getTime() < 30000)}
+                      >
+                        <span className="sync-menu-icon">⟳</span>
+                        <span>
+                          {lastManualSyncTime && Date.now() - lastManualSyncTime.getTime() < 30000
+                            ? `Wait ${Math.ceil(30 - (Date.now() - lastManualSyncTime.getTime()) / 1000)}s`
+                            : 'Force Sync Now'}
+                        </span>
+                      </button>
+                      <div className="sync-menu-divider"></div>
+                      <div className="sync-menu-info">
+                        <div className="sync-menu-user">
+                          <span className="sync-menu-icon">👤</span>
+                          <span>Logged in as <strong>{user.username}</strong></span>
+                        </div>
+                        {lastSyncTime && (
+                          <div className="sync-menu-time">
+                            Last synced: {formatSyncTime(lastSyncTime)}
+                          </div>
+                        )}
+                      </div>
+                      <div className="sync-menu-divider"></div>
+                      <button
+                        className="sync-menu-item logout-item"
+                        onClick={async () => {
+                          setShowSyncMenu(false)
+                          try {
+                            // Clear all local storage data
+                            localStorage.clear()
+                            // Sign out from Cognito
+                            await signOut()
+                            // Reload to reset app state
+                            location.reload()
+                          } catch (error) {
+                            console.error('Logout error:', error)
+                            // Clear storage and reload anyway
+                            localStorage.clear()
+                            location.reload()
+                          }
+                        }}
+                      >
+                        <span className="sync-menu-icon">🚪</span>
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
-                <div
-                  className="saves-dropdown-item"
-                  onClick={() => {
-                    setShowSavesDropdown(false)
-                    handleImport()
-                  }}
-                >
-                  ⬇️ Import
-                </div>
-              </div>
+             )}
+             {user ? null : (
+              <button
+                className="toolbar-button login-button"
+                onClick={() => setShowLoginModal(true)}
+                title="Login or Sign Up"
+              >
+                 🔐 Login to Save
+              </button>
             )}
-          </div>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
@@ -1637,13 +1970,6 @@ function App() {
             )}
           </div>
         )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleFileChange}
-          style={{ display: 'none' }}
-        />
         </div>
       </div>
 
@@ -2370,6 +2696,36 @@ function App() {
         />
       )}
     </div>
+    <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
+    </>
+  )
+}
+
+function App() {
+  const userPoolId = import.meta.env.VITE_COGNITO_USER_POOL_ID || ''
+  const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID || ''
+  const region = import.meta.env.VITE_COGNITO_REGION || 'us-west-2'
+  const apiBaseUrl = import.meta.env.VITE_API_GATEWAY_URL || ''
+
+  if (!userPoolId || !clientId || !apiBaseUrl) {
+    return (
+      <div style={{ padding: '20px', textAlign: 'center', marginTop: '100px' }}>
+        <h2>Configuration Error</h2>
+        <p>Missing required environment variables. Please create .env.local with:</p>
+        <pre style={{ textAlign: 'left', display: 'inline-block', background: '#f0f0f0', padding: '10px', borderRadius: '5px' }}>
+VITE_COGNITO_USER_POOL_ID=your_pool_id
+VITE_COGNITO_CLIENT_ID=your_client_id
+VITE_COGNITO_REGION=us-west-2
+VITE_API_GATEWAY_URL=your_api_url
+        </pre>
+      </div>
+    )
+  }
+
+  return (
+    <AuthProvider userPoolId={userPoolId} clientId={clientId} region={region} apiBaseUrl={apiBaseUrl}>
+      <AppContent />
+    </AuthProvider>
   )
 }
 
