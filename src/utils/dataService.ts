@@ -78,6 +78,7 @@ export class DataService {
   async saveUserData(settlementId: string, data: UserDataPayload): Promise<void> {
     try {
       const accessToken = await this.authService.getAccessToken()
+      console.log('Sending POST request with token prefix:', accessToken.substring(0, 20) + '...')
       const response = await fetch(
         `${this.apiBaseUrl}/user-data/${settlementId}`,
         {
@@ -91,6 +92,7 @@ export class DataService {
       )
 
       if (!response.ok) {
+        console.error('Response status:', response.status, response.statusText)
         throw new Error(`Failed to save user data: ${response.statusText}`)
       }
 
