@@ -54,6 +54,7 @@ export class DataService {
   async getAllUserData(): Promise<UserDataPayload[]> {
     try {
       const accessToken = await this.authService.getAccessToken()
+      console.log('getAllUserData: Fetching from', `${this.apiBaseUrl}/user-data`)
       const response = await fetch(`${this.apiBaseUrl}/user-data`, {
         method: 'GET',
         headers: {
@@ -62,12 +63,32 @@ export class DataService {
         },
       })
 
+      console.log('getAllUserData: Response status:', response.status)
+      console.log('getAllUserData: Response headers:', Object.fromEntries(response.headers.entries()))
+
       if (!response.ok) {
-        throw new Error(`Failed to get user data: ${response.statusText}`)
+        const errorText = await response.text()
+        console.error('getAllUserData: Error response:', errorText)
+        throw new Error(`Failed to get user data: ${response.statusText} - ${errorText}`)
       }
 
       const items = await response.json()
-      return items.map((item: any) => JSON.parse(item.data || '{}'))
+      console.log(`getAllUserData: Received ${items.length} items from API`)
+      
+      // Each item has: { user_id, settlement_id, data, updated_at }
+      // The 'data' field is a JSON string that needs to be parsed
+      const parsed = items.map((item: any) => {
+        try {
+          const payload = typeof item.data === 'string' ? JSON.parse(item.data) : item.data
+          return payload
+        } catch (e) {
+          console.error('Failed to parse item:', item, e)
+          return { settlements: [], survivors: [], inventory: {} }
+        }
+      })
+      
+      console.log(`getAllUserData: Parsed ${parsed.length} payloads`, parsed)
+      return parsed
     } catch (error) {
       console.error('Error fetching all user data:', error)
       throw error

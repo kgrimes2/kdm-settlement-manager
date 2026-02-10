@@ -33,6 +33,106 @@ resource "aws_api_gateway_resource" "user_data" {
   path_part   = "user-data"
 }
 
+# GET /user-data - Get all user settlements
+resource "aws_api_gateway_method" "get_all_user_data" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.user_data.id
+  http_method   = "GET"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito.id
+}
+
+resource "aws_api_gateway_integration" "get_all_user_data" {
+  rest_api_id             = aws_api_gateway_rest_api.main.id
+  resource_id             = aws_api_gateway_resource.user_data.id
+  http_method             = aws_api_gateway_method.get_all_user_data.http_method
+  type                    = "AWS_PROXY"
+  integration_http_method = "POST"
+  uri                     = aws_lambda_function.get_user_data.invoke_arn
+}
+
+resource "aws_api_gateway_method_response" "get_all_user_data_200" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.get_all_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "get_all_user_data_401" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.get_all_user_data.http_method
+  status_code = "401"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "get_all_user_data_403" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.get_all_user_data.http_method
+  status_code = "403"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# OPTIONS method for CORS preflight requests on /user-data
+resource "aws_api_gateway_method" "cors_user_data" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.user_data.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "cors_user_data" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.cors_user_data.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
+resource "aws_api_gateway_method_response" "cors_user_data" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.cors_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "cors_user_data" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data.id
+  http_method = aws_api_gateway_method.cors_user_data.http_method
+  status_code = aws_api_gateway_method_response.cors_user_data.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.cors_user_data,
+    aws_api_gateway_method_response.cors_user_data
+  ]
+}
+
 # API Gateway Resource - /user-data/{settlement_id}
 resource "aws_api_gateway_resource" "user_data_settlement" {
   rest_api_id = aws_api_gateway_rest_api.main.id
@@ -426,13 +526,17 @@ resource "aws_api_gateway_deployment" "main" {
     redeployment = sha1(jsonencode([
       aws_api_gateway_resource.user_data.id,
       aws_api_gateway_resource.user_data_settlement.id,
+      aws_api_gateway_method.get_all_user_data.id,
       aws_api_gateway_method.get_user_data.id,
       aws_api_gateway_method.save_user_data.id,
       aws_api_gateway_method.delete_user_data.id,
+      aws_api_gateway_method.cors_user_data.id,
       aws_api_gateway_method.cors_settlement.id,
+      aws_api_gateway_integration.get_all_user_data.id,
       aws_api_gateway_integration.get_user_data.id,
       aws_api_gateway_integration.save_user_data.id,
       aws_api_gateway_integration.delete_user_data.id,
+      aws_api_gateway_integration.cors_user_data.id,
       aws_api_gateway_integration.cors_settlement.id,
     ]))
   }
@@ -442,9 +546,11 @@ resource "aws_api_gateway_deployment" "main" {
   }
 
   depends_on = [
+    aws_api_gateway_integration.get_all_user_data,
     aws_api_gateway_integration.get_user_data,
     aws_api_gateway_integration.save_user_data,
     aws_api_gateway_integration.delete_user_data,
+    aws_api_gateway_integration.cors_user_data,
     aws_api_gateway_integration.cors_settlement,
   ]
 }
