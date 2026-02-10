@@ -55,6 +55,7 @@ function AppContent() {
   })
    const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
    const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
+   const [lastManualSyncTime, setLastManualSyncTime] = useState<Date | null>(null)
    const [isSyncing, setIsSyncing] = useState(false)
    const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
@@ -97,6 +98,7 @@ function AppContent() {
   const [settlementInputValue, setSettlementInputValue] = useState('')
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
+  const [showSyncMenu, setShowSyncMenu] = useState(false)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -287,7 +289,7 @@ function AppContent() {
     //  checkCloudData()
     }, [user, dataService])
 
-   // Auto-sync to cloud every minute when user is logged in
+   // Auto-sync to cloud every 5 minutes when user is logged in
    useEffect(() => {
      if (!user || !dataService || !currentSettlement) return
 
@@ -307,10 +309,42 @@ function AppContent() {
          console.error('Auto-sync failed:', error)
          // Silently fail - user can still work locally
        }
-     }, 60000) // 60000ms = 1 minute
+     }, 300000) // 300000ms = 5 minutes
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, currentSettlement])
+
+   // Force re-render to update countdown timer while sync cooldown is active
+   useEffect(() => {
+     if (!lastManualSyncTime || !showSyncMenu) return
+     
+     const timeRemaining = 30000 - (Date.now() - lastManualSyncTime.getTime())
+     if (timeRemaining <= 0) return
+     
+     const timer = setInterval(() => {
+       const remaining = 30000 - (Date.now() - lastManualSyncTime.getTime())
+       if (remaining <= 0) {
+         clearInterval(timer)
+       }
+     }, 1000)
+     
+     return () => clearInterval(timer)
+   }, [lastManualSyncTime, showSyncMenu])
+
+   // Close sync menu when clicking outside
+   useEffect(() => {
+     if (!showSyncMenu) return
+     
+     const handleClickOutside = (e: MouseEvent) => {
+       const target = e.target as HTMLElement
+       if (!target.closest('.sync-menu-container')) {
+         setShowSyncMenu(false)
+       }
+     }
+     
+     document.addEventListener('click', handleClickOutside)
+     return () => document.removeEventListener('click', handleClickOutside)
+   }, [showSyncMenu])
 
    // Handle swipe gestures on mobile for cycling survivors in focus mode
    useEffect(() => {
@@ -591,28 +625,30 @@ function AppContent() {
     }
 
     const handleManualSync = async () => {
-     if (!user || !dataService || !currentSettlement || isSyncing) return
+      if (!user || !dataService || !currentSettlement || isSyncing) return
 
-     setIsSyncing(true)
-     try {
-       // Save current settlement to cloud
-       await dataService.saveUserData(currentSettlement.id, {
-         survivors: [],
-         settlements: [currentSettlement],
-         inventory: {
-           [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
-         },
-       })
-       // Update last sync time and show success notification
-       setLastSyncTime(new Date())
-       showNotification('Data synced to cloud', 'success')
-     } catch (error) {
-       console.error('Manual sync failed:', error)
-       showNotification('Failed to sync data', 'error')
-     } finally {
-       setIsSyncing(false)
-     }
-   }
+      setIsSyncing(true)
+      try {
+        // Save current settlement to cloud
+        await dataService.saveUserData(currentSettlement.id, {
+          survivors: [],
+          settlements: [currentSettlement],
+          inventory: {
+            [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+          },
+        })
+        // Update last sync time and last manual sync time, show success notification
+        const now = new Date()
+        setLastSyncTime(now)
+        setLastManualSyncTime(now)
+        showNotification('Data synced to cloud', 'success')
+      } catch (error) {
+        console.error('Manual sync failed:', error)
+        showNotification('Failed to sync data', 'error')
+      } finally {
+        setIsSyncing(false)
+      }
+    }
 
    const closeSurvivorList = () => {
     if (isClosingDrawer) return // Prevent multiple clicks during animation
@@ -1712,40 +1748,66 @@ function AppContent() {
               🎒
              </button>
              {user && (
-                <button
-                  className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
-                  onClick={handleManualSync}
-                  disabled={isSyncing}
-                  title={isSyncing ? 'Syncing...' : lastSyncTime ? `Force sync • Last backup: ${formatSyncTime(lastSyncTime)}` : 'Force sync to cloud'}
-                  aria-label="Sync"
-                >
-                  {isSyncing ? '⟳' : '☁'}
-                </button>
+                <div className="sync-menu-container">
+                  <button
+                    className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
+                    onClick={() => setShowSyncMenu(!showSyncMenu)}
+                    title={lastSyncTime ? `Last backup: ${formatSyncTime(lastSyncTime)}` : 'Cloud sync'}
+                    aria-label="Cloud sync menu"
+                  >
+                    {isSyncing ? '⟳' : '☁'}
+                  </button>
+                  {showSyncMenu && (
+                    <div className="sync-dropdown-menu">
+                      <button
+                        className="sync-menu-item"
+                        onClick={async () => {
+                          setShowSyncMenu(false)
+                          await handleManualSync()
+                        }}
+                        disabled={isSyncing || (lastManualSyncTime !== null && Date.now() - lastManualSyncTime.getTime() < 30000)}
+                      >
+                        <span className="sync-menu-icon">⟳</span>
+                        <span>
+                          {lastManualSyncTime && Date.now() - lastManualSyncTime.getTime() < 30000
+                            ? `Wait ${Math.ceil(30 - (Date.now() - lastManualSyncTime.getTime()) / 1000)}s`
+                            : 'Force Sync Now'}
+                        </span>
+                      </button>
+                      <div className="sync-menu-divider"></div>
+                      <div className="sync-menu-info">
+                        <div className="sync-menu-user">
+                          <span className="sync-menu-icon">👤</span>
+                          <span>Logged in as <strong>{user.username}</strong></span>
+                        </div>
+                        {lastSyncTime && (
+                          <div className="sync-menu-time">
+                            Last synced: {formatSyncTime(lastSyncTime)} ago
+                          </div>
+                        )}
+                      </div>
+                      <div className="sync-menu-divider"></div>
+                      <button
+                        className="sync-menu-item logout-item"
+                        onClick={async () => {
+                          setShowSyncMenu(false)
+                          try {
+                            await signOut()
+                            location.reload()
+                          } catch (error) {
+                            console.error('Logout error:', error)
+                            location.reload()
+                          }
+                        }}
+                      >
+                        <span className="sync-menu-icon">🚪</span>
+                        <span>Logout</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
              )}
-             {user && (
-               <div className="user-profile" title={`Logged in as: ${user.username}`}>
-                <span className="user-icon">👤</span>
-                <span className="user-name">{user.username}</span>
-              </div>
-            )}
-            {user ? (
-              <button
-                className="toolbar-button logout-button"
-                onClick={async () => {
-                  try {
-                    await signOut()
-                    location.reload()
-                  } catch (error) {
-                    console.error('Logout error:', error)
-                    // Force reload anyway
-                    location.reload()
-                  }
-                }}
-                title="Logout"
-              >
-                🚪 Logout
-              </button>
-            ) : (
+             {user ? null : (
               <button
                 className="toolbar-button login-button"
                 onClick={() => setShowLoginModal(true)}
