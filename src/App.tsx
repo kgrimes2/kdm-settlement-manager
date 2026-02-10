@@ -100,6 +100,7 @@ function AppContent() {
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
   const [showSyncMenu, setShowSyncMenu] = useState(false)
   const [lastAppStateSnapshot, setLastAppStateSnapshot] = useState<string>('')
+  const [, forceUpdate] = useState(0)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -321,7 +322,7 @@ function AppContent() {
     }
   }, [user])
 
-   // Auto-sync to cloud every minute when user is logged in
+   // Auto-sync to cloud every 30 seconds when user is logged in
    useEffect(() => {
      if (!user || !dataService || !currentSettlement) return
 
@@ -359,38 +360,37 @@ function AppContent() {
          // Mark as dirty so we retry next time
          localStorage.setItem('appStateDirty', 'true')
        }
-     }, 10000) // 10000ms = 10 seconds
+     }, 30000) // 30000ms = 30 seconds
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, currentSettlement, appState, lastAppStateSnapshot])
 
-   // Mark state as dirty whenever appState changes
+   // Check for state changes every 10 seconds and mark as dirty
    useEffect(() => {
      if (!user) return // Only track when logged in
      
-     const currentStateSnapshot = JSON.stringify(appState)
-     if (currentStateSnapshot !== lastAppStateSnapshot && lastAppStateSnapshot !== '') {
-       console.log('State changed, marking as dirty')
-       localStorage.setItem('appStateDirty', 'true')
-     }
+     const dirtyCheckInterval = setInterval(() => {
+       const currentStateSnapshot = JSON.stringify(appState)
+       if (currentStateSnapshot !== lastAppStateSnapshot && lastAppStateSnapshot !== '') {
+         console.log('State changed, marking as dirty')
+         localStorage.setItem('appStateDirty', 'true')
+       }
+     }, 10000) // 10000ms = 10 seconds
+     
+     return () => clearInterval(dirtyCheckInterval)
    }, [appState, user, lastAppStateSnapshot])
 
-   // Force re-render to update countdown timer while sync cooldown is active
+   // Force re-render to update countdown timer and sync timestamp
    useEffect(() => {
-     if (!lastManualSyncTime || !showSyncMenu) return
-     
-     const timeRemaining = 30000 - (Date.now() - lastManualSyncTime.getTime())
-     if (timeRemaining <= 0) return
+     if (!lastManualSyncTime && !lastSyncTime) return
      
      const timer = setInterval(() => {
-       const remaining = 30000 - (Date.now() - lastManualSyncTime.getTime())
-       if (remaining <= 0) {
-         clearInterval(timer)
-       }
-     }, 1000)
+       // Force a re-render to update the formatSyncTime display and countdown
+       forceUpdate(n => n + 1)
+     }, 1000) // Update every second
      
      return () => clearInterval(timer)
-   }, [lastManualSyncTime, showSyncMenu])
+   }, [lastManualSyncTime, lastSyncTime])
 
    // Close sync menu when clicking outside
    useEffect(() => {
