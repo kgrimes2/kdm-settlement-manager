@@ -54,7 +54,7 @@ function AppContent() {
     return createDefaultAppState()
   })
    const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-   const [backupNotification, setBackupNotification] = useState(false)
+   const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null)
    const [isSyncing, setIsSyncing] = useState(false)
    const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
@@ -287,9 +287,8 @@ function AppContent() {
              [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
            },
          })
-         // Trigger backup notification on success
-         setBackupNotification(true)
-         setTimeout(() => setBackupNotification(false), 3500) // Auto-dismiss after 3.5 seconds
+         // Update last sync time (no notification shown for auto-sync)
+         setLastSyncTime(new Date())
        } catch (error) {
          console.error('Auto-sync failed:', error)
          // Silently fail - user can still work locally
@@ -559,11 +558,25 @@ function AppContent() {
   }
 
    const showNotification = (message: string, type: 'success' | 'error') => {
-     setNotification({ message, type })
-     setTimeout(() => setNotification(null), 3000)
-   }
+      setNotification({ message, type })
+      setTimeout(() => setNotification(null), 3000)
+    }
 
-   const handleManualSync = async () => {
+    const formatSyncTime = (date: Date): string => {
+      const now = new Date()
+      const diffMs = now.getTime() - date.getTime()
+      const diffSecs = Math.floor(diffMs / 1000)
+      const diffMins = Math.floor(diffSecs / 60)
+      const diffHours = Math.floor(diffMins / 60)
+      const diffDays = Math.floor(diffHours / 24)
+
+      if (diffSecs < 60) return 'just now'
+      if (diffMins < 60) return `${diffMins}m ago`
+      if (diffHours < 24) return `${diffHours}h ago`
+      return `${diffDays}d ago`
+    }
+
+    const handleManualSync = async () => {
      if (!user || !dataService || !currentSettlement || isSyncing) return
 
      setIsSyncing(true)
@@ -576,9 +589,8 @@ function AppContent() {
            [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
          },
        })
-       // Show success notification and backup notification
-       setBackupNotification(true)
-       setTimeout(() => setBackupNotification(false), 3500)
+       // Update last sync time and show success notification
+       setLastSyncTime(new Date())
        showNotification('Data synced to cloud', 'success')
      } catch (error) {
        console.error('Manual sync failed:', error)
@@ -1070,20 +1082,14 @@ function AppContent() {
   // Render app always, with optional login modal overlay
   return (
     <>
-      <div className="app-layout">
-         {notification && (
-           <div className={`notification notification-${notification.type}`}>
-             {notification.message}
-           </div>
-         )}
+       <div className="app-layout">
+          {notification && (
+            <div className={`notification notification-${notification.type}`}>
+              {notification.message}
+            </div>
+          )}
 
-         {backupNotification && (
-           <div className="backup-notification">
-             <span>✓</span> Data backed up
-           </div>
-         )}
-
-       {confirmDialog && (
+        {confirmDialog && (
         <div className="confirm-overlay" onClick={() => setConfirmDialog(null)}>
           <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
             <p className="confirm-message">{confirmDialog.message}</p>
@@ -1692,15 +1698,15 @@ function AppContent() {
               🎒
              </button>
              {user && (
-               <button
-                 className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
-                 onClick={handleManualSync}
-                 disabled={isSyncing}
-                 title={isSyncing ? 'Syncing...' : 'Force sync to cloud'}
-                 aria-label="Sync"
-               >
-                 {isSyncing ? '⟳' : '☁'}
-               </button>
+                <button
+                  className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
+                  onClick={handleManualSync}
+                  disabled={isSyncing}
+                  title={isSyncing ? 'Syncing...' : lastSyncTime ? `Force sync • Last backup: ${formatSyncTime(lastSyncTime)}` : 'Force sync to cloud'}
+                  aria-label="Sync"
+                >
+                  {isSyncing ? '⟳' : '☁'}
+                </button>
              )}
              {user && (
                <div className="user-profile" title={`Logged in as: ${user.username}`}>
