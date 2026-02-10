@@ -38,9 +38,13 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "app_bucket_sse" {
   }
 }
 
-# CloudFront Origin Access Identity (OAI) for secure S3 access
-resource "aws_cloudfront_origin_access_identity" "oai" {
-  comment = "OAI for ${var.app_name}-${var.environment} app"
+# CloudFront Origin Access Control (OAC) for secure S3 access
+resource "aws_cloudfront_origin_access_control" "oai" {
+  name                              = "OAC for ${var.app_name}-${var.environment} app"
+  description                       = "OAC for ${var.app_name}-${var.environment} app"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
 }
 
 # S3 bucket policy to allow CloudFront access
@@ -54,10 +58,15 @@ resource "aws_s3_bucket_policy" "app_bucket_policy" {
         Sid    = "CloudFrontAccess"
         Effect = "Allow"
         Principal = {
-          AWS = aws_cloudfront_origin_access_identity.oai.iam_arn
+          Service = "cloudfront.amazonaws.com"
         }
         Action   = "s3:GetObject"
         Resource = "${aws_s3_bucket.app_bucket.arn}/*"
+        Condition = {
+          StringEquals = {
+            "AWS:SourceArn" = "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.app_distribution.id}"
+          }
+        }
       },
       {
         Sid       = "DenyUnencryptedObjectUploads"
@@ -83,9 +92,9 @@ resource "aws_cloudfront_distribution" "app_distribution" {
   price_class         = var.environment == "prod" ? "PriceClass_100" : "PriceClass_All"
 
   origin {
-    domain_name            = aws_s3_bucket.app_bucket.bucket_regional_domain_name
-    origin_id              = "S3App"
-    origin_access_identity = aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
+    domain_name              = aws_s3_bucket.app_bucket.bucket_regional_domain_name
+    origin_id                = "S3App"
+    origin_access_control_id = aws_cloudfront_origin_access_control.oai.id
   }
 
   default_cache_behavior {
@@ -94,65 +103,36 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     target_origin_id = "S3App"
     compress         = true
 
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-
-      headers = ["Accept-Encoding"]
-    }
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 3600
-    max_ttl                = 86400
   }
 
   # Cache policy for HTML files (index.html)
   # Always revalidate HTML to check for updates
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern     = "/index.html"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3App"
     compress         = true
 
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
+    cache_policy_id = "4135ea3d-c35f-45be-9c82-27fec72f2b82" # Managed-CachingDisabled
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 0   # Always revalidate
-    max_ttl                = 300 # Never cache longer than 5 min
   }
 
   # Cache policy for static assets (CSS, JS, images)
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern     = "/assets/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3App"
     compress         = true
 
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
+    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
 
     viewer_protocol_policy = "redirect-to-https"
-    min_ttl                = 0
-    default_ttl            = 31536000 # 1 year (long cache for versioned assets)
-    max_ttl                = 31536000
   }
 
   # Custom error response for SPA routing

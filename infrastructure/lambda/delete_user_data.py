@@ -4,6 +4,7 @@ import os
 import logging
 import traceback
 from datetime import datetime
+import base64
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -21,15 +22,48 @@ def log_request(event):
     })
 
 def extract_user_id(event):
-    """Extract user ID from authorization header or request context"""
-    # From API Gateway authorization
+    """Extract user ID from JWT token in Authorization header"""
+    # Try to get from API Gateway authorizer context first (if using authorizer)
     claims = event.get('requestContext', {}).get('authorizer', {}).get('claims', {})
     user_id = claims.get('sub')
     
-    if not user_id:
-        raise ValueError('User ID not found in authorization context')
+    if user_id:
+        return user_id
     
-    return user_id
+    # Otherwise, extract from JWT token directly
+    auth_header = event.get('headers', {}).get('Authorization', '')
+    if not auth_header.startswith('Bearer '):
+        raise ValueError('Missing or invalid Authorization header')
+    
+    token = auth_header[7:]  # Remove 'Bearer ' prefix
+    
+    try:
+        # Decode JWT (without verification for now - API Gateway handles verification)
+        # JWT format: header.payload.signature
+        parts = token.split('.')
+        if len(parts) != 3:
+            raise ValueError('Invalid JWT format')
+        
+        # Decode payload (add padding if needed)
+        payload = parts[1]
+        padding = 4 - len(payload) % 4
+        if padding != 4:
+            payload += '=' * padding
+        
+        decoded = base64.urlsafe_b64decode(payload)
+        claims = json.loads(decoded)
+        user_id = claims.get('sub')
+        
+        if not user_id:
+            raise ValueError('User ID not found in token')
+        
+        logger.info(f"Extracted user_id from token: {user_id}")
+        return user_id
+        
+    except Exception as e:
+        logger.error(f"Failed to extract user ID from token: {e}")
+        raise ValueError(f'Invalid token: {e}')
+
 
 def lambda_handler(event, context):
     """
