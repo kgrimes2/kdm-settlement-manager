@@ -48,3 +48,16 @@ infrastructure/terraform/crash.log
 # AWS credentials (extra protection)
 aws_credentials.txt
 .aws/
+
+# AWS Credentials and sensitive deployment docs (NEVER COMMIT)
+IAM_USER_CREATED.md
+DEPLOYMENT_SUCCESS.md
+READY_TO_TEST.txt
+CREDENTIALS_FIXED.txt
+DEPLOY_NOW.txt
+DEPLOY_READY.md
+AWS_SSO_SETUP_SUMMARY.txt
+QUICK_START_SSO.md
+SSO_COGNITO_INTEGRATION.md
+TEST_DOCUMENTATION.md
+
