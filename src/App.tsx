@@ -988,18 +988,15 @@ function AppContent() {
     return `${baseClass} unfocused`
   }
 
-  // Show login modal if not authenticated
-  if (!isAuthenticated) {
-    return <LoginModal isOpen onClose={() => {}} />
-  }
-
+  // Always render the app, but show login modal on top if not authenticated
   return (
-    <div className="app-layout">
-      {notification && (
-        <div className={`notification notification-${notification.type}`}>
-          {notification.message}
-        </div>
-      )}
+    <>
+      <div className="app-layout" style={{ pointerEvents: isAuthenticated ? 'auto' : 'none', opacity: isAuthenticated ? 1 : 0.7 }}>
+        {notification && (
+          <div className={`notification notification-${notification.type}`}>
+            {notification.message}
+          </div>
+        )}
 
       {confirmDialog && (
         <div className="confirm-overlay" onClick={() => setConfirmDialog(null)}>
@@ -2305,6 +2302,8 @@ function AppContent() {
         />
       )}
     </div>
+    <LoginModal isOpen={!isAuthenticated} onClose={() => {}} />
+    </>
   )
 }
 
