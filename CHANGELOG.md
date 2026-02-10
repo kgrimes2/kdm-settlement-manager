@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-02-10
+
+### Fixed
+- **Multi-settlement loading bug** - Now properly loads ALL user settlements from DynamoDB on login instead of just one
+  - Added `GET /user-data` API endpoint to fetch all settlements without requiring settlement_id
+  - Updated auto-sync to save all settlements every 10 seconds (not just the current one)
+  - Updated manual sync to save all settlements at once
+  - Fixed merge dialog to properly handle multiple settlements with improved warnings
+  - Added helpful warnings when cloud/local data counts differ to prevent accidental data loss
+  - Improved logging to show settlement count during load/sync operations
+
+### Security
+- Verified authorization logic ensures users can only access their own settlements
+  - All queries filter by authenticated user's ID from JWT token
+  - DynamoDB composite key (user_id + settlement_id) prevents cross-user access
+  - No risk of users accessing other users' data
+
 ## [1.3.0] - 2026-02-09
 
 ### Added
