@@ -1,4 +1,5 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
+import type { PermanentInjury } from './SurvivorSheet'
 
 export const CURRENT_DATA_VERSION = 8
 
@@ -131,71 +132,71 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     if (!migratedSurvivor.permanentInjuries.legs) migratedSurvivor.permanentInjuries.legs = []
 
     // Add head injuries if not present
-    if (!migratedSurvivor.permanentInjuries.head.find(inj => inj.name === 'Intracranial Hemorrhage')) {
+    if (!migratedSurvivor.permanentInjuries.head.find((inj: PermanentInjury) => inj.name === 'Intracranial Hemorrhage')) {
       migratedSurvivor.permanentInjuries.head.push({ name: 'Intracranial Hemorrhage', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.head.find(inj => inj.name === 'Deaf')) {
+    if (!migratedSurvivor.permanentInjuries.head.find((inj: PermanentInjury) => inj.name === 'Deaf')) {
       migratedSurvivor.permanentInjuries.head.push({ name: 'Deaf', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.head.find(inj => inj.name === 'Blind')) {
+    if (!migratedSurvivor.permanentInjuries.head.find((inj: PermanentInjury) => inj.name === 'Blind')) {
       migratedSurvivor.permanentInjuries.head.push({ name: 'Blind', checkboxes: [false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.head.find(inj => inj.name === 'Shattered Jaw')) {
+    if (!migratedSurvivor.permanentInjuries.head.find((inj: PermanentInjury) => inj.name === 'Shattered Jaw')) {
       migratedSurvivor.permanentInjuries.head.push({ name: 'Shattered Jaw', checkboxes: [false] })
     }
 
     // Remove injuries from body that should be in arms
     migratedSurvivor.permanentInjuries.body = migratedSurvivor.permanentInjuries.body.filter(
-      inj => !['Dismembered Arm', 'Ruptured Muscle', 'Contracture'].includes(inj.name)
+      (inj: PermanentInjury) => !['Dismembered Arm', 'Ruptured Muscle', 'Contracture'].includes(inj.name)
     )
 
     // Add arms injuries if not present
-    if (!migratedSurvivor.permanentInjuries.arms.find(inj => inj.name === 'Broken Arm')) {
+    if (!migratedSurvivor.permanentInjuries.arms.find((inj: PermanentInjury) => inj.name === 'Broken Arm')) {
       migratedSurvivor.permanentInjuries.arms.push({ name: 'Broken Arm', checkboxes: [false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.arms.find(inj => inj.name === 'Dismembered Arm')) {
+    if (!migratedSurvivor.permanentInjuries.arms.find((inj: PermanentInjury) => inj.name === 'Dismembered Arm')) {
       migratedSurvivor.permanentInjuries.arms.push({ name: 'Dismembered Arm', checkboxes: [false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.arms.find(inj => inj.name === 'Ruptured Muscle')) {
+    if (!migratedSurvivor.permanentInjuries.arms.find((inj: PermanentInjury) => inj.name === 'Ruptured Muscle')) {
       migratedSurvivor.permanentInjuries.arms.push({ name: 'Ruptured Muscle', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.arms.find(inj => inj.name === 'Contracture')) {
+    if (!migratedSurvivor.permanentInjuries.arms.find((inj: PermanentInjury) => inj.name === 'Contracture')) {
       migratedSurvivor.permanentInjuries.arms.push({ name: 'Contracture', checkboxes: [false, false, false, false, false] })
     }
 
     // Add body injuries if not present
-    if (!migratedSurvivor.permanentInjuries.body.find(inj => inj.name === 'Gaping Chest Wound')) {
+    if (!migratedSurvivor.permanentInjuries.body.find((inj: PermanentInjury) => inj.name === 'Gaping Chest Wound')) {
       migratedSurvivor.permanentInjuries.body.push({ name: 'Gaping Chest Wound', checkboxes: [false, false, false, false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.body.find(inj => inj.name === 'Destroyed Back')) {
+    if (!migratedSurvivor.permanentInjuries.body.find((inj: PermanentInjury) => inj.name === 'Destroyed Back')) {
       migratedSurvivor.permanentInjuries.body.push({ name: 'Destroyed Back', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.body.find(inj => inj.name === 'Broken Rib')) {
+    if (!migratedSurvivor.permanentInjuries.body.find((inj: PermanentInjury) => inj.name === 'Broken Rib')) {
       migratedSurvivor.permanentInjuries.body.push({ name: 'Broken Rib', checkboxes: [false, false, false, false, false] })
     }
 
     // Add waist injuries if not present
-    if (!migratedSurvivor.permanentInjuries.waist.find(inj => inj.name === 'Intestinal Prolapse')) {
+    if (!migratedSurvivor.permanentInjuries.waist.find((inj: PermanentInjury) => inj.name === 'Intestinal Prolapse')) {
       migratedSurvivor.permanentInjuries.waist.push({ name: 'Intestinal Prolapse', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.waist.find(inj => inj.name === 'Warped Pelvis')) {
+    if (!migratedSurvivor.permanentInjuries.waist.find((inj: PermanentInjury) => inj.name === 'Warped Pelvis')) {
       migratedSurvivor.permanentInjuries.waist.push({ name: 'Warped Pelvis', checkboxes: [false, false, false, false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.waist.find(inj => inj.name === 'Destroyed Genitals')) {
+    if (!migratedSurvivor.permanentInjuries.waist.find((inj: PermanentInjury) => inj.name === 'Destroyed Genitals')) {
       migratedSurvivor.permanentInjuries.waist.push({ name: 'Destroyed Genitals', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.waist.find(inj => inj.name === 'Broken Hip')) {
+    if (!migratedSurvivor.permanentInjuries.waist.find((inj: PermanentInjury) => inj.name === 'Broken Hip')) {
       migratedSurvivor.permanentInjuries.waist.push({ name: 'Broken Hip', checkboxes: [false] })
     }
 
     // Add legs injuries if not present
-    if (!migratedSurvivor.permanentInjuries.legs.find(inj => inj.name === 'Dismembered Leg')) {
+    if (!migratedSurvivor.permanentInjuries.legs.find((inj: PermanentInjury) => inj.name === 'Dismembered Leg')) {
       migratedSurvivor.permanentInjuries.legs.push({ name: 'Dismembered Leg', checkboxes: [false, false] })
     }
-    if (!migratedSurvivor.permanentInjuries.legs.find(inj => inj.name === 'Hamstrung')) {
+    if (!migratedSurvivor.permanentInjuries.legs.find((inj: PermanentInjury) => inj.name === 'Hamstrung')) {
       migratedSurvivor.permanentInjuries.legs.push({ name: 'Hamstrung', checkboxes: [false] })
     }
-    if (!migratedSurvivor.permanentInjuries.legs.find(inj => inj.name === 'Broken Leg')) {
+    if (!migratedSurvivor.permanentInjuries.legs.find((inj: PermanentInjury) => inj.name === 'Broken Leg')) {
       migratedSurvivor.permanentInjuries.legs.push({ name: 'Broken Leg', checkboxes: [false, false] })
     }
   }

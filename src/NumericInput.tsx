@@ -67,6 +67,10 @@ export default function NumericInput({ value, onChange, className = '', min, max
     setShowButtons(true)
   }
 
+  const handleOverlayTouchEnd = () => {
+    setShowButtons(false)
+  }
+
   return (
     <>
       <div ref={containerRef} className="numeric-input-container">
@@ -81,11 +85,11 @@ export default function NumericInput({ value, onChange, className = '', min, max
       </div>
       {showButtons && createPortal(
         <>
-          <div
-            className="numeric-overlay"
-            onClick={handleOverlayClick}
-            onTouchEnd={handleOverlayClick}
-          />
+           <div
+             className="numeric-overlay"
+             onClick={handleOverlayClick}
+             onTouchEnd={handleOverlayTouchEnd}
+           />
           <div
             ref={buttonsRef}
             className="numeric-buttons"
