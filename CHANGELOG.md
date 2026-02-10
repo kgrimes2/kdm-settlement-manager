@@ -22,6 +22,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Eliminates UI lag during rapid clicking and typing
   - JSON.stringify only runs when actually saving (not on every state change)
   - Saves battery on mobile devices
+- **Comprehensive CloudWatch monitoring dashboard** with metrics for:
+  - API Gateway: requests, errors (4XX/5XX), latency (p50/p95/p99)
+  - Lambda: invocations, errors, duration, throttles, concurrent executions
+  - DynamoDB: read/write capacity, throttled requests, system errors
+  - Cognito: sign-in success/failure, token refresh
+  - Cost estimation widgets
+
+### Security
+- **CRITICAL: Enabled Cognito authentication on all API endpoints**
+  - All API methods now require valid JWT tokens from Cognito User Pool
+  - Prevents unauthorized access to user data
+  - Previously, API was completely open to public without authentication
+- **Added API Gateway rate limiting and quotas**
+  - Burst limit: 100 requests/second
+  - Steady state: 50 requests/second
+  - Daily quota: 10,000 requests per user
+  - Prevents DDoS attacks and cost overruns
+- **Added CloudWatch security alarms** for:
+  - High API request count (potential DDoS)
+  - High 4XX/5XX error rates
+  - Lambda function errors
+  - DynamoDB capacity spikes and throttling
+  - SNS topic for email notifications
+- **Removed unnecessary dynamodb:Scan permission** from Lambda IAM policy
+  - Reduces attack surface and potential for table dumps
+- **Added CORS configuration variable** for production origin restrictions
+  - Currently set to '*' for development
+  - Can be restricted to specific domains in production
 
 ### Changed
 - Cloud sync interval reduced from 30s to 10s for faster backups
@@ -31,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - **Critical performance fix**: Eliminated 50-100ms lag on every click/keystroke
+- **Critical security fix**: API endpoints now require authentication
 - Network errors no longer show user-facing error notifications
 - Existing users' localStorage data automatically migrates to cloud on first login
 
@@ -39,6 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Dirty flag stored in localStorage for crash recovery
 - Session tracking via `dataLoaded_${username}` prevents duplicate cloud loads
 - Graceful degradation when offline or network unavailable
+- API Gateway Usage Plan with throttling and quotas
+- Lambda IAM policies follow principle of least privilege
 
 ## [1.1.0] - 2026-02-06
 
