@@ -61,3 +61,8 @@ QUICK_START_SSO.md
 SSO_COGNITO_INTEGRATION.md
 TEST_DOCUMENTATION.md
 
+
+# Test coverage
+coverage/
+.nyc_output/
+*.lcov
