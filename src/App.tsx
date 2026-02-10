@@ -19,7 +19,7 @@ import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
 
-const APP_VERSION = '1.3.0'
+const APP_VERSION = '1.3.1'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -271,7 +271,7 @@ function AppContent() {
 
   // Load cloud data on login and compare with localStorage
   useEffect(() => {
-    if (!user || !dataService || !currentSettlement) return
+    if (!user || !dataService) return
     
     // Check if we've already loaded for this session
     const sessionKey = `dataLoaded_${user.username}`
@@ -283,40 +283,52 @@ function AppContent() {
     // Load cloud data and compare with localStorage
     const loadAndCompare = async () => {
       try {
-        console.log('Loading cloud data on app load')
-        const cloudData = await dataService.getUserData(currentSettlement.id)
+        console.log('Loading all cloud data on app load')
+        const allCloudData = await dataService.getAllUserData()
+        console.log('getAllUserData returned:', allCloudData)
         
-        if (cloudData && cloudData.settlements && cloudData.settlements.length > 0) {
-          console.log('Found cloud data, comparing with localStorage')
+        if (allCloudData && allCloudData.length > 0) {
+          console.log(`Found ${allCloudData.length} settlement(s) in cloud data, comparing with localStorage`)
           
           // Get current localStorage data
           const localStorageData = localStorage.getItem('kdm-app-state')
           const localData = localStorageData ? JSON.parse(localStorageData) : null
           
+          // Merge all cloud data
+          const mergedSettlements = allCloudData.map((d: any) => d.settlements || []).flat()
+          const mergedSurvivors = allCloudData.map((d: any) => d.survivors || []).flat()
+          const mergedInventory = Object.assign({}, ...allCloudData.map((d: any) => d.inventory || {}))
+          
+          console.log('Merged settlements from cloud:', mergedSettlements)
+          console.log('Total settlements after merge:', mergedSettlements.length)
+          
           // Compare localStorage with cloud data
-          const cloudStateString = JSON.stringify(cloudData.settlements)
-          const localStateString = localData ? JSON.stringify(localData.settlements) : null
+          const cloudStateString = JSON.stringify(mergedSettlements.sort((a, b) => a.id.localeCompare(b.id)))
+          const localStateString = localData ? JSON.stringify(localData.settlements.sort((a: any, b: any) => a.id.localeCompare(b.id))) : null
           
           if (localStateString && cloudStateString !== localStateString) {
             // Data is different - show conflict dialog
             console.log('localStorage differs from cloud, showing conflict dialog')
             setMergeDialog({
-              cloudData: [cloudData],
+              cloudData: allCloudData,
               localData: localData || appState,
-              cloudSettlements: cloudData.settlements
+              cloudSettlements: mergedSettlements
             })
           } else {
             // Data is the same or no local data - load cloud data and replace localStorage
             console.log('Loading cloud data and replacing localStorage')
-            const mergedSettlements = [cloudData].map((d: any) => d.settlements || []).flat()
-            const mergedSurvivors = [cloudData].map((d: any) => d.survivors || []).flat()
-            const mergedInventory = Object.assign({}, ...[cloudData].map((d: any) => d.inventory || {}))
+            
+            // Ensure currentSettlementId is valid, otherwise use first settlement
+            const validCurrentId = mergedSettlements.find(s => s.id === appState.currentSettlementId)
+              ? appState.currentSettlementId
+              : mergedSettlements[0]?.id || appState.currentSettlementId
             
             const newAppState = {
               ...appState,
               settlements: mergedSettlements,
               survivors: mergedSurvivors,
               inventory: mergedInventory,
+              currentSettlementId: validCurrentId,
             }
             setAppState(newAppState)
             
@@ -324,7 +336,7 @@ function AppContent() {
             localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
             localStorage.setItem('appStateDirty', 'false')
             
-            showNotification('Cloud data loaded', 'success')
+            showNotification(`Loaded ${mergedSettlements.length} settlement(s) from cloud`, 'success')
           }
           
           // Mark that we've loaded for this session
@@ -353,7 +365,7 @@ function AppContent() {
     }
 
     loadAndCompare()
-  }, [user, dataService, currentSettlement?.id])
+  }, [user, dataService])
 
   // Clear session flags when user logs out
   useEffect(() => {
@@ -369,7 +381,7 @@ function AppContent() {
 
    // Auto-sync to cloud every 10 seconds when user is logged in
    useEffect(() => {
-     if (!user || !dataService || !currentSettlement) return
+     if (!user || !dataService) return
 
      const syncInterval = setInterval(async () => {
        try {
@@ -383,20 +395,24 @@ function AppContent() {
          
          console.log('State is dirty, performing auto-sync')
          
-         // Save current settlement to cloud
-         await dataService.saveUserData(currentSettlement.id, {
-           survivors: [],
-           settlements: [currentSettlement],
-           inventory: {
-             [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
-           },
-         })
+         // Save all settlements to cloud (each as a separate DynamoDB record)
+         const syncPromises = appState.settlements.map(settlement =>
+           dataService.saveUserData(settlement.id, {
+             survivors: [],
+             settlements: [settlement],
+             inventory: {
+               [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+             },
+           })
+         )
+         
+         await Promise.all(syncPromises)
          
          // Update last sync time and mark as clean
          setLastSyncTime(new Date())
          localStorage.setItem('appStateDirty', 'false')
          
-         console.log('Auto-sync complete, marked clean')
+         console.log(`Auto-sync complete, synced ${appState.settlements.length} settlement(s)`)
        } catch (error) {
          console.error('Auto-sync failed:', error)
          // Keep dirty flag so we retry next time
@@ -404,7 +420,7 @@ function AppContent() {
      }, 10000) // 10000ms = 10 seconds
 
      return () => clearInterval(syncInterval)
-   }, [user, dataService, currentSettlement])
+   }, [user, dataService, appState.settlements])
 
    // Force re-render to update countdown timer and sync timestamp
    useEffect(() => {
@@ -712,25 +728,30 @@ function AppContent() {
     }
 
     const handleManualSync = async () => {
-      if (!user || !dataService || !currentSettlement || isSyncing) return
+      if (!user || !dataService || isSyncing) return
 
       setIsSyncing(true)
       try {
-        // Save current settlement to cloud
-        await dataService.saveUserData(currentSettlement.id, {
-          survivors: [],
-          settlements: [currentSettlement],
-          inventory: {
-            [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
-          },
-        })
+        // Save all settlements to cloud (each as a separate DynamoDB record)
+        const syncPromises = appState.settlements.map(settlement =>
+          dataService.saveUserData(settlement.id, {
+            survivors: [],
+            settlements: [settlement],
+            inventory: {
+              [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+            },
+          })
+        )
+        
+        await Promise.all(syncPromises)
+        
         // Update last sync time and last manual sync time, mark as clean
         const now = new Date()
         setLastSyncTime(now)
         setLastManualSyncTime(now)
         localStorage.setItem('appStateDirty', 'false')
         
-        showNotification('Data synced to cloud', 'success')
+        showNotification(`Synced ${appState.settlements.length} settlement(s) to cloud`, 'success')
       } catch (error) {
         console.error('Manual sync failed:', error)
         showNotification('Failed to sync data', 'error')
@@ -1382,8 +1403,18 @@ function AppContent() {
                 </li>
               </ul>
               <div className="merge-dialog-warning">
-                ⚠️ The data you don't choose will be replaced
+                ⚠️ The data you don't choose will be permanently lost
               </div>
+              {(mergeDialog.localData.settlements?.length || 0) > mergeDialog.cloudSettlements.length && (
+                <div className="merge-dialog-warning" style={{ marginTop: '8px', backgroundColor: '#fff3cd', borderColor: '#ffc107', color: '#856404' }}>
+                  💡 Your local data has more settlements. Choose "Keep Local" to avoid losing data.
+                </div>
+              )}
+              {mergeDialog.cloudSettlements.length > (mergeDialog.localData.settlements?.length || 0) && (
+                <div className="merge-dialog-warning" style={{ marginTop: '8px', backgroundColor: '#fff3cd', borderColor: '#ffc107', color: '#856404' }}>
+                  💡 Your cloud data has more settlements. Choose "Keep Cloud" to avoid losing data.
+                </div>
+              )}
             </div>
             <div className="confirm-actions">
               <button
@@ -1392,14 +1423,17 @@ function AppContent() {
                   // Keep local data, overwrite cloud
                   try {
                     if (dataService && mergeDialog.localData.settlements) {
+                      // Save each settlement as a separate DynamoDB record
                       for (const settlement of mergeDialog.localData.settlements) {
                         await dataService.saveUserData(settlement.id, {
                           survivors: mergeDialog.localData.survivors || [],
                           settlements: [settlement],
-                          inventory: mergeDialog.localData.inventory || {},
+                          inventory: {
+                            [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+                          },
                         })
                       }
-                      showNotification('Local data uploaded to cloud', 'success')
+                      showNotification(`Uploaded ${mergeDialog.localData.settlements.length} settlement(s) to cloud`, 'success')
                       setLastSyncTime(new Date())
                       localStorage.setItem('appStateDirty', 'false')
                     }
@@ -1427,31 +1461,24 @@ function AppContent() {
                       const mergedSurvivors = mergeDialog.cloudData.map((d: any) => d.survivors || []).flat()
                       const mergedInventory = Object.assign({}, ...mergeDialog.cloudData.map((d: any) => d.inventory || {}))
                       
+                      // Ensure currentSettlementId is valid, otherwise use first settlement
+                      const validCurrentId = mergedSettlements.find((s: any) => s.id === appState.currentSettlementId)
+                        ? appState.currentSettlementId
+                        : mergedSettlements[0]?.id || appState.currentSettlementId
+                      
                       const newAppState = {
                         ...appState,
                         settlements: mergedSettlements,
                         survivors: mergedSurvivors,
                         inventory: mergedInventory,
+                        currentSettlementId: validCurrentId,
                       }
                       setAppState(newAppState)
                       localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
                       localStorage.setItem('appStateDirty', 'false')
+                      setLastSyncTime(new Date())
                       
-                      // Immediately sync the loaded data back to cloud
-                      if (dataService && currentSettlement) {
-                        try {
-                          await dataService.saveUserData(currentSettlement.id, {
-                            survivors: mergedSurvivors,
-                            settlements: [currentSettlement],
-                            inventory: mergedInventory,
-                          })
-                          setLastSyncTime(new Date())
-                        } catch (syncError) {
-                          console.error('Failed to sync after loading:', syncError)
-                        }
-                      }
-                      
-                      showNotification('Cloud data loaded locally', 'success')
+                      showNotification(`Loaded ${mergedSettlements.length} settlement(s) from cloud`, 'success')
                     }
                   } catch (error) {
                       showNotification('Failed to load cloud data', 'error')
