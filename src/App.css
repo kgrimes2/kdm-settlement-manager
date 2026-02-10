@@ -108,6 +108,59 @@
   text-shadow: 0 1px 1px rgba(255,255,255,0.2);
 }
 
+.merge-dialog {
+  max-width: 550px;
+  text-align: left;
+}
+
+.merge-dialog-title {
+  margin: 0 0 1.25rem 0;
+  color: #2a1a1a;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.merge-dialog-content {
+  margin-bottom: 1.5rem;
+}
+
+.merge-dialog-description {
+  color: #3a2a1a;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.merge-dialog-list {
+  margin: 0 0 1rem 1.5rem;
+  padding: 0;
+  list-style: disc;
+}
+
+.merge-dialog-list li {
+  color: #3a2a1a;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.merge-dialog-list strong {
+  color: #2a1a1a;
+  font-weight: 600;
+}
+
+.merge-dialog-warning {
+  background-color: rgba(139, 92, 46, 0.15);
+  border: 2px solid rgba(139, 92, 46, 0.3);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  color: #5a3a1a;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
 .settlement-name-input {
   width: 100%;
   padding: 0.75rem;
