@@ -414,9 +414,29 @@ resource "aws_api_gateway_stage" "main" {
 resource "aws_api_gateway_deployment" "main" {
   rest_api_id = aws_api_gateway_rest_api.main.id
 
+  triggers = {
+    redeployment = sha1(jsonencode([
+      aws_api_gateway_resource.user_data.id,
+      aws_api_gateway_resource.user_data_settlement.id,
+      aws_api_gateway_method.get_user_data.id,
+      aws_api_gateway_method.save_user_data.id,
+      aws_api_gateway_method.delete_user_data.id,
+      aws_api_gateway_method.cors_settlement.id,
+      aws_api_gateway_integration.get_user_data.id,
+      aws_api_gateway_integration.save_user_data.id,
+      aws_api_gateway_integration.delete_user_data.id,
+      aws_api_gateway_integration.cors_settlement.id,
+    ]))
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+
   depends_on = [
     aws_api_gateway_integration.get_user_data,
     aws_api_gateway_integration.save_user_data,
     aws_api_gateway_integration.delete_user_data,
+    aws_api_gateway_integration.cors_settlement,
   ]
 }
