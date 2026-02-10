@@ -99,6 +99,7 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
   const [showSyncMenu, setShowSyncMenu] = useState(false)
+  const [hasCheckedCloudData, setHasCheckedCloudData] = useState(false)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -254,6 +255,9 @@ function AppContent() {
   // Check for cloud data after user logs in
   useEffect(() => {
     if (!user || !dataService || !currentSettlement) return
+    
+    // Only check once per login session
+    if (hasCheckedCloudData) return
 
     // Try to load the current settlement's data from the cloud
     const loadCloudData = async () => {
@@ -273,6 +277,9 @@ function AppContent() {
         } else {
           console.log('No settlements in cloud data or cloud data is empty')
         }
+        
+        // Mark that we've checked cloud data for this session
+        setHasCheckedCloudData(true)
       } catch (error: any) {
         const errorMessage = error.message || String(error)
         console.log('Error loading cloud data:', errorMessage)
@@ -282,12 +289,21 @@ function AppContent() {
         } else {
           console.error('Error loading cloud data:', error)
         }
+        // Mark as checked even on error to avoid repeated attempts
+        setHasCheckedCloudData(true)
         // Silently continue - user can still work locally
       }
     }
 
     loadCloudData()
-  }, [user, dataService, currentSettlement?.id])
+  }, [user, dataService, currentSettlement?.id, hasCheckedCloudData])
+
+  // Reset cloud data check flag when user logs out
+  useEffect(() => {
+    if (!user) {
+      setHasCheckedCloudData(false)
+    }
+  }, [user])
 
    // Auto-sync to cloud every minute when user is logged in
    useEffect(() => {
