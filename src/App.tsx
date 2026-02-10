@@ -24,7 +24,7 @@ const APP_VERSION = '1.2.0'
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
 function AppContent() {
-  const { signOut, user } = useAuth()
+  const { signOut, user, dataService } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -79,6 +79,7 @@ function AppContent() {
    const [showInventoryModal, setShowInventoryModal] = useState(false)
    const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
    const [showLoginModal, setShowLoginModal] = useState(false)
+   const [mergeDialog, setMergeDialog] = useState<{ cloudData: any; localData: any; cloudSettlements: any[] } | null>(null)
   const [showTutorial, setShowTutorial] = useState(() => {
     // Check if mobile device
     const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -245,6 +246,30 @@ function AppContent() {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant, showTutorial])
+
+  // Check for cloud data after user logs in
+  useEffect(() => {
+    if (!user || !dataService) return
+
+    const checkCloudData = async () => {
+      try {
+        const cloudData = await dataService.getAllUserData()
+        if (cloudData && cloudData.length > 0) {
+          // There's cloud data - show merge dialog
+          setMergeDialog({
+            cloudData: cloudData,
+            localData: appState,
+            cloudSettlements: cloudData.map((d: any) => d.settlements || []).flat()
+          })
+        }
+      } catch (error) {
+        console.error('Error checking cloud data:', error)
+        // Silently fail - user can still use local data
+      }
+    }
+
+    checkCloudData()
+  }, [user, dataService])
 
   // Handle swipe gestures on mobile for cycling survivors in focus mode
   useEffect(() => {
@@ -1132,9 +1157,92 @@ function AppContent() {
             </div>
           </div>
         </div>
+       )}
+
+      {mergeDialog && (
+        <div className="confirm-overlay" onClick={() => setMergeDialog(null)}>
+          <div className="confirm-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px', textAlign: 'left' }}>
+            <p className="confirm-message">Data Conflict Detected</p>
+            <div style={{ color: '#9ca3af', marginBottom: '16px', fontSize: '0.95rem', lineHeight: '1.5' }}>
+              <p>You have data saved in both the cloud and locally. Choose which version to keep:</p>
+              <ul style={{ marginLeft: '16px', marginTop: '8px' }}>
+                <li><strong>Cloud data:</strong> {mergeDialog.cloudSettlements.length} settlements from your account</li>
+                <li><strong>Local data:</strong> {mergeDialog.localData.settlements?.length || 0} settlements on this device</li>
+              </ul>
+              <p style={{ marginTop: '12px', fontSize: '0.85rem', color: '#3a3230' }}>
+                Note: The data you don't choose will be replaced.
+              </p>
+            </div>
+            <div className="confirm-actions">
+              <button
+                className="confirm-cancel"
+                onClick={() => {
+                  setMergeDialog(null)
+                }}
+              >
+                Cancel
+              </button>
+              <button
+                className="confirm-ok"
+                onClick={async () => {
+                  // Keep local data, overwrite cloud
+                  try {
+                    if (dataService && mergeDialog.localData.settlements) {
+                      for (const settlement of mergeDialog.localData.settlements) {
+                        await dataService.saveUserData(settlement.id, {
+                          survivors: mergeDialog.localData.survivors || [],
+                          settlements: [settlement],
+                          inventory: mergeDialog.localData.inventory || {},
+                        })
+                      }
+                      showNotification('Local data uploaded to cloud', 'success')
+                    }
+                  } catch (error) {
+                    showNotification('Failed to sync local data', 'error')
+                    console.error(error)
+                  }
+                  setMergeDialog(null)
+                }}
+              >
+                Keep Local
+              </button>
+              <button
+                className="confirm-ok"
+                style={{ marginLeft: '8px' }}
+                onClick={async () => {
+                  // Use cloud data, overwrite local
+                  try {
+                    if (mergeDialog.cloudData && mergeDialog.cloudData.length > 0) {
+                      // Merge all cloud data into a single app state
+                      const mergedSettlements = mergeDialog.cloudData.map((d: any) => d.settlements || []).flat()
+                      const mergedSurvivors = mergeDialog.cloudData.map((d: any) => d.survivors || []).flat()
+                      const mergedInventory = Object.assign({}, ...mergeDialog.cloudData.map((d: any) => d.inventory || {}))
+                      
+                      const newAppState = {
+                        ...appState,
+                        settlements: mergedSettlements,
+                        survivors: mergedSurvivors,
+                        inventory: mergedInventory,
+                      }
+                      setAppState(newAppState)
+                      localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
+                      showNotification('Cloud data loaded locally', 'success')
+                    }
+                  } catch (error) {
+                    showNotification('Failed to load cloud data', 'error')
+                    console.error(error)
+                  }
+                  setMergeDialog(null)
+                }}
+              >
+                Use Cloud
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
-      {showSettlementManagement && (
+       {showSettlementManagement && (
         <div
           className={`settlement-management-overlay ${isClosingSettlementDrawer ? 'closing' : ''}`}
           onClick={() => closeSettlementManagement()}
