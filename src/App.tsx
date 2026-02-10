@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
@@ -16,12 +16,15 @@ import Tutorial from './components/Tutorial'
 import glossaryData from './data/glossary.json'
 import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
+import { AuthProvider, useAuth } from './contexts/AuthContext'
+import LoginModal from './components/LoginModal'
 
 const APP_VERSION = '1.2.0'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
-function App() {
+function AppContent() {
+  const { isAuthenticated, signOut } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -59,7 +62,6 @@ function App() {
   const [showBulkActions, setShowBulkActions] = useState(false)
   const [showActiveSurvivors, setShowActiveSurvivors] = useState(true)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
-  const fileInputRef = useRef<HTMLInputElement>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
   type MarkerState = { state: 'dashed' | 'solid'; color: string; id: string }
@@ -500,23 +502,6 @@ function App() {
           : s
       )
     }))
-  }
-
-  const handleExport = () => {
-    const dataStr = JSON.stringify(appState, null, 2)
-    const dataBlob = new Blob([dataStr], { type: 'application/json' })
-    const url = URL.createObjectURL(dataBlob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = `kdm-survivors-${new Date().toISOString().split('T')[0]}.json`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    URL.revokeObjectURL(url)
-  }
-
-  const handleImport = () => {
-    fileInputRef.current?.click()
   }
 
   const showNotification = (message: string, type: 'success' | 'error') => {
@@ -995,52 +980,17 @@ function App() {
     })
   }
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      try {
-        const data = JSON.parse(e.target?.result as string)
-
-        // Check if data has expected structure before migration
-        if (!data.survivors && !data.settlements) {
-          throw new Error('Invalid data format - missing survivors or settlements')
-        }
-
-        // Use the migration system to handle all data formats
-        const migrated = migrateData(data)
-
-        // Validate the migrated data
-        if (!validateAppState(migrated)) {
-          throw new Error('Imported data failed validation')
-        }
-
-        // Completely replace the state with imported data
-        setAppState(migrated)
-        const versionInfo = migrated.version === CURRENT_DATA_VERSION
-          ? ''
-          : ` (upgraded from v${data.version || 'legacy'} to v${CURRENT_DATA_VERSION})`
-        showNotification(`Data imported successfully${versionInfo}`, 'success')
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-        showNotification(`Failed to import: ${errorMessage}`, 'error')
-        console.error('Import error:', error)
-      }
-    }
-    reader.readAsText(file)
-
-    // Reset input so the same file can be selected again
-    event.target.value = ''
-  }
-
   const getQuadrantClass = (quadrant: QuadrantId) => {
     const baseClass = `quadrant quadrant-${quadrant}`
     const isActive = activeQuadrant === quadrant ? 'active-mobile' : 'inactive-mobile'
     if (focusedQuadrant === null) return `${baseClass} ${isActive}`
     if (focusedQuadrant === quadrant) return `${baseClass} focused`
     return `${baseClass} unfocused`
+  }
+
+  // Show login modal if not authenticated
+  if (!isAuthenticated) {
+    return <LoginModal isOpen onClose={() => {}} />
   }
 
   return (
@@ -1576,36 +1526,22 @@ function App() {
           >
             🎒
           </button>
-          <div className="saves-selector">
-            <button
-              className="toolbar-button saves-dropdown-button"
-              onClick={() => setShowSavesDropdown(!showSavesDropdown)}
-            >
-              💾 Saves ▼
-            </button>
-            {showSavesDropdown && (
-              <div className="saves-dropdown-menu">
-                <div
-                  className="saves-dropdown-item"
-                  onClick={() => {
-                    setShowSavesDropdown(false)
-                    handleExport()
-                  }}
-                >
-                  ⬆️ Export
-                </div>
-                <div
-                  className="saves-dropdown-item"
-                  onClick={() => {
-                    setShowSavesDropdown(false)
-                    handleImport()
-                  }}
-                >
-                  ⬇️ Import
-                </div>
-              </div>
-            )}
-          </div>
+          <button
+            className="toolbar-button logout-button"
+            onClick={async () => {
+              try {
+                await signOut()
+                location.reload()
+              } catch (error) {
+                console.error('Logout error:', error)
+                // Force reload anyway
+                location.reload()
+              }
+            }}
+            title="Logout"
+          >
+            🚪 Logout
+          </button>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
@@ -1637,13 +1573,6 @@ function App() {
             )}
           </div>
         )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleFileChange}
-          style={{ display: 'none' }}
-        />
         </div>
       </div>
 
@@ -2370,6 +2299,34 @@ function App() {
         />
       )}
     </div>
+  )
+}
+
+function App() {
+  const userPoolId = import.meta.env.VITE_COGNITO_USER_POOL_ID || ''
+  const clientId = import.meta.env.VITE_COGNITO_CLIENT_ID || ''
+  const region = import.meta.env.VITE_COGNITO_REGION || 'us-west-2'
+  const apiBaseUrl = import.meta.env.VITE_API_GATEWAY_URL || ''
+
+  if (!userPoolId || !clientId || !apiBaseUrl) {
+    return (
+      <div style={{ padding: '20px', textAlign: 'center', marginTop: '100px' }}>
+        <h2>Configuration Error</h2>
+        <p>Missing required environment variables. Please create .env.local with:</p>
+        <pre style={{ textAlign: 'left', display: 'inline-block', background: '#f0f0f0', padding: '10px', borderRadius: '5px' }}>
+VITE_COGNITO_USER_POOL_ID=your_pool_id
+VITE_COGNITO_CLIENT_ID=your_client_id
+VITE_COGNITO_REGION=us-west-2
+VITE_API_GATEWAY_URL=your_api_url
+        </pre>
+      </div>
+    )
+  }
+
+  return (
+    <AuthProvider userPoolId={userPoolId} clientId={clientId} region={region} apiBaseUrl={apiBaseUrl}>
+      <AppContent />
+    </AuthProvider>
   )
 }
 

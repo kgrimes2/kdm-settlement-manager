@@ -32,3 +32,19 @@ scripts/.wiki-cache/
 # Temporary files
 TEST_README.md
 survivor.pdf
+
+# AWS/Terraform Configuration (NEVER COMMIT)
+.env.local
+.env.local.*
+infrastructure/terraform/.terraform
+infrastructure/terraform/.terraform.lock.hcl
+infrastructure/terraform/terraform.tfstate
+infrastructure/terraform/terraform.tfstate.*
+infrastructure/terraform/terraform.tfvars
+infrastructure/terraform/**/*.zip
+infrastructure/terraform/tfplan
+infrastructure/terraform/crash.log
+
+# AWS credentials (extra protection)
+aws_credentials.txt
+.aws/
