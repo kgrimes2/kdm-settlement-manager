@@ -198,8 +198,10 @@ export class CognitoAuthService {
           console.error('Session is not valid:', session)
           reject(new Error('Session is not valid'))
         } else {
-          const token = session.getAccessToken().getJwtToken()
-          console.log('Access token obtained, length:', token.length)
+          // Use ID Token instead of Access Token for API Gateway Cognito authorizer
+          const token = session.getIdToken().getJwtToken()
+          console.log('ID token obtained, length:', token.length)
+          console.log('ID token type (first 50 chars):', token.substring(0, 50))
           resolve(token)
         }
       })
