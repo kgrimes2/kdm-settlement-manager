@@ -57,6 +57,28 @@ resource "aws_api_gateway_integration" "get_user_data" {
   uri                     = aws_lambda_function.get_user_data.invoke_arn
 }
 
+resource "aws_api_gateway_method_response" "get_user_data_400" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "400"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "get_user_data_500" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "500"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
 # POST /user-data/{settlement_id} - Save user data
 resource "aws_api_gateway_method" "save_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
@@ -76,6 +98,28 @@ resource "aws_api_gateway_integration" "save_user_data" {
   type                    = "AWS_PROXY"
   integration_http_method = "POST"
   uri                     = aws_lambda_function.save_user_data.invoke_arn
+}
+
+resource "aws_api_gateway_method_response" "save_user_data_400" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "400"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "save_user_data_500" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "500"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
 }
 
 # DELETE /user-data/{settlement_id} - Delete user data
@@ -99,7 +143,142 @@ resource "aws_api_gateway_integration" "delete_user_data" {
   uri                     = aws_lambda_function.delete_user_data.invoke_arn
 }
 
-# Lambda permissions for API Gateway invocation
+resource "aws_api_gateway_method_response" "delete_user_data_400" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "400"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "delete_user_data_500" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "500"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# OPTIONS method for CORS preflight requests on /user-data/{settlement_id}
+resource "aws_api_gateway_method" "cors_settlement" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.user_data_settlement.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "cors_settlement" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.cors_settlement.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
+resource "aws_api_gateway_method_response" "cors_settlement" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.cors_settlement.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "cors_settlement" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.cors_settlement.http_method
+  status_code = aws_api_gateway_method_response.cors_settlement.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,POST,DELETE,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+}
+
+# Add CORS headers to GET method response
+resource "aws_api_gateway_method_response" "get_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "get_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+}
+
+# Add CORS headers to POST method response
+resource "aws_api_gateway_method_response" "save_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "save_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+}
+
+# Add CORS headers to DELETE method response
+resource "aws_api_gateway_method_response" "delete_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "delete_user_data_cors" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+  }
+}
+
+
 resource "aws_lambda_permission" "api_gateway_get" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
