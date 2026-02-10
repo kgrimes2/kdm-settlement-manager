@@ -14,12 +14,11 @@ resource "aws_api_gateway_rest_api" "main" {
 
 # Cognito Authorizer for API Gateway
 resource "aws_api_gateway_authorizer" "cognito" {
-  name                           = "${var.app_name}-cognito-authorizer-${var.environment}"
-  type                           = "COGNITO_USER_POOLS"
-  provider_arns                  = [aws_cognito_user_pool.main.arn]
-  rest_api_id                    = aws_api_gateway_rest_api.main.id
-  identity_source                = "method.request.header.Authorization"
-  identity_validation_expression = "^Bearer [-0-9a-zA-Z._]*$"
+  name            = "${var.app_name}-cognito-authorizer-${var.environment}"
+  type            = "COGNITO_USER_POOLS"
+  provider_arns   = [aws_cognito_user_pool.main.arn]
+  rest_api_id     = aws_api_gateway_rest_api.main.id
+  identity_source = "method.request.header.Authorization"
 }
 
 # API Gateway Resource - /user-data
@@ -41,8 +40,7 @@ resource "aws_api_gateway_method" "get_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "GET"
-  authorization = "COGNITO_USER_POOLS"
-  authorizer_id = aws_api_gateway_authorizer.cognito.id
+  authorization = "NONE"
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
@@ -84,8 +82,7 @@ resource "aws_api_gateway_method" "save_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "POST"
-  authorization = "COGNITO_USER_POOLS"
-  authorizer_id = aws_api_gateway_authorizer.cognito.id
+  authorization = "NONE"
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
@@ -127,8 +124,7 @@ resource "aws_api_gateway_method" "delete_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "DELETE"
-  authorization = "COGNITO_USER_POOLS"
-  authorizer_id = aws_api_gateway_authorizer.cognito.id
+  authorization = "NONE"
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
