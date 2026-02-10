@@ -35,7 +35,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_get_errors" {
   statistic           = "Sum"
   threshold           = var.environment == "prod" ? 5 : 10
   alarm_description   = "Alert when get_user_data Lambda has errors"
-  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts.arn] : []
+  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts[0].arn] : []
   treat_missing_data  = "notBreaching"
 
   dimensions = {
@@ -54,7 +54,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_save_errors" {
   statistic           = "Sum"
   threshold           = var.environment == "prod" ? 5 : 10
   alarm_description   = "Alert when save_user_data Lambda has errors"
-  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts.arn] : []
+  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts[0].arn] : []
   treat_missing_data  = "notBreaching"
 
   dimensions = {
@@ -73,7 +73,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_delete_errors" {
   statistic           = "Sum"
   threshold           = var.environment == "prod" ? 5 : 10
   alarm_description   = "Alert when delete_user_data Lambda has errors"
-  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts.arn] : []
+  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts[0].arn] : []
   treat_missing_data  = "notBreaching"
 
   dimensions = {
@@ -93,7 +93,7 @@ resource "aws_cloudwatch_metric_alarm" "lambda_duration" {
   statistic           = "Average"
   threshold           = var.lambda_timeout * 1000 * 0.8 # 80% of timeout
   alarm_description   = "Alert when Lambda functions run slowly"
-  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts.arn] : []
+  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts[0].arn] : []
   treat_missing_data  = "notBreaching"
 
   dimensions = {
@@ -114,7 +114,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_throttle" {
   statistic           = "Sum"
   threshold           = 100 # Adjust based on your provisioned capacity
   alarm_description   = "Alert when DynamoDB is being throttled"
-  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts.arn] : []
+  alarm_actions       = var.environment == "prod" ? [aws_sns_topic.alerts[0].arn] : []
   treat_missing_data  = "notBreaching"
 
   dimensions = {
