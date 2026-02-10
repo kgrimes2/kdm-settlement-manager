@@ -14,12 +14,12 @@ resource "aws_api_gateway_rest_api" "main" {
 
 # Cognito Authorizer for API Gateway
 resource "aws_api_gateway_authorizer" "cognito" {
-  name          = "${var.app_name}-cognito-authorizer-${var.environment}"
-  type          = "COGNITO_USER_POOLS"
-  provider_arns = [aws_cognito_user_pool.main.arn]
-  rest_api_id   = aws_api_gateway_rest_api.main.id
-
-  identity_source = "method.request.header.Authorization"
+  name                           = "${var.app_name}-cognito-authorizer-${var.environment}"
+  type                           = "COGNITO_USER_POOLS"
+  provider_arns                  = [aws_cognito_user_pool.main.arn]
+  rest_api_id                    = aws_api_gateway_rest_api.main.id
+  identity_source                = "method.request.header.Authorization"
+  identity_validation_expression = "^Bearer [-0-9a-zA-Z._]*$"
 }
 
 # API Gateway Resource - /user-data
