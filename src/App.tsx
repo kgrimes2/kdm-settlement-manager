@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
@@ -99,8 +99,9 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
   const [showSyncMenu, setShowSyncMenu] = useState(false)
-  const [lastAppStateSnapshot, setLastAppStateSnapshot] = useState<string>('')
   const [, forceUpdate] = useState(0)
+  const needsSaveRef = useRef(false)
+  const appStateRef = useRef(appState)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -164,18 +165,33 @@ function AppContent() {
 
   const currentSettlement = getCurrentSettlement()
 
-  // Save state to localStorage with 1000ms debounce
+  // Keep appStateRef in sync with appState (runs on every change, but just updates ref - cheap!)
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      try {
-        localStorage.setItem('kdm-app-state', JSON.stringify(appState))
-      } catch (error) {
-        console.error('Failed to save state:', error)
-      }
-    }, 1000)
+    appStateRef.current = appState
+    needsSaveRef.current = true
+    
+    // Mark as dirty when state changes (for cloud sync optimization)
+    if (user) {
+      localStorage.setItem('appStateDirty', 'true')
+    }
+  }, [appState, user])
 
-    return () => clearTimeout(timeoutId)
-  }, [appState])
+  // Separate effect that periodically saves (runs independently of state changes)
+  useEffect(() => {
+    const saveInterval = setInterval(() => {
+      if (needsSaveRef.current) {
+        try {
+          // Only stringify when we actually need to save
+          localStorage.setItem('kdm-app-state', JSON.stringify(appStateRef.current))
+          needsSaveRef.current = false
+        } catch (error) {
+          console.error('Failed to save state:', error)
+        }
+      }
+    }, 2000) // Save every 2 seconds if dirty
+
+    return () => clearInterval(saveInterval)
+  }, []) // Empty deps - runs once
 
   // Detect mobile devices and small screens
   useEffect(() => {
@@ -253,84 +269,105 @@ function AppContent() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [focusedQuadrant, showSurvivorList, showSettlementManagement, activeQuadrant, showTutorial])
 
-  // Check for dirty state on login and show conflict dialog if needed
+  // Load cloud data on login and compare with localStorage
   useEffect(() => {
     if (!user || !dataService || !currentSettlement) return
     
-    // Check if we've already prompted for this session
-    const sessionKey = `conflictPrompted_${user.username}`
+    // Check if we've already loaded for this session
+    const sessionKey = `dataLoaded_${user.username}`
     if (sessionStorage.getItem(sessionKey)) {
-      console.log('Already prompted for conflict resolution this session')
+      console.log('Already loaded data for this session')
       return
     }
 
-    // Check if state is dirty (unsaved changes)
-    const isDirty = localStorage.getItem('appStateDirty') === 'true'
-    console.log('State dirty on login:', isDirty)
-    
-    if (!isDirty) {
-      // State is clean, no conflict
-      console.log('State is clean, no conflict resolution needed')
-      return
-    }
-
-    // State is dirty - load cloud data and show conflict dialog
-    const loadCloudData = async () => {
+    // Load cloud data and compare with localStorage
+    const loadAndCompare = async () => {
       try {
-        console.log('Loading cloud data to resolve dirty state conflict')
+        console.log('Loading cloud data on app load')
         const cloudData = await dataService.getUserData(currentSettlement.id)
         
         if (cloudData && cloudData.settlements && cloudData.settlements.length > 0) {
-          console.log('Found cloud settlements, showing conflict dialog')
-          // Show merge dialog
-          setMergeDialog({
-            cloudData: [cloudData],
-            localData: appState,
-            cloudSettlements: cloudData.settlements
-          })
-          // Mark that we've prompted for this session
+          console.log('Found cloud data, comparing with localStorage')
+          
+          // Get current localStorage data
+          const localStorageData = localStorage.getItem('kdm-app-state')
+          const localData = localStorageData ? JSON.parse(localStorageData) : null
+          
+          // Compare localStorage with cloud data
+          const cloudStateString = JSON.stringify(cloudData.settlements)
+          const localStateString = localData ? JSON.stringify(localData.settlements) : null
+          
+          if (localStateString && cloudStateString !== localStateString) {
+            // Data is different - show conflict dialog
+            console.log('localStorage differs from cloud, showing conflict dialog')
+            setMergeDialog({
+              cloudData: [cloudData],
+              localData: localData || appState,
+              cloudSettlements: cloudData.settlements
+            })
+          } else {
+            // Data is the same or no local data - load cloud data and replace localStorage
+            console.log('Loading cloud data and replacing localStorage')
+            const mergedSettlements = [cloudData].map((d: any) => d.settlements || []).flat()
+            const mergedSurvivors = [cloudData].map((d: any) => d.survivors || []).flat()
+            const mergedInventory = Object.assign({}, ...[cloudData].map((d: any) => d.inventory || {}))
+            
+            const newAppState = {
+              ...appState,
+              settlements: mergedSettlements,
+              survivors: mergedSurvivors,
+              inventory: mergedInventory,
+            }
+            setAppState(newAppState)
+            
+            // Replace localStorage with cloud data
+            localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
+            localStorage.setItem('appStateDirty', 'false')
+            
+            showNotification('Cloud data loaded', 'success')
+          }
+          
+          // Mark that we've loaded for this session
           sessionStorage.setItem(sessionKey, 'true')
         } else {
-          console.log('No cloud data found, clearing dirty flag')
-          // No cloud data, just mark as clean and sync local
-          localStorage.setItem('appStateDirty', 'false')
+          console.log('No cloud data found')
+          sessionStorage.setItem(sessionKey, 'true')
         }
       } catch (error: any) {
         const errorMessage = error.message || String(error)
         if (errorMessage.includes('404') || errorMessage.includes('not found')) {
-          console.log('No cloud data (404), clearing dirty flag')
-          // No cloud data exists, mark as clean
-          localStorage.setItem('appStateDirty', 'false')
+          console.log('No cloud data (404)')
+          sessionStorage.setItem(sessionKey, 'true')
         } else {
           console.error('Error loading cloud data:', error)
+          showNotification('Failed to load cloud data', 'error')
         }
       }
     }
 
-    loadCloudData()
+    loadAndCompare()
   }, [user, dataService, currentSettlement?.id])
 
-  // Clear conflict prompt flag when user logs out
+  // Clear session flags when user logs out
   useEffect(() => {
     if (!user) {
-      // Clear all conflictPrompted flags from sessionStorage
+      // Clear all session flags
       Object.keys(sessionStorage).forEach(key => {
-        if (key.startsWith('conflictPrompted_')) {
+        if (key.startsWith('dataLoaded_')) {
           sessionStorage.removeItem(key)
         }
       })
     }
   }, [user])
 
-   // Auto-sync to cloud every 30 seconds when user is logged in
+   // Auto-sync to cloud every 10 seconds when user is logged in
    useEffect(() => {
      if (!user || !dataService || !currentSettlement) return
 
      const syncInterval = setInterval(async () => {
        try {
-         // Check if state is dirty (has changed since last check)
-         const currentStateSnapshot = JSON.stringify(appState)
-         const isDirty = currentStateSnapshot !== lastAppStateSnapshot
+         // Check if state is dirty
+         const isDirty = localStorage.getItem('appStateDirty') === 'true'
          
          if (!isDirty) {
            console.log('State is clean, skipping auto-sync')
@@ -348,37 +385,19 @@ function AppContent() {
            },
          })
          
-         // Update last sync time
+         // Update last sync time and mark as clean
          setLastSyncTime(new Date())
-         
-         // Mark state as clean
-         setLastAppStateSnapshot(currentStateSnapshot)
          localStorage.setItem('appStateDirty', 'false')
-         console.log('Auto-sync complete, state marked clean')
+         
+         console.log('Auto-sync complete, marked clean')
        } catch (error) {
          console.error('Auto-sync failed:', error)
-         // Mark as dirty so we retry next time
-         localStorage.setItem('appStateDirty', 'true')
-       }
-     }, 30000) // 30000ms = 30 seconds
-
-     return () => clearInterval(syncInterval)
-   }, [user, dataService, currentSettlement, appState, lastAppStateSnapshot])
-
-   // Check for state changes every 10 seconds and mark as dirty
-   useEffect(() => {
-     if (!user) return // Only track when logged in
-     
-     const dirtyCheckInterval = setInterval(() => {
-       const currentStateSnapshot = JSON.stringify(appState)
-       if (currentStateSnapshot !== lastAppStateSnapshot && lastAppStateSnapshot !== '') {
-         console.log('State changed, marking as dirty')
-         localStorage.setItem('appStateDirty', 'true')
+         // Keep dirty flag so we retry next time
        }
      }, 10000) // 10000ms = 10 seconds
-     
-     return () => clearInterval(dirtyCheckInterval)
-   }, [appState, user, lastAppStateSnapshot])
+
+     return () => clearInterval(syncInterval)
+   }, [user, dataService, currentSettlement])
 
    // Force re-render to update countdown timer and sync timestamp
    useEffect(() => {
@@ -698,10 +717,12 @@ function AppContent() {
             [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
           },
         })
-        // Update last sync time and last manual sync time, show success notification
+        // Update last sync time and last manual sync time, mark as clean
         const now = new Date()
         setLastSyncTime(now)
         setLastManualSyncTime(now)
+        localStorage.setItem('appStateDirty', 'false')
+        
         showNotification('Data synced to cloud', 'success')
       } catch (error) {
         console.error('Manual sync failed:', error)
@@ -1372,22 +1393,18 @@ function AppContent() {
                         })
                       }
                       showNotification('Local data uploaded to cloud', 'success')
-                      
-                      // Mark state as clean and update snapshot
-                      const currentStateSnapshot = JSON.stringify(appState)
-                      setLastAppStateSnapshot(currentStateSnapshot)
-                      localStorage.setItem('appStateDirty', 'false')
                       setLastSyncTime(new Date())
+                      localStorage.setItem('appStateDirty', 'false')
                     }
                   } catch (error) {
-                    showNotification('Failed to sync local data', 'error')
-                    console.error(error)
-                  }
-                  // Mark as prompted so we don't show again on reload
-                  if (user) {
-                    sessionStorage.setItem(`conflictPrompted_${user.username}`, 'true')
-                  }
-                  setMergeDialog(null)
+                      showNotification('Failed to sync local data', 'error')
+                      console.error(error)
+                    }
+                    // Mark session as loaded
+                    if (user) {
+                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                    }
+                    setMergeDialog(null)
                 }}
               >
                 Keep Local
@@ -1411,10 +1428,6 @@ function AppContent() {
                       }
                       setAppState(newAppState)
                       localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
-                      
-                      // Mark state as clean and update snapshot
-                      const currentStateSnapshot = JSON.stringify(newAppState)
-                      setLastAppStateSnapshot(currentStateSnapshot)
                       localStorage.setItem('appStateDirty', 'false')
                       
                       // Immediately sync the loaded data back to cloud
@@ -1434,14 +1447,14 @@ function AppContent() {
                       showNotification('Cloud data loaded locally', 'success')
                     }
                   } catch (error) {
-                    showNotification('Failed to load cloud data', 'error')
-                    console.error(error)
-                  }
-                  // Mark as prompted so we don't show again on reload
-                  if (user) {
-                    sessionStorage.setItem(`conflictPrompted_${user.username}`, 'true')
-                  }
-                  setMergeDialog(null)
+                      showNotification('Failed to load cloud data', 'error')
+                      console.error(error)
+                    }
+                    // Mark session as loaded
+                    if (user) {
+                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                    }
+                    setMergeDialog(null)
                 }}
               >
                 Use Cloud
