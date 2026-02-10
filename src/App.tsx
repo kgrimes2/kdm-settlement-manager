@@ -53,9 +53,10 @@ function AppContent() {
     console.log('Creating new default state')
     return createDefaultAppState()
   })
-  const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
-  const [backupNotification, setBackupNotification] = useState(false)
-  const [showSurvivorList, setShowSurvivorList] = useState(false)
+   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+   const [backupNotification, setBackupNotification] = useState(false)
+   const [isSyncing, setIsSyncing] = useState(false)
+   const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
   const [showSurvivorPool, setShowSurvivorPool] = useState(false)
   const [showRetiredSection, setShowRetiredSection] = useState(false)
@@ -557,12 +558,37 @@ function AppContent() {
     }))
   }
 
-  const showNotification = (message: string, type: 'success' | 'error') => {
-    setNotification({ message, type })
-    setTimeout(() => setNotification(null), 3000)
-  }
+   const showNotification = (message: string, type: 'success' | 'error') => {
+     setNotification({ message, type })
+     setTimeout(() => setNotification(null), 3000)
+   }
 
-  const closeSurvivorList = () => {
+   const handleManualSync = async () => {
+     if (!user || !dataService || !currentSettlement || isSyncing) return
+
+     setIsSyncing(true)
+     try {
+       // Save current settlement to cloud
+       await dataService.saveUserData(currentSettlement.id, {
+         survivors: [],
+         settlements: [currentSettlement],
+         inventory: {
+           [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+         },
+       })
+       // Show success notification and backup notification
+       setBackupNotification(true)
+       setTimeout(() => setBackupNotification(false), 3500)
+       showNotification('Data synced to cloud', 'success')
+     } catch (error) {
+       console.error('Manual sync failed:', error)
+       showNotification('Failed to sync data', 'error')
+     } finally {
+       setIsSyncing(false)
+     }
+   }
+
+   const closeSurvivorList = () => {
     if (isClosingDrawer) return // Prevent multiple clicks during animation
     setIsClosingDrawer(true)
     setTimeout(() => {
@@ -1657,16 +1683,27 @@ function AppContent() {
           >
             📖
           </button>
-           <button
-             className="toolbar-button toolbar-icon-button"
-             onClick={() => setShowInventoryModal(true)}
-             aria-label="Inventory"
-             title="Settlement Inventory"
-           >
-             🎒
-            </button>
-            {user && (
-              <div className="user-profile" title={`Logged in as: ${user.username}`}>
+            <button
+              className="toolbar-button toolbar-icon-button"
+              onClick={() => setShowInventoryModal(true)}
+              aria-label="Inventory"
+              title="Settlement Inventory"
+            >
+              🎒
+             </button>
+             {user && (
+               <button
+                 className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
+                 onClick={handleManualSync}
+                 disabled={isSyncing}
+                 title={isSyncing ? 'Syncing...' : 'Force sync to cloud'}
+                 aria-label="Sync"
+               >
+                 {isSyncing ? '⟳' : '☁'}
+               </button>
+             )}
+             {user && (
+               <div className="user-profile" title={`Logged in as: ${user.username}`}>
                 <span className="user-icon">👤</span>
                 <span className="user-name">{user.username}</span>
               </div>

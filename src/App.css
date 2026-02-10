@@ -1540,6 +1540,31 @@
   font-size: 1.25rem;
 }
 
+.sync-button {
+  padding: 0.35rem 0.5rem;
+  min-width: 2.5rem;
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.sync-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sync-button.syncing {
+  animation: rotateSyncIcon 1s linear infinite;
+}
+
+@keyframes rotateSyncIcon {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .nav-button {
   padding: 0.25rem 0.75rem;
   font-size: 1.5rem;
