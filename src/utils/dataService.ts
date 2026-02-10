@@ -38,8 +38,10 @@ export class DataService {
         throw new Error(`Failed to get user data: ${response.statusText}`)
       }
 
-      const data = await response.json()
-      return JSON.parse(data.data || '{}')
+      const item = await response.json()
+      // The Lambda returns the DynamoDB item which has: { user_id, settlement_id, data, updated_at }
+      // We want to return just the 'data' field which is the UserDataPayload
+      return item.data || { settlements: [], survivors: [], inventory: {} }
     } catch (error) {
       console.error('Error fetching user data:', error)
       throw error
