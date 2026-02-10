@@ -279,6 +279,75 @@ resource "aws_api_gateway_integration_response" "delete_user_data_cors" {
 }
 
 
+# Add 401/403 auth error responses with CORS headers for GET
+resource "aws_api_gateway_method_response" "get_user_data_401" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "401"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "get_user_data_403" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.get_user_data.http_method
+  status_code = "403"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# Add 401/403 auth error responses with CORS headers for POST
+resource "aws_api_gateway_method_response" "save_user_data_401" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "401"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "save_user_data_403" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.save_user_data.http_method
+  status_code = "403"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# Add 401/403 auth error responses with CORS headers for DELETE
+resource "aws_api_gateway_method_response" "delete_user_data_401" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "401"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "delete_user_data_403" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.user_data_settlement.id
+  http_method = aws_api_gateway_method.delete_user_data.http_method
+  status_code = "403"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
 resource "aws_lambda_permission" "api_gateway_get" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
