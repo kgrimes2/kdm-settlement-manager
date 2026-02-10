@@ -2488,3 +2488,43 @@
   min-height: 150px;
   max-height: 300px;
 }
+
+/* User Profile Display */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #3a3230;
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  color: #d4c5a9;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.user-profile .user-icon {
+  font-size: 1.2rem;
+}
+
+.user-profile .user-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+  .user-profile {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    gap: 0.3rem;
+  }
+
+  .user-profile .user-name {
+    display: none;
+  }
+
+  .user-profile .user-icon {
+    font-size: 1rem;
+  }
+}

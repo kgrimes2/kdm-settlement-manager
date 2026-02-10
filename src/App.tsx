@@ -24,7 +24,7 @@ const APP_VERSION = '1.2.0'
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
 function AppContent() {
-  const { isAuthenticated, signOut } = useAuth()
+  const { isAuthenticated, signOut, user } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -1518,30 +1518,36 @@ function AppContent() {
           >
             📖
           </button>
-          <button
-            className="toolbar-button toolbar-icon-button"
-            onClick={() => setShowInventoryModal(true)}
-            aria-label="Inventory"
-            title="Settlement Inventory"
-          >
-            🎒
-          </button>
-          <button
-            className="toolbar-button logout-button"
-            onClick={async () => {
-              try {
-                await signOut()
-                location.reload()
-              } catch (error) {
-                console.error('Logout error:', error)
-                // Force reload anyway
-                location.reload()
-              }
-            }}
-            title="Logout"
-          >
-            🚪 Logout
-          </button>
+           <button
+             className="toolbar-button toolbar-icon-button"
+             onClick={() => setShowInventoryModal(true)}
+             aria-label="Inventory"
+             title="Settlement Inventory"
+           >
+             🎒
+           </button>
+           {user && (
+             <div className="user-profile" title={`Logged in as: ${user.username}`}>
+               <span className="user-icon">👤</span>
+               <span className="user-name">{user.username}</span>
+             </div>
+           )}
+           <button
+             className="toolbar-button logout-button"
+             onClick={async () => {
+               try {
+                 await signOut()
+                 location.reload()
+               } catch (error) {
+                 console.error('Logout error:', error)
+                 // Force reload anyway
+                 location.reload()
+               }
+             }}
+             title="Logout"
+           >
+             🚪 Logout
+           </button>
           {focusedQuadrant !== null && !isMobileDevice && (
             <button
               className="return-button"
