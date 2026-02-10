@@ -80,6 +80,20 @@ export class DataService {
   async saveUserData(settlementId: string, data: UserDataPayload): Promise<void> {
     try {
       const accessToken = await this.authService.getAccessToken()
+      
+      // Check payload size before sending
+      const payload = JSON.stringify(data)
+      const payloadSizeBytes = new Blob([payload]).size
+      const payloadSizeMB = payloadSizeBytes / (1024 * 1024)
+      const maxSizeMB = 10
+      
+      if (payloadSizeMB > maxSizeMB) {
+        throw new Error(
+          `Data size (${payloadSizeMB.toFixed(2)} MB) exceeds the ${maxSizeMB} MB limit. ` +
+          `Please reduce your data size by removing old settlements or survivors.`
+        )
+      }
+      
       const response = await fetch(
         `${this.apiBaseUrl}/user-data/${settlementId}`,
         {
@@ -88,7 +102,7 @@ export class DataService {
             Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: payload,
         }
       )
 

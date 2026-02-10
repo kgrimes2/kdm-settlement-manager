@@ -89,13 +89,35 @@ def lambda_handler(event, context):
             logger.warning(f"Missing settlement_id | user_id={user_id}")
             return {
                 'statusCode': 400,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+                },
                 'body': json.dumps({'error': 'settlement_id is required'})
             }
         
         body = json.loads(event.get('body', '{}'))
         data_size = len(json.dumps(body))
+        data_size_mb = data_size / (1024 * 1024)
+        max_size_mb = 10
         
-        logger.info(f"Saving data | user_id={user_id} | settlement_id={settlement_id} | size={data_size} bytes")
+        # Reject payloads larger than 10MB
+        if data_size_mb > max_size_mb:
+            logger.warning(f"Payload too large | user_id={user_id} | size={data_size_mb:.2f}MB | max={max_size_mb}MB")
+            return {
+                'statusCode': 413,
+                'headers': {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,Authorization',
+                    'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS'
+                },
+                'body': json.dumps({
+                    'error': f'Payload too large ({data_size_mb:.2f} MB). Maximum allowed size is {max_size_mb} MB.'
+                })
+            }
+        
+        logger.info(f"Saving data | user_id={user_id} | settlement_id={settlement_id} | size={data_size} bytes ({data_size_mb:.2f} MB)")
         
         # Prepare item with user_id and settlement_id
         item = {
