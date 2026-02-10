@@ -99,7 +99,6 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
   const [showSyncMenu, setShowSyncMenu] = useState(false)
-  const [hasCheckedCloudData, setHasCheckedCloudData] = useState(false)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -256,8 +255,10 @@ function AppContent() {
   useEffect(() => {
     if (!user || !dataService || !currentSettlement) return
     
-    // Only check once per login session
-    if (hasCheckedCloudData) return
+    // Check if we've already shown the merge dialog for this user session
+    const sessionKey = `cloudDataChecked_${user.username}`
+    const hasChecked = sessionStorage.getItem(sessionKey)
+    if (hasChecked) return
 
     // Try to load the current settlement's data from the cloud
     const loadCloudData = async () => {
@@ -279,7 +280,7 @@ function AppContent() {
         }
         
         // Mark that we've checked cloud data for this session
-        setHasCheckedCloudData(true)
+        sessionStorage.setItem(sessionKey, 'true')
       } catch (error: any) {
         const errorMessage = error.message || String(error)
         console.log('Error loading cloud data:', errorMessage)
@@ -290,18 +291,23 @@ function AppContent() {
           console.error('Error loading cloud data:', error)
         }
         // Mark as checked even on error to avoid repeated attempts
-        setHasCheckedCloudData(true)
+        sessionStorage.setItem(sessionKey, 'true')
         // Silently continue - user can still work locally
       }
     }
 
     loadCloudData()
-  }, [user, dataService, currentSettlement?.id, hasCheckedCloudData])
+  }, [user, dataService, currentSettlement?.id])
 
-  // Reset cloud data check flag when user logs out
+  // Clear cloud data check flag when user logs out
   useEffect(() => {
     if (!user) {
-      setHasCheckedCloudData(false)
+      // Clear all cloudDataChecked flags from sessionStorage
+      Object.keys(sessionStorage).forEach(key => {
+        if (key.startsWith('cloudDataChecked_')) {
+          sessionStorage.removeItem(key)
+        }
+      })
     }
   }, [user])
 
