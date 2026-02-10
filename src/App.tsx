@@ -258,17 +258,24 @@ function AppContent() {
     // Try to load the current settlement's data from the cloud
     const loadCloudData = async () => {
       try {
+        console.log('Attempting to load cloud data for settlement:', currentSettlement.id)
         const cloudData = await dataService.getUserData(currentSettlement.id)
+        console.log('Cloud data received:', cloudData)
+        
         if (cloudData && cloudData.settlements && cloudData.settlements.length > 0) {
+          console.log('Found cloud settlements:', cloudData.settlements.length)
           // Found cloud data for this settlement - show merge dialog
           setMergeDialog({
             cloudData: [cloudData],
             localData: appState,
             cloudSettlements: cloudData.settlements
           })
+        } else {
+          console.log('No settlements in cloud data or cloud data is empty')
         }
       } catch (error: any) {
         const errorMessage = error.message || String(error)
+        console.log('Error loading cloud data:', errorMessage)
         if (errorMessage.includes('404') || errorMessage.includes('not found')) {
           // User has no cloud data for this settlement yet - this is fine
           console.log('No cloud data found for current settlement (expected on first login)')
