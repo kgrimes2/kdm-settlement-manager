@@ -266,7 +266,9 @@ function AppContent() {
       return
     }
 
-    // Mark that we're loading to prevent duplicate calls
+    // Mark immediately to prevent duplicate calls from React StrictMode or rapid re-renders
+    console.log('Setting sessionStorage key immediately:', sessionKey)
+    sessionStorage.setItem(sessionKey, 'true')
     setIsLoadingCloudData(true)
 
     // Try to load the current settlement's data from the cloud
@@ -287,10 +289,6 @@ function AppContent() {
         } else {
           console.log('No settlements in cloud data or cloud data is empty')
         }
-        
-        // Mark that we've checked cloud data for this session
-        console.log('Setting sessionStorage key:', sessionKey)
-        sessionStorage.setItem(sessionKey, 'true')
       } catch (error: any) {
         const errorMessage = error.message || String(error)
         console.log('Error loading cloud data:', errorMessage)
@@ -300,8 +298,6 @@ function AppContent() {
         } else {
           console.error('Error loading cloud data:', error)
         }
-        // Mark as checked even on error to avoid repeated attempts
-        sessionStorage.setItem(sessionKey, 'true')
         // Silently continue - user can still work locally
       } finally {
         setIsLoadingCloudData(false)
