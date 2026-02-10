@@ -289,7 +289,7 @@ function AppContent() {
     //  checkCloudData()
     }, [user, dataService])
 
-   // Auto-sync to cloud every 5 minutes when user is logged in
+   // Auto-sync to cloud every minute when user is logged in
    useEffect(() => {
      if (!user || !dataService || !currentSettlement) return
 
@@ -309,7 +309,7 @@ function AppContent() {
          console.error('Auto-sync failed:', error)
          // Silently fail - user can still work locally
        }
-     }, 300000) // 300000ms = 5 minutes
+     }, 60000) // 60000ms = 1 minute
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, currentSettlement])
@@ -618,7 +618,7 @@ function AppContent() {
       const diffHours = Math.floor(diffMins / 60)
       const diffDays = Math.floor(diffHours / 24)
 
-      if (diffSecs < 60) return 'just now'
+      if (diffSecs < 10) return 'just now'
       if (diffMins < 60) return `${diffMins}m ago`
       if (diffHours < 24) return `${diffHours}h ago`
       return `${diffDays}d ago`
@@ -1795,10 +1795,16 @@ function AppContent() {
                         onClick={async () => {
                           setShowSyncMenu(false)
                           try {
+                            // Clear all local storage data
+                            localStorage.clear()
+                            // Sign out from Cognito
                             await signOut()
+                            // Reload to reset app state
                             location.reload()
                           } catch (error) {
                             console.error('Logout error:', error)
+                            // Clear storage and reload anyway
+                            localStorage.clear()
                             location.reload()
                           }
                         }}
