@@ -12,6 +12,11 @@ resource "aws_api_gateway_rest_api" "main" {
   }
 }
 
+# NOTE: CORS is currently set to '*' (all origins) for development.
+# For production, update var.cors_allowed_origins in terraform.tfvars to specific domains:
+# cors_allowed_origins = ["https://your-production-domain.com", "https://www.your-production-domain.com"]
+# Then update all CORS response headers below to use: join(",", var.cors_allowed_origins)
+
 # Cognito Authorizer for API Gateway
 resource "aws_api_gateway_authorizer" "cognito" {
   name            = "${var.app_name}-cognito-authorizer-${var.environment}"
@@ -40,7 +45,8 @@ resource "aws_api_gateway_method" "get_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "GET"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito.id
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
@@ -82,7 +88,8 @@ resource "aws_api_gateway_method" "save_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "POST"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito.id
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
@@ -124,7 +131,8 @@ resource "aws_api_gateway_method" "delete_user_data" {
   rest_api_id   = aws_api_gateway_rest_api.main.id
   resource_id   = aws_api_gateway_resource.user_data_settlement.id
   http_method   = "DELETE"
-  authorization = "NONE"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito.id
   request_parameters = {
     "method.request.path.settlement_id" = true
   }
@@ -439,4 +447,42 @@ resource "aws_api_gateway_deployment" "main" {
     aws_api_gateway_integration.delete_user_data,
     aws_api_gateway_integration.cors_settlement,
   ]
+}
+
+# API Gateway Usage Plan for rate limiting
+resource "aws_api_gateway_usage_plan" "main" {
+  name        = "${var.app_name}-usage-plan-${var.environment}"
+  description = "Usage plan with rate limiting and quotas"
+
+  api_stages {
+    api_id = aws_api_gateway_rest_api.main.id
+    stage  = aws_api_gateway_stage.main.stage_name
+  }
+
+  # Rate limiting: 100 requests per second burst, 50 steady state
+  throttle_settings {
+    burst_limit = 100
+    rate_limit  = 50
+  }
+
+  # Daily quota: 10,000 requests per day per user
+  quota_settings {
+    limit  = 10000
+    period = "DAY"
+  }
+
+  depends_on = [aws_api_gateway_stage.main]
+}
+
+# API Key (optional - for monitoring per-user usage)
+resource "aws_api_gateway_api_key" "main" {
+  name    = "${var.app_name}-api-key-${var.environment}"
+  enabled = true
+}
+
+# Associate API key with usage plan
+resource "aws_api_gateway_usage_plan_key" "main" {
+  key_id        = aws_api_gateway_api_key.main.id
+  key_type      = "API_KEY"
+  usage_plan_id = aws_api_gateway_usage_plan.main.id
 }

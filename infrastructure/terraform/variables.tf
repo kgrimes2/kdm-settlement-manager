@@ -88,3 +88,9 @@ variable "dynamodb_billing_mode" {
     error_message = "DynamoDB billing mode must be PROVISIONED or PAY_PER_REQUEST."
   }
 }
+
+variable "cors_allowed_origins" {
+  description = "CORS allowed origins for API Gateway. Use '*' for development, specific domains for production."
+  type        = list(string)
+  default     = ["*"]
+}
