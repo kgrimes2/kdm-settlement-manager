@@ -66,3 +66,11 @@ TEST_DOCUMENTATION.md
 coverage/
 .nyc_output/
 *.lcov
+
+# Temporary development documentation (NEVER COMMIT)
+GLOSSARY_FEATURE.md
+MIGRATION_GUIDE.md
+MIGRATION_SUMMARY.md
+QUICK_START_SSO.md
+SSO_COGNITO_INTEGRATION.md
+TEST_DOCUMENTATION.md

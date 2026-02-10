@@ -1,0 +1,151 @@
+================================================================================
+✅ READY TO DEPLOY - IAM USER CONFIGURED
+================================================================================
+
+STATUS:
+✅ AWS Credentials: WORKING
+✅ IAM User: CREATED (terraform-kdm)
+✅ Permissions: LIMITED (not root)
+✅ Terraform: VALIDATED
+✅ Resources: 31 ready to create
+
+================================================================================
+DEPLOY INFRASTRUCTURE NOW (3 STEPS)
+================================================================================
+
+STEP 1: Deploy to AWS
+───────────────────────────────────────────────────────────────────────────
+cd infrastructure/terraform
+./terraform-wrapper.sh apply
+
+Time: ~3-5 minutes
+Cost: $0-2/month
+
+STEP 2: Get AWS Credentials
+───────────────────────────────────────────────────────────────────────────
+cd infrastructure/terraform
+terraform output api_gateway_invoke_url
+terraform output cognito_client_id
+terraform output cognito_user_pool_id
+terraform output cognito_domain
+
+STEP 3: Configure Frontend
+───────────────────────────────────────────────────────────────────────────
+cp .env.local.example .env.local
+
+Edit .env.local with:
+  VITE_COGNITO_USER_POOL_ID = (from step 2)
+  VITE_COGNITO_CLIENT_ID = (from step 2)
+  VITE_COGNITO_DOMAIN = (from step 2)
+  VITE_API_BASE_URL = (from step 2)
+
+================================================================================
+THEN TEST IT
+================================================================================
+
+npm run dev
+Visit http://localhost:5173
+→ Sign up with email
+→ Verify email (check inbox)
+→ Login
+→ See your data sync automatically to AWS!
+
+================================================================================
+WHAT GETS CREATED
+================================================================================
+
+AWS Cognito:
+  ✓ User Pool (authentication system)
+  ✓ Domain (for login/signup UI)
+  ✓ Resource Server (API scopes)
+
+DynamoDB:
+  ✓ user-data table (settlement data)
+  ✓ user-settings table (preferences)
+
+Lambda Functions:
+  ✓ get-user-data
+  ✓ save-user-data
+  ✓ delete-user-data
+
+API Gateway:
+  ✓ REST API with Cognito authorization
+  ✓ 3 endpoints (GET/POST/DELETE /user-data/{id})
+
+IAM:
+  ✓ Lambda execution role
+  ✓ API Gateway role
+  ✓ DynamoDB permissions
+
+CloudWatch:
+  ✓ Log groups for monitoring
+
+================================================================================
+SECURITY
+================================================================================
+
+✅ Using terraform-kdm IAM user (not root)
+✅ Limited permissions (principle of least privilege)
+✅ No credentials in code
+✅ .gitignore protects secrets
+✅ JWT tokens for API auth
+✅ Password policy enforced (12+ chars, complex)
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+If something goes wrong:
+
+See wrong role?
+  aws sts get-caller-identity
+  (Should show: user/terraform-kdm, not root)
+
+Terraform errors?
+  cd infrastructure/terraform
+  ./terraform-wrapper.sh validate
+
+API not working?
+  terraform output api_gateway_invoke_url
+  (Verify in .env.local)
+
+Cognito signup broken?
+  Check email spam folder
+  Verify callback URLs in Cognito console
+
+Data not syncing?
+  Check browser console for errors
+  Check Lambda logs:
+    aws logs tail /aws/lambda/kdm-settlement-manager-save-user-data-dev --follow
+
+================================================================================
+QUICK REFERENCE
+================================================================================
+
+IAM User: terraform-kdm (NOT root)
+Profile: terraform-kdm (in ~/.aws)
+Region: us-west-2
+Account: 469983200708
+
+Terraform Wrapper: infrastructure/terraform/terraform-wrapper.sh
+  ./terraform-wrapper.sh plan    (see what will be created)
+  ./terraform-wrapper.sh apply   (create resources)
+  ./terraform-wrapper.sh output  (show credentials)
+  ./terraform-wrapper.sh destroy (delete everything)
+
+Frontend Environment: .env.local
+  DO NOT COMMIT (already in .gitignore)
+  Required variables shown in step 3 above
+
+================================================================================
+READY? LET'S GO!
+================================================================================
+
+cd infrastructure/terraform
+./terraform-wrapper.sh apply
+
+Then follow the 3 steps above.
+
+You'll have working Cognito auth + auto-saving user data in minutes! 🚀
+
+================================================================================
