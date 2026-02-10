@@ -54,6 +54,7 @@ function AppContent() {
     return createDefaultAppState()
   })
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+  const [backupNotification, setBackupNotification] = useState(false)
   const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
   const [showSurvivorPool, setShowSurvivorPool] = useState(false)
@@ -269,10 +270,36 @@ function AppContent() {
     }
 
     checkCloudData()
-  }, [user, dataService])
+   }, [user, dataService])
 
-  // Handle swipe gestures on mobile for cycling survivors in focus mode
-  useEffect(() => {
+   // Auto-sync to cloud every 2 seconds when user is logged in
+   useEffect(() => {
+     if (!user || !dataService || !currentSettlement) return
+
+     const syncInterval = setInterval(async () => {
+       try {
+         // Save current settlement to cloud
+         await dataService.saveUserData(currentSettlement.id, {
+           survivors: [],
+           settlements: [currentSettlement],
+           inventory: {
+             [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+           },
+         })
+         // Trigger backup notification on success
+         setBackupNotification(true)
+         setTimeout(() => setBackupNotification(false), 3500) // Auto-dismiss after 3.5 seconds
+       } catch (error) {
+         console.error('Auto-sync failed:', error)
+         // Silently fail - user can still work locally
+       }
+     }, 2000)
+
+     return () => clearInterval(syncInterval)
+   }, [user, dataService, currentSettlement])
+
+   // Handle swipe gestures on mobile for cycling survivors in focus mode
+   useEffect(() => {
     if (!isMobileDevice || focusedQuadrant === null) return
 
     let touchStartX = 0
@@ -1018,13 +1045,19 @@ function AppContent() {
   return (
     <>
       <div className="app-layout">
-        {notification && (
-          <div className={`notification notification-${notification.type}`}>
-            {notification.message}
-          </div>
-        )}
+         {notification && (
+           <div className={`notification notification-${notification.type}`}>
+             {notification.message}
+           </div>
+         )}
 
-      {confirmDialog && (
+         {backupNotification && (
+           <div className="backup-notification">
+             <span>✓</span> Data backed up
+           </div>
+         )}
+
+       {confirmDialog && (
         <div className="confirm-overlay" onClick={() => setConfirmDialog(null)}>
           <div className="confirm-dialog" onClick={(e) => e.stopPropagation()}>
             <p className="confirm-message">{confirmDialog.message}</p>
