@@ -619,9 +619,9 @@ function AppContent() {
       const diffDays = Math.floor(diffHours / 24)
 
       if (diffSecs < 10) return 'just now'
-      if (diffMins < 60) return `${diffMins}m ago`
-      if (diffHours < 24) return `${diffHours}h ago`
-      return `${diffDays}d ago`
+      if (diffMins < 60) return `${diffMins}m`
+      if (diffHours < 24) return `${diffHours}h`
+      return `${diffDays}d`
     }
 
     const handleManualSync = async () => {
@@ -1785,7 +1785,7 @@ function AppContent() {
                         </div>
                         {lastSyncTime && (
                           <div className="sync-menu-time">
-                            Last synced: {formatSyncTime(lastSyncTime)} ago
+                            Last synced: {formatSyncTime(lastSyncTime)}
                           </div>
                         )}
                       </div>
