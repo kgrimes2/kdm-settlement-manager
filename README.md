@@ -237,12 +237,12 @@ To set up the authentication locally, you need a `.env.local` file:
 
 ```bash
 # AWS Cognito Configuration
-VITE_COGNITO_USER_POOL_ID=us-west-2_IYp3a0TCu
-VITE_COGNITO_CLIENT_ID=YOUR_CLIENT_ID
+VITE_COGNITO_USER_POOL_ID=<from terraform output cognito_user_pool_id>
+VITE_COGNITO_CLIENT_ID=<from terraform output cognito_client_id>
 VITE_COGNITO_REGION=us-west-2
 
 # API Gateway Configuration
-VITE_API_GATEWAY_URL=https://YOUR_API_ENDPOINT.execute-api.us-west-2.amazonaws.com/dev
+VITE_API_GATEWAY_URL=<from terraform output api_gateway_invoke_url>
 ```
 
 **Note:** The `.env.local` file is gitignored for security. Never commit credentials to version control.
