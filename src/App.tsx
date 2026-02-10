@@ -258,7 +258,12 @@ function AppContent() {
     // Check if we've already shown the merge dialog for this user session
     const sessionKey = `cloudDataChecked_${user.username}`
     const hasChecked = sessionStorage.getItem(sessionKey)
-    if (hasChecked) return
+    console.log('Cloud data check - sessionKey:', sessionKey, 'hasChecked:', hasChecked)
+    
+    if (hasChecked) {
+      console.log('Already checked cloud data for this session, skipping')
+      return
+    }
 
     // Try to load the current settlement's data from the cloud
     const loadCloudData = async () => {
@@ -280,6 +285,7 @@ function AppContent() {
         }
         
         // Mark that we've checked cloud data for this session
+        console.log('Setting sessionStorage key:', sessionKey)
         sessionStorage.setItem(sessionKey, 'true')
       } catch (error: any) {
         const errorMessage = error.message || String(error)
