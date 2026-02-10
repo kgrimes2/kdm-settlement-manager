@@ -253,36 +253,41 @@ function AppContent() {
   useEffect(() => {
     if (!user || !dataService) return
 
-    const checkCloudData = async () => {
-      if (!user || !dataService) return
+    // Check for cloud data on login to see if we need to merge
+    // Note: Currently disabled because we don't have a /user-data endpoint (only /user-data/{settlement_id})
+    // The auto-sync feature handles syncing individual settlements instead
+    // const checkCloudData = async () => {
+    //   if (!user || !dataService) return
 
-      try {
-        const cloudData = await dataService.getAllUserData()
-        if (cloudData && cloudData.length > 0) {
-          // There's cloud data - show merge dialog
-          setMergeDialog({
-            cloudData: cloudData,
-            localData: appState,
-            cloudSettlements: cloudData.map((d: any) => d.settlements || []).flat()
-          })
-        }
-      } catch (error: any) {
-        // 404 is expected if user has no cloud data yet
-        const errorMessage = error.message || String(error)
-        if (errorMessage.includes('404') || errorMessage.includes('not found')) {
-          // User has no cloud data yet - this is fine
-          console.log('No cloud data found for user (expected on first login)')
-        } else {
-          console.error('Error checking cloud data:', error)
-        }
-        // Silently continue - user can still use local data
-      }
-     }
+    //   try {
+    //     const cloudData = await dataService.getAllUserData()
+    //     if (cloudData && cloudData.length > 0) {
+    //       // There's cloud data - show merge dialog
+    //       setMergeDialog({
+    //         cloudData: cloudData,
+    //         localData: appState,
+    //         cloudSettlements: cloudData.map((d: any) => d.settlements || []).flat()
+    //       })
+    //     }
+    //   } catch (error: any) {
+    //     // 404 is expected if user has no cloud data yet
+    //     // CORS/network errors are expected if endpoint doesn't exist
+    //     const errorMessage = error.message || String(error)
+    //     if (errorMessage.includes('404') || errorMessage.includes('not found') || 
+    //         errorMessage.includes('CORS') || errorMessage.includes('Failed to fetch')) {
+    //       // User has no cloud data yet or endpoint unavailable - this is fine
+    //       console.log('No cloud data found for user (expected on first login)')
+    //     } else {
+    //       console.error('Error checking cloud data:', error)
+    //     }
+    //     // Silently continue - user can still use local data
+    //   }
+    //  }
 
-     checkCloudData()
+    //  checkCloudData()
     }, [user, dataService])
 
-   // Auto-sync to cloud every 2 seconds when user is logged in
+   // Auto-sync to cloud every minute when user is logged in
    useEffect(() => {
      if (!user || !dataService || !currentSettlement) return
 
@@ -302,7 +307,7 @@ function AppContent() {
          console.error('Auto-sync failed:', error)
          // Silently fail - user can still work locally
        }
-     }, 2000)
+     }, 60000) // 60000ms = 1 minute
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, currentSettlement])
