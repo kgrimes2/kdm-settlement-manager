@@ -192,11 +192,15 @@ export class CognitoAuthService {
 
       cognitoUser.getSession((err: any, session: any) => {
         if (err) {
+          console.error('getSession error:', err)
           reject(err)
-        } else if (!session.isValid()) {
+        } else if (!session || !session.isValid()) {
+          console.error('Session is not valid:', session)
           reject(new Error('Session is not valid'))
         } else {
-          resolve(session.getAccessToken().getJwtToken())
+          const token = session.getAccessToken().getJwtToken()
+          console.log('Access token obtained, length:', token.length)
+          resolve(token)
         }
       })
     })
