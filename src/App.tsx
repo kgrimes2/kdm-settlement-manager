@@ -331,16 +331,23 @@ function AppContent() {
           sessionStorage.setItem(sessionKey, 'true')
         } else {
           console.log('No cloud data found')
+          // Mark as dirty so local data gets synced to cloud on next cycle
+          localStorage.setItem('appStateDirty', 'true')
           sessionStorage.setItem(sessionKey, 'true')
         }
       } catch (error: any) {
         const errorMessage = error.message || String(error)
         if (errorMessage.includes('404') || errorMessage.includes('not found')) {
           console.log('No cloud data (404)')
+          // Mark as dirty so local data gets synced to cloud on next cycle
+          localStorage.setItem('appStateDirty', 'true')
           sessionStorage.setItem(sessionKey, 'true')
         } else {
+          // Network error or other failure - fail gracefully
           console.error('Error loading cloud data:', error)
-          showNotification('Failed to load cloud data', 'error')
+          // Don't show error notification - just continue with local data
+          // Mark session as loaded so we don't retry
+          sessionStorage.setItem(sessionKey, 'true')
         }
       }
     }

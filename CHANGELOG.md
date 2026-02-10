@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-02-09
+
+### Added
+- **Optimized cloud sync system** with intelligent dirty flag tracking
+  - Auto-sync every 10 seconds (only when data has changed)
+  - Dirty flag optimization prevents unnecessary API calls
+  - Always loads latest cloud data on app start
+  - Conflict resolution dialog only appears when localStorage differs from cloud
+  - Graceful failure handling - continues working offline without error notifications
+  - Auto-uploads existing user data on first login after update
+- **Deferred localStorage saves** for improved performance
+  - localStorage writes moved to 2-second interval using refs
+  - Eliminates UI lag during rapid clicking and typing
+  - JSON.stringify only runs when actually saving (not on every state change)
+  - Saves battery on mobile devices
+
+### Changed
+- Cloud sync interval reduced from 30s to 10s for faster backups
+- localStorage now replaced with cloud data when loaded (cloud is source of truth)
+- Removed verbose notification spam - sync runs silently in background
+- Improved conflict dialog styling for better readability
+
+### Fixed
+- **Critical performance fix**: Eliminated 50-100ms lag on every click/keystroke
+- Network errors no longer show user-facing error notifications
+- Existing users' localStorage data automatically migrates to cloud on first login
+
+### Technical
+- Introduced `needsSaveRef` and `appStateRef` for non-blocking state updates
+- Dirty flag stored in localStorage for crash recovery
+- Session tracking via `dataLoaded_${username}` prevents duplicate cloud loads
+- Graceful degradation when offline or network unavailable
+
 ## [1.1.0] - 2026-02-06
 
 ### Added
