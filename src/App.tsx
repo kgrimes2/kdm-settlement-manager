@@ -1755,7 +1755,10 @@ function AppContent() {
                     title={lastSyncTime ? `Last backup: ${formatSyncTime(lastSyncTime)}` : 'Cloud sync'}
                     aria-label="Cloud sync menu"
                   >
-                    {isSyncing ? '⟳' : '☁'}
+                    <span className="sync-icon">{isSyncing ? '⟳' : '☁'}</span>
+                    {lastSyncTime && (
+                      <span className="sync-time-label">{formatSyncTime(lastSyncTime)}</span>
+                    )}
                   </button>
                   {showSyncMenu && (
                     <div className="sync-dropdown-menu">

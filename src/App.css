@@ -1498,10 +1498,24 @@
 }
 
 .sync-button {
-  padding: 0.35rem 0.5rem;
+  padding: 0.35rem 0.75rem;
   min-width: 2.5rem;
   font-size: 1.25rem;
   transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sync-icon {
+  font-size: 1.25rem;
+}
+
+.sync-time-label {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .sync-button:disabled {
@@ -1509,8 +1523,9 @@
   cursor: not-allowed;
 }
 
-.sync-button.syncing {
+.sync-button.syncing .sync-icon {
   animation: rotateSyncIcon 1s linear infinite;
+  display: inline-block;
 }
 
 @keyframes rotateSyncIcon {
