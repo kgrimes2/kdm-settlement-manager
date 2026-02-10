@@ -183,7 +183,7 @@ interface SurvivorSheetProps {
 
 export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
-  const survivorId = survivor.createdAt
+  // Note: using survivor.createdAt as a unique identifier
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const nameRef = useRef<HTMLTextAreaElement>(null)

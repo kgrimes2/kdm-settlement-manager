@@ -1,4 +1,4 @@
-import { CognitoUserPool, CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js'
+import { CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon-cognito-identity-js'
 
 export interface AuthConfig {
   userPoolId: string
@@ -21,7 +21,6 @@ export interface AuthTokens {
 
 export class CognitoAuthService {
   private userPool: CognitoUserPool
-  private currentUser: CognitoUser | null = null
 
   constructor(config: AuthConfig) {
     this.userPool = new CognitoUserPool({
@@ -35,15 +34,15 @@ export class CognitoAuthService {
    */
   async signUp(email: string, password: string, username: string): Promise<any> {
     return new Promise((resolve, reject) => {
+      const attribute = new CognitoUserAttribute({
+        Name: 'email',
+        Value: email,
+      })
+      
       this.userPool.signUp(
         username,
         password,
-        [
-          {
-            Name: 'email',
-            Value: email,
-          },
-        ],
+        [attribute],
         [],
         (err, result) => {
           if (err) {
@@ -100,7 +99,6 @@ export class CognitoAuthService {
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: (result) => {
           console.log('Authentication successful!')
-          this.currentUser = cognitoUser
           const tokens: AuthTokens = {
             accessToken: result.getAccessToken().getJwtToken(),
             idToken: result.getIdToken().getJwtToken(),
@@ -260,7 +258,7 @@ export class CognitoAuthService {
         return
       }
 
-      cognitoUser.getSession((err: any, session: any) => {
+      cognitoUser.getSession((err: any) => {
         if (err) {
           reject(err)
         } else {
