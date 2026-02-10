@@ -1661,7 +1661,7 @@ function AppContent() {
                 onClick={() => setShowLoginModal(true)}
                 title="Login or Sign Up"
               >
-                🔐 Login
+                 🔐 Login to Save
               </button>
             )}
           {focusedQuadrant !== null && !isMobileDevice && (
