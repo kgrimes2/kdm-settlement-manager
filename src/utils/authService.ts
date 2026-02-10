@@ -84,7 +84,6 @@ export class CognitoAuthService {
    */
   async signIn(username: string, password: string): Promise<AuthTokens> {
     return new Promise((resolve, reject) => {
-      console.log('signIn called with username:', username)
       const cognitoUser = new CognitoUser({
         Username: username,
         Pool: this.userPool,
@@ -95,10 +94,8 @@ export class CognitoAuthService {
         Password: password,
       })
 
-      console.log('Calling authenticateUser...')
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: (result) => {
-          console.log('Authentication successful!')
           const tokens: AuthTokens = {
             accessToken: result.getAccessToken().getJwtToken(),
             idToken: result.getIdToken().getJwtToken(),
@@ -122,19 +119,15 @@ export class CognitoAuthService {
    */
   async getCurrentUser(): Promise<AuthUser | null> {
     try {
-      console.log('getCurrentUser called')
       const cognitoUser = this.userPool.getCurrentUser()
-      console.log('cognitoUser from pool:', cognitoUser ? cognitoUser.getUsername() : 'null')
       
       if (!cognitoUser) {
-        console.log('No current user found')
         return null
       }
 
       return new Promise((resolve, reject) => {
         // First, ensure session is valid
         cognitoUser.getSession((sessionErr: any, session: any) => {
-          console.log('getSession result:', { hasError: !!sessionErr, isValid: session?.isValid() })
           if (sessionErr) {
             console.error('Session error:', sessionErr)
             reject(sessionErr)
@@ -153,7 +146,6 @@ export class CognitoAuthService {
               console.error('Error getting user attributes:', err)
               reject(err)
             } else {
-              console.log('Got user attributes:', attributes)
               const attrs = attributes?.reduce(
                 (acc, attr) => {
                   acc[attr.Name] = attr.Value
@@ -167,7 +159,6 @@ export class CognitoAuthService {
                 email: attrs.email,
                 attributes: attrs,
               }
-              console.log('Resolved user:', user)
               resolve(user)
             }
           })
@@ -200,8 +191,6 @@ export class CognitoAuthService {
         } else {
           // Use ID Token instead of Access Token for API Gateway Cognito authorizer
           const token = session.getIdToken().getJwtToken()
-          console.log('ID token obtained, length:', token.length)
-          console.log('ID token type (first 50 chars):', token.substring(0, 50))
           resolve(token)
         }
       })
