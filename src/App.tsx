@@ -99,6 +99,7 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
   const [showSyncMenu, setShowSyncMenu] = useState(false)
+  const [isLoadingCloudData, setIsLoadingCloudData] = useState(false)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -258,12 +259,15 @@ function AppContent() {
     // Check if we've already shown the merge dialog for this user session
     const sessionKey = `cloudDataChecked_${user.username}`
     const hasChecked = sessionStorage.getItem(sessionKey)
-    console.log('Cloud data check - sessionKey:', sessionKey, 'hasChecked:', hasChecked)
+    console.log('Cloud data check - sessionKey:', sessionKey, 'hasChecked:', hasChecked, 'isLoadingCloudData:', isLoadingCloudData)
     
-    if (hasChecked) {
-      console.log('Already checked cloud data for this session, skipping')
+    if (hasChecked || isLoadingCloudData) {
+      console.log('Already checked or currently loading cloud data for this session, skipping')
       return
     }
+
+    // Mark that we're loading to prevent duplicate calls
+    setIsLoadingCloudData(true)
 
     // Try to load the current settlement's data from the cloud
     const loadCloudData = async () => {
@@ -299,11 +303,13 @@ function AppContent() {
         // Mark as checked even on error to avoid repeated attempts
         sessionStorage.setItem(sessionKey, 'true')
         // Silently continue - user can still work locally
+      } finally {
+        setIsLoadingCloudData(false)
       }
     }
 
     loadCloudData()
-  }, [user, dataService, currentSettlement?.id])
+  }, [user, dataService, currentSettlement?.id, isLoadingCloudData])
 
   // Clear cloud data check flag when user logs out
   useEffect(() => {
@@ -314,6 +320,8 @@ function AppContent() {
           sessionStorage.removeItem(key)
         }
       })
+      // Reset loading flag
+      setIsLoadingCloudData(false)
     }
   }, [user])
 
