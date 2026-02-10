@@ -254,6 +254,8 @@ function AppContent() {
     if (!user || !dataService) return
 
     const checkCloudData = async () => {
+      if (!user || !dataService) return
+
       try {
         const cloudData = await dataService.getAllUserData()
         if (cloudData && cloudData.length > 0) {
@@ -264,14 +266,21 @@ function AppContent() {
             cloudSettlements: cloudData.map((d: any) => d.settlements || []).flat()
           })
         }
-      } catch (error) {
-        console.error('Error checking cloud data:', error)
-        // Silently fail - user can still use local data
+      } catch (error: any) {
+        // 404 is expected if user has no cloud data yet
+        const errorMessage = error.message || String(error)
+        if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+          // User has no cloud data yet - this is fine
+          console.log('No cloud data found for user (expected on first login)')
+        } else {
+          console.error('Error checking cloud data:', error)
+        }
+        // Silently continue - user can still use local data
       }
-    }
+     }
 
-    checkCloudData()
-   }, [user, dataService])
+     checkCloudData()
+    }, [user, dataService])
 
    // Auto-sync to cloud every 2 seconds when user is logged in
    useEffect(() => {
