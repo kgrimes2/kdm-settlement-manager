@@ -1276,17 +1276,25 @@ function AppContent() {
 
       {mergeDialog && (
         <div className="confirm-overlay" onClick={() => setMergeDialog(null)}>
-          <div className="confirm-dialog" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '500px', textAlign: 'left' }}>
-            <p className="confirm-message">Data Conflict Detected</p>
-            <div style={{ color: '#9ca3af', marginBottom: '16px', fontSize: '0.95rem', lineHeight: '1.5' }}>
-              <p>You have data saved in both the cloud and locally. Choose which version to keep:</p>
-              <ul style={{ marginLeft: '16px', marginTop: '8px' }}>
-                <li><strong>Cloud data:</strong> {mergeDialog.cloudSettlements.length} settlements from your account</li>
-                <li><strong>Local data:</strong> {mergeDialog.localData.settlements?.length || 0} settlements on this device</li>
-              </ul>
-              <p style={{ marginTop: '12px', fontSize: '0.85rem', color: '#3a3230' }}>
-                Note: The data you don't choose will be replaced.
+          <div className="confirm-dialog merge-dialog" onClick={(e) => e.stopPropagation()}>
+            <h3 className="merge-dialog-title">Data Conflict Detected</h3>
+            <div className="merge-dialog-content">
+              <p className="merge-dialog-description">
+                You have data saved in both the cloud and locally. Choose which version to keep:
               </p>
+              <ul className="merge-dialog-list">
+                <li>
+                  <strong>Cloud data:</strong> {mergeDialog.cloudSettlements.length} settlement
+                  {mergeDialog.cloudSettlements.length !== 1 ? 's' : ''} from your account
+                </li>
+                <li>
+                  <strong>Local data:</strong> {mergeDialog.localData.settlements?.length || 0} settlement
+                  {(mergeDialog.localData.settlements?.length || 0) !== 1 ? 's' : ''} on this device
+                </li>
+              </ul>
+              <div className="merge-dialog-warning">
+                ⚠️ The data you don't choose will be replaced
+              </div>
             </div>
             <div className="confirm-actions">
               <button
@@ -1323,7 +1331,6 @@ function AppContent() {
               </button>
               <button
                 className="confirm-ok"
-                style={{ marginLeft: '8px' }}
                 onClick={async () => {
                   // Use cloud data, overwrite local
                   try {
@@ -1341,6 +1348,21 @@ function AppContent() {
                       }
                       setAppState(newAppState)
                       localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
+                      
+                      // Immediately sync the loaded data back to cloud
+                      if (dataService && currentSettlement) {
+                        try {
+                          await dataService.saveUserData(currentSettlement.id, {
+                            survivors: mergedSurvivors,
+                            settlements: [currentSettlement],
+                            inventory: mergedInventory,
+                          })
+                          setLastSyncTime(new Date())
+                        } catch (syncError) {
+                          console.error('Failed to sync after loading:', syncError)
+                        }
+                      }
+                      
                       showNotification('Cloud data loaded locally', 'success')
                     }
                   } catch (error) {
