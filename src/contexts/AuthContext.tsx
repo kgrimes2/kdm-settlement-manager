@@ -95,20 +95,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   const handleSignIn = async (username: string, password: string) => {
     try {
       setError(null)
-      console.log('handleSignIn: calling authService.signIn')
       await authService.signIn(username, password)
-      console.log('handleSignIn: signIn successful, calling getCurrentUser')
       const currentUser = await authService.getCurrentUser()
-      console.log('handleSignIn: currentUser result:', currentUser)
       if (currentUser) {
-        console.log('handleSignIn: setting user')
         setUser(currentUser)
       } else {
-        console.error('handleSignIn: getCurrentUser returned null after successful login')
+        console.error('getCurrentUser returned null after successful login')
       }
     } catch (err: any) {
       const errorMessage = err.message || 'Sign in failed'
-      console.error('handleSignIn error:', errorMessage)
+      console.error('Sign in error:', errorMessage)
       setError(errorMessage)
       throw err
     }
