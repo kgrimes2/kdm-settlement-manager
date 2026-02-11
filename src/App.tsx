@@ -19,7 +19,7 @@ import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
 
-const APP_VERSION = '1.3.1'
+const APP_VERSION = '1.3.2'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 

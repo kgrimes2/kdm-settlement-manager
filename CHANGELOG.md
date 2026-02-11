@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-02-11
+
+### Fixed
+- **NumericInput overlay click-through bug** - Clicking anywhere while +1/-1 buttons are visible now only closes the buttons without triggering the clicked element
+  - Added `preventDefault()` and `stopPropagation()` to overlay click handlers
+  - Overlay now completely blocks all page interactions while buttons are visible
+  - Prevents accidental checkbox toggles and input focus when closing buttons
+- **Attribute negative values** - Movement, evasion, accuracy, strength, luck, and speed inputs can now accept negative values
+  - Removed `min={0}` constraint from attribute NumericInput components
+  - Applies to both primary attribute values and gear bonus inputs
+
 ## [1.3.1] - 2026-02-10
 
 ### Fixed
