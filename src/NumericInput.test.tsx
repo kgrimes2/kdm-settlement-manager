@@ -103,4 +103,8 @@ describe('NumericInput', () => {
     const input = screen.getByRole('spinbutton')
     expect(input).toHaveClass('custom-class')
   })
+
+  // Note: Tests for clicking outside/clicking checkboxes are not included because
+  // @testing-library/user-event doesn't accurately simulate z-index layering and
+  // overlay click interception. These scenarios require manual testing in a real browser.
 })
