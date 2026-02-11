@@ -41,8 +41,14 @@ export default function NumericInput({ value, onChange, className = '', min, max
   }, [showButtons])
 
   const handleOverlayClick = (e: React.MouseEvent) => {
+    // Don't let the click through - just close the buttons
     e.preventDefault()
     e.stopPropagation()
+    setShowButtons(false)
+  }
+
+  const handleOverlayTouchEnd = (e: React.TouchEvent) => {
+    e.preventDefault()
     setShowButtons(false)
   }
 
@@ -67,10 +73,6 @@ export default function NumericInput({ value, onChange, className = '', min, max
     setShowButtons(true)
   }
 
-  const handleOverlayTouchEnd = () => {
-    setShowButtons(false)
-  }
-
   return (
     <>
       <div ref={containerRef} className="numeric-input-container">
@@ -85,7 +87,7 @@ export default function NumericInput({ value, onChange, className = '', min, max
       </div>
       {showButtons && createPortal(
         <>
-           <div
+           <div 
              className="numeric-overlay"
              onClick={handleOverlayClick}
              onTouchEnd={handleOverlayTouchEnd}

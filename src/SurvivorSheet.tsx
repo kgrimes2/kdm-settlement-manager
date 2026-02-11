@@ -582,7 +582,6 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                     value={value}
                     onChange={(newValue) => updateStat(stat as keyof SurvivorData['stats'], newValue)}
                     className="stat-input"
-                    min={0}
                   />
                   <span className="stat-plus">+</span>
                   <NumericInput
