@@ -37,16 +37,21 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     setLocalError(null)
     clearError()
 
-    if (!username || !password) {
+    // Trim whitespace from inputs
+    const trimmedUsername = username.trim()
+    const trimmedPassword = password.trim()
+
+    if (!trimmedUsername || !trimmedPassword) {
       setLocalError('Username and password are required')
       return
     }
 
     try {
       setIsLoading(true)
-      await signIn(username, password)
+      await signIn(trimmedUsername, trimmedPassword)
       handleClose()
     } catch (err: any) {
+      console.error('Login error in component:', err)
       setLocalError(err.message || 'Login failed')
     } finally {
       setIsLoading(false)
