@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { CognitoAuthService, type AuthUser } from '../utils/authService'
 import { DataService } from '../utils/dataService'
+import { logCognitoConfig } from '../utils/cognitoDebug'
 
 interface AuthContextType {
   user: AuthUser | null
@@ -52,6 +53,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
 
   // Check if user is already logged in on mount
   useEffect(() => {
+    // Log configuration on mount for debugging
+    logCognitoConfig()
+    
     const checkAuth = async () => {
       try {
         const currentUser = await authService.getCurrentUser()
