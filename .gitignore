@@ -71,3 +71,13 @@ coverage/
 GLOSSARY_FEATURE.md
 MIGRATION_GUIDE.md
 MIGRATION_SUMMARY.md
+
+# Temporary AI assistant files (NEVER COMMIT)
+# All temporary documentation, notes, and test files created by AI assistants
+# should go in the .temp/ directory which is ignored by git
+.temp/
+*.temp.md
+*.temp.txt
+*.temp.html
+temp-*
+test-*.html
