@@ -23,6 +23,29 @@ export class CognitoAuthService {
   private userPool: CognitoUserPool
 
   constructor(config: AuthConfig) {
+    // Validate configuration
+    if (!config.userPoolId || config.userPoolId.trim() === '') {
+      throw new Error('User Pool ID is required for authentication')
+    }
+    if (!config.clientId || config.clientId.trim() === '') {
+      throw new Error('Client ID is required for authentication')
+    }
+    if (!config.region || config.region.trim() === '') {
+      throw new Error('AWS Region is required for authentication')
+    }
+
+    // Validate User Pool ID format
+    const poolIdPattern = /^[a-z]{2}-[a-z]+-\d_[A-Za-z0-9]+$/
+    if (!poolIdPattern.test(config.userPoolId)) {
+      console.warn('User Pool ID format appears invalid:', config.userPoolId)
+      console.warn('Expected format: region_randomstring (e.g., us-west-2_abc123DEF)')
+    }
+
+    console.log('Initializing Cognito Auth Service')
+    console.log('Region:', config.region)
+    console.log('User Pool ID:', config.userPoolId)
+    console.log('Client ID:', config.clientId.substring(0, 8) + '...')
+
     this.userPool = new CognitoUserPool({
       UserPoolId: config.userPoolId,
       ClientId: config.clientId,
@@ -84,18 +107,38 @@ export class CognitoAuthService {
    */
   async signIn(username: string, password: string): Promise<AuthTokens> {
     return new Promise((resolve, reject) => {
+      // Validate inputs before making request
+      if (!username || username.trim() === '') {
+        const error = new Error('Username cannot be empty')
+        console.error('Sign in validation error:', error.message)
+        reject(error)
+        return
+      }
+
+      if (!password || password.trim() === '') {
+        const error = new Error('Password cannot be empty')
+        console.error('Sign in validation error:', error.message)
+        reject(error)
+        return
+      }
+
+      console.log('Attempting sign in for user:', username)
+      console.log('User Pool ID:', this.userPool.getUserPoolId())
+      console.log('Client ID:', this.userPool.getClientId())
+
       const cognitoUser = new CognitoUser({
-        Username: username,
+        Username: username.trim(),
         Pool: this.userPool,
       })
 
       const authDetails = new AuthenticationDetails({
-        Username: username,
+        Username: username.trim(),
         Password: password,
       })
 
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: (result) => {
+          console.log('Authentication successful for user:', username)
           const tokens: AuthTokens = {
             accessToken: result.getAccessToken().getJwtToken(),
             idToken: result.getIdToken().getJwtToken(),
@@ -107,8 +150,30 @@ export class CognitoAuthService {
           resolve(tokens)
         },
         onFailure: (err) => {
-          console.error('Authentication failed:', err.message || err)
-          reject(err)
+          console.error('Authentication failed for user:', username)
+          console.error('Error code:', err.code)
+          console.error('Error name:', err.name)
+          console.error('Error message:', err.message)
+          console.error('Full error:', JSON.stringify(err, null, 2))
+          
+          // Provide more user-friendly error messages
+          let userMessage = err.message || 'Login failed'
+          
+          if (err.code === 'UserNotFoundException') {
+            userMessage = 'User does not exist. Please check your username or sign up.'
+          } else if (err.code === 'NotAuthorizedException') {
+            userMessage = 'Incorrect username or password.'
+          } else if (err.code === 'UserNotConfirmedException') {
+            userMessage = 'Please verify your email address first.'
+          } else if (err.code === 'InvalidParameterException') {
+            userMessage = 'Invalid login parameters. Please check your input.'
+          } else if (err.code === 'ResourceNotFoundException') {
+            userMessage = 'Authentication service not configured correctly. Please contact support.'
+          }
+          
+          const enhancedError = new Error(userMessage)
+          Object.assign(enhancedError, { code: err.code, originalError: err })
+          reject(enhancedError)
         },
       })
     })
