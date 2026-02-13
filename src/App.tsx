@@ -417,7 +417,7 @@ function AppContent() {
          console.error('Auto-sync failed:', error)
          // Keep dirty flag so we retry next time
        }
-     }, 10000) // 10000ms = 10 seconds
+      }, 30000) // 30000ms = 30 seconds
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, appState.settlements])

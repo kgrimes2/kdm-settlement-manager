@@ -153,12 +153,12 @@ resource "aws_cloudwatch_metric_alarm" "lambda_delete_errors" {
 resource "aws_cloudwatch_metric_alarm" "dynamodb_high_read_capacity" {
   alarm_name          = "${var.app_name}-${var.environment}-dynamodb-high-read"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 2
+  evaluation_periods  = 3
   metric_name         = "ConsumedReadCapacityUnits"
   namespace           = "AWS/DynamoDB"
-  period              = 300
+  period              = 600
   statistic           = "Sum"
-  threshold           = 1000 # Adjust based on expected usage
+  threshold           = 5000
   alarm_description   = "Alert when DynamoDB read capacity is unusually high (potential attack)"
   alarm_actions       = local.alarm_actions
 
@@ -175,12 +175,12 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_high_read_capacity" {
 resource "aws_cloudwatch_metric_alarm" "dynamodb_high_write_capacity" {
   alarm_name          = "${var.app_name}-${var.environment}-dynamodb-high-write"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 2
+  evaluation_periods  = 3
   metric_name         = "ConsumedWriteCapacityUnits"
   namespace           = "AWS/DynamoDB"
-  period              = 300
+  period              = 600
   statistic           = "Sum"
-  threshold           = 500 # Adjust based on expected usage
+  threshold           = 2500
   alarm_description   = "Alert when DynamoDB write capacity is unusually high (potential attack/abuse)"
   alarm_actions       = local.alarm_actions
 
@@ -197,12 +197,12 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_high_write_capacity" {
 resource "aws_cloudwatch_metric_alarm" "dynamodb_user_errors" {
   alarm_name          = "${var.app_name}-${var.environment}-dynamodb-user-errors"
   comparison_operator = "GreaterThanThreshold"
-  evaluation_periods  = 1
+  evaluation_periods  = 3
   metric_name         = "UserErrors"
   namespace           = "AWS/DynamoDB"
-  period              = 300
+  period              = 600
   statistic           = "Sum"
-  threshold           = 10
+  threshold           = 50
   alarm_description   = "Alert when DynamoDB encounters user errors (throttling, etc.)"
   alarm_actions       = local.alarm_actions
 
