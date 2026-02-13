@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- **Reduced DynamoDB auto-sync frequency** from 10 seconds to 30 seconds to decrease database load and reduce costs
+  - Settlement data now syncs to cloud every 30 seconds (when dirty) instead of 10 seconds
+  - Provides better balance between real-time sync and resource usage
+
 ## [1.3.2] - 2026-02-11
 
 ### Fixed
