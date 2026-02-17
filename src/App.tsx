@@ -932,95 +932,83 @@ function AppContent() {
     }
   }
 
-  const handleRetireFocused = () => {
-    if (focusedQuadrant === null) return
-    const settlement = getCurrentSettlement()
-    if (!settlement) return
+   const handleRetireFocused = () => {
+     if (focusedQuadrant === null) return
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
 
-    const survivor = settlement.survivors[focusedQuadrant]
-    if (!survivor) return
+     const survivor = settlement.survivors[focusedQuadrant]
+     if (!survivor) return
 
-    const survivorName = survivor.name || 'this survivor'
-    const quadrant = focusedQuadrant
+     const survivorName = survivor.name || 'this survivor'
+     const quadrant = focusedQuadrant
 
-    setConfirmDialog({
-      message: `Are you sure you want to retire ${survivorName}? This action is permanent and cannot be undone.`,
-      onConfirm: () => {
-        setMarkers(prev => {
-          const newMarkers = new Map(prev)
-          newMarkers.delete(quadrant)
-          return newMarkers
-        })
+     setMarkers(prev => {
+       const newMarkers = new Map(prev)
+       newMarkers.delete(quadrant)
+       return newMarkers
+     })
 
-        setAppState(prev => ({
-          ...prev,
-          settlements: prev.settlements.map(s => {
-            if (s.id !== prev.currentSettlementId) return s
+     setAppState(prev => ({
+       ...prev,
+       settlements: prev.settlements.map(s => {
+         if (s.id !== prev.currentSettlementId) return s
 
-            const surv = s.survivors[quadrant]
-            if (!surv) return s
+         const surv = s.survivors[quadrant]
+         if (!surv) return s
 
-            return {
-              ...s,
-              survivors: {
-                ...s.survivors,
-                [quadrant]: null
-              },
-              retiredSurvivors: [...s.retiredSurvivors, surv]
-            }
-          })
-        }))
-        setFocusedQuadrant(null)
-        showNotification(`${survivorName} retired`, 'success')
-        setConfirmDialog(null)
-      }
-    })
-  }
+         return {
+           ...s,
+           survivors: {
+             ...s.survivors,
+             [quadrant]: null
+           },
+           retiredSurvivors: [...s.retiredSurvivors, surv]
+         }
+       })
+     }))
+     setFocusedQuadrant(null)
+     showNotification(`${survivorName} retired`, 'success')
+   }
 
-  const handleDeceasedFocused = () => {
-    if (focusedQuadrant === null) return
-    const settlement = getCurrentSettlement()
-    if (!settlement) return
+   const handleDeceasedFocused = () => {
+     if (focusedQuadrant === null) return
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
 
-    const survivor = settlement.survivors[focusedQuadrant]
-    if (!survivor) return
+     const survivor = settlement.survivors[focusedQuadrant]
+     if (!survivor) return
 
-    const survivorName = survivor.name || 'this survivor'
-    const quadrant = focusedQuadrant
+     const survivorName = survivor.name || 'this survivor'
+     const quadrant = focusedQuadrant
 
-    setConfirmDialog({
-      message: `Are you sure you want to mark ${survivorName} as deceased? This action is permanent and cannot be undone.`,
-      onConfirm: () => {
-        setMarkers(prev => {
-          const newMarkers = new Map(prev)
-          newMarkers.delete(quadrant)
-          return newMarkers
-        })
+     setMarkers(prev => {
+       const newMarkers = new Map(prev)
+       newMarkers.delete(quadrant)
+       return newMarkers
+     })
 
-        setAppState(prev => ({
-          ...prev,
-          settlements: prev.settlements.map(s => {
-            if (s.id !== prev.currentSettlementId) return s
+     setAppState(prev => ({
+       ...prev,
+       settlements: prev.settlements.map(s => {
+         if (s.id !== prev.currentSettlementId) return s
 
-            const surv = s.survivors[quadrant]
-            if (!surv) return s
+         const surv = s.survivors[quadrant]
+         if (!surv) return s
 
-            return {
-              ...s,
-              survivors: {
-                ...s.survivors,
-                [quadrant]: null
-              },
-              deceasedSurvivors: [...s.deceasedSurvivors, surv]
-            }
-          })
-        }))
-        setFocusedQuadrant(null)
-        showNotification(`${survivorName} marked as deceased`, 'success')
-        setConfirmDialog(null)
-      }
-    })
-  }
+         return {
+           ...s,
+           survivors: {
+             ...s.survivors,
+             [quadrant]: null
+           },
+           deceasedSurvivors: [...s.deceasedSurvivors, surv]
+         }
+       })
+     }))
+     setFocusedQuadrant(null)
+     showNotification(`${survivorName} marked as deceased`, 'success')
+   }
 
   const handleExport = () => {
     const settlement = getCurrentSettlement()
@@ -1076,29 +1064,29 @@ function AppContent() {
           return
         }
 
-        // Normalize imported survivors to ensure they have all required fields
-        const normalizedSurvivors = Object.entries(importedData.survivors).reduce((acc, [key, survivor]: [string, any]) => {
-          if (survivor === null) {
-            (acc as any)[key] = null
-          } else {
-            // Fill in missing properties with defaults from initialSurvivorData
-            (acc as any)[key] = {
-              ...initialSurvivorData,
-              ...survivor,
-              // Ensure huntXP is correct length (migrate from 15 to 16 if needed)
-              huntXP: survivor.huntXP && survivor.huntXP.length === 15 
-                ? [...survivor.huntXP, false]
-                : survivor.huntXP || Array(16).fill(false),
-              // Ensure weaponProficiency has correct structure
-              weaponProficiency: survivor.weaponProficiency && survivor.weaponProficiency.type !== undefined
-                ? { types: [], level: survivor.weaponProficiency.level || Array(8).fill(false) }
-                : survivor.weaponProficiency || { types: [], level: Array(8).fill(false) },
-              // Ensure permanentInjuries has correct structure
-              permanentInjuries: survivor.permanentInjuries || initialSurvivorData.permanentInjuries
-            }
-          }
-          return acc
-        }, {})
+         // Normalize imported survivors to ensure they have all required fields
+         const normalizedSurvivors = Object.entries(importedData.survivors).reduce((acc, [key, survivor]: [string, any]) => {
+           if (survivor === null) {
+             (acc as any)[key] = null
+           } else {
+             // Fill in missing properties with defaults from initialSurvivorData
+             (acc as any)[key] = {
+               ...initialSurvivorData,
+               ...survivor,
+               // Ensure huntXP is correct length (migrate from 15 to 16 if needed)
+               huntXP: survivor.huntXP && survivor.huntXP.length === 15 
+                 ? [...survivor.huntXP, false]
+                 : survivor.huntXP || Array(16).fill(false),
+               // Ensure weaponProficiency has correct structure
+               weaponProficiency: survivor.weaponProficiency && survivor.weaponProficiency.type !== undefined
+                 ? { types: [], level: survivor.weaponProficiency.level || Array(8).fill(false) }
+                 : survivor.weaponProficiency || { types: [], level: Array(8).fill(false) },
+               // Ensure permanentInjuries has correct structure
+               permanentInjuries: survivor.permanentInjuries || initialSurvivorData.permanentInjuries
+             }
+           }
+           return acc
+         }, {} as any)
 
         // Update the settlement with imported data
         setAppState(prev => ({
@@ -1129,65 +1117,125 @@ function AppContent() {
     event.target.value = ''
   }
 
-  const handleRetireSurvivor = (index: number) => {
-    const settlement = getCurrentSettlement()
-    if (!settlement) return
+   const handleRetireSurvivor = (index: number) => {
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
 
-    const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
+     const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
 
-    setConfirmDialog({
-      message: `Are you sure you want to retire ${survivorName}? This action is permanent and cannot be undone.`,
-      onConfirm: () => {
-        setAppState(prev => ({
-          ...prev,
-          settlements: prev.settlements.map(s => {
-            if (s.id !== prev.currentSettlementId) return s
+     setAppState(prev => ({
+       ...prev,
+       settlements: prev.settlements.map(s => {
+         if (s.id !== prev.currentSettlementId) return s
 
-            const survivor = s.removedSurvivors[index]
-            return {
-              ...s,
-              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
-              retiredSurvivors: [...s.retiredSurvivors, survivor]
-            }
-          })
-        }))
-        setShowRetiredSection(true)
-        showNotification(`${survivorName} retired`, 'success')
-        setConfirmDialog(null)
-      }
-    })
-  }
+         const survivor = s.removedSurvivors[index]
+         return {
+           ...s,
+           removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
+           retiredSurvivors: [...s.retiredSurvivors, survivor]
+         }
+       })
+     }))
+     setShowRetiredSection(true)
+     showNotification(`${survivorName} retired`, 'success')
+   }
 
-  const handleMarkDeceased = (index: number) => {
-    const settlement = getCurrentSettlement()
-    if (!settlement) return
+   const handleMarkDeceased = (index: number) => {
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
 
-    const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
+     const survivorName = settlement.removedSurvivors[index].name || 'this survivor'
 
-    setConfirmDialog({
-      message: `Are you sure you want to mark ${survivorName} as deceased? This action is permanent and cannot be undone.`,
-      onConfirm: () => {
-        setAppState(prev => ({
-          ...prev,
-          settlements: prev.settlements.map(s => {
-            if (s.id !== prev.currentSettlementId) return s
+     setAppState(prev => ({
+       ...prev,
+       settlements: prev.settlements.map(s => {
+         if (s.id !== prev.currentSettlementId) return s
 
-            const survivor = s.removedSurvivors[index]
-            return {
-              ...s,
-              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
-              deceasedSurvivors: [...s.deceasedSurvivors, survivor]
-            }
-          })
-        }))
-        setShowDeceasedSection(true)
-        showNotification(`${survivorName} marked as deceased`, 'success')
-        setConfirmDialog(null)
-      }
-    })
-  }
+         const survivor = s.removedSurvivors[index]
+         return {
+           ...s,
+           removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index),
+           deceasedSurvivors: [...s.deceasedSurvivors, survivor]
+         }
+       })
+     }))
+     setShowDeceasedSection(true)
+     showNotification(`${survivorName} marked as deceased`, 'success')
+    }
 
-  const handleHealAllWounds = () => {
+   const handleRestoreRetiredSurvivor = (index: number) => {
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
+
+     const survivor = settlement.retiredSurvivors[index]
+     if (!survivor) return
+
+     const survivorName = survivor.name || 'Survivor'
+
+     setConfirmDialog({
+       message: `Restore ${survivorName} to the deactivated pool? This survivor will no longer be marked as retired.`,
+       onConfirm: () => {
+         setAppState(prev => ({
+           ...prev,
+           settlements: prev.settlements.map(s => {
+             if (s.id !== prev.currentSettlementId) return s
+
+             const surv = s.retiredSurvivors[index]
+             if (!surv) return s
+
+             const newRetiredSurvivors = s.retiredSurvivors.filter((_, i) => i !== index)
+
+             return {
+               ...s,
+               retiredSurvivors: newRetiredSurvivors,
+               removedSurvivors: [...s.removedSurvivors, surv]
+             }
+           })
+         }))
+
+         showNotification(`${survivorName} restored to deactivated pool`, 'success')
+         setConfirmDialog(null)
+       }
+     })
+   }
+
+   const handleRestoreDeceasedSurvivor = (index: number) => {
+     const settlement = getCurrentSettlement()
+     if (!settlement) return
+
+     const survivor = settlement.deceasedSurvivors[index]
+     if (!survivor) return
+
+     const survivorName = survivor.name || 'Survivor'
+
+     setConfirmDialog({
+       message: `Restore ${survivorName} to the deactivated pool? This survivor will no longer be marked as deceased.`,
+       onConfirm: () => {
+         setAppState(prev => ({
+           ...prev,
+           settlements: prev.settlements.map(s => {
+             if (s.id !== prev.currentSettlementId) return s
+
+             const surv = s.deceasedSurvivors[index]
+             if (!surv) return s
+
+             const newDeceasedSurvivors = s.deceasedSurvivors.filter((_, i) => i !== index)
+
+             return {
+               ...s,
+               deceasedSurvivors: newDeceasedSurvivors,
+               removedSurvivors: [...s.removedSurvivors, surv]
+             }
+           })
+         }))
+
+         showNotification(`${survivorName} restored to deactivated pool`, 'success')
+         setConfirmDialog(null)
+       }
+     })
+   }
+
+   const handleHealAllWounds = () => {
     setConfirmDialog({
       message: 'Heal all wounds for all survivors? This will clear all injury checkboxes (brain, head, arms, body, waist, legs) for all active and inactive survivors.',
       onConfirm: () => {
@@ -2319,18 +2367,26 @@ function AppContent() {
                   {currentSettlement.retiredSurvivors.length === 0 ? (
                     <div className="empty-message">No retired survivors</div>
                   ) : (
-                    currentSettlement.retiredSurvivors.map((survivor, index) => (
-                      <div key={index} className="survivor-list-item retired">
-                        <div className="survivor-info">
-                          <div className="survivor-name">
-                            {survivor.name || `New Survivor`}
-                          </div>
-                          <div className="survivor-meta">
-                            Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                          </div>
-                        </div>
-                      </div>
-                    ))
+                     currentSettlement.retiredSurvivors.map((survivor, index) => (
+                       <div key={index} className="survivor-list-item retired">
+                         <div className="survivor-info">
+                           <div className="survivor-name">
+                             {survivor.name || `New Survivor`}
+                           </div>
+                           <div className="survivor-meta">
+                             Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                           </div>
+                         </div>
+                         <div className="survivor-actions">
+                           <button
+                             className="restore-button"
+                             onClick={() => handleRestoreRetiredSurvivor(index)}
+                           >
+                             Restore to Pool
+                           </button>
+                         </div>
+                       </div>
+                     ))
                   )}
                 </div>
               )}
@@ -2349,18 +2405,26 @@ function AppContent() {
                   {currentSettlement.deceasedSurvivors.length === 0 ? (
                     <div className="empty-message">No deceased survivors</div>
                   ) : (
-                    currentSettlement.deceasedSurvivors.map((survivor, index) => (
-                      <div key={index} className="survivor-list-item deceased">
-                        <div className="survivor-info">
-                          <div className="survivor-name">
-                            {survivor.name || `New Survivor`}
-                          </div>
-                          <div className="survivor-meta">
-                            Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                          </div>
-                        </div>
-                      </div>
-                    ))
+                     currentSettlement.deceasedSurvivors.map((survivor, index) => (
+                       <div key={index} className="survivor-list-item deceased">
+                         <div className="survivor-info">
+                           <div className="survivor-name">
+                             {survivor.name || `New Survivor`}
+                           </div>
+                           <div className="survivor-meta">
+                             Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                           </div>
+                         </div>
+                         <div className="survivor-actions">
+                           <button
+                             className="restore-button"
+                             onClick={() => handleRestoreDeceasedSurvivor(index)}
+                           >
+                             Restore to Pool
+                           </button>
+                         </div>
+                       </div>
+                     ))
                   )}
                 </div>
               )}

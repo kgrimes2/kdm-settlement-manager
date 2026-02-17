@@ -368,97 +368,132 @@ describe('App', () => {
       })
     })
 
-    it('retires a survivor with confirmation', async () => {
-      const user = userEvent.setup()
-      render(<App />)
+     it('retires a survivor immediately without confirmation', async () => {
+       const user = userEvent.setup()
+       render(<App />)
 
-      const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
-      await user.click(menuBtn)
+       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
+       await user.click(menuBtn)
 
-      // Deactivate first
-      const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
-      await user.click(deactivateButtons[0])
+       // Deactivate first
+       const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
+       await user.click(deactivateButtons[0])
 
-      await waitFor(() => {
-        expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
-      })
+       await waitFor(() => {
+         expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
+       })
 
-      // Retire
-      const retireBtn = await waitFor(() =>
-        screen.getByRole('button', { name: /^retire$/i })
-      )
-      await user.click(retireBtn)
+       // Retire
+       const retireBtn = await waitFor(() =>
+         screen.getByRole('button', { name: /^retire$/i })
+       )
+       await user.click(retireBtn)
 
-      // Confirm dialog should appear
-      expect(screen.getByText(/are you sure you want to retire/i)).toBeInTheDocument()
+       // Should retire immediately without confirmation dialog
+       await waitFor(() => {
+         expect(screen.getByText(/Allister retired/i)).toBeInTheDocument()
+       })
+     })
 
-      const confirmBtn = screen.getByRole('button', { name: /confirm/i })
-      await user.click(confirmBtn)
+     it('marks survivor as deceased immediately without confirmation', async () => {
+       const user = userEvent.setup()
+       render(<App />)
 
-      await waitFor(() => {
-        expect(screen.getByText(/Allister retired/i)).toBeInTheDocument()
+       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
+       await user.click(menuBtn)
+
+       // Deactivate first
+       const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
+       await user.click(deactivateButtons[0])
+
+       await waitFor(() => {
+         expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
+       })
+
+       // Mark as deceased
+       const deceasedBtn = screen.getByRole('button', { name: /deceased/i })
+       await user.click(deceasedBtn)
+
+       // Should mark as deceased immediately without confirmation dialog
+       await waitFor(() => {
+         expect(screen.getByText(/marked as deceased/i)).toBeInTheDocument()
+       })
+     })
+
+     it('restores retired survivor to pool', async () => {
+       const user = userEvent.setup()
+       render(<App />)
+
+       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
+       await user.click(menuBtn)
+
+       // Deactivate first
+       const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
+       await user.click(deactivateButtons[0])
+
+       await waitFor(() => {
+         expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
+       })
+
+        // Retire the survivor
+        const retireBtn = screen.getByRole('button', { name: /^retire$/i })
+        await user.click(retireBtn)
+
+        await waitFor(() => {
+          expect(screen.getByText(/Allister retired/i)).toBeInTheDocument()
+        })
+
+        // Now restore the retired survivor
+        const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
+        await user.click(restoreBtn)
+
+        await waitFor(() => {
+          expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
+        })
+
+       // Survivor should now be in Survivor Pool, not in Retired
+       const survivorPoolSection = screen.getByText(/survivor pool/i)
+       expect(survivorPoolSection).toBeInTheDocument()
+     })
+
+     it('restores deceased survivor to pool', async () => {
+       const user = userEvent.setup()
+       render(<App />)
+
+       const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
+       await user.click(menuBtn)
+
+       // Deactivate first
+       const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
+       await user.click(deactivateButtons[0])
+
+       await waitFor(() => {
+         expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
+       })
+
+        // Mark as deceased
+        const deceasedBtn = screen.getByRole('button', { name: /deceased/i })
+        await user.click(deceasedBtn)
+
+        await waitFor(() => {
+          expect(screen.getByText(/marked as deceased/i)).toBeInTheDocument()
+        })
+
+        // Now restore the deceased survivor
+        const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
+        await user.click(restoreBtn)
+
+        await waitFor(() => {
+          expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
+        })
+
+       // Survivor should now be in Survivor Pool, not in Deceased
+       const survivorPoolSection = screen.getByText(/survivor pool/i)
+       expect(survivorPoolSection).toBeInTheDocument()
       })
     })
 
-    it('marks survivor as deceased with confirmation', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
-      await user.click(menuBtn)
-
-      // Deactivate first
-      const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
-      await user.click(deactivateButtons[0])
-
-      await waitFor(() => {
-        expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
-      })
-
-      // Mark as deceased
-      const deceasedBtn = screen.getByRole('button', { name: /deceased/i })
-      await user.click(deceasedBtn)
-
-      // Confirm dialog should appear
-      expect(screen.getByText(/are you sure you want to mark/i)).toBeInTheDocument()
-
-      const confirmBtn = screen.getByRole('button', { name: /confirm/i })
-      await user.click(confirmBtn)
-
-      await waitFor(() => {
-        expect(screen.getByText(/marked as deceased/i)).toBeInTheDocument()
-      })
-    })
-
-    it('cancels retirement when cancel is clicked', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
-      await user.click(menuBtn)
-
-      // Deactivate first
-      const deactivateButtons = screen.getAllByRole('button', { name: /deactivate/i })
-      await user.click(deactivateButtons[0])
-
-      await waitFor(() => {
-        expect(screen.getByText(/deactivated successfully/i)).toBeInTheDocument()
-      })
-
-      // Attempt to retire
-      const retireBtn = screen.getByRole('button', { name: /retire/i })
-      await user.click(retireBtn)
-
-      // Cancel
-      const cancelBtn = screen.getByRole('button', { name: /cancel/i })
-      await user.click(cancelBtn)
-
-      // Dialog should close, survivor still in pool
-      expect(screen.queryByText(/are you sure you want to retire/i)).not.toBeInTheDocument()
-    })
-  })
-
-  describe('Clear All Data', () => {
+   describe('Clear All Data', () => {
     it('clears all data with confirmation', async () => {
       const user = userEvent.setup()
       render(<App />)
