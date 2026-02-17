@@ -2011,6 +2011,27 @@
   background-color: #5b3a3a;
 }
 
+.restore-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #4a6b6b;
+  border: none;
+  border-left: 1px solid #2a4a4a;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.restore-button:hover {
+  background-color: #5a7b7b;
+}
+
+.restore-button:active {
+  background-color: #3a5b5b;
+}
+
 .focus-mode-actions {
   display: flex;
   align-items: center;
