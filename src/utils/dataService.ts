@@ -38,10 +38,12 @@ export class DataService {
         throw new Error(`Failed to get user data: ${response.statusText}`)
       }
 
-      const item = await response.json()
-      // The Lambda returns the DynamoDB item which has: { user_id, settlement_id, data, updated_at }
-      // We want to return just the 'data' field which is the UserDataPayload
-      return item.data || { settlements: [], survivors: [], inventory: {} }
+       const item = await response.json()
+       // The Lambda returns the DynamoDB item which has: { user_id, settlement_id, data, updated_at }
+       // We want to return just the 'data' field which is the UserDataPayload
+       // data is stored as a JSON string in DynamoDB, so we need to parse it
+       const data = item.data ? (typeof item.data === 'string' ? JSON.parse(item.data) : item.data) : { settlements: [], survivors: [], inventory: {} }
+       return data
     } catch (error) {
       console.error('Error fetching user data:', error)
       throw error
@@ -63,8 +65,10 @@ export class DataService {
         },
       })
 
-      console.log('getAllUserData: Response status:', response.status)
-      console.log('getAllUserData: Response headers:', Object.fromEntries(response.headers.entries()))
+       console.log('getAllUserData: Response status:', response.status)
+       if (response.headers && response.headers.entries) {
+         console.log('getAllUserData: Response headers:', Object.fromEntries(response.headers.entries()))
+       }
 
       if (!response.ok) {
         const errorText = await response.text()

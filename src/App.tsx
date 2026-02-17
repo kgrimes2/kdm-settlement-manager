@@ -191,7 +191,32 @@ function AppContent() {
     }, 2000) // Save every 2 seconds if dirty
 
     return () => clearInterval(saveInterval)
-  }, []) // Empty deps - runs once
+   }, []) // Empty deps - runs once
+
+  // Ensure migrated data is saved immediately on initial load
+  useEffect(() => {
+    // If the current state doesn't match localStorage, it means we migrated the data
+    // Save it immediately so migrations are persisted
+    try {
+      const savedState = localStorage.getItem('kdm-app-state')
+      if (savedState) {
+        const parsed = JSON.parse(savedState)
+        const current = JSON.stringify(appState)
+        const saved = JSON.stringify(parsed)
+        
+        // If they don't match, the data was migrated - save immediately
+        if (current !== saved) {
+          try {
+            localStorage.setItem('kdm-app-state', JSON.stringify(appState))
+          } catch (error) {
+            console.error('Failed to save migrated state:', error)
+          }
+        }
+      }
+    } catch (error) {
+      // Ignore errors parsing localStorage (corrupted data is handled in initial state)
+    }
+  }, []) // Empty deps - runs once on mount
 
   // Detect mobile devices and small screens
   useEffect(() => {
@@ -417,7 +442,7 @@ function AppContent() {
          console.error('Auto-sync failed:', error)
          // Keep dirty flag so we retry next time
        }
-     }, 10000) // 10000ms = 10 seconds
+      }, 30000) // 30000ms = 30 seconds
 
      return () => clearInterval(syncInterval)
    }, [user, dataService, appState.settlements])
@@ -995,6 +1020,113 @@ function AppContent() {
         setConfirmDialog(null)
       }
     })
+  }
+
+  const handleExport = () => {
+    const settlement = getCurrentSettlement()
+    if (!settlement) {
+      showNotification('No settlement to export', 'error')
+      return
+    }
+
+    // Create export data structure
+    const exportData = {
+      survivors: settlement.survivors,
+      removedSurvivors: settlement.removedSurvivors || [],
+      retiredSurvivors: settlement.retiredSurvivors || [],
+      deceasedSurvivors: settlement.deceasedSurvivors || []
+    }
+
+    // Convert to JSON and create blob
+    const jsonString = JSON.stringify(exportData, null, 2)
+    const blob = new Blob([jsonString], { type: 'application/json' })
+
+    // Create download link
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${settlement.name}-export-${new Date().toISOString().split('T')[0]}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+
+    showNotification('Settlement data exported successfully', 'success')
+    setShowSavesDropdown(false)
+  }
+
+  const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onload = (e) => {
+      try {
+        const content = e.target?.result as string
+        const importedData = JSON.parse(content)
+
+        // Validate the imported data has required properties
+        if (!importedData.survivors) {
+          throw new Error('Invalid settlement data: missing survivors')
+        }
+
+        const settlement = getCurrentSettlement()
+        if (!settlement) {
+          showNotification('No active settlement to import to', 'error')
+          return
+        }
+
+        // Normalize imported survivors to ensure they have all required fields
+        const normalizedSurvivors = Object.entries(importedData.survivors).reduce((acc, [key, survivor]: [string, any]) => {
+          if (survivor === null) {
+            (acc as any)[key] = null
+          } else {
+            // Fill in missing properties with defaults from initialSurvivorData
+            (acc as any)[key] = {
+              ...initialSurvivorData,
+              ...survivor,
+              // Ensure huntXP is correct length (migrate from 15 to 16 if needed)
+              huntXP: survivor.huntXP && survivor.huntXP.length === 15 
+                ? [...survivor.huntXP, false]
+                : survivor.huntXP || Array(16).fill(false),
+              // Ensure weaponProficiency has correct structure
+              weaponProficiency: survivor.weaponProficiency && survivor.weaponProficiency.type !== undefined
+                ? { types: [], level: survivor.weaponProficiency.level || Array(8).fill(false) }
+                : survivor.weaponProficiency || { types: [], level: Array(8).fill(false) },
+              // Ensure permanentInjuries has correct structure
+              permanentInjuries: survivor.permanentInjuries || initialSurvivorData.permanentInjuries
+            }
+          }
+          return acc
+        }, {})
+
+        // Update the settlement with imported data
+        setAppState(prev => ({
+          ...prev,
+          settlements: prev.settlements.map(s =>
+            s.id === settlement.id
+              ? {
+                  ...s,
+                  survivors: normalizedSurvivors,
+                  removedSurvivors: importedData.removedSurvivors || [],
+                  retiredSurvivors: importedData.retiredSurvivors || [],
+                  deceasedSurvivors: importedData.deceasedSurvivors || []
+                }
+              : s
+          )
+        }))
+
+        showNotification('Settlement data imported successfully', 'success')
+        setShowSavesDropdown(false)
+      } catch (error) {
+        console.error('Import error:', error)
+        showNotification('Failed to import settlement data: invalid file', 'error')
+      }
+    }
+    reader.readAsText(file)
+
+    // Reset the input so the same file can be imported again
+    event.target.value = ''
   }
 
   const handleRetireSurvivor = (index: number) => {
@@ -1888,6 +2020,36 @@ function AppContent() {
             >
               🎒
              </button>
+             <div className="saves-selector">
+               <button
+                 className="toolbar-button toolbar-icon-button saves-button"
+                 onClick={() => setShowSavesDropdown(!showSavesDropdown)}
+                 aria-label="Saves"
+                 title="Export/Import saves"
+               >
+                 💾
+               </button>
+               <input
+                 type="file"
+                 accept=".json"
+                 onChange={handleImport}
+                 style={{ display: 'none' }}
+                 aria-hidden="true"
+               />
+               {showSavesDropdown && (
+                 <div className="saves-dropdown-menu">
+                   <button
+                     className="saves-menu-item"
+                     onClick={handleExport}
+                   >
+                     Export
+                   </button>
+                   <label className="saves-menu-item saves-import-label">
+                     Import
+                   </label>
+                 </div>
+               )}
+             </div>
              {user && (
                 <div className="sync-menu-container">
                   <button
