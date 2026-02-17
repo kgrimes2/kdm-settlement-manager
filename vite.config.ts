@@ -1,15 +1,22 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
-import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
 export default defineConfig({
   server: {
     host: '0.0.0.0',
-    https: {},
+    port: 8080,
+    // Disable HTTPS for Cloud9 development
+    // https: {},
+    allowedHosts: [
+      '10b3cbfb21044a2e89d3f278154cbf0f.vfs.cloud9.us-west-2.amazonaws.com',
+      'localhost',
+      '.amazonaws.com'
+    ],
   },
   base: '/kdm/manager/',
-  plugins: [react(), basicSsl()],
+  plugins: [react()], // Remove basicSsl for Cloud9
+  // plugins: [react(), basicSsl()], // Use this for production with HTTPS
   test: {
     globals: true,
     environment: 'jsdom',
