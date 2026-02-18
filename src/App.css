@@ -1878,20 +1878,20 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #6b5a3a;
+  background-color: #7a6a4a;
   border: none;
-  border-left: 1px solid #4a3a2a;
+  border-left: 1px solid #5a4a2a;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .deactivate-button:hover {
-  background-color: #7b6a4a;
+  background-color: #8a7a5a;
 }
 
 .deactivate-button:active {
-  background-color: #5b4a2a;
+  background-color: #6a5a3a;
 }
 
 .activate-button {
@@ -1920,20 +1920,20 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #6b5a3a;
+  background-color: #8a7a3a;
   border: none;
-  border-left: 1px solid #4a3a2a;
+  border-left: 1px solid #5a4a1a;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .retire-button:hover {
-  background-color: #7b6a4a;
+  background-color: #9a8a4a;
 }
 
 .retire-button:active {
-  background-color: #5b4a2a;
+  background-color: #7a6a2a;
 }
 
 .deceased-button {
@@ -1941,20 +1941,20 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #6b4a4a;
+  background-color: #7a4a4a;
   border: none;
-  border-left: 1px solid #4a2a2a;
+  border-left: 1px solid #5a2a2a;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .deceased-button:hover {
-  background-color: #7b5a5a;
+  background-color: #8a5a5a;
 }
 
 .deceased-button:active {
-  background-color: #5b3a3a;
+  background-color: #6a3a3a;
 }
 
 .restore-button {
@@ -1962,16 +1962,16 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #4a6b6b;
+  background-color: #4a7a7a;
   border: none;
-  border-left: 1px solid #2a4a4a;
+  border-left: 1px solid #2a5a5a;
   border-radius: 0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .restore-button:hover {
-  background-color: #5a7b7b;
+  background-color: #5a8a8a;
 }
 
 .restore-button:active {
@@ -1984,12 +1984,32 @@
   gap: 0.5rem;
 }
 
+.deactivate-focus-button {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #7a6a4a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deactivate-focus-button:hover {
+  background-color: #8a7a5a;
+}
+
+.deactivate-focus-button:active {
+  background-color: #6a5a3a;
+}
+
 .retire-focus-button {
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #6b5a3a;
+  background-color: #8a7a3a;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -1997,11 +2017,11 @@
 }
 
 .retire-focus-button:hover {
-  background-color: #7b6a4a;
+  background-color: #9a8a4a;
 }
 
 .retire-focus-button:active {
-  background-color: #5b4a2a;
+  background-color: #7a6a2a;
 }
 
 .deceased-focus-button {
@@ -2009,7 +2029,7 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: #d4c5a9;
-  background-color: #6b4a4a;
+  background-color: #7a4a4a;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -2017,11 +2037,11 @@
 }
 
 .deceased-focus-button:hover {
-  background-color: #7b5a5a;
+  background-color: #8a5a5a;
 }
 
 .deceased-focus-button:active {
-  background-color: #5b3a3a;
+  background-color: #6a3a3a;
 }
 
 .bulk-actions-section {
