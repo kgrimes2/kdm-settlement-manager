@@ -75,9 +75,8 @@ function AppContent() {
   const [markerColor3State, setMarkerColor3State] = useState('#22c55e') // default green
   const [show2StateDropdown, setShow2StateDropdown] = useState(false)
   const [show3StateDropdown, setShow3StateDropdown] = useState(false)
-  const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
-  const [showSavesDropdown, setShowSavesDropdown] = useState(false)
-  const [showSettlementManagement, setShowSettlementManagement] = useState(false)
+   const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
+   const [showSettlementManagement, setShowSettlementManagement] = useState(false)
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
    const [showInventoryModal, setShowInventoryModal] = useState(false)
    const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
@@ -537,24 +536,6 @@ function AppContent() {
     }
   }, [showSettlementDropdown])
 
-  // Close saves dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      if (!target.closest('.saves-selector')) {
-        setShowSavesDropdown(false)
-      }
-    }
-
-    if (showSavesDropdown) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [showSavesDropdown])
-
   // Close marker dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -1010,114 +991,7 @@ function AppContent() {
      showNotification(`${survivorName} marked as deceased`, 'success')
    }
 
-  const handleExport = () => {
-    const settlement = getCurrentSettlement()
-    if (!settlement) {
-      showNotification('No settlement to export', 'error')
-      return
-    }
-
-    // Create export data structure
-    const exportData = {
-      survivors: settlement.survivors,
-      removedSurvivors: settlement.removedSurvivors || [],
-      retiredSurvivors: settlement.retiredSurvivors || [],
-      deceasedSurvivors: settlement.deceasedSurvivors || []
-    }
-
-    // Convert to JSON and create blob
-    const jsonString = JSON.stringify(exportData, null, 2)
-    const blob = new Blob([jsonString], { type: 'application/json' })
-
-    // Create download link
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `${settlement.name}-export-${new Date().toISOString().split('T')[0]}.json`
-    document.body.appendChild(a)
-    a.click()
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-
-    showNotification('Settlement data exported successfully', 'success')
-    setShowSavesDropdown(false)
-  }
-
-  const handleImport = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      try {
-        const content = e.target?.result as string
-        const importedData = JSON.parse(content)
-
-        // Validate the imported data has required properties
-        if (!importedData.survivors) {
-          throw new Error('Invalid settlement data: missing survivors')
-        }
-
-        const settlement = getCurrentSettlement()
-        if (!settlement) {
-          showNotification('No active settlement to import to', 'error')
-          return
-        }
-
-         // Normalize imported survivors to ensure they have all required fields
-         const normalizedSurvivors = Object.entries(importedData.survivors).reduce((acc, [key, survivor]: [string, any]) => {
-           if (survivor === null) {
-             (acc as any)[key] = null
-           } else {
-             // Fill in missing properties with defaults from initialSurvivorData
-             (acc as any)[key] = {
-               ...initialSurvivorData,
-               ...survivor,
-               // Ensure huntXP is correct length (migrate from 15 to 16 if needed)
-               huntXP: survivor.huntXP && survivor.huntXP.length === 15 
-                 ? [...survivor.huntXP, false]
-                 : survivor.huntXP || Array(16).fill(false),
-               // Ensure weaponProficiency has correct structure
-               weaponProficiency: survivor.weaponProficiency && survivor.weaponProficiency.type !== undefined
-                 ? { types: [], level: survivor.weaponProficiency.level || Array(8).fill(false) }
-                 : survivor.weaponProficiency || { types: [], level: Array(8).fill(false) },
-               // Ensure permanentInjuries has correct structure
-               permanentInjuries: survivor.permanentInjuries || initialSurvivorData.permanentInjuries
-             }
-           }
-           return acc
-         }, {} as any)
-
-        // Update the settlement with imported data
-        setAppState(prev => ({
-          ...prev,
-          settlements: prev.settlements.map(s =>
-            s.id === settlement.id
-              ? {
-                  ...s,
-                  survivors: normalizedSurvivors,
-                  removedSurvivors: importedData.removedSurvivors || [],
-                  retiredSurvivors: importedData.retiredSurvivors || [],
-                  deceasedSurvivors: importedData.deceasedSurvivors || []
-                }
-              : s
-          )
-        }))
-
-        showNotification('Settlement data imported successfully', 'success')
-        setShowSavesDropdown(false)
-      } catch (error) {
-        console.error('Import error:', error)
-        showNotification('Failed to import settlement data: invalid file', 'error')
-      }
-    }
-    reader.readAsText(file)
-
-    // Reset the input so the same file can be imported again
-    event.target.value = ''
-  }
-
-   const handleRetireSurvivor = (index: number) => {
+  const handleRetireSurvivor = (index: number) => {
      const settlement = getCurrentSettlement()
      if (!settlement) return
 
@@ -1163,77 +1037,65 @@ function AppContent() {
      showNotification(`${survivorName} marked as deceased`, 'success')
     }
 
-   const handleRestoreRetiredSurvivor = (index: number) => {
-     const settlement = getCurrentSettlement()
-     if (!settlement) return
+    const handleRestoreRetiredSurvivor = (index: number) => {
+      const settlement = getCurrentSettlement()
+      if (!settlement) return
 
-     const survivor = settlement.retiredSurvivors[index]
-     if (!survivor) return
+      const survivor = settlement.retiredSurvivors[index]
+      if (!survivor) return
 
-     const survivorName = survivor.name || 'Survivor'
+      const survivorName = survivor.name || 'Survivor'
 
-     setConfirmDialog({
-       message: `Restore ${survivorName} to the deactivated pool? This survivor will no longer be marked as retired.`,
-       onConfirm: () => {
-         setAppState(prev => ({
-           ...prev,
-           settlements: prev.settlements.map(s => {
-             if (s.id !== prev.currentSettlementId) return s
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-             const surv = s.retiredSurvivors[index]
-             if (!surv) return s
+          const surv = s.retiredSurvivors[index]
+          if (!surv) return s
 
-             const newRetiredSurvivors = s.retiredSurvivors.filter((_, i) => i !== index)
+          const newRetiredSurvivors = s.retiredSurvivors.filter((_, i) => i !== index)
 
-             return {
-               ...s,
-               retiredSurvivors: newRetiredSurvivors,
-               removedSurvivors: [...s.removedSurvivors, surv]
-             }
-           })
-         }))
+          return {
+            ...s,
+            retiredSurvivors: newRetiredSurvivors,
+            removedSurvivors: [...s.removedSurvivors, surv]
+          }
+        })
+      }))
 
-         showNotification(`${survivorName} restored to deactivated pool`, 'success')
-         setConfirmDialog(null)
-       }
-     })
-   }
+      showNotification(`${survivorName} restored to deactivated pool`, 'success')
+    }
 
-   const handleRestoreDeceasedSurvivor = (index: number) => {
-     const settlement = getCurrentSettlement()
-     if (!settlement) return
+    const handleRestoreDeceasedSurvivor = (index: number) => {
+      const settlement = getCurrentSettlement()
+      if (!settlement) return
 
-     const survivor = settlement.deceasedSurvivors[index]
-     if (!survivor) return
+      const survivor = settlement.deceasedSurvivors[index]
+      if (!survivor) return
 
-     const survivorName = survivor.name || 'Survivor'
+      const survivorName = survivor.name || 'Survivor'
 
-     setConfirmDialog({
-       message: `Restore ${survivorName} to the deactivated pool? This survivor will no longer be marked as deceased.`,
-       onConfirm: () => {
-         setAppState(prev => ({
-           ...prev,
-           settlements: prev.settlements.map(s => {
-             if (s.id !== prev.currentSettlementId) return s
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-             const surv = s.deceasedSurvivors[index]
-             if (!surv) return s
+          const surv = s.deceasedSurvivors[index]
+          if (!surv) return s
 
-             const newDeceasedSurvivors = s.deceasedSurvivors.filter((_, i) => i !== index)
+          const newDeceasedSurvivors = s.deceasedSurvivors.filter((_, i) => i !== index)
 
-             return {
-               ...s,
-               deceasedSurvivors: newDeceasedSurvivors,
-               removedSurvivors: [...s.removedSurvivors, surv]
-             }
-           })
-         }))
+          return {
+            ...s,
+            deceasedSurvivors: newDeceasedSurvivors,
+            removedSurvivors: [...s.removedSurvivors, surv]
+          }
+        })
+      }))
 
-         showNotification(`${survivorName} restored to deactivated pool`, 'success')
-         setConfirmDialog(null)
-       }
-     })
-   }
+      showNotification(`${survivorName} restored to deactivated pool`, 'success')
+    }
 
    const handleHealAllWounds = () => {
     setConfirmDialog({
@@ -2068,38 +1930,8 @@ function AppContent() {
             >
               🎒
              </button>
-             <div className="saves-selector">
-               <button
-                 className="toolbar-button toolbar-icon-button saves-button"
-                 onClick={() => setShowSavesDropdown(!showSavesDropdown)}
-                 aria-label="Saves"
-                 title="Export/Import saves"
-               >
-                 💾
-               </button>
-               <input
-                 type="file"
-                 accept=".json"
-                 onChange={handleImport}
-                 style={{ display: 'none' }}
-                 aria-hidden="true"
-               />
-               {showSavesDropdown && (
-                 <div className="saves-dropdown-menu">
-                   <button
-                     className="saves-menu-item"
-                     onClick={handleExport}
-                   >
-                     Export
-                   </button>
-                   <label className="saves-menu-item saves-import-label">
-                     Import
-                   </label>
-                 </div>
-               )}
-             </div>
-             {user && (
-                <div className="sync-menu-container">
+              {user && (
+                 <div className="sync-menu-container">
                   <button
                     className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
                     onClick={() => setShowSyncMenu(!showSyncMenu)}
