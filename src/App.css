@@ -3039,3 +3039,137 @@
   background-color: #4a5b3a;
   transform: translateY(0);
 }
+
+/* Survivor Log in Focus Mode Secondary Sheet */
+.survivor-log-section {
+  border-top: 1px solid #d4a574;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.survivor-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  user-select: none;
+}
+
+.survivor-log-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #2a1a1a;
+  font-weight: 600;
+}
+
+.survivor-log-header:hover h3 {
+  color: #5a4a3a;
+}
+
+.log-content {
+  margin-top: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.75rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.no-log-message {
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #d4a574;
+  border-radius: 2px;
+  font-size: 0.85rem;
+}
+
+.log-timestamp {
+  color: #5a4a3a;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.log-change {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.log-attribute {
+  color: #2a1a1a;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.log-values {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #3a3a3a;
+}
+
+.old-value {
+  color: #7a4a4a;
+  text-decoration: line-through;
+  font-size: 0.8rem;
+}
+
+.arrow {
+  color: #8a6a4a;
+  font-weight: bold;
+  margin: 0 0.15rem;
+}
+
+.new-value {
+  color: #4a7a4a;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.log-count {
+  background-color: #d4a574;
+  color: #2a1a1a;
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* Scrollbar styling for log content */
+.log-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.log-content::-webkit-scrollbar-track {
+  background: rgba(212, 165, 116, 0.1);
+  border-radius: 3px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+  background: #d4a574;
+  border-radius: 3px;
+}
+
+.log-content::-webkit-scrollbar-thumb:hover {
+  background: #c48a5a;
+}
+

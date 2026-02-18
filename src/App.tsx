@@ -18,8 +18,9 @@ import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
+import { detectChanges, addLogEntry } from './utils/survivorLogging'
 
-const APP_VERSION = '1.3.2'
+const APP_VERSION = '1.4.0'
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -693,22 +694,40 @@ function AppContent() {
      }
    }
 
-  const updateSurvivor = (quadrant: 1 | 2 | 3 | 4, survivor: SurvivorData) => {
-    setAppState(prev => ({
-      ...prev,
-      settlements: prev.settlements.map(s =>
-        s.id === prev.currentSettlementId
-          ? {
-              ...s,
-              survivors: {
-                ...s.survivors,
-                [quadrant]: survivor
-              }
-            }
-          : s
-      )
-    }))
-  }
+   const updateSurvivor = (quadrant: 1 | 2 | 3 | 4, survivor: SurvivorData) => {
+     setAppState(prev => {
+       const settlement = prev.settlements.find(s => s.id === prev.currentSettlementId)
+       const oldSurvivor = settlement?.survivors[quadrant]
+
+       // Track changes and update log
+       let updatedSurvivor = survivor
+       if (oldSurvivor) {
+         const changes = detectChanges(oldSurvivor, survivor)
+         if (changes.length > 0) {
+           let updatedLog = survivor.survivorLog || []
+           for (const change of changes) {
+             updatedLog = addLogEntry(updatedLog, change.attribute, change.oldValue, change.newValue)
+           }
+           updatedSurvivor = { ...survivor, survivorLog: updatedLog }
+         }
+       }
+
+       return {
+         ...prev,
+         settlements: prev.settlements.map(s =>
+           s.id === prev.currentSettlementId
+             ? {
+                 ...s,
+                 survivors: {
+                   ...s.survivors,
+                   [quadrant]: updatedSurvivor
+                 }
+               }
+             : s
+         )
+       }
+     })
+   }
 
   const handleOpenGlossary = (searchTerm?: string) => {
     setGlossaryInitialQuery(searchTerm)
@@ -2527,9 +2546,53 @@ function AppContent() {
                       )
                     )}
                   </div>
-                ))}
-              </div>
-            </div>
+                 ))}
+               </div>
+               <div className="survivor-log-section">
+                 <div
+                   className="survivor-log-header"
+                   onClick={() => setCollapsedInjuries(prev => {
+                     const next = new Set(prev)
+                     next.has('survivorLog') ? next.delete('survivorLog') : next.add('survivorLog')
+                     return next
+                   })}
+                 >
+                   <h3>Survivor Log {focusedSurvivor.survivorLog.length > 0 ? `(${focusedSurvivor.survivorLog.length})` : ''}</h3>
+                   <span className="expand-icon">{collapsedInjuries.has('survivorLog') ? '▶' : '▼'}</span>
+                 </div>
+                 {!collapsedInjuries.has('survivorLog') && (
+                   <div className="log-content">
+                     {focusedSurvivor.survivorLog.length === 0 ? (
+                       <div className="no-log-message">No changes recorded yet</div>
+                     ) : (
+                       <div className="log-entries">
+                         {[...focusedSurvivor.survivorLog].reverse().map((entry, idx) => (
+                           <div key={idx} className="log-entry">
+                             <div className="log-timestamp">
+                               {new Date(entry.timestamp).toLocaleString([], {
+                                 month: 'short',
+                                 day: 'numeric',
+                                 hour: '2-digit',
+                                 minute: '2-digit'
+                               })}
+                             </div>
+                             <div className="log-change">
+                               <span className="log-attribute">{entry.attribute}</span>
+                               <span className="log-values">
+                                 <span className="old-value">{entry.oldValue}</span>
+                                 <span className="arrow">→</span>
+                                 <span className="new-value">{entry.newValue}</span>
+                               </span>
+                               {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
+                             </div>
+                           </div>
+                         ))}
+                       </div>
+                     )}
+                   </div>
+                 )}
+               </div>
+             </div>
           </div>
           )
         })()}

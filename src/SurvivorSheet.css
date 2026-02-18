@@ -1307,15 +1307,162 @@ input[type="radio"]:checked::after {
 /* Stack weapon proficiency milestone labels on iPad overview */
 @media (min-width: 1001px) and (max-width: 1440px) {
   .proficiency-milestones {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
+     flex-direction: column;
+     align-items: flex-start;
+   }
+ }
 
-/* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
-@media (max-width: 1440px) {
-  .focused-main-sheet .proficiency-milestones {
-    display: none !important;
-  }
-}
+ /* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
+ @media (max-width: 1440px) {
+   .focused-main-sheet .proficiency-milestones {
+     display: none !important;
+   }
+ }
 
+ /* Survivor Log Section */
+ .survivor-log-section {
+   border: 2px solid #d4a574;
+   border-radius: 6px;
+   background-color: rgba(212, 165, 116, 0.1);
+   padding: 1rem;
+   margin-top: 1rem;
+ }
+
+ .section-header-button {
+   background: none;
+   border: none;
+   padding: 0;
+   cursor: pointer;
+   width: 100%;
+   text-align: left;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-family: inherit;
+ }
+
+ .section-header-button h3 {
+   margin: 0;
+   padding: 0;
+   font-size: 1rem;
+   color: #2a1a1a;
+ }
+
+ .section-header-button:hover h3 {
+   color: #5a4a3a;
+ }
+
+ .collapse-indicator {
+   font-size: 0.75rem;
+   color: #5a4a3a;
+   margin-left: 0.5rem;
+   transition: transform 0.2s ease;
+ }
+
+ .log-content {
+   margin-top: 0.75rem;
+   background-color: rgba(255, 255, 255, 0.3);
+   border-radius: 4px;
+   padding: 0.75rem;
+   max-height: 400px;
+   overflow-y: auto;
+ }
+
+ .no-log-message {
+   text-align: center;
+   color: #5a4a3a;
+   font-style: italic;
+   padding: 1rem;
+   font-size: 0.9rem;
+ }
+
+ .log-entries {
+   display: flex;
+   flex-direction: column;
+   gap: 0.5rem;
+ }
+
+ .log-entry {
+   display: flex;
+   gap: 0.75rem;
+   padding: 0.5rem;
+   background-color: rgba(255, 255, 255, 0.2);
+   border-left: 3px solid #d4a574;
+   border-radius: 2px;
+   font-size: 0.85rem;
+ }
+
+ .log-timestamp {
+   color: #5a4a3a;
+   white-space: nowrap;
+   min-width: 120px;
+   font-weight: 600;
+ }
+
+ .log-change {
+   flex: 1;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   flex-wrap: wrap;
+ }
+
+ .log-attribute {
+   color: #2a1a1a;
+   font-weight: 600;
+   min-width: 100px;
+ }
+
+ .log-values {
+   display: flex;
+   align-items: center;
+   gap: 0.35rem;
+   color: #3a3a3a;
+ }
+
+ .old-value {
+   color: #7a4a4a;
+   text-decoration: line-through;
+ }
+
+ .arrow {
+   color: #8a6a4a;
+   font-weight: bold;
+   margin: 0 0.25rem;
+ }
+
+ .new-value {
+   color: #4a7a4a;
+   font-weight: 600;
+ }
+
+ .log-count {
+   background-color: #d4a574;
+   color: #2a1a1a;
+   padding: 0.1rem 0.35rem;
+   border-radius: 3px;
+   font-size: 0.75rem;
+   font-weight: 600;
+   margin-left: 0.25rem;
+ }
+
+ /* Scrollbar styling for log content */
+ .log-content::-webkit-scrollbar {
+   width: 6px;
+ }
+
+ .log-content::-webkit-scrollbar-track {
+   background: rgba(212, 165, 116, 0.1);
+   border-radius: 3px;
+ }
+
+ .log-content::-webkit-scrollbar-thumb {
+   background: #d4a574;
+   border-radius: 3px;
+ }
+
+ .log-content::-webkit-scrollbar-thumb:hover {
+   background: #c48a5a;
+ }
+
+ 

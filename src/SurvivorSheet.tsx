@@ -16,6 +16,14 @@ export interface PermanentInjury {
 
 export type BodyLocationKey = 'head' | 'arms' | 'body' | 'waist' | 'legs'
 
+export interface SurvivorLogEntry {
+  timestamp: string
+  attribute: string
+  oldValue: string
+  newValue: string
+  count: number
+}
+
 export interface SurvivorData {
   name: string
   createdAt: string
@@ -74,14 +82,15 @@ export interface SurvivorData {
   cannotUseFightingArts: boolean
   rerollUsed: boolean
   auxiliaryNotes: string
-  permanentInjuries: {
-    head: PermanentInjury[]
-    arms: PermanentInjury[]
-    body: PermanentInjury[]
-    waist: PermanentInjury[]
-    legs: PermanentInjury[]
-  }
-  image?: string
+   permanentInjuries: {
+     head: PermanentInjury[]
+     arms: PermanentInjury[]
+     body: PermanentInjury[]
+     waist: PermanentInjury[]
+     legs: PermanentInjury[]
+   }
+   image?: string
+   survivorLog: SurvivorLogEntry[]
 }
 
 export const initialSurvivorData: SurvivorData = {
@@ -170,8 +179,9 @@ export const initialSurvivorData: SurvivorData = {
       { name: 'Dismembered Leg', checkboxes: [false, false] },
       { name: 'Hamstrung', checkboxes: [false] },
       { name: 'Broken Leg', checkboxes: [false, false] },
-    ],
-  },
+     ],
+   },
+   survivorLog: [],
 }
 
 interface SurvivorSheetProps {
