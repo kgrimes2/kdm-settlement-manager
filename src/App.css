@@ -2707,3 +2707,582 @@
     font-size: 1rem;
   }
 }
+
+/* Named Saves Dialog */
+.named-saves-dialog {
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.named-saves-dialog h2 {
+  margin: 0 0 1rem 0;
+  color: #2a1a1a;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.named-saves-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.no-saves-message {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.saves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.save-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.save-item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: #6a5a4a;
+}
+
+.save-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  margin-bottom: 0.25rem;
+  word-break: break-word;
+}
+
+.save-date {
+  font-size: 0.8rem;
+  color: #5a4a3a;
+}
+
+.save-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.save-restore-button,
+.save-delete-button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-restore-button {
+  color: #d4c5a9;
+  background-color: #4a7a7a;
+}
+
+.save-restore-button:hover {
+  background-color: #5a8a8a;
+}
+
+.save-restore-button:active {
+  background-color: #3a6a6a;
+}
+
+.save-delete-button {
+  color: #d4c5a9;
+  background-color: #7a4a4a;
+}
+
+.save-delete-button:hover {
+  background-color: #8a5a5a;
+}
+
+.save-delete-button:active {
+  background-color: #6a3a3a;
+}
+
+.named-saves-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.named-saves-input input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.named-saves-input input:focus {
+  outline: none;
+  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.create-save-button {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #5a6b4a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-save-button:hover {
+  background-color: #6a7b5a;
+}
+
+.create-save-button:active {
+  background-color: #4a5b3a;
+}
+
+/* Named Saves in Settlement Drawer */
+.named-saves-drawer-section {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #5a4a3a;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.named-saves-header {
+  margin-bottom: 0.75rem;
+}
+
+.named-saves-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2a1a1a;
+}
+
+.no-saves-message-drawer {
+  padding: 1rem;
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.saves-list-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.save-item-drawer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.save-item-drawer:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: #6a5a4a;
+}
+
+.save-info-drawer {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-name-drawer {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  margin-bottom: 0.15rem;
+  word-break: break-word;
+}
+
+.save-date-drawer {
+  font-size: 0.7rem;
+  color: #5a4a3a;
+}
+
+.save-actions-drawer {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+}
+
+.save-restore-button-drawer,
+.save-delete-button-drawer {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.save-restore-button-drawer {
+  color: #d4c5a9;
+  background-color: #4a7a7a;
+}
+
+.save-restore-button-drawer:hover {
+  background-color: #5a8a8a;
+  transform: translateY(-1px);
+}
+
+.save-restore-button-drawer:active {
+  background-color: #3a6a6a;
+  transform: translateY(0);
+}
+
+.save-delete-button-drawer {
+  color: #d4c5a9;
+  background-color: #7a4a4a;
+}
+
+.save-delete-button-drawer:hover {
+  background-color: #8a5a5a;
+  transform: translateY(-1px);
+}
+
+.save-delete-button-drawer:active {
+  background-color: #6a3a3a;
+  transform: translateY(0);
+}
+
+.named-saves-input-drawer {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.named-saves-input-drawer input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+  border-radius: 3px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.named-saves-input-drawer input::placeholder {
+  color: #7a6a5a;
+}
+
+.named-saves-input-drawer input:focus {
+  outline: none;
+  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.create-save-button-drawer {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #5a6b4a;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.create-save-button-drawer:hover {
+  background-color: #6a7b5a;
+  transform: translateY(-1px);
+}
+
+.create-save-button-drawer:active {
+  background-color: #4a5b3a;
+  transform: translateY(0);
+}
+
+/* Survivor Log in Focus Mode Secondary Sheet */
+.survivor-log-section {
+  border-top: 1px solid #d4a574;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.survivor-log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  user-select: none;
+}
+
+.survivor-log-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #2a1a1a;
+  font-weight: 600;
+}
+
+.survivor-log-header:hover h3 {
+  color: #5a4a3a;
+}
+
+.log-content {
+  margin-top: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 0.5rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.no-log-message {
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.8rem;
+}
+
+.log-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.log-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0.2rem 0.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 2px solid #d4a574;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.log-entry:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.log-timestamp {
+  color: #5a4a3a;
+  font-weight: 600;
+  font-size: 0.6rem;
+  white-space: nowrap;
+}
+
+.log-attribute-compact {
+  display: flex;
+  gap: 0.15rem;
+  align-items: center;
+  color: #2a1a1a;
+  font-weight: 600;
+  font-size: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.log-count {
+  background-color: #d4a574;
+  color: #2a1a1a;
+  padding: 0.02rem 0.2rem;
+  border-radius: 2px;
+  font-size: 0.55rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Log Entry Detail Modal */
+.log-entry-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.log-entry-modal {
+  background-color: #e4d5b9;
+  border: 2px solid #5a4a3a;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.log-entry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #5a4a3a;
+  padding-bottom: 0.5rem;
+}
+
+.log-entry-modal-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2a1a1a;
+  font-weight: 600;
+}
+
+.log-entry-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #5a4a3a;
+  padding: 0;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.log-entry-modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #2a1a1a;
+}
+
+.log-entry-modal-content {
+  color: #2a1a1a;
+}
+
+.log-entry-modal-timestamp {
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.log-entry-modal-change {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.change-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
+}
+
+.change-row:last-child {
+  margin-bottom: 0;
+}
+
+.change-label {
+  font-weight: 600;
+  min-width: 70px;
+  color: #5a4a3a;
+  font-size: 0.9rem;
+}
+
+.change-old-value {
+  color: #7a4a4a;
+  text-decoration: line-through;
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.change-new-value {
+  color: #4a7a4a;
+  font-weight: 600;
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.change-arrow {
+  text-align: center;
+  color: #8a6a4a;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+}
+
+.log-entry-modal-count {
+  background-color: rgba(212, 165, 116, 0.2);
+  border: 1px solid #d4a574;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  text-align: center;
+}
+
+/* Scrollbar styling for log content */
+.log-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.log-content::-webkit-scrollbar-track {
+  background: rgba(212, 165, 116, 0.1);
+  border-radius: 2px;
+}
+
+.log-content::-webkit-scrollbar-thumb {
+  background: #d4a574;
+  border-radius: 2px;
+}
+
+.log-content::-webkit-scrollbar-thumb:hover {
+  background: #c48a5a;
+}
+

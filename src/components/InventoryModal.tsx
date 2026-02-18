@@ -49,9 +49,15 @@ export default function InventoryModal({
 
   const sectionTerms = loadedWikiTerms.filter(t => {
     if (!t.category) return false
-    return activeSection === 'gear'
-      ? gearCategories.has(t.category)
-      : materialsCategories.has(t.category)
+    if (activeSection === 'gear') {
+      return gearCategories.has(t.category)
+    } else {
+      // Materials section
+      if (materialsCategories.has(t.category)) return true
+      // One-off fix: Monster Organ is miscategorized as Gear but is a resource
+      if (t.term === 'Monster Organ') return true
+      return false
+    }
   })
 
   const kdmKeywords = new Set([
