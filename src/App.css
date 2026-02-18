@@ -3122,9 +3122,7 @@
   color: #2a1a1a;
   font-weight: 600;
   font-size: 0.65rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex-wrap: wrap;
 }
 
 .log-count {
