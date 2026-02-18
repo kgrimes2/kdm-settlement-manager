@@ -100,6 +100,7 @@ function AppContent() {
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
    const [showSyncMenu, setShowSyncMenu] = useState(false)
     const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
+    const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
     const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
@@ -2564,39 +2565,76 @@ function AppContent() {
                    <div className="log-content">
                      {focusedSurvivor.survivorLog.length === 0 ? (
                        <div className="no-log-message">No changes recorded yet</div>
-                     ) : (
-                       <div className="log-entries">
-                         {[...focusedSurvivor.survivorLog].reverse().map((entry, idx) => (
-                           <div key={idx} className="log-entry">
-                             <div className="log-timestamp">
-                               {new Date(entry.timestamp).toLocaleString([], {
-                                 month: 'short',
-                                 day: 'numeric',
-                                 hour: '2-digit',
-                                 minute: '2-digit'
-                               })}
-                             </div>
-                             <div className="log-change">
-                               <span className="log-attribute">{entry.attribute}</span>
-                               <span className="log-values">
-                                 <span className="old-value">{entry.oldValue}</span>
-                                 <span className="arrow">→</span>
-                                 <span className="new-value">{entry.newValue}</span>
-                               </span>
-                               {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
-                             </div>
-                           </div>
-                         ))}
-                       </div>
-                     )}
+                      ) : (
+                        <div className="log-entries">
+                          {[...focusedSurvivor.survivorLog].reverse().map((entry, idx) => (
+                            <div 
+                              key={idx} 
+                              className="log-entry"
+                              onClick={() => setSelectedLogEntry({ index: idx, entry })}
+                            >
+                              <div className="log-timestamp">
+                                {new Date(entry.timestamp).toLocaleString([], {
+                                  month: 'short',
+                                  day: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })}
+                              </div>
+                              <div className="log-attribute-compact">
+                                {entry.attribute}
+                                {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                    </div>
                  )}
                </div>
              </div>
           </div>
-          )
-        })()}
-        <div
+           )
+         })()}
+
+         {selectedLogEntry && (
+           <div className="log-entry-modal-overlay" onClick={() => setSelectedLogEntry(null)}>
+             <div className="log-entry-modal" onClick={(e) => e.stopPropagation()}>
+               <div className="log-entry-modal-header">
+                 <h4>{selectedLogEntry.entry.attribute}</h4>
+                 <button 
+                   className="log-entry-modal-close"
+                   onClick={() => setSelectedLogEntry(null)}
+                   aria-label="Close"
+                 >
+                   ×
+                 </button>
+               </div>
+               <div className="log-entry-modal-content">
+                 <div className="log-entry-modal-timestamp">
+                   {new Date(selectedLogEntry.entry.timestamp).toLocaleString()}
+                 </div>
+                 <div className="log-entry-modal-change">
+                   <div className="change-row">
+                     <span className="change-label">Previous:</span>
+                     <span className="change-old-value">{selectedLogEntry.entry.oldValue}</span>
+                   </div>
+                   <div className="change-arrow">↓</div>
+                   <div className="change-row">
+                     <span className="change-label">Current:</span>
+                     <span className="change-new-value">{selectedLogEntry.entry.newValue}</span>
+                   </div>
+                 </div>
+                 {selectedLogEntry.entry.count > 1 && (
+                   <div className="log-entry-modal-count">
+                     This change was made {selectedLogEntry.entry.count} times consecutively
+                   </div>
+                 )}
+               </div>
+             </div>
+           </div>
+         )}
+         <div
           className={getQuadrantClass(1)}
           onClick={(e) => handleQuadrantClick(1, e)}
         >
