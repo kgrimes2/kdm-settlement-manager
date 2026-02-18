@@ -2866,3 +2866,176 @@
 .create-save-button:active {
   background-color: #4a5b3a;
 }
+
+/* Named Saves in Settlement Drawer */
+.named-saves-drawer-section {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #5a4a3a;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.named-saves-header {
+  margin-bottom: 0.75rem;
+}
+
+.named-saves-header h4 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #2a1a1a;
+}
+
+.no-saves-message-drawer {
+  padding: 1rem;
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  font-size: 0.85rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.saves-list-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.save-item-drawer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.save-item-drawer:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: #6a5a4a;
+}
+
+.save-info-drawer {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-name-drawer {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  margin-bottom: 0.15rem;
+  word-break: break-word;
+}
+
+.save-date-drawer {
+  font-size: 0.7rem;
+  color: #5a4a3a;
+}
+
+.save-actions-drawer {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: 0.75rem;
+  flex-shrink: 0;
+}
+
+.save-restore-button-drawer,
+.save-delete-button-drawer {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.save-restore-button-drawer {
+  color: #d4c5a9;
+  background-color: #4a7a7a;
+}
+
+.save-restore-button-drawer:hover {
+  background-color: #5a8a8a;
+  transform: translateY(-1px);
+}
+
+.save-restore-button-drawer:active {
+  background-color: #3a6a6a;
+  transform: translateY(0);
+}
+
+.save-delete-button-drawer {
+  color: #d4c5a9;
+  background-color: #7a4a4a;
+}
+
+.save-delete-button-drawer:hover {
+  background-color: #8a5a5a;
+  transform: translateY(-1px);
+}
+
+.save-delete-button-drawer:active {
+  background-color: #6a3a3a;
+  transform: translateY(0);
+}
+
+.named-saves-input-drawer {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.named-saves-input-drawer input {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+  border-radius: 3px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.named-saves-input-drawer input::placeholder {
+  color: #7a6a5a;
+}
+
+.named-saves-input-drawer input:focus {
+  outline: none;
+  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.create-save-button-drawer {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #5a6b4a;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.create-save-button-drawer:hover {
+  background-color: #6a7b5a;
+  transform: translateY(-1px);
+}
+
+.create-save-button-drawer:active {
+  background-color: #4a5b3a;
+  transform: translateY(0);
+}

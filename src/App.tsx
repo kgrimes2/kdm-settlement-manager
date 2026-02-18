@@ -98,10 +98,10 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
    const [showSyncMenu, setShowSyncMenu] = useState(false)
-   const [showNamedSavesModal, setShowNamedSavesModal] = useState(false)
-   const [, forceUpdate] = useState(0)
-   const needsSaveRef = useRef(false)
-   const appStateRef = useRef(appState)
+    const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
+    const [, forceUpdate] = useState(0)
+    const needsSaveRef = useRef(false)
+    const appStateRef = useRef(appState)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -1101,11 +1101,6 @@ function AppContent() {
      }
 
      const handleCreateNamedSave = (saveName: string) => {
-       if (!user) {
-         showNotification('Please log in to create named saves', 'error')
-         return
-       }
-
        const settlement = getCurrentSettlement()
        if (!settlement) {
          showNotification('No active settlement', 'error')
@@ -1128,23 +1123,22 @@ function AppContent() {
       showNotification(`Named save "${saveName}" created`, 'success')
     }
 
-    const handleRestoreNamedSave = (saveId: string) => {
-      const save = appState.namedSaves.find(s => s.id === saveId)
-      if (!save) {
-        showNotification('Save not found', 'error')
-        return
-      }
+     const handleRestoreNamedSave = (saveId: string) => {
+       const save = appState.namedSaves.find(s => s.id === saveId)
+       if (!save) {
+         showNotification('Save not found', 'error')
+         return
+       }
 
-      setAppState(prev => ({
-        ...prev,
-        settlements: prev.settlements.map(s =>
-          s.id === save.settlementId ? save.settlementData : s
-        )
-      }))
+       setAppState(prev => ({
+         ...prev,
+         settlements: prev.settlements.map(s =>
+           s.id === save.settlementId ? save.settlementData : s
+         )
+       }))
 
-      showNotification(`Restored to save "${save.name}"`, 'success')
-      setShowNamedSavesModal(false)
-    }
+       showNotification(`Restored to save "${save.name}"`, 'success')
+     }
 
     const handleDeleteNamedSave = (saveId: string) => {
       const save = appState.namedSaves.find(s => s.id === saveId)
@@ -1626,26 +1620,105 @@ function AppContent() {
                 ×
               </button>
             </div>
-            <div className="settlement-management-content">
-              <div className="active-settlement-section">
-                <h3>Active Settlement</h3>
-                {currentSettlement && (
-                  <div className="settlement-card active">
-                    <div className="settlement-name">{currentSettlement.name}</div>
-                    <div className="settlement-actions">
-                      <button
-                        className="settlement-action-button"
-                        onClick={() => {
-                          setSettlementInputValue(currentSettlement.name)
-                          setSettlementDialog({ type: 'rename', settlementId: currentSettlement.id, currentName: currentSettlement.name })
-                        }}
-                      >
-                        Rename
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+             <div className="settlement-management-content">
+               <div className="active-settlement-section">
+                 <h3>Active Settlement</h3>
+                 {currentSettlement && (
+                   <>
+                     <div className="settlement-card active">
+                        <div className="settlement-name">{currentSettlement.name}</div>
+                        <div className="settlement-actions">
+                          <button
+                            className="settlement-action-button"
+                            onClick={() => {
+                              setSettlementInputValue(currentSettlement.name)
+                              setSettlementDialog({ type: 'rename', settlementId: currentSettlement.id, currentName: currentSettlement.name })
+                            }}
+                          >
+                            Rename
+                          </button>
+                          <button
+                            className="settlement-action-button"
+                            onClick={() => setShowNamedSavesInDrawer(!showNamedSavesInDrawer)}
+                          >
+                            Versions ({appState.namedSaves.filter(s => s.settlementId === currentSettlement.id).length})
+                          </button>
+                        </div>
+                     </div>
+                     
+                     {showNamedSavesInDrawer && (
+                       <div className="named-saves-drawer-section">
+                         <div className="named-saves-header">
+                           <h4>Version History</h4>
+                         </div>
+                         {appState.namedSaves.filter(s => s.settlementId === currentSettlement.id).length === 0 ? (
+                           <div className="no-saves-message-drawer">No versions saved yet</div>
+                         ) : (
+                           <div className="saves-list-drawer">
+                             {appState.namedSaves
+                               .filter(s => s.settlementId === currentSettlement.id)
+                               .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                               .map(save => (
+                                 <div key={save.id} className="save-item-drawer">
+                                   <div className="save-info-drawer">
+                                     <div className="save-name-drawer">{save.name}</div>
+                                     <div className="save-date-drawer">{new Date(save.createdAt).toLocaleString()}</div>
+                                   </div>
+                                   <div className="save-actions-drawer">
+                                     <button
+                                       className="save-restore-button-drawer"
+                                       onClick={() => handleRestoreNamedSave(save.id)}
+                                       title="Restore this version"
+                                     >
+                                       Restore
+                                     </button>
+                                     <button
+                                       className="save-delete-button-drawer"
+                                       onClick={() => handleDeleteNamedSave(save.id)}
+                                       title="Delete this version"
+                                     >
+                                       Delete
+                                     </button>
+                                   </div>
+                                 </div>
+                               ))}
+                           </div>
+                         )}
+                         <div className="named-saves-input-drawer">
+                           <input
+                             type="text"
+                             id="save-name-input-drawer"
+                             placeholder="Enter version name..."
+                             onKeyPress={(e) => {
+                               if (e.key === 'Enter') {
+                                 const input = e.currentTarget
+                                 const name = input.value.trim()
+                                 if (name) {
+                                   handleCreateNamedSave(name)
+                                   input.value = ''
+                                 }
+                               }
+                             }}
+                           />
+                           <button
+                             className="create-save-button-drawer"
+                             onClick={() => {
+                               const input = document.getElementById('save-name-input-drawer') as HTMLInputElement
+                               const name = input.value.trim()
+                               if (name) {
+                                 handleCreateNamedSave(name)
+                                 input.value = ''
+                               }
+                             }}
+                           >
+                             Save Version
+                           </button>
+                         </div>
+                       </div>
+                     )}
+                   </>
+                 )}
+               </div>
 
               <div className="other-settlements-section">
                 <div className="section-header-row">
@@ -2038,18 +2111,10 @@ function AppContent() {
                             Last synced: {formatSyncTime(lastSyncTime)}
                           </div>
                          )}
-                       </div>
-                       <div className="sync-menu-divider"></div>
-                       <button
-                         className="sync-menu-item"
-                         onClick={() => setShowNamedSavesModal(!showNamedSavesModal)}
-                       >
-                         <span className="sync-menu-icon">💾</span>
-                         <span>Named Saves</span>
-                       </button>
-                       <div className="sync-menu-divider"></div>
-                       <button
-                         className="sync-menu-item logout-item"
+                        </div>
+                        <div className="sync-menu-divider"></div>
+                        <button
+                          className="sync-menu-item logout-item"
                         onClick={async () => {
                           setShowSyncMenu(false)
                           try {
@@ -2849,84 +2914,7 @@ function AppContent() {
          onLoadCategory={handleLoadCategory}
        />
 
-       {showNamedSavesModal && user && (
-         <div className="confirm-overlay">
-           <div className="confirm-dialog named-saves-dialog">
-             <h2>Named Saves - {currentSettlement?.name}</h2>
-             <div className="named-saves-content">
-               {appState.namedSaves.filter(s => s.settlementId === currentSettlement?.id).length === 0 ? (
-                 <div className="no-saves-message">No named saves for this settlement</div>
-               ) : (
-                 <div className="saves-list">
-                   {appState.namedSaves
-                     .filter(s => s.settlementId === currentSettlement?.id)
-                     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                     .map(save => (
-                       <div key={save.id} className="save-item">
-                         <div className="save-info">
-                           <div className="save-name">{save.name}</div>
-                           <div className="save-date">{new Date(save.createdAt).toLocaleString()}</div>
-                         </div>
-                         <div className="save-actions">
-                           <button
-                             className="save-restore-button"
-                             onClick={() => handleRestoreNamedSave(save.id)}
-                           >
-                             Restore
-                           </button>
-                           <button
-                             className="save-delete-button"
-                             onClick={() => handleDeleteNamedSave(save.id)}
-                           >
-                             Delete
-                           </button>
-                         </div>
-                       </div>
-                     ))}
-                 </div>
-               )}
-               <div className="named-saves-input">
-                 <input
-                   type="text"
-                   id="save-name-input"
-                   placeholder="Enter save name..."
-                   onKeyPress={(e) => {
-                     if (e.key === 'Enter') {
-                       const input = e.currentTarget
-                       const name = input.value.trim()
-                       if (name) {
-                         handleCreateNamedSave(name)
-                         input.value = ''
-                       }
-                     }
-                   }}
-                 />
-                 <button
-                   className="create-save-button"
-                   onClick={() => {
-                     const input = document.getElementById('save-name-input') as HTMLInputElement
-                     const name = input.value.trim()
-                     if (name) {
-                       handleCreateNamedSave(name)
-                       input.value = ''
-                     }
-                   }}
-                 >
-                   Create Save
-                 </button>
-               </div>
-             </div>
-             <div className="confirm-actions">
-               <button
-                 className="confirm-cancel"
-                 onClick={() => setShowNamedSavesModal(false)}
-               >
-                 Close
-               </button>
-             </div>
-           </div>
-         </div>
-       )}
+
 
        {!isMobileDevice && (
          <Tutorial
