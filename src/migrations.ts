@@ -1,11 +1,19 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import type { PermanentInjury } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 8
+export const CURRENT_DATA_VERSION = 9
 
 export interface SettlementInventory {
   gear: Record<string, number>
   materials: Record<string, number>
+}
+
+export interface NamedSave {
+  id: string
+  name: string
+  settlementId: string
+  createdAt: string
+  settlementData: SettlementData
 }
 
 export interface SettlementData {
@@ -27,6 +35,7 @@ export interface AppState {
   version: number
   settlements: SettlementData[]
   currentSettlementId: string
+  namedSaves: NamedSave[]
 }
 
 /**
@@ -57,7 +66,8 @@ export function createDefaultAppState(): AppState {
   return {
     version: CURRENT_DATA_VERSION,
     settlements: [createDefaultSettlement()],
-    currentSettlementId: 'settlement-1'
+    currentSettlementId: 'settlement-1',
+    namedSaves: []
   }
 }
 
@@ -83,12 +93,17 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     }
   }
 
-  // Migration: extend huntXP to 16 items if needed (version 8)
-  if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length < 16) {
-    migratedSurvivor.huntXP = [...migratedSurvivor.huntXP, ...Array(16 - migratedSurvivor.huntXP.length).fill(false)]
-  }
+   // Migration: extend huntXP to 16 items if needed (version 8)
+   if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length < 16) {
+     migratedSurvivor.huntXP = [...migratedSurvivor.huntXP, ...Array(16 - migratedSurvivor.huntXP.length).fill(false)]
+   }
 
-  // Migration: add gearBonuses if missing
+   // Migration: add survivorLog if missing (version 9)
+   if (!migratedSurvivor.survivorLog) {
+     migratedSurvivor.survivorLog = []
+   }
+
+   // Migration: add gearBonuses if missing
   if (!migratedSurvivor.gearBonuses) {
     migratedSurvivor.gearBonuses = {
       movement: 0,
@@ -243,7 +258,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: data.settlements.map(migrateSettlement),
-      currentSettlementId: data.currentSettlementId
+      currentSettlementId: data.currentSettlementId,
+      namedSaves: data.namedSaves || []
     }
   }
 
@@ -261,7 +277,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: [migratedSettlement],
-      currentSettlementId: 'settlement-1'
+      currentSettlementId: 'settlement-1',
+      namedSaves: data.namedSaves || []
     }
   }
 
@@ -270,7 +287,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: data.settlements.map(migrateSettlement),
-      currentSettlementId: data.currentSettlementId || data.settlements[0]?.id || 'settlement-1'
+      currentSettlementId: data.currentSettlementId || data.settlements[0]?.id || 'settlement-1',
+      namedSaves: data.namedSaves || []
     }
   }
 
