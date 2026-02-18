@@ -1,11 +1,12 @@
 import { CognitoAuthService } from './authService'
-import type { SettlementInventory } from '../migrations'
+import type { SettlementInventory, NamedSave } from '../migrations'
 
 export interface UserDataPayload {
   survivors: any[]
   settlements: any[]
   inventory: Record<string, SettlementInventory>
   settings?: Record<string, any>
+  namedSaves?: NamedSave[]
 }
 
 export class DataService {
