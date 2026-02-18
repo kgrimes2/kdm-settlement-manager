@@ -668,20 +668,30 @@ function AppContent() {
     }))
   }
 
-  const deleteSettlement = (settlementId: string) => {
-    setAppState(prev => {
-      const filtered = prev.settlements.filter(s => s.id !== settlementId)
-      // If deleting current settlement, switch to first remaining
-      const newCurrentId = settlementId === prev.currentSettlementId
-        ? filtered[0]?.id || prev.currentSettlementId
-        : prev.currentSettlementId
-      return {
-        ...prev,
-        settlements: filtered,
-        currentSettlementId: newCurrentId
-      }
-    })
-  }
+   const deleteSettlement = (settlementId: string) => {
+     setAppState(prev => {
+       const filtered = prev.settlements.filter(s => s.id !== settlementId)
+       // If deleting current settlement, switch to first remaining
+       const newCurrentId = settlementId === prev.currentSettlementId
+         ? filtered[0]?.id || prev.currentSettlementId
+         : prev.currentSettlementId
+       return {
+         ...prev,
+         settlements: filtered,
+         currentSettlementId: newCurrentId,
+         // Also remove any named saves for this settlement
+         namedSaves: prev.namedSaves.filter(s => s.settlementId !== settlementId)
+       }
+     })
+
+     // Delete from DynamoDB if user is logged in
+     if (user && dataService) {
+       dataService.deleteUserData(settlementId).catch(error => {
+         console.error(`Failed to delete settlement ${settlementId} from cloud:`, error)
+         // Don't show error to user - local deletion already happened
+       })
+     }
+   }
 
   const updateSurvivor = (quadrant: 1 | 2 | 3 | 4, survivor: SurvivorData) => {
     setAppState(prev => ({
@@ -1140,22 +1150,45 @@ function AppContent() {
        showNotification(`Restored to save "${save.name}"`, 'success')
      }
 
-    const handleDeleteNamedSave = (saveId: string) => {
-      const save = appState.namedSaves.find(s => s.id === saveId)
-      const saveName = save?.name || 'Unknown'
+     const handleDeleteNamedSave = (saveId: string) => {
+       const save = appState.namedSaves.find(s => s.id === saveId)
+       const saveName = save?.name || 'Unknown'
 
-      setConfirmDialog({
-        message: `Delete named save "${saveName}"? This cannot be undone.`,
-        onConfirm: () => {
-          setAppState(prev => ({
-            ...prev,
-            namedSaves: prev.namedSaves.filter(s => s.id !== saveId)
-          }))
-          showNotification(`Deleted save "${saveName}"`, 'success')
-          setConfirmDialog(null)
-        }
-      })
-    }
+       setConfirmDialog({
+         message: `Delete named save "${saveName}"? This cannot be undone.`,
+         onConfirm: () => {
+           setAppState(prev => ({
+             ...prev,
+             namedSaves: prev.namedSaves.filter(s => s.id !== saveId)
+           }))
+           showNotification(`Deleted save "${saveName}"`, 'success')
+           setConfirmDialog(null)
+
+           // Sync deletion to DynamoDB if user is logged in
+           if (user && dataService && save) {
+             // We need to save the updated namedSaves array for this settlement
+             // Re-fetch appStateRef to get the latest state after deletion
+             setTimeout(() => {
+               const currentSettlement = appStateRef.current.settlements.find(
+                 s => s.id === save.settlementId
+               )
+               if (currentSettlement) {
+                 dataService.saveUserData(save.settlementId, {
+                   survivors: [],
+                   settlements: [currentSettlement],
+                   inventory: {
+                     [currentSettlement.id]: currentSettlement.inventory || { gear: {}, materials: {} }
+                   },
+                   namedSaves: appStateRef.current.namedSaves.filter(s => s.id !== saveId)
+                 }).catch(error => {
+                   console.error('Failed to sync named save deletion to cloud:', error)
+                 })
+               }
+             }, 0)
+           }
+         }
+       })
+     }
 
    const handleHealAllWounds = () => {
     setConfirmDialog({
