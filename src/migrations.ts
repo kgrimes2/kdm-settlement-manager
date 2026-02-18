@@ -1,7 +1,7 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import type { PermanentInjury } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 8
+export const CURRENT_DATA_VERSION = 9
 
 export interface SettlementInventory {
   gear: Record<string, number>
@@ -93,12 +93,17 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     }
   }
 
-  // Migration: extend huntXP to 16 items if needed (version 8)
-  if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length < 16) {
-    migratedSurvivor.huntXP = [...migratedSurvivor.huntXP, ...Array(16 - migratedSurvivor.huntXP.length).fill(false)]
-  }
+   // Migration: extend huntXP to 16 items if needed (version 8)
+   if (migratedSurvivor.huntXP && migratedSurvivor.huntXP.length < 16) {
+     migratedSurvivor.huntXP = [...migratedSurvivor.huntXP, ...Array(16 - migratedSurvivor.huntXP.length).fill(false)]
+   }
 
-  // Migration: add gearBonuses if missing
+   // Migration: add survivorLog if missing (version 9)
+   if (!migratedSurvivor.survivorLog) {
+     migratedSurvivor.survivorLog = []
+   }
+
+   // Migration: add gearBonuses if missing
   if (!migratedSurvivor.gearBonuses) {
     migratedSurvivor.gearBonuses = {
       movement: 0,
