@@ -7,12 +7,152 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-02-17
+
+### Added
+- **Survivor Activity Log** - Track all state changes to survivors
+  - Logs up to 50 most recent changes per survivor (auto-pruned)
+  - Displays timestamp and attribute name compactly in focus mode secondary sheet
+  - Click any log entry to view full change details in popup modal
+  - Shows old value, new value, when the change occurred, and consolidation count
+  - Automatic consolidation: consecutive changes to same attribute display as single entry with count badge (×N)
+  - Collapsed by default under Permanent Severe Injuries section
+  - Entry count shown in header as "N/50" to indicate log capacity
+  - All logs synced to DynamoDB for logged-in users
+
+- **Named Saves System** - Create and restore settlement versions
+  - Create named saves with custom names for quick version snapshots
+  - Browse all saved versions for active settlement sorted by creation date
+  - Restore settlement to any previous save without affecting other settlements
+  - Delete old saves with confirmation
+  - Shows save count in settlement management drawer
+  - Version selector button shows "Versions (N)" count
+  - All saves synced to DynamoDB for logged-in users
+  - Works offline and online (localStorage for offline, DynamoDB for cloud backup)
+
+- **Cloud Sync for Deletions**
+  - Deleting a settlement now removes it from DynamoDB for logged-in users
+  - Deleting named saves syncs deletion to cloud
+  - Associated logs and saves pruned when settlements are deleted
+
 ### Changed
-- **Reduced DynamoDB auto-sync frequency** from 10 seconds to 30 seconds to decrease database load and reduce costs
-  - Settlement data now syncs to cloud every 30 seconds (when dirty) instead of 10 seconds
-  - Provides better balance between real-time sync and resource usage
+- App version bumped from 1.3.2 to 1.4.0
+- Data version bumped from 8 to 9
+- Settlement management drawer enhanced with version selector integration
+
+### Technical
+- Added `SurvivorLogEntry` type for tracking changes with timestamp, attribute, old/new values, and count
+- Added `survivorLog: SurvivorLogEntry[]` field to `SurvivorData`
+- Added `namedSaves: NamedSave[]` field to `AppState` and `UserDataPayload`
+- Implemented change detection and automatic consolidation in state update handlers
+- Log entries pruned to 50 maximum per survivor (automatic on update)
+- Migration system updated to version 9:
+  - Existing survivors automatically get `survivorLog: []`
+  - AppState automatically gets `namedSaves: []`
+  - No data loss for existing users - backward compatible
+- Created `src/utils/survivorLogging.ts` with utilities:
+  - `detectChanges()` - Compares old and new survivor data
+  - `addLogEntry()` - Adds log entry and consolidates consecutive same-attribute changes
+  - `pruneLog()` - Maintains 50-entry limit
+- Enhanced CSS with compact log entry styling and detail modal
+- All 211 tests passing
+
+### Backward Compatibility
+- Existing users' data automatically migrated with empty logs and saves
+- No breaking changes to existing data structures
+- Cloud sync maintains backward compatibility
 
 ## [1.3.2] - 2026-02-11
+
+### Fixed
+- **NumericInput overlay click-through bug** - Clicking anywhere while +1/-1 buttons are visible now only closes the buttons without triggering the clicked element
+  - Added `preventDefault()` and `stopPropagation()` to overlay click handlers
+  - Overlay now completely blocks all page interactions while buttons are visible
+  - Prevents accidental checkbox toggles and input focus when closing buttons
+- **Attribute negative values** - Movement, evasion, accuracy, strength, luck, and speed inputs can now accept negative values
+  - Removed `min={0}` constraint from attribute NumericInput components
+  - Applies to both primary attribute values and gear bonus inputs
+
+## [1.3.1] - 2026-02-10
+
+### Fixed
+- **Multi-settlement loading bug** - Now properly loads ALL user settlements from DynamoDB on login instead of just one
+  - Added `GET /user-data` API endpoint to fetch all settlements without requiring settlement_id
+  - Updated auto-sync to save all settlements every 10 seconds (not just the current one)
+  - Updated manual sync to save all settlements at once
+  - Fixed merge dialog to properly handle multiple settlements with improved warnings
+  - Added helpful warnings when cloud/local data counts differ to prevent accidental data loss
+  - Improved logging to show settlement count during load/sync operations
+
+### Security
+- Verified authorization logic ensures users can only access their own settlements
+  - All queries filter by authenticated user's ID from JWT token
+  - DynamoDB composite key (user_id + settlement_id) prevents cross-user access
+  - No risk of users accessing other users' data
+
+## [1.3.0] - 2026-02-09
+
+### Added
+- **Optimized cloud sync system** with intelligent dirty flag tracking
+  - Auto-sync every 10 seconds (only when data has changed)
+  - Dirty flag optimization prevents unnecessary API calls
+  - Always loads latest cloud data on app start
+  - Conflict resolution dialog only appears when localStorage differs from cloud
+  - Graceful failure handling - continues working offline without error notifications
+  - Auto-uploads existing user data on first login after update
+- **Deferred localStorage saves** for improved performance
+  - localStorage writes moved to 2-second interval using refs
+  - Eliminates UI lag during rapid clicking and typing
+  - JSON.stringify only runs when actually saving (not on every state change)
+  - Saves battery on mobile devices
+- **Comprehensive CloudWatch monitoring dashboard** with metrics for:
+  - API Gateway: requests, errors (4XX/5XX), latency (p50/p95/p99)
+  - Lambda: invocations, errors, duration, throttles, concurrent executions
+  - DynamoDB: read/write capacity, throttled requests, system errors
+  - Cognito: sign-in success/failure, token refresh
+  - Cost estimation widgets
+
+### Security
+- **CRITICAL: Enabled Cognito authentication on all API endpoints**
+  - All API methods now require valid JWT tokens from Cognito User Pool
+  - Prevents unauthorized access to user data
+  - Previously, API was completely open to public without authentication
+- **Added API Gateway rate limiting and quotas**
+  - Burst limit: 100 requests/second
+  - Steady state: 50 requests/second
+  - Daily quota: 10,000 requests per user
+  - Prevents DDoS attacks and cost overruns
+- **Added CloudWatch security alarms** for:
+  - High API request count (potential DDoS)
+  - High 4XX/5XX error rates
+  - Lambda function errors
+  - DynamoDB capacity spikes and throttling
+  - SNS topic for email notifications
+- **Removed unnecessary dynamodb:Scan permission** from Lambda IAM policy
+  - Reduces attack surface and potential for table dumps
+- **Added CORS configuration variable** for production origin restrictions
+  - Currently set to '*' for development
+  - Can be restricted to specific domains in production
+
+### Changed
+- Cloud sync interval reduced from 30s to 10s for faster backups
+- localStorage now replaced with cloud data when loaded (cloud is source of truth)
+- Removed verbose notification spam - sync runs silently in background
+- Improved conflict dialog styling for better readability
+
+### Fixed
+- **Critical performance fix**: Eliminated 50-100ms lag on every click/keystroke
+- **Critical security fix**: API endpoints now require authentication
+- Network errors no longer show user-facing error notifications
+- Existing users' localStorage data automatically migrates to cloud on first login
+
+### Technical
+- Introduced `needsSaveRef` and `appStateRef` for non-blocking state updates
+- Dirty flag stored in localStorage for crash recovery
+- Session tracking via `dataLoaded_${username}` prevents duplicate cloud loads
+- Graceful degradation when offline or network unavailable
+- API Gateway Usage Plan with throttling and quotas
+- Lambda IAM policies follow principle of least privilege
 
 ### Fixed
 - **NumericInput overlay click-through bug** - Clicking anywhere while +1/-1 buttons are visible now only closes the buttons without triggering the clicked element
