@@ -2025,20 +2025,21 @@ function AppContent() {
             👥
           </button>
         </div>
-        {focusedQuadrant !== null && (
-          <div className="focus-mode-actions">
-            <button className="toolbar-button retire-focus-button" onClick={handleRetireFocused}>Retire</button>
-            <button className="toolbar-button deceased-focus-button" onClick={handleDeceasedFocused}>Deceased</button>
-            {!isMobileDevice && (
-              <button
-                className="return-to-overview-button"
-                onClick={() => setFocusedQuadrant(null)}
-              >
-                ↩️ Return to Overview
-              </button>
-            )}
-          </div>
-        )}
+         {focusedQuadrant !== null && (
+           <div className="focus-mode-actions">
+             <button className="toolbar-button deactivate-focus-button" onClick={() => handleDeactivateSurvivor(focusedQuadrant)}>Deactivate</button>
+             <button className="toolbar-button retire-focus-button" onClick={handleRetireFocused}>Retire</button>
+             <button className="toolbar-button deceased-focus-button" onClick={handleDeceasedFocused}>Deceased</button>
+             {!isMobileDevice && (
+               <button
+                 className="return-to-overview-button"
+                 onClick={() => setFocusedQuadrant(null)}
+               >
+                 ↩️ Return to Overview
+               </button>
+             )}
+           </div>
+         )}
         </div>
       </div>
 
