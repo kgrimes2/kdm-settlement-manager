@@ -3087,76 +3087,41 @@
 .log-entries {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .log-entry {
   display: flex;
-  gap: 0.25rem;
-  padding: 0.25rem;
+  flex-direction: column;
+  gap: 0.05rem;
+  padding: 0.2rem 0.25rem;
   background-color: rgba(255, 255, 255, 0.1);
   border-left: 2px solid #d4a574;
   border-radius: 2px;
   font-size: 0.7rem;
   line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.log-entry:hover {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .log-timestamp {
   color: #5a4a3a;
   font-weight: 600;
-  font-size: 0.65rem;
-  min-width: 75px;
-  flex-shrink: 0;
-}
-
-.log-change {
-  display: flex;
-  align-items: center;
-  gap: 0.15rem;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  line-height: 1;
-}
-
-.log-attribute {
-  color: #2a1a1a;
-  font-weight: 600;
-  min-width: 50px;
-  flex-shrink: 0;
-  font-size: 0.65rem;
-}
-
-.log-values {
-  display: flex;
-  align-items: center;
-  gap: 0.1rem;
-  color: #3a3a3a;
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-
-.old-value {
-  color: #7a4a4a;
-  text-decoration: line-through;
-  font-size: 0.65rem;
-  max-width: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.6rem;
   white-space: nowrap;
 }
 
-.arrow {
-  color: #8a6a4a;
-  font-weight: bold;
-  font-size: 0.65rem;
-  flex-shrink: 0;
-}
-
-.new-value {
-  color: #4a7a4a;
+.log-attribute-compact {
+  display: flex;
+  gap: 0.15rem;
+  align-items: center;
+  color: #2a1a1a;
   font-weight: 600;
   font-size: 0.65rem;
-  max-width: 40px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -3167,9 +3132,141 @@
   color: #2a1a1a;
   padding: 0.02rem 0.2rem;
   border-radius: 2px;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   font-weight: 600;
   flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Log Entry Detail Modal */
+.log-entry-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.log-entry-modal {
+  background-color: #e4d5b9;
+  border: 2px solid #5a4a3a;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.log-entry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #5a4a3a;
+  padding-bottom: 0.5rem;
+}
+
+.log-entry-modal-header h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #2a1a1a;
+  font-weight: 600;
+}
+
+.log-entry-modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #5a4a3a;
+  padding: 0;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.log-entry-modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #2a1a1a;
+}
+
+.log-entry-modal-content {
+  color: #2a1a1a;
+}
+
+.log-entry-modal-timestamp {
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.log-entry-modal-change {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.change-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  align-items: flex-start;
+}
+
+.change-row:last-child {
+  margin-bottom: 0;
+}
+
+.change-label {
+  font-weight: 600;
+  min-width: 70px;
+  color: #5a4a3a;
+  font-size: 0.9rem;
+}
+
+.change-old-value {
+  color: #7a4a4a;
+  text-decoration: line-through;
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.change-new-value {
+  color: #4a7a4a;
+  font-weight: 600;
+  word-break: break-all;
+  font-size: 0.9rem;
+}
+
+.change-arrow {
+  text-align: center;
+  color: #8a6a4a;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+}
+
+.log-entry-modal-count {
+  background-color: rgba(212, 165, 116, 0.2);
+  border: 1px solid #d4a574;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  text-align: center;
 }
 
 /* Scrollbar styling for log content */
