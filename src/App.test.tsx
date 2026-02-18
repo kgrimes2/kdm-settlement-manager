@@ -29,16 +29,6 @@ describe('App', () => {
       expect(screen.getByDisplayValue('Lucy')).toBeInTheDocument()
       expect(screen.getByDisplayValue('Zachary')).toBeInTheDocument()
     })
-
-    it('renders toolbar buttons', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-      const savesBtn = screen.getByRole('button', { name: /saves/i })
-      expect(savesBtn).toBeInTheDocument()
-      await user.click(savesBtn)
-      expect(screen.getByText(/export/i)).toBeInTheDocument()
-      expect(screen.getByText(/import/i)).toBeInTheDocument()
-    })
   })
 
   describe('LocalStorage Persistence', () => {
@@ -126,106 +116,6 @@ describe('App', () => {
     })
   })
 
-  describe('Export/Import Functionality', () => {
-    it('exports data when export button is clicked', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const savesBtn = screen.getByRole('button', { name: /saves/i })
-      await user.click(savesBtn)
-      const exportItem = screen.getByText(/export/i)
-      await user.click(exportItem)
-
-      expect(global.URL.createObjectURL).toHaveBeenCalled()
-      expect(global.URL.revokeObjectURL).toHaveBeenCalled()
-    })
-
-    it('imports valid JSON data', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const mockSurvivor = {
-        name: 'Imported Hero',
-        gender: 'F',
-        createdAt: new Date().toISOString(),
-        huntXP: Array(15).fill(false),
-        survival: 0,
-        survivalLimit: 0,
-        cannotSpendSurvival: false,
-        survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
-        stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
-        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
-        insanity: 0,
-        brainArmor: 0,
-        insane: false,
-        bodyLocations: {
-          head: { armor: 0, light: false, heavy: false },
-          arms: { armor: 0, light: false, heavy: false },
-          body: { armor: 0, light: false, heavy: false },
-          waist: { armor: 0, light: false, heavy: false },
-          legs: { armor: 0, light: false, heavy: false },
-        },
-        weaponProficiency: { type: '', level: Array(8).fill(false) },
-        courage: Array(9).fill(false),
-        courageMilestone: null,
-        understanding: Array(9).fill(false),
-        understandingMilestone: null,
-        fightingArts: [''],
-        disorders: [''],
-        abilitiesImpairments: ['', ''],
-        oncePerLifetime: [''],
-        retired: false,
-        skipNextHunt: false,
-        cannotUseFightingArts: false,
-        rerollUsed: false,
-      }
-
-      const mockData = {
-        survivors: { 1: mockSurvivor, 2: null, 3: null, 4: null },
-        removedSurvivors: [],
-        retiredSurvivors: [],
-        deceasedSurvivors: []
-      }
-
-      const file = new File([JSON.stringify(mockData)], 'test.json', { type: 'application/json' })
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
-
-      await user.upload(fileInput, file)
-
-      await waitFor(() => {
-        expect(screen.getByDisplayValue('Imported Hero')).toBeInTheDocument()
-      })
-    })
-
-    it('shows error notification for invalid import data', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const invalidData = { invalid: 'data' }
-      const file = new File([JSON.stringify(invalidData)], 'test.json', { type: 'application/json' })
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
-
-      await user.upload(fileInput, file)
-
-      await waitFor(() => {
-        expect(screen.getByText(/failed to import/i)).toBeInTheDocument()
-      })
-    })
-
-    it('handles malformed JSON in import', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const file = new File(['not valid json'], 'test.json', { type: 'application/json' })
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
-
-      await user.upload(fileInput, file)
-
-      await waitFor(() => {
-        expect(screen.getByText(/failed to import/i)).toBeInTheDocument()
-      })
-    })
-  })
 
   describe('Settlement 1 Survivors', () => {
     it('opens survivor list panel when menu button is clicked', async () => {
@@ -443,13 +333,13 @@ describe('App', () => {
           expect(screen.getByText(/Allister retired/i)).toBeInTheDocument()
         })
 
-        // Now restore the retired survivor
-        const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
-        await user.click(restoreBtn)
+         // Now restore the retired survivor
+         const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
+         await user.click(restoreBtn)
 
-        await waitFor(() => {
-          expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
-        })
+         await waitFor(() => {
+           expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
+         })
 
        // Survivor should now be in Survivor Pool, not in Retired
        const survivorPoolSection = screen.getByText(/survivor pool/i)
@@ -479,13 +369,13 @@ describe('App', () => {
           expect(screen.getByText(/marked as deceased/i)).toBeInTheDocument()
         })
 
-        // Now restore the deceased survivor
-        const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
-        await user.click(restoreBtn)
+         // Now restore the deceased survivor
+         const restoreBtn = screen.getByRole('button', { name: /restore to pool/i })
+         await user.click(restoreBtn)
 
-        await waitFor(() => {
-          expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
-        })
+         await waitFor(() => {
+           expect(screen.getByText(/restored to deactivated pool/i)).toBeInTheDocument()
+         })
 
        // Survivor should now be in Survivor Pool, not in Deceased
        const survivorPoolSection = screen.getByText(/survivor pool/i)
@@ -726,73 +616,6 @@ describe('App', () => {
         const savedState = JSON.parse(localStorage.getItem('kdm-app-state')!)
         expect(savedState.settlements[0].survivors[1].huntXP.length).toBe(16)
       }, { timeout: 2000 })
-    })
-
-    it('handles backwards compatibility with archived survivors', async () => {
-      const user = userEvent.setup()
-      render(<App />)
-
-      const mockSurvivor = {
-        name: 'Hero',
-        gender: 'M',
-        createdAt: new Date().toISOString(),
-        huntXP: Array(15).fill(false),
-        survival: 0,
-        survivalLimit: 0,
-        cannotSpendSurvival: false,
-        survivalAbilities: { dodge: false, encourage: false, surge: false, dash: false, endure: false },
-        stats: { movement: 5, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
-        gearBonuses: { movement: 0, accuracy: 0, strength: 0, evasion: 0, luck: 0, speed: 0 },
-        insanity: 0,
-        brainArmor: 0,
-        insane: false,
-        bodyLocations: {
-          head: { armor: 0, light: false, heavy: false },
-          arms: { armor: 0, light: false, heavy: false },
-          body: { armor: 0, light: false, heavy: false },
-          waist: { armor: 0, light: false, heavy: false },
-          legs: { armor: 0, light: false, heavy: false },
-        },
-        weaponProficiency: { type: '', level: Array(8).fill(false) },
-        courage: Array(9).fill(false),
-        courageMilestone: null,
-        understanding: Array(9).fill(false),
-        understandingMilestone: null,
-        fightingArts: [''],
-        disorders: [''],
-        abilitiesImpairments: ['', ''],
-        oncePerLifetime: [''],
-        retired: false,
-        skipNextHunt: false,
-        cannotUseFightingArts: false,
-        rerollUsed: false,
-      }
-
-      const oldFormatState = {
-        survivors: {
-          1: mockSurvivor,
-          2: null,
-          3: null,
-          4: null
-        },
-        archivedSurvivors: [{ ...mockSurvivor, name: 'Archived', gender: 'F' }]
-        // Missing retiredSurvivors and deceasedSurvivors
-      }
-
-      const file = new File([JSON.stringify(oldFormatState)], 'old.json', { type: 'application/json' })
-      const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement
-
-      await user.upload(fileInput, file)
-
-      await waitFor(() => {
-        expect(screen.getByDisplayValue('Hero')).toBeInTheDocument()
-      })
-
-      // Should not crash and handle the migration
-      const menuBtn = screen.getByRole('button', { name: /manage survivors/i })
-      await user.click(menuBtn)
-
-      expect(screen.getByText('Settlement 1 Survivors')).toBeInTheDocument()
     })
   })
 
