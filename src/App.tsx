@@ -97,10 +97,11 @@ function AppContent() {
   const [settlementInputValue, setSettlementInputValue] = useState('')
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
-  const [showSyncMenu, setShowSyncMenu] = useState(false)
-  const [, forceUpdate] = useState(0)
-  const needsSaveRef = useRef(false)
-  const appStateRef = useRef(appState)
+   const [showSyncMenu, setShowSyncMenu] = useState(false)
+   const [showNamedSavesModal, setShowNamedSavesModal] = useState(false)
+   const [, forceUpdate] = useState(0)
+   const needsSaveRef = useRef(false)
+   const appStateRef = useRef(appState)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -416,35 +417,36 @@ function AppContent() {
            console.log('State is clean, skipping auto-sync')
            return
          }
-         
-         console.log('State is dirty, performing auto-sync')
-         
-         // Save all settlements to cloud (each as a separate DynamoDB record)
-         const syncPromises = appState.settlements.map(settlement =>
-           dataService.saveUserData(settlement.id, {
-             survivors: [],
-             settlements: [settlement],
-             inventory: {
-               [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
-             },
-           })
-         )
-         
-         await Promise.all(syncPromises)
-         
-         // Update last sync time and mark as clean
-         setLastSyncTime(new Date())
-         localStorage.setItem('appStateDirty', 'false')
-         
-         console.log(`Auto-sync complete, synced ${appState.settlements.length} settlement(s)`)
-       } catch (error) {
-         console.error('Auto-sync failed:', error)
-         // Keep dirty flag so we retry next time
-       }
-      }, 30000) // 30000ms = 30 seconds
+          
+          console.log('State is dirty, performing auto-sync')
+          
+          // Save all settlements to cloud (each as a separate DynamoDB record)
+          const syncPromises = appState.settlements.map(settlement =>
+            dataService.saveUserData(settlement.id, {
+              survivors: [],
+              settlements: [settlement],
+              inventory: {
+                [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+              },
+              namedSaves: appState.namedSaves,
+            })
+          )
+          
+          await Promise.all(syncPromises)
+          
+          // Update last sync time and mark as clean
+          setLastSyncTime(new Date())
+          localStorage.setItem('appStateDirty', 'false')
+          
+          console.log(`Auto-sync complete, synced ${appState.settlements.length} settlement(s)`)
+        } catch (error) {
+          console.error('Auto-sync failed:', error)
+          // Keep dirty flag so we retry next time
+        }
+       }, 30000) // 30000ms = 30 seconds
 
-     return () => clearInterval(syncInterval)
-   }, [user, dataService, appState.settlements])
+      return () => clearInterval(syncInterval)
+    }, [user, dataService, appState.settlements, appState.namedSaves])
 
    // Force re-render to update countdown timer and sync timestamp
    useEffect(() => {
@@ -733,36 +735,37 @@ function AppContent() {
       return `${diffDays}d`
     }
 
-    const handleManualSync = async () => {
-      if (!user || !dataService || isSyncing) return
+     const handleManualSync = async () => {
+       if (!user || !dataService || isSyncing) return
 
-      setIsSyncing(true)
-      try {
-        // Save all settlements to cloud (each as a separate DynamoDB record)
-        const syncPromises = appState.settlements.map(settlement =>
-          dataService.saveUserData(settlement.id, {
-            survivors: [],
-            settlements: [settlement],
-            inventory: {
-              [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
-            },
-          })
-        )
-        
-        await Promise.all(syncPromises)
-        
-        // Update last sync time and last manual sync time, mark as clean
-        const now = new Date()
-        setLastSyncTime(now)
-        setLastManualSyncTime(now)
-        localStorage.setItem('appStateDirty', 'false')
-        
-        showNotification(`Synced ${appState.settlements.length} settlement(s) to cloud`, 'success')
-      } catch (error) {
-        console.error('Manual sync failed:', error)
-        showNotification('Failed to sync data', 'error')
-      } finally {
-        setIsSyncing(false)
+       setIsSyncing(true)
+       try {
+         // Save all settlements to cloud (each as a separate DynamoDB record)
+         const syncPromises = appState.settlements.map(settlement =>
+           dataService.saveUserData(settlement.id, {
+             survivors: [],
+             settlements: [settlement],
+             inventory: {
+               [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+             },
+             namedSaves: appState.namedSaves,
+           })
+         )
+         
+         await Promise.all(syncPromises)
+         
+         // Update last sync time and last manual sync time, mark as clean
+         const now = new Date()
+         setLastSyncTime(now)
+         setLastManualSyncTime(now)
+         localStorage.setItem('appStateDirty', 'false')
+         
+         showNotification(`Synced ${appState.settlements.length} settlement(s) to cloud`, 'success')
+       } catch (error) {
+         console.error('Manual sync failed:', error)
+         showNotification('Failed to sync data', 'error')
+       } finally {
+         setIsSyncing(false)
       }
     }
 
@@ -1094,7 +1097,70 @@ function AppContent() {
         })
       }))
 
-      showNotification(`${survivorName} restored to deactivated pool`, 'success')
+       showNotification(`${survivorName} restored to deactivated pool`, 'success')
+     }
+
+     const handleCreateNamedSave = (saveName: string) => {
+       if (!user) {
+         showNotification('Please log in to create named saves', 'error')
+         return
+       }
+
+       const settlement = getCurrentSettlement()
+       if (!settlement) {
+         showNotification('No active settlement', 'error')
+         return
+       }
+
+       const save = {
+         id: `save-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+         name: saveName,
+         settlementId: settlement.id,
+         createdAt: new Date().toISOString(),
+         settlementData: { ...settlement }
+       }
+
+       setAppState(prev => ({
+         ...prev,
+         namedSaves: [...prev.namedSaves, save]
+      }))
+
+      showNotification(`Named save "${saveName}" created`, 'success')
+    }
+
+    const handleRestoreNamedSave = (saveId: string) => {
+      const save = appState.namedSaves.find(s => s.id === saveId)
+      if (!save) {
+        showNotification('Save not found', 'error')
+        return
+      }
+
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s =>
+          s.id === save.settlementId ? save.settlementData : s
+        )
+      }))
+
+      showNotification(`Restored to save "${save.name}"`, 'success')
+      setShowNamedSavesModal(false)
+    }
+
+    const handleDeleteNamedSave = (saveId: string) => {
+      const save = appState.namedSaves.find(s => s.id === saveId)
+      const saveName = save?.name || 'Unknown'
+
+      setConfirmDialog({
+        message: `Delete named save "${saveName}"? This cannot be undone.`,
+        onConfirm: () => {
+          setAppState(prev => ({
+            ...prev,
+            namedSaves: prev.namedSaves.filter(s => s.id !== saveId)
+          }))
+          showNotification(`Deleted save "${saveName}"`, 'success')
+          setConfirmDialog(null)
+        }
+      })
     }
 
    const handleHealAllWounds = () => {
@@ -1461,34 +1527,35 @@ function AppContent() {
             <div className="confirm-actions">
               <button
                 className="confirm-ok"
-                onClick={async () => {
-                  // Keep local data, overwrite cloud
-                  try {
-                    if (dataService && mergeDialog.localData.settlements) {
-                      // Save each settlement as a separate DynamoDB record
-                      for (const settlement of mergeDialog.localData.settlements) {
-                        await dataService.saveUserData(settlement.id, {
-                          survivors: mergeDialog.localData.survivors || [],
-                          settlements: [settlement],
-                          inventory: {
-                            [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
-                          },
-                        })
-                      }
-                      showNotification(`Uploaded ${mergeDialog.localData.settlements.length} settlement(s) to cloud`, 'success')
-                      setLastSyncTime(new Date())
-                      localStorage.setItem('appStateDirty', 'false')
-                    }
-                  } catch (error) {
-                      showNotification('Failed to sync local data', 'error')
-                      console.error(error)
-                    }
-                    // Mark session as loaded
-                    if (user) {
-                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
-                    }
-                    setMergeDialog(null)
-                }}
+                 onClick={async () => {
+                   // Keep local data, overwrite cloud
+                   try {
+                     if (dataService && mergeDialog.localData.settlements) {
+                       // Save each settlement as a separate DynamoDB record
+                       for (const settlement of mergeDialog.localData.settlements) {
+                         await dataService.saveUserData(settlement.id, {
+                           survivors: mergeDialog.localData.survivors || [],
+                           settlements: [settlement],
+                           inventory: {
+                             [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+                           },
+                           namedSaves: mergeDialog.localData.namedSaves || appState.namedSaves,
+                         })
+                       }
+                       showNotification(`Uploaded ${mergeDialog.localData.settlements.length} settlement(s) to cloud`, 'success')
+                       setLastSyncTime(new Date())
+                       localStorage.setItem('appStateDirty', 'false')
+                     }
+                   } catch (error) {
+                       showNotification('Failed to sync local data', 'error')
+                       console.error(error)
+                     }
+                     // Mark session as loaded
+                     if (user) {
+                       sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                     }
+                     setMergeDialog(null)
+                 }}
               >
                 Keep Local
               </button>
@@ -1923,15 +1990,15 @@ function AppContent() {
             📖
           </button>
             <button
-              className="toolbar-button toolbar-icon-button"
-              onClick={() => setShowInventoryModal(true)}
-              aria-label="Inventory"
-              title="Settlement Inventory"
-            >
-              🎒
-             </button>
-              {user && (
-                 <div className="sync-menu-container">
+                className="toolbar-button toolbar-icon-button"
+                onClick={() => setShowInventoryModal(true)}
+                aria-label="Inventory"
+                title="Settlement Inventory"
+               >
+                 🎒
+                </button>
+                 {user && (
+                    <div className="sync-menu-container">
                   <button
                     className={`toolbar-button sync-button ${isSyncing ? 'syncing' : ''}`}
                     onClick={() => setShowSyncMenu(!showSyncMenu)}
@@ -1970,11 +2037,19 @@ function AppContent() {
                           <div className="sync-menu-time">
                             Last synced: {formatSyncTime(lastSyncTime)}
                           </div>
-                        )}
-                      </div>
-                      <div className="sync-menu-divider"></div>
-                      <button
-                        className="sync-menu-item logout-item"
+                         )}
+                       </div>
+                       <div className="sync-menu-divider"></div>
+                       <button
+                         className="sync-menu-item"
+                         onClick={() => setShowNamedSavesModal(!showNamedSavesModal)}
+                       >
+                         <span className="sync-menu-icon">💾</span>
+                         <span>Named Saves</span>
+                       </button>
+                       <div className="sync-menu-divider"></div>
+                       <button
+                         className="sync-menu-item logout-item"
                         onClick={async () => {
                           setShowSyncMenu(false)
                           try {
@@ -2762,26 +2837,105 @@ function AppContent() {
         onSearchWiki={searchAndLoadWikiTerms}
       />
 
-      <InventoryModal
-        isOpen={showInventoryModal}
-        onClose={() => setShowInventoryModal(false)}
-        settlementName={currentSettlement?.name || 'Settlement'}
-        inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
-        onUpdateInventory={handleUpdateInventory}
-        glossaryTerms={glossaryData.terms}
-        loadedWikiTerms={loadedWikiTerms}
-        onSearchWiki={searchAndLoadWikiTerms}
-        onLoadCategory={handleLoadCategory}
-      />
+       <InventoryModal
+         isOpen={showInventoryModal}
+         onClose={() => setShowInventoryModal(false)}
+         settlementName={currentSettlement?.name || 'Settlement'}
+         inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
+         onUpdateInventory={handleUpdateInventory}
+         glossaryTerms={glossaryData.terms}
+         loadedWikiTerms={loadedWikiTerms}
+         onSearchWiki={searchAndLoadWikiTerms}
+         onLoadCategory={handleLoadCategory}
+       />
 
-      {!isMobileDevice && (
-        <Tutorial
-          isOpen={showTutorial}
-          onClose={() => setShowTutorial(false)}
-          appVersion={APP_VERSION}
-        />
-      )}
-    </div>
+       {showNamedSavesModal && user && (
+         <div className="confirm-overlay">
+           <div className="confirm-dialog named-saves-dialog">
+             <h2>Named Saves - {currentSettlement?.name}</h2>
+             <div className="named-saves-content">
+               {appState.namedSaves.filter(s => s.settlementId === currentSettlement?.id).length === 0 ? (
+                 <div className="no-saves-message">No named saves for this settlement</div>
+               ) : (
+                 <div className="saves-list">
+                   {appState.namedSaves
+                     .filter(s => s.settlementId === currentSettlement?.id)
+                     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                     .map(save => (
+                       <div key={save.id} className="save-item">
+                         <div className="save-info">
+                           <div className="save-name">{save.name}</div>
+                           <div className="save-date">{new Date(save.createdAt).toLocaleString()}</div>
+                         </div>
+                         <div className="save-actions">
+                           <button
+                             className="save-restore-button"
+                             onClick={() => handleRestoreNamedSave(save.id)}
+                           >
+                             Restore
+                           </button>
+                           <button
+                             className="save-delete-button"
+                             onClick={() => handleDeleteNamedSave(save.id)}
+                           >
+                             Delete
+                           </button>
+                         </div>
+                       </div>
+                     ))}
+                 </div>
+               )}
+               <div className="named-saves-input">
+                 <input
+                   type="text"
+                   id="save-name-input"
+                   placeholder="Enter save name..."
+                   onKeyPress={(e) => {
+                     if (e.key === 'Enter') {
+                       const input = e.currentTarget
+                       const name = input.value.trim()
+                       if (name) {
+                         handleCreateNamedSave(name)
+                         input.value = ''
+                       }
+                     }
+                   }}
+                 />
+                 <button
+                   className="create-save-button"
+                   onClick={() => {
+                     const input = document.getElementById('save-name-input') as HTMLInputElement
+                     const name = input.value.trim()
+                     if (name) {
+                       handleCreateNamedSave(name)
+                       input.value = ''
+                     }
+                   }}
+                 >
+                   Create Save
+                 </button>
+               </div>
+             </div>
+             <div className="confirm-actions">
+               <button
+                 className="confirm-cancel"
+                 onClick={() => setShowNamedSavesModal(false)}
+               >
+                 Close
+               </button>
+             </div>
+           </div>
+         </div>
+       )}
+
+       {!isMobileDevice && (
+         <Tutorial
+           isOpen={showTutorial}
+           onClose={() => setShowTutorial(false)}
+           appVersion={APP_VERSION}
+         />
+       )}
+     </div>
     <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
     </>
   )

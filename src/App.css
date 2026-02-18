@@ -2707,3 +2707,162 @@
     font-size: 1rem;
   }
 }
+
+/* Named Saves Dialog */
+.named-saves-dialog {
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.named-saves-dialog h2 {
+  margin: 0 0 1rem 0;
+  color: #2a1a1a;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.named-saves-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.no-saves-message {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #5a4a3a;
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.saves-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.save-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.save-item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: #6a5a4a;
+}
+
+.save-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.save-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #2a1a1a;
+  margin-bottom: 0.25rem;
+  word-break: break-word;
+}
+
+.save-date {
+  font-size: 0.8rem;
+  color: #5a4a3a;
+}
+
+.save-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+.save-restore-button,
+.save-delete-button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.save-restore-button {
+  color: #d4c5a9;
+  background-color: #4a7a7a;
+}
+
+.save-restore-button:hover {
+  background-color: #5a8a8a;
+}
+
+.save-restore-button:active {
+  background-color: #3a6a6a;
+}
+
+.save-delete-button {
+  color: #d4c5a9;
+  background-color: #7a4a4a;
+}
+
+.save-delete-button:hover {
+  background-color: #8a5a5a;
+}
+
+.save-delete-button:active {
+  background-color: #6a3a3a;
+}
+
+.named-saves-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.named-saves-input input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid #5a4a3a;
+  border-radius: 4px;
+  font-family: inherit;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.named-saves-input input:focus {
+  outline: none;
+  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.create-save-button {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #d4c5a9;
+  background-color: #5a6b4a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.create-save-button:hover {
+  background-color: #6a7b5a;
+}
+
+.create-save-button:active {
+  background-color: #4a5b3a;
+}

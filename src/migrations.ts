@@ -8,6 +8,14 @@ export interface SettlementInventory {
   materials: Record<string, number>
 }
 
+export interface NamedSave {
+  id: string
+  name: string
+  settlementId: string
+  createdAt: string
+  settlementData: SettlementData
+}
+
 export interface SettlementData {
   id: string
   name: string
@@ -27,6 +35,7 @@ export interface AppState {
   version: number
   settlements: SettlementData[]
   currentSettlementId: string
+  namedSaves: NamedSave[]
 }
 
 /**
@@ -57,7 +66,8 @@ export function createDefaultAppState(): AppState {
   return {
     version: CURRENT_DATA_VERSION,
     settlements: [createDefaultSettlement()],
-    currentSettlementId: 'settlement-1'
+    currentSettlementId: 'settlement-1',
+    namedSaves: []
   }
 }
 
@@ -243,7 +253,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: data.settlements.map(migrateSettlement),
-      currentSettlementId: data.currentSettlementId
+      currentSettlementId: data.currentSettlementId,
+      namedSaves: data.namedSaves || []
     }
   }
 
@@ -261,7 +272,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: [migratedSettlement],
-      currentSettlementId: 'settlement-1'
+      currentSettlementId: 'settlement-1',
+      namedSaves: data.namedSaves || []
     }
   }
 
@@ -270,7 +282,8 @@ export function migrateData(data: any): AppState {
     return {
       version: CURRENT_DATA_VERSION,
       settlements: data.settlements.map(migrateSettlement),
-      currentSettlementId: data.currentSettlementId || data.settlements[0]?.id || 'settlement-1'
+      currentSettlementId: data.currentSettlementId || data.settlements[0]?.id || 'settlement-1',
+      namedSaves: data.namedSaves || []
     }
   }
 
