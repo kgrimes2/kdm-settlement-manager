@@ -2550,17 +2550,18 @@ function AppContent() {
                  ))}
                </div>
                <div className="survivor-log-section">
-                 <div
-                   className="survivor-log-header"
-                   onClick={() => setCollapsedInjuries(prev => {
-                     const next = new Set(prev)
-                     next.has('survivorLog') ? next.delete('survivorLog') : next.add('survivorLog')
-                     return next
-                   })}
-                 >
-                   <h3>Survivor Log {focusedSurvivor.survivorLog.length > 0 ? `(${focusedSurvivor.survivorLog.length})` : ''}</h3>
-                   <span className="expand-icon">{collapsedInjuries.has('survivorLog') ? '▶' : '▼'}</span>
-                 </div>
+                  <div
+                    className="survivor-log-header"
+                    onClick={() => setCollapsedInjuries(prev => {
+                      const next = new Set(prev)
+                      next.has('survivorLog') ? next.delete('survivorLog') : next.add('survivorLog')
+                      return next
+                    })}
+                    title="Keeps last 50 changes"
+                  >
+                    <h3>Survivor Log {focusedSurvivor.survivorLog.length > 0 ? `(${focusedSurvivor.survivorLog.length}/50)` : ''}</h3>
+                    <span className="expand-icon">{collapsedInjuries.has('survivorLog') ? '▶' : '▼'}</span>
+                  </div>
                  {!collapsedInjuries.has('survivorLog') && (
                    <div className="log-content">
                      {focusedSurvivor.survivorLog.length === 0 ? (
