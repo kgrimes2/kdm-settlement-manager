@@ -7,6 +7,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Survivor Templates** - Save and reuse survivor configurations per settlement
+  - Create template from any focused survivor by clicking "Save as Template"
+  - Template section in Survivor Management panel shows active template with creation date
+  - All new survivors automatically use template data when created
+  - Edit or clear template from management panel
+  - Template syncs to DynamoDB for cloud backup
+  - One template per settlement (replacing previous template when new one is created)
+  - **Template Editing Mode** - Locked-down UI for template customization
+    - Settlement drawer auto-closes when editing template
+    - All active survivors temporarily moved to Survivor Pool
+    - Template placed in focus mode with dark overlay background
+    - Escape key and clicking outside disabled to prevent accidental exits
+    - Only "Save Template" and "Cancel" buttons available
+  - **Template Persistence** - Templates survive app refreshes
+    - Persists through browser localStorage and DynamoDB sync
+    - Automatic recovery if app closes during template editing
+
+### Added (continued)
+- **Glossary "Add to Notes" Button** - Convenience feature for focused survivors
+  - Button appears on glossary term definitions when survivor is focused
+  - Hidden in overview mode (only appears in focus mode)
+  - Clicking prepends glossary text to survivor's auxiliary notes
+  - New text appears above existing notes with line break separation
+
+### Changed
+- **Survivor Actions UI** - Converted dropdown menu to inline buttons
+  - Deactivate, Retire, and Deceased buttons now visible directly in toolbar
+  - Improves accessibility and reduces clicks needed for common actions
+  - Added spacing between action buttons for better visual clarity
+
+### Fixed
+- **Named Saves DynamoDB Sync** - Fixed data inconsistency
+  - Named saves now sync when created (previously only on deletion)
+  - Immediate cloud upload for logged-in users
+- **Settlement Manager Positioning** - Manager drawer now properly positioned below menu bar
+  - Added top padding to settlement name header for better visual separation
+- **Template Persistence in Migrations** - Templates now preserved when data migrates
+  - Legacy data migration now includes survivorTemplate field
+  - App reload recovery restores original survivors if template editing interrupted
+
+## [1.4.1] - 2026-02-18
+
+### Fixed
+- **Survivor Log now visible on mobile** - Survivor activity log was only showing on desktop, now displays in mobile secondary sheet
+  - Log section appears after Permanent Severe Injuries in mobile view
+  - Maintains full functionality: expandable/collapsible, entry details modal, and consolidation counts
+  - Properly styled for mobile touch interactions
+  - Dynamic APP_VERSION now reads from package.json
+
 ## [1.4.0] - 2026-02-17
 
 ### Added

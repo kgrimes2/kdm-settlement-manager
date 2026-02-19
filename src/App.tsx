@@ -19,8 +19,9 @@ import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
 import { detectChanges, addLogEntry } from './utils/survivorLogging'
+import packageJson from '../package.json'
 
-const APP_VERSION = '1.4.0'
+const APP_VERSION = packageJson.version
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -60,9 +61,11 @@ function AppContent() {
    const [isSyncing, setIsSyncing] = useState(false)
    const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
-  const [showSurvivorPool, setShowSurvivorPool] = useState(false)
-  const [showRetiredSection, setShowRetiredSection] = useState(false)
-  const [showDeceasedSection, setShowDeceasedSection] = useState(false)
+   const [showSurvivorPool, setShowSurvivorPool] = useState(false)
+   const [editingTemplateQuadrant, setEditingTemplateQuadrant] = useState<QuadrantId>(null)
+   const [survivorsBeforeTemplateEdit, setSurvivorsBeforeTemplateEdit] = useState<Record<1 | 2 | 3 | 4, SurvivorData | null> | null>(null)
+   const [showRetiredSection, setShowRetiredSection] = useState(false)
+   const [showDeceasedSection, setShowDeceasedSection] = useState(false)
   const [showBulkActions, setShowBulkActions] = useState(false)
   const [showActiveSurvivors, setShowActiveSurvivors] = useState(true)
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
@@ -104,6 +107,7 @@ function AppContent() {
     const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
+    const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -215,12 +219,46 @@ function AppContent() {
           }
         }
       }
-    } catch (error) {
-      // Ignore errors parsing localStorage (corrupted data is handled in initial state)
-    }
-  }, []) // Empty deps - runs once on mount
+     } catch (error) {
+       // Ignore errors parsing localStorage (corrupted data is handled in initial state)
+     }
+   }, []) // Empty deps - runs once on mount
 
-  // Detect mobile devices and small screens
+   // Recovery: if app reloads while editing template, restore survivors and discard template changes
+   useEffect(() => {
+     setAppState(prev => {
+       let hasRecovered = false
+       const recovered = {
+         ...prev,
+         settlements: prev.settlements.map(s => {
+           // Check if template editing was in progress
+           if (s.templateEditInProgress) {
+             hasRecovered = true
+             // Restore survivors to their original positions
+             return {
+               ...s,
+               survivors: s.templateEditInProgress.survivorsBefore,
+               removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount),
+               templateEditInProgress: undefined
+             }
+           }
+           return s
+         })
+       }
+       
+       if (hasRecovered) {
+         // Clear template editing state
+         setEditingTemplateQuadrant(null)
+         setSurvivorsBeforeTemplateEdit(null)
+         setFocusedQuadrant(null)
+         showNotification('Template edit was interrupted. Survivors have been restored.', 'success')
+       }
+       
+       return recovered
+     })
+   }, []) // Empty deps - runs once on mount
+
+   // Detect mobile devices and small screens
   useEffect(() => {
     const checkMobile = () => {
       const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -269,6 +307,11 @@ function AppContent() {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Don't trigger if typing in an input field
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return
+      }
+
+      // Don't allow escape when editing template
+      if (editingTemplateQuadrant !== null) {
         return
       }
 
@@ -557,9 +600,9 @@ function AppContent() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [show2StateDropdown, show3StateDropdown])
+   }, [show2StateDropdown, show3StateDropdown])
 
-  const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
+   const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
     e.stopPropagation()
     setMarkers(prev => {
       const newMarkers = new Map(prev)
@@ -605,19 +648,25 @@ function AppContent() {
     })
   }
 
-  const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
-    // Only toggle if clicking directly on the quadrant, not on child elements
-    if (e.target === e.currentTarget) {
-      setFocusedQuadrant(focusedQuadrant === quadrant ? null : quadrant)
-    }
-  }
+   const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
+     // Prevent switching survivors while editing template
+     if (editingTemplateQuadrant !== null) return
+     
+     // Only toggle if clicking directly on the quadrant, not on child elements
+     if (e.target === e.currentTarget) {
+       setFocusedQuadrant(focusedQuadrant === quadrant ? null : quadrant)
+     }
+   }
 
-  const handleContainerClick = (e: React.MouseEvent) => {
-    // Clicking on container (whitespace) zooms out
-    if (e.target === e.currentTarget && focusedQuadrant !== null) {
-      setFocusedQuadrant(null)
-    }
-  }
+   const handleContainerClick = (e: React.MouseEvent) => {
+     // Prevent switching survivors while editing template
+     if (editingTemplateQuadrant !== null) return
+     
+     // Clicking on container (whitespace) zooms out
+     if (e.target === e.currentTarget && focusedQuadrant !== null) {
+       setFocusedQuadrant(null)
+     }
+   }
 
   const handlePreviousQuadrant = () => {
     const newQuadrant = (focusedQuadrant || activeQuadrant) === 1 ? 4 : ((focusedQuadrant || activeQuadrant) - 1) as 1 | 2 | 3 | 4
@@ -730,12 +779,33 @@ function AppContent() {
      })
    }
 
-  const handleOpenGlossary = (searchTerm?: string) => {
-    setGlossaryInitialQuery(searchTerm)
-    setShowGlossaryModal(true)
-  }
+   const handleOpenGlossary = (searchTerm?: string) => {
+     setGlossaryInitialQuery(searchTerm)
+     setShowGlossaryModal(true)
+   }
 
-  const handleUpdateInventory = (inventory: SettlementInventory) => {
+   const handleAddGlossaryTextToNotes = (text: string) => {
+     if (focusedQuadrant === null || !currentSettlement?.survivors[focusedQuadrant]) {
+       return
+     }
+     
+     const survivor = currentSettlement.survivors[focusedQuadrant]
+     const currentNotes = survivor.auxiliaryNotes || ''
+     
+     // Prepend the text: new text on top, existing text below
+     const updatedNotes = currentNotes 
+       ? `${text}\n\n${currentNotes}`
+       : text
+     
+     updateSurvivor(focusedQuadrant, {
+       ...survivor,
+       auxiliaryNotes: updatedNotes
+     })
+     
+     showNotification('Added to survivor notes', 'success')
+   }
+
+   const handleUpdateInventory = (inventory: SettlementInventory) => {
     setAppState(prev => ({
       ...prev,
       settlements: prev.settlements.map(s =>
@@ -826,36 +896,57 @@ function AppContent() {
     }
   }
 
-  const handleDeactivateSurvivor = (quadrant: 1 | 2 | 3 | 4) => {
-    // Clear marker for this quadrant
-    setMarkers(prev => {
-      const newMarkers = new Map(prev)
-      newMarkers.delete(quadrant)
-      return newMarkers
-    })
+   const handleDeactivateSurvivor = (quadrant: 1 | 2 | 3 | 4) => {
+     // Clear marker for this quadrant
+     setMarkers(prev => {
+       const newMarkers = new Map(prev)
+       newMarkers.delete(quadrant)
+       return newMarkers
+     })
 
-    setAppState(prev => ({
-      ...prev,
-      settlements: prev.settlements.map(s => {
-        if (s.id !== prev.currentSettlementId) return s
+     // Check if we're deactivating a template being edited
+     const isTemplateBeingEdited = editingTemplateQuadrant === quadrant
 
-        const survivor = s.survivors[quadrant]
-        if (!survivor) return s
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-        return {
-          ...s,
-          removedSurvivors: [...s.removedSurvivors, survivor],
-          survivors: {
-            ...s.survivors,
-            [quadrant]: null
+          const survivor = s.survivors[quadrant]
+          if (!survivor) return s
+
+          // If editing template, restore original survivors; otherwise add to pool
+          if (isTemplateBeingEdited && survivorsBeforeTemplateEdit) {
+            const numRestoredSurvivors = Object.values(survivorsBeforeTemplateEdit).filter(surv => surv !== null).length
+            return {
+              ...s,
+              survivors: survivorsBeforeTemplateEdit,
+              removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - numRestoredSurvivors),
+              templateEditInProgress: undefined
+            }
+          } else {
+            return {
+              ...s,
+              removedSurvivors: [...s.removedSurvivors, survivor],
+              survivors: {
+                ...s.survivors,
+                [quadrant]: null
+              }
+            }
           }
-        }
-      })
-    }))
+        })
+      }))
 
-    setShowSurvivorPool(true)
-    showNotification(`Survivor ${quadrant} deactivated successfully`, 'success')
-  }
+     // Clear template editing state if deactivating template
+     if (isTemplateBeingEdited) {
+       setEditingTemplateQuadrant(null)
+       setSurvivorsBeforeTemplateEdit(null)
+       showNotification('Template edit canceled and survivors restored', 'success')
+     } else {
+       setShowSurvivorPool(true)
+       showNotification(`Survivor ${quadrant} deactivated successfully`, 'success')
+     }
+   }
 
   const findVacantQuadrant = (): 1 | 2 | 3 | 4 | null => {
     const settlement = getCurrentSettlement()
@@ -870,45 +961,54 @@ function AppContent() {
     return null
   }
 
-  const handleActivateSurvivor = (index: number) => {
-    const vacantQuadrant = findVacantQuadrant()
-    const settlement = getCurrentSettlement()
+   const handleActivateSurvivor = (index: number) => {
+     const vacantQuadrant = findVacantQuadrant()
+     const settlement = getCurrentSettlement()
 
-    if (!settlement) return
-    if (vacantQuadrant === null) {
-      showNotification('All slots are full. Please deactivate a survivor first.', 'error')
-      return
-    }
+     if (!settlement) return
+     if (vacantQuadrant === null) {
+       showNotification('All slots are full. Please deactivate a survivor first.', 'error')
+       return
+      }
 
-    const survivorName = settlement.removedSurvivors[index]?.name || 'Survivor'
+      const survivorName = settlement.removedSurvivors[index]?.name || 'Survivor'
 
-    setAppState(prev => ({
-      ...prev,
-      settlements: prev.settlements.map(s => {
-        if (s.id !== prev.currentSettlementId) return s
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-        const survivor = s.removedSurvivors[index]
-        const newRemovedSurvivors = s.removedSurvivors.filter((_, i) => i !== index)
+          const survivor = s.removedSurvivors[index]
+          const newRemovedSurvivors = s.removedSurvivors.filter((_, i) => i !== index)
 
-        return {
-          ...s,
-          removedSurvivors: newRemovedSurvivors,
-          survivors: {
-            ...s.survivors,
-            [vacantQuadrant]: survivor
+          return {
+            ...s,
+            removedSurvivors: newRemovedSurvivors,
+            survivors: {
+              ...s.survivors,
+              [vacantQuadrant]: survivor
+            }
           }
-        }
-      })
-    }))
+        })
+      }))
 
-    showNotification(`${survivorName} activated successfully`, 'success')
-  }
+      showNotification(`${survivorName} activated successfully`, 'success')
+    }
 
   const handleCreateNewSurvivor = () => {
     const vacantQuadrant = findVacantQuadrant()
-    const newSurvivor = {
-      ...JSON.parse(JSON.stringify(initialSurvivorData)),
-      createdAt: new Date().toISOString()
+    const settlement = currentSettlement
+    
+    // Start with initial survivor data, then merge template if it exists
+    let newSurvivor = JSON.parse(JSON.stringify(initialSurvivorData))
+    if (settlement?.survivorTemplate) {
+      newSurvivor = {
+        ...newSurvivor,
+        ...settlement.survivorTemplate.data,
+        createdAt: new Date().toISOString()
+      }
+    } else {
+      newSurvivor.createdAt = new Date().toISOString()
     }
 
     if (vacantQuadrant !== null) {
@@ -944,6 +1044,21 @@ function AppContent() {
       setShowSurvivorPool(true)
       showNotification('New survivor created in Survivor Pool', 'success')
     }
+  }
+
+  const handleClearSurvivorTemplate = () => {
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s =>
+        s.id === prev.currentSettlementId
+          ? {
+              ...s,
+              survivorTemplate: undefined
+            }
+          : s
+      )
+    }))
+    showNotification('Survivor template cleared', 'success')
   }
 
    const handleRetireFocused = () => {
@@ -1151,6 +1266,22 @@ function AppContent() {
       }))
 
       showNotification(`Named save "${saveName}" created`, 'success')
+
+      // Sync creation to DynamoDB if user is logged in
+      if (user && dataService) {
+        setTimeout(() => {
+          dataService.saveUserData(settlement.id, {
+            survivors: [],
+            settlements: [settlement],
+            inventory: {
+              [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+            },
+            namedSaves: [...appStateRef.current.namedSaves, save]
+          }).catch(error => {
+            console.error('Failed to sync named save creation to cloud:', error)
+          })
+        }, 0)
+      }
     }
 
      const handleRestoreNamedSave = (saveId: string) => {
@@ -1665,13 +1796,14 @@ function AppContent() {
           >
             <div className="settlement-management-header">
               <h2>Settlement Management</h2>
-              <button
-                className="close-button"
-                onClick={() => closeSettlementManagement()}
-                aria-label="Close"
-              >
-                ×
-              </button>
+               <button
+                 className="close-button"
+                 ref={settlementCloseButtonRef}
+                 onClick={() => closeSettlementManagement()}
+                 aria-label="Close"
+               >
+                 ×
+               </button>
             </div>
              <div className="settlement-management-content">
                <div className="active-settlement-section">
@@ -1878,7 +2010,7 @@ function AppContent() {
           ☰
         </button>
         <h1 className={`mobile-title ${focusedQuadrant !== null ? 'show-in-focus' : ''}`}>KDM:SM v{APP_VERSION}</h1>
-        <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
+         <div className={`mobile-nav ${focusedQuadrant !== null && editingTemplateQuadrant === null ? 'show-nav' : ''}`}>
           <button
             className="nav-button"
             onClick={handlePreviousQuadrant}
@@ -2220,17 +2352,116 @@ function AppContent() {
         </div>
          {focusedQuadrant !== null && (
            <div className="focus-mode-actions">
-             <button className="toolbar-button deactivate-focus-button" onClick={() => handleDeactivateSurvivor(focusedQuadrant)}>Deactivate</button>
-             <button className="toolbar-button retire-focus-button" onClick={handleRetireFocused}>Retire</button>
-             <button className="toolbar-button deceased-focus-button" onClick={handleDeceasedFocused}>Deceased</button>
-             {!isMobileDevice && (
-               <button
-                 className="return-to-overview-button"
-                 onClick={() => setFocusedQuadrant(null)}
-               >
-                 ↩️ Return to Overview
-               </button>
-             )}
+              <div className="focus-actions-dropdown-container">
+                 {editingTemplateQuadrant === focusedQuadrant ? (
+                   // When editing template, show Save and Cancel buttons
+                   <>
+                      <button 
+                        className="focus-actions-dropdown-btn save-template-only"
+                        onClick={() => {
+                          const survivor = currentSettlement?.survivors[focusedQuadrant]
+                          if (survivor) {
+                            // Save template and restore survivors in a single state update
+                            setAppState(prev => ({
+                              ...prev,
+                              settlements: prev.settlements.map(s =>
+                                s.id === prev.currentSettlementId
+                                  ? {
+                                      ...s,
+                                      survivorTemplate: {
+                                        createdAt: new Date().toISOString(),
+                                        data: survivor
+                                      },
+                                      survivors: survivorsBeforeTemplateEdit || s.survivors,
+                                      removedSurvivors: s.templateEditInProgress
+                                        ? s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount)
+                                        : s.removedSurvivors,
+                                      templateEditInProgress: undefined
+                                    }
+                                  : s
+                              )
+                            }))
+                            setEditingTemplateQuadrant(null)
+                            setSurvivorsBeforeTemplateEdit(null)
+                            setFocusedQuadrant(null)
+                            showNotification('Template saved and survivors restored', 'success')
+                          }
+                        }}
+                        title="Save template changes"
+                      >
+                        💾 Save Template
+                      </button>
+                      <button 
+                        className="focus-actions-dropdown-btn cancel-template-btn"
+                        onClick={() => {
+                          // Discard changes and restore original survivors
+                          if (survivorsBeforeTemplateEdit) {
+                            setAppState(prev => ({
+                              ...prev,
+                              settlements: prev.settlements.map(s =>
+                                s.id === prev.currentSettlementId
+                                  ? {
+                                      ...s,
+                                      survivors: survivorsBeforeTemplateEdit,
+                                      removedSurvivors: s.templateEditInProgress
+                                        ? s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount)
+                                        : s.removedSurvivors,
+                                      templateEditInProgress: undefined
+                                    }
+                                  : s
+                              )
+                            }))
+                            setEditingTemplateQuadrant(null)
+                            setSurvivorsBeforeTemplateEdit(null)
+                            setFocusedQuadrant(null)
+                            showNotification('Template edit cancelled - survivors restored', 'success')
+                          }
+                        }}
+                        title="Cancel template editing and discard changes"
+                      >
+                        ✕ Cancel
+                      </button>
+                   </>
+                  ) : (
+                   <>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleDeactivateSurvivor(focusedQuadrant)
+                       }}
+                       title="Deactivate survivor"
+                     >
+                       Deactivate
+                     </button>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleRetireFocused()
+                       }}
+                       title="Retire survivor"
+                     >
+                       Retire
+                     </button>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleDeceasedFocused()
+                       }}
+                       title="Mark survivor as deceased"
+                     >
+                       Deceased
+                     </button>
+                   </>
+                 )}
+              </div>
+              {!isMobileDevice && editingTemplateQuadrant !== focusedQuadrant && (
+                <button
+                  className="return-to-overview-button"
+                  onClick={() => setFocusedQuadrant(null)}
+                >
+                  ↩️ Return to Overview
+                </button>
+              )}
            </div>
          )}
         </div>
@@ -2244,10 +2475,10 @@ function AppContent() {
           <div
             className={`survivor-list-panel ${isClosingDrawer ? 'closing' : ''}`}
             onClick={(e) => e.stopPropagation()}
-          >
-            <div className="survivor-list-header">
-              <h2>{currentSettlement?.name || 'Settlement'} Survivors</h2>
-              <div className="header-actions">
+           >
+             <div className="survivor-list-header">
+               <h2>{currentSettlement?.name || 'Settlement'} Survivors</h2>
+               <div className="header-actions">
                 <button
                   className="create-survivor-button"
                   onClick={handleCreateNewSurvivor}
@@ -2296,6 +2527,102 @@ function AppContent() {
               )}
             </div>
 
+            <div className="survivor-template-section">
+               <div className="survivor-template-header">
+                 <h3>Survivor Template</h3>
+                 {currentSettlement?.survivorTemplate && (
+                   <span className="template-badge">Active</span>
+                 )}
+               </div>
+                <div className="template-actions">
+                  {currentSettlement?.survivorTemplate && (
+                    <p className="template-info">
+                      Template set since {new Date(currentSettlement.survivorTemplate.createdAt).toLocaleDateString()}
+                    </p>
+                  )}
+                   <button
+                      className="template-button edit-template-button"
+                        onClick={() => {
+                          if (!currentSettlement) return
+                          
+                          // Close the settlement management drawer
+                          if (!isClosingSettlementDrawer) {
+                            setIsClosingSettlementDrawer(true)
+                            setTimeout(() => {
+                              setShowSettlementManagement(false)
+                              setIsClosingSettlementDrawer(false)
+                            }, 300)
+                          }
+                          
+                          // Determine template data to use
+                          const templateData = currentSettlement.survivorTemplate 
+                            ? { ...currentSettlement.survivorTemplate.data }
+                            : JSON.parse(JSON.stringify(initialSurvivorData))
+                          
+                          // Create template survivor for editing
+                          const templateSurvivor = {
+                            ...JSON.parse(JSON.stringify(initialSurvivorData)),
+                            ...templateData,
+                            createdAt: new Date().toISOString()
+                          }
+                          
+                          const activeSurvivors = Object.values(currentSettlement.survivors).filter((surv) => surv !== null)
+                          
+                          // Update app state with template creation/editing setup
+                          setAppState(prev => ({
+                            ...prev,
+                            settlements: prev.settlements.map(s =>
+                              s.id === prev.currentSettlementId
+                                ? {
+                                    ...s,
+                                    // Create template if it doesn't exist
+                                    survivorTemplate: s.survivorTemplate || {
+                                      createdAt: new Date().toISOString(),
+                                      data: templateData
+                                    },
+                                    // Move all active survivors to pool and add template to quadrant 1
+                                    survivors: {
+                                      1: templateSurvivor,
+                                      2: null,
+                                      3: null,
+                                      4: null
+                                    },
+                                    removedSurvivors: [
+                                      ...s.removedSurvivors,
+                                      ...activeSurvivors
+                                    ],
+                                    templateEditInProgress: {
+                                      survivorsBefore: JSON.parse(JSON.stringify(currentSettlement.survivors)),
+                                      movedSurvivorsCount: activeSurvivors.length
+                                    }
+                                  }
+                                : s
+                            )
+                          }))
+                          
+                           // Mark that we're editing a template
+                           setEditingTemplateQuadrant(1)
+                           setFocusedQuadrant(1)
+                           
+                           // Store current survivors state in component state
+                           setSurvivorsBeforeTemplateEdit(JSON.parse(JSON.stringify(currentSettlement.survivors)))
+                           
+                           showNotification('Survivors temporarily moved to pool. Edit template and save when done.', 'success')
+                        }}
+                   >
+                     Edit Template
+                   </button>
+                  {currentSettlement?.survivorTemplate && (
+                    <button
+                      className="template-button clear-template-button"
+                      onClick={handleClearSurvivorTemplate}
+                    >
+                      Clear Template
+                    </button>
+                  )}
+                </div>
+            </div>
+
             <div className="active-survivors-section">
               <div
                 className="active-survivors-header"
@@ -2338,46 +2665,46 @@ function AppContent() {
                 <span>Survivor Pool ({currentSettlement?.removedSurvivors.length || 0})</span>
                 <span className="expand-icon">{showSurvivorPool ? '▼' : '▶'}</span>
               </div>
-              {showSurvivorPool && currentSettlement && (
-                <div className="survivor-pool-list">
-                  {currentSettlement.removedSurvivors.length === 0 ? (
-                    <div className="empty-message">No survivors in pool</div>
-                  ) : (
-                    currentSettlement.removedSurvivors.map((survivor, index) => (
-                      <div key={index} className="survivor-list-item deactivated">
-                        <div className="survivor-info">
-                          <div className="survivor-name">
-                            {survivor.name || `New Survivor`}
+                {showSurvivorPool && currentSettlement && (
+                  <div className="survivor-pool-list">
+                    {currentSettlement.removedSurvivors.length === 0 ? (
+                      <div className="empty-message">No survivors in pool</div>
+                    ) : (
+                      currentSettlement.removedSurvivors.map((survivor, index) => (
+                        <div key={index} className="survivor-list-item deactivated">
+                          <div className="survivor-info">
+                            <div className="survivor-name">
+                              {survivor.name || `New Survivor`}
+                            </div>
+                            <div className="survivor-meta">
+                              Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                            </div>
                           </div>
-                          <div className="survivor-meta">
-                            Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                          <div className="survivor-actions">
+                            <button
+                              className="activate-button"
+                              onClick={() => handleActivateSurvivor(index)}
+                            >
+                              Activate
+                            </button>
+                            <button
+                              className="retire-button"
+                              onClick={() => handleRetireSurvivor(index)}
+                            >
+                              Retire
+                            </button>
+                            <button
+                              className="deceased-button"
+                              onClick={() => handleMarkDeceased(index)}
+                            >
+                              Deceased
+                            </button>
                           </div>
                         </div>
-                        <div className="survivor-actions">
-                          <button
-                            className="activate-button"
-                            onClick={() => handleActivateSurvivor(index)}
-                          >
-                            Activate
-                          </button>
-                          <button
-                            className="retire-button"
-                            onClick={() => handleRetireSurvivor(index)}
-                          >
-                            Retire
-                          </button>
-                          <button
-                            className="deceased-button"
-                            onClick={() => handleMarkDeceased(index)}
-                          >
-                            Deceased
-                          </button>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              )}
+                      ))
+                    )}
+                  </div>
+                )}
             </div>
 
             <div className="retired-section">
@@ -2459,22 +2786,35 @@ function AppContent() {
         </div>
       )}
 
-      <div className="container" onClick={handleContainerClick}>
-        {focusedQuadrant !== null && !isMobileDevice && currentSettlement?.survivors[focusedQuadrant] && (() => {
+       <div className="container" onClick={handleContainerClick}>
+         {editingTemplateQuadrant !== null && (
+           <div style={{
+             position: 'fixed',
+             top: 0,
+             left: 0,
+             right: 0,
+             bottom: 0,
+             backgroundColor: 'rgba(0, 0, 0, 0.5)',
+             zIndex: 1000,
+             pointerEvents: 'none'
+           }} />
+         )}
+         {focusedQuadrant !== null && !isMobileDevice && currentSettlement?.survivors[focusedQuadrant] && (() => {
           const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
           return (
           <div className="focus-container">
-            <div className="focused-main-sheet">
-              <SurvivorSheet
-                key={`survivor-${focusedQuadrant}-focused`}
-                survivor={focusedSurvivor}
-                onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
-                onOpenGlossary={handleOpenGlossary}
-                glossaryTerms={glossaryData.terms}
-              />
-            </div>
-            <div className="secondary-sheet">
-              <div className="auxiliary-notes-section">
+             <div className="focused-main-sheet">
+               <SurvivorSheet
+                 key={`survivor-${focusedQuadrant}-focused`}
+                 survivor={focusedSurvivor}
+                 onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
+                 onOpenGlossary={handleOpenGlossary}
+                 glossaryTerms={glossaryData.terms}
+                 isEditingTemplate={editingTemplateQuadrant === focusedQuadrant}
+               />
+              </div>
+              <div className="secondary-sheet">
+                <div className="auxiliary-notes-section">
                 <h3>Notes</h3>
                 <textarea
                   className="auxiliary-notes-textarea"
@@ -2952,68 +3292,112 @@ function AppContent() {
                 placeholder="Add notes about this survivor..."
               />
             </div>
-            <div className="permanent-injuries-section">
-              <h3>Permanent Severe Injuries</h3>
-              <div className="injury-legend">
-                <span className="legend-item">
-                  <span className="legend-box red-legend"></span>
-                  Red background = Retired
-                </span>
-              </div>
-              {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                <div key={location} className="injury-location-group">
-                  <div
-                    className="injury-location-header"
-                    onClick={() => toggleInjuryCollapse(location)}
-                  >
-                    <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                    <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
-                  </div>
-                  {!collapsedInjuries.has(location) && (
-                    focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                      <div className="no-injuries">No injuries</div>
-                    ) : (
-                      focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                        <div key={injuryIndex} className="injury-item">
-                          <span className="injury-name">{injury.name}</span>
-                          <div className="injury-checkboxes">
-                            {injury.checkboxes.map((checked, checkboxIndex) => {
-                              const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                              const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                              return (
-                                <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                  <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={() => {
-                                      const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                      newInjuries[injuryIndex] = {
-                                        ...newInjuries[injuryIndex],
-                                        checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                          i === checkboxIndex ? !cb : cb
-                                        )
-                                      }
-                                      updateSurvivor(focusedQuadrant, {
-                                        ...focusedSurvivor,
-                                        permanentInjuries: {
-                                          ...focusedSurvivor.permanentInjuries,
-                                          [location]: newInjuries
-                                        }
-                                      })
-                                    }}
-                                  />
-                                </label>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      ))
-                    )
-                  )}
+             <div className="permanent-injuries-section">
+               <h3>Permanent Severe Injuries</h3>
+               <div className="injury-legend">
+                 <span className="legend-item">
+                   <span className="legend-box red-legend"></span>
+                   Red background = Retired
+                 </span>
+               </div>
+               {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                 <div key={location} className="injury-location-group">
+                   <div
+                     className="injury-location-header"
+                     onClick={() => toggleInjuryCollapse(location)}
+                   >
+                     <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                     <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
+                   </div>
+                   {!collapsedInjuries.has(location) && (
+                     focusedSurvivor.permanentInjuries[location].length === 0 ? (
+                       <div className="no-injuries">No injuries</div>
+                     ) : (
+                       focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
+                         <div key={injuryIndex} className="injury-item">
+                           <span className="injury-name">{injury.name}</span>
+                           <div className="injury-checkboxes">
+                             {injury.checkboxes.map((checked, checkboxIndex) => {
+                               const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                               const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                               return (
+                                 <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                   <input
+                                     type="checkbox"
+                                     checked={checked}
+                                     onChange={() => {
+                                       const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
+                                       newInjuries[injuryIndex] = {
+                                         ...newInjuries[injuryIndex],
+                                         checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                           i === checkboxIndex ? !cb : cb
+                                         )
+                                       }
+                                       updateSurvivor(focusedQuadrant, {
+                                         ...focusedSurvivor,
+                                         permanentInjuries: {
+                                           ...focusedSurvivor.permanentInjuries,
+                                           [location]: newInjuries
+                                         }
+                                       })
+                                     }}
+                                   />
+                                 </label>
+                               )
+                             })}
+                           </div>
+                         </div>
+                       ))
+                     )
+                   )}
+                 </div>
+               ))}
+             </div>
+             <div className="survivor-log-section">
+                <div
+                  className="survivor-log-header"
+                  onClick={() => setCollapsedInjuries(prev => {
+                    const next = new Set(prev)
+                    next.has('survivorLog') ? next.delete('survivorLog') : next.add('survivorLog')
+                    return next
+                  })}
+                  title="Keeps last 50 changes"
+                >
+                  <h3>Survivor Log {focusedSurvivor.survivorLog.length > 0 ? `(${focusedSurvivor.survivorLog.length}/50)` : ''}</h3>
+                  <span className="expand-icon">{collapsedInjuries.has('survivorLog') ? '▶' : '▼'}</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                {!collapsedInjuries.has('survivorLog') && (
+                  <div className="log-content">
+                    {focusedSurvivor.survivorLog.length === 0 ? (
+                      <div className="no-log-message">No changes recorded yet</div>
+                    ) : (
+                      <div className="log-entries">
+                        {[...focusedSurvivor.survivorLog].reverse().map((entry, idx) => (
+                          <div 
+                            key={idx} 
+                            className="log-entry"
+                            onClick={() => setSelectedLogEntry({ index: idx, entry })}
+                          >
+                            <div className="log-timestamp">
+                              {new Date(entry.timestamp).toLocaleString([], {
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </div>
+                            <div className="log-attribute-compact">
+                              {entry.attribute}
+                              {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+           </div>
         )
       })()}
 
@@ -3035,6 +3419,8 @@ function AppContent() {
         onLoadCategory={handleLoadCategory}
         loadingCategory={loadingCategory}
         onSearchWiki={searchAndLoadWikiTerms}
+        isSurvivorFocused={focusedQuadrant !== null && !isMobileDevice}
+        onAddTextToNotes={handleAddGlossaryTextToNotes}
       />
 
        <InventoryModal

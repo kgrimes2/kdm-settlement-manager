@@ -189,9 +189,10 @@ interface SurvivorSheetProps {
   onUpdate: (survivor: SurvivorData) => void
   onOpenGlossary: (searchTerm: string) => void
   glossaryTerms: GlossaryTerm[]
+  isEditingTemplate?: boolean
 }
 
-export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms }: SurvivorSheetProps) {
+export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms, isEditingTemplate }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
   // Note: using survivor.createdAt as a unique identifier
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
@@ -402,33 +403,42 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
   return (
     <div className="survivor-sheet">
       <div className="sheet-content">
-        <div className="left-column">
-          <div className="image-name-container">
-            <div className="name-gender-column">
-              <div className="name-wrapper" onClick={() => setNameEditing(true)}>
-                {nameEditing ? (
-                  <input
-                    type="text"
-                    value={survivor.name}
-                    onChange={(e) => updateField('name', e.target.value)}
-                    onBlur={() => setNameEditing(false)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') setNameEditing(false) }}
-                    className="survivor-name-edit"
-                    placeholder="Name"
-                    autoFocus
-                  />
-                ) : (
-                  <textarea
-                    ref={nameRef}
-                    value={survivor.name}
-                    readOnly
-                    className="survivor-name"
-                    placeholder="Name"
-                    rows={2}
-                    style={{ fontSize: nameFontSize + 'rem' }}
-                  />
-                )}
-              </div>
+         <div className="left-column">
+           <div className="image-name-container">
+             <div className="name-gender-column">
+               <div className="name-wrapper" onClick={() => !isEditingTemplate && setNameEditing(true)}>
+                 {isEditingTemplate ? (
+                   <textarea
+                     ref={nameRef}
+                     value="Template"
+                     readOnly
+                     className="survivor-name"
+                     rows={2}
+                     style={{ fontSize: nameFontSize + 'rem' }}
+                   />
+                 ) : nameEditing ? (
+                   <input
+                     type="text"
+                     value={survivor.name}
+                     onChange={(e) => updateField('name', e.target.value)}
+                     onBlur={() => setNameEditing(false)}
+                     onKeyDown={(e) => { if (e.key === 'Enter') setNameEditing(false) }}
+                     className="survivor-name-edit"
+                     placeholder="Name"
+                     autoFocus
+                   />
+                 ) : (
+                   <textarea
+                     ref={nameRef}
+                     value={survivor.name}
+                     readOnly
+                     className="survivor-name"
+                     placeholder="Name"
+                     rows={2}
+                     style={{ fontSize: nameFontSize + 'rem' }}
+                   />
+                 )}
+               </div>
               <div
                 className={`gender-toggle ${survivor.gender === 'M' ? 'male' : 'female'}`}
                 onClick={() => updateField('gender', survivor.gender === 'M' ? 'F' : 'M')}
@@ -481,11 +491,11 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                   />
                 </label>
                 <div className="survival-abilities">
-                  {Object.entries(survivor.survivalAbilities).map(([key, checked]) => (
+                  {(['dodge', 'encourage', 'surge', 'dash', 'endure'] as const).map((key) => (
                     <div
                       key={key}
-                      className={`survival-ability-label ${checked ? 'active' : ''}`}
-                      onClick={() => toggleCheckbox(key as keyof SurvivorData['survivalAbilities'])}
+                      className={`survival-ability-label ${survivor.survivalAbilities[key] ? 'active' : ''}`}
+                      onClick={() => toggleCheckbox(key)}
                     >
                       {key.charAt(0).toUpperCase() + key.slice(1)}
                     </div>
@@ -495,67 +505,70 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
             </div>
           </div>
 
-          <div className="body-locations">
-            {Object.entries(survivor.bodyLocations).map(([location, boxes]) => (
-              <div key={location} className="body-location-group">
-                {location === 'head' && (
-                  <div className="brain-section">
-                    <div className="brain-shield-group">
-                      <div className={`shield-icon ${survivor.brainArmor >= 3 ? 'insane-shield' : ''}`}>
-                        <NumericInput
-                          value={survivor.brainArmor}
-                          onChange={(value) => updateField('brainArmor', value)}
-                          className="shield-input"
-                          min={0}
-                        />
-                      </div>
-                    </div>
-                    <span className="brain-label">
-                      🧠 Brain (insanity)
-                      <span className="brain-note">insane on 3+</span>
-                    </span>
-                    <label className="brain-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={survivor.insane}
-                        onChange={() => updateField('insane', !survivor.insane)}
-                      />
-                    </label>
-                  </div>
-                )}
-                <div className="body-location">
-                  <div className="shield-icon">
-                    <NumericInput
-                      value={boxes.armor}
-                      onChange={(value) => updateBodyArmor(location as keyof SurvivorData['bodyLocations'], value)}
-                      className="shield-input"
-                      min={0}
-                    />
-                  </div>
-                  <span>{{ head: '😐', arms: '💪', body: '👕', waist: '', legs: '🦵' }[location]}{location === 'waist' && <svg className="belt-icon" viewBox="0 0 24 24" width="14" height="14"><rect x="1" y="9" width="22" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="8" y="7" width="8" height="10" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="11" y="9.5" width="2" height="5" rx="0.5" fill="currentColor"/></svg>} {location.charAt(0).toUpperCase() + location.slice(1)}</span>
-                  {location !== 'head' && (
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={boxes.light}
-                        onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'light')}
-                      />
-                      L
-                    </label>
-                  )}
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={boxes.heavy}
-                      onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'heavy')}
-                      className="heavy-injury-checkbox"
-                    />
-                    H
-                  </label>
-                </div>
-              </div>
-            ))}
-          </div>
+           <div className="body-locations">
+             {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => {
+               const boxes = survivor.bodyLocations[location]
+               return (
+               <div key={location} className="body-location-group">
+                 {location === 'head' && (
+                   <div className="brain-section">
+                     <div className="brain-shield-group">
+                       <div className={`shield-icon ${survivor.brainArmor >= 3 ? 'insane-shield' : ''}`}>
+                         <NumericInput
+                           value={survivor.brainArmor}
+                           onChange={(value) => updateField('brainArmor', value)}
+                           className="shield-input"
+                           min={0}
+                         />
+                       </div>
+                     </div>
+                     <span className="brain-label">
+                       🧠 Brain (insanity)
+                       <span className="brain-note">insane on 3+</span>
+                     </span>
+                     <label className="brain-checkbox">
+                       <input
+                         type="checkbox"
+                         checked={survivor.insane}
+                         onChange={() => updateField('insane', !survivor.insane)}
+                       />
+                     </label>
+                   </div>
+                 )}
+                 <div className="body-location">
+                   <div className="shield-icon">
+                     <NumericInput
+                       value={boxes.armor}
+                       onChange={(value) => updateBodyArmor(location as keyof SurvivorData['bodyLocations'], value)}
+                       className="shield-input"
+                       min={0}
+                     />
+                   </div>
+                   <span>{{ head: '😐', arms: '💪', body: '👕', waist: '', legs: '🦵' }[location]}{location === 'waist' && <svg className="belt-icon" viewBox="0 0 24 24" width="14" height="14"><rect x="1" y="9" width="22" height="6" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="8" y="7" width="8" height="10" rx="1" fill="none" stroke="currentColor" strokeWidth="1.5"/><rect x="11" y="9.5" width="2" height="5" rx="0.5" fill="currentColor"/></svg>} {location.charAt(0).toUpperCase() + location.slice(1)}</span>
+                   {location !== 'head' && (
+                     <label>
+                       <input
+                         type="checkbox"
+                         checked={boxes.light}
+                         onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'light')}
+                       />
+                       L
+                     </label>
+                   )}
+                   <label>
+                     <input
+                       type="checkbox"
+                       checked={boxes.heavy}
+                       onChange={() => toggleBodyLocation(location as keyof SurvivorData['bodyLocations'], 'heavy')}
+                       className="heavy-injury-checkbox"
+                     />
+                     H
+                   </label>
+                 </div>
+               </div>
+             )
+             })}
+           </div>
         </div>
 
         <div className="right-columns-container">
@@ -582,28 +595,28 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
           </div>
 
           <div className="columns-wrapper">
-            <div className="middle-column">
-          <div className="stats-section">
-            {Object.entries(survivor.stats).map(([stat, value]) => (
-              <div key={stat} className="stat-box">
-                <span className="stat-label">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
-                <div className="stat-inputs">
-                  <NumericInput
-                    value={value}
-                    onChange={(newValue) => updateStat(stat as keyof SurvivorData['stats'], newValue)}
-                    className="stat-input"
-                  />
-                  <span className="stat-plus">+</span>
-                  <NumericInput
-                    value={survivor.gearBonuses[stat as keyof SurvivorData['gearBonuses']]}
-                    onChange={(newValue) => updateGearBonus(stat as keyof SurvivorData['gearBonuses'], newValue)}
-                    className="stat-input gear-bonus-input"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+             <div className="middle-column">
+           <div className="stats-section">
+             {(['movement', 'accuracy', 'strength', 'evasion', 'luck', 'speed'] as const).map((stat) => (
+               <div key={stat} className="stat-box">
+                 <span className="stat-label">{stat.charAt(0).toUpperCase() + stat.slice(1)}</span>
+                 <div className="stat-inputs">
+                   <NumericInput
+                     value={survivor.stats[stat]}
+                     onChange={(newValue) => updateStat(stat, newValue)}
+                     className="stat-input"
+                   />
+                   <span className="stat-plus">+</span>
+                   <NumericInput
+                     value={survivor.gearBonuses[stat]}
+                     onChange={(newValue) => updateGearBonus(stat, newValue)}
+                     className="stat-input gear-bonus-input"
+                   />
+                 </div>
+               </div>
+             ))}
+           </div>
+         </div>
 
         <div className="right-column">
           <div className="weapon-proficiency">

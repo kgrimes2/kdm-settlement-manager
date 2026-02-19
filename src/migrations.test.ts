@@ -407,4 +407,99 @@ describe('Data Migrations', () => {
       expect(survivor?.stats.evasion).toBeDefined()
     })
   })
+
+  describe('Survivor Template Persistence', () => {
+    it('should preserve survivorTemplate during migration', () => {
+      const templateSurvivor = {
+        ...initialSurvivorData,
+        name: 'Template Survivor',
+        survival: 5,
+        createdAt: '2024-01-01T00:00:00.000Z'
+      }
+
+      const dataWithTemplate = {
+        version: CURRENT_DATA_VERSION,
+        settlements: [
+          {
+            id: 'settlement-1',
+            name: 'Test Settlement',
+            survivors: {
+              1: { ...initialSurvivorData, name: 'Active1', createdAt: '2024-01-01T00:00:00.000Z' },
+              2: null,
+              3: null,
+              4: null
+            },
+            removedSurvivors: [],
+            retiredSurvivors: [],
+            deceasedSurvivors: [],
+            inventory: { gear: {}, materials: {} },
+            survivorTemplate: {
+              createdAt: '2024-01-15T10:00:00.000Z',
+              data: templateSurvivor
+            }
+          }
+        ],
+        currentSettlementId: 'settlement-1',
+        namedSaves: []
+      }
+
+      const migrated = migrateData(dataWithTemplate)
+
+      expect(migrated.settlements[0].survivorTemplate).toBeDefined()
+      expect(migrated.settlements[0].survivorTemplate?.data.name).toBe('Template Survivor')
+      expect(migrated.settlements[0].survivorTemplate?.data.survival).toBe(5)
+    })
+
+    it('should handle missing survivorTemplate gracefully', () => {
+      const dataWithoutTemplate = {
+        version: CURRENT_DATA_VERSION,
+        settlements: [
+          {
+            id: 'settlement-1',
+            name: 'Test Settlement',
+            survivors: {
+              1: { ...initialSurvivorData, name: 'Active1', createdAt: '2024-01-01T00:00:00.000Z' },
+              2: null,
+              3: null,
+              4: null
+            },
+            removedSurvivors: [],
+            retiredSurvivors: [],
+            deceasedSurvivors: [],
+            inventory: { gear: {}, materials: {} }
+          }
+        ],
+        currentSettlementId: 'settlement-1',
+        namedSaves: []
+      }
+
+      const migrated = migrateData(dataWithoutTemplate)
+
+      expect(migrated.settlements[0].survivorTemplate).toBeUndefined()
+      expect(migrated.settlements[0].survivors[1]?.name).toBe('Active1')
+    })
+
+    it('should migrate legacy data to preserve survivorTemplate field', () => {
+      const legacyDataWithTemplate = {
+        survivors: {
+          1: { ...initialSurvivorData, name: 'Active', createdAt: '2024-01-01T00:00:00.000Z' },
+          2: null,
+          3: null,
+          4: null
+        },
+        removedSurvivors: [],
+        retiredSurvivors: [],
+        deceasedSurvivors: [],
+        survivorTemplate: {
+          createdAt: '2024-01-15T10:00:00.000Z',
+          data: { ...initialSurvivorData, name: 'Template', createdAt: '2024-01-01T00:00:00.000Z' }
+        }
+      }
+
+      const migrated = migrateData(legacyDataWithTemplate)
+
+      expect(migrated.settlements[0].survivorTemplate).toBeDefined()
+      expect(migrated.settlements[0].survivorTemplate?.data.name).toBe('Template')
+    })
+  })
 })
