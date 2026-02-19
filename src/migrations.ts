@@ -1,7 +1,7 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import type { PermanentInjury } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 9
+export const CURRENT_DATA_VERSION = 10
 
 export interface SettlementInventory {
   gear: Record<string, number>
@@ -14,6 +14,11 @@ export interface NamedSave {
   settlementId: string
   createdAt: string
   settlementData: SettlementData
+}
+
+export interface SurvivorTemplate {
+  createdAt: string
+  data: Partial<SurvivorData>
 }
 
 export interface SettlementData {
@@ -29,6 +34,7 @@ export interface SettlementData {
   retiredSurvivors: SurvivorData[]
   deceasedSurvivors: SurvivorData[]
   inventory: SettlementInventory
+  survivorTemplate?: SurvivorTemplate
 }
 
 export interface AppState {
