@@ -189,9 +189,10 @@ interface SurvivorSheetProps {
   onUpdate: (survivor: SurvivorData) => void
   onOpenGlossary: (searchTerm: string) => void
   glossaryTerms: GlossaryTerm[]
+  isEditingTemplate?: boolean
 }
 
-export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms }: SurvivorSheetProps) {
+export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms, isEditingTemplate }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
   // Note: using survivor.createdAt as a unique identifier
   const [weaponTypeInput, setWeaponTypeInput] = useState('')
@@ -402,33 +403,42 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
   return (
     <div className="survivor-sheet">
       <div className="sheet-content">
-        <div className="left-column">
-          <div className="image-name-container">
-            <div className="name-gender-column">
-              <div className="name-wrapper" onClick={() => setNameEditing(true)}>
-                {nameEditing ? (
-                  <input
-                    type="text"
-                    value={survivor.name}
-                    onChange={(e) => updateField('name', e.target.value)}
-                    onBlur={() => setNameEditing(false)}
-                    onKeyDown={(e) => { if (e.key === 'Enter') setNameEditing(false) }}
-                    className="survivor-name-edit"
-                    placeholder="Name"
-                    autoFocus
-                  />
-                ) : (
-                  <textarea
-                    ref={nameRef}
-                    value={survivor.name}
-                    readOnly
-                    className="survivor-name"
-                    placeholder="Name"
-                    rows={2}
-                    style={{ fontSize: nameFontSize + 'rem' }}
-                  />
-                )}
-              </div>
+         <div className="left-column">
+           <div className="image-name-container">
+             <div className="name-gender-column">
+               <div className="name-wrapper" onClick={() => !isEditingTemplate && setNameEditing(true)}>
+                 {isEditingTemplate ? (
+                   <textarea
+                     ref={nameRef}
+                     value="Template"
+                     readOnly
+                     className="survivor-name"
+                     rows={2}
+                     style={{ fontSize: nameFontSize + 'rem' }}
+                   />
+                 ) : nameEditing ? (
+                   <input
+                     type="text"
+                     value={survivor.name}
+                     onChange={(e) => updateField('name', e.target.value)}
+                     onBlur={() => setNameEditing(false)}
+                     onKeyDown={(e) => { if (e.key === 'Enter') setNameEditing(false) }}
+                     className="survivor-name-edit"
+                     placeholder="Name"
+                     autoFocus
+                   />
+                 ) : (
+                   <textarea
+                     ref={nameRef}
+                     value={survivor.name}
+                     readOnly
+                     className="survivor-name"
+                     placeholder="Name"
+                     rows={2}
+                     style={{ fontSize: nameFontSize + 'rem' }}
+                   />
+                 )}
+               </div>
               <div
                 className={`gender-toggle ${survivor.gender === 'M' ? 'male' : 'female'}`}
                 onClick={() => updateField('gender', survivor.gender === 'M' ? 'F' : 'M')}

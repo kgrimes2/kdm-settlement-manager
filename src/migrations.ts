@@ -35,6 +35,15 @@ export interface SettlementData {
   deceasedSurvivors: SurvivorData[]
   inventory: SettlementInventory
   survivorTemplate?: SurvivorTemplate
+  templateEditInProgress?: {
+    survivorsBefore: {
+      1: SurvivorData | null
+      2: SurvivorData | null
+      3: SurvivorData | null
+      4: SurvivorData | null
+    }
+    movedSurvivorsCount: number
+  }
 }
 
 export interface AppState {
