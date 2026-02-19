@@ -2461,12 +2461,42 @@ function AppContent() {
                    <button
                      className="template-button edit-template-button"
                      onClick={() => {
-                       if (focusedQuadrant === null) {
-                         setFocusedQuadrant(1)
+                       // Create a temporary survivor with template data for editing
+                       const templateSurvivor = {
+                         ...JSON.parse(JSON.stringify(initialSurvivorData)),
+                         ...currentSettlement.survivorTemplate!.data,
+                         createdAt: new Date().toISOString()
                        }
-                       const survivor = currentSettlement?.survivors[focusedQuadrant || 1]
-                       if (survivor) {
-                         handleSetSurvivorTemplate({...survivor, ...currentSettlement.survivorTemplate!.data})
+                       
+                       // Find a vacant quadrant to put the temp survivor
+                       let quadrantToUse: 1 | 2 | 3 | 4 | null = null
+                       for (let i = 1; i <= 4; i++) {
+                         const q = i as 1 | 2 | 3 | 4
+                         if (!currentSettlement?.survivors[q]) {
+                           quadrantToUse = q
+                           break
+                         }
+                       }
+                       
+                       if (quadrantToUse) {
+                         // Temporarily place template survivor in vacant quadrant
+                         setAppState(prev => ({
+                           ...prev,
+                           settlements: prev.settlements.map(s =>
+                             s.id === prev.currentSettlementId
+                               ? {
+                                   ...s,
+                                   survivors: {
+                                     ...s.survivors,
+                                     [quadrantToUse]: templateSurvivor
+                                   }
+                                 }
+                               : s
+                           )
+                         }))
+                         setFocusedQuadrant(quadrantToUse)
+                       } else {
+                         showNotification('All survivor slots are full. Deactivate a survivor first to edit the template.', 'error')
                        }
                      }}
                    >
