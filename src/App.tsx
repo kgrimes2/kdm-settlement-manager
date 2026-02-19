@@ -2553,9 +2553,6 @@ function AppContent() {
                         onClick={() => {
                           if (!currentSettlement) return
                           
-                          // Close settlement manager sidebar immediately
-                          setShowSettlementManagement(false)
-                          
                           // Determine template data to use
                           const templateData = currentSettlement.survivorTemplate 
                             ? { ...currentSettlement.survivorTemplate.data }
