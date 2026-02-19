@@ -62,8 +62,8 @@ function AppContent() {
    const [showSurvivorList, setShowSurvivorList] = useState(false)
   const [isClosingDrawer, setIsClosingDrawer] = useState(false)
    const [showSurvivorPool, setShowSurvivorPool] = useState(false)
-   const [editingTemplateIndex, setEditingTemplateIndex] = useState<number | null>(null)
    const [editingTemplateQuadrant, setEditingTemplateQuadrant] = useState<QuadrantId>(null)
+   const [survivorsBeforeTemplateEdit, setSurvivorsBeforeTemplateEdit] = useState<Record<1 | 2 | 3 | 4, SurvivorData | null> | null>(null)
    const [showRetiredSection, setShowRetiredSection] = useState(false)
    const [showDeceasedSection, setShowDeceasedSection] = useState(false)
   const [showBulkActions, setShowBulkActions] = useState(false)
@@ -219,12 +219,46 @@ function AppContent() {
           }
         }
       }
-    } catch (error) {
-      // Ignore errors parsing localStorage (corrupted data is handled in initial state)
-    }
-  }, []) // Empty deps - runs once on mount
+     } catch (error) {
+       // Ignore errors parsing localStorage (corrupted data is handled in initial state)
+     }
+   }, []) // Empty deps - runs once on mount
 
-  // Detect mobile devices and small screens
+   // Recovery: if app reloads while editing template, restore survivors and discard template changes
+   useEffect(() => {
+     setAppState(prev => {
+       let hasRecovered = false
+       const recovered = {
+         ...prev,
+         settlements: prev.settlements.map(s => {
+           // Check if template editing was in progress
+           if (s.templateEditInProgress) {
+             hasRecovered = true
+             // Restore survivors to their original positions
+             return {
+               ...s,
+               survivors: s.templateEditInProgress.survivorsBefore,
+               removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount),
+               templateEditInProgress: undefined
+             }
+           }
+           return s
+         })
+       }
+       
+       if (hasRecovered) {
+         // Clear template editing state
+         setEditingTemplateQuadrant(null)
+         setSurvivorsBeforeTemplateEdit(null)
+         setFocusedQuadrant(null)
+         showNotification('Template edit was interrupted. Survivors have been restored.', 'success')
+       }
+       
+       return recovered
+     })
+   }, []) // Empty deps - runs once on mount
+
+   // Detect mobile devices and small screens
   useEffect(() => {
     const checkMobile = () => {
       const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -881,29 +915,41 @@ function AppContent() {
      // Check if we're deactivating a template being edited
      const isTemplateBeingEdited = editingTemplateQuadrant === quadrant
 
-     setAppState(prev => ({
-       ...prev,
-       settlements: prev.settlements.map(s => {
-         if (s.id !== prev.currentSettlementId) return s
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-         const survivor = s.survivors[quadrant]
-         if (!survivor) return s
+          const survivor = s.survivors[quadrant]
+          if (!survivor) return s
 
-         return {
-           ...s,
-           removedSurvivors: isTemplateBeingEdited ? s.removedSurvivors : [...s.removedSurvivors, survivor],
-           survivors: {
-             ...s.survivors,
-             [quadrant]: null
-           }
-         }
-       })
-     }))
+          // If editing template, restore original survivors; otherwise add to pool
+          if (isTemplateBeingEdited && survivorsBeforeTemplateEdit) {
+            const numRestoredSurvivors = Object.values(survivorsBeforeTemplateEdit).filter(surv => surv !== null).length
+            return {
+              ...s,
+              survivors: survivorsBeforeTemplateEdit,
+              removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - numRestoredSurvivors),
+              templateEditInProgress: undefined
+            }
+          } else {
+            return {
+              ...s,
+              removedSurvivors: [...s.removedSurvivors, survivor],
+              survivors: {
+                ...s.survivors,
+                [quadrant]: null
+              }
+            }
+          }
+        })
+      }))
 
      // Clear template editing state if deactivating template
      if (isTemplateBeingEdited) {
        setEditingTemplateQuadrant(null)
-       showNotification('Template survivor deactivated (not added to pool)', 'success')
+       setSurvivorsBeforeTemplateEdit(null)
+       showNotification('Template edit canceled and survivors restored', 'success')
      } else {
        setShowSurvivorPool(true)
        showNotification(`Survivor ${quadrant} deactivated successfully`, 'success')
@@ -931,40 +977,31 @@ function AppContent() {
      if (vacantQuadrant === null) {
        showNotification('All slots are full. Please deactivate a survivor first.', 'error')
        return
-     }
+      }
 
-     const survivorName = settlement.removedSurvivors[index]?.name || 'Survivor'
+      const survivorName = settlement.removedSurvivors[index]?.name || 'Survivor'
 
-     // Check if this is the template being edited
-     const isEditingTemplate = editingTemplateIndex === index
+      setAppState(prev => ({
+        ...prev,
+        settlements: prev.settlements.map(s => {
+          if (s.id !== prev.currentSettlementId) return s
 
-     setAppState(prev => ({
-       ...prev,
-       settlements: prev.settlements.map(s => {
-         if (s.id !== prev.currentSettlementId) return s
+          const survivor = s.removedSurvivors[index]
+          const newRemovedSurvivors = s.removedSurvivors.filter((_, i) => i !== index)
 
-         const survivor = s.removedSurvivors[index]
-         const newRemovedSurvivors = s.removedSurvivors.filter((_, i) => i !== index)
+          return {
+            ...s,
+            removedSurvivors: newRemovedSurvivors,
+            survivors: {
+              ...s.survivors,
+              [vacantQuadrant]: survivor
+            }
+          }
+        })
+      }))
 
-         return {
-           ...s,
-           removedSurvivors: newRemovedSurvivors,
-           survivors: {
-             ...s.survivors,
-             [vacantQuadrant]: survivor
-           }
-         }
-       })
-     }))
-
-     // Track template quadrant if editing template
-     if (isEditingTemplate) {
-       setEditingTemplateQuadrant(vacantQuadrant)
-       setEditingTemplateIndex(null)
-     }
-
-     showNotification(`${survivorName} activated successfully`, 'success')
-   }
+      showNotification(`${survivorName} activated successfully`, 'success')
+    }
 
   const handleCreateNewSurvivor = () => {
     const vacantQuadrant = findVacantQuadrant()
@@ -2378,39 +2415,39 @@ function AppContent() {
                      Deceased
                    </button>
                    <div className="focus-action-menu-divider"></div>
-                    <button 
-                      className="focus-action-menu-item template"
-                      onClick={() => {
-                        const survivor = currentSettlement?.survivors[focusedQuadrant]
-                        if (survivor) {
-                          handleSetSurvivorTemplate(survivor)
-                          
-                          // If we're editing a template (it was activated from pool), deactivate it
-                          if (editingTemplateQuadrant === focusedQuadrant) {
-                            setAppState(prev => ({
-                              ...prev,
-                              settlements: prev.settlements.map(s =>
-                                s.id === prev.currentSettlementId
-                                  ? {
-                                      ...s,
-                                      survivors: {
-                                        ...s.survivors,
-                                        [focusedQuadrant]: undefined
+                      <button 
+                        className="focus-action-menu-item template"
+                        onClick={() => {
+                          const survivor = currentSettlement?.survivors[focusedQuadrant]
+                          if (survivor) {
+                            handleSetSurvivorTemplate(survivor)
+                            
+                            // If we're editing a template, restore the original survivors
+                            if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
+                              setAppState(prev => ({
+                                ...prev,
+                                settlements: prev.settlements.map(s =>
+                                  s.id === prev.currentSettlementId
+                                    ? {
+                                        ...s,
+                                        survivors: survivorsBeforeTemplateEdit,
+                                        removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
+                                        templateEditInProgress: undefined
                                       }
-                                    }
-                                  : s
-                              )
-                            }))
-                            setEditingTemplateQuadrant(null)
-                            setFocusedQuadrant(null)
-                            showNotification('Template saved and survivor removed', 'success')
+                                    : s
+                                )
+                              }))
+                              setEditingTemplateQuadrant(null)
+                              setSurvivorsBeforeTemplateEdit(null)
+                              setFocusedQuadrant(null)
+                              showNotification('Template saved and survivors restored', 'success')
+                            }
                           }
-                        }
-                        setShowFocusActionsDropdown(false)
-                      }}
-                    >
-                      Save as Template
-                    </button>
+                          setShowFocusActionsDropdown(false)
+                        }}
+                      >
+                        Save as Template
+                      </button>
                  </div>
                )}
              </div>
@@ -2499,42 +2536,58 @@ function AppContent() {
                    <p className="template-info">
                      Template set since {new Date(currentSettlement.survivorTemplate.createdAt).toLocaleDateString()}
                    </p>
-                   <button
-                     className="template-button edit-template-button"
-                      onClick={() => {
-                        // Create a temporary survivor with template data for editing
-                        const templateSurvivor = {
-                          ...JSON.parse(JSON.stringify(initialSurvivorData)),
-                          ...currentSettlement.survivorTemplate!.data,
-                          createdAt: new Date().toISOString()
-                        }
-                        
-                        // Calculate the index this survivor will have when added
-                        const newIndex = currentSettlement.removedSurvivors.length
-                        
-                        // Add to survivor pool (removedSurvivors) for editing
-                        setAppState(prev => ({
-                          ...prev,
-                          settlements: prev.settlements.map(s =>
-                            s.id === prev.currentSettlementId
-                              ? {
-                                  ...s,
-                                  removedSurvivors: [...s.removedSurvivors, templateSurvivor]
-                                }
-                              : s
-                          )
-                        }))
-                        
-                        // Mark this survivor as being edited as a template
-                        setEditingTemplateIndex(newIndex)
-                        
-                        // Open survivor pool to show the template survivor
-                        setShowSurvivorPool(true)
-                        showNotification('Template loaded in survivor pool. Edit and save as template when done.', 'success')
-                      }}
-                   >
-                     Edit Template
-                   </button>
+                    <button
+                      className="template-button edit-template-button"
+                        onClick={() => {
+                          if (!currentSettlement) return
+                          
+                          // Store current survivors state in component state
+                          setSurvivorsBeforeTemplateEdit(JSON.parse(JSON.stringify(currentSettlement.survivors)))
+                          
+                          // Create template survivor for editing
+                          const templateSurvivor = {
+                            ...JSON.parse(JSON.stringify(initialSurvivorData)),
+                            ...currentSettlement.survivorTemplate!.data,
+                            createdAt: new Date().toISOString()
+                          }
+                          
+                          const activeSurvivors = Object.values(currentSettlement.survivors).filter((surv) => surv !== null)
+                          
+                          // Move all active survivors to pool and add template to quadrant 1
+                          setAppState(prev => ({
+                            ...prev,
+                            settlements: prev.settlements.map(s =>
+                              s.id === prev.currentSettlementId
+                                ? {
+                                    ...s,
+                                    survivors: {
+                                      1: templateSurvivor,
+                                      2: null,
+                                      3: null,
+                                      4: null
+                                    },
+                                    removedSurvivors: [
+                                      ...s.removedSurvivors,
+                                      ...activeSurvivors
+                                    ],
+                                    templateEditInProgress: {
+                                      survivorsBefore: JSON.parse(JSON.stringify(currentSettlement.survivors)),
+                                      movedSurvivorsCount: activeSurvivors.length
+                                    }
+                                  }
+                                : s
+                            )
+                          }))
+                          
+                          // Mark that we're editing a template
+                          setEditingTemplateQuadrant(1)
+                          setFocusedQuadrant(1)
+                          
+                          showNotification('Survivors temporarily moved to pool. Edit template and save when done.', 'success')
+                        }}
+                    >
+                      Edit Template
+                    </button>
                    <button
                      className="template-button clear-template-button"
                      onClick={handleClearSurvivorTemplate}
@@ -2591,106 +2644,46 @@ function AppContent() {
                 <span>Survivor Pool ({currentSettlement?.removedSurvivors.length || 0})</span>
                 <span className="expand-icon">{showSurvivorPool ? '▼' : '▶'}</span>
               </div>
-               {showSurvivorPool && currentSettlement && (
-                 <div className="survivor-pool-list">
-                   {currentSettlement.removedSurvivors.length === 0 ? (
-                     <div className="empty-message">No survivors in pool</div>
-                   ) : (
-                     currentSettlement.removedSurvivors.map((survivor, index) => (
-                       <div key={index} className={`survivor-list-item deactivated ${editingTemplateIndex === index ? 'editing-template' : ''}`}>
-                         <div className="survivor-info">
-                           <div className="survivor-name">
-                             {survivor.name || `New Survivor`}
-                             {editingTemplateIndex === index && <span className="template-badge">Template</span>}
-                           </div>
-                           <div className="survivor-meta">
-                             Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                           </div>
-                         </div>
-                         <div className="survivor-actions">
-                            {editingTemplateIndex === index ? (
-                              <>
-                                <button
-                                  className="edit-button"
-                                  onClick={() => handleActivateSurvivor(index)}
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  className="save-template-button"
-                                  onClick={() => {
-                                    // Save the edited survivor as the template
-                                    handleSetSurvivorTemplate(survivor)
-                                    // Remove from pool
-                                    setAppState(prev => ({
-                                      ...prev,
-                                      settlements: prev.settlements.map(s =>
-                                        s.id === prev.currentSettlementId
-                                          ? {
-                                              ...s,
-                                              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index)
-                                            }
-                                          : s
-                                      )
-                                    }))
-                                    // Clear template editing state
-                                    setEditingTemplateIndex(null)
-                                    showNotification('Template saved and removed from pool', 'success')
-                                  }}
-                                >
-                                  Save Template
-                                </button>
-                                <button
-                                  className="cancel-template-button"
-                                  onClick={() => {
-                                    // Remove from pool without saving
-                                    setAppState(prev => ({
-                                      ...prev,
-                                      settlements: prev.settlements.map(s =>
-                                        s.id === prev.currentSettlementId
-                                          ? {
-                                              ...s,
-                                              removedSurvivors: s.removedSurvivors.filter((_, i) => i !== index)
-                                            }
-                                          : s
-                                      )
-                                    }))
-                                    // Clear template editing state
-                                    setEditingTemplateIndex(null)
-                                    showNotification('Template edit canceled', 'success')
-                                  }}
-                                >
-                                  Cancel
-                                </button>
-                              </>
-                            ) : (
-                             <>
-                               <button
-                                 className="activate-button"
-                                 onClick={() => handleActivateSurvivor(index)}
-                               >
-                                 Activate
-                               </button>
-                               <button
-                                 className="retire-button"
-                                 onClick={() => handleRetireSurvivor(index)}
-                               >
-                                 Retire
-                               </button>
-                               <button
-                                 className="deceased-button"
-                                 onClick={() => handleMarkDeceased(index)}
-                               >
-                                 Deceased
-                               </button>
-                             </>
-                           )}
-                         </div>
-                       </div>
-                     ))
-                   )}
-                 </div>
-               )}
+                {showSurvivorPool && currentSettlement && (
+                  <div className="survivor-pool-list">
+                    {currentSettlement.removedSurvivors.length === 0 ? (
+                      <div className="empty-message">No survivors in pool</div>
+                    ) : (
+                      currentSettlement.removedSurvivors.map((survivor, index) => (
+                        <div key={index} className="survivor-list-item deactivated">
+                          <div className="survivor-info">
+                            <div className="survivor-name">
+                              {survivor.name || `New Survivor`}
+                            </div>
+                            <div className="survivor-meta">
+                              Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                            </div>
+                          </div>
+                          <div className="survivor-actions">
+                            <button
+                              className="activate-button"
+                              onClick={() => handleActivateSurvivor(index)}
+                            >
+                              Activate
+                            </button>
+                            <button
+                              className="retire-button"
+                              onClick={() => handleRetireSurvivor(index)}
+                            >
+                              Retire
+                            </button>
+                            <button
+                              className="deceased-button"
+                              onClick={() => handleMarkDeceased(index)}
+                            >
+                              Deceased
+                            </button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                )}
             </div>
 
             <div className="retired-section">
@@ -2777,15 +2770,16 @@ function AppContent() {
           const focusedSurvivor = currentSettlement.survivors[focusedQuadrant]!
           return (
           <div className="focus-container">
-            <div className="focused-main-sheet">
-              <SurvivorSheet
-                key={`survivor-${focusedQuadrant}-focused`}
-                survivor={focusedSurvivor}
-                onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
-                onOpenGlossary={handleOpenGlossary}
-                glossaryTerms={glossaryData.terms}
-              />
-            </div>
+             <div className="focused-main-sheet">
+               <SurvivorSheet
+                 key={`survivor-${focusedQuadrant}-focused`}
+                 survivor={focusedSurvivor}
+                 onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
+                 onOpenGlossary={handleOpenGlossary}
+                 glossaryTerms={glossaryData.terms}
+                 isEditingTemplate={editingTemplateQuadrant === focusedQuadrant}
+               />
+             </div>
             <div className="secondary-sheet">
               <div className="auxiliary-notes-section">
                 <h3>Notes</h3>
