@@ -288,6 +288,7 @@ export function migrateData(data: any): AppState {
       removedSurvivors: data.removedSurvivors || data.archivedSurvivors || [],
       retiredSurvivors: data.retiredSurvivors || [],
       deceasedSurvivors: data.deceasedSurvivors || [],
+      survivorTemplate: data.survivorTemplate,
     })
 
     return {
