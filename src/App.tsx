@@ -2810,9 +2810,55 @@ function AppContent() {
                  glossaryTerms={glossaryData.terms}
                  isEditingTemplate={editingTemplateQuadrant === focusedQuadrant}
                />
-             </div>
-            <div className="secondary-sheet">
-              <div className="auxiliary-notes-section">
+              </div>
+             <div className="secondary-sheet">
+               {editingTemplateQuadrant === focusedQuadrant && (
+                 <div style={{ padding: '0.5rem', borderBottom: '2px solid #5a4a3a', marginBottom: '0.5rem' }}>
+                   <button 
+                     style={{
+                       padding: '0.4rem 0.8rem',
+                       fontSize: '0.85rem',
+                       fontWeight: '600',
+                       color: '#d4c5a9',
+                       backgroundColor: '#6a6a5a',
+                       border: 'none',
+                       borderRadius: '4px',
+                       cursor: 'pointer',
+                       width: '100%'
+                     }}
+                     onClick={() => {
+                       const survivor = currentSettlement?.survivors[focusedQuadrant]
+                       if (survivor) {
+                         handleSetSurvivorTemplate(survivor)
+                         
+                         // If we're editing a template, restore the original survivors
+                         if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
+                           setAppState(prev => ({
+                             ...prev,
+                             settlements: prev.settlements.map(s =>
+                               s.id === prev.currentSettlementId
+                                 ? {
+                                     ...s,
+                                     survivors: survivorsBeforeTemplateEdit,
+                                     removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
+                                     templateEditInProgress: undefined
+                                   }
+                                 : s
+                             )
+                           }))
+                           setEditingTemplateQuadrant(null)
+                           setSurvivorsBeforeTemplateEdit(null)
+                           setFocusedQuadrant(null)
+                           showNotification('Template saved and survivors restored', 'success')
+                         }
+                       }
+                     }}
+                   >
+                     💾 Save Template
+                   </button>
+                 </div>
+               )}
+               <div className="auxiliary-notes-section">
                 <h3>Notes</h3>
                 <textarea
                   className="auxiliary-notes-textarea"
