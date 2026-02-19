@@ -731,12 +731,33 @@ function AppContent() {
      })
    }
 
-  const handleOpenGlossary = (searchTerm?: string) => {
-    setGlossaryInitialQuery(searchTerm)
-    setShowGlossaryModal(true)
-  }
+   const handleOpenGlossary = (searchTerm?: string) => {
+     setGlossaryInitialQuery(searchTerm)
+     setShowGlossaryModal(true)
+   }
 
-  const handleUpdateInventory = (inventory: SettlementInventory) => {
+   const handleAddGlossaryTextToNotes = (text: string) => {
+     if (focusedQuadrant === null || !currentSettlement?.survivors[focusedQuadrant]) {
+       return
+     }
+     
+     const survivor = currentSettlement.survivors[focusedQuadrant]
+     const currentNotes = survivor.auxiliaryNotes || ''
+     
+     // Prepend the text: new text on top, existing text below
+     const updatedNotes = currentNotes 
+       ? `${text}\n\n${currentNotes}`
+       : text
+     
+     updateSurvivor(focusedQuadrant, {
+       ...survivor,
+       auxiliaryNotes: updatedNotes
+     })
+     
+     showNotification('Added to survivor notes', 'success')
+   }
+
+   const handleUpdateInventory = (inventory: SettlementInventory) => {
     setAppState(prev => ({
       ...prev,
       settlements: prev.settlements.map(s =>
@@ -3096,6 +3117,8 @@ function AppContent() {
         onLoadCategory={handleLoadCategory}
         loadingCategory={loadingCategory}
         onSearchWiki={searchAndLoadWikiTerms}
+        isSurvivorFocused={focusedQuadrant !== null && !isMobileDevice}
+        onAddTextToNotes={handleAddGlossaryTextToNotes}
       />
 
        <InventoryModal

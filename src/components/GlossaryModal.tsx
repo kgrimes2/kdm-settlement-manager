@@ -15,6 +15,8 @@ interface GlossaryModalProps {
   onLoadCategory: (slug: string) => Promise<void>
   loadingCategory: string | null
   onSearchWiki: (query: string) => Promise<void>
+  isSurvivorFocused?: boolean
+  onAddTextToNotes?: (text: string) => void
 }
 
 type ViewMode = 'search' | 'categories' | 'category-detail' | 'scan'
@@ -23,7 +25,7 @@ type OcrStatus = 'idle' | 'processing' | 'done' | 'error'
 export default function GlossaryModal({
   isOpen, onClose, glossaryTerms, initialQuery, lastUpdated,
   wikiCategories, loadedWikiTerms, onLoadCategory, loadingCategory,
-  onSearchWiki,
+  onSearchWiki, isSurvivorFocused, onAddTextToNotes,
 }: GlossaryModalProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
@@ -424,7 +426,7 @@ export default function GlossaryModal({
                   >
                     ← Back to {selectedCategory.category}
                   </button>
-                  {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
+                   {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource, isSurvivorFocused, onAddTextToNotes)}
                 </div>
               ) : (
                 <div className="glossary-results">
@@ -573,9 +575,9 @@ export default function GlossaryModal({
                   setOcrResults([])
                 }}
               >
-                ← Back to scan
-              </button>
-              {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
+               ← Back to scan
+               </button>
+               {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource, isSurvivorFocused, onAddTextToNotes)}
             </div>
           )}
 
@@ -587,8 +589,8 @@ export default function GlossaryModal({
                 onClick={() => setSelectedTerm(null)}
               >
                 ← Back to search
-              </button>
-              {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource)}
+               </button>
+               {renderTermContent(selectedTerm, allTerms, setSelectedTerm, getTermSource, isSurvivorFocused, onAddTextToNotes)}
             </div>
           )}
         </div>
@@ -623,6 +625,8 @@ function renderTermContent(
   allTerms: GlossaryTerm[],
   setSelectedTerm: (t: GlossaryTerm | null) => void,
   getTermSource: (t: GlossaryTerm) => 'official' | 'wiki',
+  isSurvivorFocused?: boolean,
+  onAddTextToNotes?: (text: string) => void,
 ) {
   return (
     <div className="glossary-term-content">
@@ -635,7 +639,18 @@ function renderTermContent(
       {term.category && (
         <div className="glossary-term-category">{term.category}</div>
       )}
-      <div className="glossary-term-definition">{term.definition}</div>
+      <div className="glossary-term-definition-container">
+        <div className="glossary-term-definition">{term.definition}</div>
+        {isSurvivorFocused && onAddTextToNotes && (
+          <button
+            className="glossary-add-to-notes-btn"
+            onClick={() => onAddTextToNotes(term.definition)}
+            title="Add this text to the focused survivor's notes"
+          >
+            Add to Notes
+          </button>
+        )}
+      </div>
 
       {term.relatedTerms && term.relatedTerms.length > 0 && (
         <div className="glossary-related-terms">

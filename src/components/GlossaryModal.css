@@ -311,6 +311,41 @@
   white-space: pre-wrap;
 }
 
+.glossary-term-definition-container {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.glossary-term-definition-container .glossary-term-definition {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.glossary-add-to-notes-btn {
+  padding: 0.5rem 0.75rem;
+  background-color: #8b6f47;
+  color: #e4d5b9;
+  border: 1px solid #5a4a3a;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.glossary-add-to-notes-btn:hover {
+  background-color: #9a7f57;
+  border-color: #3a2a1a;
+}
+
+.glossary-add-to-notes-btn:active {
+  background-color: #7a5f37;
+}
+
 .glossary-related-terms {
   padding: 1rem;
   background-color: rgba(139, 69, 19, 0.1);
