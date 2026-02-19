@@ -69,6 +69,7 @@ function AppContent() {
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
+  const [showFocusActionsDropdown, setShowFocusActionsDropdown] = useState(false)
   type MarkerState = { state: 'dashed' | 'solid'; color: string; id: string }
   const [markers, setMarkers] = useState<Map<1 | 2 | 3 | 4, MarkerState[]>>(new Map())
   const [showMarkerMode, setShowMarkerMode] = useState(false)
@@ -274,7 +275,9 @@ function AppContent() {
       }
 
       if (e.key === 'Escape') {
-        if (showSettlementManagement) {
+        if (showFocusActionsDropdown) {
+          setShowFocusActionsDropdown(false)
+        } else if (showSettlementManagement) {
           closeSettlementManagement()
         } else if (showSurvivorList) {
           closeSurvivorList()
@@ -559,6 +562,23 @@ function AppContent() {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [show2StateDropdown, show3StateDropdown])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.focus-actions-dropdown-container')) {
+        setShowFocusActionsDropdown(false)
+      }
+    }
+
+    if (showFocusActionsDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showFocusActionsDropdown])
 
   const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
     e.stopPropagation()
@@ -928,9 +948,18 @@ function AppContent() {
 
   const handleCreateNewSurvivor = () => {
     const vacantQuadrant = findVacantQuadrant()
-    const newSurvivor = {
-      ...JSON.parse(JSON.stringify(initialSurvivorData)),
-      createdAt: new Date().toISOString()
+    const settlement = currentSettlement
+    
+    // Start with initial survivor data, then merge template if it exists
+    let newSurvivor = JSON.parse(JSON.stringify(initialSurvivorData))
+    if (settlement?.survivorTemplate) {
+      newSurvivor = {
+        ...newSurvivor,
+        ...settlement.survivorTemplate.data,
+        createdAt: new Date().toISOString()
+      }
+    } else {
+      newSurvivor.createdAt = new Date().toISOString()
     }
 
     if (vacantQuadrant !== null) {
@@ -966,6 +995,39 @@ function AppContent() {
       setShowSurvivorPool(true)
       showNotification('New survivor created in Survivor Pool', 'success')
     }
+  }
+
+  const handleSetSurvivorTemplate = (survivor: SurvivorData) => {
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s =>
+        s.id === prev.currentSettlementId
+          ? {
+              ...s,
+              survivorTemplate: {
+                createdAt: new Date().toISOString(),
+                data: survivor
+              }
+            }
+          : s
+      )
+    }))
+    showNotification('Survivor template saved', 'success')
+  }
+
+  const handleClearSurvivorTemplate = () => {
+    setAppState(prev => ({
+      ...prev,
+      settlements: prev.settlements.map(s =>
+        s.id === prev.currentSettlementId
+          ? {
+              ...s,
+              survivorTemplate: undefined
+            }
+          : s
+      )
+    }))
+    showNotification('Survivor template cleared', 'success')
   }
 
    const handleRetireFocused = () => {
@@ -2258,9 +2320,59 @@ function AppContent() {
         </div>
          {focusedQuadrant !== null && (
            <div className="focus-mode-actions">
-             <button className="toolbar-button deactivate-focus-button" onClick={() => handleDeactivateSurvivor(focusedQuadrant)}>Deactivate</button>
-             <button className="toolbar-button retire-focus-button" onClick={handleRetireFocused}>Retire</button>
-             <button className="toolbar-button deceased-focus-button" onClick={handleDeceasedFocused}>Deceased</button>
+             <div className="focus-actions-dropdown-container">
+               <button 
+                 className="focus-actions-dropdown-btn"
+                 onClick={() => setShowFocusActionsDropdown(!showFocusActionsDropdown)}
+                 title="Survivor actions"
+               >
+                 ⚙ Actions ▼
+               </button>
+               {showFocusActionsDropdown && (
+                 <div className="focus-actions-dropdown-menu">
+                   <button 
+                     className="focus-action-menu-item deactivate"
+                     onClick={() => {
+                       handleDeactivateSurvivor(focusedQuadrant)
+                       setShowFocusActionsDropdown(false)
+                     }}
+                   >
+                     Deactivate
+                   </button>
+                   <button 
+                     className="focus-action-menu-item retire"
+                     onClick={() => {
+                       handleRetireFocused()
+                       setShowFocusActionsDropdown(false)
+                     }}
+                   >
+                     Retire
+                   </button>
+                   <button 
+                     className="focus-action-menu-item deceased"
+                     onClick={() => {
+                       handleDeceasedFocused()
+                       setShowFocusActionsDropdown(false)
+                     }}
+                   >
+                     Deceased
+                   </button>
+                   <div className="focus-action-menu-divider"></div>
+                   <button 
+                     className="focus-action-menu-item template"
+                     onClick={() => {
+                       const survivor = currentSettlement?.survivors[focusedQuadrant]
+                       if (survivor) {
+                         handleSetSurvivorTemplate(survivor)
+                       }
+                       setShowFocusActionsDropdown(false)
+                     }}
+                   >
+                     Save as Template
+                   </button>
+                 </div>
+               )}
+             </div>
              {!isMobileDevice && (
                <button
                  className="return-to-overview-button"
@@ -2330,6 +2442,46 @@ function AppContent() {
                   >
                     Clear All Gear Bonuses
                   </button>
+                </div>
+              )}
+            </div>
+
+            <div className="survivor-template-section">
+              <div className="survivor-template-header">
+                <h3>Survivor Template</h3>
+                {currentSettlement?.survivorTemplate && (
+                  <span className="template-badge">Active</span>
+                )}
+              </div>
+               {currentSettlement?.survivorTemplate ? (
+                 <div className="template-actions">
+                   <p className="template-info">
+                     Template set since {new Date(currentSettlement.survivorTemplate.createdAt).toLocaleDateString()}
+                   </p>
+                   <button
+                     className="template-button edit-template-button"
+                     onClick={() => {
+                       if (focusedQuadrant === null) {
+                         setFocusedQuadrant(1)
+                       }
+                       const survivor = currentSettlement?.survivors[focusedQuadrant || 1]
+                       if (survivor) {
+                         handleSetSurvivorTemplate({...survivor, ...currentSettlement.survivorTemplate!.data})
+                       }
+                     }}
+                   >
+                     Edit Template
+                   </button>
+                   <button
+                     className="template-button clear-template-button"
+                     onClick={handleClearSurvivorTemplate}
+                   >
+                     Clear Template
+                   </button>
+                 </div>
+               ) : (
+                <div className="template-empty">
+                  <p>No template set. Create a survivor with desired stats, then click "Save as Template" in focus mode.</p>
                 </div>
               )}
             </div>
