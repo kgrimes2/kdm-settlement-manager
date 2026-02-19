@@ -662,19 +662,25 @@ function AppContent() {
     })
   }
 
-  const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
-    // Only toggle if clicking directly on the quadrant, not on child elements
-    if (e.target === e.currentTarget) {
-      setFocusedQuadrant(focusedQuadrant === quadrant ? null : quadrant)
-    }
-  }
+   const handleQuadrantClick = (quadrant: QuadrantId, e: React.MouseEvent) => {
+     // Prevent switching survivors while editing template
+     if (editingTemplateQuadrant !== null) return
+     
+     // Only toggle if clicking directly on the quadrant, not on child elements
+     if (e.target === e.currentTarget) {
+       setFocusedQuadrant(focusedQuadrant === quadrant ? null : quadrant)
+     }
+   }
 
-  const handleContainerClick = (e: React.MouseEvent) => {
-    // Clicking on container (whitespace) zooms out
-    if (e.target === e.currentTarget && focusedQuadrant !== null) {
-      setFocusedQuadrant(null)
-    }
-  }
+   const handleContainerClick = (e: React.MouseEvent) => {
+     // Prevent switching survivors while editing template
+     if (editingTemplateQuadrant !== null) return
+     
+     // Clicking on container (whitespace) zooms out
+     if (e.target === e.currentTarget && focusedQuadrant !== null) {
+       setFocusedQuadrant(null)
+     }
+   }
 
   const handlePreviousQuadrant = () => {
     const newQuadrant = (focusedQuadrant || activeQuadrant) === 1 ? 4 : ((focusedQuadrant || activeQuadrant) - 1) as 1 | 2 | 3 | 4
@@ -2377,90 +2383,93 @@ function AppContent() {
         </div>
          {focusedQuadrant !== null && (
            <div className="focus-mode-actions">
-             <div className="focus-actions-dropdown-container">
-               <button 
-                 className="focus-actions-dropdown-btn"
-                 onClick={() => setShowFocusActionsDropdown(!showFocusActionsDropdown)}
-                 title="Survivor actions"
-               >
-                 ⚙ Actions ▼
-               </button>
-               {showFocusActionsDropdown && (
-                 <div className="focus-actions-dropdown-menu">
-                   <button 
-                     className="focus-action-menu-item deactivate"
-                     onClick={() => {
-                       handleDeactivateSurvivor(focusedQuadrant)
-                       setShowFocusActionsDropdown(false)
-                     }}
-                   >
-                     Deactivate
-                   </button>
-                   <button 
-                     className="focus-action-menu-item retire"
-                     onClick={() => {
-                       handleRetireFocused()
-                       setShowFocusActionsDropdown(false)
-                     }}
-                   >
-                     Retire
-                   </button>
-                   <button 
-                     className="focus-action-menu-item deceased"
-                     onClick={() => {
-                       handleDeceasedFocused()
-                       setShowFocusActionsDropdown(false)
-                     }}
-                   >
-                     Deceased
-                   </button>
-                    <div className="focus-action-menu-divider"></div>
-                    {editingTemplateQuadrant === focusedQuadrant && (
-                       <button 
-                         className="focus-action-menu-item template"
-                         onClick={() => {
-                           const survivor = currentSettlement?.survivors[focusedQuadrant]
-                           if (survivor) {
-                             handleSetSurvivorTemplate(survivor)
-                             
-                             // If we're editing a template, restore the original survivors
-                             if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
-                               setAppState(prev => ({
-                                 ...prev,
-                                 settlements: prev.settlements.map(s =>
-                                   s.id === prev.currentSettlementId
-                                     ? {
-                                         ...s,
-                                         survivors: survivorsBeforeTemplateEdit,
-                                         removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
-                                         templateEditInProgress: undefined
-                                       }
-                                     : s
-                                 )
-                               }))
-                               setEditingTemplateQuadrant(null)
-                               setSurvivorsBeforeTemplateEdit(null)
-                               setFocusedQuadrant(null)
-                               showNotification('Template saved and survivors restored', 'success')
-                             }
-                           }
-                           setShowFocusActionsDropdown(false)
-                         }}
-                       >
-                         Save Template
-                       </button>
+              <div className="focus-actions-dropdown-container">
+                {editingTemplateQuadrant === focusedQuadrant ? (
+                  // When editing template, show only "Save Template" button, not a dropdown
+                  <button 
+                    className="focus-actions-dropdown-btn save-template-only"
+                    onClick={() => {
+                      const survivor = currentSettlement?.survivors[focusedQuadrant]
+                      if (survivor) {
+                        handleSetSurvivorTemplate(survivor)
+                        
+                        // If we're editing a template, restore the original survivors
+                        if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
+                          setAppState(prev => ({
+                            ...prev,
+                            settlements: prev.settlements.map(s =>
+                              s.id === prev.currentSettlementId
+                                ? {
+                                    ...s,
+                                    survivors: survivorsBeforeTemplateEdit,
+                                    removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
+                                    templateEditInProgress: undefined
+                                  }
+                                : s
+                            )
+                          }))
+                          setEditingTemplateQuadrant(null)
+                          setSurvivorsBeforeTemplateEdit(null)
+                          setFocusedQuadrant(null)
+                          showNotification('Template saved and survivors restored', 'success')
+                        }
+                      }
+                    }}
+                    title="Save template changes"
+                  >
+                    💾 Save Template
+                  </button>
+                ) : (
+                  <>
+                    <button 
+                      className="focus-actions-dropdown-btn"
+                      onClick={() => setShowFocusActionsDropdown(!showFocusActionsDropdown)}
+                      title="Survivor actions"
+                    >
+                      ⚙ Actions ▼
+                    </button>
+                    {showFocusActionsDropdown && (
+                      <div className="focus-actions-dropdown-menu">
+                        <button 
+                          className="focus-action-menu-item deactivate"
+                          onClick={() => {
+                            handleDeactivateSurvivor(focusedQuadrant)
+                            setShowFocusActionsDropdown(false)
+                          }}
+                        >
+                          Deactivate
+                        </button>
+                        <button 
+                          className="focus-action-menu-item retire"
+                          onClick={() => {
+                            handleRetireFocused()
+                            setShowFocusActionsDropdown(false)
+                          }}
+                        >
+                          Retire
+                        </button>
+                        <button 
+                          className="focus-action-menu-item deceased"
+                          onClick={() => {
+                            handleDeceasedFocused()
+                            setShowFocusActionsDropdown(false)
+                          }}
+                        >
+                          Deceased
+                        </button>
+                      </div>
                     )}
-                 </div>
-               )}
-             </div>
-             {!isMobileDevice && (
-               <button
-                 className="return-to-overview-button"
-                 onClick={() => setFocusedQuadrant(null)}
-               >
-                 ↩️ Return to Overview
-               </button>
-             )}
+                  </>
+                )}
+              </div>
+              {!isMobileDevice && editingTemplateQuadrant !== focusedQuadrant && (
+                <button
+                  className="return-to-overview-button"
+                  onClick={() => setFocusedQuadrant(null)}
+                >
+                  ↩️ Return to Overview
+                </button>
+              )}
            </div>
          )}
         </div>
@@ -2540,77 +2549,68 @@ function AppContent() {
                     </p>
                   )}
                    <button
-                     className="template-button edit-template-button"
-                       onClick={() => {
-                         if (!currentSettlement) return
-                         
-                         // Determine template data to use
-                         const templateData = currentSettlement.survivorTemplate 
-                           ? { ...currentSettlement.survivorTemplate.data }
-                           : JSON.parse(JSON.stringify(initialSurvivorData))
-                         
-                         // If no template exists, create it first
-                         if (!currentSettlement.survivorTemplate) {
-                           setAppState(prev => ({
-                             ...prev,
-                             settlements: prev.settlements.map(s =>
-                               s.id === prev.currentSettlementId
-                                 ? {
-                                     ...s,
-                                     survivorTemplate: {
-                                       createdAt: new Date().toISOString(),
-                                       data: templateData
-                                     }
-                                   }
-                                 : s
-                             )
-                           }))
-                         }
-                         
-                         // Store current survivors state in component state
-                         setSurvivorsBeforeTemplateEdit(JSON.parse(JSON.stringify(currentSettlement.survivors)))
-                         
-                         // Create template survivor for editing
-                         const templateSurvivor = {
-                           ...JSON.parse(JSON.stringify(initialSurvivorData)),
-                           ...templateData,
-                           createdAt: new Date().toISOString()
-                         }
-                         
-                         const activeSurvivors = Object.values(currentSettlement.survivors).filter((surv) => surv !== null)
-                         
-                         // Move all active survivors to pool and add template to quadrant 1
-                         setAppState(prev => ({
-                           ...prev,
-                           settlements: prev.settlements.map(s =>
-                             s.id === prev.currentSettlementId
-                               ? {
-                                   ...s,
-                                   survivors: {
-                                     1: templateSurvivor,
-                                     2: null,
-                                     3: null,
-                                     4: null
-                                   },
-                                   removedSurvivors: [
-                                     ...s.removedSurvivors,
-                                     ...activeSurvivors
-                                   ],
-                                   templateEditInProgress: {
-                                     survivorsBefore: JSON.parse(JSON.stringify(currentSettlement.survivors)),
-                                     movedSurvivorsCount: activeSurvivors.length
-                                   }
-                                 }
-                               : s
-                           )
-                         }))
-                         
-                         // Mark that we're editing a template
-                         setEditingTemplateQuadrant(1)
-                         setFocusedQuadrant(1)
-                         
-                         showNotification('Survivors temporarily moved to pool. Edit template and save when done.', 'success')
-                       }}
+                      className="template-button edit-template-button"
+                        onClick={() => {
+                          if (!currentSettlement) return
+                          
+                          // Close settlement manager sidebar immediately
+                          setShowSettlementManagement(false)
+                          
+                          // Determine template data to use
+                          const templateData = currentSettlement.survivorTemplate 
+                            ? { ...currentSettlement.survivorTemplate.data }
+                            : JSON.parse(JSON.stringify(initialSurvivorData))
+                          
+                          // Create template survivor for editing
+                          const templateSurvivor = {
+                            ...JSON.parse(JSON.stringify(initialSurvivorData)),
+                            ...templateData,
+                            createdAt: new Date().toISOString()
+                          }
+                          
+                          const activeSurvivors = Object.values(currentSettlement.survivors).filter((surv) => surv !== null)
+                          
+                          // Update app state with template creation/editing setup
+                          setAppState(prev => ({
+                            ...prev,
+                            settlements: prev.settlements.map(s =>
+                              s.id === prev.currentSettlementId
+                                ? {
+                                    ...s,
+                                    // Create template if it doesn't exist
+                                    survivorTemplate: s.survivorTemplate || {
+                                      createdAt: new Date().toISOString(),
+                                      data: templateData
+                                    },
+                                    // Move all active survivors to pool and add template to quadrant 1
+                                    survivors: {
+                                      1: templateSurvivor,
+                                      2: null,
+                                      3: null,
+                                      4: null
+                                    },
+                                    removedSurvivors: [
+                                      ...s.removedSurvivors,
+                                      ...activeSurvivors
+                                    ],
+                                    templateEditInProgress: {
+                                      survivorsBefore: JSON.parse(JSON.stringify(currentSettlement.survivors)),
+                                      movedSurvivorsCount: activeSurvivors.length
+                                    }
+                                  }
+                                : s
+                            )
+                          }))
+                          
+                           // Mark that we're editing a template
+                           setEditingTemplateQuadrant(1)
+                           setFocusedQuadrant(1)
+                           
+                           // Store current survivors state in component state
+                           setSurvivorsBeforeTemplateEdit(JSON.parse(JSON.stringify(currentSettlement.survivors)))
+                           
+                           showNotification('Survivors temporarily moved to pool. Edit template and save when done.', 'success')
+                        }}
                    >
                      Edit Template
                    </button>
