@@ -2475,10 +2475,10 @@ function AppContent() {
           <div
             className={`survivor-list-panel ${isClosingDrawer ? 'closing' : ''}`}
             onClick={(e) => e.stopPropagation()}
-          >
-            <div className="survivor-list-header">
-              <h2>{currentSettlement?.name || 'Settlement'} Survivors</h2>
-              <div className="header-actions">
+           >
+             <div className="survivor-list-header">
+               <h2>{currentSettlement?.name || 'Settlement'} Survivors</h2>
+               <div className="header-actions">
                 <button
                   className="create-survivor-button"
                   onClick={handleCreateNewSurvivor}
