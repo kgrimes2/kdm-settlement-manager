@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-02-18
+
+### Fixed
+- **Survivor Log now visible on mobile** - Survivor activity log was only showing on desktop, now displays in mobile secondary sheet
+  - Log section appears after Permanent Severe Injuries in mobile view
+  - Maintains full functionality: expandable/collapsible, entry details modal, and consolidation counts
+  - Properly styled for mobile touch interactions
+
 ## [1.4.0] - 2026-02-17
 
 ### Added

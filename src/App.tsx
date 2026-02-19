@@ -19,8 +19,9 @@ import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
 import { detectChanges, addLogEntry } from './utils/survivorLogging'
+import packageJson from '../package.json'
 
-const APP_VERSION = '1.4.0'
+const APP_VERSION = packageJson.version
 
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
@@ -1151,6 +1152,22 @@ function AppContent() {
       }))
 
       showNotification(`Named save "${saveName}" created`, 'success')
+
+      // Sync creation to DynamoDB if user is logged in
+      if (user && dataService) {
+        setTimeout(() => {
+          dataService.saveUserData(settlement.id, {
+            survivors: [],
+            settlements: [settlement],
+            inventory: {
+              [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+            },
+            namedSaves: [...appStateRef.current.namedSaves, save]
+          }).catch(error => {
+            console.error('Failed to sync named save creation to cloud:', error)
+          })
+        }, 0)
+      }
     }
 
      const handleRestoreNamedSave = (saveId: string) => {
@@ -2952,68 +2969,112 @@ function AppContent() {
                 placeholder="Add notes about this survivor..."
               />
             </div>
-            <div className="permanent-injuries-section">
-              <h3>Permanent Severe Injuries</h3>
-              <div className="injury-legend">
-                <span className="legend-item">
-                  <span className="legend-box red-legend"></span>
-                  Red background = Retired
-                </span>
-              </div>
-              {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                <div key={location} className="injury-location-group">
-                  <div
-                    className="injury-location-header"
-                    onClick={() => toggleInjuryCollapse(location)}
-                  >
-                    <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                    <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
-                  </div>
-                  {!collapsedInjuries.has(location) && (
-                    focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                      <div className="no-injuries">No injuries</div>
-                    ) : (
-                      focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                        <div key={injuryIndex} className="injury-item">
-                          <span className="injury-name">{injury.name}</span>
-                          <div className="injury-checkboxes">
-                            {injury.checkboxes.map((checked, checkboxIndex) => {
-                              const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                              const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                              return (
-                                <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                  <input
-                                    type="checkbox"
-                                    checked={checked}
-                                    onChange={() => {
-                                      const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                      newInjuries[injuryIndex] = {
-                                        ...newInjuries[injuryIndex],
-                                        checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                          i === checkboxIndex ? !cb : cb
-                                        )
-                                      }
-                                      updateSurvivor(focusedQuadrant, {
-                                        ...focusedSurvivor,
-                                        permanentInjuries: {
-                                          ...focusedSurvivor.permanentInjuries,
-                                          [location]: newInjuries
-                                        }
-                                      })
-                                    }}
-                                  />
-                                </label>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      ))
-                    )
-                  )}
+             <div className="permanent-injuries-section">
+               <h3>Permanent Severe Injuries</h3>
+               <div className="injury-legend">
+                 <span className="legend-item">
+                   <span className="legend-box red-legend"></span>
+                   Red background = Retired
+                 </span>
+               </div>
+               {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
+                 <div key={location} className="injury-location-group">
+                   <div
+                     className="injury-location-header"
+                     onClick={() => toggleInjuryCollapse(location)}
+                   >
+                     <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
+                     <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
+                   </div>
+                   {!collapsedInjuries.has(location) && (
+                     focusedSurvivor.permanentInjuries[location].length === 0 ? (
+                       <div className="no-injuries">No injuries</div>
+                     ) : (
+                       focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
+                         <div key={injuryIndex} className="injury-item">
+                           <span className="injury-name">{injury.name}</span>
+                           <div className="injury-checkboxes">
+                             {injury.checkboxes.map((checked, checkboxIndex) => {
+                               const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
+                               const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
+                               return (
+                                 <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
+                                   <input
+                                     type="checkbox"
+                                     checked={checked}
+                                     onChange={() => {
+                                       const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
+                                       newInjuries[injuryIndex] = {
+                                         ...newInjuries[injuryIndex],
+                                         checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
+                                           i === checkboxIndex ? !cb : cb
+                                         )
+                                       }
+                                       updateSurvivor(focusedQuadrant, {
+                                         ...focusedSurvivor,
+                                         permanentInjuries: {
+                                           ...focusedSurvivor.permanentInjuries,
+                                           [location]: newInjuries
+                                         }
+                                       })
+                                     }}
+                                   />
+                                 </label>
+                               )
+                             })}
+                           </div>
+                         </div>
+                       ))
+                     )
+                   )}
+                 </div>
+               ))}
+             </div>
+             <div className="survivor-log-section">
+                <div
+                  className="survivor-log-header"
+                  onClick={() => setCollapsedInjuries(prev => {
+                    const next = new Set(prev)
+                    next.has('survivorLog') ? next.delete('survivorLog') : next.add('survivorLog')
+                    return next
+                  })}
+                  title="Keeps last 50 changes"
+                >
+                  <h3>Survivor Log {focusedSurvivor.survivorLog.length > 0 ? `(${focusedSurvivor.survivorLog.length}/50)` : ''}</h3>
+                  <span className="expand-icon">{collapsedInjuries.has('survivorLog') ? '▶' : '▼'}</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                {!collapsedInjuries.has('survivorLog') && (
+                  <div className="log-content">
+                    {focusedSurvivor.survivorLog.length === 0 ? (
+                      <div className="no-log-message">No changes recorded yet</div>
+                    ) : (
+                      <div className="log-entries">
+                        {[...focusedSurvivor.survivorLog].reverse().map((entry, idx) => (
+                          <div 
+                            key={idx} 
+                            className="log-entry"
+                            onClick={() => setSelectedLogEntry({ index: idx, entry })}
+                          >
+                            <div className="log-timestamp">
+                              {new Date(entry.timestamp).toLocaleString([], {
+                                month: 'short',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              })}
+                            </div>
+                            <div className="log-attribute-compact">
+                              {entry.attribute}
+                              {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+           </div>
         )
       })()}
 

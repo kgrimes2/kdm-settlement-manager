@@ -2659,6 +2659,10 @@
   margin-bottom: 1.5rem;
 }
 
+.mobile-secondary-sheet .survivor-log-section {
+  margin-bottom: 1rem;
+}
+
 .mobile-secondary-sheet .auxiliary-notes-section {
   min-height: 200px;
 }
