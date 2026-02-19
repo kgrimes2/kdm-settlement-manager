@@ -108,6 +108,7 @@ function AppContent() {
     const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
+    const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
 
   // Wiki state
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
@@ -1828,13 +1829,14 @@ function AppContent() {
           >
             <div className="settlement-management-header">
               <h2>Settlement Management</h2>
-              <button
-                className="close-button"
-                onClick={() => closeSettlementManagement()}
-                aria-label="Close"
-              >
-                ×
-              </button>
+               <button
+                 className="close-button"
+                 ref={settlementCloseButtonRef}
+                 onClick={() => closeSettlementManagement()}
+                 aria-label="Close"
+               >
+                 ×
+               </button>
             </div>
              <div className="settlement-management-content">
                <div className="active-settlement-section">
@@ -2552,6 +2554,9 @@ function AppContent() {
                       className="template-button edit-template-button"
                         onClick={() => {
                           if (!currentSettlement) return
+                          
+                          // Click the settlement close button to close the drawer
+                          settlementCloseButtonRef.current?.click()
                           
                           // Determine template data to use
                           const templateData = currentSettlement.survivorTemplate 
