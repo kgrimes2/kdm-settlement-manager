@@ -2555,8 +2555,14 @@ function AppContent() {
                         onClick={() => {
                           if (!currentSettlement) return
                           
-                          // Click the settlement close button to close the drawer
-                          settlementCloseButtonRef.current?.click()
+                          // Close the settlement management drawer
+                          if (!isClosingSettlementDrawer) {
+                            setIsClosingSettlementDrawer(true)
+                            setTimeout(() => {
+                              setShowSettlementManagement(false)
+                              setIsClosingSettlementDrawer(false)
+                            }, 300)
+                          }
                           
                           // Determine template data to use
                           const templateData = currentSettlement.survivorTemplate 
