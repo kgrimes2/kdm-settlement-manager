@@ -71,7 +71,6 @@ function AppContent() {
   const [confirmDialog, setConfirmDialog] = useState<{ message: string; onConfirm: () => void } | null>(null)
   const [isMobileDevice, setIsMobileDevice] = useState(false)
   const [showMobileToolbar, setShowMobileToolbar] = useState(false)
-  const [showFocusActionsDropdown, setShowFocusActionsDropdown] = useState(false)
   type MarkerState = { state: 'dashed' | 'solid'; color: string; id: string }
   const [markers, setMarkers] = useState<Map<1 | 2 | 3 | 4, MarkerState[]>>(new Map())
   const [showMarkerMode, setShowMarkerMode] = useState(false)
@@ -311,10 +310,13 @@ function AppContent() {
         return
       }
 
+      // Don't allow escape when editing template
+      if (editingTemplateQuadrant !== null) {
+        return
+      }
+
       if (e.key === 'Escape') {
-        if (showFocusActionsDropdown) {
-          setShowFocusActionsDropdown(false)
-        } else if (showSettlementManagement) {
+        if (showSettlementManagement) {
           closeSettlementManagement()
         } else if (showSurvivorList) {
           closeSurvivorList()
@@ -598,26 +600,9 @@ function AppContent() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [show2StateDropdown, show3StateDropdown])
+   }, [show2StateDropdown, show3StateDropdown])
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement
-      if (!target.closest('.focus-actions-dropdown-container')) {
-        setShowFocusActionsDropdown(false)
-      }
-    }
-
-    if (showFocusActionsDropdown) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [showFocusActionsDropdown])
-
-  const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
+   const addMarker = (quadrant: 1 | 2 | 3 | 4, e: React.MouseEvent) => {
     e.stopPropagation()
     setMarkers(prev => {
       const newMarkers = new Map(prev)
@@ -1059,24 +1044,6 @@ function AppContent() {
       setShowSurvivorPool(true)
       showNotification('New survivor created in Survivor Pool', 'success')
     }
-  }
-
-  const handleSetSurvivorTemplate = (survivor: SurvivorData) => {
-    setAppState(prev => ({
-      ...prev,
-      settlements: prev.settlements.map(s =>
-        s.id === prev.currentSettlementId
-          ? {
-              ...s,
-              survivorTemplate: {
-                createdAt: new Date().toISOString(),
-                data: survivor
-              }
-            }
-          : s
-      )
-    }))
-    showNotification('Survivor template saved', 'success')
   }
 
   const handleClearSurvivorTemplate = () => {
@@ -2043,7 +2010,7 @@ function AppContent() {
           ☰
         </button>
         <h1 className={`mobile-title ${focusedQuadrant !== null ? 'show-in-focus' : ''}`}>KDM:SM v{APP_VERSION}</h1>
-        <div className={`mobile-nav ${focusedQuadrant !== null ? 'show-nav' : ''}`}>
+         <div className={`mobile-nav ${focusedQuadrant !== null && editingTemplateQuadrant === null ? 'show-nav' : ''}`}>
           <button
             className="nav-button"
             onClick={handlePreviousQuadrant}
@@ -2386,83 +2353,106 @@ function AppContent() {
          {focusedQuadrant !== null && (
            <div className="focus-mode-actions">
               <div className="focus-actions-dropdown-container">
-                {editingTemplateQuadrant === focusedQuadrant ? (
-                  // When editing template, show only "Save Template" button, not a dropdown
-                  <button 
-                    className="focus-actions-dropdown-btn save-template-only"
-                    onClick={() => {
-                      const survivor = currentSettlement?.survivors[focusedQuadrant]
-                      if (survivor) {
-                        handleSetSurvivorTemplate(survivor)
-                        
-                        // If we're editing a template, restore the original survivors
-                        if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
-                          setAppState(prev => ({
-                            ...prev,
-                            settlements: prev.settlements.map(s =>
-                              s.id === prev.currentSettlementId
-                                ? {
-                                    ...s,
-                                    survivors: survivorsBeforeTemplateEdit,
-                                    removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
-                                    templateEditInProgress: undefined
-                                  }
-                                : s
-                            )
-                          }))
-                          setEditingTemplateQuadrant(null)
-                          setSurvivorsBeforeTemplateEdit(null)
-                          setFocusedQuadrant(null)
-                          showNotification('Template saved and survivors restored', 'success')
-                        }
-                      }
-                    }}
-                    title="Save template changes"
-                  >
-                    💾 Save Template
-                  </button>
-                ) : (
-                  <>
-                    <button 
-                      className="focus-actions-dropdown-btn"
-                      onClick={() => setShowFocusActionsDropdown(!showFocusActionsDropdown)}
-                      title="Survivor actions"
-                    >
-                      ⚙ Actions ▼
-                    </button>
-                    {showFocusActionsDropdown && (
-                      <div className="focus-actions-dropdown-menu">
-                        <button 
-                          className="focus-action-menu-item deactivate"
-                          onClick={() => {
-                            handleDeactivateSurvivor(focusedQuadrant)
-                            setShowFocusActionsDropdown(false)
-                          }}
-                        >
-                          Deactivate
-                        </button>
-                        <button 
-                          className="focus-action-menu-item retire"
-                          onClick={() => {
-                            handleRetireFocused()
-                            setShowFocusActionsDropdown(false)
-                          }}
-                        >
-                          Retire
-                        </button>
-                        <button 
-                          className="focus-action-menu-item deceased"
-                          onClick={() => {
-                            handleDeceasedFocused()
-                            setShowFocusActionsDropdown(false)
-                          }}
-                        >
-                          Deceased
-                        </button>
-                      </div>
-                    )}
-                  </>
-                )}
+                 {editingTemplateQuadrant === focusedQuadrant ? (
+                   // When editing template, show Save and Cancel buttons
+                   <>
+                      <button 
+                        className="focus-actions-dropdown-btn save-template-only"
+                        onClick={() => {
+                          const survivor = currentSettlement?.survivors[focusedQuadrant]
+                          if (survivor) {
+                            // Save template and restore survivors in a single state update
+                            setAppState(prev => ({
+                              ...prev,
+                              settlements: prev.settlements.map(s =>
+                                s.id === prev.currentSettlementId
+                                  ? {
+                                      ...s,
+                                      survivorTemplate: {
+                                        createdAt: new Date().toISOString(),
+                                        data: survivor
+                                      },
+                                      survivors: survivorsBeforeTemplateEdit || s.survivors,
+                                      removedSurvivors: s.templateEditInProgress
+                                        ? s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount)
+                                        : s.removedSurvivors,
+                                      templateEditInProgress: undefined
+                                    }
+                                  : s
+                              )
+                            }))
+                            setEditingTemplateQuadrant(null)
+                            setSurvivorsBeforeTemplateEdit(null)
+                            setFocusedQuadrant(null)
+                            showNotification('Template saved and survivors restored', 'success')
+                          }
+                        }}
+                        title="Save template changes"
+                      >
+                        💾 Save Template
+                      </button>
+                      <button 
+                        className="focus-actions-dropdown-btn cancel-template-btn"
+                        onClick={() => {
+                          // Discard changes and restore original survivors
+                          if (survivorsBeforeTemplateEdit) {
+                            setAppState(prev => ({
+                              ...prev,
+                              settlements: prev.settlements.map(s =>
+                                s.id === prev.currentSettlementId
+                                  ? {
+                                      ...s,
+                                      survivors: survivorsBeforeTemplateEdit,
+                                      removedSurvivors: s.templateEditInProgress
+                                        ? s.removedSurvivors.slice(0, s.removedSurvivors.length - s.templateEditInProgress.movedSurvivorsCount)
+                                        : s.removedSurvivors,
+                                      templateEditInProgress: undefined
+                                    }
+                                  : s
+                              )
+                            }))
+                            setEditingTemplateQuadrant(null)
+                            setSurvivorsBeforeTemplateEdit(null)
+                            setFocusedQuadrant(null)
+                            showNotification('Template edit cancelled - survivors restored', 'success')
+                          }
+                        }}
+                        title="Cancel template editing and discard changes"
+                      >
+                        ✕ Cancel
+                      </button>
+                   </>
+                  ) : (
+                   <>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleDeactivateSurvivor(focusedQuadrant)
+                       }}
+                       title="Deactivate survivor"
+                     >
+                       Deactivate
+                     </button>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleRetireFocused()
+                       }}
+                       title="Retire survivor"
+                     >
+                       Retire
+                     </button>
+                     <button 
+                       className="focus-actions-dropdown-btn"
+                       onClick={() => {
+                         handleDeceasedFocused()
+                       }}
+                       title="Mark survivor as deceased"
+                     >
+                       Deceased
+                     </button>
+                   </>
+                 )}
               </div>
               {!isMobileDevice && editingTemplateQuadrant !== focusedQuadrant && (
                 <button
@@ -2823,54 +2813,8 @@ function AppContent() {
                  isEditingTemplate={editingTemplateQuadrant === focusedQuadrant}
                />
               </div>
-             <div className="secondary-sheet">
-               {editingTemplateQuadrant === focusedQuadrant && (
-                 <div style={{ padding: '0.5rem', borderBottom: '2px solid #5a4a3a', marginBottom: '0.5rem' }}>
-                   <button 
-                     style={{
-                       padding: '0.4rem 0.8rem',
-                       fontSize: '0.85rem',
-                       fontWeight: '600',
-                       color: '#d4c5a9',
-                       backgroundColor: '#6a6a5a',
-                       border: 'none',
-                       borderRadius: '4px',
-                       cursor: 'pointer',
-                       width: '100%'
-                     }}
-                     onClick={() => {
-                       const survivor = currentSettlement?.survivors[focusedQuadrant]
-                       if (survivor) {
-                         handleSetSurvivorTemplate(survivor)
-                         
-                         // If we're editing a template, restore the original survivors
-                         if (editingTemplateQuadrant === focusedQuadrant && survivorsBeforeTemplateEdit) {
-                           setAppState(prev => ({
-                             ...prev,
-                             settlements: prev.settlements.map(s =>
-                               s.id === prev.currentSettlementId
-                                 ? {
-                                     ...s,
-                                     survivors: survivorsBeforeTemplateEdit,
-                                     removedSurvivors: s.removedSurvivors.slice(0, s.removedSurvivors.length - Object.values(survivorsBeforeTemplateEdit).filter(s => s !== null).length),
-                                     templateEditInProgress: undefined
-                                   }
-                                 : s
-                             )
-                           }))
-                           setEditingTemplateQuadrant(null)
-                           setSurvivorsBeforeTemplateEdit(null)
-                           setFocusedQuadrant(null)
-                           showNotification('Template saved and survivors restored', 'success')
-                         }
-                       }
-                     }}
-                   >
-                     💾 Save Template
-                   </button>
-                 </div>
-               )}
-               <div className="auxiliary-notes-section">
+              <div className="secondary-sheet">
+                <div className="auxiliary-notes-section">
                 <h3>Notes</h3>
                 <textarea
                   className="auxiliary-notes-textarea"

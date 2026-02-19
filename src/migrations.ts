@@ -261,6 +261,7 @@ function migrateSettlement(settlement: any): SettlementData {
     retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     inventory: settlement.inventory || { gear: {}, materials: {} },
+    survivorTemplate: settlement.survivorTemplate,
   }
 }
 
