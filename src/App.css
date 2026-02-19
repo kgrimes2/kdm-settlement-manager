@@ -2789,21 +2789,21 @@
   }
 
   /* Mobile focus mode layout */
-  .focus-container {
-    position: fixed;
-    top: 3rem;
-    left: 0;
-    right: 0;
-    bottom: 1.5rem;
-    transform: none;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 0;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    z-index: 100;
-  }
+   .focus-container {
+     position: fixed;
+     top: 3rem;
+     left: 0;
+     right: 0;
+     bottom: 1.5rem;
+     transform: none;
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+     gap: 0;
+     overflow-y: scroll;
+     -webkit-overflow-scrolling: touch;
+     z-index: 1001;
+   }
 
   .focused-main-sheet {
     width: 100%;
