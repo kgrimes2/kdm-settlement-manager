@@ -102,7 +102,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
   const handleSignIn = async (username: string, password: string) => {
     try {
       setError(null)
-      await authService.signIn(username, password)
+      await authService.signInWithPassword(username, password)
       const currentUser = await authService.getCurrentUser()
       if (currentUser) {
         setUser(currentUser)

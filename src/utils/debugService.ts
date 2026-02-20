@@ -62,14 +62,4 @@ export class DebugService {
     }
   }
 
-  /**
-   * Check if user is authenticated (required for submission)
-   */
-  async isAuthenticated(): Promise<boolean> {
-    try {
-      return await this.authService.isAuthenticated();
-    } catch {
-      return false;
-    }
-  }
 }
