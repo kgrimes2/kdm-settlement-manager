@@ -103,7 +103,67 @@ export class CognitoAuthService {
   }
 
   /**
-   * Authenticate user with credentials
+   * Authenticate user with credentials using USER_PASSWORD_AUTH flow (direct API)
+   * This bypasses SRP which can have issues in some environments
+   */
+  async signInWithPassword(username: string, password: string): Promise<AuthTokens> {
+    if (!username || username.trim() === '') {
+      throw new Error('Username cannot be empty')
+    }
+    if (!password || password.trim() === '') {
+      throw new Error('Password cannot be empty')
+    }
+
+    console.log('Attempting USER_PASSWORD_AUTH sign in for user:', username)
+
+    try {
+      const response = await fetch('https://cognito-idp.us-west-2.amazonaws.com/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-amz-json-1.1',
+          'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth',
+        },
+        body: JSON.stringify({
+          AuthFlow: 'USER_PASSWORD_AUTH',
+          ClientId: this.userPool.getClientId(),
+          AuthParameters: {
+            USERNAME: username.trim(),
+            PASSWORD: password,
+          },
+        }),
+      })
+
+      if (!response.ok) {
+        const error = await response.json()
+        console.error('Authentication failed:', error)
+        throw new Error(error.message || 'Authentication failed')
+      }
+
+      const result = await response.json()
+
+      if (!result.AuthenticationResult) {
+        throw new Error('No authentication result returned')
+      }
+
+      const tokens: AuthTokens = {
+        accessToken: result.AuthenticationResult.AccessToken,
+        idToken: result.AuthenticationResult.IdToken,
+        refreshToken: result.AuthenticationResult.RefreshToken,
+        expiresIn: result.AuthenticationResult.ExpiresIn,
+      }
+
+      // Store tokens in localStorage
+      localStorage.setItem('cognito_tokens', JSON.stringify(tokens))
+      console.log('Authentication successful')
+      return tokens
+    } catch (error: any) {
+      console.error('Sign in error:', error)
+      throw new Error(error.message || 'Incorrect username or password.')
+    }
+  }
+
+  /**
+   * Authenticate user with credentials (SRP flow - legacy)
    */
   async signIn(username: string, password: string): Promise<AuthTokens> {
     return new Promise((resolve, reject) => {
