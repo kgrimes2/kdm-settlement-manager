@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import type { ReactNode } from 'react'
 import { CognitoAuthService, type AuthUser } from '../utils/authService'
 import { DataService } from '../utils/dataService'
+import { DebugService } from '../utils/debugService'
 import { logCognitoConfig } from '../utils/cognitoDebug'
 
 interface AuthContextType {
@@ -10,6 +11,7 @@ interface AuthContextType {
   isAuthenticated: boolean
   authService: CognitoAuthService | null
   dataService: DataService | null
+  debugService: DebugService | null
   signUp: (email: string, password: string, username: string) => Promise<any>
   confirmSignUp: (username: string, verificationCode: string) => Promise<any>
   signIn: (username: string, password: string) => Promise<void>
@@ -50,6 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
       })
   )
   const [dataService] = useState(() => new DataService(authService, apiBaseUrl))
+  const [debugService] = useState(() => new DebugService(authService, apiBaseUrl))
 
   // Check if user is already logged in on mount
   useEffect(() => {
@@ -176,6 +179,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({
     isAuthenticated: !!user,
     authService,
     dataService,
+    debugService,
     signUp: handleSignUp,
     confirmSignUp: handleConfirmSignUp,
     signIn: handleSignIn,
