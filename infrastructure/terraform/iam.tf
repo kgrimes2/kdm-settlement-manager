@@ -69,6 +69,26 @@ resource "aws_iam_role_policy" "lambda_cognito_policy" {
   })
 }
 
+# Policy for S3 debug bucket access
+resource "aws_iam_role_policy" "lambda_s3_debug_policy" {
+  name = "${var.app_name}-lambda-s3-debug-policy-${var.environment}"
+  role = aws_iam_role.lambda_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:PutObjectAcl"
+        ]
+        Resource = "${aws_s3_bucket.debug_submissions.arn}/*"
+      }
+    ]
+  })
+}
+
 # API Gateway execution role
 resource "aws_iam_role" "api_gateway_role" {
   name = "${var.app_name}-api-gateway-role-${var.environment}"
@@ -103,7 +123,8 @@ resource "aws_iam_role_policy" "api_gateway_lambda_invoke" {
         Resource = [
           aws_lambda_function.get_user_data.arn,
           aws_lambda_function.save_user_data.arn,
-          aws_lambda_function.delete_user_data.arn
+          aws_lambda_function.delete_user_data.arn,
+          aws_lambda_function.submit_debug_info.arn
         ]
       }
     ]

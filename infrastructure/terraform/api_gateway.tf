@@ -507,6 +507,143 @@ resource "aws_lambda_permission" "api_gateway_delete" {
   source_arn    = "${aws_api_gateway_rest_api.main.execution_arn}/*/*"
 }
 
+# API Gateway Resource - /debug-submission
+resource "aws_api_gateway_resource" "debug_submission" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  parent_id   = aws_api_gateway_rest_api.main.root_resource_id
+  path_part   = "debug-submission"
+}
+
+# POST /debug-submission - Submit debug information
+resource "aws_api_gateway_method" "submit_debug_info" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.debug_submission.id
+  http_method   = "POST"
+  authorization = "COGNITO_USER_POOLS"
+  authorizer_id = aws_api_gateway_authorizer.cognito.id
+}
+
+resource "aws_api_gateway_integration" "submit_debug_info" {
+  rest_api_id             = aws_api_gateway_rest_api.main.id
+  resource_id             = aws_api_gateway_resource.debug_submission.id
+  http_method             = aws_api_gateway_method.submit_debug_info.http_method
+  type                    = "AWS_PROXY"
+  integration_http_method = "POST"
+  uri                     = aws_lambda_function.submit_debug_info.invoke_arn
+}
+
+resource "aws_api_gateway_method_response" "submit_debug_info_200" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.submit_debug_info.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "submit_debug_info_400" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.submit_debug_info.http_method
+  status_code = "400"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "submit_debug_info_401" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.submit_debug_info.http_method
+  status_code = "401"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "submit_debug_info_413" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.submit_debug_info.http_method
+  status_code = "413"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "submit_debug_info_500" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.submit_debug_info.http_method
+  status_code = "500"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+# OPTIONS method for CORS preflight requests on /debug-submission
+resource "aws_api_gateway_method" "cors_debug_submission" {
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  resource_id   = aws_api_gateway_resource.debug_submission.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "cors_debug_submission" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.cors_debug_submission.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
+resource "aws_api_gateway_method_response" "cors_debug_submission" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.cors_debug_submission.http_method
+  status_code = "200"
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
+resource "aws_api_gateway_integration_response" "cors_debug_submission" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  resource_id = aws_api_gateway_resource.debug_submission.id
+  http_method = aws_api_gateway_method.cors_debug_submission.http_method
+  status_code = aws_api_gateway_method_response.cors_debug_submission.status_code
+
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+    "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.cors_debug_submission,
+    aws_api_gateway_method_response.cors_debug_submission
+  ]
+}
+
+resource "aws_lambda_permission" "api_gateway_submit_debug" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.submit_debug_info.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_api_gateway_rest_api.main.execution_arn}/*/*"
+}
+
 # API Gateway Stage
 resource "aws_api_gateway_stage" "main" {
   deployment_id = aws_api_gateway_deployment.main.id
@@ -526,18 +663,23 @@ resource "aws_api_gateway_deployment" "main" {
     redeployment = sha1(jsonencode([
       aws_api_gateway_resource.user_data.id,
       aws_api_gateway_resource.user_data_settlement.id,
+      aws_api_gateway_resource.debug_submission.id,
       aws_api_gateway_method.get_all_user_data.id,
       aws_api_gateway_method.get_user_data.id,
       aws_api_gateway_method.save_user_data.id,
       aws_api_gateway_method.delete_user_data.id,
+      aws_api_gateway_method.submit_debug_info.id,
       aws_api_gateway_method.cors_user_data.id,
       aws_api_gateway_method.cors_settlement.id,
+      aws_api_gateway_method.cors_debug_submission.id,
       aws_api_gateway_integration.get_all_user_data.id,
       aws_api_gateway_integration.get_user_data.id,
       aws_api_gateway_integration.save_user_data.id,
       aws_api_gateway_integration.delete_user_data.id,
+      aws_api_gateway_integration.submit_debug_info.id,
       aws_api_gateway_integration.cors_user_data.id,
       aws_api_gateway_integration.cors_settlement.id,
+      aws_api_gateway_integration.cors_debug_submission.id,
     ]))
   }
 
@@ -550,8 +692,10 @@ resource "aws_api_gateway_deployment" "main" {
     aws_api_gateway_integration.get_user_data,
     aws_api_gateway_integration.save_user_data,
     aws_api_gateway_integration.delete_user_data,
+    aws_api_gateway_integration.submit_debug_info,
     aws_api_gateway_integration.cors_user_data,
     aws_api_gateway_integration.cors_settlement,
+    aws_api_gateway_integration.cors_debug_submission,
   ]
 }
 
