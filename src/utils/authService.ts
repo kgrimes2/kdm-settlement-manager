@@ -1,6 +1,4 @@
 import { CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon-cognito-identity-js'
-import { Amplify } from 'aws-amplify'
-import { signIn as amplifySignIn, fetchAuthSession } from 'aws-amplify/auth'
 
 export interface AuthConfig {
   userPoolId: string
@@ -51,19 +49,6 @@ export class CognitoAuthService {
     this.userPool = new CognitoUserPool({
       UserPoolId: config.userPoolId,
       ClientId: config.clientId,
-    })
-
-    // Configure Amplify for Cognito authentication
-    Amplify.configure({
-      Auth: {
-        Cognito: {
-          userPoolId: config.userPoolId,
-          userPoolClientId: config.clientId,
-          loginWith: {
-            username: true,
-          }
-        }
-      }
     })
   }
 
@@ -118,58 +103,7 @@ export class CognitoAuthService {
   }
 
   /**
-   * Authenticate user with credentials using AWS Amplify
-   * This properly handles Cognito authentication including SRP
-   */
-  async signInWithPassword(username: string, password: string): Promise<AuthTokens> {
-    if (!username || username.trim() === '') {
-      throw new Error('Username cannot be empty')
-    }
-    if (!password || password.trim() === '') {
-      throw new Error('Password cannot be empty')
-    }
-
-    console.log('Attempting Amplify sign in for user:', username)
-
-    try {
-      // Use Amplify's signIn which handles SRP correctly
-      const { isSignedIn } = await amplifySignIn({
-        username: username.trim(),
-        password: password,
-      })
-
-      if (!isSignedIn) {
-        throw new Error('Sign in failed')
-      }
-
-      // Get the session tokens
-      const session = await fetchAuthSession()
-
-      if (!session.tokens) {
-        throw new Error('No tokens returned after sign in')
-      }
-
-      const tokens: AuthTokens = {
-        accessToken: session.tokens.accessToken.toString(),
-        idToken: session.tokens.idToken?.toString() || '',
-        refreshToken: '', // Amplify v6 doesn't expose refreshToken directly
-        expiresIn: 3600, // Amplify doesn't expose expiration directly, default to 1 hour
-      }
-
-      // Store tokens in localStorage
-      localStorage.setItem('cognito_tokens', JSON.stringify(tokens))
-      console.log('Authentication successful')
-      return tokens
-    } catch (error: any) {
-      console.error('Sign in error:', error)
-      // Provide user-friendly error message
-      const message = error.message || 'Incorrect username or password.'
-      throw new Error(message)
-    }
-  }
-
-  /**
-   * Authenticate user with credentials (SRP flow - legacy)
+   * Authenticate user with credentials
    */
   async signIn(username: string, password: string): Promise<AuthTokens> {
     return new Promise((resolve, reject) => {
