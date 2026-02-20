@@ -8,6 +8,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- **Debug Submission System** - Report problems directly from the app
+  - New "Report a Problem" button in sync menu (authenticated users only)
+  - "Report this issue" link on error notifications for quick reporting
+  - Automatic error tracking captures console errors, warnings, and unhandled exceptions
+  - Circular buffer stores last 100 errors, submits last 50 with reports
+  - Debug submission modal with optional user context field
+  - Automatic data sanitization removes tokens and sensitive information before upload
+  - Submissions stored in S3 with 30-day auto-deletion lifecycle policy
+  - Server-side encryption and blocked public access for security
+  - Lambda function processes and validates submissions (10MB max)
+  - API Gateway endpoint `/debug-submission` with Cognito authentication
+  - Returns unique submission ID for follow-up support
 - **Survivor Templates** - Save and reuse survivor configurations per settlement
   - Create template from any focused survivor by clicking "Save as Template"
   - Template section in Survivor Management panel shows active template with creation date

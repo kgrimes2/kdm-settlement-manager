@@ -7,13 +7,18 @@ terraform {
     }
   }
 
-  # Use local backend for development
-  # For production, configure S3 backend with:
-  # terraform init -backend-config="bucket=your-bucket" -backend-config="key=kdm-app/terraform.tfstate" -backend-config="region=us-east-1"
+  backend "s3" {
+    bucket  = "kdm-terraform-state-469983200708"
+    key     = "kdm-app/terraform.tfstate"
+    region  = "us-west-2"
+    encrypt = true
+    profile = "terraform-kdm"
+  }
 }
 
 provider "aws" {
-  region = var.aws_region
+  region  = var.aws_region
+  profile = "terraform-kdm"
 
   default_tags {
     tags = {

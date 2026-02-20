@@ -18,7 +18,9 @@ import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
+import DebugSubmissionModal from './components/DebugSubmissionModal'
 import { detectChanges, addLogEntry } from './utils/survivorLogging'
+import { errorTracker } from './utils/errorTracking'
 import packageJson from '../package.json'
 
 const APP_VERSION = packageJson.version
@@ -26,7 +28,7 @@ const APP_VERSION = packageJson.version
 type QuadrantId = 1 | 2 | 3 | 4 | null
 
 function AppContent() {
-  const { signOut, user, dataService } = useAuth()
+  const { signOut, user, dataService, debugService } = useAuth()
   const [focusedQuadrant, setFocusedQuadrant] = useState<QuadrantId>(null)
   const [activeQuadrant, setActiveQuadrant] = useState<1 | 2 | 3 | 4>(1)
 
@@ -103,6 +105,7 @@ function AppContent() {
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
    const [showSyncMenu, setShowSyncMenu] = useState(false)
     const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
+    const [showDebugModal, setShowDebugModal] = useState(false)
     const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
     const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
@@ -1531,7 +1534,32 @@ function AppContent() {
        <div className="app-layout">
           {notification && (
             <div className={`notification notification-${notification.type}`}>
-              {notification.message}
+              <span>{notification.message}</span>
+              {notification.type === 'error' && user && (
+                <button
+                  className="notification-report-link"
+                  onClick={() => setShowDebugModal(true)}
+                  style={{
+                    marginLeft: '12px',
+                    padding: '4px 8px',
+                    fontSize: '12px',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '4px',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
+                  }}
+                >
+                  Report this issue
+                </button>
+              )}
             </div>
           )}
 
@@ -2298,6 +2326,16 @@ function AppContent() {
                          )}
                         </div>
                         <div className="sync-menu-divider"></div>
+                        <button
+                          className="sync-menu-item"
+                          onClick={() => {
+                            setShowSyncMenu(false)
+                            setShowDebugModal(true)
+                          }}
+                        >
+                          <span className="sync-menu-icon">🐛</span>
+                          <span>Report a Problem</span>
+                        </button>
                         <button
                           className="sync-menu-item logout-item"
                         onClick={async () => {
@@ -3446,6 +3484,14 @@ function AppContent() {
        )}
      </div>
     <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
+    {debugService && (
+      <DebugSubmissionModal
+        isOpen={showDebugModal}
+        onClose={() => setShowDebugModal(false)}
+        debugService={debugService}
+        errors={errorTracker.getRecentErrors()}
+      />
+    )}
     </>
   )
 }

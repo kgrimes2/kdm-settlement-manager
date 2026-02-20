@@ -94,3 +94,35 @@ resource "aws_lambda_function" "delete_user_data" {
 
   depends_on = [aws_iam_role_policy.lambda_dynamodb_policy]
 }
+
+data "archive_file" "submit_debug_info" {
+  type        = "zip"
+  source_file = "${path.module}/../lambda/submit_debug_info.py"
+  output_path = "${path.module}/../lambda/submit_debug_info.zip"
+}
+
+# Lambda function - Submit debug info
+resource "aws_lambda_function" "submit_debug_info" {
+  filename      = data.archive_file.submit_debug_info.output_path
+  function_name = "${var.app_name}-submit-debug-info-${var.environment}"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "submit_debug_info.lambda_handler"
+  runtime       = "python3.11"
+  timeout       = var.lambda_timeout
+  memory_size   = var.lambda_memory
+
+  source_code_hash = data.archive_file.submit_debug_info.output_base64sha256
+
+  environment {
+    variables = {
+      DEBUG_BUCKET = aws_s3_bucket.debug_submissions.id
+      ENVIRONMENT  = var.environment
+    }
+  }
+
+  tags = {
+    Name = "${var.app_name}-submit-debug-info"
+  }
+
+  depends_on = [aws_iam_role_policy.lambda_s3_debug_policy]
+}

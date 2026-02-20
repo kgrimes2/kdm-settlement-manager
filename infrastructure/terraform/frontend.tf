@@ -1,3 +1,12 @@
+# Lookup AWS managed cache policies
+data "aws_cloudfront_cache_policy" "caching_optimized" {
+  name = "Managed-CachingOptimized"
+}
+
+data "aws_cloudfront_cache_policy" "caching_disabled" {
+  name = "Managed-CachingDisabled"
+}
+
 # S3 Bucket for storing built React app
 resource "aws_s3_bucket" "app_bucket" {
   bucket = "${var.app_name}-${var.environment}-app-${data.aws_caller_identity.current.account_id}"
@@ -103,7 +112,7 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     target_origin_id = "S3App"
     compress         = true
 
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
+    cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id
 
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -117,7 +126,7 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     target_origin_id = "S3App"
     compress         = true
 
-    cache_policy_id = "4135ea3d-c35f-45be-9c82-27fec72f2b82" # Managed-CachingDisabled
+    cache_policy_id = data.aws_cloudfront_cache_policy.caching_disabled.id
 
     viewer_protocol_policy = "redirect-to-https"
   }
@@ -130,7 +139,7 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     target_origin_id = "S3App"
     compress         = true
 
-    cache_policy_id = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
+    cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id
 
     viewer_protocol_policy = "redirect-to-https"
   }
