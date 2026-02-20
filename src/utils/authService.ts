@@ -1,4 +1,6 @@
 import { CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserAttribute } from 'amazon-cognito-identity-js'
+import { Amplify } from 'aws-amplify'
+import { signIn as amplifySignIn, fetchAuthSession } from 'aws-amplify/auth'
 
 export interface AuthConfig {
   userPoolId: string
@@ -49,6 +51,19 @@ export class CognitoAuthService {
     this.userPool = new CognitoUserPool({
       UserPoolId: config.userPoolId,
       ClientId: config.clientId,
+    })
+
+    // Configure Amplify for Cognito authentication
+    Amplify.configure({
+      Auth: {
+        Cognito: {
+          userPoolId: config.userPoolId,
+          userPoolClientId: config.clientId,
+          loginWith: {
+            username: true,
+          }
+        }
+      }
     })
   }
 
@@ -103,8 +118,8 @@ export class CognitoAuthService {
   }
 
   /**
-   * Authenticate user with credentials using USER_PASSWORD_AUTH flow (direct API)
-   * This bypasses SRP which can have issues in some environments
+   * Authenticate user with credentials using AWS Amplify
+   * This properly handles Cognito authentication including SRP
    */
   async signInWithPassword(username: string, password: string): Promise<AuthTokens> {
     if (!username || username.trim() === '') {
@@ -114,42 +129,31 @@ export class CognitoAuthService {
       throw new Error('Password cannot be empty')
     }
 
-    console.log('Attempting USER_PASSWORD_AUTH sign in for user:', username)
+    console.log('Attempting Amplify sign in for user:', username)
 
     try {
-      const response = await fetch('https://cognito-idp.us-west-2.amazonaws.com/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-amz-json-1.1',
-          'X-Amz-Target': 'AWSCognitoIdentityProviderService.InitiateAuth',
-        },
-        body: JSON.stringify({
-          AuthFlow: 'USER_PASSWORD_AUTH',
-          ClientId: this.userPool.getClientId(),
-          AuthParameters: {
-            USERNAME: username.trim(),
-            PASSWORD: password,
-          },
-        }),
+      // Use Amplify's signIn which handles SRP correctly
+      const { isSignedIn } = await amplifySignIn({
+        username: username.trim(),
+        password: password,
       })
 
-      if (!response.ok) {
-        const error = await response.json()
-        console.error('Authentication failed:', error)
-        throw new Error(error.message || 'Authentication failed')
+      if (!isSignedIn) {
+        throw new Error('Sign in failed')
       }
 
-      const result = await response.json()
+      // Get the session tokens
+      const session = await fetchAuthSession()
 
-      if (!result.AuthenticationResult) {
-        throw new Error('No authentication result returned')
+      if (!session.tokens) {
+        throw new Error('No tokens returned after sign in')
       }
 
       const tokens: AuthTokens = {
-        accessToken: result.AuthenticationResult.AccessToken,
-        idToken: result.AuthenticationResult.IdToken,
-        refreshToken: result.AuthenticationResult.RefreshToken,
-        expiresIn: result.AuthenticationResult.ExpiresIn,
+        accessToken: session.tokens.accessToken.toString(),
+        idToken: session.tokens.idToken?.toString() || '',
+        refreshToken: '', // Amplify v6 doesn't expose refreshToken directly
+        expiresIn: 3600, // Amplify doesn't expose expiration directly, default to 1 hour
       }
 
       // Store tokens in localStorage
@@ -158,7 +162,9 @@ export class CognitoAuthService {
       return tokens
     } catch (error: any) {
       console.error('Sign in error:', error)
-      throw new Error(error.message || 'Incorrect username or password.')
+      // Provide user-friendly error message
+      const message = error.message || 'Incorrect username or password.'
+      throw new Error(message)
     }
   }
 
