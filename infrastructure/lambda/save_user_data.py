@@ -120,10 +120,11 @@ def lambda_handler(event, context):
         logger.info(f"Saving data | user_id={user_id} | settlement_id={settlement_id} | size={data_size} bytes ({data_size_mb:.2f} MB)")
         
         # Prepare item with user_id and settlement_id
+        # Store data as JSON string to avoid DynamoDB nested object limitations
         item = {
             'user_id': user_id,
             'settlement_id': settlement_id,
-            'data': body,
+            'data': json.dumps(body),  # Store as JSON string
             'updated_at': datetime.utcnow().isoformat(),
         }
         
