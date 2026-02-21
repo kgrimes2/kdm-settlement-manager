@@ -100,46 +100,61 @@ export class DataService {
     }
   }
 
-  /**
-   * Save user data for a settlement
-   */
-  async saveUserData(settlementId: string, data: UserDataPayload): Promise<void> {
-    try {
-      const accessToken = await this.authService.getAccessToken()
-      
-      // Check payload size before sending
-      const payload = JSON.stringify(data)
-      const payloadSizeBytes = new Blob([payload]).size
-      const payloadSizeMB = payloadSizeBytes / (1024 * 1024)
-      const maxSizeMB = 10
-      
-      if (payloadSizeMB > maxSizeMB) {
-        throw new Error(
-          `Data size (${payloadSizeMB.toFixed(2)} MB) exceeds the ${maxSizeMB} MB limit. ` +
-          `Please reduce your data size by removing old settlements or survivors.`
-        )
-      }
-      
-      const response = await fetch(
-        `${this.apiBaseUrl}/user-data/${settlementId}`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-          body: payload,
-        }
-      )
+   /**
+    * Save user data for a settlement
+    */
+   async saveUserData(settlementId: string, data: UserDataPayload): Promise<void> {
+     try {
+       const accessToken = await this.authService.getAccessToken()
+       
+       // Check payload size before sending
+       const payload = JSON.stringify(data)
+       const payloadSizeBytes = new Blob([payload]).size
+       const payloadSizeMB = payloadSizeBytes / (1024 * 1024)
+       const maxSizeMB = 10
+       
+       if (payloadSizeMB > maxSizeMB) {
+         throw new Error(
+           `Data size (${payloadSizeMB.toFixed(2)} MB) exceeds the ${maxSizeMB} MB limit. ` +
+           `Please reduce your data size by removing old settlements or survivors.`
+         )
+       }
+       
+       const response = await fetch(
+         `${this.apiBaseUrl}/user-data/${settlementId}`,
+         {
+           method: 'POST',
+           headers: {
+             Authorization: `Bearer ${accessToken}`,
+             'Content-Type': 'application/json',
+           },
+           body: payload,
+         }
+       )
 
-      if (!response.ok) {
-        throw new Error(`Failed to save user data: ${response.statusText}`)
-      }
-    } catch (error) {
-      console.error('Error saving user data:', error)
-      throw error
-    }
-  }
+       if (!response.ok) {
+         let errorDetail = response.statusText || 'Unknown error'
+         try {
+           const errorBody = await response.text()
+           if (errorBody) {
+             errorDetail = errorBody.length > 200 ? errorBody.substring(0, 200) : errorBody
+           }
+         } catch {
+           // If we can't read the response body, just use statusText
+         }
+         console.error(`Failed to save user data to ${settlementId}:`, {
+           status: response.status,
+           statusText: response.statusText,
+           detail: errorDetail,
+           url: `${this.apiBaseUrl}/user-data/${settlementId}`
+         })
+         throw new Error(`Failed to save user data: ${response.status} ${errorDetail}`)
+       }
+     } catch (error) {
+       console.error('Error saving user data:', error)
+       throw error
+     }
+   }
 
   /**
    * Delete user data for a settlement
