@@ -14,6 +14,7 @@ import {
 import GlossaryModal from './components/GlossaryModal'
 import InventoryModal from './components/InventoryModal'
 import Tutorial from './components/Tutorial'
+import VisualGuidesModal from './components/VisualGuidesModal'
 import glossaryData from './data/glossary.json'
 import wikiIndex from './data/wiki-index.json'
 import type { GlossaryTerm, WikiCategoryInfo } from './types/glossary'
@@ -84,9 +85,10 @@ function AppContent() {
   const [show3StateDropdown, setShow3StateDropdown] = useState(false)
    const [showSettlementDropdown, setShowSettlementDropdown] = useState(false)
    const [showSettlementManagement, setShowSettlementManagement] = useState(false)
-  const [showGlossaryModal, setShowGlossaryModal] = useState(false)
-   const [showInventoryModal, setShowInventoryModal] = useState(false)
-   const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
+   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
+    const [showInventoryModal, setShowInventoryModal] = useState(false)
+    const [showVisualGuidesModal, setShowVisualGuidesModal] = useState(false)
+    const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
     const [showLoginModal, setShowLoginModal] = useState(false)
     const [mergeDialog, setMergeDialog] = useState<{ cloudData: any; localData: any; cloudSettlements: any[] } | null>(null)
     const [isMergeProcessing, setIsMergeProcessing] = useState(false)
@@ -105,13 +107,14 @@ function AppContent() {
   const [settlementInputValue, setSettlementInputValue] = useState('')
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
-   const [showSyncMenu, setShowSyncMenu] = useState(false)
-     const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
-     const [showDebugModal, setShowDebugModal] = useState(false)
-     const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
-     const [showActionsDropdown, setShowActionsDropdown] = useState(false)
-     const [showChangelogModal, setShowChangelogModal] = useState(false)
-     const [, forceUpdate] = useState(0)
+    const [showSyncMenu, setShowSyncMenu] = useState(false)
+      const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
+      const [showDebugModal, setShowDebugModal] = useState(false)
+      const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
+      const [showActionsDropdown, setShowActionsDropdown] = useState(false)
+      const [showChangelogModal, setShowChangelogModal] = useState(false)
+      const [showResourcesDropdown, setShowResourcesDropdown] = useState(false)
+      const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
     const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
@@ -590,36 +593,54 @@ function AppContent() {
     }
   }, [isMobileDevice, focusedQuadrant])
 
-  // Close settlement dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      if (!target.closest('.settlement-selector')) {
-        setShowSettlementDropdown(false)
-      }
-    }
+   // Close settlement dropdown when clicking outside
+   useEffect(() => {
+     const handleClickOutside = (e: MouseEvent) => {
+       const target = e.target as HTMLElement
+       if (!target.closest('.settlement-selector')) {
+         setShowSettlementDropdown(false)
+       }
+     }
 
-    if (showSettlementDropdown) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
+     if (showSettlementDropdown) {
+       document.addEventListener('mousedown', handleClickOutside)
+     }
 
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [showSettlementDropdown])
+     return () => {
+       document.removeEventListener('mousedown', handleClickOutside)
+     }
+   }, [showSettlementDropdown])
 
-  // Close marker dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement
-      if (!target.closest('.marker-button-group')) {
-        setShow2StateDropdown(false)
-        setShow3StateDropdown(false)
-      }
-    }
+   // Close resources dropdown when clicking outside
+   useEffect(() => {
+     const handleClickOutside = (e: MouseEvent) => {
+       const target = e.target as HTMLElement
+       if (!target.closest('.resources-menu-container')) {
+         setShowResourcesDropdown(false)
+       }
+     }
 
-    if (show2StateDropdown || show3StateDropdown) {
-      document.addEventListener('mousedown', handleClickOutside)
+     if (showResourcesDropdown) {
+       document.addEventListener('mousedown', handleClickOutside)
+     }
+
+     return () => {
+       document.removeEventListener('mousedown', handleClickOutside)
+     }
+   }, [showResourcesDropdown])
+
+   // Close marker dropdowns when clicking outside
+   useEffect(() => {
+     const handleClickOutside = (event: MouseEvent) => {
+       const target = event.target as HTMLElement
+       if (!target.closest('.marker-button-group')) {
+         setShow2StateDropdown(false)
+         setShow3StateDropdown(false)
+       }
+     }
+
+     if (show2StateDropdown || show3StateDropdown) {
+       document.addEventListener('mousedown', handleClickOutside)
     }
 
     return () => {
@@ -2294,20 +2315,44 @@ function AppContent() {
               </div>
             )}
           </div>
-          <button
-            className="toolbar-button toolbar-icon-button glossary-button"
-            onClick={() => handleOpenGlossary()}
-            aria-label="Glossary"
-            title="Glossary"
-          >
-            📖
-          </button>
-            <button
-                className="toolbar-button toolbar-icon-button"
-                onClick={() => setShowInventoryModal(true)}
-                aria-label="Inventory"
-                title="Settlement Inventory"
-               >
+           <button
+             className="toolbar-button toolbar-icon-button glossary-button"
+             onClick={() => handleOpenGlossary()}
+             aria-label="Glossary"
+             title="Glossary"
+           >
+             📖
+           </button>
+           <div className="resources-menu-container">
+             <button
+               className="toolbar-button toolbar-icon-button resources-button"
+               onClick={() => setShowResourcesDropdown(!showResourcesDropdown)}
+               aria-label="Resources"
+               title="Resources"
+             >
+               🔗
+             </button>
+             {showResourcesDropdown && (
+               <div className="resources-dropdown-menu">
+                 <button
+                   className="resources-menu-item"
+                   onClick={() => {
+                     setShowVisualGuidesModal(true)
+                     setShowResourcesDropdown(false)
+                   }}
+                 >
+                   <span className="resources-icon">🖼️</span>
+                   <span>Fen's Visual Guides</span>
+                 </button>
+               </div>
+             )}
+           </div>
+              <button
+                  className="toolbar-button toolbar-icon-button"
+                  onClick={() => setShowInventoryModal(true)}
+                  aria-label="Inventory"
+                  title="Settlement Inventory"
+                 >
                  🎒
                 </button>
                  {user && (
@@ -3518,36 +3563,40 @@ function AppContent() {
         Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
       </div>
 
-      <GlossaryModal
-        isOpen={showGlossaryModal}
-        onClose={() => {
-          setShowGlossaryModal(false)
-          setGlossaryInitialQuery(undefined)
-        }}
-        glossaryTerms={glossaryData.terms}
-        initialQuery={glossaryInitialQuery}
-        lastUpdated={glossaryData.lastUpdated}
-        wikiCategories={wikiCategories}
-        loadedWikiTerms={loadedWikiTerms}
-        onLoadCategory={handleLoadCategory}
-        loadingCategory={loadingCategory}
-        onSearchWiki={searchAndLoadWikiTerms}
-        isSurvivorFocused={focusedQuadrant !== null && !isMobileDevice}
-        onAddTextToNotes={handleAddGlossaryTextToNotes}
-      />
-
-       <InventoryModal
-         isOpen={showInventoryModal}
-         onClose={() => setShowInventoryModal(false)}
-         settlementName={currentSettlement?.name || 'Settlement'}
-         inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
-         onUpdateInventory={handleUpdateInventory}
+       <GlossaryModal
+         isOpen={showGlossaryModal}
+         onClose={() => {
+           setShowGlossaryModal(false)
+           setGlossaryInitialQuery(undefined)
+         }}
          glossaryTerms={glossaryData.terms}
+         initialQuery={glossaryInitialQuery}
+         lastUpdated={glossaryData.lastUpdated}
+         wikiCategories={wikiCategories}
          loadedWikiTerms={loadedWikiTerms}
-         onSearchWiki={searchAndLoadWikiTerms}
          onLoadCategory={handleLoadCategory}
+         loadingCategory={loadingCategory}
+         onSearchWiki={searchAndLoadWikiTerms}
+         isSurvivorFocused={focusedQuadrant !== null && !isMobileDevice}
+         onAddTextToNotes={handleAddGlossaryTextToNotes}
        />
 
+        <InventoryModal
+          isOpen={showInventoryModal}
+          onClose={() => setShowInventoryModal(false)}
+          settlementName={currentSettlement?.name || 'Settlement'}
+          inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
+          onUpdateInventory={handleUpdateInventory}
+          glossaryTerms={glossaryData.terms}
+          loadedWikiTerms={loadedWikiTerms}
+          onSearchWiki={searchAndLoadWikiTerms}
+          onLoadCategory={handleLoadCategory}
+        />
+
+        <VisualGuidesModal
+          isOpen={showVisualGuidesModal}
+          onClose={() => setShowVisualGuidesModal(false)}
+        />
 
 
        {showChangelogModal && (

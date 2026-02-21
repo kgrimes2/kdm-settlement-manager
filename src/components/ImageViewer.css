@@ -1,0 +1,48 @@
+/* Custom overrides for yet-another-react-lightbox */
+
+:root {
+  --yarl-color-backdrop: rgba(0, 0, 0, 0.95);
+  --yarl-color-button: rgb(255, 255, 255);
+  --yarl-color-button-active: rgb(200, 200, 200);
+}
+
+/* Ensure lightbox is visible */
+.yarl__container {
+  z-index: 2000;
+}
+
+.yarl__root {
+  z-index: 2000;
+}
+
+/* Style lightbox backdrop */
+.yarl__backdrop {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+/* Optional: Customize button styles */
+.yarl__button {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.yarl__button:hover:not(:disabled) {
+  opacity: 0.7;
+}
+
+/* Thumbnails styling */
+.yarl__thumbnails_container {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.yarl__thumbnail {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.yarl__thumbnail:hover,
+.yarl__thumbnail_active {
+  border: 2px solid #4CAF50;
+  transform: scale(1.05);
+}
