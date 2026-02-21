@@ -31,8 +31,9 @@ resource "aws_lambda_function" "get_user_data" {
 
   environment {
     variables = {
-      USER_DATA_TABLE = aws_dynamodb_table.user_data.name
-      ENVIRONMENT     = var.environment
+      USER_DATA_TABLE  = aws_dynamodb_table.user_data.name
+      USER_DATA_BUCKET = aws_s3_bucket.user_data.id
+      ENVIRONMENT      = var.environment
     }
   }
 
@@ -40,7 +41,10 @@ resource "aws_lambda_function" "get_user_data" {
     Name = "${var.app_name}-get-user-data"
   }
 
-  depends_on = [aws_iam_role_policy.lambda_dynamodb_policy]
+  depends_on = [
+    aws_iam_role_policy.lambda_dynamodb_policy,
+    aws_iam_role_policy.lambda_s3_user_data_policy
+  ]
 }
 
 # Lambda function - Save user data
@@ -57,8 +61,9 @@ resource "aws_lambda_function" "save_user_data" {
 
   environment {
     variables = {
-      USER_DATA_TABLE = aws_dynamodb_table.user_data.name
-      ENVIRONMENT     = var.environment
+      USER_DATA_TABLE  = aws_dynamodb_table.user_data.name
+      USER_DATA_BUCKET = aws_s3_bucket.user_data.id
+      ENVIRONMENT      = var.environment
     }
   }
 
@@ -66,7 +71,10 @@ resource "aws_lambda_function" "save_user_data" {
     Name = "${var.app_name}-save-user-data"
   }
 
-  depends_on = [aws_iam_role_policy.lambda_dynamodb_policy]
+  depends_on = [
+    aws_iam_role_policy.lambda_dynamodb_policy,
+    aws_iam_role_policy.lambda_s3_user_data_policy
+  ]
 }
 
 # Lambda function - Delete user data
@@ -83,8 +91,9 @@ resource "aws_lambda_function" "delete_user_data" {
 
   environment {
     variables = {
-      USER_DATA_TABLE = aws_dynamodb_table.user_data.name
-      ENVIRONMENT     = var.environment
+      USER_DATA_TABLE  = aws_dynamodb_table.user_data.name
+      USER_DATA_BUCKET = aws_s3_bucket.user_data.id
+      ENVIRONMENT      = var.environment
     }
   }
 
@@ -92,7 +101,10 @@ resource "aws_lambda_function" "delete_user_data" {
     Name = "${var.app_name}-delete-user-data"
   }
 
-  depends_on = [aws_iam_role_policy.lambda_dynamodb_policy]
+  depends_on = [
+    aws_iam_role_policy.lambda_dynamodb_policy,
+    aws_iam_role_policy.lambda_s3_user_data_policy
+  ]
 }
 
 data "archive_file" "submit_debug_info" {
