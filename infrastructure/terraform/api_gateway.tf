@@ -331,6 +331,8 @@ resource "aws_api_gateway_integration_response" "get_user_data_cors" {
   http_method = aws_api_gateway_method.get_user_data.http_method
   status_code = "200"
 
+  depends_on = [aws_api_gateway_integration.get_user_data]
+
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
@@ -354,6 +356,8 @@ resource "aws_api_gateway_integration_response" "save_user_data_cors" {
   http_method = aws_api_gateway_method.save_user_data.http_method
   status_code = "200"
 
+  depends_on = [aws_api_gateway_integration.save_user_data]
+
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"
   }
@@ -376,6 +380,8 @@ resource "aws_api_gateway_integration_response" "delete_user_data_cors" {
   resource_id = aws_api_gateway_resource.user_data_settlement.id
   http_method = aws_api_gateway_method.delete_user_data.http_method
   status_code = "200"
+
+  depends_on = [aws_api_gateway_integration.delete_user_data]
 
   response_parameters = {
     "method.response.header.Access-Control-Allow-Origin" = "'*'"

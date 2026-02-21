@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.3] - 2026-02-21
+
+### Fixed
+- **Data Sync for Large Settlements** - Resolved 400KB DynamoDB size limit errors
+  - Migrated settlement storage from DynamoDB to S3 with no size limits (up to 10MB)
+  - DynamoDB now stores only metadata (user_id, settlement_id, s3_key, size, timestamps)
+  - Backward compatible - existing DynamoDB-stored settlements continue to work seamlessly
+  - Improved error messages with detailed size limit information
+  - Enhanced logging for better debugging and monitoring
+  - S3 versioning enabled with 90-day cleanup of old versions
+  - Significantly reduced storage costs (S3 vs DynamoDB)
+
+### Changed
+- **Cloud Storage Architecture** - All settlements now stored in S3
+  - Eliminates DynamoDB 400KB per-item size restrictions
+  - Supports settlements of any size within reasonable limits (10MB max)
+  - Lambda functions updated to handle hybrid storage (S3 + DynamoDB metadata)
+  - Data retrieval maintains compatibility with frontend expectations
+
 ## [1.4.2] - 2026-02-20
 
 ### Added
