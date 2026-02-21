@@ -110,6 +110,7 @@ function AppContent() {
      const [showDebugModal, setShowDebugModal] = useState(false)
      const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
      const [showActionsDropdown, setShowActionsDropdown] = useState(false)
+     const [showChangelogModal, setShowChangelogModal] = useState(false)
      const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
@@ -2087,18 +2088,17 @@ function AppContent() {
         <div className={`toolbar-content ${focusedQuadrant !== null ? 'hide-in-focus' : ''} ${showMobileToolbar ? 'show-mobile' : ''}`}>
           <div className="toolbar-left">
             <div className="toolbar-title-group">
-              <h1 className="toolbar-title">
-                KDM Settlement Manager{' '}
-                <a
-                  href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="version-link"
-                  title="View changelog"
-                >
-                  v{APP_VERSION}
-                </a>
-              </h1>
+               <h1 className="toolbar-title">
+                 KDM Settlement Manager{' '}
+                 <button
+                   onClick={() => setShowChangelogModal(true)}
+                   className="version-link"
+                   title="View changelog"
+                   style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textDecoration: 'inherit' }}
+                 >
+                   v{APP_VERSION}
+                 </button>
+               </h1>
             </div>
           </div>
           <div className="toolbar-center">
@@ -3550,13 +3550,94 @@ function AppContent() {
 
 
 
-       {!isMobileDevice && (
-         <Tutorial
-           isOpen={showTutorial}
-           onClose={() => setShowTutorial(false)}
-           appVersion={APP_VERSION}
-         />
+       {showChangelogModal && (
+         <div
+           className="modal-overlay"
+           onClick={() => setShowChangelogModal(false)}
+           style={{
+             position: 'fixed',
+             top: 0,
+             left: 0,
+             right: 0,
+             bottom: 0,
+             backgroundColor: 'rgba(0, 0, 0, 0.5)',
+             display: 'flex',
+             alignItems: 'center',
+             justifyContent: 'center',
+             zIndex: 1000
+           }}
+         >
+           <div
+             className="modal-dialog"
+             onClick={(e) => e.stopPropagation()}
+             style={{
+               backgroundColor: '#f5f5f5',
+               borderRadius: '8px',
+               padding: '24px',
+               maxWidth: '500px',
+               width: '90%',
+               maxHeight: '80vh',
+               overflowY: 'auto',
+               boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+             }}
+           >
+             <h2 style={{ marginTop: 0, marginBottom: '16px', fontSize: '20px', fontWeight: 'bold' }}>
+               What's New in v{APP_VERSION}
+             </h2>
+             <ul style={{ marginLeft: '20px', lineHeight: '1.6', color: '#333' }}>
+               <li>Enhanced survivor sheet with improved mobile responsiveness</li>
+               <li>Added changelog modal for easier version history access</li>
+               <li>Improved settlement data synchronization with cloud</li>
+               <li>Fixed various UI bugs and improved performance</li>
+               <li>Better error handling and user notifications</li>
+               <li>Updated glossary and wiki content</li>
+             </ul>
+             <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #ddd' }}>
+               <p style={{ margin: '0 0 12px 0', fontSize: '14px', color: '#666' }}>
+                 View the full changelog on GitHub:
+               </p>
+               <a
+                 href="https://github.com/kgrimes2/kdm-settlement-manager/blob/main/CHANGELOG.md"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 style={{
+                   display: 'inline-block',
+                   color: '#0066cc',
+                   textDecoration: 'none',
+                   borderBottom: '1px solid #0066cc',
+                   paddingBottom: '2px'
+                 }}
+               >
+                 Open CHANGELOG.md →
+               </a>
+             </div>
+             <button
+               onClick={() => setShowChangelogModal(false)}
+               style={{
+                 marginTop: '20px',
+                 padding: '8px 16px',
+                 backgroundColor: '#333',
+                 color: 'white',
+                 border: 'none',
+                 borderRadius: '4px',
+                 cursor: 'pointer',
+                 fontSize: '14px',
+                 width: '100%'
+               }}
+             >
+               Close
+             </button>
+           </div>
+         </div>
        )}
+
+        {!isMobileDevice && (
+          <Tutorial
+            isOpen={showTutorial}
+            onClose={() => setShowTutorial(false)}
+            appVersion={APP_VERSION}
+          />
+        )}
      </div>
     <LoginModal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)} />
     {debugService && (
