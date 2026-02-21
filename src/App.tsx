@@ -86,8 +86,9 @@ function AppContent() {
   const [showGlossaryModal, setShowGlossaryModal] = useState(false)
    const [showInventoryModal, setShowInventoryModal] = useState(false)
    const [glossaryInitialQuery, setGlossaryInitialQuery] = useState<string | undefined>(undefined)
-   const [showLoginModal, setShowLoginModal] = useState(false)
-   const [mergeDialog, setMergeDialog] = useState<{ cloudData: any; localData: any; cloudSettlements: any[] } | null>(null)
+    const [showLoginModal, setShowLoginModal] = useState(false)
+    const [mergeDialog, setMergeDialog] = useState<{ cloudData: any; localData: any; cloudSettlements: any[] } | null>(null)
+    const [isMergeProcessing, setIsMergeProcessing] = useState(false)
   const [showTutorial, setShowTutorial] = useState(() => {
     // Check if mobile device
     const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -104,10 +105,11 @@ function AppContent() {
   const [showSurvivalLimitDialog, setShowSurvivalLimitDialog] = useState(false)
   const [survivalLimitInputValue, setSurvivalLimitInputValue] = useState('')
    const [showSyncMenu, setShowSyncMenu] = useState(false)
-    const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
-    const [showDebugModal, setShowDebugModal] = useState(false)
-    const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
-    const [, forceUpdate] = useState(0)
+     const [showNamedSavesInDrawer, setShowNamedSavesInDrawer] = useState(false)
+     const [showDebugModal, setShowDebugModal] = useState(false)
+     const [selectedLogEntry, setSelectedLogEntry] = useState<{ index: number; entry: any } | null>(null)
+     const [showActionsDropdown, setShowActionsDropdown] = useState(false)
+     const [, forceUpdate] = useState(0)
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
     const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
@@ -491,7 +493,7 @@ function AppContent() {
           console.error('Auto-sync failed:', error)
           // Keep dirty flag so we retry next time
         }
-       }, 30000) // 30000ms = 30 seconds
+        }, 10000) // 10000ms = 10 seconds
 
       return () => clearInterval(syncInterval)
     }, [user, dataService, appState.settlements, appState.namedSaves])
@@ -1730,30 +1732,77 @@ function AppContent() {
                 </div>
               )}
             </div>
-            <div className="confirm-actions">
-              <button
-                className="confirm-ok"
+             <div className="confirm-actions">
+               <button
+                 className="confirm-ok"
+                  onClick={async () => {
+                    // Keep local data, overwrite cloud
+                    setIsMergeProcessing(true)
+                    try {
+                      if (dataService && mergeDialog.localData.settlements) {
+                        // Save each settlement as a separate DynamoDB record
+                        for (const settlement of mergeDialog.localData.settlements) {
+                          await dataService.saveUserData(settlement.id, {
+                            survivors: mergeDialog.localData.survivors || [],
+                            settlements: [settlement],
+                            inventory: {
+                              [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
+                            },
+                            namedSaves: mergeDialog.localData.namedSaves || appState.namedSaves,
+                          })
+                        }
+                        showNotification(`Uploaded ${mergeDialog.localData.settlements.length} settlement(s) to cloud`, 'success')
+                        setLastSyncTime(new Date())
+                        localStorage.setItem('appStateDirty', 'false')
+                      }
+                    } catch (error) {
+                        showNotification('Failed to sync local data', 'error')
+                        console.error(error)
+                      }
+                      // Mark session as loaded
+                      if (user) {
+                        sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
+                      }
+                      setMergeDialog(null)
+                      setIsMergeProcessing(false)
+                  }}
+                  disabled={isMergeProcessing}
+               >
+                 {isMergeProcessing ? '⏳ Syncing...' : 'Keep Local'}
+               </button>
+               <button
+                 className="confirm-ok"
                  onClick={async () => {
-                   // Keep local data, overwrite cloud
+                   // Use cloud data, overwrite local
+                   setIsMergeProcessing(true)
                    try {
-                     if (dataService && mergeDialog.localData.settlements) {
-                       // Save each settlement as a separate DynamoDB record
-                       for (const settlement of mergeDialog.localData.settlements) {
-                         await dataService.saveUserData(settlement.id, {
-                           survivors: mergeDialog.localData.survivors || [],
-                           settlements: [settlement],
-                           inventory: {
-                             [settlement.id]: settlement.inventory || { gear: {}, materials: {} }
-                           },
-                           namedSaves: mergeDialog.localData.namedSaves || appState.namedSaves,
-                         })
+                     if (mergeDialog.cloudData && mergeDialog.cloudData.length > 0) {
+                       // Merge all cloud data into a single app state
+                       const mergedSettlements = mergeDialog.cloudData.map((d: any) => d.settlements || []).flat()
+                       const mergedSurvivors = mergeDialog.cloudData.map((d: any) => d.survivors || []).flat()
+                       const mergedInventory = Object.assign({}, ...mergeDialog.cloudData.map((d: any) => d.inventory || {}))
+                       
+                       // Ensure currentSettlementId is valid, otherwise use first settlement
+                       const validCurrentId = mergedSettlements.find((s: any) => s.id === appState.currentSettlementId)
+                         ? appState.currentSettlementId
+                         : mergedSettlements[0]?.id || appState.currentSettlementId
+                       
+                       const newAppState = {
+                         ...appState,
+                         settlements: mergedSettlements,
+                         survivors: mergedSurvivors,
+                         inventory: mergedInventory,
+                         currentSettlementId: validCurrentId,
                        }
-                       showNotification(`Uploaded ${mergeDialog.localData.settlements.length} settlement(s) to cloud`, 'success')
-                       setLastSyncTime(new Date())
+                       setAppState(newAppState)
+                       localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
                        localStorage.setItem('appStateDirty', 'false')
+                       setLastSyncTime(new Date())
+                       
+                       showNotification(`Loaded ${mergedSettlements.length} settlement(s) from cloud`, 'success')
                      }
                    } catch (error) {
-                       showNotification('Failed to sync local data', 'error')
+                       showNotification('Failed to load cloud data', 'error')
                        console.error(error)
                      }
                      // Mark session as loaded
@@ -1761,53 +1810,12 @@ function AppContent() {
                        sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
                      }
                      setMergeDialog(null)
+                     setIsMergeProcessing(false)
                  }}
-              >
-                Keep Local
-              </button>
-              <button
-                className="confirm-ok"
-                onClick={async () => {
-                  // Use cloud data, overwrite local
-                  try {
-                    if (mergeDialog.cloudData && mergeDialog.cloudData.length > 0) {
-                      // Merge all cloud data into a single app state
-                      const mergedSettlements = mergeDialog.cloudData.map((d: any) => d.settlements || []).flat()
-                      const mergedSurvivors = mergeDialog.cloudData.map((d: any) => d.survivors || []).flat()
-                      const mergedInventory = Object.assign({}, ...mergeDialog.cloudData.map((d: any) => d.inventory || {}))
-                      
-                      // Ensure currentSettlementId is valid, otherwise use first settlement
-                      const validCurrentId = mergedSettlements.find((s: any) => s.id === appState.currentSettlementId)
-                        ? appState.currentSettlementId
-                        : mergedSettlements[0]?.id || appState.currentSettlementId
-                      
-                      const newAppState = {
-                        ...appState,
-                        settlements: mergedSettlements,
-                        survivors: mergedSurvivors,
-                        inventory: mergedInventory,
-                        currentSettlementId: validCurrentId,
-                      }
-                      setAppState(newAppState)
-                      localStorage.setItem('kdm-app-state', JSON.stringify(newAppState))
-                      localStorage.setItem('appStateDirty', 'false')
-                      setLastSyncTime(new Date())
-                      
-                      showNotification(`Loaded ${mergedSettlements.length} settlement(s) from cloud`, 'success')
-                    }
-                  } catch (error) {
-                      showNotification('Failed to load cloud data', 'error')
-                      console.error(error)
-                    }
-                    // Mark session as loaded
-                    if (user) {
-                      sessionStorage.setItem(`dataLoaded_${user.username}`, 'true')
-                    }
-                    setMergeDialog(null)
-                }}
-              >
-                Use Cloud
-              </button>
+                 disabled={isMergeProcessing}
+               >
+                 {isMergeProcessing ? '⏳ Loading...' : 'Use Cloud'}
+               </button>
             </div>
           </div>
         </div>
@@ -2461,36 +2469,52 @@ function AppContent() {
                       </button>
                    </>
                   ) : (
-                   <>
-                     <button 
-                       className="focus-actions-dropdown-btn"
-                       onClick={() => {
-                         handleDeactivateSurvivor(focusedQuadrant)
-                       }}
-                       title="Deactivate survivor"
-                     >
-                       Deactivate
-                     </button>
-                     <button 
-                       className="focus-actions-dropdown-btn"
-                       onClick={() => {
-                         handleRetireFocused()
-                       }}
-                       title="Retire survivor"
-                     >
-                       Retire
-                     </button>
-                     <button 
-                       className="focus-actions-dropdown-btn"
-                       onClick={() => {
-                         handleDeceasedFocused()
-                       }}
-                       title="Mark survivor as deceased"
-                     >
-                       Deceased
-                     </button>
-                   </>
-                 )}
+                    <>
+                      <div className="focus-actions-dropdown">
+                        <button 
+                          className="focus-actions-dropdown-btn actions-main-btn"
+                          onClick={() => setShowActionsDropdown(!showActionsDropdown)}
+                          title="Survivor actions"
+                        >
+                          ⋮ Actions
+                        </button>
+                        {showActionsDropdown && (
+                          <div className="focus-actions-menu">
+                            <button 
+                              className="focus-actions-menu-item"
+                              onClick={() => {
+                                handleDeactivateSurvivor(focusedQuadrant)
+                                setShowActionsDropdown(false)
+                              }}
+                              title="Deactivate survivor"
+                            >
+                              Deactivate
+                            </button>
+                            <button 
+                              className="focus-actions-menu-item"
+                              onClick={() => {
+                                handleRetireFocused()
+                                setShowActionsDropdown(false)
+                              }}
+                              title="Retire survivor"
+                            >
+                              Retire
+                            </button>
+                            <button 
+                              className="focus-actions-menu-item"
+                              onClick={() => {
+                                handleDeceasedFocused()
+                                setShowActionsDropdown(false)
+                              }}
+                              title="Mark survivor as deceased"
+                            >
+                              Deceased
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </>
+                  )}
               </div>
               {!isMobileDevice && editingTemplateQuadrant !== focusedQuadrant && (
                 <button
@@ -2674,15 +2698,23 @@ function AppContent() {
                   {currentSettlement && Object.entries(currentSettlement.survivors)
                     .filter(([_, survivor]) => survivor !== null)
                     .map(([id, survivor]) => (
-                      <div key={id} className="survivor-list-item">
-                        <div className="survivor-info">
-                          <div className="survivor-name">
-                            {survivor!.name || `New Survivor`}
-                          </div>
-                          <div className="survivor-meta">
-                            Created: {new Date(survivor!.createdAt).toLocaleDateString()} {new Date(survivor!.createdAt).toLocaleTimeString()}
-                          </div>
-                        </div>
+                       <div key={id} className="survivor-list-item">
+                         <div className="survivor-info">
+                           <div className="survivor-name-line">
+                             <span className="survivor-name">{survivor!.name || `New Survivor`}</span>
+                             {survivor!.gender && <span className="survivor-sex">{survivor!.gender}</span>}
+                             <span className="survivor-age">Age {survivor!.huntXP.filter(x => x).length}</span>
+                             <span className="survivor-stats">
+                               {survivor!.stats.movement}/{survivor!.stats.accuracy}/{survivor!.stats.strength}/{survivor!.stats.evasion}/{survivor!.stats.luck}/{survivor!.stats.speed}
+                             </span>
+                             {survivor!.weaponProficiency.types.length > 0 && (
+                               <span className="survivor-proficiency">{survivor!.weaponProficiency.types.join(', ')}</span>
+                             )}
+                           </div>
+                           <div className="survivor-meta">
+                             Created: {new Date(survivor!.createdAt).toLocaleDateString()} {new Date(survivor!.createdAt).toLocaleTimeString()}
+                           </div>
+                         </div>
                         <button
                           className="deactivate-button"
                           onClick={() => handleDeactivateSurvivor(Number(id) as 1 | 2 | 3 | 4)}
@@ -2709,15 +2741,23 @@ function AppContent() {
                       <div className="empty-message">No survivors in pool</div>
                     ) : (
                       currentSettlement.removedSurvivors.map((survivor, index) => (
-                        <div key={index} className="survivor-list-item deactivated">
-                          <div className="survivor-info">
-                            <div className="survivor-name">
-                              {survivor.name || `New Survivor`}
-                            </div>
-                            <div className="survivor-meta">
-                              Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                            </div>
-                          </div>
+                         <div key={index} className="survivor-list-item deactivated">
+                           <div className="survivor-info">
+                             <div className="survivor-name-line">
+                               <span className="survivor-name">{survivor.name || `New Survivor`}</span>
+                               {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
+                               <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                               <span className="survivor-stats">
+                                 {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
+                               </span>
+                               {survivor.weaponProficiency.types.length > 0 && (
+                                 <span className="survivor-proficiency">{survivor.weaponProficiency.types.join(', ')}</span>
+                               )}
+                             </div>
+                             <div className="survivor-meta">
+                               Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                             </div>
+                           </div>
                           <div className="survivor-actions">
                             <button
                               className="activate-button"
@@ -2759,15 +2799,23 @@ function AppContent() {
                     <div className="empty-message">No retired survivors</div>
                   ) : (
                      currentSettlement.retiredSurvivors.map((survivor, index) => (
-                       <div key={index} className="survivor-list-item retired">
-                         <div className="survivor-info">
-                           <div className="survivor-name">
-                             {survivor.name || `New Survivor`}
-                           </div>
-                           <div className="survivor-meta">
-                             Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                           </div>
-                         </div>
+                        <div key={index} className="survivor-list-item retired">
+                          <div className="survivor-info">
+                            <div className="survivor-name-line">
+                              <span className="survivor-name">{survivor.name || `New Survivor`}</span>
+                              {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
+                              <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                              <span className="survivor-stats">
+                                {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
+                              </span>
+                              {survivor.weaponProficiency.types.length > 0 && (
+                                <span className="survivor-proficiency">{survivor.weaponProficiency.types.join(', ')}</span>
+                              )}
+                            </div>
+                            <div className="survivor-meta">
+                              Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                            </div>
+                          </div>
                          <div className="survivor-actions">
                            <button
                              className="restore-button"
@@ -2797,15 +2845,23 @@ function AppContent() {
                     <div className="empty-message">No deceased survivors</div>
                   ) : (
                      currentSettlement.deceasedSurvivors.map((survivor, index) => (
-                       <div key={index} className="survivor-list-item deceased">
-                         <div className="survivor-info">
-                           <div className="survivor-name">
-                             {survivor.name || `New Survivor`}
-                           </div>
-                           <div className="survivor-meta">
-                             Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
-                           </div>
-                         </div>
+                        <div key={index} className="survivor-list-item deceased">
+                          <div className="survivor-info">
+                            <div className="survivor-name-line">
+                              <span className="survivor-name">{survivor.name || `New Survivor`}</span>
+                              {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
+                              <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                              <span className="survivor-stats">
+                                {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
+                              </span>
+                              {survivor.weaponProficiency.types.length > 0 && (
+                                <span className="survivor-proficiency">{survivor.weaponProficiency.types.join(', ')}</span>
+                              )}
+                            </div>
+                            <div className="survivor-meta">
+                              Created: {new Date(survivor.createdAt).toLocaleDateString()} {new Date(survivor.createdAt).toLocaleTimeString()}
+                            </div>
+                          </div>
                          <div className="survivor-actions">
                            <button
                              className="restore-button"

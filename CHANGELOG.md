@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.2] - 2026-02-20
+
+### Added
+- **Glossary Sentence-Level Selection** - Fine-grained glossary note copying
+  - Glossary definitions now display on separate lines when multi-sentence
+  - Each line has a "+" button to add just that sentence to survivor notes
+  - New "Add Keyword" button to add the glossary term itself to notes
+- **Merge Dialog Loading Indicators** - User feedback during data sync
+  - "⏳ Syncing..." indicator when uploading local data to cloud
+  - "⏳ Loading..." indicator when pulling cloud data
+  - Buttons disabled during operation to prevent double-clicks
+- **Survivor Management Information Display** - Compact survivor overview
+  - Sex/gender indicator on survivor list items
+  - Age display (count of checked hunt XP boxes) on survivor list items
+  - Attributes displayed as numbers (Movement/Accuracy/Strength/Evasion/Luck/Speed)
+  - Weapon proficiency types shown inline
+  - Applied to active, deactivated, retired, and deceased survivors
+
+### Changed
+- **Cloud Sync Interval** - Improved responsiveness
+  - Changed auto-sync from 30 seconds to 10 seconds
+- **Survivor Actions Menu** - Reorganized action buttons
+  - Deactivate, Retire, and Deceased buttons grouped into dropdown menu labeled "Actions"
+  - Reduces visual clutter in focused survivor view
+- **UI Compactness Improvements**
+  - Reduced title bar vertical padding for more compact header
+  - Reduced title font sizes across desktop and mobile views
+  - Reduced disclaimer banner vertical padding
+
+### [Unreleased]
+
 ### Added
 - **Debug Submission System** - Report problems directly from the app
   - New "Report a Problem" button in sync menu (authenticated users only)
