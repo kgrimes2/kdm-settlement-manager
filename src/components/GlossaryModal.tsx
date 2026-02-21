@@ -628,6 +628,11 @@ function renderTermContent(
   isSurvivorFocused?: boolean,
   onAddTextToNotes?: (text: string) => void,
 ) {
+  // Split definition into sentences
+  const sentences = term.definition
+    .split(/(?<=[.!?])\s+/)
+    .filter(s => s.trim().length > 0)
+
   return (
     <div className="glossary-term-content">
       <h3 className="glossary-term-title">
@@ -639,16 +644,39 @@ function renderTermContent(
       {term.category && (
         <div className="glossary-term-category">{term.category}</div>
       )}
-      <div className="glossary-term-definition-container">
-        <div className="glossary-term-definition">{term.definition}</div>
-        {isSurvivorFocused && onAddTextToNotes && (
+      
+      {isSurvivorFocused && onAddTextToNotes && (
+        <div className="glossary-add-keyword-container">
           <button
-            className="glossary-add-to-notes-btn"
-            onClick={() => onAddTextToNotes(term.definition)}
-            title="Add this text to the focused survivor's notes"
+            className="glossary-add-keyword-btn"
+            onClick={() => onAddTextToNotes(term.term)}
+            title="Add the keyword to the focused survivor's notes"
           >
-            Add to Notes
+            + Add Keyword
           </button>
+        </div>
+      )}
+
+      <div className="glossary-term-definition-container">
+        {sentences.length > 1 ? (
+          <div className="glossary-term-sentences">
+            {sentences.map((sentence, idx) => (
+              <div key={idx} className="glossary-term-sentence-line">
+                <span className="glossary-sentence-text">{sentence}</span>
+                {isSurvivorFocused && onAddTextToNotes && (
+                  <button
+                    className="glossary-add-line-btn"
+                    onClick={() => onAddTextToNotes(sentence)}
+                    title="Add this sentence to the focused survivor's notes"
+                  >
+                    +
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="glossary-term-definition">{term.definition}</div>
         )}
       </div>
 
