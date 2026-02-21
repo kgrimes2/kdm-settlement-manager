@@ -9,7 +9,6 @@ terraform {
 
   backend "s3" {
     bucket  = "kdm-terraform-state-469983200708"
-    key     = "kdm-app/terraform.tfstate"
     region  = "us-west-2"
     encrypt = true
     profile = "terraform-kdm"
