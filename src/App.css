@@ -3436,9 +3436,10 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1200;
+  padding-top: 2rem;
 }
 
 .log-entry-modal {

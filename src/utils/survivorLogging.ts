@@ -1,8 +1,11 @@
 import type { SurvivorLogEntry } from '../SurvivorSheet'
 
+// Attributes that should not be tracked in the survivor log
+const EXCLUDED_ATTRIBUTES = Object.freeze(new Set(['auxiliaryNotes', 'survivorLog']))
+
 /**
  * Detects changes between old and new survivor data
- * Returns a list of attribute changes
+ * Returns a list of attribute changes (excluding certain attributes)
  */
 export function detectChanges(oldValue: any, newValue: any, basePath = ''): Array<{ attribute: string; oldValue: string; newValue: string }> {
   const changes: Array<{ attribute: string; oldValue: string; newValue: string }> = []
@@ -34,6 +37,11 @@ export function detectChanges(oldValue: any, newValue: any, basePath = ''): Arra
   // Handle objects
   const allKeys = new Set([...Object.keys(oldValue), ...Object.keys(newValue)])
   for (const key of allKeys) {
+    // Skip excluded attributes (fast path for top-level)
+    if (!basePath && EXCLUDED_ATTRIBUTES.has(key)) {
+      continue
+    }
+
     const path = basePath ? `${basePath}.${key}` : key
     const oldVal = (oldValue as Record<string, any>)[key]
     const newVal = (newValue as Record<string, any>)[key]

@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import { capitalCase } from 'change-case'
 import './App.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
@@ -172,6 +173,24 @@ function AppContent() {
   // Helper to get current settlement
   const getCurrentSettlement = (): SettlementData | undefined => {
     return appState.settlements.find(s => s.id === appState.currentSettlementId)
+  }
+
+  const translateAttributeName = (attribute: string): string => {
+    // Special cases that need manual translation
+    const specialCases: Record<string, string> = {
+      'auxiliaryNotes': 'Notes',
+    }
+
+    if (specialCases[attribute]) return specialCases[attribute]
+
+    // Handle nested attributes like "stats.movement" or "gearBonuses.movement"
+    if (attribute.includes('.')) {
+      const [parent, child] = attribute.split('.')
+      return `${capitalCase(parent)} - ${capitalCase(child)}`
+    }
+
+    // Convert camelCase to Title Case using change-case
+    return capitalCase(attribute)
   }
 
   const currentSettlement = getCurrentSettlement()
@@ -3016,10 +3035,10 @@ function AppContent() {
                                   minute: '2-digit'
                                 })}
                               </div>
-                              <div className="log-attribute-compact">
-                                {entry.attribute}
-                                {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
-                              </div>
+                               <div className="log-attribute-compact">
+                                 {translateAttributeName(entry.attribute)}
+                                 {entry.count > 1 && <span className="log-count">×{entry.count}</span>}
+                               </div>
                             </div>
                           ))}
                         </div>
@@ -3035,8 +3054,8 @@ function AppContent() {
          {selectedLogEntry && (
            <div className="log-entry-modal-overlay" onClick={() => setSelectedLogEntry(null)}>
              <div className="log-entry-modal" onClick={(e) => e.stopPropagation()}>
-               <div className="log-entry-modal-header">
-                 <h4>{selectedLogEntry.entry.attribute}</h4>
+                <div className="log-entry-modal-header">
+                  <h4>{translateAttributeName(selectedLogEntry.entry.attribute)}</h4>
                  <button 
                    className="log-entry-modal-close"
                    onClick={() => setSelectedLogEntry(null)}
