@@ -122,11 +122,10 @@ describe('SurvivorSheet', () => {
     const user = userEvent.setup()
     render(<SurvivorSheet survivor={initialSurvivorData} onUpdate={mockOnUpdate} onOpenGlossary={mockOnOpenGlossary} glossaryTerms={mockGlossaryTerms} />)
 
-    const weaponInput = screen.getByPlaceholderText(/Type.../i)
-    await user.type(weaponInput, 'Sword{Enter}')
+    const proficiencySelect = screen.getByRole('combobox') as HTMLSelectElement
+    await user.selectOptions(proficiencySelect, 'Sword')
 
     expect(mockOnUpdate).toHaveBeenCalled()
-    // Check that weaponProficiency types array was updated
     const lastCall = mockOnUpdate.mock.calls[mockOnUpdate.mock.calls.length - 1][0]
     expect(lastCall.weaponProficiency.types).toContain('Sword')
   })

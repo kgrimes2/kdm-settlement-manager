@@ -195,7 +195,6 @@ interface SurvivorSheetProps {
 export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glossaryTerms, isEditingTemplate }: SurvivorSheetProps) {
   // Generate a unique identifier for this survivor's radio buttons
   // Note: using survivor.createdAt as a unique identifier
-  const [weaponTypeInput, setWeaponTypeInput] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const nameRef = useRef<HTMLTextAreaElement>(null)
   const [nameFontSize, setNameFontSize] = useState(0.8)
@@ -282,24 +281,6 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
 
   const updateField = <K extends keyof SurvivorData>(field: K, value: SurvivorData[K]) => {
     onUpdate({ ...survivor, [field]: value })
-  }
-
-  const addWeaponType = (type: string) => {
-    if (type.trim() && survivor.weaponProficiency.types.length < 1) {
-      const normalizedType = normalizeToGlossary(type)
-      updateField('weaponProficiency', {
-        ...survivor.weaponProficiency,
-        types: [...survivor.weaponProficiency.types, normalizedType]
-      })
-      setWeaponTypeInput('')
-    }
-  }
-
-  const removeWeaponType = (index: number) => {
-    updateField('weaponProficiency', {
-      ...survivor.weaponProficiency,
-      types: survivor.weaponProficiency.types.filter((_, i) => i !== index)
-    })
   }
 
   const addToList = (field: 'fightingArts' | 'disorders' | 'abilitiesImpairments' | 'oncePerLifetime', value: string) => {
@@ -621,45 +602,31 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
         <div className="right-column">
           <div className="weapon-proficiency">
             <div className="weapon-proficiency-inline">
-              <h3>Weapon Proficiency</h3>
-              <div className="pill-container">
-                {survivor.weaponProficiency.types.map((type, index) => (
-                  <div key={index} className={`pill ${isInGlossary(type) ? 'pill-in-glossary' : ''}`}>
-                    <span
-                      className="pill-text"
-                      onClick={() => onOpenGlossary(type)}
-                    >
-                      {type}
-                    </span>
-                    <button
-                      className="pill-remove"
-                      onClick={() => removeWeaponType(index)}
-                      aria-label="Remove"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
-                {survivor.weaponProficiency.types.length < 1 && (
-                  <input
-                    type="text"
-                    value={weaponTypeInput}
-                    onChange={(e) => setWeaponTypeInput(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault()
-                        addWeaponType(weaponTypeInput)
-                      }
-                    }}
-                    placeholder="Type..."
-                    className="pill-input"
-                  />
-                )}
-              </div>
-              <div className="proficiency-milestones">
-                <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
-                <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
-              </div>
+              <select
+                className="proficiency-select"
+                value={survivor.weaponProficiency.types[0] ?? ''}
+                onChange={(e) => {
+                  const val = e.target.value
+                  updateField('weaponProficiency', {
+                    ...survivor.weaponProficiency,
+                    types: val ? [val] : []
+                  })
+                }}
+              >
+                <option value="">Select proficiency...</option>
+                <option value="Axe">Axe</option>
+                <option value="Bow">Bow</option>
+                <option value="Club">Club</option>
+                <option value="Dagger">Dagger</option>
+                <option value="Fist & Tooth">Fist &amp; Tooth</option>
+                <option value="Grand Weapon">Grand Weapon</option>
+                <option value="Katar">Katar</option>
+                <option value="Shield">Shield</option>
+                <option value="Spear">Spear</option>
+                <option value="Sword">Sword</option>
+                <option value="Twilight Sword">Twilight Sword</option>
+                <option value="Whip">Whip</option>
+              </select>
               <div className="proficiency-row">
                 <div className="proficiency-boxes">
                   {survivor.weaponProficiency.level.map((checked, i) => {
@@ -674,6 +641,10 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                       </label>
                     )
                   })}
+                </div>
+                <div className="proficiency-milestones">
+                  <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
+                  <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
                 </div>
               </div>
             </div>

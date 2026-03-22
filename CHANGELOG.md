@@ -7,6 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.7] - 2026-03-22
+
+### Added
+- **SEO** - Added full meta tags to `index.html`: description, keywords, canonical URL, Open Graph, and Twitter Card; page title expanded to "KDM Settlement Manager — Kingdom Death: Monster Survivor Tracker"
+- **Merge conflict bug reporting** - "Report Bug" button in the data conflict dialog opens the debug submission modal so users can submit conflict details directly
+
+### Fixed
+- **Merge conflict false positives** - Cloud data is now run through the same migration pipeline as local data before comparison, eliminating the spurious conflict dialog that appeared on every reload
+- **Disclaimer text** - Toolbar disclaimer colour changed to `--kdm-text-mid` (lighter), with `font-weight: 300` for a thinner appearance
+- **Weapon proficiency dropdown position** - Dropdown now renders to the left of the checkboxes
+- **Test suite** - Updated `dataService` tests to match actual error message format (`status code` included); updated weapon proficiency test to use `selectOptions` against the new dropdown
+
+## [1.4.6] - 2026-03-22
+
+### Added
+- **Disclaimer in toolbar** - "Unofficial. Not affiliated with Adam Poots Games." displayed beneath the app name in the menu bar
+
+### Changed
+- **Weapon Proficiency** - Replaced free-text pill entry with a dropdown of all 12 proficiency types sourced from wiki data (Axe, Bow, Club, Dagger, Fist & Tooth, Grand Weapon, Katar, Shield, Spear, Sword, Twilight Sword, Whip); checkboxes and milestone labels now share a single row with the dropdown
+- **Menu bar** - App name font size reduced to reclaim vertical space for survivor sheet content
+- **Data migration to v12** - Existing weapon proficiency free-text values normalised to canonical dropdown option names on load
+
+### Fixed
+- **Login modal light theme** - Modal was rendering with dark background and light text in light mode; updated to classic sepia palette matching other modals
+- **IAM permissions** - Lambda role was missing `s3:PutObject` permission on the user data bucket, preventing all settlement saves (regression from commented-out policy)
+
+### Removed
+- **Disclaimer banner** - Removed fixed bottom banner; disclaimer text moved to toolbar
+
 ## [1.4.4] - 2026-03-22
 
 ### Fixed
