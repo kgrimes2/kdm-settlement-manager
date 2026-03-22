@@ -95,15 +95,17 @@ resource "aws_s3_bucket_policy" "app_bucket_policy" {
 
 # CloudFront Distribution
 resource "aws_cloudfront_distribution" "app_distribution" {
-  enabled             = true
-  is_ipv6_enabled     = true
-  default_root_object = "app/index.html"
+  enabled         = true
+  is_ipv6_enabled = true
+  # In prod, the CloudFront function handles / -> /app redirect, so no default
+  # root object is needed.  In staging, serve app/index.html directly.
+  default_root_object = var.environment == "prod" ? "" : "app/index.html"
   price_class         = var.environment == "prod" ? "PriceClass_100" : "PriceClass_All"
 
   # Custom domain alias:
-  #   prod    -> rollinglanterns.com
+  #   prod    -> rollinglanterns.com + www.rollinglanterns.com
   #   staging -> staging.rollinglanterns.com
-  aliases = [local.app_host]
+  aliases = var.environment == "prod" ? [var.root_domain, "www.${var.root_domain}"] : [local.app_host]
 
   origin {
     domain_name              = aws_s3_bucket.app_bucket.bucket_regional_domain_name
@@ -121,6 +123,15 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id
 
     viewer_protocol_policy = "redirect-to-https"
+
+    # In prod, redirect bare / and non-/app paths to /app
+    dynamic "function_association" {
+      for_each = var.environment == "prod" ? [1] : []
+      content {
+        event_type   = "viewer-request"
+        function_arn = aws_cloudfront_function.apex_redirect[0].arn
+      }
+    }
   }
 
   # /app/index.html — always revalidate so deploys are reflected immediately
