@@ -1105,12 +1105,10 @@
 .toolbar-title {
   margin: 0;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
   line-height: 1.2;
-  font-family: 'Raleway', sans-serif;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .version-link {
@@ -1275,7 +1273,7 @@
 }
 
 .settlement-management-header h2 {
-  font-family: 'Raleway', sans-serif;
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0;
@@ -1502,6 +1500,10 @@
   padding: 0.35rem 0.5rem;
   min-width: 2.5rem;
   font-size: 1.25rem;
+}
+
+.theme-toggle-button {
+  font-size: 1.1rem;
 }
 
 .sync-button {
@@ -2091,7 +2093,7 @@
   padding: 0.4rem 0.8rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
   background-color: var(--kdm-text);
   border: none;
   border-radius: 0;
@@ -2320,7 +2322,7 @@
 
 .bulk-actions-header span:first-child {
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .bulk-actions-content {
@@ -2502,7 +2504,7 @@
 
 .active-survivors-header span:first-child {
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .survivor-pool-section {
@@ -2530,7 +2532,7 @@
 
 .survivor-pool-header span:first-child {
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .expand-icon {
@@ -2580,7 +2582,7 @@
 
 .retired-header span:first-child {
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .retired-list {
@@ -2626,7 +2628,7 @@
 
 .deceased-header span:first-child {
   font-weight: 600;
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .deceased-list {

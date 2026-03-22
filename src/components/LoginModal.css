@@ -46,7 +46,7 @@
 }
 
 .login-modal-header h2 {
-  font-family: 'Raleway', sans-serif;
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0;
@@ -244,7 +244,7 @@
   }
 
   .login-modal-header h2 {
-  font-family: 'Raleway', sans-serif;
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
     font-size: 1.25rem;

@@ -33,7 +33,7 @@
 }
 
 .inventory-modal-header h2 {
-  font-family: 'Raleway', sans-serif;
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin: 0;
@@ -81,7 +81,7 @@
 
 .inventory-tab-btn.active {
   background-color: var(--kdm-text);
-  color: var(--kdm-text);
+  color: var(--kdm-bg);
 }
 
 .inventory-tab-btn:hover:not(.active) {
@@ -336,8 +336,8 @@
     max-height: 90vh;
   }
 
-  .inventory-modal-header h2 {
-  font-family: 'Raleway', sans-serif;
+.inventory-modal-header h2 {
+  font-family: inherit;
   text-transform: uppercase;
   letter-spacing: 0.1em;
     font-size: 1rem;
@@ -346,4 +346,89 @@
   .inventory-modal-content {
     padding: 0.75rem 1rem;
   }
+}
+
+/* Settlement Log */
+.inventory-log-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.inventory-log-entry {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--kdm-border);
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.inventory-log-timestamp {
+  color: var(--kdm-text-dim);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  min-width: 110px;
+}
+
+.inventory-log-category {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.35rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.inventory-log-category-gear {
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text-mid);
+}
+
+.inventory-log-category-materials {
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text-mid);
+}
+
+.inventory-log-item {
+  flex: 1;
+  color: var(--kdm-text);
+  font-weight: 500;
+}
+
+.inventory-log-qty {
+  color: var(--kdm-text-mid);
+  white-space: nowrap;
+  font-size: 0.75rem;
+}
+
+.inventory-log-delta {
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 2rem;
+  text-align: right;
+}
+
+.inventory-log-delta-pos {
+  color: #6a9a6a;
+}
+
+.inventory-log-delta-neg {
+  color: var(--kdm-danger);
+}
+
+.inventory-log-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text-mid);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: 2px;
+  padding: 0.05rem 0.3rem;
+  margin-left: 0.3rem;
+  vertical-align: middle;
 }

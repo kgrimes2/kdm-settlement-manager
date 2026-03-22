@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
-  /* KDM monochrome palette */
+  /* KDM monochrome dark palette (default) */
   --kdm-bg:            #000000;
   --kdm-surface:       #111111;
   --kdm-surface-mid:   #1a1a1a;
