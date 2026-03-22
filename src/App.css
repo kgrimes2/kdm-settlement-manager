@@ -229,17 +229,6 @@
   justify-content: center;
 }
 
-.container.overview-mode {
-  overflow: hidden;
-}
-
-.container.overview-mode .quadrant,
-.container.overview-mode .quadrant * {
-  overflow: hidden;
-  touch-action: none;
-  overscroll-behavior: none;
-}
-
 .quadrant {
   display: flex;
   width: 100%;

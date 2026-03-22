@@ -2994,7 +2994,7 @@ function AppContent() {
         </div>
       )}
 
-        <div className={`container${focusedQuadrant === null ? ' overview-mode' : ''}`} onClick={handleContainerClick}>
+        <div className="container" onClick={handleContainerClick}>
          {editingTemplateQuadrant !== null && (
            <div style={{
              position: 'fixed',
