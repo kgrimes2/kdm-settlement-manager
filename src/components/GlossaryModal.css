@@ -13,9 +13,9 @@
 }
 
 .glossary-modal {
-  background-color: #d4c5a9;
-  border: 3px solid #3a3230;
-  border-radius: 8px;
+  background-color: var(--kdm-surface);
+  border: 3px solid var(--kdm-border);
+  border-radius: 0;
   width: 100%;
   max-width: 600px;
   max-height: 80vh;
@@ -29,13 +29,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 2px solid #3a3230;
+  border-bottom: 2px solid var(--kdm-border);
 }
 
 .glossary-modal-header h2 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin: 0;
   font-size: 1.25rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
 }
 
 .glossary-header-actions {
@@ -46,8 +49,8 @@
 
 .glossary-view-toggle {
   display: flex;
-  border: 1px solid #3a3230;
-  border-radius: 4px;
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -56,15 +59,15 @@
   font-size: 0.8rem;
   border: none;
   background: transparent;
-  color: #3a3230;
+  color: var(--kdm-text-dim);
   cursor: pointer;
   font-family: inherit;
   transition: all 0.2s;
 }
 
 .glossary-toggle-btn.active {
-  background-color: #3a3230;
-  color: #d4c5a9;
+  background-color: var(--kdm-border);
+  color: var(--kdm-text);
 }
 
 .glossary-toggle-btn:hover:not(.active) {
@@ -75,7 +78,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: #3a3230;
+  color: var(--kdm-text-dim);
   cursor: pointer;
   line-height: 1;
   padding: 0;
@@ -88,7 +91,7 @@
 }
 
 .glossary-close-btn:hover {
-  color: #8b4513;
+  color: var(--kdm-text-mid);
 }
 
 .glossary-modal-content {
@@ -105,27 +108,27 @@
   width: 100%;
   padding: 0.75rem;
   font-size: 1rem;
-  border: 2px solid #3a3230;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.5);
-  color: #2a1a1a;
+  border: 2px solid var(--kdm-border);
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--kdm-text);
   font-family: inherit;
 }
 
 .glossary-search-input:focus {
   outline: none;
-  border-color: #8b4513;
-  background-color: rgba(255, 255, 255, 0.8);
+  border-color: var(--kdm-text-mid);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .glossary-search-input::placeholder {
-  color: #8a7a6a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-search-hint {
   text-align: center;
   padding: 2rem 1rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-search-hint p {
@@ -134,13 +137,13 @@
 
 .glossary-browse-hint {
   font-size: 0.9rem;
-  color: #7a6a5a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-inline-link {
   background: none;
   border: none;
-  color: #8b4513;
+  color: var(--kdm-text-mid);
   text-decoration: underline;
   cursor: pointer;
   font-size: inherit;
@@ -149,7 +152,7 @@
 }
 
 .glossary-inline-link:hover {
-  color: #5a2d0a;
+  color: var(--kdm-text-dim);
 }
 
 /* Category pill matches (shown in search) */
@@ -165,10 +168,10 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 0.75rem;
-  background-color: rgba(139, 69, 19, 0.15);
-  border: 1px solid #8b4513;
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid var(--kdm-text-mid);
   border-radius: 16px;
-  color: #5a2d0a;
+  color: var(--kdm-text-dim);
   font-size: 0.85rem;
   cursor: pointer;
   font-family: inherit;
@@ -176,12 +179,12 @@
 }
 
 .glossary-category-pill:hover {
-  background-color: rgba(139, 69, 19, 0.3);
+  background-color: rgba(255,255,255,0.06);
 }
 
 .glossary-category-pill-count {
-  background-color: #8b4513;
-  color: #d4c5a9;
+  background-color: var(--kdm-text-mid);
+  color: var(--kdm-text);
   font-size: 0.7rem;
   padding: 0.1rem 0.4rem;
   border-radius: 10px;
@@ -201,19 +204,19 @@
 }
 
 .glossary-source-badge.official {
-  background-color: #3a5a3a;
-  color: #c5e0c5;
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text-mid);
 }
 
 .glossary-source-badge.wiki {
-  background-color: #3a4a6a;
-  color: #c5d5e5;
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text-mid);
 }
 
 .glossary-no-results {
   text-align: center;
   padding: 2rem;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
@@ -225,23 +228,23 @@
 
 .glossary-result-item {
   padding: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid #3a3230;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .glossary-result-item:hover,
 .glossary-result-item.highlighted {
-  background-color: rgba(139, 69, 19, 0.2);
-  border-color: #8b4513;
+  background-color: rgba(255,255,255,0.06);
+  border-color: var(--kdm-text-mid);
 }
 
 .glossary-result-term {
   font-weight: bold;
   font-size: 1rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   margin-bottom: 0.25rem;
   display: flex;
   align-items: center;
@@ -249,7 +252,7 @@
 
 .glossary-result-preview {
   font-size: 0.85rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
   line-height: 1.4;
 }
 
@@ -262,31 +265,31 @@
 .glossary-back-btn {
   align-self: flex-start;
   padding: 0.5rem 1rem;
-  background-color: rgba(139, 69, 19, 0.2);
-  border: 1px solid #3a3230;
-  border-radius: 4px;
-  color: #2a1a1a;
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
+  color: var(--kdm-text);
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .glossary-back-btn:hover {
-  background-color: rgba(139, 69, 19, 0.3);
-  border-color: #8b4513;
+  background-color: rgba(255,255,255,0.06);
+  border-color: var(--kdm-text-mid);
 }
 
 .glossary-term-content {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.06);
   padding: 1.5rem;
-  border: 2px solid #3a3230;
-  border-radius: 4px;
+  border: 2px solid var(--kdm-border);
+  border-radius: 0;
 }
 
 .glossary-term-title {
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -296,8 +299,8 @@
 .glossary-term-category {
   display: inline-block;
   padding: 0.25rem 0.75rem;
-  background-color: #8b4513;
-  color: #d4c5a9;
+  background-color: var(--kdm-text-mid);
+  color: var(--kdm-text);
   font-size: 0.75rem;
   font-weight: bold;
   border-radius: 12px;
@@ -306,7 +309,7 @@
 
 .glossary-term-definition {
   line-height: 1.6;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   margin-bottom: 1rem;
   white-space: pre-wrap;
 }
@@ -336,22 +339,22 @@
   align-items: flex-start;
   padding: 0.5rem;
   background-color: rgba(139, 111, 71, 0.05);
-  border-radius: 4px;
-  border-left: 2px solid #8b6f47;
+  border-radius: 0;
+  border-left: 2px solid var(--kdm-border-mid);
 }
 
 .glossary-sentence-text {
   flex: 1;
   line-height: 1.5;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-size: 0.95rem;
 }
 
 .glossary-add-line-btn {
   padding: 0.35rem 0.5rem;
-  background-color: #8b6f47;
-  color: #e4d5b9;
-  border: 1px solid #5a4a3a;
+  background-color: var(--kdm-border-mid);
+  color: var(--kdm-text);
+  border: 1px solid var(--kdm-border-mid);
   border-radius: 3px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -363,12 +366,12 @@
 }
 
 .glossary-add-line-btn:hover {
-  background-color: #9a7f57;
+  background-color: var(--kdm-border-light);
   border-color: #3a2a1a;
 }
 
 .glossary-add-line-btn:active {
-  background-color: #7a5f37;
+  background-color: var(--kdm-border);
 }
 
 .glossary-add-keyword-container {
@@ -377,10 +380,10 @@
 
 .glossary-add-keyword-btn {
   padding: 0.5rem 1rem;
-  background-color: #5a3d2a;
-  color: #e4d5b9;
+  background-color: var(--kdm-surface-high);
+  color: var(--kdm-text);
   border: 1px solid #3a2a1a;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
@@ -388,20 +391,20 @@
 }
 
 .glossary-add-keyword-btn:hover {
-  background-color: #6a4d3a;
+  background-color: var(--kdm-border);
   border-color: #1a0a0a;
 }
 
 .glossary-add-keyword-btn:active {
-  background-color: #4a2d1a;
+  background-color: var(--kdm-surface-mid);
 }
 
 .glossary-add-to-notes-btn {
   padding: 0.5rem 0.75rem;
-  background-color: #8b6f47;
-  color: #e4d5b9;
-  border: 1px solid #5a4a3a;
-  border-radius: 4px;
+  background-color: var(--kdm-border-mid);
+  color: var(--kdm-text);
+  border: 1px solid var(--kdm-border-mid);
+  border-radius: 0;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -411,18 +414,18 @@
 }
 
 .glossary-add-to-notes-btn:hover {
-  background-color: #9a7f57;
+  background-color: var(--kdm-border-light);
   border-color: #3a2a1a;
 }
 
 .glossary-add-to-notes-btn:active {
-  background-color: #7a5f37;
+  background-color: var(--kdm-border);
 }
 
 .glossary-related-terms {
   padding: 1rem;
-  background-color: rgba(139, 69, 19, 0.1);
-  border-left: 3px solid #8b4513;
+  background-color: rgba(255,255,255,0.06);
+  border-left: 3px solid var(--kdm-text-mid);
   margin-top: 1rem;
   font-size: 0.9rem;
 }
@@ -430,7 +433,7 @@
 .glossary-related-link {
   background: none;
   border: none;
-  color: #8b4513;
+  color: var(--kdm-text-mid);
   text-decoration: underline;
   cursor: pointer;
   font-size: inherit;
@@ -439,17 +442,17 @@
 }
 
 .glossary-related-link:hover {
-  color: #5a2d0a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-term-link {
   margin-top: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid #3a3230;
+  border-top: 1px solid var(--kdm-border);
 }
 
 .glossary-term-link a {
-  color: #8b4513;
+  color: var(--kdm-text-mid);
   text-decoration: none;
   font-weight: bold;
 }
@@ -475,13 +478,13 @@
 
 .glossary-categories-header h3 {
   margin: 0;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-size: 1.1rem;
 }
 
 .glossary-categories-count {
   font-size: 0.8rem;
-  color: #7a6a5a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-category-grid {
@@ -496,30 +499,30 @@
   align-items: center;
   gap: 0.25rem;
   padding: 0.75rem 0.5rem;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid #3a3230;
-  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.2s;
   font-family: inherit;
 }
 
 .glossary-category-card:hover {
-  background-color: rgba(139, 69, 19, 0.2);
-  border-color: #8b4513;
+  background-color: rgba(255,255,255,0.06);
+  border-color: var(--kdm-text-mid);
   transform: translateY(-1px);
 }
 
 .glossary-category-card-name {
   font-weight: bold;
   font-size: 0.85rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   text-align: center;
 }
 
 .glossary-category-card-count {
   font-size: 0.75rem;
-  color: #7a6a5a;
+  color: var(--kdm-text-dim);
 }
 
 /* Category detail view */
@@ -537,13 +540,13 @@
 
 .glossary-category-detail-header h3 {
   margin: 0;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-size: 1.25rem;
 }
 
 .glossary-category-detail-count {
   font-size: 0.85rem;
-  color: #7a6a5a;
+  color: var(--kdm-text-dim);
 }
 
 /* Loading spinner */
@@ -553,15 +556,15 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 2rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
 .glossary-spinner {
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(139, 69, 19, 0.3);
-  border-top-color: #8b4513;
+  border: 3px solid rgba(255,255,255,0.06);
+  border-top-color: var(--kdm-text-mid);
   border-radius: 50%;
   animation: glossary-spin 0.8s linear infinite;
 }
@@ -573,7 +576,7 @@
 /* Footer */
 .glossary-modal-footer {
   padding: 0.75rem 1.5rem;
-  border-top: 2px solid #3a3230;
+  border-top: 2px solid var(--kdm-border);
   background-color: rgba(58, 50, 48, 0.1);
   display: flex;
   justify-content: space-between;
@@ -590,25 +593,25 @@
 
 .glossary-hint {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
 .glossary-official-link {
   font-size: 0.75rem;
-  color: #5a7a8a;
+  color: var(--kdm-text-dim);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .glossary-official-link:hover {
-  color: #7a9aaa;
+  color: var(--kdm-text-mid);
   text-decoration: underline;
 }
 
 .glossary-last-updated {
   font-size: 0.7rem;
-  color: #888;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
@@ -622,15 +625,15 @@
 .glossary-scan-prompt {
   text-align: center;
   padding: 2rem 1rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
 }
 
 .glossary-camera-feed {
   width: 100%;
   max-height: 300px;
   object-fit: cover;
-  border: 2px solid #3a3230;
-  border-radius: 6px;
+  border: 2px solid var(--kdm-border);
+  border-radius: 0;
   background-color: #1a1a1a;
 }
 
@@ -645,10 +648,10 @@
   font-size: 1rem;
   font-weight: bold;
   font-family: inherit;
-  border: 2px solid #3a3230;
-  border-radius: 6px;
-  background-color: #8b4513;
-  color: #d4c5a9;
+  border: 2px solid var(--kdm-border);
+  border-radius: 0;
+  background-color: var(--kdm-text-mid);
+  color: var(--kdm-text);
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -663,29 +666,29 @@
 }
 
 .glossary-upload-btn {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #3a3230;
-  border-color: #3a3230;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text-dim);
+  border-color: var(--kdm-border);
 }
 
 .glossary-upload-btn:hover:not(:disabled) {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .glossary-stop-camera-btn {
   padding: 0.6rem 1.5rem;
   font-size: 0.9rem;
   font-family: inherit;
-  border: 1px solid #3a3230;
-  border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #3a3230;
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text-dim);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .glossary-stop-camera-btn:hover {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .glossary-ocr-status {
@@ -694,30 +697,30 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 1rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
   font-style: italic;
   text-align: center;
 }
 
 .glossary-ocr-status.error {
-  color: #8b2500;
+  color: var(--kdm-danger);
   flex-direction: column;
 }
 
 .glossary-ocr-raw {
   padding: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.3);
-  border: 1px solid #3a3230;
-  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
   font-size: 0.85rem;
-  color: #3a3230;
+  color: var(--kdm-text-dim);
   word-break: break-word;
 }
 
 .glossary-ocr-results-header {
   font-weight: bold;
   font-size: 0.9rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   margin-bottom: 0.25rem;
 }
 
@@ -734,6 +737,9 @@
   }
 
   .glossary-modal-header h2 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
     font-size: 1rem;
   }
 
