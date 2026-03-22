@@ -602,26 +602,6 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
         <div className="right-column">
           <div className="weapon-proficiency">
             <div className="weapon-proficiency-inline">
-              <div className="proficiency-row">
-                <div className="proficiency-boxes">
-                  {survivor.weaponProficiency.level.map((checked, i) => {
-                    const isMilestone = i === 2 || i === 7
-                    return (
-                      <label key={i} className={`checkbox-box ${isMilestone ? 'proficiency-milestone' : ''}`}>
-                        <input
-                          type="checkbox"
-                          checked={checked}
-                          onChange={() => toggleWeaponLevel(i)}
-                        />
-                      </label>
-                    )
-                  })}
-                </div>
-                <div className="proficiency-milestones">
-                  <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
-                  <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
-                </div>
-              </div>
               <select
                 className="proficiency-select"
                 value={survivor.weaponProficiency.types[0] ?? ''}
@@ -647,6 +627,26 @@ export default function SurvivorSheet({ survivor, onUpdate, onOpenGlossary, glos
                 <option value="Twilight Sword">Twilight Sword</option>
                 <option value="Whip">Whip</option>
               </select>
+              <div className="proficiency-row">
+                <div className="proficiency-boxes">
+                  {survivor.weaponProficiency.level.map((checked, i) => {
+                    const isMilestone = i === 2 || i === 7
+                    return (
+                      <label key={i} className={`checkbox-box ${isMilestone ? 'proficiency-milestone' : ''}`}>
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleWeaponLevel(i)}
+                        />
+                      </label>
+                    )
+                  })}
+                </div>
+                <div className="proficiency-milestones">
+                  <div className="milestone-label"><span className="milestone-marker">■</span> Specialist</div>
+                  <div className="milestone-label"><span className="milestone-marker">■ ■</span> Master</div>
+                </div>
+              </div>
             </div>
           </div>
 

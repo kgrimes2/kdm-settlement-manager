@@ -84,3 +84,4 @@ MIGRATION_SUMMARY.md
 temp-*
 test-*.html
 subs/
+terraform_*.zip

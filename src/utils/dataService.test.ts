@@ -68,7 +68,9 @@ describe('DataService - Backup and Restore Functionality', () => {
     it('should throw an error if saving empty settlement fails', async () => {
       const mockResponse = {
         ok: false,
+        status: 500,
         statusText: 'Internal Server Error',
+        text: vi.fn().mockResolvedValue('Internal Server Error'),
       }
       ;(global.fetch as any).mockResolvedValue(mockResponse)
 
@@ -80,7 +82,7 @@ describe('DataService - Backup and Restore Functionality', () => {
 
       await expect(
         dataService.saveUserData('settlement-1', emptySettlement)
-      ).rejects.toThrow('Failed to save user data: Internal Server Error')
+      ).rejects.toThrow('Failed to save user data: 500 Internal Server Error')
     })
   })
 
@@ -468,7 +470,9 @@ describe('DataService - Backup and Restore Functionality', () => {
     it('should reject requests with invalid token', async () => {
       const mockResponse = {
         ok: false,
+        status: 401,
         statusText: 'Unauthorized',
+        text: vi.fn().mockResolvedValue('Unauthorized'),
       }
       ;(global.fetch as any).mockResolvedValue(mockResponse)
 
@@ -480,7 +484,7 @@ describe('DataService - Backup and Restore Functionality', () => {
 
       await expect(
         dataService.saveUserData('settlement-1', data)
-      ).rejects.toThrow('Failed to save user data: Unauthorized')
+      ).rejects.toThrow('Failed to save user data: 401 Unauthorized')
     })
   })
 

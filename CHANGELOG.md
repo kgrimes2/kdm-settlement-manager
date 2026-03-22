@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.7] - 2026-03-22
+
+### Added
+- **Overview scroll lock** - Scrolling is disabled on all four survivor quadrants in overview mode; each sheet is clipped to its quadrant with touch and wheel events suppressed
+- **SEO** - Added full meta tags to `index.html`: description, keywords, canonical URL, Open Graph, and Twitter Card; page title expanded to "KDM Settlement Manager — Kingdom Death: Monster Survivor Tracker"
+- **Merge conflict bug reporting** - "Report Bug" button in the data conflict dialog opens the debug submission modal so users can submit conflict details directly
+
+### Fixed
+- **Merge conflict false positives** - Cloud data is now run through the same migration pipeline as local data before comparison, eliminating the spurious conflict dialog that appeared on every reload
+- **Disclaimer text** - Toolbar disclaimer colour changed from dark grey to `--kdm-text-mid` (lighter), with `font-weight: 300` for a thinner appearance
+- **Weapon proficiency dropdown position** - Dropdown now renders to the left of the checkboxes
+- **Test suite** - Updated `dataService` tests to match actual error message format (`status code` included); updated weapon proficiency test to use `selectOptions` against the new dropdown
+
 ## [1.4.6] - 2026-03-22
 
 ### Added

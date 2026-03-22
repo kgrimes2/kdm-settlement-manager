@@ -405,9 +405,19 @@ function AppContent() {
           const localData = localStorageData ? JSON.parse(localStorageData) : null
           
           // Merge all cloud data
-          const mergedSettlements = allCloudData.map((d: any) => d.settlements || []).flat()
+          const rawCloudSettlements = allCloudData.map((d: any) => d.settlements || []).flat()
           const mergedSurvivors = allCloudData.map((d: any) => d.survivors || []).flat()
           const mergedInventory = Object.assign({}, ...allCloudData.map((d: any) => d.inventory || {}))
+          
+          // Migrate cloud settlements through the same pipeline as local data
+          // so the comparison is apples-to-apples (same default fields, same normalizations)
+          const migratedCloudState = migrateData({
+            version: 0,
+            settlements: rawCloudSettlements,
+            currentSettlementId: rawCloudSettlements[0]?.id || 'settlement-1',
+            namedSaves: []
+          })
+          const mergedSettlements = migratedCloudState.settlements
           
           console.log('Merged settlements from cloud:', mergedSettlements)
           console.log('Total settlements after merge:', mergedSettlements.length)
@@ -1874,9 +1884,21 @@ function AppContent() {
                  }}
                  disabled={isMergeProcessing}
                >
-                 {isMergeProcessing ? '⏳ Loading...' : 'Use Cloud'}
-               </button>
-            </div>
+                  {isMergeProcessing ? '⏳ Loading...' : 'Use Cloud'}
+                </button>
+                {debugService && (
+                  <button
+                    className="confirm-cancel"
+                    onClick={() => {
+                      setMergeDialog(null)
+                      setShowDebugModal(true)
+                    }}
+                    disabled={isMergeProcessing}
+                  >
+                    Report Bug
+                  </button>
+                )}
+             </div>
           </div>
         </div>
        )}
@@ -2972,7 +2994,7 @@ function AppContent() {
         </div>
       )}
 
-       <div className="container" onClick={handleContainerClick}>
+        <div className={`container${focusedQuadrant === null ? ' overview-mode' : ''}`} onClick={handleContainerClick}>
          {editingTemplateQuadrant !== null && (
            <div style={{
              position: 'fixed',
