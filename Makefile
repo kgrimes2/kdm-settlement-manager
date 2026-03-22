@@ -11,7 +11,9 @@ VENUE ?= dev
 TF_DIR := infrastructure/terraform
 STATE_BUCKET := kdm-terraform-state-469983200708
 STATE_REGION := us-west-2
-PROFILE := terraform-kdm
+# Set PROFILE to your local AWS CLI profile name.
+# Leave empty (or unset) on Cloud9 where the instance role is used instead.
+PROFILE ?= terraform-kdm
 
 # Venue-specific configuration
 ifeq ($(VENUE),dev)
@@ -63,6 +65,15 @@ _switch_workspace: _check_venue
 	terraform workspace select $(WORKSPACE) 2>/dev/null || terraform workspace new $(WORKSPACE) && \
 	echo "$(GREEN)Switched to workspace: $(WORKSPACE)$(NC)"
 
+# Conditionally pass profile flags — omitted on Cloud9 where instance role is used
+ifdef PROFILE
+  BACKEND_PROFILE_FLAG := -backend-config="profile=$(PROFILE)"
+  PROFILE_VAR_FLAG     := -var="aws_profile=$(PROFILE)"
+else
+  BACKEND_PROFILE_FLAG :=
+  PROFILE_VAR_FLAG     :=
+endif
+
 init: _check_venue
 	@cd $(TF_DIR) && \
 	echo "$(YELLOW)Initializing Terraform...$(NC)" && \
@@ -71,7 +82,7 @@ init: _check_venue
 		-backend-config="key=terraform.tfstate" \
 		-backend-config="workspace_key_prefix=kdm-app" \
 		-backend-config="region=$(STATE_REGION)" \
-		-backend-config="profile=$(PROFILE)" && \
+		$(BACKEND_PROFILE_FLAG) && \
 	echo "$(YELLOW)Switching to workspace: $(WORKSPACE)$(NC)" && \
 	terraform workspace select $(WORKSPACE) 2>/dev/null || terraform workspace new $(WORKSPACE) && \
 	echo "$(GREEN)Switched to workspace: $(WORKSPACE)$(NC)"
@@ -93,6 +104,7 @@ plan: init
 	terraform plan \
 		-var="environment=$(ENVIRONMENT)" \
 		-var="aws_region=$(AWS_REGION)" \
+		$(PROFILE_VAR_FLAG) \
 		-out=tfplan
 
 create: plan
@@ -110,7 +122,8 @@ destroy: init
 	if [ "$$confirm" = "yes" ]; then \
 		terraform destroy \
 			-var="environment=$(ENVIRONMENT)" \
-			-var="aws_region=$(AWS_REGION)" && \
+			-var="aws_region=$(AWS_REGION)" \
+			$(PROFILE_VAR_FLAG) && \
 		echo "$(GREEN)Infrastructure destroyed$(NC)"; \
 	else \
 		echo "$(YELLOW)Destroy cancelled$(NC)"; \
