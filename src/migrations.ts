@@ -1,11 +1,19 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import type { PermanentInjury } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 10
+export const CURRENT_DATA_VERSION = 11
 
 export interface SettlementInventory {
   gear: Record<string, number>
   materials: Record<string, number>
+}
+
+export interface SettlementLogEntry {
+  timestamp: string
+  category: 'gear' | 'materials'
+  item: string
+  oldQty: number
+  newQty: number
 }
 
 export interface NamedSave {
@@ -34,6 +42,7 @@ export interface SettlementData {
   retiredSurvivors: SurvivorData[]
   deceasedSurvivors: SurvivorData[]
   inventory: SettlementInventory
+  settlementLog: SettlementLogEntry[]
   survivorTemplate?: SurvivorTemplate
   templateEditInProgress?: {
     survivorsBefore: {
@@ -70,7 +79,8 @@ function createDefaultSettlement(): SettlementData {
     removedSurvivors: [],
     retiredSurvivors: [],
     deceasedSurvivors: [],
-    inventory: { gear: {}, materials: {} }
+    inventory: { gear: {}, materials: {} },
+    settlementLog: []
   }
 }
 
@@ -261,6 +271,7 @@ function migrateSettlement(settlement: any): SettlementData {
     retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     inventory: settlement.inventory || { gear: {}, materials: {} },
+    settlementLog: settlement.settlementLog || [],
     survivorTemplate: settlement.survivorTemplate,
   }
 }

@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import InventoryModal from './InventoryModal'
 import type { GlossaryTerm } from '../types/glossary'
-import type { SettlementInventory } from '../migrations'
+import type { SettlementInventory, SettlementLogEntry } from '../migrations'
 
 // Mock Tesseract
 vi.mock('tesseract.js', () => ({
@@ -56,11 +56,17 @@ const mockInventory: SettlementInventory = {
   materials: { 'Bone Marrow': 5 },
 }
 
+const mockSettlementLog: SettlementLogEntry[] = [
+  { timestamp: '2026-03-22T10:00:00.000Z', category: 'gear', item: 'Sword', oldQty: 0, newQty: 1 },
+  { timestamp: '2026-03-22T11:00:00.000Z', category: 'materials', item: 'Bone Marrow', oldQty: 1, newQty: 5 },
+]
+
 const defaultProps = {
   isOpen: true,
   onClose: vi.fn(),
   settlementName: 'Test Settlement',
   inventory: mockInventory,
+  settlementLog: mockSettlementLog,
   onUpdateInventory: vi.fn(),
   glossaryTerms: mockGlossaryTerms,
   loadedWikiTerms: mockGlossaryTerms,
@@ -490,6 +496,49 @@ describe('InventoryModal', () => {
 
       // Verify gear items again
       expect(screen.getByText('Sword')).toBeInTheDocument()
+    })
+  })
+
+  describe('Settlement Log tab', () => {
+    it('renders a Log tab button', () => {
+      render(<InventoryModal {...defaultProps} />)
+      expect(screen.getByRole('button', { name: /log/i })).toBeInTheDocument()
+    })
+
+    it('shows log entries when Log tab is clicked', async () => {
+      const user = userEvent.setup()
+      render(<InventoryModal {...defaultProps} />)
+      await user.click(screen.getByRole('button', { name: /log/i }))
+      expect(screen.getByText('Sword')).toBeInTheDocument()
+      expect(screen.getByText('Bone Marrow')).toBeInTheDocument()
+    })
+
+    it('shows empty state message when log is empty', async () => {
+      const user = userEvent.setup()
+      render(<InventoryModal {...defaultProps} settlementLog={[]} />)
+      await user.click(screen.getByRole('button', { name: /log/i }))
+      expect(screen.getByText(/no changes recorded/i)).toBeInTheDocument()
+    })
+
+    it('hides inventory items when Log tab is active', async () => {
+      const user = userEvent.setup()
+      render(<InventoryModal {...defaultProps} />)
+      await user.click(screen.getByRole('button', { name: /log/i }))
+      // Sword is in inventory (gear) but log tab hides the item list
+      // The word "Sword" appears in the log entries, not the item list
+      expect(screen.queryByText('x1')).not.toBeInTheDocument()
+    })
+
+    it('shows entry count badge on Log tab when log has entries', () => {
+      render(<InventoryModal {...defaultProps} />)
+      expect(screen.getByText('2')).toBeInTheDocument()
+    })
+
+    it('does not show count badge when log is empty', () => {
+      render(<InventoryModal {...defaultProps} settlementLog={[]} />)
+      // The count badge should not be rendered for empty log
+      const logBtn = screen.getByRole('button', { name: /log/i })
+      expect(logBtn.textContent?.trim()).toBe('Log')
     })
   })
 })
