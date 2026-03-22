@@ -849,7 +849,7 @@
   font-size: 0.5rem;
   font-weight: bold;
   padding: 0.05rem 0.15rem;
-  background-color: var(--kdm-text);
+  background-color: var(--kdm-border-mid);
   color: var(--kdm-text);
 }
 
