@@ -4,6 +4,12 @@ variable "aws_region" {
   default     = "us-west-2"
 }
 
+variable "aws_profile" {
+  description = "AWS CLI profile to use. Leave empty to use the default credential chain (e.g. instance role on Cloud9)."
+  type        = string
+  default     = ""
+}
+
 variable "environment" {
   description = "Environment name (dev or prod)"
   type        = string
