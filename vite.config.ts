@@ -14,7 +14,7 @@ export default defineConfig({
       '.amazonaws.com'
     ],
   },
-  base: '/kdm/manager/',
+  base: '/app/',
   plugins: [react()], // Remove basicSsl for Cloud9
   // plugins: [react(), basicSsl()], // Use this for production with HTTPS
   test: {

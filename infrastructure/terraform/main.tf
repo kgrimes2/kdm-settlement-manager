@@ -29,3 +29,19 @@ provider "aws" {
   }
 }
 
+# ACM certificates for CloudFront must be created in us-east-1
+provider "aws" {
+  alias   = "us_east_1"
+  region  = "us-east-1"
+  profile = "terraform-kdm"
+
+  default_tags {
+    tags = {
+      Project     = "KDM-Settlement-Manager"
+      Environment = var.environment
+      Terraform   = "true"
+      CreatedBy   = "terraform"
+    }
+  }
+}
+

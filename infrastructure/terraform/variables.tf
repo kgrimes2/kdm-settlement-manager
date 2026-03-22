@@ -94,3 +94,42 @@ variable "cors_allowed_origins" {
   type        = list(string)
   default     = ["*"]
 }
+
+variable "root_domain" {
+  description = "Root domain name (registered in Route53)"
+  type        = string
+  default     = "rollinglanterns.com"
+}
+
+# App is always served at <host>/app/
+# prod:    rollinglanterns.com/app
+# staging: staging.rollinglanterns.com/app
+locals {
+  # The CloudFront alias (hostname only — no path)
+  # prod    -> rollinglanterns.com
+  # staging -> staging.rollinglanterns.com
+  app_host = var.environment == "prod" ? var.root_domain : "staging.${var.root_domain}"
+
+  # Full URL base for the app
+  app_base_url = "https://${local.app_host}/app"
+
+  # For prod, default CORS to the app origin; for staging keep wildcard unless overridden.
+  effective_cors_origins = length(var.cors_allowed_origins) > 0 && var.cors_allowed_origins != ["*"] ? var.cors_allowed_origins : (
+    var.environment == "prod" ? ["https://${local.app_host}"] : ["*"]
+  )
+
+  # Formatted for API Gateway integration response parameters (single-quoted CSV)
+  cors_origin_header = "'${join(",", local.effective_cors_origins)}'"
+
+  # Cognito callback/logout URLs — always include localhost for local dev,
+  # plus the deployed URL for the current environment.
+  cognito_callback_urls = length(var.cognito_callback_urls) > 0 ? var.cognito_callback_urls : [
+    "http://localhost:5173/app",
+    local.app_base_url,
+  ]
+
+  cognito_logout_urls = length(var.cognito_logout_urls) > 0 ? var.cognito_logout_urls : [
+    "http://localhost:5173/app",
+    local.app_base_url,
+  ]
+}

@@ -101,12 +101,12 @@ resource "aws_backup_plan" "dynamodb" {
   name = "${var.app_name}-backup-plan-${var.environment}"
 
   rule {
-    rule_name             = "daily_backups"
-    target_vault_name     = aws_backup_vault.dynamodb.name
-    schedule              = "cron(0 5 ? * * *)"  # 5 AM UTC daily
+    rule_name         = "daily_backups"
+    target_vault_name = aws_backup_vault.dynamodb.name
+    schedule          = "cron(0 5 ? * * *)" # 5 AM UTC daily
 
     lifecycle {
-      delete_after = 30  # Keep daily backups for 30 days
+      delete_after = 30 # Keep daily backups for 30 days
     }
 
     recovery_point_tags = {
@@ -115,12 +115,12 @@ resource "aws_backup_plan" "dynamodb" {
   }
 
   rule {
-    rule_name             = "weekly_backups"
-    target_vault_name     = aws_backup_vault.dynamodb.name
-    schedule              = "cron(0 6 ? * SUN *)"  # Sundays at 6 AM UTC
+    rule_name         = "weekly_backups"
+    target_vault_name = aws_backup_vault.dynamodb.name
+    schedule          = "cron(0 6 ? * SUN *)" # Sundays at 6 AM UTC
 
     lifecycle {
-      delete_after = 90  # Keep weekly backups for 90 days
+      delete_after = 90 # Keep weekly backups for 90 days
     }
 
     recovery_point_tags = {
