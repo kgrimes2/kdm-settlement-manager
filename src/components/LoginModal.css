@@ -124,7 +124,7 @@
 }
 
 .login-form-group input::placeholder {
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .login-form-group input:focus {

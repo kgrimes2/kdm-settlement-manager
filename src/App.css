@@ -537,7 +537,7 @@
 
 .injury-legend {
   font-size: 0.65rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   margin: 0.3rem 0;
   padding: 0.2rem;
   background-color: rgba(255, 255, 255, 0.04);
@@ -646,7 +646,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
 }
 
 .injury-checkbox.red-checkbox {
@@ -821,7 +821,7 @@
 
 .injury-legend {
   font-size: 0.65rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   margin: 0.3rem 0;
   padding: 0.2rem;
   background-color: rgba(255, 255, 255, 0.04);
@@ -930,7 +930,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
 }
 
 .injury-checkbox.red-checkbox {
@@ -1386,7 +1386,7 @@
 .empty-settlements-message {
   padding: 2rem;
   text-align: center;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-style: italic;
   background-color: rgba(255, 255, 255, 0.08);
   border: 2px dashed var(--kdm-border-mid);
@@ -1929,7 +1929,7 @@
 .survivor-sex {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   padding: 0.1rem 0.4rem;
   background-color: rgba(90, 74, 58, 0.1);
   border-radius: 3px;
@@ -1946,7 +1946,7 @@
 
 .survivor-stats {
   font-size: 0.8rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-weight: 500;
   font-family: monospace;
 }
@@ -2433,7 +2433,7 @@
 .template-info {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
@@ -2475,7 +2475,7 @@
 .template-empty p {
   margin: 0;
   font-size: 0.8rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   line-height: 1.4;
 }
 
@@ -2742,7 +2742,7 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-size: 1.5rem;
   font-weight: 600;
   cursor: pointer;
@@ -3079,7 +3079,7 @@
 .no-saves-message {
   padding: 2rem 1rem;
   text-align: center;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-style: italic;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 0;
@@ -3124,7 +3124,7 @@
 
 .save-date {
   font-size: 0.8rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .save-actions {
@@ -3237,7 +3237,7 @@
 .no-saves-message-drawer {
   padding: 1rem;
   text-align: center;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-style: italic;
   font-size: 0.85rem;
   background-color: rgba(255, 255, 255, 0.1);
@@ -3285,7 +3285,7 @@
 
 .save-date-drawer {
   font-size: 0.7rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .save-actions-drawer {
@@ -3411,7 +3411,7 @@
 }
 
 .survivor-log-header:hover h3 {
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .log-content {
@@ -3425,7 +3425,7 @@
 
 .no-log-message {
   text-align: center;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-style: italic;
   padding: 0.75rem 0.5rem;
   font-size: 0.8rem;
@@ -3456,7 +3456,7 @@
 }
 
 .log-timestamp {
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-weight: 600;
   font-size: 0.6rem;
   white-space: nowrap;
@@ -3529,7 +3529,7 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   padding: 0;
   line-height: 1;
   width: 28px;
@@ -3552,7 +3552,7 @@
 
 .log-entry-modal-timestamp {
   font-size: 0.85rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   margin-bottom: 0.75rem;
   font-weight: 500;
 }
@@ -3579,7 +3579,7 @@
 .change-label {
   font-weight: 600;
   min-width: 70px;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   font-size: 0.9rem;
 }
 
@@ -3611,7 +3611,7 @@
   border-radius: 0;
   padding: 0.5rem;
   font-size: 0.85rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
   text-align: center;
 }
 

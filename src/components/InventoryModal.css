@@ -200,7 +200,7 @@
 .inventory-scan-prompt {
   text-align: center;
   padding: 1.5rem 1rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .inventory-scan-actions {

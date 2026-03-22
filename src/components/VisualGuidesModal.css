@@ -68,7 +68,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
   cursor: pointer;
   line-height: 1;
   padding: 0;
@@ -145,7 +145,7 @@
   background-color: var(--kdm-surface-mid);
   text-align: center;
   font-size: 0.85rem;
-  color: var(--kdm-border-mid);
+  color: var(--kdm-text-dim);
 }
 
 .visual-guides-footer p {
