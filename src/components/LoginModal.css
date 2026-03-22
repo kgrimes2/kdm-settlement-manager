@@ -81,7 +81,7 @@
 
 .login-error {
   background-color: rgba(139, 69, 19, 0.3);
-  color: #ff6b6b;
+  color: var(--kdm-danger);
   padding: 12px 20px;
   margin: 16px;
   border-radius: 0;
@@ -135,7 +135,7 @@
 
 .login-form-group input:disabled {
   background-color: #1a1a1a;
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
   opacity: 0.5;
 }
 
@@ -167,7 +167,7 @@
 
 .login-btn:disabled {
   background: linear-gradient(90deg, #2a2a2a 0%, #1a1a1a 100%);
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -187,7 +187,7 @@
 
 .login-divider {
   text-align: center;
-  color: var(--kdm-border);
+  color: var(--kdm-text-dim);
   margin: 16px 0;
   position: relative;
   font-size: 0.85rem;
@@ -230,7 +230,7 @@
 }
 
 .login-form-group input:-webkit-autofill {
-  -webkit-text-fill-color: var(--kdm-surface) !important;
+  -webkit-text-fill-color: var(--kdm-text) !important;
   -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5) !important;
   background-color: #0a0a0a !important;
 }

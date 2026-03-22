@@ -33,7 +33,7 @@
 
 .tutorial-tooltip {
   position: fixed;
-  background-color: var(--kdm-text);
+  background-color: var(--kdm-surface);
   background-image:
     radial-gradient(circle at 20% 50%, rgba(0,0,0,.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 0%, transparent 50%),
@@ -70,7 +70,7 @@
   border: 1px solid var(--kdm-border);
   font-size: 1.75rem;
   line-height: 1;
-  color: var(--kdm-border);
+  color: var(--kdm-text-mid);
   cursor: pointer;
   padding: 0;
   width: 30px;
@@ -110,7 +110,7 @@
 
 .tutorial-progress {
   font-size: 0.875rem;
-  color: var(--kdm-border);
+  color: var(--kdm-text-mid);
   white-space: nowrap;
   font-weight: 500;
 }
@@ -137,7 +137,7 @@
 
 .tutorial-btn-primary {
   background-color: var(--kdm-text-dim);
-  color: #fff;
+  color: var(--kdm-accent);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -151,7 +151,7 @@
   background-color: var(--kdm-border-mid);
   cursor: not-allowed;
   opacity: 0.5;
-  color: #7a7a7a;
+  color: var(--kdm-text-dim);
 }
 
 .tutorial-btn-primary:disabled:hover {
@@ -166,7 +166,7 @@
 }
 
 .tutorial-btn-secondary:hover {
-  background-color: var(--kdm-border);
+  background-color: var(--kdm-text-mid);
   box-shadow: inset 0 0 10px rgba(0,0,0,0.1),
               0 3px 6px rgba(0,0,0,0.3);
 }

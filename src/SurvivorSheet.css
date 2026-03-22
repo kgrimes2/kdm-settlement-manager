@@ -152,7 +152,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: var(--kdm-text-mid);
+  color: var(--kdm-text);
 }
 
 .checkbox-box.retirement-age {
@@ -193,7 +193,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: var(--kdm-text-mid);
+  color: var(--kdm-text);
 }
 
 .sheet-content {
@@ -303,7 +303,7 @@
   font-weight: bold;
   color: var(--kdm-text);
   border: 2px solid var(--kdm-border-mid);
-  background-color: #fff;
+  background-color: var(--kdm-surface-mid);
   padding: 0.25rem;
   font-family: inherit;
   box-sizing: border-box;
@@ -537,7 +537,7 @@
 .stat-plus {
   font-size: 0.9rem;
   font-weight: bold;
-  color: var(--kdm-text-mid);
+  color: var(--kdm-text);
 }
 
 .stat-input {
@@ -843,7 +843,7 @@
   font-size: 0.5rem;
   font-weight: bold;
   padding: 0.05rem 0.15rem;
-  background-color: var(--kdm-text-mid);
+  background-color: var(--kdm-text);
   color: var(--kdm-text);
 }
 
@@ -1177,7 +1177,7 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -50%);
   font-size: 0.7rem;
   font-weight: bold;
-  color: var(--kdm-text-mid);
+  color: var(--kdm-text);
 }
 
 /* Radio button styling */
@@ -1202,7 +1202,7 @@ input[type="radio"]:checked::after {
   transform: translate(-50%, -50%);
   width: 0.5rem;
   height: 0.5rem;
-  background-color: var(--kdm-text-mid);
+  background-color: var(--kdm-text);
   border-radius: 50%;
 }
 
@@ -1417,11 +1417,11 @@ input[type="radio"]:checked::after {
    display: flex;
    align-items: center;
    gap: 0.35rem;
-   color: var(--kdm-text-mid);
+   color: var(--kdm-text);
  }
 
  .old-value {
-   color: var(--kdm-text-mid);
+   color: var(--kdm-text);
    text-decoration: line-through;
  }
 

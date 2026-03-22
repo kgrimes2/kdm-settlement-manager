@@ -13,7 +13,7 @@
 }
 
 .glossary-modal {
-  background-color: var(--kdm-text);
+  background-color: var(--kdm-surface);
   border: 3px solid var(--kdm-border);
   border-radius: 0;
   width: 100%;
@@ -216,7 +216,7 @@
 .glossary-no-results {
   text-align: center;
   padding: 2rem;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
@@ -353,7 +353,7 @@
 .glossary-add-line-btn {
   padding: 0.35rem 0.5rem;
   background-color: var(--kdm-border-mid);
-  color: #e4d5b9;
+  color: var(--kdm-text);
   border: 1px solid var(--kdm-border-mid);
   border-radius: 3px;
   font-size: 0.8rem;
@@ -381,7 +381,7 @@
 .glossary-add-keyword-btn {
   padding: 0.5rem 1rem;
   background-color: var(--kdm-surface-high);
-  color: #e4d5b9;
+  color: var(--kdm-text);
   border: 1px solid #3a2a1a;
   border-radius: 0;
   font-size: 0.85rem;
@@ -402,7 +402,7 @@
 .glossary-add-to-notes-btn {
   padding: 0.5rem 0.75rem;
   background-color: var(--kdm-border-mid);
-  color: #e4d5b9;
+  color: var(--kdm-text);
   border: 1px solid var(--kdm-border-mid);
   border-radius: 0;
   font-size: 0.75rem;
@@ -593,7 +593,7 @@
 
 .glossary-hint {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
@@ -611,7 +611,7 @@
 
 .glossary-last-updated {
   font-size: 0.7rem;
-  color: #888;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 

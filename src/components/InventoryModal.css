@@ -13,7 +13,7 @@
 }
 
 .inventory-modal {
-  background-color: var(--kdm-text);
+  background-color: var(--kdm-surface);
   border: 3px solid var(--kdm-border);
   border-radius: 0;
   width: 100%;
@@ -45,7 +45,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: var(--kdm-border);
+  color: var(--kdm-text);
   cursor: pointer;
   line-height: 1;
   padding: 0;
@@ -73,14 +73,14 @@
   font-weight: bold;
   border: none;
   background: transparent;
-  color: var(--kdm-border);
+  color: var(--kdm-text);
   cursor: pointer;
   font-family: inherit;
   transition: all 0.2s;
 }
 
 .inventory-tab-btn.active {
-  background-color: var(--kdm-border);
+  background-color: var(--kdm-text);
   color: var(--kdm-text);
 }
 
@@ -132,7 +132,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--kdm-text);
+  background-color: var(--kdm-surface);
   border: 2px solid var(--kdm-border);
   border-top: none;
   border-radius: 0 0 4px 4px;
@@ -314,7 +314,7 @@
 
 .inventory-item-plus {
   background-color: rgba(255,255,255,0.06);
-  color: var(--kdm-border);
+  color: var(--kdm-text);
 }
 
 .inventory-item-plus:hover {
@@ -323,7 +323,7 @@
 
 .inventory-item-minus {
   background-color: rgba(239,68,68,0.15);
-  color: var(--kdm-border);
+  color: var(--kdm-text);
 }
 
 .inventory-item-minus:hover {
