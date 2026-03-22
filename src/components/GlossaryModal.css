@@ -13,7 +13,7 @@
 }
 
 .glossary-modal {
-  background-color: var(--kdm-surface);
+  background-color: var(--kdm-text);
   border: 3px solid var(--kdm-border);
   border-radius: 0;
   width: 100%;
@@ -67,7 +67,7 @@
 
 .glossary-toggle-btn.active {
   background-color: var(--kdm-border);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
 }
 
 .glossary-toggle-btn:hover:not(.active) {
@@ -184,7 +184,7 @@
 
 .glossary-category-pill-count {
   background-color: var(--kdm-text-mid);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-size: 0.7rem;
   padding: 0.1rem 0.4rem;
   border-radius: 10px;
@@ -300,7 +300,7 @@
   display: inline-block;
   padding: 0.25rem 0.75rem;
   background-color: var(--kdm-text-mid);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-size: 0.75rem;
   font-weight: bold;
   border-radius: 12px;
@@ -651,7 +651,7 @@
   border: 2px solid var(--kdm-border);
   border-radius: 0;
   background-color: var(--kdm-text-mid);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   cursor: pointer;
   transition: all 0.2s;
 }

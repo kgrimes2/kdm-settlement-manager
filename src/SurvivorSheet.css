@@ -844,7 +844,7 @@
   font-weight: bold;
   padding: 0.05rem 0.15rem;
   background-color: var(--kdm-text-mid);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
 }
 
 .milestone-marker {
@@ -1224,7 +1224,7 @@ input[type="radio"]:checked::after {
   gap: 0.2rem;
   padding: 0.15rem 0.4rem;
   background-color: var(--kdm-border-mid);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   border-radius: 12px;
   font-size: 0.65rem;
   font-weight: 600;
@@ -1265,7 +1265,7 @@ input[type="radio"]:checked::after {
 .pill-remove {
   background: none;
   border: none;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;

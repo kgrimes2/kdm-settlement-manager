@@ -51,7 +51,7 @@
   letter-spacing: 0.1em;
   margin: 0;
   font-size: 1.5rem;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-weight: 600;
   letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -62,7 +62,7 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   padding: 0;
   width: 40px;
   height: 40px;
@@ -106,7 +106,7 @@
 .login-form-group label {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -116,7 +116,7 @@
   padding: 10px 12px;
   border: 1px solid var(--kdm-border);
   background-color: #0a0a0a;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.2s;
@@ -142,7 +142,7 @@
 .login-btn {
   padding: 12px 24px;
   background: linear-gradient(90deg, var(--kdm-border-mid) 0%, var(--kdm-border) 100%);
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   border: 1px solid var(--kdm-border-mid);
   border-radius: 0;
   font-size: 1rem;
@@ -174,7 +174,7 @@
 
 .login-btn-secondary {
   background: transparent;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   border: 1px solid var(--kdm-border);
   box-shadow: none;
 }

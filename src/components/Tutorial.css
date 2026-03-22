@@ -33,7 +33,7 @@
 
 .tutorial-tooltip {
   position: fixed;
-  background-color: var(--kdm-surface);
+  background-color: var(--kdm-text);
   background-image:
     radial-gradient(circle at 20% 50%, rgba(0,0,0,.03) 0%, transparent 50%),
     radial-gradient(circle at 80% 80%, rgba(0,0,0,.02) 0%, transparent 50%),

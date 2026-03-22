@@ -49,7 +49,7 @@
   min-height: 48px;
   font-size: 1.1rem;
   font-weight: 700;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease;

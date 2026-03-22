@@ -48,7 +48,7 @@
 .debug-modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-weight: 600;
   letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -70,7 +70,7 @@
 }
 
 .debug-close-btn:hover {
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
 }
 
 .debug-modal-body {
@@ -105,7 +105,7 @@
 .debug-form-group label {
   display: block;
   margin-bottom: 8px;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-weight: 500;
 }
 
@@ -124,7 +124,7 @@
 
 .debug-form-group textarea:focus {
   outline: none;
-  border-color: var(--kdm-surface);
+  border-color: var(--kdm-text);
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -241,7 +241,7 @@
 
 .debug-success h3 {
   margin: 0 0 16px 0;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
   font-size: 1.5rem;
 }
 
@@ -262,7 +262,7 @@
 .debug-submission-id strong {
   display: block;
   margin-bottom: 8px;
-  color: var(--kdm-surface);
+  color: var(--kdm-text);
 }
 
 .debug-submission-id code {

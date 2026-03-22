@@ -23,7 +23,7 @@
 }
 
 .visual-guides-modal {
-  background-color: var(--kdm-surface);
+  background-color: var(--kdm-text);
   border: 3px solid var(--kdm-border);
   border-radius: 0;
   width: 100%;
