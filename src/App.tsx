@@ -2127,19 +2127,20 @@ function AppContent() {
         </div>
         <div className={`toolbar-content ${focusedQuadrant !== null ? 'hide-in-focus' : ''} ${showMobileToolbar ? 'show-mobile' : ''}`}>
           <div className="toolbar-left">
-            <div className="toolbar-title-group">
-               <h1 className="toolbar-title">
-                 KDM Settlement Manager{' '}
-                 <button
-                   onClick={() => setShowChangelogModal(true)}
-                   className="version-link"
-                   title="View changelog"
-                   style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textDecoration: 'inherit' }}
-                 >
-                   v{APP_VERSION}
-                 </button>
-               </h1>
-            </div>
+             <div className="toolbar-title-group">
+                <h1 className="toolbar-title">
+                  KDM Settlement Manager{' '}
+                  <button
+                    onClick={() => setShowChangelogModal(true)}
+                    className="version-link"
+                    title="View changelog"
+                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textDecoration: 'inherit' }}
+                  >
+                    v{APP_VERSION}
+                  </button>
+                </h1>
+                <p className="toolbar-disclaimer">Unofficial. Not affiliated with Adam Poots Games.</p>
+             </div>
           </div>
           <div className="toolbar-center">
           <div className={`marker-button-group ${showMarkerMode && markerModeType === '2-state' ? 'active' : ''}`}>
@@ -3585,10 +3586,6 @@ function AppContent() {
            </div>
         )
       })()}
-
-      <div className="bottom-disclaimer-banner">
-        Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
-      </div>
 
        <GlossaryModal
          isOpen={showGlossaryModal}

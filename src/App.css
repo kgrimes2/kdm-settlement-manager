@@ -8,22 +8,6 @@
   background-color: var(--kdm-bg);
 }
 
-.bottom-disclaimer-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 0.15rem 0.5rem;
-  background-color: rgba(26, 26, 26, 0.95);
-  backdrop-filter: blur(8px);
-  color: var(--kdm-text-mid);
-  font-size: 0.65rem;
-  text-align: center;
-  z-index: 50;
-  border-top: 2px solid rgba(58, 50, 48, 0.6);
-  box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.5);
-}
-
 .notification {
   position: fixed;
   top: 5rem;
@@ -276,7 +260,7 @@
   background-color: var(--kdm-border);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   transition: all 0.2s ease;
-  height: 40px;
+  height: 32px;
 }
 
 /* Disable hover transform on touch devices */
@@ -1104,11 +1088,19 @@
 
 .toolbar-title {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.2;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.toolbar-disclaimer {
+  margin: 0;
+  font-size: 0.55rem;
+  color: var(--kdm-text-dim);
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .version-link {
@@ -1141,7 +1133,7 @@
 }
 
 .settlement-dropdown-button {
-  padding: 0.35rem 1rem;
+  padding: 0.2rem 1rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--kdm-text);
@@ -1448,7 +1440,7 @@
 
 .toolbar-button,
 .return-button {
-  padding: 0.35rem 1rem;
+  padding: 0.2rem 1rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--kdm-text);
@@ -1497,7 +1489,7 @@
 }
 
 .toolbar-icon-button {
-  padding: 0.35rem 0.5rem;
+  padding: 0.2rem 0.5rem;
   min-width: 2.5rem;
   font-size: 1.25rem;
 }
@@ -1507,7 +1499,7 @@
 }
 
 .sync-button {
-  padding: 0.35rem 0.75rem;
+  padding: 0.2rem 0.75rem;
   min-width: 2.5rem;
   font-size: 1.25rem;
   transition: transform 0.3s ease;
@@ -2919,7 +2911,7 @@
   }
 
   .toolbar-title {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
 
   .version-link {
@@ -2934,13 +2926,6 @@
 
   .toolbar-title-group {
     display: none;
-  }
-
-  /* Fix disclaimer banner on mobile */
-  .bottom-disclaimer-banner {
-    font-size: 0.5rem;
-    padding: 0.25rem 0.35rem;
-    line-height: 1.2;
   }
 
   /* Mobile focus mode layout */

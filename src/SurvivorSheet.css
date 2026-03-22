@@ -735,20 +735,32 @@
 
 .weapon-proficiency-inline {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   gap: 0.3rem;
   width: 100%;
 }
 
 .weapon-proficiency-inline .proficiency-row {
-  width: 100%;
   flex-shrink: 0;
 }
 
 .weapon-proficiency-inline .pill-container {
   min-width: 80px;
   flex: 1 1 auto;
+}
+
+.proficiency-select {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 0;
+  padding: 0.1rem 0.15rem;
+  font-size: 0.6rem;
+  background-color: var(--kdm-surface);
+  color: var(--kdm-text);
+  border: 1px solid var(--kdm-border);
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .weapon-type-input {
@@ -766,7 +778,7 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  width: 100%;
+  flex-shrink: 0;
 }
 
 .proficiency-boxes {
@@ -778,9 +790,9 @@
 
 .proficiency-milestones {
   display: flex;
+  flex-direction: row;
   gap: 0.2rem;
   align-items: center;
-  margin-left: auto;
   flex-shrink: 0;
 }
 
@@ -932,8 +944,7 @@
   }
 
   .weapon-proficiency-inline .proficiency-row {
-    flex-wrap: wrap;
-    gap: 0.1rem;
+    flex-shrink: 0;
   }
 
   .proficiency-boxes {
@@ -1315,15 +1326,7 @@ input[type="radio"]:checked::after {
   font-style: italic;
 }
 
-/* Stack weapon proficiency milestone labels on iPad overview */
-@media (min-width: 1001px) and (max-width: 1440px) {
-  .proficiency-milestones {
-     flex-direction: column;
-     align-items: flex-start;
-   }
- }
-
- /* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
+/* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
  @media (max-width: 1440px) {
    .focused-main-sheet .proficiency-milestones {
      display: none !important;
