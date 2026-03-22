@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.4] - 2026-03-22
+
+### Fixed
+- **KDM Monochrome Theme** - Rethemed app to Kingdom Death: Monster black/white/gray aesthetic
+  - Replaced colored UI elements with monochrome palette matching KDM's visual identity
+  - Fixed button text color to off-white for legibility on dark backgrounds
+  - Comprehensive text contrast fixes across all CSS files
+  - Fixed inputs and stat boxes to use correct text color variable
+  - Stopped using border/surface variables as text colors
+  - Increased contrast on survival ability buttons (Encourage, Dodge, etc.)
+  - Fixed milestone label background using incorrect text color variable
+
 ## [1.4.3] - 2026-02-21
 
 ### Fixed

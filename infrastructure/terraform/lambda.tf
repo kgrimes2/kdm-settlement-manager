@@ -43,7 +43,6 @@ resource "aws_lambda_function" "get_user_data" {
 
   depends_on = [
     aws_iam_role_policy.lambda_dynamodb_policy,
-    aws_iam_role_policy.lambda_s3_user_data_policy
   ]
 }
 
@@ -73,7 +72,6 @@ resource "aws_lambda_function" "save_user_data" {
 
   depends_on = [
     aws_iam_role_policy.lambda_dynamodb_policy,
-    aws_iam_role_policy.lambda_s3_user_data_policy
   ]
 }
 
@@ -103,7 +101,6 @@ resource "aws_lambda_function" "delete_user_data" {
 
   depends_on = [
     aws_iam_role_policy.lambda_dynamodb_policy,
-    aws_iam_role_policy.lambda_s3_user_data_policy
   ]
 }
 
