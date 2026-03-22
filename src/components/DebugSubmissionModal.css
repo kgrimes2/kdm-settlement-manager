@@ -14,7 +14,7 @@
 
 .debug-modal {
   background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-  border: 3px solid #3a3230;
+  border: 3px solid var(--kdm-border);
   border-radius: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 0 60px rgba(0, 0, 0, 0.05);
   width: 90%;
@@ -41,14 +41,14 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 2px solid #3a3230;
+  border-bottom: 2px solid var(--kdm-border);
   background: linear-gradient(90deg, rgba(58, 50, 48, 0.4) 0%, transparent 100%);
 }
 
 .debug-modal-header h2 {
   margin: 0;
   font-size: 1.5rem;
-  color: #d4c5a9;
+  color: var(--kdm-surface);
   font-weight: 600;
   letter-spacing: 1px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -70,7 +70,7 @@
 }
 
 .debug-close-btn:hover {
-  color: #d4c5a9;
+  color: var(--kdm-surface);
 }
 
 .debug-modal-body {
@@ -105,7 +105,7 @@
 .debug-form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #d4c5a9;
+  color: var(--kdm-surface);
   font-weight: 500;
 }
 
@@ -113,8 +113,8 @@
   width: 100%;
   padding: 12px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #3a3230;
-  border-radius: 4px;
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
   color: #fff;
   font-family: inherit;
   font-size: 14px;
@@ -124,7 +124,7 @@
 
 .debug-form-group textarea:focus {
   outline: none;
-  border-color: #d4c5a9;
+  border-color: var(--kdm-surface);
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -157,7 +157,7 @@
   padding: 12px;
   margin-bottom: 20px;
   background: rgba(212, 197, 169, 0.05);
-  border-left: 3px solid #d4c5a9;
+  border-left: 3px solid var(--kdm-surface);
   border-radius: 2px;
   color: #999;
 }
@@ -172,7 +172,7 @@
 .debug-submit-btn {
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -182,7 +182,7 @@
 .debug-cancel-btn {
   background: rgba(255, 255, 255, 0.05);
   color: #ccc;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
 }
 
 .debug-cancel-btn:hover:not(:disabled) {
@@ -191,7 +191,7 @@
 }
 
 .debug-submit-btn {
-  background: linear-gradient(135deg, #d4c5a9 0%, #b8a582 100%);
+  background: linear-gradient(135deg, var(--kdm-surface) 0%, #b8a582 100%);
   color: #1a1a1a;
 }
 
@@ -241,7 +241,7 @@
 
 .debug-success h3 {
   margin: 0 0 16px 0;
-  color: #d4c5a9;
+  color: var(--kdm-surface);
   font-size: 1.5rem;
 }
 
@@ -255,21 +255,21 @@
   margin: 20px 0;
   padding: 16px;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #3a3230;
-  border-radius: 4px;
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
 }
 
 .debug-submission-id strong {
   display: block;
   margin-bottom: 8px;
-  color: #d4c5a9;
+  color: var(--kdm-surface);
 }
 
 .debug-submission-id code {
   display: inline-block;
   padding: 8px 12px;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   border-radius: 2px;
   color: #4caf50;
   font-family: 'Courier New', monospace;
@@ -285,10 +285,10 @@
 .debug-close-success-btn {
   margin-top: 24px;
   padding: 12px 32px;
-  background: linear-gradient(135deg, #d4c5a9 0%, #b8a582 100%);
+  background: linear-gradient(135deg, var(--kdm-surface) 0%, #b8a582 100%);
   color: #1a1a1a;
   border: none;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;

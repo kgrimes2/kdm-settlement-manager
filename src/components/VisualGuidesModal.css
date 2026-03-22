@@ -23,9 +23,9 @@
 }
 
 .visual-guides-modal {
-  background-color: #d4c5a9;
-  border: 3px solid #3a3230;
-  border-radius: 8px;
+  background-color: var(--kdm-surface);
+  border: 3px solid var(--kdm-border);
+  border-radius: 0;
   width: 100%;
   max-width: 600px;
   max-height: 80vh;
@@ -51,13 +51,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  border-bottom: 2px solid #3a3230;
+  border-bottom: 2px solid var(--kdm-border);
 }
 
 .visual-guides-header h1 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin: 0;
   font-size: 1.25rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   flex: 1;
 }
 
@@ -65,7 +68,7 @@
   background: none;
   border: none;
   font-size: 2rem;
-  color: #3a3230;
+  color: var(--kdm-border);
   cursor: pointer;
   line-height: 1;
   padding: 0;
@@ -78,7 +81,7 @@
 }
 
 .close-button:hover {
-  color: #8b4513;
+  color: var(--kdm-text-mid);
 }
 
 .visual-guides-list {
@@ -97,10 +100,10 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  border-bottom: 1px solid #c4b59a;
+  border-bottom: 1px solid var(--kdm-surface-mid);
   transition: all 0.2s ease;
   font-size: 0.95rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-family: inherit;
 }
 
@@ -125,24 +128,24 @@
 }
 
 .guide-arrow {
-  color: #8a7a6a;
+  color: var(--kdm-text-dim);
   font-size: 1rem;
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
 .guide-item:hover .guide-arrow {
-  color: #8b4513;
+  color: var(--kdm-text-mid);
   transform: translateX(4px);
 }
 
 .visual-guides-footer {
   padding: 0.75rem 1.5rem;
-  border-top: 2px solid #3a3230;
-  background-color: #c4b59a;
+  border-top: 2px solid var(--kdm-border);
+  background-color: var(--kdm-surface-mid);
   text-align: center;
   font-size: 0.85rem;
-  color: #5a4a3a;
+  color: var(--kdm-border-mid);
 }
 
 .visual-guides-footer p {
@@ -156,6 +159,9 @@
   }
 
   .visual-guides-header h1 {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
     font-size: 1.1rem;
   }
 
@@ -179,14 +185,14 @@
 }
 
 .visual-guides-list::-webkit-scrollbar-track {
-  background: #c4b59a;
+  background: var(--kdm-surface-mid);
 }
 
 .visual-guides-list::-webkit-scrollbar-thumb {
-  background: #8a7a6a;
-  border-radius: 4px;
+  background: var(--kdm-text-dim);
+  border-radius: 0;
 }
 
 .visual-guides-list::-webkit-scrollbar-thumb:hover {
-  background: #6a5a4a;
+  background: var(--kdm-border-light);
 }
