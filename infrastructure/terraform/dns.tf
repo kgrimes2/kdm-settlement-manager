@@ -101,3 +101,19 @@ resource "aws_route53_record" "staging_ipv6" {
     evaluate_target_health = false
   }
 }
+
+# ---------------------------------------------------------------------------
+# Google Search Console site verification (prod only)
+# ---------------------------------------------------------------------------
+
+resource "aws_route53_record" "google_site_verification" {
+  count   = var.environment == "prod" ? 1 : 0
+  zone_id = local.route53_zone_id
+  name    = var.root_domain
+  type    = "TXT"
+  ttl     = 300
+
+  records = [
+    "google-site-verification=a-8sbJv7nadFL_1kfbrk6J-XbmnD0ZSd048gF-_AS58",
+  ]
+}
