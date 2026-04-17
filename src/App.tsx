@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { capitalCase } from 'change-case'
 import './App.css'
-import './classic-theme.css'
 import PdfSurvivorSheet from './components/PdfSurvivorSheet'
 import { type SurvivorData, initialSurvivorData } from './types/survivor'
 import {
@@ -119,9 +118,6 @@ function AppContent() {
       const [showResourcesDropdown, setShowResourcesDropdown] = useState(false)
       const [, forceUpdate] = useState(0)
 
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return (localStorage.getItem('kdm-theme') as 'dark' | 'light') ?? 'dark'
-  })
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
     const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
@@ -197,12 +193,6 @@ function AppContent() {
   }
 
   const currentSettlement = getCurrentSettlement()
-
-  // Sync theme to DOM and localStorage
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('kdm-theme', theme)
-  }, [theme])
 
   // Keep appStateRef in sync with appState (runs on every change, but just updates ref - cheap!)
   useEffect(() => {
@@ -2486,14 +2476,6 @@ function AppContent() {
             </button>
           )}
           <button
-            className="toolbar-button toolbar-icon-button theme-toggle-button"
-            onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
-            aria-label={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
-            title={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
-          >
-            {theme === 'dark' ? '☀' : '🌙'}
-          </button>
-          <button
             className="toolbar-button toolbar-icon-button"
             onClick={toggleSurvivorList}
             aria-label="Manage Survivors"
@@ -3557,7 +3539,6 @@ function AppContent() {
              </h2>
               <ul style={{ marginLeft: '20px', lineHeight: '1.6', color: '#333' }}>
                 <li>Settlement inventory log — track all gear and materials changes with timestamps in the new Log tab</li>
-                <li>Classic theme toggle — switch between the new dark monochrome look and the original warm brown style</li>
                 <li>Fixed invisible text on section headers and action buttons in dark mode</li>
                 <li>Fixed active tab text invisible in dark mode (gear/materials/log tabs)</li>
               </ul>

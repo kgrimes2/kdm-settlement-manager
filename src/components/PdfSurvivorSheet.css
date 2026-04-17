@@ -1,15 +1,14 @@
 /* PDF Survivor Sheet Styles */
 
 .pdf-survivor-sheet {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
-  background: #f5f5f5;
-  overflow: hidden;
   padding: 0;
-  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
 }
 
 /* Non-editable mode - allow clicks to pass through to parent */
@@ -22,11 +21,9 @@
 
 .pdf-wrapper {
   position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .pdf-canvas {
@@ -34,8 +31,8 @@
   box-shadow: none;
   max-width: 100%;
   max-height: 100%;
-  width: auto;
   height: auto;
+  width: auto;
 }
 
 .form-overlays {

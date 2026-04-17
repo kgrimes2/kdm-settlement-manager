@@ -142,6 +142,8 @@ export default function PdfSurvivorSheet({
       const containerWidth = container.clientWidth
       const containerHeight = container.clientHeight
 
+      console.log('📐 Container dimensions:', { containerWidth, containerHeight, editable })
+
       // If container has no dimensions yet, retry after a delay
       if (containerWidth === 0 || containerHeight === 0) {
         setTimeout(() => {
@@ -153,17 +155,21 @@ export default function PdfSurvivorSheet({
       }
 
       const baseViewport = pdfPage.getViewport({ scale: 1 })
+      console.log('📄 PDF base dimensions:', { width: baseViewport.width, height: baseViewport.height })
 
-      // Fill horizontal space completely
       const scaleX = containerWidth / baseViewport.width
-      const calcScale = scaleX
+      const scaleY = containerHeight / baseViewport.height
+
+      // Scale proportionally with small margin like prototype
+      const calcScale = Math.min(scaleX, scaleY) * 0.98
+      console.log('🔍 Calculated scale:', { scaleX, scaleY, calcScale })
 
       setScale(calcScale)
 
       const scaledViewport = pdfPage.getViewport({ scale: calcScale })
       setViewport(scaledViewport)
 
-      // Set canvas dimensions with higher DPI for sharper rendering
+      // Set canvas to exact scaled dimensions (like prototype)
       const outputScale = window.devicePixelRatio || 2
       canvas.width = Math.floor(scaledViewport.width * outputScale)
       canvas.height = Math.floor(scaledViewport.height * outputScale)
@@ -172,16 +178,20 @@ export default function PdfSurvivorSheet({
 
       // Render PDF
       const ctx = canvas.getContext('2d')!
+
+      ctx.save()
       ctx.scale(outputScale, outputScale)
 
       await pdfPage.render({
         canvasContext: ctx,
         viewport: scaledViewport
       }).promise
+
+      ctx.restore()
     }
 
     renderPdf()
-  }, [pdfPage, isMounted, isLoading]) // Re-run when loading completes
+  }, [pdfPage, isMounted, isLoading, editable]) // Re-run when loading completes or mode changes
 
   // Get field value from survivor data (check pending values first for immediate feedback)
   const getFieldValue = useCallback((fieldName: string): any => {

@@ -4,7 +4,6 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  position: relative;
   background-color: var(--kdm-bg);
   margin: 0;
   padding: 0;
@@ -221,17 +220,14 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  flex: 1;
-  gap: 0;
-  background-color: var(--kdm-bg);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
   padding: 0;
   margin: 0;
+  flex: 1;
   min-height: 0;
-  max-height: 100%;
-  align-content: stretch;
-  justify-content: stretch;
+  background-color: var(--kdm-bg);
   overflow: hidden;
 }
 
@@ -240,8 +236,6 @@
   width: 100%;
   height: 100%;
   min-height: 0;
-  max-width: 100%;
-  max-height: 100%;
   background-color: var(--kdm-surface);
   background-image:
     radial-gradient(circle at 20% 50%, rgba(0,0,0,.03) 0%, transparent 50%),
@@ -1500,10 +1494,6 @@
   padding: 0.2rem 0.5rem;
   min-width: 2.5rem;
   font-size: 1.25rem;
-}
-
-.theme-toggle-button {
-  font-size: 1.1rem;
 }
 
 .sync-button {
