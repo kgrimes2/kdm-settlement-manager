@@ -281,7 +281,7 @@ export default function PdfSurvivorSheet({
               >
                 <button
                   className="numeric-decrement"
-                  onClick={() => updateField(field.fieldName, Math.max(0, numValue - 1).toString())}
+                  onClick={() => updateField(field.fieldName, (numValue - 1).toString())}
                   style={{
                     width: '20%',
                     background: 'rgba(0, 0, 0, 0.7)',
@@ -299,15 +299,16 @@ export default function PdfSurvivorSheet({
                   type="text"
                   className="overlay-input"
                   data-field={field.fieldName}
-                  value={value || ''}
-                  onChange={(e) => updateField(field.fieldName, e.target.value)}
+                  value={value || '0'}
+                  readOnly
                   style={{
                     width: '60%',
                     textAlign: 'center',
                     border: '1px solid rgba(52, 152, 219, 0.5)',
                     borderRadius: '2px',
                     fontSize: '10px',
-                    padding: '2px 4px'
+                    padding: '2px 4px',
+                    cursor: 'default'
                   }}
                   title={field.fieldName}
                 />

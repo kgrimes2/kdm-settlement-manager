@@ -137,7 +137,7 @@ export const initialSurvivorData: SurvivorData = {
     fistPump: false,
   },
   stats: {
-    movement: 5,
+    movement: 0,
     accuracy: 0,
     strength: 0,
     evasion: 0,
