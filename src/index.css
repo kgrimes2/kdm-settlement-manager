@@ -39,6 +39,7 @@
 
 body {
   margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -49,8 +50,8 @@ body {
   height: 100%;
 }
 
-/* Enable scrolling on mobile */
-@media (max-width: 1000px) {
+/* DISABLED - Enable scrolling on mobile */
+@media (max-width: 0px) {
   body {
     overflow: auto;
     height: auto;

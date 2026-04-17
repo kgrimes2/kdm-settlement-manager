@@ -1,5 +1,4 @@
-import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
-import type { PermanentInjury } from './SurvivorSheet'
+import { type SurvivorData, initialSurvivorData, type PermanentInjury } from './types/survivor'
 
 export const CURRENT_DATA_VERSION = 12
 

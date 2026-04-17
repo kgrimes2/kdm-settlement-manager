@@ -6,6 +6,8 @@
   overflow: hidden;
   position: relative;
   background-color: var(--kdm-bg);
+  margin: 0;
+  padding: 0;
 }
 
 .notification {
@@ -224,15 +226,20 @@
   flex: 1;
   gap: 0;
   background-color: var(--kdm-bg);
-  padding: 0.25rem 0.25rem 1.5rem 0.25rem;
-  align-content: center;
-  justify-content: center;
+  padding: 0;
+  margin: 0;
+  min-height: 0;
+  max-height: 100%;
+  align-content: stretch;
+  justify-content: stretch;
+  overflow: hidden;
 }
 
 .quadrant {
   display: flex;
   width: 100%;
   height: 100%;
+  min-height: 0;
   max-width: 100%;
   max-height: 100%;
   background-color: var(--kdm-surface);
@@ -491,7 +498,7 @@
 }
 
 /* Smaller markers on mobile */
-@media (max-width: 1000px) {
+@media (max-width: 0px) {
   .marker-indicator {
     width: 80px;
     height: 80px;
@@ -965,8 +972,8 @@
   font-style: italic;
 }
 
-/* Larger focus mode on iPad */
-@media (min-width: 1001px) and (max-width: 1440px) {
+/* DISABLED - Larger focus mode on iPad */
+@media (min-width: 999999px) and (max-width: 1440px) {
   .quadrant.focused {
     transform: scale(1.6);
   }
@@ -1033,7 +1040,7 @@
 }
 
 .mobile-nav {
-  display: none;
+  display: none !important;
   align-items: center;
   gap: 0.5rem;
 }
@@ -1046,11 +1053,11 @@
 }
 
 .mobile-menu-button {
-  display: none;
+  display: none !important;
 }
 
 .mobile-title {
-  display: none;
+  display: none !important;
 }
 
 .toolbar-content {
@@ -2749,14 +2756,10 @@
   color: var(--kdm-text);
 }
 
-/* Ensure all quadrants fit on tablet screens */
-@media (min-width: 1001px) and (max-width: 1440px) {
+/* DISABLED - Maximize space on tablet screens */
+@media (min-width: 999999px) and (max-width: 1440px) {
   .container {
-    transform: scale(0.85);
-    transform-origin: top center;
-    width: 117.65%;
-    height: 117.65%;
-    margin-left: -8.825%;
+    /* Let content fill naturally without scaling down */
   }
 
   .quadrant {
@@ -2766,8 +2769,8 @@
   /* Desktop toolbar on tablets */
 }
 
-/* Responsive behavior for small screens */
-@media (max-width: 1000px) {
+/* DISABLED - Responsive behavior for small screens */
+@media (max-width: 0px) {
   .mobile-nav {
     display: flex;
   }
@@ -2793,7 +2796,7 @@
   .container {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    padding: 0 0 1.5rem 0;
+    padding: 0;
     align-items: stretch;
     justify-items: stretch;
   }
@@ -2979,11 +2982,9 @@
   }
 }
 
-/* Mobile secondary sheet */
+/* Mobile secondary sheet - DISABLED */
 .mobile-secondary-sheet {
-  background-color: var(--kdm-surface);
-  padding: 1rem;
-  margin-bottom: 3rem;
+  display: none !important;
 }
 
 .mobile-secondary-sheet .permanent-injuries-section {
@@ -3027,7 +3028,7 @@
   text-overflow: ellipsis;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 0px) {
   .user-profile {
     padding: 0.35rem 0.75rem;
     font-size: 0.85rem;
