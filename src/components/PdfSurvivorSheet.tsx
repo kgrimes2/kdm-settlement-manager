@@ -234,6 +234,37 @@ export default function PdfSurvivorSheet({
     }, 300)
   }, [survivor, onUpdate])
 
+  // Update text field - commit only on blur to avoid input issues on iPad
+  const updateTextField = useCallback((fieldName: string, value: any) => {
+    // Immediately update pending values for instant feedback
+    setPendingValues(prev => ({ ...prev, [fieldName]: value }))
+  }, [])
+
+  const commitTextField = useCallback((fieldName: string) => {
+    // Get the pending value
+    const value = pendingValues[fieldName]
+    if (value === undefined) return
+
+    // Convert current survivor to PDF fields
+    const pdfFields = survivorDataToPdfFields(survivor)
+
+    // Update the field
+    pdfFields[fieldName] = value
+
+    // Convert back to SurvivorData
+    const updatedSurvivor = pdfFieldsToSurvivorData(pdfFields, survivor)
+
+    // Update immediately on blur
+    onUpdate(updatedSurvivor)
+
+    // Clear the pending value
+    setPendingValues(prev => {
+      const next = { ...prev }
+      delete next[fieldName]
+      return next
+    })
+  }, [survivor, onUpdate, pendingValues])
+
   // Render overlays
   const renderOverlays = () => {
     if (!viewport || pdfFormFields.length === 0) return null
@@ -341,7 +372,8 @@ export default function PdfSurvivorSheet({
                 className="overlay-input"
                 data-field={field.fieldName}
                 value={value || ''}
-                onChange={(e) => updateField(field.fieldName, e.target.value)}
+                onChange={(e) => updateTextField(field.fieldName, e.target.value)}
+                onBlur={() => commitTextField(field.fieldName)}
                 style={{
                   position: 'absolute',
                   left: `${canvasX}px`,
