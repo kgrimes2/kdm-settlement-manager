@@ -41,7 +41,7 @@ export default function PdfSurvivorSheet({
   onOpenGlossary: _onOpenGlossary,
   isEditingTemplate: _isEditingTemplate = false
 }: PdfSurvivorSheetProps) {
-  const [_pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null)
+  const [pdfDoc, setPdfDoc] = useState<PDFDocumentProxy | null>(null)
   const [pdfPage, setPdfPage] = useState<PDFPageProxy | null>(null)
   const [pdfFormFields, setPdfFormFields] = useState<PdfFormField[]>([])
   const [scale, setScale] = useState(1)
@@ -54,7 +54,14 @@ export default function PdfSurvivorSheet({
   // Set mounted flag after first render
   useEffect(() => {
     setIsMounted(true)
-  }, [])
+
+    // Cleanup PDF document on unmount
+    return () => {
+      if (pdfDoc) {
+        pdfDoc.destroy()
+      }
+    }
+  }, [pdfDoc])
 
   // Clear pending values when survivor changes externally (e.g., switching survivors)
   useEffect(() => {
@@ -66,9 +73,19 @@ export default function PdfSurvivorSheet({
   const overlaysRef = useRef<HTMLDivElement>(null)
   const updateTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (updateTimeoutRef.current) {
+        clearTimeout(updateTimeoutRef.current)
+      }
+    }
+  }, [])
+
   // Load PDF document
   useEffect(() => {
     let isMounted = true
+    let loadingTask: any = null
 
     const loadPdf = async () => {
       try {
@@ -76,10 +93,13 @@ export default function PdfSurvivorSheet({
         setError(null)
 
         const pdfPath = `${import.meta.env.BASE_URL}fillable.pdf`
-        const loadingTask = pdfjsLib.getDocument(pdfPath)
+        loadingTask = pdfjsLib.getDocument(pdfPath)
         const doc = await loadingTask.promise
 
-        if (!isMounted) return
+        if (!isMounted) {
+          doc.destroy()
+          return
+        }
 
         setPdfDoc(doc)
 
@@ -106,7 +126,6 @@ export default function PdfSurvivorSheet({
 
         setPdfFormFields(formFields)
       } catch (err) {
-        console.error('Error loading PDF:', err)
         if (isMounted) {
           setError('Failed to load PDF. Please refresh the page.')
         }
@@ -121,6 +140,9 @@ export default function PdfSurvivorSheet({
 
     return () => {
       isMounted = false
+      if (loadingTask) {
+        loadingTask.destroy()
+      }
     }
   }, [])
 
@@ -134,20 +156,25 @@ export default function PdfSurvivorSheet({
       return
     }
 
+    let renderTask: any = null
+    let cancelled = false
+
     const renderPdf = async () => {
-      const canvas = canvasRef.current!
-      const container = containerRef.current!
+      if (cancelled) return
+
+      const canvas = canvasRef.current
+      const container = containerRef.current
+
+      if (!canvas || !container) return
 
       // Calculate scale to fit container
       const containerWidth = container.clientWidth
       const containerHeight = container.clientHeight
 
-      console.log('📐 Container dimensions:', { containerWidth, containerHeight, editable })
-
       // If container has no dimensions yet, retry after a delay
       if (containerWidth === 0 || containerHeight === 0) {
         setTimeout(() => {
-          if (containerRef.current && canvasRef.current) {
+          if (!cancelled && containerRef.current && canvasRef.current) {
             renderPdf()
           }
         }, 100)
@@ -155,22 +182,22 @@ export default function PdfSurvivorSheet({
       }
 
       const baseViewport = pdfPage.getViewport({ scale: 1 })
-      console.log('📄 PDF base dimensions:', { width: baseViewport.width, height: baseViewport.height })
 
       const scaleX = containerWidth / baseViewport.width
       const scaleY = containerHeight / baseViewport.height
 
       // Scale proportionally to fill the container
       const calcScale = Math.min(scaleX, scaleY) * 0.99
-      console.log('🔍 Calculated scale:', { scaleX, scaleY, calcScale })
+
+      if (cancelled) return
 
       setScale(calcScale)
 
       const scaledViewport = pdfPage.getViewport({ scale: calcScale })
       setViewport(scaledViewport)
 
-      // Set canvas to exact scaled dimensions (like prototype)
-      const outputScale = window.devicePixelRatio || 2
+      // Limit devicePixelRatio to 2 for memory efficiency on high-DPI devices
+      const outputScale = Math.min(window.devicePixelRatio || 1, 2)
       canvas.width = Math.floor(scaledViewport.width * outputScale)
       canvas.height = Math.floor(scaledViewport.height * outputScale)
       canvas.style.width = Math.floor(scaledViewport.width) + 'px'
@@ -182,15 +209,31 @@ export default function PdfSurvivorSheet({
       ctx.save()
       ctx.scale(outputScale, outputScale)
 
-      await pdfPage.render({
-        canvasContext: ctx,
-        viewport: scaledViewport
-      }).promise
+      try {
+        renderTask = pdfPage.render({
+          canvasContext: ctx,
+          viewport: scaledViewport
+        })
 
-      ctx.restore()
+        await renderTask.promise
+      } catch (err: any) {
+        // Ignore cancellation errors
+        if (err?.name !== 'RenderingCancelledException') {
+          console.error('PDF render error:', err)
+        }
+      } finally {
+        ctx.restore()
+      }
     }
 
     renderPdf()
+
+    return () => {
+      cancelled = true
+      if (renderTask) {
+        renderTask.cancel()
+      }
+    }
   }, [pdfPage, isMounted, isLoading, editable]) // Re-run when loading completes or mode changes
 
   // Get field value from survivor data (check pending values first for immediate feedback)
