@@ -4,7 +4,7 @@
   max-height: 100%;
   padding: 0.2rem;
   background-color: transparent;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   overflow-y: auto;
   overflow-x: hidden;
   font-size: 0.75rem;
@@ -40,7 +40,7 @@
   align-items: center;
   margin-bottom: 0.25rem;
   padding-bottom: 0.15rem;
-  border-bottom: 2px solid #3a3230;
+  border-bottom: 2px solid var(--kdm-border);
   flex-wrap: wrap;
 }
 
@@ -62,10 +62,10 @@
   flex: 1;
   padding: 0.05rem;
   border: none;
-  border-bottom: 2px solid #3a3230;
+  border-bottom: 2px solid var(--kdm-border);
   background: transparent;
   font-size: 0.9rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-weight: bold;
   font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
   max-width: 120px;
@@ -85,21 +85,21 @@
   font-weight: bold;
   font-size: 0.7rem;
   padding: 0.25rem;
-  border: 1px solid #3a3230;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--kdm-border);
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.05);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .gender-section label:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--kdm-border-light);
 }
 
 .gender-section label:has(input:checked) {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-color: #5a4a3a;
+  background-color: rgba(255,255,255,0.1);
+  border-color: var(--kdm-border-mid);
 }
 
 .hunt-xp-section {
@@ -122,7 +122,7 @@
 .checkbox-box {
   width: 0.85rem;
   height: 0.85rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -131,15 +131,15 @@
 }
 
 .checkbox-box.age-milestone {
-  border: 2px solid #3a3230;
-  background-color: #fff9c4;
+  border: 2px solid var(--kdm-border);
+  background-color: var(--kdm-surface-mid);
 }
 
 .checkbox-box.age-milestone input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #fff9c4;
+  background-color: var(--kdm-surface-mid);
   border: none;
   position: relative;
 }
@@ -152,7 +152,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: #3a3230;
+  color: var(--kdm-text);
 }
 
 .checkbox-box.retirement-age {
@@ -166,7 +166,7 @@
 
 .retired-label {
   font-size: 0.65rem;
-  color: #5a4a3a;
+  color: var(--kdm-text-dim);
   margin-left: 0.3rem;
   font-style: italic;
 }
@@ -180,7 +180,7 @@
   cursor: pointer;
   width: 0.7rem;
   height: 0.7rem;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.08);
   border: none;
   position: relative;
 }
@@ -193,7 +193,7 @@
   transform: translate(-50%, -50%);
   font-size: 0.6rem;
   font-weight: bold;
-  color: #3a3230;
+  color: var(--kdm-text);
 }
 
 .sheet-content {
@@ -274,10 +274,10 @@
   transform: rotate(180deg);
   font-size: 0.8rem;
   font-weight: bold;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   text-align: center;
-  border: 1px solid #3a3230;
-  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--kdm-border);
+  background-color: rgba(255, 255, 255, 0.05);
   padding: 0.25rem;
   font-family: inherit;
   cursor: text;
@@ -301,9 +301,9 @@
   width: 10rem;
   font-size: 0.8rem;
   font-weight: bold;
-  color: #2a1a1a;
-  border: 2px solid #5a4a3a;
-  background-color: #fff;
+  color: var(--kdm-text);
+  border: 2px solid var(--kdm-border-mid);
+  background-color: var(--kdm-surface-mid);
   padding: 0.25rem;
   font-family: inherit;
   box-sizing: border-box;
@@ -319,9 +319,9 @@
   cursor: pointer;
   user-select: none;
   padding: 0.1rem 0.25rem;
-  border: 1px solid #3a3230;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
+  border: 1px solid var(--kdm-border);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -340,8 +340,8 @@
 }
 
 .gender-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-color: #6a5a4a;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--kdm-border-light);
   transform: scale(1.05);
 }
 
@@ -350,7 +350,7 @@
 }
 
 .camera-section {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0;
   flex-shrink: 0;
   display: flex;
@@ -367,7 +367,7 @@
 
 .camera-section:hover {
   background-color: rgba(0, 0, 0, 0.05);
-  border-color: #6a5a4a;
+  border-color: var(--kdm-border-light);
 }
 
 .survivor-image {
@@ -377,7 +377,7 @@
 }
 
 .survival-section {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.15rem;
   flex-shrink: 0;
 }
@@ -385,7 +385,7 @@
 
 
 .brain-section {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.15rem;
   display: flex;
   align-items: center;
@@ -409,7 +409,7 @@
 
 .survival-limit-label {
   font-size: 0.55rem;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-weight: normal;
   display: flex;
   align-items: center;
@@ -419,11 +419,12 @@
 .survival-limit-input {
   width: 1.5rem;
   height: 1.2rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   text-align: center;
   font-size: 0.8rem;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text);
   padding: 0;
 }
 
@@ -437,22 +438,20 @@
 .large-box {
   width: 2.2rem;
   height: 2.2rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   font-size: 1.4rem;
   text-align: center;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text);
   flex-shrink: 0;
 }
 
 .survival-abilities {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-auto-rows: auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 0.25rem;
   font-size: 0.5rem;
-  justify-items: start;
-  justify-content: start;
 }
 
 .survival-ability-label {
@@ -461,20 +460,23 @@
   align-items: center;
   justify-content: center;
   padding: 0.1rem 0.3rem;
-  background-color: rgba(0, 0, 0, 0.15);
-  border: 1px solid #8a7a6a;
-  border-radius: 4px;
+  background-color: rgba(255,255,255,0.04);
+  border: 1px solid var(--kdm-border-mid);
+  border-radius: 0;
   cursor: pointer;
   transition: all 0.15s ease;
   font-weight: 600;
-  color: #8a7a6a;
-  opacity: 0.6;
+  color: var(--kdm-text-mid);
+  opacity: 1;
   user-select: none;
+  flex: 1;
+  min-width: 0;
 }
 
 .survival-ability-label:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-  opacity: 0.7;
+  background-color: rgba(255,255,255,0.08);
+  border-color: var(--kdm-border-light);
+  color: var(--kdm-text);
   transform: translateY(-1px);
 }
 
@@ -483,23 +485,23 @@
 }
 
 .survival-ability-label.active {
-  background-color: rgba(255, 255, 255, 0.5);
-  border-color: #5a4a3a;
-  color: #2a1a1a;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--kdm-text-mid);
+  color: var(--kdm-text);
   opacity: 1;
   cursor: pointer;
 }
 
 .survival-ability-label.active:hover {
-  background-color: rgba(255, 255, 255, 0.7);
-  border-color: #6a5a4a;
+  background-color: rgba(255,255,255,0.16);
+  border-color: var(--kdm-text);
 }
 
 .stats-section {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.15rem;
   justify-content: space-evenly;
   flex: 1;
@@ -537,22 +539,23 @@
 .stat-plus {
   font-size: 0.9rem;
   font-weight: bold;
-  color: #3a3230;
+  color: var(--kdm-text);
 }
 
 .stat-input {
   width: 2rem;
   height: 2rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   text-align: center;
   font-size: 1.1rem;
   font-weight: bold;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text);
 }
 
 .gear-bonus-input {
-  background-color: rgba(212, 197, 169, 0.5);
-  border: 1px solid #5a4a3a;
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid var(--kdm-border-mid);
 }
 
 
@@ -602,7 +605,7 @@
   display: flex;
   align-items: center;
   gap: 0.15rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.1rem;
 }
 
@@ -623,9 +626,9 @@
 .shield-icon {
   width: 1.5rem;
   height: 1.8rem;
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   border-radius: 0 0 50% 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
   position: relative;
   display: flex;
   align-items: center;
@@ -640,19 +643,19 @@
   transform: translateX(-50%);
   width: 100%;
   height: 40%;
-  border-left: 1px solid #3a3230;
-  border-right: 1px solid #3a3230;
+  border-left: 1px solid var(--kdm-border);
+  border-right: 1px solid var(--kdm-border);
   pointer-events: none;
 }
 
 .insane-shield {
-  background-color: rgba(255, 140, 0, 0.5);
-  border-color: #d07000;
+  background-color: rgba(255,255,255,0.1);
+  border-color: var(--kdm-border-light);
 }
 
 .insane-shield::before {
-  border-left-color: #d07000;
-  border-right-color: #d07000;
+  border-left-color: var(--kdm-border-light);
+  border-right-color: var(--kdm-border-light);
 }
 
 .shield-input {
@@ -663,6 +666,7 @@
   text-align: center;
   font-size: 0.95rem;
   font-weight: bold;
+  color: var(--kdm-text);
   z-index: 1;
   padding: 0;
 }
@@ -694,12 +698,12 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: 5px double #3a3230;
+  border: 5px double var(--kdm-border);
   width: 1.1rem;
   height: 1.1rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
   position: relative;
-  box-shadow: 0 0 0 2px #3a3230 inset;
+  box-shadow: 0 0 0 2px var(--kdm-border) inset;
 }
 
 .heavy-injury-checkbox:checked::after {
@@ -713,7 +717,7 @@
 }
 
 .weapon-proficiency {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.2rem;
   display: flex;
   flex-wrap: wrap;
@@ -730,14 +734,13 @@
 
 .weapon-proficiency-inline {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   align-items: center;
   gap: 0.3rem;
   width: 100%;
 }
 
 .weapon-proficiency-inline .proficiency-row {
-  width: 100%;
   flex-shrink: 0;
 }
 
@@ -746,21 +749,35 @@
   flex: 1 1 auto;
 }
 
+.proficiency-select {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 0;
+  padding: 0.1rem 0.15rem;
+  font-size: 0.6rem;
+  background-color: var(--kdm-surface);
+  color: var(--kdm-text);
+  border: 1px solid var(--kdm-border);
+  cursor: pointer;
+  font-family: inherit;
+}
+
 .weapon-type-input {
   flex: 1;
   min-width: 100px;
   padding: 0.1rem;
   border: none;
-  border-bottom: 1px solid #3a3230;
+  border-bottom: 1px solid var(--kdm-border);
   font-size: 0.6rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text);
 }
 
 .proficiency-row {
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  width: 100%;
+  flex-shrink: 0;
 }
 
 .proficiency-boxes {
@@ -772,16 +789,16 @@
 
 .proficiency-milestones {
   display: flex;
+  flex-direction: row;
   gap: 0.2rem;
   align-items: center;
-  margin-left: auto;
   flex-shrink: 0;
 }
 
 .proficiency-milestone,
 .attribute-milestone {
-  border: 2px solid #3a3230;
-  background-color: #fff9c4;
+  border: 2px solid var(--kdm-border);
+  background-color: var(--kdm-surface-mid);
 }
 
 .proficiency-milestone input[type="checkbox"],
@@ -789,7 +806,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: #fff9c4;
+  background-color: var(--kdm-surface-mid);
   border: none;
 }
 
@@ -812,7 +829,7 @@
 
 .courage-section,
 .understanding-section {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.15rem;
   display: flex;
   flex-direction: column;
@@ -843,21 +860,21 @@
   font-size: 0.5rem;
   font-weight: bold;
   padding: 0.05rem 0.15rem;
-  background-color: #3a3230;
-  color: #d4c5a9;
+  background-color: var(--kdm-border-mid);
+  color: var(--kdm-text);
 }
 
 .milestone-marker {
   font-size: 0.4rem;
   margin-right: 0.15rem;
   letter-spacing: 0.05rem;
-  color: #fff9c4;
+  color: var(--kdm-text-mid);
 }
 
 .max-note {
   font-size: 0.6rem;
   font-weight: normal;
-  color: #666;
+  color: var(--kdm-text-dim);
   font-style: italic;
   white-space: nowrap;
 }
@@ -897,7 +914,7 @@
 .disorders,
 .abilities-impairments,
 .once-per-lifetime {
-  border: 1px solid #3a3230;
+  border: 1px solid var(--kdm-border);
   padding: 0.15rem;
   display: flex;
   flex-direction: column;
@@ -926,8 +943,7 @@
   }
 
   .weapon-proficiency-inline .proficiency-row {
-    flex-wrap: wrap;
-    gap: 0.1rem;
+    flex-shrink: 0;
   }
 
   .proficiency-boxes {
@@ -1055,11 +1071,7 @@
     gap: 0.15rem;
   }
 
-  /* Stack survival abilities into 2 columns */
-  .survival-abilities {
-    grid-template-columns: auto auto;
-    gap: 0.15rem;
-  }
+  /* survival abilities already flex-wrap, no override needed */
 
   .survival-top {
     gap: 0.15rem;
@@ -1135,16 +1147,21 @@
   width: 100%;
   padding: 0.05rem;
   border: none;
-  border-bottom: 1px solid #3a3230;
+  border-bottom: 1px solid var(--kdm-border);
   font-size: 0.55rem;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--kdm-text);
 }
 
 /* Input styling */
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="checkbox"],
+textarea,
+select {
   font-family: inherit;
   cursor: pointer;
+  color: var(--kdm-text);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -1153,7 +1170,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input:focus {
-  outline: 2px solid #5a4a3a;
+  outline: 2px solid var(--kdm-border-mid);
 }
 
 /* Checkbox styling */
@@ -1164,8 +1181,8 @@ input[type="checkbox"] {
   width: 0.9rem;
   height: 0.9rem;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--kdm-border);
   position: relative;
 }
 
@@ -1177,7 +1194,7 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -50%);
   font-size: 0.7rem;
   font-weight: bold;
-  color: #3a3230;
+  color: var(--kdm-text);
 }
 
 /* Radio button styling */
@@ -1188,8 +1205,8 @@ input[type="radio"] {
   width: 0.9rem;
   height: 0.9rem;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.7);
-  border: 1px solid #3a3230;
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid var(--kdm-border);
   border-radius: 50%;
   position: relative;
 }
@@ -1202,7 +1219,7 @@ input[type="radio"]:checked::after {
   transform: translate(-50%, -50%);
   width: 0.5rem;
   height: 0.5rem;
-  background-color: #3a3230;
+  background-color: var(--kdm-text);
   border-radius: 50%;
 }
 
@@ -1213,8 +1230,8 @@ input[type="radio"]:checked::after {
   gap: 0.25rem;
   align-items: center;
   padding: 0.2rem;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid #3a3230;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--kdm-border);
   min-height: 1.8rem;
 }
 
@@ -1223,8 +1240,8 @@ input[type="radio"]:checked::after {
   align-items: center;
   gap: 0.2rem;
   padding: 0.15rem 0.4rem;
-  background-color: #5a4a3a;
-  color: #d4c5a9;
+  background-color: var(--kdm-border-mid);
+  color: var(--kdm-text);
   border-radius: 12px;
   font-size: 0.65rem;
   font-weight: 600;
@@ -1233,8 +1250,8 @@ input[type="radio"]:checked::after {
 }
 
 .pill-in-glossary {
-  background-color: #6a5a4a;
-  border: 1px solid #8a7a6a;
+  background-color: var(--kdm-border-light);
+  border: 1px solid var(--kdm-text-dim);
   padding-left: 1.2rem;
 }
 
@@ -1265,7 +1282,7 @@ input[type="radio"]:checked::after {
 .pill-remove {
   background: none;
   border: none;
-  color: #d4c5a9;
+  color: var(--kdm-text);
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
@@ -1281,7 +1298,7 @@ input[type="radio"]:checked::after {
 }
 
 .pill-remove:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .pill-input {
@@ -1291,7 +1308,7 @@ input[type="radio"]:checked::after {
   background: transparent;
   font-size: 0.65rem;
   padding: 0.2rem;
-  color: #2a1a1a;
+  color: var(--kdm-text);
   font-family: inherit;
 }
 
@@ -1300,19 +1317,11 @@ input[type="radio"]:checked::after {
 }
 
 .pill-input::placeholder {
-  color: #8a7a6a;
+  color: var(--kdm-text-dim);
   font-style: italic;
 }
 
-/* Stack weapon proficiency milestone labels on iPad overview */
-@media (min-width: 1001px) and (max-width: 1440px) {
-  .proficiency-milestones {
-     flex-direction: column;
-     align-items: flex-start;
-   }
- }
-
- /* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
+/* Hide weapon proficiency milestone labels on non-desktop views in focus mode */
  @media (max-width: 1440px) {
    .focused-main-sheet .proficiency-milestones {
      display: none !important;
@@ -1321,9 +1330,9 @@ input[type="radio"]:checked::after {
 
  /* Survivor Log Section */
  .survivor-log-section {
-   border: 2px solid #d4a574;
+   border: 2px solid var(--kdm-border-mid);
    border-radius: 6px;
-   background-color: rgba(212, 165, 116, 0.1);
+   background-color: rgba(255,255,255,0.03);
    padding: 1rem;
    margin-top: 1rem;
  }
@@ -1345,24 +1354,24 @@ input[type="radio"]:checked::after {
    margin: 0;
    padding: 0;
    font-size: 1rem;
-   color: #2a1a1a;
+   color: var(--kdm-text);
  }
 
  .section-header-button:hover h3 {
-   color: #5a4a3a;
+   color: var(--kdm-text-dim);
  }
 
  .collapse-indicator {
    font-size: 0.75rem;
-   color: #5a4a3a;
+   color: var(--kdm-text-dim);
    margin-left: 0.5rem;
    transition: transform 0.2s ease;
  }
 
  .log-content {
    margin-top: 0.75rem;
-   background-color: rgba(255, 255, 255, 0.3);
-   border-radius: 4px;
+   background-color: rgba(255, 255, 255, 0.05);
+   border-radius: 0;
    padding: 0.75rem;
    max-height: 400px;
    overflow-y: auto;
@@ -1370,7 +1379,7 @@ input[type="radio"]:checked::after {
 
  .no-log-message {
    text-align: center;
-   color: #5a4a3a;
+   color: var(--kdm-text-dim);
    font-style: italic;
    padding: 1rem;
    font-size: 0.9rem;
@@ -1386,14 +1395,14 @@ input[type="radio"]:checked::after {
    display: flex;
    gap: 0.75rem;
    padding: 0.5rem;
-   background-color: rgba(255, 255, 255, 0.2);
-   border-left: 3px solid #d4a574;
+   background-color: rgba(255, 255, 255, 0.04);
+   border-left: 3px solid var(--kdm-border-mid);
    border-radius: 2px;
    font-size: 0.85rem;
  }
 
  .log-timestamp {
-   color: #5a4a3a;
+   color: var(--kdm-text-dim);
    white-space: nowrap;
    min-width: 120px;
    font-weight: 600;
@@ -1408,7 +1417,7 @@ input[type="radio"]:checked::after {
  }
 
  .log-attribute {
-   color: #2a1a1a;
+   color: var(--kdm-text);
    font-weight: 600;
    min-width: 100px;
  }
@@ -1417,28 +1426,28 @@ input[type="radio"]:checked::after {
    display: flex;
    align-items: center;
    gap: 0.35rem;
-   color: #3a3a3a;
+   color: var(--kdm-text);
  }
 
  .old-value {
-   color: #7a4a4a;
+   color: var(--kdm-text);
    text-decoration: line-through;
  }
 
  .arrow {
-   color: #8a6a4a;
+   color: var(--kdm-text-dim);
    font-weight: bold;
    margin: 0 0.25rem;
  }
 
  .new-value {
-   color: #4a7a4a;
+   color: var(--kdm-text);
    font-weight: 600;
  }
 
  .log-count {
-   background-color: #d4a574;
-   color: #2a1a1a;
+   background-color: var(--kdm-border-mid);
+   color: var(--kdm-text);
    padding: 0.1rem 0.35rem;
    border-radius: 3px;
    font-size: 0.75rem;
@@ -1452,17 +1461,17 @@ input[type="radio"]:checked::after {
  }
 
  .log-content::-webkit-scrollbar-track {
-   background: rgba(212, 165, 116, 0.1);
+   background: rgba(255,255,255,0.03);
    border-radius: 3px;
  }
 
  .log-content::-webkit-scrollbar-thumb {
-   background: #d4a574;
+   background: var(--kdm-border-mid);
    border-radius: 3px;
  }
 
  .log-content::-webkit-scrollbar-thumb:hover {
-   background: #c48a5a;
+   background: var(--kdm-border-mid);
  }
 
  

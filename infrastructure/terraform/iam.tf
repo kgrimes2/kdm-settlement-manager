@@ -89,6 +89,31 @@ resource "aws_iam_role_policy" "lambda_s3_debug_policy" {
   })
 }
 
+# Policy for S3 user data bucket access (for large settlements >400KB)
+resource "aws_iam_role_policy" "lambda_s3_user_data_policy" {
+  name = "${var.app_name}-lambda-s3-user-data-policy-${var.environment}"
+  role = aws_iam_role.lambda_role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          "${aws_s3_bucket.user_data.arn}/*",
+          aws_s3_bucket.user_data.arn
+        ]
+      }
+    ]
+  })
+}
+
 # API Gateway execution role
 resource "aws_iam_role" "api_gateway_role" {
   name = "${var.app_name}-api-gateway-role-${var.environment}"

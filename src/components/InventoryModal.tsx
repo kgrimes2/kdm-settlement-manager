@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import Tesseract from 'tesseract.js'
 import './InventoryModal.css'
 import type { GlossaryTerm } from '../types/glossary'
-import type { SettlementInventory } from '../migrations'
+import type { SettlementInventory, SettlementLogEntry } from '../migrations'
 import { searchGlossary, type SearchResult } from '../utils/glossarySearch'
 
 interface InventoryModalProps {
@@ -10,6 +10,7 @@ interface InventoryModalProps {
   onClose: () => void
   settlementName: string
   inventory: SettlementInventory
+  settlementLog: SettlementLogEntry[]
   onUpdateInventory: (inventory: SettlementInventory) => void
   glossaryTerms: GlossaryTerm[]
   loadedWikiTerms: GlossaryTerm[]
@@ -17,11 +18,12 @@ interface InventoryModalProps {
   onLoadCategory: (slug: string) => Promise<void>
 }
 
-type SectionType = 'gear' | 'materials'
+type SectionType = 'gear' | 'materials' | 'log'
+type InventorySection = 'gear' | 'materials'
 type OcrStatus = 'idle' | 'processing' | 'done' | 'error'
 
 export default function InventoryModal({
-  isOpen, onClose, settlementName, inventory, onUpdateInventory,
+  isOpen, onClose, settlementName, inventory, settlementLog, onUpdateInventory,
   glossaryTerms, loadedWikiTerms, onSearchWiki, onLoadCategory,
 }: InventoryModalProps) {
   const [activeSection, setActiveSection] = useState<SectionType>('gear')
@@ -368,28 +370,31 @@ export default function InventoryModal({
   }, [searchQuery, onSearchWiki])
 
   const addItem = (name: string) => {
-    const section = inventory[activeSection]
+    const sec = activeSection as InventorySection
+    const section = inventory[sec]
     const newSection = { ...section, [name]: (section[name] || 0) + 1 }
-    onUpdateInventory({ ...inventory, [activeSection]: newSection })
+    onUpdateInventory({ ...inventory, [sec]: newSection })
     setSearchQuery('')
     setSearchResults([])
   }
 
   const incrementItem = (name: string) => {
-    const section = inventory[activeSection]
+    const sec = activeSection as InventorySection
+    const section = inventory[sec]
     const newSection = { ...section, [name]: (section[name] || 0) + 1 }
-    onUpdateInventory({ ...inventory, [activeSection]: newSection })
+    onUpdateInventory({ ...inventory, [sec]: newSection })
   }
 
   const decrementItem = (name: string) => {
-    const section = inventory[activeSection]
+    const sec = activeSection as InventorySection
+    const section = inventory[sec]
     const current = section[name] || 0
     if (current <= 1) {
       const { [name]: _, ...rest } = section
-      onUpdateInventory({ ...inventory, [activeSection]: rest })
+      onUpdateInventory({ ...inventory, [sec]: rest })
     } else {
       const newSection = { ...section, [name]: current - 1 }
-      onUpdateInventory({ ...inventory, [activeSection]: newSection })
+      onUpdateInventory({ ...inventory, [sec]: newSection })
     }
   }
 
@@ -418,7 +423,7 @@ export default function InventoryModal({
     }
   }
 
-  const currentItems = inventory[activeSection]
+  const currentItems = activeSection !== 'log' ? inventory[activeSection as InventorySection] : {}
   const sortedItems = Object.entries(currentItems).sort(([a], [b]) => a.localeCompare(b))
 
   if (!isOpen) return null
@@ -446,216 +451,250 @@ export default function InventoryModal({
           >
             Materials
           </button>
+          <button
+            className={`inventory-tab-btn ${activeSection === 'log' ? 'active' : ''}`}
+            onClick={() => setActiveSection('log')}
+          >
+            Log {settlementLog.length > 0 && <span className="inventory-log-count">{settlementLog.length}</span>}
+          </button>
         </div>
 
         <div className="inventory-modal-content">
-          {!showScan && (
-            <div className="inventory-search-row">
-              <div className="inventory-search-wrapper">
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Search to add..."
-                  className="inventory-search-input"
-                />
-                {searchQuery && searchResults.length > 0 && (
-                  <div className="inventory-autocomplete">
-                    {searchResults.map((result, index) => (
-                      <div
-                        key={`${result.term.term}-${index}`}
-                        className={`inventory-autocomplete-item ${index === highlightedIndex ? 'highlighted' : ''}`}
-                        onClick={() => addItem(result.term.term)}
-                        onMouseEnter={() => setHighlightedIndex(index)}
-                      >
-                        {result.term.term}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <button
-                className="inventory-scan-btn"
-                onClick={() => {
-                  setShowScan(true)
-                  setOcrStatus('idle')
-                  setOcrText('')
-                  setOcrError('')
-                  setOcrResults([])
-                }}
-              >
-                Scan Card
-              </button>
-            </div>
-          )}
-
-          {showScan && (
-            <div className="inventory-scan-view">
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileUpload}
-                style={{ display: 'none' }}
-              />
-
-              <button
-                className="inventory-back-btn"
-                onClick={() => setShowScan(false)}
-              >
-                ← Back to search
-              </button>
-
-              {!scanning && ocrStatus === 'idle' && !ocrError && (
-                <div className="inventory-scan-prompt">
-                  <p>Scan a card to add it to your {activeSection} inventory.</p>
-                  <div className="inventory-scan-actions">
-                    <button className="glossary-capture-btn" onClick={startCamera}>
-                      Start Camera
-                    </button>
-                    <button
-                      className="glossary-capture-btn glossary-upload-btn"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      Upload Photo
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {ocrError && !scanning && (
-                <div className="glossary-ocr-status error">
-                  {ocrError}
-                  <div className="inventory-scan-actions" style={{ marginTop: '1rem' }}>
-                    <button className="glossary-capture-btn" onClick={startCamera}>
-                      Try Camera Again
-                    </button>
-                    <button
-                      className="glossary-capture-btn glossary-upload-btn"
-                      onClick={() => fileInputRef.current?.click()}
-                    >
-                      Upload Photo
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {scanning && (
-                <>
-                  <video
-                    ref={videoCallbackRef}
-                    autoPlay
-                    playsInline
-                    muted
-                    className="glossary-camera-feed"
-                    onLoadedMetadata={() => videoRef.current?.play()}
-                  />
-                  <canvas ref={canvasRef} style={{ display: 'none' }} />
-                  {!pauseAutoCaptureRef.current && (
-                    <div className="glossary-ocr-status">
-                      <div className="glossary-spinner" />
-                      Scanning for card...
-                    </div>
-                  )}
-                  <div className="inventory-scan-actions">
-                    <button className="glossary-stop-camera-btn" onClick={() => {
-                      pauseAutoCaptureRef.current = false
-                      stopCamera()
-                    }}>
-                      Cancel
-                    </button>
-                  </div>
-                </>
-              )}
-
-              {ocrStatus === 'done' && !ocrText && (
-                <div className="glossary-ocr-status">
-                  No text detected. Try again with the card text clearly visible.
-                </div>
-              )}
-
-              {ocrResults.length > 0 && (
-                <div className="inventory-ocr-results">
-                  <div className="inventory-ocr-results-header">Tap a match to add to {activeSection}:</div>
-                  {ocrResults.map((result, index) => (
-                    <div
-                      key={`${result.term.term}-${index}`}
-                      className="inventory-ocr-result-item"
-                      onClick={() => {
-                        addItem(result.term.term)
-                        setOcrStatus('idle')
-                        setOcrText('')
-                        setOcrResults([])
-                        pauseAutoCaptureRef.current = false
-                      }}
-                    >
-                      {result.term.term}
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {ocrStatus === 'done' && ocrResults.length === 0 && !scanning && (
-                <div className="inventory-scan-actions" style={{ marginTop: '0.5rem' }}>
-                  <button className="glossary-capture-btn" onClick={startCamera}>
-                    Start Camera
-                  </button>
-                  <button
-                    className="glossary-capture-btn glossary-upload-btn"
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    Upload Another
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-
-          {!showScan && (
-            <div className="inventory-item-list">
-              {sortedItems.length === 0 ? (
-                <div className="inventory-empty">No items yet</div>
+          {activeSection === 'log' ? (
+            <div className="inventory-log-view">
+              {settlementLog.length === 0 ? (
+                <div className="inventory-empty">No changes recorded yet. Add or remove items to start tracking.</div>
               ) : (
-                sortedItems.map(([name, count]) => {
-                  const meta = itemMeta.get(name.toLowerCase())
-                  const tags = meta?.tags || []
-                  const url = meta?.url
+                [...settlementLog].reverse().map((entry, i): React.ReactNode => {
+                  const date = new Date(entry.timestamp)
+                  const dateStr = date.toLocaleDateString()
+                  const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                  const delta = entry.newQty - entry.oldQty
+                  const deltaClass = delta > 0 ? 'inventory-log-delta-pos' : 'inventory-log-delta-neg'
+                  const deltaStr = delta > 0 ? `+${delta}` : `${delta}`
                   return (
-                  <div key={name} className="inventory-item-row">
-                    <div className="inventory-item-info">
-                      {url ? (
-                        <a className="inventory-item-name inventory-item-link" href={url} target="_blank" rel="noopener noreferrer">{name}</a>
-                      ) : (
-                        <span className="inventory-item-name">{name}</span>
-                      )}
-                      {tags.length > 0 && (
-                        <span className="inventory-item-tags">
-                          {tags.join(', ')}
-                        </span>
-                      )}
+                    <div key={i} className="inventory-log-entry">
+                      <span className="inventory-log-timestamp">{dateStr} {timeStr}</span>
+                      <span className={`inventory-log-category inventory-log-category-${entry.category}`}>{entry.category}</span>
+                      <span className="inventory-log-item">{entry.item}</span>
+                      <span className="inventory-log-qty">{entry.oldQty} → {entry.newQty}</span>
+                      <span className={`inventory-log-delta ${deltaClass}`}>{deltaStr}</span>
                     </div>
-                    <span className="inventory-item-count">x{count}</span>
-                    <button
-                      className="inventory-item-btn inventory-item-plus"
-                      onClick={() => incrementItem(name)}
-                      aria-label={`Add one ${name}`}
-                    >
-                      +
-                    </button>
-                    <button
-                      className="inventory-item-btn inventory-item-minus"
-                      onClick={() => decrementItem(name)}
-                      aria-label={`Remove one ${name}`}
-                    >
-                      -
-                    </button>
-                  </div>
                   )
                 })
               )}
             </div>
+          ) : (
+            <>
+              {!showScan && (
+                <div className="inventory-search-row">
+                  <div className="inventory-search-wrapper">
+                    <input
+                      ref={searchInputRef}
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={handleKeyDown}
+                      placeholder="Search to add..."
+                      className="inventory-search-input"
+                    />
+                    {searchQuery && searchResults.length > 0 && (
+                      <div className="inventory-autocomplete">
+                        {searchResults.map((result, index) => (
+                          <div
+                            key={`${result.term.term}-${index}`}
+                            className={`inventory-autocomplete-item ${index === highlightedIndex ? 'highlighted' : ''}`}
+                            onClick={() => addItem(result.term.term)}
+                            onMouseEnter={() => setHighlightedIndex(index)}
+                          >
+                            {result.term.term}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    className="inventory-scan-btn"
+                    onClick={() => {
+                      setShowScan(true)
+                      setOcrStatus('idle')
+                      setOcrText('')
+                      setOcrError('')
+                      setOcrResults([])
+                    }}
+                  >
+                    Scan Card
+                  </button>
+                </div>
+              )}
+
+              {showScan && (
+                <div className="inventory-scan-view">
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileUpload}
+                    style={{ display: 'none' }}
+                  />
+
+                  <button
+                    className="inventory-back-btn"
+                    onClick={() => setShowScan(false)}
+                  >
+                    ← Back to search
+                  </button>
+
+                  {!scanning && ocrStatus === 'idle' && !ocrError && (
+                    <div className="inventory-scan-prompt">
+                      <p>Scan a card to add it to your {activeSection} inventory.</p>
+                      <div className="inventory-scan-actions">
+                        <button className="glossary-capture-btn" onClick={startCamera}>
+                          Start Camera
+                        </button>
+                        <button
+                          className="glossary-capture-btn glossary-upload-btn"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          Upload Photo
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {ocrError && !scanning && (
+                    <div className="glossary-ocr-status error">
+                      {ocrError}
+                      <div className="inventory-scan-actions" style={{ marginTop: '1rem' }}>
+                        <button className="glossary-capture-btn" onClick={startCamera}>
+                          Try Camera Again
+                        </button>
+                        <button
+                          className="glossary-capture-btn glossary-upload-btn"
+                          onClick={() => fileInputRef.current?.click()}
+                        >
+                          Upload Photo
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {scanning && (
+                    <>
+                      <video
+                        ref={videoCallbackRef}
+                        autoPlay
+                        playsInline
+                        muted
+                        className="glossary-camera-feed"
+                        onLoadedMetadata={() => videoRef.current?.play()}
+                      />
+                      <canvas ref={canvasRef} style={{ display: 'none' }} />
+                      {!pauseAutoCaptureRef.current && (
+                        <div className="glossary-ocr-status">
+                          <div className="glossary-spinner" />
+                          Scanning for card...
+                        </div>
+                      )}
+                      <div className="inventory-scan-actions">
+                        <button className="glossary-stop-camera-btn" onClick={() => {
+                          pauseAutoCaptureRef.current = false
+                          stopCamera()
+                        }}>
+                          Cancel
+                        </button>
+                      </div>
+                    </>
+                  )}
+
+                  {ocrStatus === 'done' && !ocrText && (
+                    <div className="glossary-ocr-status">
+                      No text detected. Try again with the card text clearly visible.
+                    </div>
+                  )}
+
+                  {ocrResults.length > 0 && (
+                    <div className="inventory-ocr-results">
+                      <div className="inventory-ocr-results-header">Tap a match to add to {activeSection}:</div>
+                      {ocrResults.map((result, index) => (
+                        <div
+                          key={`${result.term.term}-${index}`}
+                          className="inventory-ocr-result-item"
+                          onClick={() => {
+                            addItem(result.term.term)
+                            setOcrStatus('idle')
+                            setOcrText('')
+                            setOcrResults([])
+                            pauseAutoCaptureRef.current = false
+                          }}
+                        >
+                          {result.term.term}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {ocrStatus === 'done' && ocrResults.length === 0 && !scanning && (
+                    <div className="inventory-scan-actions" style={{ marginTop: '0.5rem' }}>
+                      <button className="glossary-capture-btn" onClick={startCamera}>
+                        Start Camera
+                      </button>
+                      <button
+                        className="glossary-capture-btn glossary-upload-btn"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        Upload Another
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {!showScan && (
+                <div className="inventory-item-list">
+                  {sortedItems.length === 0 ? (
+                    <div className="inventory-empty">No items yet</div>
+                  ) : (
+                    sortedItems.map(([name, count]) => {
+                      const meta = itemMeta.get(name.toLowerCase())
+                      const tags = meta?.tags || []
+                      const url = meta?.url
+                      return (
+                        <div key={name} className="inventory-item-row">
+                          <div className="inventory-item-info">
+                            {url ? (
+                              <a className="inventory-item-name inventory-item-link" href={url} target="_blank" rel="noopener noreferrer">{name}</a>
+                            ) : (
+                              <span className="inventory-item-name">{name}</span>
+                            )}
+                            {tags.length > 0 && (
+                              <span className="inventory-item-tags">
+                                {tags.join(', ')}
+                              </span>
+                            )}
+                          </div>
+                          <span className="inventory-item-count">x{count}</span>
+                          <button
+                            className="inventory-item-btn inventory-item-plus"
+                            onClick={() => incrementItem(name)}
+                            aria-label={`Add one ${name}`}
+                          >
+                            +
+                          </button>
+                          <button
+                            className="inventory-item-btn inventory-item-minus"
+                            onClick={() => decrementItem(name)}
+                            aria-label={`Remove one ${name}`}
+                          >
+                            -
+                          </button>
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

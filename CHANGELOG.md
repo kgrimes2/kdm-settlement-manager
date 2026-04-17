@@ -7,6 +7,66 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.7] - 2026-03-22
+
+### Added
+- **SEO** - Added full meta tags to `index.html`: description, keywords, canonical URL, Open Graph, and Twitter Card; page title expanded to "KDM Settlement Manager — Kingdom Death: Monster Survivor Tracker"
+- **Merge conflict bug reporting** - "Report Bug" button in the data conflict dialog opens the debug submission modal so users can submit conflict details directly
+
+### Fixed
+- **Merge conflict false positives** - Cloud data is now run through the same migration pipeline as local data before comparison, eliminating the spurious conflict dialog that appeared on every reload
+- **Disclaimer text** - Toolbar disclaimer colour changed to `--kdm-text-mid` (lighter), with `font-weight: 300` for a thinner appearance
+- **Weapon proficiency dropdown position** - Dropdown now renders to the left of the checkboxes
+- **Test suite** - Updated `dataService` tests to match actual error message format (`status code` included); updated weapon proficiency test to use `selectOptions` against the new dropdown
+
+## [1.4.6] - 2026-03-22
+
+### Added
+- **Disclaimer in toolbar** - "Unofficial. Not affiliated with Adam Poots Games." displayed beneath the app name in the menu bar
+
+### Changed
+- **Weapon Proficiency** - Replaced free-text pill entry with a dropdown of all 12 proficiency types sourced from wiki data (Axe, Bow, Club, Dagger, Fist & Tooth, Grand Weapon, Katar, Shield, Spear, Sword, Twilight Sword, Whip); checkboxes and milestone labels now share a single row with the dropdown
+- **Menu bar** - App name font size reduced to reclaim vertical space for survivor sheet content
+- **Data migration to v12** - Existing weapon proficiency free-text values normalised to canonical dropdown option names on load
+
+### Fixed
+- **Login modal light theme** - Modal was rendering with dark background and light text in light mode; updated to classic sepia palette matching other modals
+- **IAM permissions** - Lambda role was missing `s3:PutObject` permission on the user data bucket, preventing all settlement saves (regression from commented-out policy)
+
+### Removed
+- **Disclaimer banner** - Removed fixed bottom banner; disclaimer text moved to toolbar
+
+## [1.4.4] - 2026-03-22
+
+### Fixed
+- **KDM Monochrome Theme** - Rethemed app to Kingdom Death: Monster black/white/gray aesthetic
+  - Replaced colored UI elements with monochrome palette matching KDM's visual identity
+  - Fixed button text color to off-white for legibility on dark backgrounds
+  - Comprehensive text contrast fixes across all CSS files
+  - Fixed inputs and stat boxes to use correct text color variable
+  - Stopped using border/surface variables as text colors
+  - Increased contrast on survival ability buttons (Encourage, Dodge, etc.)
+  - Fixed milestone label background using incorrect text color variable
+
+## [1.4.3] - 2026-02-21
+
+### Fixed
+- **Data Sync for Large Settlements** - Resolved 400KB DynamoDB size limit errors
+  - Migrated settlement storage from DynamoDB to S3 with no size limits (up to 10MB)
+  - DynamoDB now stores only metadata (user_id, settlement_id, s3_key, size, timestamps)
+  - Backward compatible - existing DynamoDB-stored settlements continue to work seamlessly
+  - Improved error messages with detailed size limit information
+  - Enhanced logging for better debugging and monitoring
+  - S3 versioning enabled with 90-day cleanup of old versions
+  - Significantly reduced storage costs (S3 vs DynamoDB)
+
+### Changed
+- **Cloud Storage Architecture** - All settlements now stored in S3
+  - Eliminates DynamoDB 400KB per-item size restrictions
+  - Supports settlements of any size within reasonable limits (10MB max)
+  - Lambda functions updated to handle hybrid storage (S3 + DynamoDB metadata)
+  - Data retrieval maintains compatibility with frontend expectations
+
 ## [1.4.2] - 2026-02-20
 
 ### Added

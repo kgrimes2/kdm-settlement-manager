@@ -12,10 +12,9 @@ resource "aws_api_gateway_rest_api" "main" {
   }
 }
 
-# NOTE: CORS is currently set to '*' (all origins) for development.
-# For production, update var.cors_allowed_origins in terraform.tfvars to specific domains:
-# cors_allowed_origins = ["https://your-production-domain.com", "https://www.your-production-domain.com"]
-# Then update all CORS response headers below to use: join(",", var.cors_allowed_origins)
+# CORS origins are controlled by var.cors_allowed_origins.
+# Staging default: ["*"]
+# Production: automatically set to the app URL via local.cors_origins (see variables.tf)
 
 # Cognito Authorizer for API Gateway
 resource "aws_api_gateway_authorizer" "cognito" {
@@ -124,7 +123,7 @@ resource "aws_api_gateway_integration_response" "cors_user_data" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Origin"  = local.cors_origin_header
   }
 
   depends_on = [
@@ -309,7 +308,7 @@ resource "aws_api_gateway_integration_response" "cors_settlement" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
     "method.response.header.Access-Control-Allow-Methods" = "'GET,POST,DELETE,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Origin"  = local.cors_origin_header
   }
 }
 
@@ -331,8 +330,10 @@ resource "aws_api_gateway_integration_response" "get_user_data_cors" {
   http_method = aws_api_gateway_method.get_user_data.http_method
   status_code = "200"
 
+  depends_on = [aws_api_gateway_integration.get_user_data]
+
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+    "method.response.header.Access-Control-Allow-Origin" = local.cors_origin_header
   }
 }
 
@@ -354,8 +355,10 @@ resource "aws_api_gateway_integration_response" "save_user_data_cors" {
   http_method = aws_api_gateway_method.save_user_data.http_method
   status_code = "200"
 
+  depends_on = [aws_api_gateway_integration.save_user_data]
+
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+    "method.response.header.Access-Control-Allow-Origin" = local.cors_origin_header
   }
 }
 
@@ -377,8 +380,10 @@ resource "aws_api_gateway_integration_response" "delete_user_data_cors" {
   http_method = aws_api_gateway_method.delete_user_data.http_method
   status_code = "200"
 
+  depends_on = [aws_api_gateway_integration.delete_user_data]
+
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = "'*'"
+    "method.response.header.Access-Control-Allow-Origin" = local.cors_origin_header
   }
 }
 
@@ -458,7 +463,7 @@ resource "aws_api_gateway_gateway_response" "unauthorized" {
   response_type = "UNAUTHORIZED"
   status_code   = "401"
   response_parameters = {
-    "gatewayresponse.header.Access-Control-Allow-Origin"  = "'*'"
+    "gatewayresponse.header.Access-Control-Allow-Origin"  = local.cors_origin_header
     "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
   }
 }
@@ -468,7 +473,7 @@ resource "aws_api_gateway_gateway_response" "access_denied" {
   response_type = "ACCESS_DENIED"
   status_code   = "403"
   response_parameters = {
-    "gatewayresponse.header.Access-Control-Allow-Origin"  = "'*'"
+    "gatewayresponse.header.Access-Control-Allow-Origin"  = local.cors_origin_header
     "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
   }
 }
@@ -478,7 +483,7 @@ resource "aws_api_gateway_gateway_response" "missing_authentication_token" {
   response_type = "MISSING_AUTHENTICATION_TOKEN"
   status_code   = "403"
   response_parameters = {
-    "gatewayresponse.header.Access-Control-Allow-Origin"  = "'*'"
+    "gatewayresponse.header.Access-Control-Allow-Origin"  = local.cors_origin_header
     "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
   }
 }
@@ -627,7 +632,7 @@ resource "aws_api_gateway_integration_response" "cors_debug_submission" {
   response_parameters = {
     "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
     "method.response.header.Access-Control-Allow-Methods" = "'POST,OPTIONS'"
-    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+    "method.response.header.Access-Control-Allow-Origin"  = local.cors_origin_header
   }
 
   depends_on = [

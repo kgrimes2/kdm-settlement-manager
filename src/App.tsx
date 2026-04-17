@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { capitalCase } from 'change-case'
 import './App.css'
+import './classic-theme.css'
 import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import {
   type AppState,
@@ -22,6 +23,7 @@ import { AuthProvider, useAuth } from './contexts/AuthContext'
 import LoginModal from './components/LoginModal'
 import DebugSubmissionModal from './components/DebugSubmissionModal'
 import { detectChanges, addLogEntry } from './utils/survivorLogging'
+import { detectInventoryChanges, addSettlementLogEntries } from './utils/settlementLogging'
 import { errorTracker } from './utils/errorTracking'
 import packageJson from '../package.json'
 
@@ -115,6 +117,10 @@ function AppContent() {
       const [showChangelogModal, setShowChangelogModal] = useState(false)
       const [showResourcesDropdown, setShowResourcesDropdown] = useState(false)
       const [, forceUpdate] = useState(0)
+
+  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
+    return (localStorage.getItem('kdm-theme') as 'dark' | 'light') ?? 'dark'
+  })
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
     const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
@@ -198,6 +204,12 @@ function AppContent() {
   }
 
   const currentSettlement = getCurrentSettlement()
+
+  // Sync theme to DOM and localStorage
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+    localStorage.setItem('kdm-theme', theme)
+  }, [theme])
 
   // Keep appStateRef in sync with appState (runs on every change, but just updates ref - cheap!)
   useEffect(() => {
@@ -393,9 +405,19 @@ function AppContent() {
           const localData = localStorageData ? JSON.parse(localStorageData) : null
           
           // Merge all cloud data
-          const mergedSettlements = allCloudData.map((d: any) => d.settlements || []).flat()
+          const rawCloudSettlements = allCloudData.map((d: any) => d.settlements || []).flat()
           const mergedSurvivors = allCloudData.map((d: any) => d.survivors || []).flat()
           const mergedInventory = Object.assign({}, ...allCloudData.map((d: any) => d.inventory || {}))
+          
+          // Migrate cloud settlements through the same pipeline as local data
+          // so the comparison is apples-to-apples (same default fields, same normalizations)
+          const migratedCloudState = migrateData({
+            version: 0,
+            settlements: rawCloudSettlements,
+            currentSettlementId: rawCloudSettlements[0]?.id || 'settlement-1',
+            namedSaves: []
+          })
+          const mergedSettlements = migratedCloudState.settlements
           
           console.log('Merged settlements from cloud:', mergedSettlements)
           console.log('Total settlements after merge:', mergedSettlements.length)
@@ -747,7 +769,8 @@ function AppContent() {
       removedSurvivors: [],
       retiredSurvivors: [],
       deceasedSurvivors: [],
-      inventory: { gear: {}, materials: {} }
+      inventory: { gear: {}, materials: {} },
+      settlementLog: []
     }
     setAppState(prev => ({
       ...prev,
@@ -852,14 +875,20 @@ function AppContent() {
    }
 
    const handleUpdateInventory = (inventory: SettlementInventory) => {
-    setAppState(prev => ({
-      ...prev,
-      settlements: prev.settlements.map(s =>
-        s.id === prev.currentSettlementId
-          ? { ...s, inventory }
-          : s
-      )
-    }))
+    setAppState(prev => {
+      const currentSettlement = prev.settlements.find(s => s.id === prev.currentSettlementId)
+      const oldInventory = currentSettlement?.inventory || { gear: {}, materials: {} }
+      const newEntries = detectInventoryChanges(oldInventory, inventory)
+      const updatedLog = addSettlementLogEntries(currentSettlement?.settlementLog || [], newEntries)
+      return {
+        ...prev,
+        settlements: prev.settlements.map(s =>
+          s.id === prev.currentSettlementId
+            ? { ...s, inventory, settlementLog: updatedLog }
+            : s
+        )
+      }
+    })
   }
 
    const showNotification = (message: string, type: 'success' | 'error') => {
@@ -1855,9 +1884,21 @@ function AppContent() {
                  }}
                  disabled={isMergeProcessing}
                >
-                 {isMergeProcessing ? '⏳ Loading...' : 'Use Cloud'}
-               </button>
-            </div>
+                  {isMergeProcessing ? '⏳ Loading...' : 'Use Cloud'}
+                </button>
+                {debugService && (
+                  <button
+                    className="confirm-cancel"
+                    onClick={() => {
+                      setMergeDialog(null)
+                      setShowDebugModal(true)
+                    }}
+                    disabled={isMergeProcessing}
+                  >
+                    Report Bug
+                  </button>
+                )}
+             </div>
           </div>
         </div>
        )}
@@ -2108,19 +2149,20 @@ function AppContent() {
         </div>
         <div className={`toolbar-content ${focusedQuadrant !== null ? 'hide-in-focus' : ''} ${showMobileToolbar ? 'show-mobile' : ''}`}>
           <div className="toolbar-left">
-            <div className="toolbar-title-group">
-               <h1 className="toolbar-title">
-                 KDM Settlement Manager{' '}
-                 <button
-                   onClick={() => setShowChangelogModal(true)}
-                   className="version-link"
-                   title="View changelog"
-                   style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textDecoration: 'inherit' }}
-                 >
-                   v{APP_VERSION}
-                 </button>
-               </h1>
-            </div>
+             <div className="toolbar-title-group">
+                <h1 className="toolbar-title">
+                  KDM Settlement Manager{' '}
+                  <button
+                    onClick={() => setShowChangelogModal(true)}
+                    className="version-link"
+                    title="View changelog"
+                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit', color: 'inherit', textDecoration: 'inherit' }}
+                  >
+                    v{APP_VERSION}
+                  </button>
+                </h1>
+                <p className="toolbar-disclaimer">Unofficial. Not affiliated with Adam Poots Games.</p>
+             </div>
           </div>
           <div className="toolbar-center">
           <div className={`marker-button-group ${showMarkerMode && markerModeType === '2-state' ? 'active' : ''}`}>
@@ -2451,6 +2493,14 @@ function AppContent() {
               ↩️ Return to Overview
             </button>
           )}
+          <button
+            className="toolbar-button toolbar-icon-button theme-toggle-button"
+            onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
+            aria-label={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
+            title={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
+          >
+            {theme === 'dark' ? '☀' : '🌙'}
+          </button>
           <button
             className="toolbar-button toolbar-icon-button"
             onClick={toggleSurvivorList}
@@ -2944,7 +2994,7 @@ function AppContent() {
         </div>
       )}
 
-       <div className="container" onClick={handleContainerClick}>
+        <div className="container" onClick={handleContainerClick}>
          {editingTemplateQuadrant !== null && (
            <div style={{
              position: 'fixed',
@@ -3559,10 +3609,6 @@ function AppContent() {
         )
       })()}
 
-      <div className="bottom-disclaimer-banner">
-        Unofficial fan-made tool. Not affiliated with Kingdom Death LLC or Adam Poots Games.
-      </div>
-
        <GlossaryModal
          isOpen={showGlossaryModal}
          onClose={() => {
@@ -3586,6 +3632,7 @@ function AppContent() {
           onClose={() => setShowInventoryModal(false)}
           settlementName={currentSettlement?.name || 'Settlement'}
           inventory={currentSettlement?.inventory || { gear: {}, materials: {} }}
+          settlementLog={currentSettlement?.settlementLog || []}
           onUpdateInventory={handleUpdateInventory}
           glossaryTerms={glossaryData.terms}
           loadedWikiTerms={loadedWikiTerms}
@@ -3633,14 +3680,12 @@ function AppContent() {
              <h2 style={{ marginTop: 0, marginBottom: '16px', fontSize: '20px', fontWeight: 'bold' }}>
                What's New in v{APP_VERSION}
              </h2>
-             <ul style={{ marginLeft: '20px', lineHeight: '1.6', color: '#333' }}>
-               <li>Enhanced survivor sheet with improved mobile responsiveness</li>
-               <li>Added changelog modal for easier version history access</li>
-               <li>Improved settlement data synchronization with cloud</li>
-               <li>Fixed various UI bugs and improved performance</li>
-               <li>Better error handling and user notifications</li>
-               <li>Updated glossary and wiki content</li>
-             </ul>
+              <ul style={{ marginLeft: '20px', lineHeight: '1.6', color: '#333' }}>
+                <li>Settlement inventory log — track all gear and materials changes with timestamps in the new Log tab</li>
+                <li>Classic theme toggle — switch between the new dark monochrome look and the original warm brown style</li>
+                <li>Fixed invisible text on section headers and action buttons in dark mode</li>
+                <li>Fixed active tab text invisible in dark mode (gear/materials/log tabs)</li>
+              </ul>
              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #ddd' }}>
                <p style={{ margin: '0 0 12px 0', fontSize: '14px', color: '#666' }}>
                  View the full changelog on GitHub:

@@ -1,11 +1,19 @@
 import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
 import type { PermanentInjury } from './SurvivorSheet'
 
-export const CURRENT_DATA_VERSION = 10
+export const CURRENT_DATA_VERSION = 12
 
 export interface SettlementInventory {
   gear: Record<string, number>
   materials: Record<string, number>
+}
+
+export interface SettlementLogEntry {
+  timestamp: string
+  category: 'gear' | 'materials'
+  item: string
+  oldQty: number
+  newQty: number
 }
 
 export interface NamedSave {
@@ -34,6 +42,7 @@ export interface SettlementData {
   retiredSurvivors: SurvivorData[]
   deceasedSurvivors: SurvivorData[]
   inventory: SettlementInventory
+  settlementLog: SettlementLogEntry[]
   survivorTemplate?: SurvivorTemplate
   templateEditInProgress?: {
     survivorsBefore: {
@@ -70,7 +79,8 @@ function createDefaultSettlement(): SettlementData {
     removedSurvivors: [],
     retiredSurvivors: [],
     deceasedSurvivors: [],
-    inventory: { gear: {}, materials: {} }
+    inventory: { gear: {}, materials: {} },
+    settlementLog: []
   }
 }
 
@@ -241,6 +251,46 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
     delete (migratedSurvivor.weaponProficiency as any).type
   }
 
+  // Migration: normalise weapon proficiency type to dropdown option values (version 12)
+  if (migratedSurvivor.weaponProficiency?.types?.length > 0) {
+    const PROFICIENCY_OPTIONS: Record<string, string> = {
+      'axe': 'Axe',
+      'bow': 'Bow',
+      'club': 'Club',
+      'dagger': 'Dagger',
+      'fist & tooth': 'Fist & Tooth',
+      'fist and tooth': 'Fist & Tooth',
+      'fist&tooth': 'Fist & Tooth',
+      'fist & tooth proficiency': 'Fist & Tooth',
+      'grand weapon': 'Grand Weapon',
+      'grand weapon proficiency': 'Grand Weapon',
+      'grand': 'Grand Weapon',
+      'katar': 'Katar',
+      'shield': 'Shield',
+      'spear': 'Spear',
+      'sword': 'Sword',
+      'twilight sword': 'Twilight Sword',
+      'twilight sword proficiency': 'Twilight Sword',
+      'whip': 'Whip',
+      'axe proficiency': 'Axe',
+      'bow proficiency': 'Bow',
+      'club proficiency': 'Club',
+      'dagger proficiency': 'Dagger',
+      'katar proficiency': 'Katar',
+      'shield proficiency': 'Shield',
+      'spear proficiency': 'Spear',
+      'sword proficiency': 'Sword',
+      'whip proficiency': 'Whip',
+    }
+    migratedSurvivor.weaponProficiency = {
+      ...migratedSurvivor.weaponProficiency,
+      types: migratedSurvivor.weaponProficiency.types.map((t: string) => {
+        const normalised = PROFICIENCY_OPTIONS[t.toLowerCase().trim()]
+        return normalised ?? t
+      })
+    }
+  }
+
   return migratedSurvivor
 }
 
@@ -261,6 +311,7 @@ function migrateSettlement(settlement: any): SettlementData {
     retiredSurvivors: (settlement.retiredSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     deceasedSurvivors: (settlement.deceasedSurvivors || []).map(migrateSurvivor).filter(Boolean) as SurvivorData[],
     inventory: settlement.inventory || { gear: {}, materials: {} },
+    settlementLog: settlement.settlementLog || [],
     survivorTemplate: settlement.survivorTemplate,
   }
 }

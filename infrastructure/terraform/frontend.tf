@@ -95,10 +95,17 @@ resource "aws_s3_bucket_policy" "app_bucket_policy" {
 
 # CloudFront Distribution
 resource "aws_cloudfront_distribution" "app_distribution" {
-  enabled             = true
-  is_ipv6_enabled     = true
-  default_root_object = "index.html"
+  enabled         = true
+  is_ipv6_enabled = true
+  # In prod, the CloudFront function handles / -> /app redirect, so no default
+  # root object is needed.  In staging, serve app/index.html directly.
+  default_root_object = var.environment == "prod" ? "" : "app/index.html"
   price_class         = var.environment == "prod" ? "PriceClass_100" : "PriceClass_All"
+
+  # Custom domain alias:
+  #   prod    -> rollinglanterns.com + www.rollinglanterns.com
+  #   staging -> staging.rollinglanterns.com
+  aliases = var.environment == "prod" ? [var.root_domain, "www.${var.root_domain}"] : [local.app_host]
 
   origin {
     domain_name              = aws_s3_bucket.app_bucket.bucket_regional_domain_name
@@ -106,6 +113,7 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.oai.id
   }
 
+  # Default behavior — catch-all, lowest priority
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
@@ -115,12 +123,20 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id
 
     viewer_protocol_policy = "redirect-to-https"
+
+    # In prod, redirect bare / and non-/app paths to /app
+    dynamic "function_association" {
+      for_each = var.environment == "prod" ? [1] : []
+      content {
+        event_type   = "viewer-request"
+        function_arn = aws_cloudfront_function.apex_redirect[0].arn
+      }
+    }
   }
 
-  # Cache policy for HTML files (index.html)
-  # Always revalidate HTML to check for updates
+  # /app/index.html — always revalidate so deploys are reflected immediately
   ordered_cache_behavior {
-    path_pattern     = "/index.html"
+    path_pattern     = "/app/index.html"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3App"
@@ -131,9 +147,9 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     viewer_protocol_policy = "redirect-to-https"
   }
 
-  # Cache policy for static assets (CSS, JS, images)
+  # /app/assets/* — long-lived cache (Vite fingerprints these filenames)
   ordered_cache_behavior {
-    path_pattern     = "/assets/*"
+    path_pattern     = "/app/assets/*"
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "S3App"
@@ -144,18 +160,18 @@ resource "aws_cloudfront_distribution" "app_distribution" {
     viewer_protocol_policy = "redirect-to-https"
   }
 
-  # Custom error response for SPA routing
+  # SPA routing: any 404/403 from S3 falls back to the app shell
   custom_error_response {
     error_code            = 404
     response_code         = 200
-    response_page_path    = "/index.html"
+    response_page_path    = "/app/index.html"
     error_caching_min_ttl = 0
   }
 
   custom_error_response {
     error_code            = 403
     response_code         = 200
-    response_page_path    = "/index.html"
+    response_page_path    = "/app/index.html"
     error_caching_min_ttl = 0
   }
 
@@ -166,13 +182,17 @@ resource "aws_cloudfront_distribution" "app_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true
+    acm_certificate_arn      = aws_acm_certificate_validation.app.certificate_arn
+    ssl_support_method       = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   tags = {
     Name        = "${var.app_name}-distribution"
     Environment = var.environment
   }
+
+  depends_on = [aws_acm_certificate_validation.app]
 }
 
 # Outputs

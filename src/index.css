@@ -1,10 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* KDM monochrome dark palette (default) */
+  --kdm-bg:            #000000;
+  --kdm-surface:       #111111;
+  --kdm-surface-mid:   #1a1a1a;
+  --kdm-surface-high:  #222222;
+  --kdm-border:        #333333;
+  --kdm-border-mid:    #444444;
+  --kdm-border-light:  #555555;
+  --kdm-text:          #e8e8e8;
+  --kdm-text-mid:      #aaaaaa;
+  --kdm-text-dim:      #666666;
+  --kdm-text-faint:    #444444;
+  --kdm-accent:        #ffffff;
+  --kdm-danger:        #ef4444;
+  --kdm-danger-dark:   #dc2626;
+  --kdm-success:       #333333;
+
+  font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color: #000;
-  background-color: #fff;
+  color: var(--kdm-text);
+  background-color: var(--kdm-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

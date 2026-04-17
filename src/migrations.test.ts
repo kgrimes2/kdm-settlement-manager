@@ -501,5 +501,57 @@ describe('Data Migrations', () => {
       expect(migrated.settlements[0].survivorTemplate).toBeDefined()
       expect(migrated.settlements[0].survivorTemplate?.data.name).toBe('Template')
     })
+
+    it('should backfill settlementLog as empty array for settlements missing it', () => {
+      const oldData = {
+        settlements: [{
+          id: 'settlement-1',
+          name: 'Old Settlement',
+          survivors: { 1: null, 2: null, 3: null, 4: null },
+          removedSurvivors: [],
+          retiredSurvivors: [],
+          deceasedSurvivors: [],
+          inventory: { gear: {}, materials: {} },
+          // intentionally no settlementLog
+        }],
+        currentSettlementId: 'settlement-1',
+        namedSaves: []
+      }
+
+      const migrated = migrateData(oldData)
+
+      expect(migrated.settlements[0].settlementLog).toBeDefined()
+      expect(Array.isArray(migrated.settlements[0].settlementLog)).toBe(true)
+      expect(migrated.settlements[0].settlementLog).toHaveLength(0)
+    })
+
+    it('should preserve existing settlementLog entries during migration', () => {
+      const existingLog = [{
+        timestamp: '2026-03-22T12:00:00.000Z',
+        category: 'gear' as const,
+        item: 'Sword',
+        oldQty: 0,
+        newQty: 1,
+      }]
+      const dataWithLog = {
+        settlements: [{
+          id: 'settlement-1',
+          name: 'Settlement',
+          survivors: { 1: null, 2: null, 3: null, 4: null },
+          removedSurvivors: [],
+          retiredSurvivors: [],
+          deceasedSurvivors: [],
+          inventory: { gear: {}, materials: {} },
+          settlementLog: existingLog,
+        }],
+        currentSettlementId: 'settlement-1',
+        namedSaves: []
+      }
+
+      const migrated = migrateData(dataWithLog)
+
+      expect(migrated.settlements[0].settlementLog).toHaveLength(1)
+      expect(migrated.settlements[0].settlementLog[0].item).toBe('Sword')
+    })
   })
 })

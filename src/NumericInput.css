@@ -49,7 +49,7 @@
   min-height: 48px;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #d4c5a9;
+  color: var(--kdm-text);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -59,13 +59,13 @@
 }
 
 .numeric-button.increment {
-  background-color: #5a6b4a;
-  border: 2px solid #3a4a2a;
+  background-color: var(--kdm-surface-high);
+  border: 2px solid var(--kdm-border-light);
 }
 
 .numeric-button.increment:hover {
-  background-color: #6a7b5a;
-  border-color: #4a5a3a;
+  background-color: var(--kdm-border);
+  border-color: var(--kdm-border-mid);
   transform: scale(1.05);
 }
 
@@ -75,13 +75,13 @@
 }
 
 .numeric-button.decrement {
-  background-color: #6b4a4a;
-  border: 2px solid #4a2a2a;
+  background-color: var(--kdm-surface-high);
+  border: 2px solid var(--kdm-danger-dark);
 }
 
 .numeric-button.decrement:hover {
-  background-color: #7b5a5a;
-  border-color: #5a3a3a;
+  background-color: var(--kdm-danger-dark);
+  border-color: var(--kdm-danger);
   transform: scale(1.05);
 }
 

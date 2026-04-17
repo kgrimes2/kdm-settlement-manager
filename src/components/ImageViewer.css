@@ -37,7 +37,7 @@
 }
 
 .yarl__thumbnail {
-  border-radius: 4px;
+  border-radius: 0;
   transition: all 0.2s ease;
 }
 
