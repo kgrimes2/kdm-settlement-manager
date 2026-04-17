@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-04-17
+
+### Added
+- **PDF-Based Survivor Sheet** - Complete overhaul to official fillable PDF character sheet
+  - Renders official Kingdom Death: Monster fillable PDF as base
+  - Interactive form field overlays in editable mode (focused survivors)
+  - Static text overlays in overview mode (2x2 grid)
+  - Bidirectional data mapping between app data model and PDF form fields
+  - +1/-1 buttons on numeric fields for quick adjustments (manual entry disabled)
+  - Numeric fields support negative values
+  - Checkboxes render as filled black boxes in overview mode for cleaner look
+  - All survivor data persists through existing localStorage and cloud sync
+
+### Changed
+- **Focus Mode Layout** - Increased size to 95% width and 90% height for maximum visibility
+- **PDF Scaling** - Increased PDF scale to 99% to fill more available space
+- **Numeric Input Behavior** - All numeric fields now read-only, must use +/- buttons
+- **Initial Survivor Stats** - Movement stat now starts at 0 instead of 5 (matches official sheet)
+- **Dark Mode Only** - Removed light/dark theme toggle, app now uses only dark theme
+- **UI Contrast Improvements** - Fixed button hover states throughout app for better readability
+  - All buttons now properly invert colors on hover (light text on dark background)
+  - Settlement cards properly distinguish active vs inactive
+  - Bulk action buttons now have correct contrast
+  - Save/restore buttons in named saves have proper styling
+
+### Fixed
+- **Actions Dropdown Z-Index** - Dropdown menu in focus mode now appears above side panel
+- **Toolbar Z-Index** - Increased toolbar z-index to ensure dropdowns render correctly
+- **Settlement Name Visibility** - Settlement names in management drawer now properly inherit colors
+
+### Technical
+- Added `pdfjs-dist@3.11.174` dependency for PDF rendering
+- Created `PdfSurvivorSheet` component with canvas rendering and form field overlay system
+- Created `pdfFieldMapping.ts` utility for bidirectional data conversion
+- PDF.js worker loaded from CDN for optimal bundle size
+- Removed old `SurvivorSheet` component and related CSS
+- Moved `SurvivorData` type to dedicated `types/survivor.ts` file
+- Data migration v13: Resets movement stat from 5 to 0 for existing survivors
+
 ## [1.4.7] - 2026-03-22
 
 ### Added

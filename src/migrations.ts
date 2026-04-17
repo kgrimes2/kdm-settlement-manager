@@ -1,7 +1,6 @@
-import { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
-import type { PermanentInjury } from './SurvivorSheet'
+import { type SurvivorData, initialSurvivorData, type PermanentInjury } from './types/survivor'
 
-export const CURRENT_DATA_VERSION = 12
+export const CURRENT_DATA_VERSION = 13
 
 export interface SettlementInventory {
   gear: Record<string, number>
@@ -289,6 +288,11 @@ function migrateSurvivor(survivor: SurvivorData | null): SurvivorData | null {
         return normalised ?? t
       })
     }
+  }
+
+  // Migration v13: Reset movement stat to 0 (was previously defaulted to 5)
+  if (migratedSurvivor.stats && migratedSurvivor.stats.movement === 5) {
+    migratedSurvivor.stats.movement = 0
   }
 
   return migratedSurvivor

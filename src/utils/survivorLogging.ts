@@ -1,4 +1,4 @@
-import type { SurvivorLogEntry } from '../SurvivorSheet'
+import type { SurvivorLogEntry } from '../types/survivor'
 
 // Attributes that should not be tracked in the survivor log
 const EXCLUDED_ATTRIBUTES = Object.freeze(new Set(['auxiliaryNotes', 'survivorLog']))

@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { capitalCase } from 'change-case'
 import './App.css'
-import './classic-theme.css'
-import SurvivorSheet, { type SurvivorData, initialSurvivorData } from './SurvivorSheet'
+import PdfSurvivorSheet from './components/PdfSurvivorSheet'
+import { type SurvivorData, initialSurvivorData } from './types/survivor'
 import {
   type AppState,
   type SettlementData,
@@ -118,9 +118,6 @@ function AppContent() {
       const [showResourcesDropdown, setShowResourcesDropdown] = useState(false)
       const [, forceUpdate] = useState(0)
 
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    return (localStorage.getItem('kdm-theme') as 'dark' | 'light') ?? 'dark'
-  })
     const needsSaveRef = useRef(false)
     const appStateRef = useRef(appState)
     const settlementCloseButtonRef = useRef<HTMLButtonElement>(null)
@@ -129,14 +126,6 @@ function AppContent() {
   const [loadedWikiTerms, setLoadedWikiTerms] = useState<GlossaryTerm[]>([])
   const [loadedCategories, setLoadedCategories] = useState<Set<string>>(new Set())
   const [collapsedInjuries, setCollapsedInjuries] = useState<Set<string>>(new Set())
-
-  const toggleInjuryCollapse = (location: string) => {
-    setCollapsedInjuries(prev => {
-      const next = new Set(prev)
-      next.has(location) ? next.delete(location) : next.add(location)
-      return next
-    })
-  }
   const [loadingCategory, setLoadingCategory] = useState<string | null>(null)
 
   const wikiCategories = (wikiIndex.categories || []) as WikiCategoryInfo[]
@@ -204,12 +193,6 @@ function AppContent() {
   }
 
   const currentSettlement = getCurrentSettlement()
-
-  // Sync theme to DOM and localStorage
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('kdm-theme', theme)
-  }, [theme])
 
   // Keep appStateRef in sync with appState (runs on every change, but just updates ref - cheap!)
   useEffect(() => {
@@ -298,12 +281,11 @@ function AppContent() {
      })
    }, []) // Empty deps - runs once on mount
 
-   // Detect mobile devices and small screens
+   // Detect mobile devices and small screens - DISABLED, use desktop mode for all devices
   useEffect(() => {
     const checkMobile = () => {
-      const isMobile = /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-        || window.innerWidth <= 1000
-      setIsMobileDevice(isMobile)
+      // Always use desktop mode
+      setIsMobileDevice(false)
     }
 
     checkMobile()
@@ -2494,14 +2476,6 @@ function AppContent() {
             </button>
           )}
           <button
-            className="toolbar-button toolbar-icon-button theme-toggle-button"
-            onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')}
-            aria-label={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
-            title={theme === 'dark' ? 'Switch to classic theme' : 'Switch to dark theme'}
-          >
-            {theme === 'dark' ? '☀' : '🌙'}
-          </button>
-          <button
             className="toolbar-button toolbar-icon-button"
             onClick={toggleSurvivorList}
             aria-label="Manage Survivors"
@@ -2817,7 +2791,7 @@ function AppContent() {
                            <div className="survivor-name-line">
                              <span className="survivor-name">{survivor!.name || `New Survivor`}</span>
                              {survivor!.gender && <span className="survivor-sex">{survivor!.gender}</span>}
-                             <span className="survivor-age">Age {survivor!.huntXP.filter(x => x).length}</span>
+                             <span className="survivor-age">Age {survivor!.huntXP.filter((x: boolean) => x).length}</span>
                              <span className="survivor-stats">
                                {survivor!.stats.movement}/{survivor!.stats.accuracy}/{survivor!.stats.strength}/{survivor!.stats.evasion}/{survivor!.stats.luck}/{survivor!.stats.speed}
                              </span>
@@ -2860,7 +2834,7 @@ function AppContent() {
                              <div className="survivor-name-line">
                                <span className="survivor-name">{survivor.name || `New Survivor`}</span>
                                {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
-                               <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                               <span className="survivor-age">Age {survivor.huntXP.filter((x: boolean) => x).length}</span>
                                <span className="survivor-stats">
                                  {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
                                </span>
@@ -2918,7 +2892,7 @@ function AppContent() {
                             <div className="survivor-name-line">
                               <span className="survivor-name">{survivor.name || `New Survivor`}</span>
                               {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
-                              <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                              <span className="survivor-age">Age {survivor.huntXP.filter((x: boolean) => x).length}</span>
                               <span className="survivor-stats">
                                 {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
                               </span>
@@ -2964,7 +2938,7 @@ function AppContent() {
                             <div className="survivor-name-line">
                               <span className="survivor-name">{survivor.name || `New Survivor`}</span>
                               {survivor.gender && <span className="survivor-sex">{survivor.gender}</span>}
-                              <span className="survivor-age">Age {survivor.huntXP.filter(x => x).length}</span>
+                              <span className="survivor-age">Age {survivor.huntXP.filter((x: boolean) => x).length}</span>
                               <span className="survivor-stats">
                                 {survivor.stats.movement}/{survivor.stats.accuracy}/{survivor.stats.strength}/{survivor.stats.evasion}/{survivor.stats.luck}/{survivor.stats.speed}
                               </span>
@@ -3012,12 +2986,13 @@ function AppContent() {
           return (
           <div className="focus-container">
              <div className="focused-main-sheet">
-               <SurvivorSheet
+               <PdfSurvivorSheet
                  key={`survivor-${focusedQuadrant}-focused`}
                  survivor={focusedSurvivor}
                  onUpdate={(survivor) => updateSurvivor(focusedQuadrant, survivor)}
                  onOpenGlossary={handleOpenGlossary}
                  glossaryTerms={glossaryData.terms}
+                 editable={true}
                  isEditingTemplate={editingTemplateQuadrant === focusedQuadrant}
                />
               </div>
@@ -3036,67 +3011,6 @@ function AppContent() {
                   placeholder="Add notes about this survivor..."
                 />
               </div>
-              <div className="permanent-injuries-section">
-                <h3>Permanent Severe Injuries</h3>
-                <div className="injury-legend">
-                  <span className="legend-item">
-                    <span className="legend-box red-legend"></span>
-                    Red background = Retired
-                  </span>
-                </div>
-                {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                  <div key={location} className="injury-location-group">
-                    <div
-                      className="injury-location-header"
-                      onClick={() => toggleInjuryCollapse(location)}
-                    >
-                      <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                      <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
-                    </div>
-                    {!collapsedInjuries.has(location) && (
-                      focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                        <div className="no-injuries">No injuries</div>
-                      ) : (
-                        focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                          <div key={injuryIndex} className="injury-item">
-                            <span className="injury-name">{injury.name}</span>
-                            <div className="injury-checkboxes">
-                              {injury.checkboxes.map((checked, checkboxIndex) => {
-                                const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                                const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                                return (
-                                  <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                    <input
-                                      type="checkbox"
-                                      checked={checked}
-                                      onChange={() => {
-                                        const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                        newInjuries[injuryIndex] = {
-                                          ...newInjuries[injuryIndex],
-                                          checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                            i === checkboxIndex ? !cb : cb
-                                          )
-                                        }
-                                        updateSurvivor(focusedQuadrant, {
-                                          ...focusedSurvivor,
-                                          permanentInjuries: {
-                                            ...focusedSurvivor.permanentInjuries,
-                                            [location]: newInjuries
-                                          }
-                                        })
-                                    }}
-                                  />
-                                </label>
-                              )
-                              })}
-                            </div>
-                          </div>
-                        ))
-                      )
-                    )}
-                  </div>
-                 ))}
-               </div>
                <div className="survivor-log-section">
                   <div
                     className="survivor-log-header"
@@ -3239,12 +3153,13 @@ function AppContent() {
             })
           })()}
           {currentSettlement?.survivors[1] ? (
-            <SurvivorSheet
+            <PdfSurvivorSheet
               key={`survivor-1-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[1]}
               onUpdate={(survivor) => updateSurvivor(1, survivor)}
               onOpenGlossary={handleOpenGlossary}
               glossaryTerms={glossaryData.terms}
+              editable={false}
             />
           ) : (
             <div
@@ -3313,12 +3228,13 @@ function AppContent() {
             })
           })()}
           {currentSettlement?.survivors[2] ? (
-            <SurvivorSheet
+            <PdfSurvivorSheet
               key={`survivor-2-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[2]}
               onUpdate={(survivor) => updateSurvivor(2, survivor)}
               onOpenGlossary={handleOpenGlossary}
               glossaryTerms={glossaryData.terms}
+              editable={false}
             />
           ) : (
             <div
@@ -3387,12 +3303,13 @@ function AppContent() {
             })
           })()}
           {currentSettlement?.survivors[3] ? (
-            <SurvivorSheet
+            <PdfSurvivorSheet
               key={`survivor-3-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[3]}
               onUpdate={(survivor) => updateSurvivor(3, survivor)}
               onOpenGlossary={handleOpenGlossary}
               glossaryTerms={glossaryData.terms}
+              editable={false}
             />
           ) : (
             <div
@@ -3461,12 +3378,13 @@ function AppContent() {
             })
           })()}
           {currentSettlement?.survivors[4] ? (
-            <SurvivorSheet
+            <PdfSurvivorSheet
               key={`survivor-4-${focusedQuadrant}-${activeQuadrant}`}
               survivor={currentSettlement.survivors[4]}
               onUpdate={(survivor) => updateSurvivor(4, survivor)}
               onOpenGlossary={handleOpenGlossary}
               glossaryTerms={glossaryData.terms}
+              editable={false}
             />
           ) : (
             <div
@@ -3500,67 +3418,6 @@ function AppContent() {
                 placeholder="Add notes about this survivor..."
               />
             </div>
-             <div className="permanent-injuries-section">
-               <h3>Permanent Severe Injuries</h3>
-               <div className="injury-legend">
-                 <span className="legend-item">
-                   <span className="legend-box red-legend"></span>
-                   Red background = Retired
-                 </span>
-               </div>
-               {(['head', 'arms', 'body', 'waist', 'legs'] as const).map((location) => (
-                 <div key={location} className="injury-location-group">
-                   <div
-                     className="injury-location-header"
-                     onClick={() => toggleInjuryCollapse(location)}
-                   >
-                     <h4>{location.charAt(0).toUpperCase() + location.slice(1)}</h4>
-                     <span className="expand-icon">{collapsedInjuries.has(location) ? '▶' : '▼'}</span>
-                   </div>
-                   {!collapsedInjuries.has(location) && (
-                     focusedSurvivor.permanentInjuries[location].length === 0 ? (
-                       <div className="no-injuries">No injuries</div>
-                     ) : (
-                       focusedSurvivor.permanentInjuries[location].map((injury, injuryIndex) => (
-                         <div key={injuryIndex} className="injury-item">
-                           <span className="injury-name">{injury.name}</span>
-                           <div className="injury-checkboxes">
-                             {injury.checkboxes.map((checked, checkboxIndex) => {
-                               const isLastCheckbox = checkboxIndex === injury.checkboxes.length - 1
-                               const isRedCheckbox = isLastCheckbox && (injury.name === 'Blind' || injury.name === 'Dismembered Leg')
-                               return (
-                                 <label key={checkboxIndex} className={`injury-checkbox ${isRedCheckbox ? 'red-checkbox' : ''}`}>
-                                   <input
-                                     type="checkbox"
-                                     checked={checked}
-                                     onChange={() => {
-                                       const newInjuries = [...focusedSurvivor.permanentInjuries[location]]
-                                       newInjuries[injuryIndex] = {
-                                         ...newInjuries[injuryIndex],
-                                         checkboxes: newInjuries[injuryIndex].checkboxes.map((cb, i) =>
-                                           i === checkboxIndex ? !cb : cb
-                                         )
-                                       }
-                                       updateSurvivor(focusedQuadrant, {
-                                         ...focusedSurvivor,
-                                         permanentInjuries: {
-                                           ...focusedSurvivor.permanentInjuries,
-                                           [location]: newInjuries
-                                         }
-                                       })
-                                     }}
-                                   />
-                                 </label>
-                               )
-                             })}
-                           </div>
-                         </div>
-                       ))
-                     )
-                   )}
-                 </div>
-               ))}
-             </div>
              <div className="survivor-log-section">
                 <div
                   className="survivor-log-header"
@@ -3682,7 +3539,6 @@ function AppContent() {
              </h2>
               <ul style={{ marginLeft: '20px', lineHeight: '1.6', color: '#333' }}>
                 <li>Settlement inventory log — track all gear and materials changes with timestamps in the new Log tab</li>
-                <li>Classic theme toggle — switch between the new dark monochrome look and the original warm brown style</li>
                 <li>Fixed invisible text on section headers and action buttons in dark mode</li>
                 <li>Fixed active tab text invisible in dark mode (gear/materials/log tabs)</li>
               </ul>

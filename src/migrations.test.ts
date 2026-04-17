@@ -5,7 +5,7 @@ import {
   createDefaultAppState,
   CURRENT_DATA_VERSION
 } from './migrations'
-import { initialSurvivorData } from './SurvivorSheet'
+import { initialSurvivorData } from './types/survivor'
 
 describe('Data Migrations', () => {
   describe('migrateData', () => {
