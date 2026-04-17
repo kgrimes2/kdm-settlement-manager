@@ -45,7 +45,8 @@
 /* Allow interaction with form elements */
 .form-overlays input,
 .form-overlays textarea,
-.form-overlays select {
+.form-overlays select,
+.form-overlays button {
   pointer-events: auto;
 }
 

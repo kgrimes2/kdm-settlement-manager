@@ -262,25 +262,95 @@ export default function PdfSurvivorSheet({
         if (field.fieldType === 'Tx') {
           // Text field
           const isNumeric = field.fieldName.includes('_num_')
-          return (
-            <input
-              key={`${field.fieldName}-${idx}`}
-              type="text"
-              className="overlay-input"
-              data-field={field.fieldName}
-              value={value || ''}
-              onChange={(e) => updateField(field.fieldName, e.target.value)}
-              style={{
-                position: 'absolute',
-                left: `${canvasX}px`,
-                top: `${canvasY}px`,
-                width: `${width}px`,
-                height: `${height}px`,
-                textAlign: isNumeric ? 'center' : 'left'
-              }}
-              title={field.fieldName}
-            />
-          )
+
+          if (isNumeric) {
+            // Numeric field with +/- buttons
+            const numValue = parseInt(value) || 0
+            return (
+              <div
+                key={`${field.fieldName}-${idx}`}
+                style={{
+                  position: 'absolute',
+                  left: `${canvasX}px`,
+                  top: `${canvasY}px`,
+                  width: `${width}px`,
+                  height: `${height}px`,
+                  display: 'flex',
+                  alignItems: 'stretch'
+                }}
+              >
+                <button
+                  className="numeric-decrement"
+                  onClick={() => updateField(field.fieldName, Math.max(0, numValue - 1).toString())}
+                  style={{
+                    width: '20%',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    color: '#fff',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '10px',
+                    fontWeight: 'bold'
+                  }}
+                  title="Decrease"
+                >
+                  -1
+                </button>
+                <input
+                  type="text"
+                  className="overlay-input"
+                  data-field={field.fieldName}
+                  value={value || ''}
+                  onChange={(e) => updateField(field.fieldName, e.target.value)}
+                  style={{
+                    width: '60%',
+                    textAlign: 'center',
+                    border: '1px solid rgba(52, 152, 219, 0.5)',
+                    borderRadius: '2px',
+                    fontSize: '10px',
+                    padding: '2px 4px'
+                  }}
+                  title={field.fieldName}
+                />
+                <button
+                  className="numeric-increment"
+                  onClick={() => updateField(field.fieldName, (numValue + 1).toString())}
+                  style={{
+                    width: '20%',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    color: '#fff',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontSize: '10px',
+                    fontWeight: 'bold'
+                  }}
+                  title="Increase"
+                >
+                  +1
+                </button>
+              </div>
+            )
+          } else {
+            // Regular text field
+            return (
+              <input
+                key={`${field.fieldName}-${idx}`}
+                type="text"
+                className="overlay-input"
+                data-field={field.fieldName}
+                value={value || ''}
+                onChange={(e) => updateField(field.fieldName, e.target.value)}
+                style={{
+                  position: 'absolute',
+                  left: `${canvasX}px`,
+                  top: `${canvasY}px`,
+                  width: `${width}px`,
+                  height: `${height}px`,
+                  textAlign: 'left'
+                }}
+                title={field.fieldName}
+              />
+            )
+          }
         } else if (field.fieldType === 'Btn' && field.checkBox) {
           // Checkbox
           return (
@@ -305,32 +375,54 @@ export default function PdfSurvivorSheet({
       } else {
         // Static text overlays for overview mode
         if (value) {
-          const displayValue = value === true ? '✓' : String(value)
+          const isCheckbox = value === true
           const isNumeric = field.fieldName.includes('_num_')
-          return (
-            <div
-              key={`${field.fieldName}-${idx}`}
-              className="overlay-static-text"
-              style={{
-                position: 'absolute',
-                left: `${canvasX}px`,
-                top: `${canvasY}px`,
-                width: `${width}px`,
-                height: `${height}px`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: isNumeric ? 'center' : 'flex-start',
-                padding: '2px',
-                fontSize: '11px',
-                color: '#000',
-                fontWeight: 600,
-                pointerEvents: 'none',
-                overflow: 'hidden'
-              }}
-            >
-              {displayValue}
-            </div>
-          )
+
+          if (isCheckbox) {
+            // Render filled black box for checkboxes
+            return (
+              <div
+                key={`${field.fieldName}-${idx}`}
+                className="overlay-static-text"
+                style={{
+                  position: 'absolute',
+                  left: `${canvasX}px`,
+                  top: `${canvasY}px`,
+                  width: `${width}px`,
+                  height: `${height}px`,
+                  backgroundColor: '#000',
+                  pointerEvents: 'none'
+                }}
+              />
+            )
+          } else {
+            // Render text for other fields
+            const displayValue = String(value)
+            return (
+              <div
+                key={`${field.fieldName}-${idx}`}
+                className="overlay-static-text"
+                style={{
+                  position: 'absolute',
+                  left: `${canvasX}px`,
+                  top: `${canvasY}px`,
+                  width: `${width}px`,
+                  height: `${height}px`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: isNumeric ? 'center' : 'flex-start',
+                  padding: '2px',
+                  fontSize: '11px',
+                  color: '#000',
+                  fontWeight: 600,
+                  pointerEvents: 'none',
+                  overflow: 'hidden'
+                }}
+              >
+                {displayValue}
+              </div>
+            )
+          }
         }
       }
 
