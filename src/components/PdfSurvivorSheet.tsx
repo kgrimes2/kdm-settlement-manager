@@ -160,8 +160,8 @@ export default function PdfSurvivorSheet({
       const scaleX = containerWidth / baseViewport.width
       const scaleY = containerHeight / baseViewport.height
 
-      // Scale proportionally with small margin like prototype
-      const calcScale = Math.min(scaleX, scaleY) * 0.98
+      // Scale proportionally to fill the container
+      const calcScale = Math.min(scaleX, scaleY) * 0.99
       console.log('🔍 Calculated scale:', { scaleX, scaleY, calcScale })
 
       setScale(calcScale)
@@ -283,13 +283,14 @@ export default function PdfSurvivorSheet({
                   className="numeric-decrement"
                   onClick={() => updateField(field.fieldName, (numValue - 1).toString())}
                   style={{
-                    width: '20%',
+                    width: '18%',
                     background: 'rgba(0, 0, 0, 0.7)',
                     color: '#fff',
                     border: 'none',
                     cursor: 'pointer',
-                    fontSize: '10px',
-                    fontWeight: 'bold'
+                    fontSize: '8px',
+                    fontWeight: 'bold',
+                    padding: '0'
                   }}
                   title="Decrease"
                 >
@@ -302,12 +303,12 @@ export default function PdfSurvivorSheet({
                   value={value || '0'}
                   readOnly
                   style={{
-                    width: '60%',
+                    width: '64%',
                     textAlign: 'center',
                     border: '1px solid rgba(52, 152, 219, 0.5)',
                     borderRadius: '2px',
-                    fontSize: '10px',
-                    padding: '2px 4px',
+                    fontSize: '9px',
+                    padding: '2px 1px',
                     cursor: 'default'
                   }}
                   title={field.fieldName}
@@ -316,13 +317,14 @@ export default function PdfSurvivorSheet({
                   className="numeric-increment"
                   onClick={() => updateField(field.fieldName, (numValue + 1).toString())}
                   style={{
-                    width: '20%',
+                    width: '18%',
                     background: 'rgba(0, 0, 0, 0.7)',
                     color: '#fff',
                     border: 'none',
                     cursor: 'pointer',
-                    fontSize: '10px',
-                    fontWeight: 'bold'
+                    fontSize: '8px',
+                    fontWeight: 'bold',
+                    padding: '0'
                   }}
                   title="Increase"
                 >

@@ -710,12 +710,12 @@
      z-index: 1001;
      display: flex;
      gap: 0;
-     width: 85vw;
-     height: 80vh;
+     width: 95vw;
+     height: 90vh;
    }
 
   .focused-main-sheet {
-    width: 65vw;
+    width: 72vw;
     height: 100%;
     background-color: var(--kdm-surface);
     background-image:
@@ -728,7 +728,7 @@
   }
 
   .secondary-sheet {
-    width: 20vw;
+    width: 23vw;
     height: 100%;
     background-color: var(--kdm-surface);
     background-image:
