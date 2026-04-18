@@ -227,7 +227,7 @@ export function pdfFieldsToSurvivorData(
   const survivor = { ...baseSurvivor }
 
   // Basic fields
-  if (fields['survivor_name_input']) survivor.name = String(fields['survivor_name_input'])
+  if (fields['survivor_name_input'] !== undefined) survivor.name = String(fields['survivor_name_input'])
 
   // Gender
   if (fields['survivor_is_male_checkbox']) survivor.gender = 'M'
@@ -285,8 +285,9 @@ export function pdfFieldsToSurvivorData(
   if (fields['legs_heavy_check'] !== undefined) survivor.bodyLocations.legs.heavy = Boolean(fields['legs_heavy_check'])
 
   // Weapon proficiency
-  if (fields['weapon_profic_input']) {
-    survivor.weaponProficiency.types = [String(fields['weapon_profic_input'])]
+  if (fields['weapon_profic_input'] !== undefined) {
+    const value = String(fields['weapon_profic_input'])
+    survivor.weaponProficiency.types = value ? [value] : []
   }
   if (fields['weap_prof_check_1'] !== undefined) {
     survivor.weaponProficiency.level[0] = Boolean(fields['weap_prof_check_1'])
@@ -312,30 +313,30 @@ export function pdfFieldsToSurvivorData(
   }
 
   // Fighting Arts
-  const fightingArts: string[] = []
-  if (fields['fighting_input_1']) fightingArts.push(String(fields['fighting_input_1']))
-  if (fields['fighting_input_2']) fightingArts.push(String(fields['fighting_input_2']))
-  if (fightingArts.length > 0) {
-    survivor.fightingArts = [...fightingArts, '']
+  if (fields['fighting_input_1'] !== undefined || fields['fighting_input_2'] !== undefined) {
+    const fightingArts: string[] = []
+    if (fields['fighting_input_1']) fightingArts.push(String(fields['fighting_input_1']))
+    if (fields['fighting_input_2']) fightingArts.push(String(fields['fighting_input_2']))
+    survivor.fightingArts = fightingArts.length > 0 ? [...fightingArts, ''] : ['']
   }
 
   // Disorders
-  const disorders: string[] = []
-  if (fields['disorders_input_1']) disorders.push(String(fields['disorders_input_1']))
-  if (fields['disorders_input_2']) disorders.push(String(fields['disorders_input_2']))
-  if (fields['disorders_input_3']) disorders.push(String(fields['disorders_input_3']))
-  if (disorders.length > 0) {
-    survivor.disorders = [...disorders, '']
+  if (fields['disorders_input_1'] !== undefined || fields['disorders_input_2'] !== undefined || fields['disorders_input_3'] !== undefined) {
+    const disorders: string[] = []
+    if (fields['disorders_input_1']) disorders.push(String(fields['disorders_input_1']))
+    if (fields['disorders_input_2']) disorders.push(String(fields['disorders_input_2']))
+    if (fields['disorders_input_3']) disorders.push(String(fields['disorders_input_3']))
+    survivor.disorders = disorders.length > 0 ? [...disorders, ''] : ['']
   }
 
   // Abilities & Impairments
-  const abilities: string[] = []
-  if (fields['abilities_input_1']) abilities.push(String(fields['abilities_input_1']))
-  if (fields['abilities_input_2']) abilities.push(String(fields['abilities_input_2']))
-  if (fields['abilities_input_3']) abilities.push(String(fields['abilities_input_3']))
-  if (fields['abilities_input_4']) abilities.push(String(fields['abilities_input_4']))
-  if (abilities.length > 0) {
-    survivor.abilitiesImpairments = [...abilities, '']
+  if (fields['abilities_input_1'] !== undefined || fields['abilities_input_2'] !== undefined || fields['abilities_input_3'] !== undefined || fields['abilities_input_4'] !== undefined) {
+    const abilities: string[] = []
+    if (fields['abilities_input_1']) abilities.push(String(fields['abilities_input_1']))
+    if (fields['abilities_input_2']) abilities.push(String(fields['abilities_input_2']))
+    if (fields['abilities_input_3']) abilities.push(String(fields['abilities_input_3']))
+    if (fields['abilities_input_4']) abilities.push(String(fields['abilities_input_4']))
+    survivor.abilitiesImpairments = abilities.length > 0 ? [...abilities, ''] : ['', '']
   }
 
   // Once Per Lifetime
@@ -347,7 +348,7 @@ export function pdfFieldsToSurvivorData(
   }
 
   // Next Departure
-  if (fields['next_departure_input']) {
+  if (fields['next_departure_input'] !== undefined) {
     survivor.nextDeparture = String(fields['next_departure_input'])
   }
 
@@ -366,7 +367,7 @@ export function pdfFieldsToSurvivorData(
   if (fields['lumi_num_input'] !== undefined) {
     survivor.luminosity = Number(fields['lumi_num_input']) || 0
   }
-  if (fields['phil_input']) {
+  if (fields['phil_input'] !== undefined) {
     survivor.philosophy = String(fields['phil_input'])
   }
   if (fields['phil_rank_num_input'] !== undefined) {
@@ -375,16 +376,16 @@ export function pdfFieldsToSurvivorData(
 
   // Neurosis
   if (!survivor.neurosis) survivor.neurosis = {}
-  if (fields['neurosis_input']) survivor.neurosis.name = String(fields['neurosis_input'])
-  if (fields['neurosis_rules_input']) survivor.neurosis.rules = String(fields['neurosis_rules_input'])
-  if (fields['neurosis_obs_cond_input']) survivor.neurosis.observationConditions = String(fields['neurosis_obs_cond_input'])
-  if (fields['neurosis_tenet_know_inp']) survivor.neurosis.tenetKnowledge = String(fields['neurosis_tenet_know_inp'])
+  if (fields['neurosis_input'] !== undefined) survivor.neurosis.name = String(fields['neurosis_input'])
+  if (fields['neurosis_rules_input'] !== undefined) survivor.neurosis.rules = String(fields['neurosis_rules_input'])
+  if (fields['neurosis_obs_cond_input'] !== undefined) survivor.neurosis.observationConditions = String(fields['neurosis_obs_cond_input'])
+  if (fields['neurosis_tenet_know_inp'] !== undefined) survivor.neurosis.tenetKnowledge = String(fields['neurosis_tenet_know_inp'])
 
   // Knowledge 1
   if (!survivor.knowledge1) survivor.knowledge1 = { name: '', rules: '', observationConditions: '', checks: Array(9).fill(false) }
-  if (fields['knowledge1_name_input']) survivor.knowledge1.name = String(fields['knowledge1_name_input'])
-  if (fields['knowledge1_rules_input']) survivor.knowledge1.rules = String(fields['knowledge1_rules_input'])
-  if (fields['knowledge1_obs_cond_input']) survivor.knowledge1.observationConditions = String(fields['knowledge1_obs_cond_input'])
+  if (fields['knowledge1_name_input'] !== undefined) survivor.knowledge1.name = String(fields['knowledge1_name_input'])
+  if (fields['knowledge1_rules_input'] !== undefined) survivor.knowledge1.rules = String(fields['knowledge1_rules_input'])
+  if (fields['knowledge1_obs_cond_input'] !== undefined) survivor.knowledge1.observationConditions = String(fields['knowledge1_obs_cond_input'])
   for (let i = 1; i <= 9; i++) {
     if (fields[`knowledge_check_${i}`] !== undefined && survivor.knowledge1.checks) {
       survivor.knowledge1.checks[i - 1] = Boolean(fields[`knowledge_check_${i}`])
@@ -393,9 +394,9 @@ export function pdfFieldsToSurvivorData(
 
   // Knowledge 2
   if (!survivor.knowledge2) survivor.knowledge2 = { name: '', rules: '', observationConditions: '', checks: Array(9).fill(false) }
-  if (fields['knowledge2_name_input']) survivor.knowledge2.name = String(fields['knowledge2_name_input'])
-  if (fields['knowledge2_rules_input']) survivor.knowledge2.rules = String(fields['knowledge2_rules_input'])
-  if (fields['knowledge2_obs_cond_input']) survivor.knowledge2.observationConditions = String(fields['knowledge2_obs_cond_input'])
+  if (fields['knowledge2_name_input'] !== undefined) survivor.knowledge2.name = String(fields['knowledge2_name_input'])
+  if (fields['knowledge2_rules_input'] !== undefined) survivor.knowledge2.rules = String(fields['knowledge2_rules_input'])
+  if (fields['knowledge2_obs_cond_input'] !== undefined) survivor.knowledge2.observationConditions = String(fields['knowledge2_obs_cond_input'])
   for (let i = 10; i <= 18; i++) {
     if (fields[`knowledge_check_${i}`] !== undefined && survivor.knowledge2.checks) {
       survivor.knowledge2.checks[i - 10] = Boolean(fields[`knowledge_check_${i}`])

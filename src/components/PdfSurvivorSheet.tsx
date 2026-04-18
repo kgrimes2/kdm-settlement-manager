@@ -68,6 +68,33 @@ export default function PdfSurvivorSheet({
     setPendingValues({})
   }, [survivor.createdAt]) // Use createdAt as stable identifier for survivor identity
 
+  // Clear pending values when switching to overview mode (editable=false)
+  useEffect(() => {
+    if (!editable) {
+      setPendingValues({})
+    }
+  }, [editable])
+
+  // Clear pending values that match the current survivor data (updates have propagated)
+  useEffect(() => {
+    const pdfFields = survivorDataToPdfFields(survivor)
+    setPendingValues(prev => {
+      const next = { ...prev }
+      let changed = false
+      for (const fieldName in next) {
+        // Normalize values for comparison (handle undefined vs empty string)
+        const survivorValue = pdfFields[fieldName] ?? ''
+        const pendingValue = next[fieldName] ?? ''
+        // If the pending value matches what's in survivor data, the update propagated
+        if (survivorValue === pendingValue) {
+          delete next[fieldName]
+          changed = true
+        }
+      }
+      return changed ? next : prev
+    })
+  }, [survivor])
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const overlaysRef = useRef<HTMLDivElement>(null)
@@ -238,14 +265,14 @@ export default function PdfSurvivorSheet({
 
   // Get field value from survivor data (check pending values first for immediate feedback)
   const getFieldValue = useCallback((fieldName: string): any => {
-    // If we have a pending value for this field, use it for immediate feedback
-    if (fieldName in pendingValues) {
+    // Only use pending values in editable mode - overview should show committed data only
+    if (editable && fieldName in pendingValues) {
       return pendingValues[fieldName]
     }
     const pdfFields = survivorDataToPdfFields(survivor)
     const value = pdfFields[fieldName] ?? ''
     return value
-  }, [survivor, pendingValues])
+  }, [survivor, pendingValues, editable])
 
   // Update field value
   const updateField = useCallback((fieldName: string, value: any) => {
@@ -300,12 +327,8 @@ export default function PdfSurvivorSheet({
     // Update immediately on blur
     onUpdate(updatedSurvivor)
 
-    // Clear the pending value
-    setPendingValues(prev => {
-      const next = { ...prev }
-      delete next[fieldName]
-      return next
-    })
+    // DON'T clear pending value here - let it persist until survivor prop updates
+    // This prevents the input from reverting to old value before parent re-renders
   }, [survivor, onUpdate, pendingValues])
 
   // Render overlays
