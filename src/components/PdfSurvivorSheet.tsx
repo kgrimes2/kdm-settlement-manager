@@ -68,6 +68,23 @@ export default function PdfSurvivorSheet({
     setPendingValues({})
   }, [survivor.createdAt]) // Use createdAt as stable identifier for survivor identity
 
+  // Clear pending values that match the current survivor data (updates have propagated)
+  useEffect(() => {
+    const pdfFields = survivorDataToPdfFields(survivor)
+    setPendingValues(prev => {
+      const next = { ...prev }
+      let changed = false
+      for (const fieldName in next) {
+        // If the pending value matches what's in survivor data, the update propagated
+        if (pdfFields[fieldName] === next[fieldName]) {
+          delete next[fieldName]
+          changed = true
+        }
+      }
+      return changed ? next : prev
+    })
+  }, [survivor])
+
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const overlaysRef = useRef<HTMLDivElement>(null)
@@ -300,12 +317,8 @@ export default function PdfSurvivorSheet({
     // Update immediately on blur
     onUpdate(updatedSurvivor)
 
-    // Clear the pending value
-    setPendingValues(prev => {
-      const next = { ...prev }
-      delete next[fieldName]
-      return next
-    })
+    // DON'T clear pending value here - let it persist until survivor prop updates
+    // This prevents the input from reverting to old value before parent re-renders
   }, [survivor, onUpdate, pendingValues])
 
   // Render overlays
