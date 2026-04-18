@@ -75,8 +75,11 @@ export default function PdfSurvivorSheet({
       const next = { ...prev }
       let changed = false
       for (const fieldName in next) {
+        // Normalize values for comparison (handle undefined vs empty string)
+        const survivorValue = pdfFields[fieldName] ?? ''
+        const pendingValue = next[fieldName] ?? ''
         // If the pending value matches what's in survivor data, the update propagated
-        if (pdfFields[fieldName] === next[fieldName]) {
+        if (survivorValue === pendingValue) {
           delete next[fieldName]
           changed = true
         }
