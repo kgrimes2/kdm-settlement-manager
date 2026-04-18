@@ -68,6 +68,13 @@ export default function PdfSurvivorSheet({
     setPendingValues({})
   }, [survivor.createdAt]) // Use createdAt as stable identifier for survivor identity
 
+  // Clear pending values when switching to overview mode (editable=false)
+  useEffect(() => {
+    if (!editable) {
+      setPendingValues({})
+    }
+  }, [editable])
+
   // Clear pending values that match the current survivor data (updates have propagated)
   useEffect(() => {
     const pdfFields = survivorDataToPdfFields(survivor)
@@ -258,14 +265,14 @@ export default function PdfSurvivorSheet({
 
   // Get field value from survivor data (check pending values first for immediate feedback)
   const getFieldValue = useCallback((fieldName: string): any => {
-    // If we have a pending value for this field, use it for immediate feedback
-    if (fieldName in pendingValues) {
+    // Only use pending values in editable mode - overview should show committed data only
+    if (editable && fieldName in pendingValues) {
       return pendingValues[fieldName]
     }
     const pdfFields = survivorDataToPdfFields(survivor)
     const value = pdfFields[fieldName] ?? ''
     return value
-  }, [survivor, pendingValues])
+  }, [survivor, pendingValues, editable])
 
   // Update field value
   const updateField = useCallback((fieldName: string, value: any) => {
